@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practice Project</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       字体设置
+    ========================================================== */
+    :root{
+      --font-mono: "JetBrains Mono","IBM Plex Mono","Source Code Pro",
+                   "Cascadia Code",Consolas,Menlo,"Liberation Mono",
+                   "DejaVu Sans Mono","Courier New",monospace;
+    }
+
+    /* =========================================================
+       浅色主题颜色
+    ========================================================== */
+    :root{
+      /* ---- CPP ---- */
+      --brand-cpp-blue: #133f83;
+      --brand-cpp-blue-weak: #f3faff;
+
+      /* ---- 基础色 ---- */
+      --color-bg: #f3faff;               
+      --color-ink: #111;             
+      --color-ink-muted: #0b1220cc;       
+      --color-card: #ffffff;              
+      --color-border: #d8d8d8;           
+      --elevation: 0 6px 24px rgba(0,0,0,.08); 
+
+      /* ---- 交互 ---- */
+      --color-ring: #1c7cc285;            
+      --color-divider: #4675a1;           
+      --color-search-hit-bg: #fff3b0;      
+      --color-search-hit-fg: #111;     
+
+      /* ---- 首页 ---- */
+      --color-hero-title: #111;
+      --color-hero-subtitle: #111;
+
+      /* ---- 高亮---- */
+      --color-accent: #8a2d2d;
+      --color-accent-strong: #ff7a00;    
+      --title-weight: 700;
+    }
+
+    /* =========================================================
+       深色主题颜色（覆盖）
+    ========================================================== */
+    html.theme-dark{
+      --color-bg: #1a0b2e;
+      --color-ink: #e5e5e5;
+      --color-ink-muted: #b0b8c0;
+      --color-card: #2a2a2a;
+      --color-border: #3a3a3a;
+      --elevation: 0 10px 30px rgba(0,0,0,.45);
+
+      --color-ring: #60a5fa80;
+      --color-divider: #6999D3;
+
+      --color-search-hit-bg: #3b2f0a;
+      --color-search-hit-fg: #fde68a;
+
+      --color-hero-title: #fff;
+      --color-hero-subtitle: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not(.js-theme-locked) {
+      }
+    }
+
+    /* =========================================================
+       基础元素
+    ========================================================== */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-mono);
+      line-height: 1.55;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-variant-ligatures: none;        
+      font-variant-numeric: tabular-nums;  
+      transition: background .35s ease, color .35s ease;
+    }
+    a, .nav-link, .dropdown-item { color: var(--color-ink); }
+    a:hover, .nav-link:hover, .dropdown-item:hover {
+      color: var(--color-ink);
+      background-color: rgba(255,255,255,.15);
+    }
+    :focus-visible{
+      outline:3px solid var(--color-ring);
+      outline-offset:2px;
+      border-radius:8px;
+    }
+
+    /* =========================================================
+       导航栏
+    ========================================================== */
+    .navbar {
+      background: var(--brand-cpp-blue) !important;
+      border-bottom: none;
+    }
+    .navbar.navbar-dark .navbar-brand,
+    .navbar.navbar-dark .nav-link { color:#fff !important; }
+    .navbar .dropdown-menu { background: var(--color-card); border:1px solid var(--color-border); }
+    .navbar .dropdown-item { color: #222; }
+    .navbar .dropdown-item:hover { background-color: rgba(0,0,0,.06); color: #111; }
+    .navbar-brand img { height: 48px; width:auto; display:block; } 
+
+    .navbar .nav-link:hover,
+    .navbar .dropdown-item:hover,
+    .navbar .bi-github:hover,
+    #openSearch:hover {
+      color: #ab80d3 !important;  
+      background-color: transparent !important;
+    }
+
+    .navbar .nav-link i:hover,
+    #openSearch i:hover {
+    color: #ab80d3 !important;
+    background-color: transparent !important;
+    }
+
+
+    /* =========================================================
+       首页
+    ========================================================== */
+    .hero {
+      padding: 80px 20px;
+      background: var(--color-bg);
+    }
+    .hero.cpp-bg{
+      position:relative; overflow:hidden;
+      background:
+        var(--color-bg),
+        radial-gradient(transparent 60%, rgba(255,255,255,0.08)),
+        repeating-linear-gradient(60deg, rgba(255,255,255,0.10) 0 16px, transparent 16px 32px);
+      background-blend-mode: normal;
+    }
+    html.theme-dark .hero.cpp-bg{
+      background:
+        var(--color-bg),
+        radial-gradient(transparent 55%, rgba(255,255,255,0.03)),
+        repeating-linear-gradient(60deg, rgba(255,255,255,0.04) 0 16px, transparent 16px 32px);
+    }
+    .hero.cpp-bg:after{
+      content:"<  >   {  }   ::   *   template  ";
+      position:absolute; left:50%; transform:translateX(-50%);
+      bottom:-8px; font-size:13rem; letter-spacing:.2rem; opacity:.06;
+      white-space:nowrap; pointer-events:none; color:#fff;
+      filter:contrast(0) brightness(2);
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: var(--title-weight);
+      line-height: 1.3;
+      color: var(--color-hero-title);
+      font-family: var(--font-mono);
+      text-align: left;  /
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--color-hero-subtitle) !important;
+      margin-top: 1rem;
+      text-align: left;  /* 左对齐 */
+    }
+
+    /* 纯色标题 */
+    .cpp-gradient{
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+      color: var(--color-hero-title) !important;
+      mix-blend-mode: normal !important;
+    }
+
+    /* HARMON与Y加下划线 */
+    .accent-y{
+      position: relative;
+      font-weight: 800;
+      color: inherit;
+    }
+    .accent-y::after{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      bottom:-.12em;
+      height:1px;
+      background: currentColor;
+      opacity:.45;
+      transform: scaleX(.25);
+      transform-origin: left;
+      transition: transform .22s ease, opacity .22s ease .05s;
+    }
+    .hero-title:hover .accent-y::after{
+      transform: scaleX(1);
+      opacity:.6;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .accent-y::after{ transition: none; transform: scaleX(1); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--color-hero-subtitle) !important;
+      margin-top: 1rem;
+    }
+
+    /* 首屏示意图加载后由模糊到清晰 */
+    .model-image {
+      max-width: 100%;
+      height: auto;
+      filter: blur(10px);
+      opacity: 0.3;
+      transition: filter 1.2s ease, opacity 1.2s ease;
+      margin: 0 auto;
+      border-radius: 6px;
+      display: block;
+    }
+    .model-image.loaded {
+      filter: blur(0);
+      opacity: 1;
+    }
+
+    /* =========================================================
+       快速入口
+    ========================================================== */
+    .features{
+      padding: 36px 0 28px;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      border-top: 1px solid rgba(255,255,255,.25);
+    }
+    html.theme-dark .features{ border-top:1px solid var(--color-border); }
+
+    .feature-item{ display:flex; gap:33px; align-items:flex-start; }
+    .feature-icon{ flex:0 0 auto; font-size: 2rem; color: var(--color-ink); }
+    .feature-title{ margin: 0 0 .15rem 0; font-weight: 800; color: var(--color-ink); }
+    .feature-text{ margin: 0 0 .25rem 0; color: var(--color-ink-muted); }
+    .feature-link{ font-weight: 600; text-decoration: none; }
+    .feature-link:hover{ text-decoration: underline; }
+
+    #quick-links{ font-size: .95rem; }
+    #quick-links .feature-title{ font-size: 1.05rem; }
+    #quick-links .feature-text{  font-size: .95rem; }
+    #quick-links .feature-link{  font-size: 1rem; }
+    #quick-links .feature-icon{  font-size: 1.6rem; }
+
+    .cpp-divider{
+      border: 0; height: 2px; background: var(--color-divider);
+      margin: 28px auto; max-width: 1300px;
+
+    }
+
+    .features,
+    .sponsors{
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+    .about {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+    footer.bg-light {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+
+    /* =========================================================
+       About 区
+    ========================================================== */
+    .about .about-container{ max-width: 1680px; margin: 0 auto; }
+    .about .card-like{ background: transparent !important; border: 0 !important; box-shadow: none !important; }
+
+    /* 下拉，默认收起 */
+    .wp-panel{
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: max-height .45s ease, opacity .35s ease, transform .45s ease;
+      will-change: max-height, opacity, transform;
+      border-top: 1px solid var(--color-border);
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+    .about:hover .wp-panel, .about.expanded .wp-panel{
+      max-height: 360px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .wp-list{
+      margin: 0; padding: 0; list-style: none;
+      display: grid; grid-template-columns: 1fr; gap: 8px;
+    }
+    .wp-item a{
+      display: flex; align-items: center; gap: .5rem;
+      text-decoration: none;
+      padding: .5rem .6rem; border-radius: 10px;
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .wp-item a:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--elevation);
+      border-color: rgba(0,0,0,.08);
+    }
+    .wp-item .tag{
+      font-size: .8rem; padding: .1rem .45rem; border-radius: 999px;
+      border: 1px solid var(--color-border); background: transparent; color: var(--color-ink-muted);
+    }
+
+    /* =========================================================
+       赞助商 Logo 墙
+    ========================================================== */
+    .sponsors {
+      padding: 60px 20px;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      border-top:1px solid rgba(255,255,255,.25);
+      border-bottom:1px solid rgba(255,255,255,.25);
+      transition: background .35s ease, color .35s ease, border-color .35s ease;
+    }
+    html.theme-dark .sponsors{
+      border-top:1px solid var(--color-border);
+      border-bottom:1px solid var(--color-border);
+    }
+    .section-title {
+      font-weight: 800; margin-bottom: 20px;
+      color: var(--color-ink); letter-spacing: 0;
+      font-family: var(--font-mono);
+    }
+    .sponsor-logo-cell {
+      height: 110px; display: flex; align-items: center; justify-content: center;
+      padding: 8px 12px; transition: transform .2s ease;
+      -webkit-tap-highlight-color: transparent; text-decoration: none;
+    }
+    .sponsor-logo-cell:hover{ transform: translateY(-2px); }
+    .sponsor-logo {
+      max-height: 64px; max-width: 160px; width: auto; height: auto; object-fit: contain;
+      filter: grayscale(100%) opacity(.9) drop-shadow(0 1px 3px rgba(0,0,0,.15));
+      transition: transform .2s ease, filter .2s ease;
+      background:#fff; border-radius:8px; padding:6px;   /* 白底卡片，避免深色背景下 LOGO 失真 */
+    }
+    .sponsor-logo:hover {
+      transform: scale(1.05);
+      filter: grayscale(0%) opacity(1) drop-shadow(0 2px 6px rgba(0,0,0,.25));
+    }
+
+    /* =========================================================
+       页脚
+    ========================================================== */
+    footer.bg-light{
+      background: var(--color-bg) !important; color: var(--color-ink);
+      border-top:0px solid var(--color-border);
+      font-family: var(--font-mono);
+    }
+
+    /* =========================================================
+       头部：主题切换 + 站内搜索
+    ========================================================== */
+    .header-tools{ display:flex; align-items:center; gap:.75rem; margin-left:.5rem; }
+
+    /* 主题切换，滑块 */
+    .theme-switch{
+      position:relative; width:44px; height:24px; background:#cbd5e1;
+      border-radius:999px; cursor:pointer; transition:background .2s ease;
+      border:1px solid rgba(255,255,255,.6);
+    }
+    .theme-switch::after{
+      content:""; position:absolute; top:50%; left:3px; transform:translateY(-50%);
+      width:18px; height:18px; border-radius:50%; background:#fff; transition:left .2s ease;
+      box-shadow:0 1px 2px rgba(0,0,0,.15);
+    }
+    html.theme-dark .theme-switch{ background:#334155; border-color: var(--color-border); }
+    html.theme-dark .theme-switch::after{ left:23px; }
+
+    /* 搜索面板 */
+    .search-btn{
+      width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center;
+      border-radius:8px; border:1px solid rgba(255,255,255,.6); background:transparent;
+      color:#fff; cursor:pointer; font-family: var(--font-mono);
+    }
+    .search-btn:hover{ background:rgba(255,255,255,.15); }
+    html.theme-dark .search-btn{ border:1px solid var(--color-border); background:var(--color-card); color: var(--color-ink); }
+
+    .search-panel{
+      position:fixed; top:12px; right:12px; z-index:1050;
+      background:var(--color-card); border:1px solid var(--color-border); border-radius:12px;
+      box-shadow: var(--elevation);
+      padding:.6rem; display:none; gap:.5rem; align-items:center;
+      transition: background .35s ease, color .35s ease, border-color .35s ease;
+      font-family: var(--font-mono);
+    }
+    .search-panel.show{ display:flex; }
+    .search-panel input{
+      width:220px; border:1px solid var(--color-border); background:transparent; color: var(--color-ink);
+      border-radius:8px; padding:.35rem .55rem; outline: none; font-family: var(--font-mono);
+    }
+    .search-panel .sp-btn{
+      border:1px solid var(--color-border); background:var(--color-card); color: var(--color-ink);
+      padding:.35rem .6rem; border-radius:8px; cursor:pointer; font-family: var(--font-mono);
+    }
+    .search-panel .sp-count{ color: var(--color-ink-muted); font-size:.9rem; min-width:60px; text-align:center; }
+
+    .search-hit{ background: var(--color-search-hit-bg); color: var(--color-search-hit-fg); padding: 0 .15em; border-radius:.2em; }
+    .search-hit.active{ outline:2px solid var(--color-accent-strong); outline-offset:2px; }
+  </style>
+</head>
+
+<body>
+  <!-- ======================= 导航栏 ======================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" 
+        href="https://isocpp.org/" 
+        target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#about-harmony">Overview</a></li>
+              <li><a class="dropdown-item" href="about/team.html">Teams</a></li>
+              <li><a class="dropdown-item" href="about/doucument.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="about/publications.html">Publications</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="models/Impdances.html">Impdances</a></li>
+              <li><a class="dropdown-item" href="models/Transofrmers.html">Transofrmers</a></li>
+              <li><a class="dropdown-item" href="models/Loads.html">Loads</a></li>
+              <li><a class="dropdown-item" href="models/Transformer Lines.html">Transformer Lines</a></li>
+              <li><a class="dropdown-item" href="models/Sources and Generators.html">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="models/Converters.html">Converters</a></li>
+              <li><a class="dropdown-item" href="models/Switch and Circuit Breakers.html">Switch and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="models/Renewable Energy Sources.html">Renewable Energy Sources</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="tests/test1.html">Test 1</a></li>
+              <li><a class="dropdown-item" href="tests/test2.html">Test 2</a></li>
+              <li><a class="dropdown-item" href="tests/test3.html">Test 3</a></li>
+              <li><a class="dropdown-item" href="tests/test4.html">Test 4</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="about/contact.html">Contact</a></li>
+
+          <li class="nav-item d-flex align-items-center ms-3">
+            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
+              <i class="bi bi-github fs-4"></i>
+            </a>
+          </li>
+        </ul>
+
+        <!-- 头部：主题切换 + 搜索 -->
+        <div class="header-tools ms-3">
+          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
+          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================= 搜索面板（待修） ======================= -->
+  <div id="searchPanel" class="search-panel" role="dialog" aria-modal="false" aria-label="In-page search">
+    <input id="searchInput" type="text" placeholder="Search text... (Enter)" />
+    <button class="sp-btn" id="prevHit" title="Previous (Shift+Enter)">Prev</button>
+    <button class="sp-btn" id="nextHit" title="Next (Enter)">Next</button>
+    <button class="sp-btn" id="clearHit" title="Clear">Clear</button>
+    <div class="sp-count" id="hitCount">0 / 0</div>
+  </div>
+
+  <!-- ======================= 首页展示 ======================= -->
+  <section class="hero cpp-bg">
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <!-- 左侧：标题 + 副标题 -->
+        <div class="col-lg-6 text-start">
+          <h1 class="hero-title cpp-gradient">
+            <span class="accent-y">HARMON</span>ic stabilit<span class="accent-y">Y</span> assessment of PE-penetrated power systems
+          </h1>
+          <p class="hero-subtitle mt-3">
+            An open-source C++ based framework capable of simulating all components in hybrid power systems stability assessment studies.
+          </p>
+        </div>
+
+        <!-- 右侧：图片 -->
+        <div class="col-lg-6 text-center">
+          <img src="images/framework.png" alt="Model Diagram" class="model-image" loading="lazy" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 快速入口 ======================= -->
+  <section id="quick-links" class="features" aria-label="Quick links">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+        <!-- Get Started -->
+        <div class="col">
+          <div class="feature-item">
+            <i class="bi bi-power feature-icon" aria-hidden="true"></i>
+            <div>
+              <h3 class="feature-title">Get Started</h3>
+              <p class="feature-text">New to Harmony? Read the quick guide and run your first case.</p>
+              <a class="feature-link" href="pages/getting-started.html">Start with the guide →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download -->
+        <div class="col">
+          <div class="feature-item">
+            <i class="bi bi-download feature-icon" aria-hidden="true"></i>
+            <div>
+              <h3 class="feature-title">Download</h3>
+              <p class="feature-text">Grab the source of Harmony. You can find previous and current all versions!</p>
+              <a class="feature-link" href="https://github.com/CRESYM/Harmony/releases" target="_blank" rel="noopener">Latest release →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Docs -->
+        <div class="col">
+          <div class="feature-item">
+            <i class="bi bi-journal-richtext feature-icon" aria-hidden="true"></i>
+            <div>
+              <h3 class="feature-title">Docs</h3>
+              <p class="feature-text">Documentation for Harmony, along with tutorials and guides, are available here.</p>
+              <a class="feature-link" href="https://github.com/CRESYM/Harmony/blob/main/Harmony___simulator_design_and_use.pdf">Docs PDF →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teams -->
+        <div class="col">
+          <div class="feature-item">
+            <i class="bi bi-people feature-icon" aria-hidden="true"></i>
+            <div>
+              <h3 class="feature-title">Teams</h3>
+              <p class="feature-text">Meet the contributors and collaborators behind Harmony.</p>
+              <a class="feature-link" href="pages/teams.html">Our team →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <hr class="cpp-divider">
+
+  <!-- ======================= About Harmony ======================= -->
+  <section id="about-harmony" class="about">
+    <div class="container about-container">
+      <h2 class="section-title text-center mb-4">About Harmony</h2>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- 文字介绍 -->
+        <div class="col-lg-8 mx-auto">
+          <div class="p-1 p-md-2">
+            <p class="mb-3">
+              Harmony will deliver a mathematical framework capable of simulating all components in hybrid power systems (HPS) for stability assessment studies. The tool is designed to be comprehensive and user-friendly for analyzing stability and mitigating instabilities in the power systems of interest. It will efficiently investigate multi-terminal HVDC systems (offshore/onshore), transmission–distribution interconnections, controller interoperability, and HVDC protection. Existing commercial tools typically require costly equipment, long model-development cycles, and time-consuming simulations (minutes to hours). In contrast, Harmony targets execution times of several seconds on general-purpose CPUs.
+            </p>
+          </div>
+
+          <!-- 悬停展开列表 -->
+          <div class="wp-panel">
+            <ul class="wp-list">
+              <li class="wp-item">
+                <a href="about/wp1.html">
+                  <span class="tag">WP1</span>
+                  <span>Developing models for HPS and dynamic-phasor (DP) components</span>
+                </a>
+              </li>
+              <li class="wp-item">
+                <a href="https://github.com/CRESYM/ACDC_OPF">
+                  <span class="tag">WP2</span>
+                  <span>Optimization models for harmonic &amp; DP analysis of AC-DC systems</span>
+                </a>
+              </li>
+              <li class="wp-item">
+                <a href="about/wp3.html">
+                  <span class="tag">WP3</span>
+                  <span>Mathematical framework implementation and testing</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <hr class="cpp-divider">
+
+  <!-- ======================= Sponsors（12个logo，4列×3行） ======================= -->
+  <section id="sponsors" class="sponsors">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Sponsors</h2>
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.dtu.dk/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Danmarks_Tekniske_Universitet_(logo).svg" alt="DTU">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.eles.si/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/ELES_logo.svg" alt="ELES">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.fraunhofer.de/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Fraunhofer-Gesellschaft_2009_logo.svg" alt="Fraunhofer">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.rte-france.com/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/RTE_logo.svg" alt="RTE France">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.grtgaz.com/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Logo_GRT_Gaz.svg" alt="GRTgaz">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.rwth-aachen.de/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/RWTH_Logo_3.svg" alt="RWTH Aachen">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.swissgrid.ch/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Swissgrid-logo.svg" alt="Swissgrid">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.tennet.eu/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Tennet_TSO_logo.svg" alt="TenneT">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.totalenergies.fr/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/Logo_TotalEnergies.svg" alt="TotalEnergies">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.tudelft.nl/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/TUDELFT.svg" alt="TU Delft">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.uni-lj.si/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/ul-logo_new.svg" alt="University of Ljubljana">
+        </a></div>
+
+        <div class="col"><a class="sponsor-logo-cell" href="https://www.comillas.edu/" target="_blank" rel="noopener">
+          <img class="sponsor-logo" src="images/harmony_logos/universidad-pontificia-de-comillas.svg" alt="Comillas">
+        </a></div>
+      </div>
+    </div>
+  </section>
+  <hr class="cpp-divider">
+
+  <!-- ======================= 页脚 ======================= -->
+  <footer class="text-center py-4 bg-light mt-5">
+    <div class="container">
+      <small>
+        &copy; 2023–2025 CRESYM · Released under 
+        <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank" rel="noopener">
+          BSD&nbsp;3-Clause License
+        </a>
+      </small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- =========================================================
+       JS：图片加载渐显 + 主题切换（含记忆）+ 站内搜索
+  ========================================================== -->
+  <script>
+    // ---------------------------
+    // 图片 模糊到清晰
+    // ---------------------------
+    document.addEventListener("DOMContentLoaded", function () {
+      const img = document.querySelector(".model-image");
+      if (img) {
+        if (img.complete) img.classList.add("loaded");
+        else img.addEventListener("load", () => img.classList.add("loaded"));
+      }
+    });
+
+    // ---------------------------
+    // 主题切换 + 记忆
+    // ---------------------------
+    (function(){
+      const root = document.documentElement; 
+      const KEY = "harmony-theme";         
+      const btn = document.getElementById("themeToggle");
+
+      root.classList.add("js-theme-locked");
+
+      // 初始化：读取本地记录
+      const saved = localStorage.getItem(KEY);
+      if (saved === "dark") root.classList.add("theme-dark");
+      if (saved === "light") root.classList.remove("theme-dark");
+
+      // 若无记录，跟随系统
+      if (saved === null) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          root.classList.add("theme-dark");
+        } else {
+          root.classList.remove("theme-dark");
+        }
+      }
+
+      // 点击切换
+      btn?.addEventListener("click", () => {
+        root.classList.toggle("theme-dark");
+        localStorage.setItem(KEY, root.classList.contains("theme-dark") ? "dark" : "light");
+      });
+    })();
+
+    // ---------------------------
+    // 简易站内搜索
+    // ---------------------------
+    (function(){
+      const openBtn = document.getElementById("openSearch");
+      const panel = document.getElementById("searchPanel");
+      const input = document.getElementById("searchInput");
+      const prevBtn = document.getElementById("prevHit");
+      const nextBtn = document.getElementById("nextHit");
+      const clearBtn = document.getElementById("clearHit");
+      const countEl = document.getElementById("hitCount");
+
+      let hits = [];  
+      let index = -1; 
+
+      function togglePanel(show){
+        panel.classList.toggle("show", show);
+        if (show) { input.focus(); input.select(); }
+      }
+
+      function clearHighlights(){
+        document.querySelectorAll(".search-hit").forEach(span=>{
+          const parent = span.parentNode;
+          while (span.firstChild) parent.insertBefore(span.firstChild, span);
+          parent.removeChild(span);
+          parent.normalize();
+        });
+        hits = []; index = -1; updateCount();
+      }
+
+      function updateCount(){
+        countEl.textContent = hits.length ? (index+1)+" / "+hits.length : "0 / 0";
+        document.querySelectorAll(".search-hit.active").forEach(e=>e.classList.remove("active"));
+        if (hits[index]) hits[index].classList.add("active");
+      }
+
+      // 高亮匹配项目
+      function highlightAll(term){
+        clearHighlights();
+        if (!term) return;
+
+        const rx = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), "gi");
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node){
+            const p = node.parentNode;
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            const tag = p.nodeName.toLowerCase();
+            if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
+            if (p.closest("#searchPanel") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+
+        const wrap = (textNode, start, end)=>{
+          const range = document.createRange();
+          range.setStart(textNode, start);
+          range.setEnd(textNode, end);
+          const mark = document.createElement("span");
+          mark.className = "search-hit";
+          range.surroundContents(mark);
+          hits.push(mark);
+        };
+
+        let node;
+        while ( (node = walker.nextNode()) ){
+          const txt = node.nodeValue;
+          let m; const ranges = [];
+          rx.lastIndex = 0;
+          while ((m = rx.exec(txt)) !== null) {
+            ranges.push([m.index, m.index + m[0].length]);
+          }
+          for (let i = ranges.length - 1; i >= 0; i--) {
+            const [s,e] = ranges[i];
+            wrap(node, s, e);
+          }
+        }
+
+        if (hits.length){
+          index = 0;
+          hits[index].scrollIntoView({behavior:"smooth", block:"center"});
+        }
+        updateCount();
+      }
+
+      function go(delta){
+        if (!hits.length) return;
+        index = (index + delta + hits.length) % hits.length;
+        hits[index].scrollIntoView({behavior:"smooth", block:"center"});
+        updateCount();
+      }
+
+      openBtn?.addEventListener("click", ()=> togglePanel(!panel.classList.contains("show")));
+      nextBtn?.addEventListener("click", ()=> go(+1));
+      prevBtn?.addEventListener("click", ()=> go(-1));
+      clearBtn?.addEventListener("click", ()=> { input.value=""; clearHighlights(); input.focus(); });
+
+      input?.addEventListener("keydown", (e)=>{
+        if (e.key === "Enter" && !e.shiftKey){
+          highlightAll(input.value.trim());
+          go(+0);
+        } else if (e.key === "Enter" && e.shiftKey){
+          e.preventDefault();
+          go(-1);
+        } else if (e.key === "Escape"){
+          panel.classList.remove("show");
+        }
+      });
+
+      document.addEventListener("click", (e)=>{
+        if (!panel.contains(e.target) && !openBtn.contains(e.target)){
+          panel.classList.remove("show");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+

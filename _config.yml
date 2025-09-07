@@ -1,0 +1,9 @@
+title: Practice Site
+theme: minima
+markdown: kramdown
+url: "https://hli199305-ee.github.io"
+baseurl: "/HLi199305-ee.github.io-practice"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
