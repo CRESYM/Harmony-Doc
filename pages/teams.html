@@ -211,11 +211,24 @@
       flex:1; height:1px; background:linear-gradient(90deg, var(--color-border), transparent);
     }
 
-    .modal-content{ background: var(--color-card); color: var(--color-ink); border:1px solid var(--color-border); }
-    .modal-header{ border-bottom:1px solid var(--color-border); }
-    .modal-footer{ border-top:1px solid var(--color-border); }
+    .modal-footer .btn {
+      border:1px solid var(--color-border);
+      background:var(--color-card);
+      color: var(--color-ink);
+      font-weight:700;
+      font-family: var(--font-mono);
+      border-radius:10px;
+      padding:.35rem .65rem;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .modal-footer .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      border-color: var(--nav-active);
+      color: var(--nav-active);
+    }
 
-    :focus-visible{ outline:3px solid var(--ring); outline-offset:2px; border-radius:8px; }
+
 
   </style>
 </head>
@@ -267,7 +280,7 @@
       <article class="member" data-role="Research Leader" data-tags="Framework,Funding,Supervision" data-name="Aleksandra Lekić">
         <div class="top">
           <div class="avatar">
-            <img src="images/team/A.Lekić.jpg" alt="Aleksandra Lekić" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="" alt="Aleksandra Lekić" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="fallback" data-avatar="Aleksandra Lekić">AL</div>
           </div>
           <div class="meta">
@@ -295,8 +308,8 @@
              data-profile='{
                "name":"Aleksandra Lekić",
                "position":"Associate Professor, TUDelft",
-               "img":"",
-               "bio":"",
+               "img":"../images/head_photo/a.lekic.jpg",
+               "bio":"Aleksandra received B.S., M.S., and Ph.D. degrees in electrical engineering from the School of Electrical Engineering, University of Belgrade, Belgrade, Serbia, in 2012, 2013, and 2017, respectively. Between 2012 and 2018, she was a Teaching Assistant with the School of Electrical Engineering, University of Belgrade, and an Assistant Professor from 2018 to 2019. In 2019, she worked as a Postdoctoral Researcher at the Department of Electrical Engineering ESAT – ELECTA, KU Leuven, and in the Institute EnergyVille, Genk, Belgium. Between 2020-2025, Aleksandra worked as an Assistant Professor at TU Delft, Faculty of Electrical Engineering, Mathematics and Computer Science, where she is now an Associate Professor. Aleksandra leads a team of researchers specializing in the Control of HVDC/AC power systems. She is an Associate Editor in the International Journal of Electrical Power & Energy Systems, Elsevier. Aleksandra represents TU Delft in the General Assembly in the CRESYM organization, committed to open-source software development for the electrical grids.",
                "tags":[""]
              }'>View</a>
         </div>
@@ -305,7 +318,7 @@
       <article class="member" data-role="Postdoc Researcher" data-tags="DQNsym, Dynamic-phasor, " data-name="Robert Dimitrovski">
         <div class="top">
           <div class="avatar">
-            <img src="images/team/R.Dimitrovski.jpg" alt="Robert Dimitrovski" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src=" " alt="Robert Dimitrovski" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="fallback" data-avatar="Robert Dimitrovski">AL</div>
           </div>
           <div class="meta">
@@ -333,8 +346,8 @@
              data-profile='{
                "name":"Robert Dimitrovski",
                "position":"Coordinator, TenneT",
-               "img":"",
-               "bio":"",
+               "img": "../images/head_photo/r.dimitrovski.jpg",
+               "bio":"Robert Dimitrovski received the M.Sc. degree in electrical power engineering from the Brandenburg University of Technology, Cottbus, Germany, in 2011, and the Ph.D. degree in electrical power engineering from the Friedrich-Alexander-Universität Erlangen-Nürnberg, Germany, in 2021. From 2011 to 2014, he was with Siemens AG, Germany, Smart Grid Division, where he was responsible for the real-time testing of various SIPROTEC relay protection devices.,Since 2020, he has been with TenneT TSO GmbH with Energy System Planning / Grid Analysis department. Within TenneT, he is responsible for the EU Funded Project HVDC-Wise. He is involved in various projects related to analysis of electrical power systems and the development of collaborative open-source energy system simulation tools. He is also a Member of the ENTSO-e group Security and Operations of tomorrow, where he is leading the Grid Assessment workstream and a Member of the Cigre working group C4/B4.52.",
                "tags":[""]
              }'>View</a>
         </div>
@@ -343,7 +356,7 @@
       <article class="member" data-role="Postdoc Researcher" data-tags="OPF, Modeling, Solution" data-name="Hai-Xiao Li">
         <div class="top">
           <div class="avatar">
-            <img src="images/team/h.Li.jpg" alt="Hai-Xiao Li" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="" alt="Hai-Xiao Li" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="fallback" data-avatar="Hai-Xiao Li">ZM</div>
           </div>
           <div class="meta">
@@ -373,8 +386,8 @@
              data-profile='{
                "name":"Hai-Xiao Li",
                "position":"Postdoc, TUDelft",
-               "img":"",
-               "bio":"",
+               "img":"../images/head_photo/h.li.jpg",
+               "bio":"Haixiao Li received his B.E. and Ph.D. degrees in electrical engineering from the Department of Electrical Engineering, Chongqing University, Chongqing, China, in 2015 and 2021, respectively. His main research interests include optimal power flow analysis of AC/DC hybrid power systems.",
                "tags":[""]
              }'>View</a>
         </div>
@@ -383,7 +396,7 @@
       <article class="member" data-role="PHD Student" data-tags="Dynamic-phasor, Modeling, Implementation" data-name="Saif Alsarayreh">
         <div class="top">
           <div class="avatar">
-            <img src="images/team/S.Alsarayreh" alt="Saif Alsarayreh" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src=" " alt="Saif Alsarayreh" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="fallback" data-avatar="Saif Alsarayreh">ZM</div>
           </div>
           <div class="meta">
@@ -413,7 +426,7 @@
              data-profile='{
                "name":"Saif Alsarayreh",
                "position":"PHD Student, TUDelft",
-               "img":"",
+               "img":"../images/head_photo/s.alsarayreh.jpeg",
                "bio":"",
                "tags":[""]
              }'>View</a>
@@ -453,8 +466,8 @@
              data-profile='{
                "name":"Azadeh Kermansaravi",
                "position":"Postdoc, TUDelft",
-               "img":"",
-               "bio":"",
+               "img":"../images/head_photo/a.kermansaravi.jpg",
+               "bio": "Azadeh Kermansaravi received a Ph.D. in Software Engineering from the Department of Computer and Software Engineering, Polytechnique Montreal, Canada, in 2019, following a maste&apos;s degree in Software Engineering from the University of Babol, Iran, in 2013. She has since served as a researcher and AI specialist in Canada, focusing on various AI applications spanning the energy, travel, and manufacturing sectors. She is a postdoc researcher at TU Delft, EEMCS, and is part of the Intelligent Electrical Power Grids group. Her research interests include AI optimizations, RL-based controllers, and the integration of machine learning in power electronics interfaced power systems.",
                "tags":[""]
              }'>View</a>
         </div>
@@ -491,8 +504,8 @@
              data-profile='{
                "name":"Yasel Quintero",
                "position":"Software Engineer, TUDelft",
-               "img":"",
-               "bio":"",
+               "img":"../images/head_photo/y.quintero.png",
+               "bio": "Yasel Qunitero work as a Research Software Engineer (RSE) at the Digital Competence Center and the ICT-Innovation Department. In this role, she provides software support to researchers across all TU-Delft faculties, either through hands-on project collaborations or short consultations. As an experienced RSE, she have worked on a variety of projects, primarily in the fields of computational physics and engineering. Her work has focused on developing desktop and high-performance computing applications for numerical solvers, with particular experience in deploying and optimizing code on HPC clusters. Before joining TU Delft, she spent several years at Imperial College London, developing C++ applications in the Mechanical Engineering Department and actively participating in the London RSE Community. she has an MSc in High Performance Computing with Data Science from the University of Edinburgh and a BSc in Physics from the University of Sonora, Mexico.",
                "tags":[""]
              }'>View</a>
         </div>
@@ -503,7 +516,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title"><span id="mName">Member</span> · <small id="mRole" class="text-muted"></small></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body d-flex flex-column flex-md-row gap-3">
           <div style="flex:0 0 220px">
