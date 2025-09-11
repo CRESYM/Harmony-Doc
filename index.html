@@ -859,6 +859,32 @@
       });
     })();
   </script>
+
+  <style>
+    .navbar {
+      position: fixed;
+      top: -80px; /* 隐藏在上方 */
+      left: 0;
+      width: 100%;
+      transition: top 0.4s ease-in-out;
+      z-index: 1050;
+    }
+    .navbar.show {
+      top: 0; /* 显示时滑下 */
+    }
+  </style>
+
+  <script>
+    document.addEventListener("mousemove", function(e){
+      const navbar = document.querySelector(".navbar");
+      if (e.clientY < 250) {   // 进入顶部范围
+        navbar.classList.add("show");
+      } else {
+        navbar.classList.remove("show");
+      }
+    });
+  </script>
+
 </body>
 </html>
 
