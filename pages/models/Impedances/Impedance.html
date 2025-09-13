@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impedances - Harmony</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/head.css">
+
+  <!-- 左侧导航 -->
+  <style>
+    .list-group-item {
+    border: none !important;
+    background: transparent !important;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-ink);  
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.75rem;
+    }
+
+    .list-group-item:hover {
+    color: #ab80d3 !important;   
+    font-size: 1.15rem;       
+    transform: translateX(6px); 
+    font-weight: 600;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* Markdown 渲染的根容器 */
+    #md-root {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* 正常网页字体 */
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    /* 标题保持正常，但不要太大 */
+    #md-root h1, #md-root h2, #md-root h3 {
+      font-weight: 600;
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+
+    #md-root p {
+      margin-bottom: 1em;
+    }
+
+    /* 代码块单独处理 */
+    #md-root pre, #md-root code {
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      background: #f8f8f8;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+
+  <script>  /* 公式显示 */
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      }
+    };
+  </script>
+  
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script>
+    // 加载 md 文件并渲染
+    fetch("./Impedance.md")
+      .then(r => r.text())
+      .then(txt => {
+        document.getElementById("md-root").innerHTML = marked.parse(txt);
+
+        // 🔑 重新触发 MathJax 渲染
+        if (window.MathJax) {
+          MathJax.typesetPromise();
+        }
+      });
+  </script>
+  
+</head>
+
+<body>
+  <!-- ======================= 导航栏 ======================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" 
+        href="https://isocpp.org/" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- About -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="./../../../index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="../../about/team.html">Teams</a></li>
+              <li><a class="dropdown-item" href="../../about/doucument.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="../../about/publications.html">Publications</a></li>
+            </ul>
+          </li>
+
+          <!-- Models -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../impedances/impedances.html">Impedances</a></li>
+              <li><a class="dropdown-item" href="../transformers.html">Transformers</a></li>
+              <li><a class="dropdown-item" href="../loads.html">Loads</a></li>
+              <li><a class="dropdown-item" href="../transformer-lines.html">Transformer Lines</a></li>
+              <li><a class="dropdown-item" href="../sources-generators.html">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="../converters.html">Converters</a></li>
+              <li><a class="dropdown-item" href="../switch-breakers.html">Switch and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="../renewables.html">Renewable Energy Sources</a></li>
+            </ul>
+          </li>
+
+          <!-- Test Cases -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../../tests/test1.html">Test 1</a></li>
+              <li><a class="dropdown-item" href="../../tests/test2.html">Test 2</a></li>
+              <li><a class="dropdown-item" href="../../tests/test3.html">Test 3</a></li>
+              <li><a class="dropdown-item" href="../../tests/test4.html">Test 4</a></li>
+            </ul>
+          </li>
+
+          <!-- Contact -->
+          <li class="nav-item"><a class="nav-link" href="../../about/contact.html">Contact</a></li>
+
+          <!-- GitHub -->
+          <li class="nav-item d-flex align-items-center ms-3">
+            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
+              <i class="bi bi-github fs-4"></i>
+            </a>
+          </li>
+        </ul>
+
+        <!-- 头部工具 -->
+        <div class="header-tools ms-3">
+          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
+          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================= 搜索面板 ======================= -->
+  <div id="searchPanel" class="search-panel" role="dialog" aria-modal="false" aria-label="In-page search">
+    <input id="searchInput" type="text" placeholder="Search text... (Enter)" />
+    <button class="sp-btn" id="prevHit" title="Previous (Shift+Enter)">Prev</button>
+    <button class="sp-btn" id="nextHit" title="Next (Enter)">Next</button>
+    <button class="sp-btn" id="clearHit" title="Clear">Clear</button>
+    <div class="sp-count" id="hitCount">0 / 0</div>
+  </div>
+
+  <!-- ======================= 主体：两栏布局 ======================= -->
+<main>
+  <div class="container mt-5 pt-4">
+    <div class="row">
+      <!-- 左侧：子导航 -->
+      <aside class="col-md-3">
+        <div class="list-group">
+          <a href="impedance.html" class="list-group-item">Impedance</a>
+          <a href="admittance.html" class="list-group-item">Admittance</a>
+          <a href="inductor.html" class="list-group-item">Inductor</a>
+          <a href="capacitor.html" class="list-group-item">Capacitor</a>
+          <a href="resistor.html" class="list-group-item">Resistor</a>
+        </div>
+      </aside>
+
+      <!-- 右侧：内容区 展示.md-->
+      <div class="col-md-9">
+        <h1 class="mb-4">Impedance</h1>
+        <div id="md-root"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+  <!-- ======================= 页脚 ======================= -->
+  <footer class="text-center py-4 bg-light mt-5">
+    <div class="container">
+      <small>
+        &copy; 2023–2025 CRESYM · Released under 
+        <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank" rel="noopener">
+          BSD&nbsp;3-Clause License
+        </a>
+      </small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 顶部导航显隐 -->
+  <script>
+    document.addEventListener("mousemove", function(e){
+      const navbar = document.querySelector(".navbar");
+      if (e.clientY < 250) {
+        navbar.classList.add("show");
+      } else {
+        navbar.classList.remove("show");
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const MD_PATH = "Impedance.md"; 
+
+      fetch(MD_PATH, { cache: "no-cache" })
+        .then(response => {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          return response.text();
+        })
+        .then(text => {
+          document.getElementById("md-root").innerHTML = marked.parse(text);
+
+          // 👇 触发 MathJax 公式渲染
+          if (window.MathJax) {
+            MathJax.typesetPromise();
+          }
+        })
+        .catch(err => {
+          document.getElementById("md-root").innerHTML =
+            "<p style='color:red;'>❌ Fail to load: " + err + "</p>";
+        });
+    });
+  </script>
+
+  
+</body>
+</html>
