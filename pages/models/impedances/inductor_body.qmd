@@ -1,7 +1,7 @@
 ---
 layout: page 
-title: Impedance # be as specific as possible
-tags: [Opensource, Impedance]
+title: Inductor 
+tags: [Opensource, Inductor]
 date: 31/10/2025
 last-updated: 08/03/2024
 author: "Aleksandra Lekić, Haixiao Li"
@@ -36,33 +36,121 @@ format:
 
 
 :::{.callout-tip}
-*This section details ....*
+*This section details the \texttt{Inductor} model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 Mathematical Modeling
 </div>
 
-Impedance is created as a series impedance model as shown in @fig-impedance_model.  Impedance values can be given symbolically (dependent on angular frequency) and as a specific value. 
+---
 
-![Impedance model](assets/impedance_model.jpg){#fig-impedance_model fig-alt="Impedance model" width="400px"}
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Single-Phase Inductor
+</div>
 
-For the impedance, Y parameters are calculated as:
+
+For a single-phase system, the `Inductor` models a basic inductive component.  
+In the frequency domain, its impedance is:
 
 \begin{equation}
-\label{eq:1}
-Y = \begin{bmatrix}
-    \operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} & -\operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} \\
-    -\operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} & \operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\}
-\end{bmatrix},
-\quad i \in \{1, \ldots, n\},
+Z_L = j\omega L
 \end{equation}
 
-In (\ref{eq:1}), $n$ is several phases.  It must be noted here that the Y matrix is defined as a diagonal one as it is assumed that no mutual couplings exist between the three phases.
+where $j$ is the imaginary unit, $\omega$ the angular frequency, and $L$ the inductance.  
+Its admittance is:
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
+\begin{equation}
+Y_L = \frac{1}{j\omega L}
+\end{equation}
+
+In the time domain, the voltage across an ideal inductor is proportional to the rate of change of current:
+
+\begin{equation}
+v(t) = L \frac{di(t)}{dt}
+\end{equation}
+
+The MNA formulation for a single-phase inductor incorporates this relationship.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Three-Phase Inductor Model
 </div>
+
+For multi-phase systems, such as a three-phase network, the `Inductor` class handles each phase independently. Each phase ($a$, $b$, $c$) can have its own inductance value. The model assumes **no mutual coupling** between phases, simplifying the representation for both balanced and unbalanced cases.  
+This allows accurate simulation of inductive effects for each individual phase.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Mathematical Representation
+</div>
+
+The `Inductor` class supports two primary mathematical representations, depending on the selected constructor:
+
+1. **Frequency-Domain (Y-Parameter based)** — used for steady-state AC analysis.
+
+   For a single-phase inductor with inductance $L$, the admittance is:
+
+   \begin{equation}
+   Y = \frac{1}{j\omega L} = \frac{1}{sL}
+   \end{equation}
+
+   where $s = j\omega$ is the complex frequency.  
+   For a three-phase uncoupled system, the admittance matrix $Y$ is diagonal:
+
+   \begin{equation}
+   Y =
+   \begin{bmatrix}
+   \dfrac{1}{sL_a} & 0 & 0 \\
+   0 & \dfrac{1}{sL_b} & 0 \\
+   0 & 0 & \dfrac{1}{sL_c}
+   \end{bmatrix}
+   \end{equation}
+
+   The constructor for this mode directly computes and stores this symbolic admittance matrix.
+
+2. **Time-Domain (MNA-based)** — used for transient or general MNA analyses.
+
+   For an inductor connected between two nodes, $n_1$ and $n_2$, carrying current $I_L$, the fundamental relationship is:
+
+   $$
+   V_{n_1} - V_{n_2} = L \frac{dI_L}{dt}
+   $$
+
+   In the MNA formulation, an auxiliary variable representing the inductor current $I_L$ is introduced for each phase.  
+   After discretization (e.g., implicit Euler or trapezoidal rule), this relationship becomes:
+
+   $$
+   V_{n_1} - V_{n_2} - s L I_L = 0
+   $$
+
+   This equation, combined with KCL equations at $n_1$ and $n_2$, is stamped into the MNA matrix.  
+   The matrix entries for an inductor branch are defined as follows:
+
+    The matrix entries for an inductor branch are defined as follows:
+
+    - $A_{\text{row}, \text{row}} = 1$  
+    (representing $I_L$ on the right side of the equation, or a unity coefficient for the current variable itself)
+
+    - If connected to node $n_1$ with index $r_1$,  
+    $A_{\text{row}, \text{r1}} = -\dfrac{1}{L}$
+
+    - If connected to node $n_2$ with index $r_2$,  
+    $A_{\text{row}, \text{r2}} = \dfrac{1}{L}$
+
+    - For KCL equations at nodes:  
+    $A_{\text{r1}, I_L} = -1$ (current leaving node $n_1$),  
+    and $A_{\text{r2}, I_L} = +1$ (current entering node $n_2$)
+
+
+
+    <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+    Code Explanation
+    </div>
 
 
 <!--

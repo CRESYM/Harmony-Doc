@@ -9,7 +9,7 @@
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
 <meta name="dcterms.date" content="2027-07-10">
 
-<title>Impedance</title>
+<title>Inductor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,18 +25,18 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="impedance_body_files/libs/clipboard/clipboard.min.js"></script>
-<script src="impedance_body_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="impedance_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="impedance_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="impedance_body_files/libs/quarto-html/popper.min.js"></script>
-<script src="impedance_body_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="impedance_body_files/libs/quarto-html/anchor.min.js"></script>
-<link href="impedance_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="impedance_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="impedance_body_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="impedance_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="impedance_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="inductor_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="inductor_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="inductor_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="inductor_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="inductor_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="inductor_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="inductor_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="inductor_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="inductor_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="inductor_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="inductor_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="inductor_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script>
 MathJax = {
   tex: {
@@ -87,7 +87,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Impedance</h1>
+<h1 class="title">Inductor</h1>
 </div>
 
 
@@ -129,36 +129,87 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>This section details ….</em></p>
+<p><em>This section details the model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.</em></p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Mathematical Modeling</p>
 </div>
-<p>Impedance is created as a series impedance model as shown in <a href="#fig-impedance_model" class="quarto-xref">Figure&nbsp;1</a>. Impedance values can be given symbolically (dependent on angular frequency) and as a specific value.</p>
-<div id="fig-impedance_model" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Impedance model">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-impedance_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/impedance_model.jpg" class="img-fluid figure-img" alt="Impedance model" width="400">
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Single-Phase Inductor</p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-impedance_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Impedance model
-</figcaption>
-</figure>
-</div>
-<p>For the impedance, Y parameters are calculated as:</p>
+<p>For a single-phase system, the <code>Inductor</code> models a basic inductive component.<br>
+In the frequency domain, its impedance is:</p>
 <p><span class="math display">\[\begin{equation}
-\label{eq:1}
-Y = \begin{bmatrix}
-    \operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} &amp; -\operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} \\
-    -\operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\} &amp; \operatorname{diag}\!\left\{\frac{1}{Z_{i}} \right\}
-\end{bmatrix},
-\quad i \in \{1, \ldots, n\},
+Z_L = j\omega L
 \end{equation}\]</span></p>
-<p>In (<span class="math inline">\(\ref{eq:1}\)</span>), <span class="math inline">\(n\)</span> is several phases. It must be noted here that the Y matrix is defined as a diagonal one as it is assumed that no mutual couplings exist between the three phases.</p>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
+<p>where <span class="math inline">\(j\)</span> is the imaginary unit, <span class="math inline">\(\omega\)</span> the angular frequency, and <span class="math inline">\(L\)</span> the inductance.<br>
+Its admittance is:</p>
+<p><span class="math display">\[\begin{equation}
+Y_L = \frac{1}{j\omega L}
+\end{equation}\]</span></p>
+<p>In the time domain, the voltage across an ideal inductor is proportional to the rate of change of current:</p>
+<p><span class="math display">\[\begin{equation}
+v(t) = L \frac{di(t)}{dt}
+\end{equation}\]</span></p>
+<p>The MNA formulation for a single-phase inductor incorporates this relationship.</p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Three-Phase Inductor Model</p>
 </div>
+<p>For multi-phase systems, such as a three-phase network, the <code>Inductor</code> class handles each phase independently. Each phase (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>) can have its own inductance value. The model assumes <strong>no mutual coupling</strong> between phases, simplifying the representation for both balanced and unbalanced cases.<br>
+This allows accurate simulation of inductive effects for each individual phase.</p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Mathematical Representation</p>
+</div>
+<p>The <code>Inductor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
+<ol type="1">
+<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — used for steady-state AC analysis.</p>
+<p>For a single-phase inductor with inductance <span class="math inline">\(L\)</span>, the admittance is:</p>
+<p><span class="math display">\[\begin{equation}
+Y = \frac{1}{j\omega L} = \frac{1}{sL}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(s = j\omega\)</span> is the complex frequency.<br>
+For a three-phase uncoupled system, the admittance matrix <span class="math inline">\(Y\)</span> is diagonal:</p>
+<p><span class="math display">\[\begin{equation}
+Y =
+\begin{bmatrix}
+\dfrac{1}{sL_a} &amp; 0 &amp; 0 \\
+0 &amp; \dfrac{1}{sL_b} &amp; 0 \\
+0 &amp; 0 &amp; \dfrac{1}{sL_c}
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p>The constructor for this mode directly computes and stores this symbolic admittance matrix.</p></li>
+<li><p><strong>Time-Domain (MNA-based)</strong> — used for transient or general MNA analyses.</p>
+<p>For an inductor connected between two nodes, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, carrying current <span class="math inline">\(I_L\)</span>, the fundamental relationship is:</p>
+<p><span class="math display">\[
+V_{n_1} - V_{n_2} = L \frac{dI_L}{dt}
+\]</span></p>
+<p>In the MNA formulation, an auxiliary variable representing the inductor current <span class="math inline">\(I_L\)</span> is introduced for each phase.<br>
+After discretization (e.g., implicit Euler or trapezoidal rule), this relationship becomes:</p>
+<p><span class="math display">\[
+V_{n_1} - V_{n_2} - s L I_L = 0
+\]</span></p>
+<p>This equation, combined with KCL equations at <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, is stamped into the MNA matrix.<br>
+The matrix entries for an inductor branch are defined as follows:</p>
+<p>The matrix entries for an inductor branch are defined as follows:</p>
+<ul>
+<li><p><span class="math inline">\(A_{\text{row}, \text{row}} = 1\)</span><br>
+(representing <span class="math inline">\(I_L\)</span> on the right side of the equation, or a unity coefficient for the current variable itself)</p></li>
+<li><p>If connected to node <span class="math inline">\(n_1\)</span> with index <span class="math inline">\(r_1\)</span>,<br>
+<span class="math inline">\(A_{\text{row}, \text{r1}} = -\dfrac{1}{L}\)</span></p></li>
+<li><p>If connected to node <span class="math inline">\(n_2\)</span> with index <span class="math inline">\(r_2\)</span>,<br>
+<span class="math inline">\(A_{\text{row}, \text{r2}} = \dfrac{1}{L}\)</span></p></li>
+<li><p>For KCL equations at nodes:<br>
+<span class="math inline">\(A_{\text{r1}, I_L} = -1\)</span> (current leaving node <span class="math inline">\(n_1\)</span>),<br>
+and <span class="math inline">\(A_{\text{r2}, I_L} = +1\)</span> (current entering node <span class="math inline">\(n_2\)</span>)</p></li>
+</ul>
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div></li>
+</ol>
 <!--
 **Example:**
 
