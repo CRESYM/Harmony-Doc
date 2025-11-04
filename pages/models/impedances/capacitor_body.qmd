@@ -1,0 +1,114 @@
+---
+layout: page 
+title: Capacitor 
+tags: [Opensource, Capacitor]
+date: 31/10/2025
+last-updated: 08/03/2024
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+---
+
+:::{.callout-tip}
+*This section details the \texttt{Capacitor} model implemented in this project, which represents an electrical capacitor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase capacitor configurations, allowing for precise modeling of capacitive effects across various system setups.*
+:::
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Single-Phase Capacitor
+</div>
+
+`Capacitor` models a basic capacitive component. In the frequency domain, its impedance is $Z_C = 1 / (j\omega C)$, where $j$ is the imaginary unit, $\omega$ is the angular frequency, and $C$ is the capacitance. Its admittance is $Y_C = j\omega C$. In the time domain, the current through an ideal capacitor is proportional to the rate of change of voltage across it, described by $i(t) = C \frac{dv(t)}{dt}$. The MNA formulation for a single-phase capacitor incorporates this relationship.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Three-Phase Capacitor Model
+</div>
+
+For multi-phase systems, such as a three-phase network, the `Capacitor` class handles each phase independently.  Each phase ($a$, $b$, $c$) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Mathematical Representation
+</div>
+
+The `Capacitor` class supports two primary mathematical representations, depending on the selected constructor:
+
+1. **Frequency-Domain (Y-Parameter based)** — This model is used for steady-state AC analysis. For a single-phase capacitor with capacitance $C$, the admittance ($Y$) is given by:
+    \begin{equation} 
+    Y = j\omega C = sC 
+    \end{equation}
+    where $s = j\omega$ is the complex frequency. For a multi-phase uncoupled system, the admittance matrix $Y$ is a diagonal matrix where each diagonal element corresponds to the admittance of that phase. For instance, for a three-phase system with capacitances $C_a, C_b, C_c$:
+    \begin{equation}
+    Y =
+    \begin{bmatrix}
+    sC_a & 0 & 0 \\
+    0 & sC_b & 0 \\
+    0 & 0 & sC_c
+    \end{bmatrix}
+    \end{equation}
+    The constructor for this mode directly computes and stores this symbolic admittance matrix.
+
+2. **Time-Domain (MNA-based)** — This model is used for transient analysis or general MNA where the capacitor's behavior is integrated into the system equations. For a capacitor connected between two nodes, $n1$ and $n2$, with voltage difference $V_{n1} - V_{n2}$, and carrying current $I_C$, the fundamental relationship is:
+
+  \begin{equation} 
+  I_C = C \frac{dV_{n1 \text{ - } n2}}{dt} 
+  \end{equation}
+
+In the MNA formulation, an auxiliary variable representing the capacitor voltage ($V_C$) across the capacitor is often introduced implicitly or explicitly. The equation is then discretized (e.g., using implicit Euler or trapezoidal rule) for numerical solution. For a frequency-domain MNA formulation, this equation transforms to:
+
+  \begin{equation} 
+  I_C = s C (V_{n1} - V_{n2})
+  \end{equation}
+
+ Based on the provided code, the MNA formulation appears to set up equations that relate nodal voltages to an auxiliary capacitor voltage variable. Specifically, for a capacitor connected between nodes $n1$ and $n2$, and an auxiliary voltage variable $V_C$ at a specific row in the MNA matrix:
+
+   - The row for the auxiliary capacitor voltage equation: $V_{n1} - V_{n2} - V_C = 0$.
+
+   - This translates to MNA matrix entries: $A_{\text{row}, V_{n1}} = 1$, $A_{\text{row}, V_{n2}} = -1$, and $A_{\text{row}, V_C} = -1$.
+
+   - For KCL at node $n1$: $I_C$ (current leaving node $n1$) is added to the KCL equation. $I_C$ is expressed as $s C V_C$. This translates to $A_{V_{n1}, V_C} = sC$.
+
+The provided `writeMNAmatrix` implementation, however, sets up equations of a slightly different form, seemingly establishing a relationship involving the capacitor voltage variable `vc_sym` directly into the matrix, and then incorporating the capacitive current into the nodal KCL equations. It populates:
+
+   - `matrix.set(row, matrix.ncols()-1, vc_sym);` This seems to place the symbolic capacitor voltage directly into the right-hand side (or a specific column) of the row. This suggests the auxiliary variable `vc_sym` is being added to a column representing the solution vector, perhaps implying it's part of the voltage across the capacitor branch.
+
+   - If connected to node $n1$ with index $r1$: `matrix.set(row, r1, one);` which implies $1 \cdot V_{n1}$ in the capacitor's branch equation row. And `matrix.set(r1, row, Csym);` meaning a contribution of $C \cdot V_C$ (effectively, current due to capacitance) into the KCL equation for node $n1$.
+
+   - If connected to node $n2$ with index $r2$: `matrix.set(row, r2, minus_one);` which implies $-1 \cdot V_{n2}$ in the capacitor's branch equation row. And `matrix.set(r2, row, mul(minus_one, Csym));` meaning a contribution of $-C \cdot V_C$ into the KCL equation for node $n2$.
+
+ This implies the row for the capacitor might be formulated as $V_{n1} - V_{n2} = V_C$, and then the KCL equations use $I_C = C \cdot V_C$ and $-I_C = -C \cdot V_C$.
+
+---
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>
+
