@@ -147,10 +147,11 @@ The `Inductor` class supports two primary mathematical representations, dependin
     and $A_{\text{r2}, I_L} = +1$ (current entering node $n_2$)
 
 
+---
 
-    <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-    Code Explanation
-    </div>
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>
 
 
 <!--

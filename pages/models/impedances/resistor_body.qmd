@@ -1,0 +1,101 @@
+---
+layout: page 
+title: Resistor 
+tags: [Opensource, Resistor]
+date: 31/10/2025
+last-updated: 08/03/2024
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+---
+
+:::{.callout-tip}
+*This section details the \texttt{Resistor} model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.*
+:::
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Single-Phase Resistor
+</div>
+
+For a single-phase system, the `Resistor` models a basic resistive component. In the frequency domain, its impedance is $Z_R = R$, where $R$ is the resistance. Its admittance is $Y_R = 1 / R$. In the time domain, the voltage across an ideal resistor is directly proportional to the current flowing through it, described by Ohm's Law: $v(t) = R i(t)$. The MNA formulation for a single-phase resistor directly incorporates its conductance into the nodal admittance matrix.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Three-Phase Resistor Model
+</div>
+
+For multi-phase systems, such as a three-phase network, the `Resistor` class handles each phase independently.  Each phase ($a$, $b$, $c$) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Mathematical Representation
+</div>
+
+The `Resistor` class supports two primary mathematical representations, depending on the selected constructor:
+
+1. **Frequency-Domain (Y-Parameter based)** — This model is used for steady-state AC analysis. For a single-phase resistor with resistance $R$, the admittance ($Y$) is given by:
+    \begin{equation}
+     Y = \frac{1}{R} = G 
+     \end{equation}
+    where $G$ is the conductance.
+    For a single resistor connected between two nodes (e.g., as a two-port element), its admittance matrix is:
+    \begin{equation}
+    Y =
+    \begin{bmatrix}
+    G & -G \\
+    -G & G
+    \end{bmatrix}
+    \end{equation}
+    For a multi-phase uncoupled system with $N$ phases, the \texttt{Y\_matrix} is a $2N \times 2N$ block diagonal matrix. Each $2 \times 2$ diagonal block corresponds to the admittance matrix of an individual phase, similar to the single-phase representation. For instance, for a three-phase system with resistances $R_a, R_b, R_c$ (and conductances $G_a=1/R_a$, etc.):
+    \begin{equation}
+    Y =
+    \begin{bmatrix}
+    G_a & -G_a & 0 & 0 & 0 & 0 \\
+    -G_a & G_a & 0 & 0 & 0 & 0 \\
+    0 & 0 & G_b & -G_b & 0 & 0 \\
+    0 & 0 & -G_b & G_b & 0 & 0 \\
+    0 & 0 & 0 & 0 & G_c & -G_c \\
+    0 & 0 & 0 & 0 & -G_c & G_c
+    \end{bmatrix}
+    \end{equation}
+
+2. **Time-Domain (MNA-based)** — This model is used for transient analysis or general MNA. For a resistor connected between two nodes, $n1$ and $n2$, the current flowing from $n1$ to $n2$ is $I = \frac{V_{n1} - V_{n2}}{R}$. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase $i$ of a resistor connected between corresponding sub-nodes $n1_i$ and $n2_i$:
+
+   - The conductance $G_i = 1/R_i$ is added to the diagonal elements corresponding to $n1_i$ and $n2_i$.
+   - The negative of the conductance, $-G_i$, is added to the off-diagonal elements corresponding to $(n1_i, n2_i)$ and $(n2_i, n1_i)$.
+
+ This is the standard nodal admittance stamp for a resistor, which directly accounts for the current flow based on voltage differences.
+
+---
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>
