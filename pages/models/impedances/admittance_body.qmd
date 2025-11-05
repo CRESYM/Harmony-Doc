@@ -1,0 +1,65 @@
+---
+layout: page 
+title: Admittance
+tags: [Opensource, Admittance]
+date: 31/10/2025
+last-updated: 08/03/2024
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+---
+
+:::{.callout-tip}
+*his section details the `Admittance` model, which represents the admittance behavior of electrical components in single- or multi-phase systems. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.*
+:::
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+An admittance is constructed as an element by calling the constructor: 
+ `Admittance(const std::string\& symbol, int pins, DenseMatrix values)`. 
+
+ This constructor creates an admittance element with a specified number of input/output pins. The number of input pins is equal to the number of output pins. The values provided for admittance can either be numerical or symbolic, and they are passed as a matrix. The pins are labeled as 1.1, 1.2, ..., 1.n for input pins, and 2.1, 2.2, ..., 2.n for output pins, where \texttt{n} is the number of pins. The admittance values are given in Siemens and can have symbolic values (e.g., `values = 1/s` for a symbolic admittance where `{s}` is the Laplace variable). 
+
+ For the case of a single-phase system (1x1 impedance), the values matrix will contain a single entry. 
+
+Example: `Admittance("Z", 1, DenseMatrix{1000})` creates a single-phase admittance with a value of 1000 Siemens.
+
+If the admittance is multiport (i.e., the number of input/output pins is greater than 1), the values matrix can either be a scalar, vector, or full matrix:
+   
+   - If the values matrix has a single entry, the admittance is a diagonal matrix with equal values on the diagonal.
+   - If the values matrix has a length equal to the number of pins, only the diagonal entries of the admittance matrix will be nonzero, with values corresponding to the array.
+   - If the values matrix is of size $n \times n$, the admittance matrix will be fully populated according to the array, representing phase interactions.
+
+For example, a multi-phase system can be represented as: `Admittance("Z", 3, DenseMatrix{[1000, 2000, 3000]})` creates a three-phase admittance with different diagonal values for each phase.
+  
+In this example, the Laplace operator `s` can be used to describe the frequency-dependent behavior of the system. The admittance may also be represented as a transfer function in terms of `s`, which can be either polynomial, nonlinear or include non-integer powers of `s`. For example, a time delay might be represented as an exponential function of `s`.
+
+---
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>

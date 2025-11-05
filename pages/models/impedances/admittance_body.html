@@ -9,7 +9,7 @@
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
 <meta name="dcterms.date" content="2027-07-10">
 
-<title>Resistor</title>
+<title>Admittance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,18 +25,18 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="resistor_body_files/libs/clipboard/clipboard.min.js"></script>
-<script src="resistor_body_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="resistor_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="resistor_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="resistor_body_files/libs/quarto-html/popper.min.js"></script>
-<script src="resistor_body_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="resistor_body_files/libs/quarto-html/anchor.min.js"></script>
-<link href="resistor_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="resistor_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="resistor_body_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="resistor_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="resistor_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="admittance_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="admittance_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="admittance_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="admittance_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="admittance_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="admittance_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="admittance_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="admittance_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="admittance_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="admittance_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="admittance_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="admittance_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script>
 MathJax = {
   tex: {
@@ -87,7 +87,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resistor</h1>
+<h1 class="title">Admittance</h1>
 </div>
 
 
@@ -126,54 +126,25 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>This section details the model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.</em></p>
+<p><em>his section details the <code>Admittance</code> model, which represents the admittance behavior of electrical components in single- or multi-phase systems. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.</em></p>
 </div>
 </div>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Mathematical Modeling</p>
 </div>
 <hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Single-Phase Resistor</p>
-</div>
-<p>For a single-phase system, the <code>Resistor</code> models a basic resistive component. In the frequency domain, its impedance is <span class="math inline">\(Z_R = R\)</span>, where <span class="math inline">\(R\)</span> is the resistance. Its admittance is <span class="math inline">\(Y_R = 1 / R\)</span>. In the time domain, the voltage across an ideal resistor is directly proportional to the current flowing through it, described by Ohm’s Law: <span class="math inline">\(v(t) = R i(t)\)</span>. The MNA formulation for a single-phase resistor directly incorporates its conductance into the nodal admittance matrix.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Three-Phase Resistor Model</p>
-</div>
-<p>For multi-phase systems, such as a three-phase network, the <code>Resistor</code> class handles each phase independently. Each phase (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Mathematical Representation</p>
-</div>
-<p>The <code>Resistor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
-<ol type="1">
-<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — This model is used for steady-state AC analysis. For a single-phase resistor with resistance <span class="math inline">\(R\)</span>, the admittance (<span class="math inline">\(Y\)</span>) is given by: <span class="math display">\[\begin{equation}
-  Y = \frac{1}{R} = G
-  \end{equation}\]</span> where <span class="math inline">\(G\)</span> is the conductance. For a single resistor connected between two nodes (e.g., as a two-port element), its admittance matrix is: <span class="math display">\[\begin{equation}
-Y =
-\begin{bmatrix}
-G &amp; -G \\
--G &amp; G
-\end{bmatrix}
-\end{equation}\]</span> For a multi-phase uncoupled system with <span class="math inline">\(N\)</span> phases, the is a <span class="math inline">\(2N \times 2N\)</span> block diagonal matrix. Each <span class="math inline">\(2 \times 2\)</span> diagonal block corresponds to the admittance matrix of an individual phase, similar to the single-phase representation. For instance, for a three-phase system with resistances <span class="math inline">\(R_a, R_b, R_c\)</span> (and conductances <span class="math inline">\(G_a=1/R_a\)</span>, etc.): <span class="math display">\[\begin{equation}
-Y =
-\begin{bmatrix}
-G_a &amp; -G_a &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
--G_a &amp; G_a &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; G_b &amp; -G_b &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; -G_b &amp; G_b &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; G_c &amp; -G_c \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; -G_c &amp; G_c
-\end{bmatrix}
-\end{equation}\]</span></p></li>
-<li><p><strong>Time-Domain (MNA-based)</strong> — This model is used for transient analysis or general MNA. For a resistor connected between two nodes, <span class="math inline">\(n1\)</span> and <span class="math inline">\(n2\)</span>, the current flowing from <span class="math inline">\(n1\)</span> to <span class="math inline">\(n2\)</span> is <span class="math inline">\(I = \frac{V_{n1} - V_{n2}}{R}\)</span>. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase <span class="math inline">\(i\)</span> of a resistor connected between corresponding sub-nodes <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>:</p>
+<p>An admittance is constructed as an element by calling the constructor: <code>Admittance(const std::string\&amp; symbol, int pins, DenseMatrix values)</code>.</p>
+<p>This constructor creates an admittance element with a specified number of input/output pins. The number of input pins is equal to the number of output pins. The values provided for admittance can either be numerical or symbolic, and they are passed as a matrix. The pins are labeled as 1.1, 1.2, …, 1.n for input pins, and 2.1, 2.2, …, 2.n for output pins, where is the number of pins. The admittance values are given in Siemens and can have symbolic values (e.g., <code>values = 1/s</code> for a symbolic admittance where <code>{s}</code> is the Laplace variable).</p>
+<p>For the case of a single-phase system (1x1 impedance), the values matrix will contain a single entry.</p>
+<p>Example: <code>Admittance("Z", 1, DenseMatrix{1000})</code> creates a single-phase admittance with a value of 1000 Siemens.</p>
+<p>If the admittance is multiport (i.e., the number of input/output pins is greater than 1), the values matrix can either be a scalar, vector, or full matrix:</p>
 <ul>
-<li>The conductance <span class="math inline">\(G_i = 1/R_i\)</span> is added to the diagonal elements corresponding to <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>.</li>
-<li>The negative of the conductance, <span class="math inline">\(-G_i\)</span>, is added to the off-diagonal elements corresponding to <span class="math inline">\((n1_i, n2_i)\)</span> and <span class="math inline">\((n2_i, n1_i)\)</span>.</li>
-</ul></li>
-</ol>
-<p>This is the standard nodal admittance stamp for a resistor, which directly accounts for the current flow based on voltage differences.</p>
+<li>If the values matrix has a single entry, the admittance is a diagonal matrix with equal values on the diagonal.</li>
+<li>If the values matrix has a length equal to the number of pins, only the diagonal entries of the admittance matrix will be nonzero, with values corresponding to the array.</li>
+<li>If the values matrix is of size <span class="math inline">\(n \times n\)</span>, the admittance matrix will be fully populated according to the array, representing phase interactions.</li>
+</ul>
+<p>For example, a multi-phase system can be represented as: <code>Admittance("Z", 3, DenseMatrix{[1000, 2000, 3000]})</code> creates a three-phase admittance with different diagonal values for each phase.</p>
+<p>In this example, the Laplace operator <code>s</code> can be used to describe the frequency-dependent behavior of the system. The admittance may also be represented as a transfer function in terms of <code>s</code>, which can be either polynomial, nonlinear or include non-integer powers of <code>s</code>. For example, a time delay might be represented as an exponential function of <code>s</code>.</p>
 <hr>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Code Explanation</p>
