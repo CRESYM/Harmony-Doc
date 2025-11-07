@@ -45,7 +45,7 @@ Mathematical Modeling
 
 Impedance is created as a series impedance model as shown in @fig-impedance_model.  Impedance values can be given symbolically (dependent on angular frequency) and as a specific value. 
 
-![Impedance model](assets/impedance_model.jpg){#fig-impedance_model fig-alt="Impedance model" width="400px"}
+![Impedance model](assets/impedance_model.jpg){#fig-impedance_model fig-alt="Impedance model" width="200px"}
 
 For the impedance, Y parameters are calculated as:
 

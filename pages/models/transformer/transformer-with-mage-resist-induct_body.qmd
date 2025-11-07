@@ -1,0 +1,77 @@
+---
+layout: page 
+title: Transformer with Magnetization Resistance and Inductance
+tags: [Opensource, Transformer]
+date: 31/10/2025
+last-updated: 08/03/2024
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+---
+
+:::{.callout-tip}
+*A  `transformer ` is an electrical device that transfers electrical energy between two or more circuits through electromagnetic induction. These transformers are commonly employed in power distribution networks, residential and commercial buildings, and various industrial applications, such as supplying power to lighting systems, heating equipment, and small motors. The possible ratings of single-phase transformers typically range from a few VA (volt-amperes) for small transformers used in electronic applications to several kVA (kilovolt-amperes) for larger transformers in distribution systems.*
+:::
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+A single-phase transformer consists of a primary winding and a secondary winding. The voltage and current relationships can be expressed as:
+  
+  \begin{equation}
+  frac{V_p}{V_s} = \frac{N_p}{N_s} = a \, \exp(j \phi),
+  \end{equation}
+
+  \begin{equation}
+  -frac{I_p}{I_s} = \frac{N_p}{N_s} = \frac{1}{a} \, \exp(-j\phi),
+  \end{equation}
+where the values are: 
+
+   - $V_P$, $I_P$ - primary voltage and current;
+   - $V_S$, $I_S$ - secondary voltage  and current;
+   - $N_P$, $N_S$ - number of turns in the primary and secondary winding;
+   - $a = \frac{N_P}{N_S}$ - turns ratio;
+   - $\phi$ - phase shift;
+   - $L_P$ and $R_P$ are inductance and resistance of the primary winding;
+   - $L_S$ and $R_S$ are inductance and resistance of the secondary winding.
+  
+  The transformer model is depicted in Fig. @fig-transformer_model
+
+  ![Single-phase transformer with a neglected phase shift](assets/transformer.pdf){#fig-transformer_model fig-alt="Transformer model" width="500px"}
+
+  For the transformer depicted in Fig. @fig-transformer_model, the Y-parameters are as follows:
+  \begin{equation}
+      Y = \begin{bmatrix}
+          \frac{1}{Z_P+\frac{1}{Y_m + \frac{1}{(a \exp(j\phi))^2Z_S}}} & \frac{-(a \exp(j\phi))}{Z_P + (a exp(j\phi))^2Z_S (Y_mZ_P+1)} \\
+          \frac{-(a \exp(j\phi))}{Z_P + (a \exp(j\phi))^2Z_S (Y_mZ_P+1)} & \frac{1}{Z_S+\frac{1}{(a \exp(j\phi))^2 \left(Y_m + \frac{1}{Z_P}\right)}}
+      \end{bmatrix}.
+  \end{equation}
+
+---
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>
