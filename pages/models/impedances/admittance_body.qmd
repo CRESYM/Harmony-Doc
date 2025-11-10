@@ -29,7 +29,7 @@ format:
 ---
 
 :::{.callout-tip}
-*his section details the `Admittance` model, which represents the admittance behavior of electrical components in single- or multi-phase systems. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.*
+*This section details the `Admittance` model, which represents the admittance behavior of electrical components in single- or multi-phase systems. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.*
 :::
 
 
