@@ -41,7 +41,7 @@ Mathematical Modeling
 
 This transformer model which includes mutual inductance is depicted for a single phase in Fig. @fig-transformer_model It is also considered a classic transformer model. Taking into account modeling from @grainger1999power, the following parameters were used:
 
-![Classic transformer model](assets/transformer_classic.pdf.pdf){#fig-transformer_model fig-alt="Transformer model" width="500px"}
+![Classic transformer model](assets/transformer_classic.pdf){#fig-transformer_model fig-alt="Transformer model" width="500px"}
   
   - $Z_P = R_P + j\omega L_P$ are the primary winding impedances;
   - $Z_S = R_S + j\omega L_S$ are the secondary winding impedances;
