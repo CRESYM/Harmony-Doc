@@ -1,0 +1,276 @@
+---
+layout: page 
+title: Load # be as specific as possible
+tags: [Opensource, Impedance]
+date: 31/10/2025
+last-updated: 08/03/2024
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+
+        
+---
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+
+
+:::{.callout-tip}
+*This report provides a detailed description of a `load` model undertaken in this project consisting of resistive $R$, inductive $L$, and capacitive $C$ components in series for both single-phase and three-phase systems. The objective is to model the admittance matrix \(Y\) for a three-phase system, which characterizes the relationship between currents and voltages in the system.*
+:::
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Single-Phase Capacitor
+</div>
+
+We will first start with the single-phase model, derive the Y parameters, and extend to three-phase models.
+In a single-phase series RLC circuit, the total impedance $Z$ is given by the sum of the resistive, inductive, and capacitive impedances:
+
+\begin{equation}
+Z = R + j\omega L - \frac{j}{\omega C}
+\end{equation}
+
+The admittance \(Y\) is the inverse of the impedance:
+
+\begin{equation}
+Z = R + j\omega L - \frac{j}{\omega C}
+\end{equation}
+
+For a balanced three-phase system, we assume that each phase has its own resistive, inductive, and capacitive components, and these components are connected in series. For the three-phase case, it is assumed that there exists no mutual couplings between the loads of the three phases.
+
+For phase $a$, phase $b$, and phase $c$, the impedance for each phase is defined as:
+
+\begin{equation}
+Z_a = R_a + j\omega L_a - \frac{j}{\omega C_a}
+\end{equation}
+
+\begin{equation}
+Z_b = R_b + j\omega L_b - \frac{j}{\omega C_b}
+\end{equation}
+
+\begin{equation}
+Z_c = R_c + j\omega L_c - \frac{j}{\omega C_c}
+\end{equation}
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Y Parameters
+</div>
+
+The admittance matrix $Y$ for a three-phase system is a $3 \times 3$ matrix that relates the current vector $I = [I_a, I_b, I_c]^T$ and the voltage vector $V = [V_a, V_b, V_c]^T$ as follows:
+
+\begin{equation}
+\begin{bmatrix}
+I_a \\
+I_b \\
+I_c
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_{aa} & Y_{ab} & Y_{ac} \\
+Y_{ba} & Y_{bb} & Y_{bc} \\
+Y_{ca} & Y_{cb} & Y_{cc}
+\end{bmatrix}
+\begin{bmatrix}
+V_a \\
+V_b \\
+V_c
+\end{bmatrix}
+\end{equation}
+
+For an uncoupled three-phase system, the off-diagonal elements $Y_{ab}, Y_{ac}, Y_{ba},$ etc., are zero, and the diagonal elements are the admittance of the respective phases.
+
+---
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Balanced Three-Phase System
+</div>
+
+For a balanced three-phase system, we assume that the impedance of each phase is the same:
+
+\begin{equation}
+R_a = R_b = R_c = R, \quad L_a = L_b = L_c = L, \quad C_a = C_b = C_c = C
+\end{equation}
+
+The diagonal elements of the admittance matrix are:
+
+\begin{equation}
+Y_{aa} = Y_{bb} = Y_{cc} = \frac{1}{R + j\omega L - \frac{j}{\omega C}}
+\end{equation}
+
+This simplifies the admittance matrix for a balanced three-phase system to:
+
+\begin{equation}
+Y = 
+\begin{bmatrix}
+Y_{aa} & 0 & 0 \\
+0 & Y_{aa} & 0 \\
+0 & 0 & Y_{aa}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1}{R + j\omega L - \frac{j}{\omega C}} & 0 & 0 \\
+0 & \frac{1}{R + j\omega L - \frac{j}{\omega C}} & 0 \\
+0 & 0 & \frac{1}{R + j\omega L - \frac{j}{\omega C}}
+\end{bmatrix}
+\end{equation}
+It must be noted here that for most of the cases, this Y matrix for the three-phase load is diagonal as the mutual coupling between phases is negligible.
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Code Explanation
+</div>
+
+
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
