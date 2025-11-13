@@ -79,11 +79,11 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
 
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -92,7 +92,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -176,9 +176,12 @@ For a three-phase uncoupled system, the admittance matrix <span class="math inli
 <p><span class="math display">\[\begin{equation}
 Y =
 \begin{bmatrix}
-\dfrac{1}{sL_a} &amp; 0 &amp; 0 \\
-0 &amp; \dfrac{1}{sL_b} &amp; 0 \\
-0 &amp; 0 &amp; \dfrac{1}{sL_c}
+\frac{1}{sL_a} &amp; 0 &amp; 0 &amp; -\frac{1}{sL_a} &amp; 0 &amp; 0 \\
+0 &amp; \frac{1}{sL_b} &amp; 0 &amp; 0 &amp; -\frac{1}{sL_b} &amp; 0\\
+0 &amp; 0 &amp; \frac{1}{sL_c} &amp; 0 &amp; 0 &amp; -\frac{1}{sL_c} \\
+-\frac{1}{sL_a} &amp; 0 &amp; 0 &amp; \frac{1}{sL_a} &amp; 0 &amp; 0 \\
+0 &amp; -\frac{1}{sL_b} &amp; 0 &amp; 0 &amp; \frac{1}{sL_b} &amp; 0\\
+0 &amp; 0 &amp; -\frac{1}{sL_c} &amp; 0 &amp; 0 &amp; \frac{1}{sL_c}
 \end{bmatrix}
 \end{equation}\]</span></p>
 <p>The constructor for this mode directly computes and stores this symbolic admittance matrix.</p></li>

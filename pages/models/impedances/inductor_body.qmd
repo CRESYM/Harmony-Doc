@@ -14,6 +14,7 @@ format:
   html:
     standalone: false
     toc: false
+    page-layout: full
     html-math-method: mathjax
     include-in-header:
       text: |
@@ -103,12 +104,15 @@ The `Inductor` class supports two primary mathematical representations, dependin
    For a three-phase uncoupled system, the admittance matrix $Y$ is diagonal:
 
    \begin{equation}
-   Y =
-   \begin{bmatrix}
-   \dfrac{1}{sL_a} & 0 & 0 \\
-   0 & \dfrac{1}{sL_b} & 0 \\
-   0 & 0 & \dfrac{1}{sL_c}
-   \end{bmatrix}
+    Y =
+    \begin{bmatrix}
+    \frac{1}{sL_a} & 0 & 0 & -\frac{1}{sL_a} & 0 & 0 \\
+    0 & \frac{1}{sL_b} & 0 & 0 & -\frac{1}{sL_b} & 0\\
+    0 & 0 & \frac{1}{sL_c} & 0 & 0 & -\frac{1}{sL_c} \\
+    -\frac{1}{sL_a} & 0 & 0 & \frac{1}{sL_a} & 0 & 0 \\
+    0 & -\frac{1}{sL_b} & 0 & 0 & \frac{1}{sL_b} & 0\\
+    0 & 0 & -\frac{1}{sL_c} & 0 & 0 & \frac{1}{sL_c}
+    \end{bmatrix}
    \end{equation}
 
    The constructor for this mode directly computes and stores this symbolic admittance matrix.

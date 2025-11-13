@@ -79,11 +79,11 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
 
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -92,7 +92,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -153,9 +153,12 @@ Y = j\omega C = sC
 \end{equation}\]</span> where <span class="math inline">\(s = j\omega\)</span> is the complex frequency. For a multi-phase uncoupled system, the admittance matrix <span class="math inline">\(Y\)</span> is a diagonal matrix where each diagonal element corresponds to the admittance of that phase. For instance, for a three-phase system with capacitances <span class="math inline">\(C_a, C_b, C_c\)</span>: <span class="math display">\[\begin{equation}
 Y =
 \begin{bmatrix}
-sC_a &amp; 0 &amp; 0 \\
-0 &amp; sC_b &amp; 0 \\
-0 &amp; 0 &amp; sC_c
+G_a &amp; 0 &amp; 0 &amp; -G_a &amp; 0 &amp; 0 \\
+0 &amp; G_b &amp; 0 &amp; 0 &amp; -G_b &amp; 0 \\
+0 &amp; 0 &amp;  G_c &amp; 0 &amp; 0 &amp; -G_c \\
+-G_a &amp; 0 &amp; 0 &amp; G_a &amp; 0 &amp; 0 \\
+0 &amp; -G_b &amp; 0 &amp; 0 &amp; G_b &amp; 0 \\
+0 &amp; 0 &amp; -G_c &amp; 0 &amp; 0 &amp; G_c
 \end{bmatrix}
 \end{equation}\]</span> The constructor for this mode directly computes and stores this symbolic admittance matrix.</p></li>
 <li><p><strong>Time-Domain (MNA-based)</strong> — This model is used for transient analysis or general MNA where the capacitor’s behavior is integrated into the system equations. For a capacitor connected between two nodes, <span class="math inline">\(n1\)</span> and <span class="math inline">\(n2\)</span>, with voltage difference <span class="math inline">\(V_{n1} - V_{n2}\)</span>, and carrying current <span class="math inline">\(I_C\)</span>, the fundamental relationship is:</p></li>
