@@ -1,0 +1,186 @@
+---
+layout: page 
+title: Long Transmission Line
+tags: [Opensource, Transmission Lines]
+date: 31/10/2025
+last-updated: 12/28/2025
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekic"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    page-layout: full
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+---
+
+:::{.callout-tip}
+*`Long-transmission-line` are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line's length on voltage and current distribution. The telegrapher's equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance $(R)$, inductance $(L)$, capacitance $(C)$, and conductance $(G)$ per unit length. This report aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model @saadat1999power *
+:::
+
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+---
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Telegrapher's Equations
+</div>
+
+The telegrapher's equations are partial differential equations that describe the voltage $V(x, t)$ and current $I(x, t)$ at a point $x$ along a transmission line. They are derived based on Kirchhoff's voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher's equations in the frequency domain are given as:
+  
+  \begin{equation}
+   \frac{dV(x)}{dx} = -(R + j\omega L)I(x),
+  \end{equation}
+
+  \begin{equation}
+  \frac{dI(x)}{dx} = -(G + j\omega C)V(x),
+  \end{equation}
+where: 
+   
+   - $R$ - is the resistance per unit length ($\Omega/\text{m}$);
+   - $L$ - is the inductance per unit length ($\text{H}/\text{m}$);
+   - $G$ - is the conductance per unit length ($\text{S}/\text{m}$);
+   - $C$ - is the conductance per unit length ($\text{F}/\text{m}$);
+   - $\omega$ - is the angular frequency of the source;
+  
+  <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Characteristic Impedance and Propagation Constant
+</div>
+
+From the telegrapher's equations, we can derive two important parameters:
+
+- Characteristic Impedance ($Z_0$):
+
+    \begin{equation}
+    Z_0 = \sqrt{\frac{R + j\omega L}{G + j\omega C}}
+    \end{equation}
+
+ - Propagation Constant ($\gamma$):
+  
+    \begin{equation}
+    \gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
+    \end{equation}
+
+The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Voltage and Current Distribution Along the Time
+</div>
+
+The general solutions for the voltage and current along the transmission line are:
+
+\begin{equation}
+V(x) = V_+ e^{-\gamma x} + V_- e^{\gamma x}
+\end{equation}
+
+\begin{equation}
+I(x) = \frac{V_+}{Z_0} e^{-\gamma x} - \frac{V_-}{Z_0} e^{\gamma x}
+\end{equation}
+
+where $V_+$ and $V_-$ represent the forward and backward traveling voltage waves, respectively. These constants can be determined by applying the boundary conditions at the input and output of the line.
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Boundary Conditions
+</div>
+
+At $x = 0$ (the input or source end of the transmission line), the boundary conditions are:
+
+\begin{equation}
+V(0) = V_s
+\end{equation}
+
+\begin{equation}
+I(0) = \frac{V_s - V(0)}{Z_s}
+\end{equation}
+
+where $V_s$ is the source voltage and $Z_s$ is the source impedance.
+
+At $x = l$ (the load end of the transmission line), the boundary conditions are:
+
+\begin{equation}
+V(l) = V_+ e^{-\gamma l} + V_- e^{\gamma l}
+\end{equation}
+
+\begin{equation}
+I(l) = \frac{V(l)}{Z_L}
+\end{equation}
+
+where $Z_L$ is the load impedance.
+
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+🔸 Computation of Y Parameters
+</div>
+
+The Y parameters relate the input and output voltages and currents as follows. 
+
+\begin{equation}
+\begin{bmatrix}
+I_1 \\
+I_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_{11} & Y_{12} \\
+Y_{21} & Y_{22}
+\end{bmatrix}
+\begin{bmatrix}
+V_1 \\
+V_2
+\end{bmatrix}.    
+\end{equation}
+
+We compute the Y parameters using the voltage and current expressions at both ends of the transmission line ($x = 0$ and $x = l$):
+
+\begin{equation}
+        I_1 = \frac{V_+}{Z_0} - \frac{V_-}{Z_0}, \\
+\end{equation}
+
+\begin{equation}
+        I_2 = \frac{V_+}{Z_0} e^{-\gamma l} - \frac{V_-}{Z_0} e^{\gamma l}.
+\end{equation}
+
+From these expressions, we derive the following $Y$ parameters:
+
+\begin{equation}
+  Y_{11} = \frac{1}{Z_0} \frac{\cosh(\gamma l)}{\sinh(\gamma l)} = \frac{1}{Z_0 \tanh(\gamma l)} 
+\end{equation}
+
+\begin{equation}
+Y_{12} = \frac{-1}{Z_0} \frac{1}{\sinh(\gamma l)}
+\end{equation}
+
+\begin{equation}
+Y_{21} = Y_{12}
+\end{equation}
+
+\begin{equation}
+Y_{22} = Y_{11}
+\end{equation}
+
+These Y parameters describe the transmission line's behavior regarding its input and output voltages and currents.
+
+Here, we derived the Y parameters for a long transmission line using the telegrapher's equations. We first computed the characteristic impedance and propagation constant, which describe how voltage and current waves propagate along the line. Using the boundary conditions at the source and load ends, we then solved for the traveling wave coefficients. We computed the Y parameters, which are crucial for analyzing transmission lines in networked power systems.
+
+---
+
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
+Code Explanation
+</div>

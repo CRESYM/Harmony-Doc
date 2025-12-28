@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impedances - Harmony</title>
+  <title>Transformer - Harmony</title>
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -119,16 +119,14 @@
             </ul>
           </li>
 
-          </li>
-
           <!-- Models -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="../../../pages/models/impedances/impedance.html">Impedances</a></li>
-              <li><a class="dropdown-item" href="../../../pages/models/transformers/transformer1.html">Transofrmers</a></li>
+              <li><a class="dropdown-item" href="../../../pages/models/transformers/transformer2.html">Transofrmers</a></li>
               <li><a class="dropdown-item" href="../../../pages/models/loads/load.html">Loads</a></li>
-              <li><a class="dropdown-item" href="models/Transmission Lines.html">transmission Lines </a></li>
+              <li><a class="dropdown-item" href="../../../pages/models/transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
               <li><a class="dropdown-item" href="models/Sources and Generators.html">Sources and Generators</a></li>
               <li><a class="dropdown-item" href="models/Converters.html">Converters</a></li>
               <li><a class="dropdown-item" href="models/Switch and Circuit Breakers.html">Switch and Circuit Breakers</a></li>
@@ -176,15 +174,13 @@
         <!-- 左侧导航 -->
         <aside class="col-md-3">
           <div class="list-group">
-            <a href="impedance.html" class="list-group-item">Impedance</a>
-            <a href="admittance.html" class="list-group-item">Admittance</a>
-            <a href="inductor.html" class="list-group-item">Inductor</a>
-            <a href="capacitor.html" class="list-group-item">Capacitor</a>
-            <a href="resistor.html" class="list-group-item">Resistor</a>
+            <a href="long-transmission-line.html" class="list-group-item">Long transmssion line</a>
+            <a href="overhead-line.html" class="list-group-item">Overhead line</a>
+            <a href="cable.html" class="list-group-item">Cable</a>
           </div>
         </aside>
 
-        <!-- 右侧主体：加载 impedance_body.html -->
+        <!-- 右侧主体：加载 tranformer_body.html -->
         <div class="col-md-9">
           <h1 class="mb-4"></h1>
           <div id="body-root"></div>
@@ -199,10 +195,10 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- 动态加载 inductor_body.html -->
+  <!-- 动态加载 transformer_body.html -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("inductor_body.html", { cache: "no-cache" })
+      fetch("long-transmission-line_body.html", { cache: "no-cache" })
         .then(response => {
           if (!response.ok) throw new Error("HTTP " + response.status);
           return response.text();
