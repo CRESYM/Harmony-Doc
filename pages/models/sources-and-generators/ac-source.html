@@ -174,9 +174,8 @@
         <!-- 左侧导航 -->
         <aside class="col-md-3">
           <div class="list-group">
-            <a href="long-transmission-line.html" class="list-group-item">Long transmssion line</a>
-            <a href="overhead-line.html" class="list-group-item">Overhead line</a>
-            <a href="cable.html" class="list-group-item">Cable</a>
+            <a href="ac-source.html" class="list-group-item">AC source</a>
+            <a href="generator.html" class="list-group-item">Generator</a>
           </div>
         </aside>
 
@@ -198,7 +197,7 @@
   <!-- 动态加载 transformer_body.html -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("overhead-line_body.html", { cache: "no-cache" })
+      fetch("ac-source_body.html", { cache: "no-cache" })
         .then(response => {
           if (!response.ok) throw new Error("HTTP " + response.status);
           return response.text();

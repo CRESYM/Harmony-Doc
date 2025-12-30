@@ -1,0 +1,237 @@
+---
+layout: page 
+title: Generator # be as specific as possible
+tags: [Opensource, Sources and Generators]
+date: 31/10/2025
+last-updated: 12/30/2025
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekić"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    page-layout: full
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+
+        
+---
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+
+
+:::{.callout-tip}
+*In power system analysis, synchronous `generators` are a fundamental component of energy generation. To model the interaction between the generator and the rest of the power network, admittance parameters (Y-parameters) are often used. The Y-parameters provide a relationship between the voltages and currents at the generator's terminals and can be used in steady-state and dynamic analysis. This report presents the mathematical formulation of the Y-parameters for a synchronous generator, considering key electrical parameters such as field resistance, field inductance, direct-axis reactance, and field time constant.*
+:::
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Generator Model Parameters
+</div>
+---
+
+The generator's behavior can be described using the following key parameters, as depicted in @fig-generator:
+
+  - $R_f$ - Field winding resistance;
+  - $L_f$ - Field winding inductance;
+  - $T_f$ - Field time constant;
+  - $X_d$ - Direct-axis reactance;
+  - $X_m$ - Mutual reactance;
+
+These parameters represent the electrical characteristics of the synchronous machine and are used to derive the generator's impedance and admittance.
+
+![Equivalent generator model.](assets/generator_model.pdf){#fig-generator width=50%}
+
+---
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Mathematical Modeling
+</div>
+
+In the frequency domain, the impedance of the generator can be described by its field impedance and direct-axis reactance. We form a two-port model with port 1 = stator direct axis and port 2 = field winding. Denote
+
+\begin{equation}
+Z_f(s)=R_f+sL_f=R_f\big(1+sT_f\big),\qquad s=j\omega,
+\end{equation}
+
+and let $X_m=\omega M$ be the mutual reactance between stator and field windings. The impedance matrix of the coupled two-port is
+
+\begin{equation}
+\mathbf{Z}(s)=
+\begin{bmatrix}
+jX_d & jX_m\\[4pt]
+jX_m & Z_f(s)
+\end{bmatrix},
+\end{equation}
+
+whose determinant is $\Delta(s)=jX_d Z_f(s)+X_m^2$. The admittance matrix is the inverse $\mathbf{Y}(s)=\mathbf{Z}^{-1}(s)$, which yields
+\begin{equation}
+\boxed{%
+\mathbf{Y}(s)=\frac{1}{\,jX_d Z_f(s)+X_m^2\,}
+\begin{bmatrix}
+Z_f(s) & -\,jX_m\\[6pt]
+-\,jX_m & jX_d
+\end{bmatrix}.
+}
+\end{equation}
+
+Equivalently, the individual Y-parameters are
+\begin{equation}
+\begin{aligned}
+Y_{11}(s)&=\dfrac{R_f(1+sT_f)}{\,jX_d R_f(1+sT_f)+X_m^2\,},\\[6pt]
+Y_{12}(s)&=Y_{21}(s)=\dfrac{-\,jX_m}{\,jX_d R_f(1+sT_f)+X_m^2\,},\\[6pt]
+Y_{22}(s)&=\dfrac{jX_d}{\,jX_d R_f(1+sT_f)+X_m^2\,}.
+\end{aligned}
+\end{equation}
+
+These expressions include the field first-order dynamics through $T_f=L_f/R_f$ and are reciprocal $(Y_{12}=Y_{21})$.
+
+---
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Code Explanation
+</div>
+
+
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->

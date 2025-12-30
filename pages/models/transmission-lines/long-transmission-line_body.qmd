@@ -57,11 +57,7 @@ The telegrapher's equations are partial differential equations that describe the
   \end{equation}
 where: 
    
-   - $R$ - is the resistance per unit length ($\Omega/\text{m}$);
-   - $L$ - is the inductance per unit length ($\text{H}/\text{m}$);
-   - $G$ - is the conductance per unit length ($\text{S}/\text{m}$);
-   - $C$ - is the conductance per unit length ($\text{F}/\text{m}$);
-   - $\omega$ - is the angular frequency of the source;
+ 
   
   <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
 🔸 Characteristic Impedance and Propagation Constant
