@@ -30,7 +30,7 @@ format:
 ---
 
 :::{.callout-tip}
-*`Long-transmission-line` are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line's length on voltage and current distribution. The telegrapher's equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance $(R)$, inductance $(L)$, capacitance $(C)$, and conductance $(G)$ per unit length. This report aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model @saadat1999power *
+*`Long-transmission-line` are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line's length on voltage and current distribution. The telegrapher's equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance $(R)$, inductance $(L)$, capacitance $(C)$, and conductance $(G)$ per unit length. This page aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model @saadat1999power *
 :::
 
 
@@ -45,6 +45,8 @@ Mathematical Modeling
 </div>
 
 The telegrapher's equations are partial differential equations that describe the voltage $V(x, t)$ and current $I(x, t)$ at a point $x$ along a transmission line. They are derived based on Kirchhoff's voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher's equations in the frequency domain are given as:
+
+
   
   \begin{equation}
    \frac{dV(x)}{dx} = -(R + j\omega L)I(x),

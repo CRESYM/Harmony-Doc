@@ -9,7 +9,7 @@
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
 <meta name="dcterms.date" content="2027-07-10">
 
-<title>Long Transmission Line</title>
+<title>Overhead Line</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -45,18 +45,18 @@ div.csl-indent {
 }</style>
 
 
-<script src="long-transmission-line_body_files/libs/clipboard/clipboard.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/popper.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/anchor.min.js"></script>
-<link href="long-transmission-line_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="long-transmission-line_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="long-transmission-line_body_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="long-transmission-line_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="long-transmission-line_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="overhead-line_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="overhead-line_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="overhead-line_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="overhead-line_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="overhead-line_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="overhead-line_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="overhead-line_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="overhead-line_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="overhead-line_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="overhead-line_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="overhead-line_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="overhead-line_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script>
 MathJax = {
   tex: {
@@ -107,7 +107,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Long Transmission Line</h1>
+<h1 class="title">Overhead Line</h1>
 </div>
 
 
@@ -146,116 +146,239 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em><code>Long-transmission-line</code> are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line’s length on voltage and current distribution. The telegrapher’s equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance <span class="math inline">\((R)\)</span>, inductance <span class="math inline">\((L)\)</span>, capacitance <span class="math inline">\((C)\)</span>, and conductance <span class="math inline">\((G)\)</span> per unit length. This page aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model <span class="citation" data-cites="saadat1999power">Saadat et al. (<a href="#ref-saadat1999power" role="doc-biblioref">1999</a>)</span> </em></p>
+<p><em><code>overhead-line</code> are widely used in power systems and exhibit strong electromagnetic coupling due to the spatial arrangement of phase conductors and ground wires. Their electrical characteristics are highly dependent on conductor geometry, bundle configuration, and relative positioning with respect to the ground. To accurately capture these effects, a physically based distributed-parameter representation is adopted, in which conductor layouts and material properties are explicitly modeled. This page introduces the geometric configurations and parameter definitions used to construct the overhead transmission line model.</em></p>
 </div>
 </div>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Mathematical Modeling</p>
 </div>
 <hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Telegrapher’s Equations</p>
+<p>Based on realizations of the transmission line as defined in PSCAD (see <a href="#fig-tl-pscad" class="quarto-xref">Figure&nbsp;1</a>), five possible realizations are defined as:</p>
+<ol type="1">
+<li>flat (horizontal, which presents a flat configuration without ground wires),</li>
+<li>vertical,</li>
+<li>delta (for at least three phases),</li>
+<li>offset (for at least three phases),</li>
+<li>concentric (for at least three phases).</li>
+</ol>
+<p>Besides, the conductor positions can be added manually as absolute <span class="math inline">\((x,y)\)</span> positions.</p>
+<div id="fig-tl-pscad" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tl-pscad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/tl.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<p>The telegrapher’s equations are partial differential equations that describe the voltage <span class="math inline">\(V(x, t)\)</span> and current <span class="math inline">\(I(x, t)\)</span> at a point <span class="math inline">\(x\)</span> along a transmission line. They are derived based on Kirchhoff’s voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher’s equations in the frequency domain are given as:</p>
-<p><span class="math display">\[\begin{equation}
-   \frac{dV(x)}{dx} = -(R + j\omega L)I(x),
-  \end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-  \frac{dI(x)}{dx} = -(G + j\omega C)V(x),
-  \end{equation}\]</span> where:</p>
-<ul>
-<li><span class="math inline">\(R\)</span> - is the resistance per unit length (<span class="math inline">\(\Omega/\text{m}\)</span>);</li>
-<li><span class="math inline">\(L\)</span> - is the inductance per unit length (<span class="math inline">\(\text{H}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(G\)</span> - is the conductance per unit length (<span class="math inline">\(\text{S}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(C\)</span> - is the conductance per unit length (<span class="math inline">\(\text{F}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(\omega\)</span> - is the angular frequency of the source;</li>
-</ul>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Characteristic Impedance and Propagation Constant</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tl-pscad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: PSCAD overhead line organization: 1) single conductor with groundwire; 2) single conductor; 3) 2 conductors flat; 4) 3 conductors flat; 5) 3 conductors delta; 6) 3 conductors horizontal; 7) 3 conductors vertical; 8) 3 conductors concentric; 9) 3 conductors offset.
+</figcaption>
+</figure>
 </div>
-<p>From the telegrapher’s equations, we can derive two important parameters:</p>
-<ul>
-<li><p>Characteristic Impedance (<span class="math inline">\(Z_0\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-  Z_0 = \sqrt{\frac{R + j\omega L}{G + j\omega C}}
-  \end{equation}\]</span></p></li>
-<li><p>Propagation Constant (<span class="math inline">\(\gamma\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-\gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
-\end{equation}\]</span></p></li>
-</ul>
+<p>Thus, the simulator enables the creation of overhead lines with the conductors having the properties <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> presented in the table <a href="#tbl-ohl-conductors" class="quarto-xref">Table&nbsp;1</a>. <strong>Ground wires</strong> have the properties presented in Table <a href="#tbl-ohl-groundwires" class="quarto-xref">Table&nbsp;2</a>.</p>
+<div id="tbl-ohl-conductors" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ohl-conductors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: OHL conductor parameters
+</figcaption>
+<div aria-describedby="tbl-ohl-conductors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(n_b\)</span></td>
+<td>number of bundles (or number of phases)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(n_{sb}\)</span></td>
+<td>number of subconductors per bundle</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(y_{bc}\)</span></td>
+<td>height of the lowest bundle above ground</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\Delta y_{bc}\)</span></td>
+<td>vertical offset between bundles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\Delta x_{bc}\)</span></td>
+<td>horizontal offset between the lowest bundles</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\Delta \tilde{x}_{bc}\)</span></td>
+<td>horizontal offset in the case of concentric and offset organization</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(d_{sb}\)</span></td>
+<td>distance between closest subconductors with equidistant concentric organization (symmetric)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(d_{sag}\)</span></td>
+<td>maximal sag offset</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(r_c\)</span></td>
+<td>radius of the conductor</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(R_{dc}\)</span></td>
+<td>DC resistance of the conductor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(g_c\)</span></td>
+<td>shunt conductance of the conductor</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\mu_{r,c}\)</span></td>
+<td>relative permeability of the conductor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">positions</td>
+<td>added manually</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">organization</td>
+<td>can be flat, vertical, concentric, delta, and offset</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The transmission line model is constructed using the procedure from <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> and in following the previously developed code of the project authors . The overhead transmission line consists of <span class="math inline">\(n_b\)</span> including sub-conductors, stranding, etc. and <span class="math inline">\(n_g\)</span> ground wires.</p>
+<div id="tbl-ohl-groundwires" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ohl-groundwires-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: OHL ground wire parameters
+</figcaption>
+<div aria-describedby="tbl-ohl-groundwires-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n_g\)</span></td>
+<td>number of ground wires</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta x_g\)</span></td>
+<td>relative horizontal distance between ground wires</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta y_g\)</span></td>
+<td>relative vertical distance between ground wires and the lowest conductors</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r_g\)</span></td>
+<td>radius of the ground wire</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(d_{g,sag}\)</span></td>
+<td>ground wire sag</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R_{g,dc}\)</span></td>
+<td>DC resistance of the ground wires</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_{r,g}\)</span></td>
+<td>relative permeability of the ground wire</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The transmission line model is constructed using the procedure from <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> and in following the previously developed code of the project authors <span class="citation" data-cites="PowerImpedanceACDC2025">Electa (<a href="#ref-PowerImpedanceACDC2025" role="doc-biblioref">2025</a>)</span>. The overhead transmission line consists of <span class="math inline">\(n_b\)</span> including sub-conductors, stranding, etc. and <span class="math inline">\(n_g\)</span> ground wires.</p>
+<p>Each line/conductor positioned as <span class="math inline">\(x_c\)</span> relatively starting from the central tower position and <span class="math inline">\(y_c\)</span> vertically, measured from ground, with the sag at the midpoint between towers <span class="math inline">\(d_{sag}\)</span>, see <a href="#fig-tl" class="quarto-xref">Figure&nbsp;2</a>. Thus, the modified vertical position is used in calculations as <span class="math inline">\(\hat{y}_c = y_c - \frac{2}{3} \, d_{sag}\)</span>. The conductor is formed using <span class="math inline">\(n_{sb}\)</span> sub-conductors grouped in the bundle, where all sub-conductors are grouped using a symmetrical equidistant pattern with the distance between the two nearest sub-conductors being <span class="math inline">\(d_{bc}\)</span>, or a bundle spacing. Using conductor position, the position of the each sub-conductor can be estimated. Knowing the angle between two sub-conductors on the circle and its radius</p>
+<p><span class="math display">\[\begin{eqnarray}
+\nonumber \varphi = \frac{360^\circ}{n_{sb}}, \\
+r = \frac{d_{sb}}{2 \sin(\varphi/2)},
+\end{eqnarray}\]</span> the position can be estimated starting from the angle <span class="math inline">\(\varphi_s = \frac{\pi}{2}\)</span> if the number of sub-conductors is odd, or from <span class="math inline">\(\varphi_s = \frac{\pi + \varphi}{2}\)</span> for an even number of sub-conductors, as follows: <span class="math display">\[\begin{eqnarray}
+\nonumber x_{bc} = x_c + r \cos(\varphi_s + k \, \varphi), \\
+y_{bc} = y_c + r \sin(\varphi_s + k \, \varphi) - \frac{2}{3} \, d_{sag},
+\end{eqnarray}\]</span></p>
+<p>for <span class="math inline">\(k \in \{1, 2, ..., n_{bc}\}\)</span>. If the number of sub-conductors is equal to one, its position is given by <span class="math inline">\((x_c, \hat{y}_c)\)</span>. Each conductor is characterized by the relative permeability of the material <span class="math inline">\(\mu_r\)</span>, the conductor dc resistance <span class="math inline">\(R_{dc}\)</span>, and the radius <span class="math inline">\(r_i\)</span>.</p>
+<p>Ground wires are modeled similarly, represented with their relative position <span class="math inline">\((x_g,y_g)\)</span>, radius <span class="math inline">\(r_g\)</span>, dc resistance <span class="math inline">\(R_{gdc}\)</span>, and relative permeability of the material <span class="math inline">\(\mu_r\)</span>.</p>
+<p>Earth parameters are given with permeability <span class="math inline">\(\mu_e\)</span>, permittivity <span class="math inline">\(\epsilon_e\)</span> and conductivity <span class="math inline">\(\rho_e\)</span>.</p>
 <p>The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Voltage and Current Distribution Along the Time</p>
-</div>
-<p>The general solutions for the voltage and current along the transmission line are:</p>
-<p><span class="math display">\[\begin{equation}
-V(x) = V_+ e^{-\gamma x} + V_- e^{\gamma x}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(x) = \frac{V_+}{Z_0} e^{-\gamma x} - \frac{V_-}{Z_0} e^{\gamma x}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(V_+\)</span> and <span class="math inline">\(V_-\)</span> represent the forward and backward traveling voltage waves, respectively. These constants can be determined by applying the boundary conditions at the input and output of the line.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Boundary Conditions</p>
-</div>
-<p>At <span class="math inline">\(x = 0\)</span> (the input or source end of the transmission line), the boundary conditions are:</p>
-<p><span class="math display">\[\begin{equation}
-V(0) = V_s
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(0) = \frac{V_s - V(0)}{Z_s}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(V_s\)</span> is the source voltage and <span class="math inline">\(Z_s\)</span> is the source impedance.</p>
-<p>At <span class="math inline">\(x = l\)</span> (the load end of the transmission line), the boundary conditions are:</p>
-<p><span class="math display">\[\begin{equation}
-V(l) = V_+ e^{-\gamma l} + V_- e^{\gamma l}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(l) = \frac{V(l)}{Z_L}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(Z_L\)</span> is the load impedance.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Computation of Y Parameters</p>
-</div>
-<p>The Y parameters relate the input and output voltages and currents as follows.</p>
-<p><span class="math display">\[\begin{equation}
+<p>To represent the transmission line using ABCD parameters, it is necessary to calculate series impedance and shunt admittance matrices <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span>. Both matrices are of the size <span class="math inline">\(n \times n\)</span>, where <span class="math inline">\(n = \sum\limits_{i=1}^{n_c} n^i_{bc} + n_g\)</span>. The impedance matrix has the following form:</p>
+<p><span class="math display">\[\begin{eqnarray}
+\mathbf{Z} = \operatorname{diag}(Z_i) +
 \begin{bmatrix}
-I_1 \\
-I_2
+Z_{0,11} &amp; \cdots &amp; Z_{0,1n} \\
+\vdots &amp; \ddots &amp; \vdots \\
+Z_{0,n1} &amp; \cdots &amp; Z_{0,nn}
 \end{bmatrix}
-=
+\end{eqnarray}\]</span> where <span class="math inline">\(Z_i = \frac{m\rho_i}{2\pi r_i} \, \coth(0.733mr_i) + \frac{0.3179 \rho_i}{\pi r_i^2}\)</span> for the <span class="math inline">\(i\)</span>-th conductor/sub-conductor/ground wire and <span class="math inline">\(r_i\)</span> is its radius, resistivity <span class="math inline">\(\rho_i = R^i_{dc} \, \pi r_i^2\)</span> and <span class="math inline">\(m = \sqrt{j\omega \,\frac{\mu_0 \mu_{r,i}}{\rho_i}}\)</span>; The components <span class="math inline">\(Z_{0, ij} = \frac{j\omega \, \mu_0}{2\pi} \, \log\left( \frac{\hat{D}_{ij}}{d_{ij}}\right)\)</span> for <span class="math display">\[\begin{eqnarray}
+\nonumber &amp;d_{ij} = \left\{\begin{array}{ll}
+\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}, &amp; \quad i \neq j, \\
+r_i, &amp; \quad i = j,
+\end{array} \right. \\
+\nonumber &amp;D_{ij} = \left\{\begin{array}{ll}
+\sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}, &amp; \quad i \neq j, \\
+2y_i, &amp; \quad i = j,
+\end{array} \right. \\
+\nonumber &amp;\hat{D}_{ij} = \sqrt{(y_i + y_j + 2d_e)^2 + (x_i-x_j)^2}, \\
+&amp;d_e = \sqrt{\frac{1}{j\omega \, \mu_e (\sigma_e + j\omega \, \epsilon_e)}}.
+\end{eqnarray}\]</span></p>
+<p>The shunt admittance is a matrix formed as <span class="math display">\[\begin{equation}
+\mathbf{Y} = s \, \mathbf{P}^{-1} + \mathbf{G}
+\end{equation}\]</span> from matrix <span class="math inline">\(\mathbf{P}\)</span> with its components <span class="math inline">\(\mathbf{P}_{ij} = \frac{1}{2\pi\epsilon_0} \, \log\left( \frac{D_{ij}}{d_{ij}}\right)\)</span> and <span class="math inline">\(\mathbf{G} = \operatorname{diag}\{g_c\}\)</span>.</p>
+<p>The ABCD parameters of a transmission line can be defined as <span class="math display">\[\begin{equation}
 \begin{bmatrix}
-Y_{11} &amp; Y_{12} \\
-Y_{21} &amp; Y_{22}
+\mathbf{A} &amp; \mathbf{B} \\
+\mathbf{C} &amp; \mathbf{D}
+\end{bmatrix} =
+\begin{bmatrix}
+\cosh(\Gamma l) &amp; \mathbf{Y}_c^{-1}\sinh(\Gamma l) \\
+\mathbf{Y}_c \sinh(\Gamma l) &amp;  \cosh(\Gamma l)
 \end{bmatrix}
+\label{eq_tl_abcd}
+\end{equation}\]</span> where <span class="math inline">\(\mathrm{\Gamma} = \sqrt{\mathbf{Z}\mathbf{Y}}\)</span> and $_c = ^{-1} , $, and <span class="math inline">\(l\)</span> standing for the line or cable length. The formula used is based on the frequency-dependent phase domain model.</p>
+<p>Y parameters: The ABCD parameters of a transmission line can be defined as <span class="citation" data-cites="castellanos1997full">Castellanos and Marti (<a href="#ref-castellanos1997full" role="doc-biblioref">1997</a>)</span>, <span class="citation" data-cites="morched1999universal">Morched, Gustavsen, and Tartibi (<a href="#ref-morched1999universal" role="doc-biblioref">1999</a>)</span></p>
+<p><span class="math display">\[\begin{equation}
 \begin{bmatrix}
-V_1 \\
-V_2
-\end{bmatrix}.    
+\mathbf{A} &amp; \mathbf{B} \\
+\mathbf{C} &amp; \mathbf{D}
+\end{bmatrix} =
+\begin{bmatrix}
+\cosh(\Gamma l) &amp; \mathbf{Y}_c^{-1}\sinh(\Gamma l) \\
+\mathbf{Y}_c \sinh(\Gamma l) &amp;  \cosh(\Gamma l)
+\end{bmatrix}
 \end{equation}\]</span></p>
-<p>We compute the Y parameters using the voltage and current expressions at both ends of the transmission line (<span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = l\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-        I_1 = \frac{V_+}{Z_0} - \frac{V_-}{Z_0}, \\
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-        I_2 = \frac{V_+}{Z_0} e^{-\gamma l} - \frac{V_-}{Z_0} e^{\gamma l}.
-\end{equation}\]</span></p>
-<p>From these expressions, we derive the following <span class="math inline">\(Y\)</span> parameters:</p>
-<p><span class="math display">\[\begin{equation}
-  Y_{11} = \frac{1}{Z_0} \frac{\cosh(\gamma l)}{\sinh(\gamma l)} = \frac{1}{Z_0 \tanh(\gamma l)}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{12} = \frac{-1}{Z_0} \frac{1}{\sinh(\gamma l)}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{21} = Y_{12}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{22} = Y_{11}
-\end{equation}\]</span></p>
-<p>These Y parameters describe the transmission line’s behavior regarding its input and output voltages and currents.</p>
-<p>Here, we derived the Y parameters for a long transmission line using the telegrapher’s equations. We first computed the characteristic impedance and propagation constant, which describe how voltage and current waves propagate along the line. Using the boundary conditions at the source and load ends, we then solved for the traveling wave coefficients. We computed the Y parameters, which are crucial for analyzing transmission lines in networked power systems.</p>
+<p>where <span class="math inline">\(\mathrm{\Gamma} = \sqrt{\mathbf{Z}\mathbf{Y}}\)</span> and <span class="math inline">\(\mathbf{Y}_c = \mathbf{Z}^{-1}\,\Gamma\)</span>, and <span class="math inline">\(l\)</span> standing for the line or cable length. The formula used is based on the frequency-dependent phase domain model.</p>
+<p>From them Y parameters calculate as follows : <span class="math display">\[\begin{eqnarray}
+    Y = \begin{bmatrix}
+        \textbf{Y}_c \operatorname{coth}(\Gamma l) &amp; -\textbf{Y}_c \operatorname{cosech}(\Gamma l) \\
+        -\textbf{Y}_c \operatorname{cosech}(\Gamma l) &amp; \textbf{Y}_c \operatorname{coth}(\Gamma l)
+    \end{bmatrix}.
+\end{eqnarray}\]</span></p>
+<div id="fig-tl" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="assets/transmission_line.pdf" class="img-fluid" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.
+</figcaption>
+</figure>
+</div>
 <hr>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Code Explanation</p>
@@ -263,8 +386,17 @@ Y_{22} = Y_{11}
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-saadat1999power" class="csl-entry" role="listitem">
-Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
+<div id="ref-castellanos1997full" class="csl-entry" role="listitem">
+Castellanos, F, and JR Marti. 1997. <span>“Full Frequency-Dependent Phase-Domain Transmission Line Model.”</span> <em>IEEE Transactions on Power Systems</em> 12 (3): 1331–39.
+</div>
+<div id="ref-PowerImpedanceACDC2025" class="csl-entry" role="listitem">
+Electa. 2025. <span>“Power ImpedanceACDC. Impedance-Based Stability Analyses.”</span>
+</div>
+<div id="ref-martinez2017power" class="csl-entry" role="listitem">
+Martinez-Velasco, Juan A. 2017. <em>Power System Transients: Parameter Determination</em>. CRC press.
+</div>
+<div id="ref-morched1999universal" class="csl-entry" role="listitem">
+Morched, Atef, Bjorn Gustavsen, and Manoocher Tartibi. 1999. <span>“A Universal Model for Accurate Calculation of Electromagnetic Transients on Overhead Lines and Underground Cables.”</span> <em>IEEE Transactions on Power Delivery</em> 14 (3): 1032–38.
 </div>
 </div></section></div></main>
 <!-- /main column -->
@@ -669,5 +801,8 @@ Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
   });
   </script>
 </div> <!-- /content -->
+
+
+
 
 </body></html>

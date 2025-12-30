@@ -9,7 +9,7 @@
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
 <meta name="dcterms.date" content="2027-07-10">
 
-<title>Long Transmission Line</title>
+<title>Cable</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,41 +22,21 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="long-transmission-line_body_files/libs/clipboard/clipboard.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/popper.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="long-transmission-line_body_files/libs/quarto-html/anchor.min.js"></script>
-<link href="long-transmission-line_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="long-transmission-line_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="long-transmission-line_body_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="long-transmission-line_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="long-transmission-line_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="cable_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cable_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="cable_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="cable_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="cable_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="cable_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cable_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cable_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cable_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cable_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cable_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cable_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script>
 MathJax = {
   tex: {
@@ -107,7 +87,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Long Transmission Line</h1>
+<h1 class="title">Cable</h1>
 </div>
 
 
@@ -146,127 +126,94 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em><code>Long-transmission-line</code> are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line’s length on voltage and current distribution. The telegrapher’s equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance <span class="math inline">\((R)\)</span>, inductance <span class="math inline">\((L)\)</span>, capacitance <span class="math inline">\((C)\)</span>, and conductance <span class="math inline">\((G)\)</span> per unit length. This page aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model <span class="citation" data-cites="saadat1999power">Saadat et al. (<a href="#ref-saadat1999power" role="doc-biblioref">1999</a>)</span> </em></p>
+<ul>
+<li><code>cable</code> groups are implemented by focusing on the configurations of the cables available in PSCAD, where a cable can be included either inside the pipe, called pipe-type cables, or placed underground. Cables are usually coaxial with up to 4 layers of both conductors and insulators. *</li>
+</ul>
 </div>
 </div>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Mathematical Modeling</p>
 </div>
 <hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Telegrapher’s Equations</p>
+<p>Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of <span class="math inline">\(n\)</span> cables, each with a maximum of three conducting layers and three insulation layers, as seen in <a href="#fig-cable" class="quarto-xref">Figure&nbsp;1</a>. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: <span class="math inline">\(r^c_i\)</span> and <span class="math inline">\(r^c_o\)</span> as the conductor’s inner and outer radius in meters, conductor relative permeability <span class="math inline">\(\mu^c_r\)</span>, and conductor resistivity <span class="math inline">\(\rho_c\)</span> (in [<span class="math inline">\(\Omega\)</span>m]). The insulator is described using the following parameters: <span class="math inline">\(r^i_i\)</span> and <span class="math inline">\(r^i_o\)</span> are the insulator’s inner and outer radius in meters, <span class="math inline">\(\epsilon^i\)</span> is the insulator’s relative permittivity, and <span class="math inline">\(\mu^i_r\)</span> is the insulator’s relative permeability.</p>
+<div id="fig-cable" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="assets/cable.pdf" class="img-fluid" style="width:50.0%">
 </div>
-<p>The telegrapher’s equations are partial differential equations that describe the voltage <span class="math inline">\(V(x, t)\)</span> and current <span class="math inline">\(I(x, t)\)</span> at a point <span class="math inline">\(x\)</span> along a transmission line. They are derived based on Kirchhoff’s voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher’s equations in the frequency domain are given as:</p>
-<p><span class="math display">\[\begin{equation}
-   \frac{dV(x)}{dx} = -(R + j\omega L)I(x),
-  \end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-  \frac{dI(x)}{dx} = -(G + j\omega C)V(x),
-  \end{equation}\]</span> where:</p>
-<ul>
-<li><span class="math inline">\(R\)</span> - is the resistance per unit length (<span class="math inline">\(\Omega/\text{m}\)</span>);</li>
-<li><span class="math inline">\(L\)</span> - is the inductance per unit length (<span class="math inline">\(\text{H}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(G\)</span> - is the conductance per unit length (<span class="math inline">\(\text{S}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(C\)</span> - is the conductance per unit length (<span class="math inline">\(\text{F}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(\omega\)</span> - is the angular frequency of the source;</li>
-</ul>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Characteristic Impedance and Propagation Constant</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Coaxial cable.
+</figcaption>
+</figure>
 </div>
-<p>From the telegrapher’s equations, we can derive two important parameters:</p>
-<ul>
-<li><p>Characteristic Impedance (<span class="math inline">\(Z_0\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-  Z_0 = \sqrt{\frac{R + j\omega L}{G + j\omega C}}
-  \end{equation}\]</span></p></li>
-<li><p>Propagation Constant (<span class="math inline">\(\gamma\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-\gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
-\end{equation}\]</span></p></li>
-</ul>
-<p>The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.</p>
 <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Voltage and Current Distribution Along the Time</p>
+<p>🔸 Conductor surface impedance</p>
 </div>
-<p>The general solutions for the voltage and current along the transmission line are:</p>
-<p><span class="math display">\[\begin{equation}
-V(x) = V_+ e^{-\gamma x} + V_- e^{\gamma x}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(x) = \frac{V_+}{Z_0} e^{-\gamma x} - \frac{V_-}{Z_0} e^{\gamma x}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(V_+\)</span> and <span class="math inline">\(V_-\)</span> represent the forward and backward traveling voltage waves, respectively. These constants can be determined by applying the boundary conditions at the input and output of the line.</p>
+<p>A hollow conductor surface impedance is given by: <span class="math display">\[\begin{eqnarray}
+\nonumber Z_{aa} = \frac{\rho_c m}{2\pi r^c_i} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_i \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for inner surface}, \\
+\nonumber Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_o \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for outer surface}, \\
+Z_{ab} =  \frac{\rho^c m}{\pi (r^c_i + r^c_o)} \, \operatorname{csch}(m(r^c_o - r^c_i)) \; \left[\frac{\Omega}{\text{m}}\right],
+\end{eqnarray}\]</span> where <span class="math inline">\(m = \sqrt{j\omega \mu^c_r}\)</span> For a non-hollow conductor, the outer surface impedance is <span class="math display">\[\begin{eqnarray}
+Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(0.733 mr^c_o) + \frac{0.3179 \rho^c}{\pi {r^c_o}^2} \; \left[\frac{\Omega}{\text{m}}\right].
+\end{eqnarray}\]</span></p>
 <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Boundary Conditions</p>
+<p>🔸 The insulator layer between two conductors has an impedance</p>
 </div>
-<p>At <span class="math inline">\(x = 0\)</span> (the input or source end of the transmission line), the boundary conditions are:</p>
 <p><span class="math display">\[\begin{equation}
-V(0) = V_s
+Z_i = \frac{j\omega \mu_0 \mu^i_r}{2\pi} \, \log\left(\frac{r^i_o}{r^i_i}\right).
 \end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(0) = \frac{V_s - V(0)}{Z_s}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(V_s\)</span> is the source voltage and <span class="math inline">\(Z_s\)</span> is the source impedance.</p>
-<p>At <span class="math inline">\(x = l\)</span> (the load end of the transmission line), the boundary conditions are:</p>
-<p><span class="math display">\[\begin{equation}
-V(l) = V_+ e^{-\gamma l} + V_- e^{\gamma l}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-I(l) = \frac{V(l)}{Z_L}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(Z_L\)</span> is the load impedance.</p>
 <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Computation of Y Parameters</p>
+<p>🔸 The earth return impedance of the cable and the mutual impedance between cables is</p>
 </div>
-<p>The Y parameters relate the input and output voltages and currents as follows.</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{eqnarray}
+Z_g = \frac{j\omega \, \mu_g}{2\pi} \, \left(-\log\left(\frac{\gamma m D}{2}\right) + \frac{1}{2} - \frac{2}{3} \, mH\right),
+\end{eqnarray}\]</span> for <span class="math display">\[\begin{eqnarray}
+\nonumber &amp;D = \left\{ \begin{array}{ll}
+\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2} &amp; \quad \mbox{for cables } i \neq j, \\
+r_i &amp; \quad \mbox{radius of the cable }i,
+\end{array} \right. \\
+\nonumber &amp;H = \left\{ \begin{array}{ll}
+y_i + y_j &amp; \quad \mbox{for cables } i \neq j, \\
+2y_i &amp; \quad \mbox{for the cable }i,
+\end{array} \right. \\
+\end{eqnarray}\]</span> and <span class="math inline">\(\gamma \approx 0.5772156649\)</span> being Euler’s constant. \end{itemize}</p>
+<p>According to , one cable is represented with its series impedance <span class="math inline">\(\mathbf{Z}_{ii}\)</span> matrix. Each matrix <span class="math inline">\(\mathbf{Z}_{ii}\)</span> has the size <span class="math inline">\(n_c \times n_c\)</span> and its entries for <span class="math inline">\(j \in \{1, \ldots, n_c-1\}\)</span> are given by <span class="math display">\[\begin{eqnarray}
+\nonumber \mathbf{Z}_{ii} \left\langle j,j \right\rangle = Z^j_{bb} + Z^j_i + Z^{j+1}_{aa}, \\
+\nonumber \mathbf{Z}_{ii} \left\langle j,j+1 \right\rangle = Z_{ii}\left\langle j+1,j \right\rangle = - Z^{j+1}_{ab}, \\
+\mathbf{Z}_{ii} \left\langle n_c, n_c \right\rangle = Z^{n_c}_{bb} + Z^{n_c}_i + Z^{ii}_g,
+\end{eqnarray}\]</span> and otherwise, the matrix entries are 0.</p>
+<p>Mutual surface impedances between the cables are given by the matrix <span class="math inline">\(\mathbf{Z}_{ij}\)</span> having all components equal to <span class="math inline">\(Z^{ij}_g\)</span>.</p>
+<p>The shunt admittance matrix can be estimated as <span class="math inline">\(\mathbf{Y} = s\mathbf{P}^{-1}\)</span> and matrix <span class="math inline">\(P\)</span>, which has the form <span class="math display">\[\begin{equation*}
+\mathbf{P} = \begin{bmatrix}
+\mathbf{P}_{11} &amp; \mathbf{P}_{12} &amp; \cdots &amp; \mathbf{P}_{1n} \\
+\vdots &amp; \ddots &amp; &amp; \vdots \\    
+\mathbf{P}_{n1} &amp; \mathbf{P}_{n2} &amp; \cdots &amp; \mathbf{P}_{nn}
+\end{bmatrix}.
+\end{equation*}\]</span> Matrices <span class="math inline">\(\mathbf{P}_{ii}\)</span> have components <span class="math display">\[\begin{equation}
+\mathbf{P}_{ii} = \begin{bmatrix}
+P_c + P_s + P_a &amp; P_s + P_a &amp; P_a \\
+P_s + P_a &amp; P_s + P_a &amp; P_a \\
+P_a &amp; P_a &amp; P_a
+\end{bmatrix} +
 \begin{bmatrix}
-I_1 \\
-I_2
-\end{bmatrix}
-=
-\begin{bmatrix}
-Y_{11} &amp; Y_{12} \\
-Y_{21} &amp; Y_{22}
-\end{bmatrix}
-\begin{bmatrix}
-V_1 \\
-V_2
-\end{bmatrix}.    
-\end{equation}\]</span></p>
-<p>We compute the Y parameters using the voltage and current expressions at both ends of the transmission line (<span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = l\)</span>):</p>
-<p><span class="math display">\[\begin{equation}
-        I_1 = \frac{V_+}{Z_0} - \frac{V_-}{Z_0}, \\
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-        I_2 = \frac{V_+}{Z_0} e^{-\gamma l} - \frac{V_-}{Z_0} e^{\gamma l}.
-\end{equation}\]</span></p>
-<p>From these expressions, we derive the following <span class="math inline">\(Y\)</span> parameters:</p>
-<p><span class="math display">\[\begin{equation}
-  Y_{11} = \frac{1}{Z_0} \frac{\cosh(\gamma l)}{\sinh(\gamma l)} = \frac{1}{Z_0 \tanh(\gamma l)}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{12} = \frac{-1}{Z_0} \frac{1}{\sinh(\gamma l)}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{21} = Y_{12}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{22} = Y_{11}
-\end{equation}\]</span></p>
-<p>These Y parameters describe the transmission line’s behavior regarding its input and output voltages and currents.</p>
-<p>Here, we derived the Y parameters for a long transmission line using the telegrapher’s equations. We first computed the characteristic impedance and propagation constant, which describe how voltage and current waves propagate along the line. Using the boundary conditions at the source and load ends, we then solved for the traveling wave coefficients. We computed the Y parameters, which are crucial for analyzing transmission lines in networked power systems.</p>
+P_{ii} &amp; P_{ii} &amp; P_{ii} \\
+P_{ii} &amp; P_{ii} &amp; P_{ii} \\
+P_{ii} &amp; P_{ii} &amp; P_{ii}
+\end{bmatrix},
+\end{equation}\]</span> where <span class="math inline">\(P_{c,s,a}\)</span> belong respectively to core, shield and armor insulators and have the following values: <span class="math inline">\(P = \frac{\log(r_o/r_i)}{2\pi\epsilon}\)</span> and <span class="math inline">\(P_{ii} = \frac{\log(2h_i/r)}{2\pi\epsilon_0}\)</span> is an earth return. Matrices <span class="math inline">\(\mathbf{P}_{ij}\)</span>, for <span class="math inline">\(i \neq j\)</span>,have all components equal to <span class="math inline">\(P_{ij} = \frac{\log(D_2/D_1)}{2\pi\epsilon_0}\)</span>, where <span class="math inline">\(D_1 = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}\)</span> and <span class="math inline">\(D_2 = \sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}\)</span> .</p>
+<p>Y parameters are calculated the same as in the equation that <span class="math display">\[\begin{eqnarray}
+    Y = \begin{bmatrix}
+        \textbf{Y}_c \operatorname{coth}(\Gamma l) &amp; -\textbf{Y}_c \operatorname{cosech}(\Gamma l) \\
+        -\textbf{Y}_c \operatorname{cosech}(\Gamma l) &amp; \textbf{Y}_c \operatorname{coth}(\Gamma l)
+    \end{bmatrix}.
+    \label{eq:tl_y_params}
+\end{eqnarray}\]</span></p>
 <hr>
 <div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
 <p>Code Explanation</p>
 </div>
 
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-saadat1999power" class="csl-entry" role="listitem">
-Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -669,5 +616,8 @@ Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
   });
   </script>
 </div> <!-- /content -->
+
+
+
 
 </body></html>
