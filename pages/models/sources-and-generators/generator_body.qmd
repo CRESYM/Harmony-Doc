@@ -81,7 +81,7 @@ jX_m & Z_f(s)
 
 whose determinant is $\Delta(s)=jX_d Z_f(s)+X_m^2$. The admittance matrix is the inverse $\mathbf{Y}(s)=\mathbf{Z}^{-1}(s)$, which yields
 \begin{equation}
-\boxed{%
+\boxed{
 \mathbf{Y}(s)=\frac{1}{\,jX_d Z_f(s)+X_m^2\,}
 \begin{bmatrix}
 Z_f(s) & -\,jX_m\\[6pt]
