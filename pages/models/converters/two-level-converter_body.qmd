@@ -1,0 +1,259 @@
+---
+layout: page 
+title: Two-level Converter # be as specific as possible
+tags: [Opensource, Sources and Generators]
+date: 31/10/2025
+last-updated: 12/30/2025
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekić"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    page-layout: full
+    html-math-method: mathjax
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+
+        
+---
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+
+
+:::{.callout-tip}
+*Power electronic `converters` are key interfacing devices that enable the integration of renewable generation, energy storage, and HVDC links. This section models the interaction between the converter and the surrounding AC/DC network*
+:::
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Generator Model Parameters
+</div>
+---
+
+In @fig-2level, a two-level converter is depicted. Switches in the same arm are operated complementarily, e.g., $\text{Q3} = \overline{\text{Q1}}$. In @fig-2level-arm is depicted one arm operation, where is visible that when Q1 is conducting $v_{c,a} = \frac{v_{dc}}{2}$, and when Q3 conducts $v_{c,a} = -\frac{v_{dc}}{2}$. 
+
+![Two-level VSC.](assets/VSC.pdf){#fig-2level width=50%}
+
+![One arm operation of the VSC.](assets/VSC_operation.pdf){#fig-2level-arm width=35%}
+
+VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of $\frac{2\pi}{3}$ for each phase \cite{anaya2014offshore}. This modulation is no longer used because it cannot vary magnitude.
+
+Therefore, VSCs are usually controlled using Pulse Width Modulation (PWM). PWM can be designed in various ways, but the goal for it is to ensure that the averaged (over the converter's switching frequency) currents and voltages have the desired waveforms (usually sine waveforms). 
+
+PWM modulated two-level VSC should have desired voltage/current waveforms. Therefore, for the further analysis is introduced dimensionless parameter denoted as modulation index and represented as $m_j$ for ${j \in \{a,b,c\}}$ being the phase. For the each switching interval $m_j(t) \in [0,1]$. 
+
+The converter operates in such manner that in the steady-state is $v_A = \frac{v_{dc}}{2}$ and $v_B = -\frac{v_{dc}}{2}$. The following equations can be written
+
+\begin{equation}
+\widehat{v_{C,j}} = \widehat{m_j} \, \frac{v_{dc}}{2}, 
+\end{equation}
+
+\begin{equation}
+L\frac{d\widehat{i_j}}{dt} = v_j - \widehat{v_{C,j}}, 
+\end{equation}
+
+\begin{equation}
+C_{dc} \frac{d\widehat{v_{dc}}}{dt} = \widehat{i_{cap}}.
+\end{equation}
+
+In addition we can write energy-balance equation as:
+\begin{equation}
+    \widehat{v_{dc}} \, \left(\widehat{i_{dc}} - \widehat{i_{cap}}\right) = \sum\limits_{j \in \{a,b,c\}} \widehat{v_{C,j}} \, \widehat{i_j},
+\end{equation}
+which gives a connection:
+\begin{equation}
+    \widehat{i_{cap}} = \widehat{i_{dc}} - \frac{1}{2} \, \sum\limits_{j \in \{a,b,c\}} \widehat{m_j} \, \widehat{i_j} .
+\end{equation}
+Finally, the complete set of differential equations with neglected variations on DC voltage is
+
+\begin{equation}
+\label{eq:11}
+v_{C,j} = m_j \, \frac{v_{dc}}{2}
+\end{equation}
+
+\begin{equation}
+\label{eq:22}
+L \frac{d i_j}{dt} = v_j - v_{C,j}
+\end{equation}
+
+Averaged notation is not used in the previous equations (\ref{eq:11}) and (\ref{eq:22}) to simplicity of description.
+
+A two-level converter is not created as a new component, but it is integrated inside different RES, usually in a back-to-back configuration.
+
+All VSCs (two-level and MMC) will be described using the dc and dq-frame coupling admittance components. Their admittance is the size $3 \times 3$, and the relationships are:
+\begin{equation}
+    \begin{bmatrix}
+        i^\Delta_d \\
+        i^\Delta_q \\
+        i_{dc}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        Y_{dq}(s) & a_{2 \times 1}(s) \\
+        b_{1 \times 2}(s) & Y_{dc}
+    \end{bmatrix} \,
+    \begin{bmatrix}
+        v_d \\
+        v_q \\
+        v_{dc}
+    \end{bmatrix},
+\end{equation}
+or equivalently
+\begin{subequations}
+    \begin{eqnarray}
+        i_{d,q}^\Delta = Y_{dq} v_{d,q} + a_{2 \times 1} v_{dc}, \\
+        i_{dc} = b_{1 \times 2} v_{d,q} + Y_{dc} v_{dc},
+    \end{eqnarray} \label{eq:vsc_crossconnection}
+\end{subequations}
+with the standard direction of $i_{dc}$ entering the converter and $i^\Delta_{d,q}$ exiting the converter.
+
+These equations are used for modelling the VSCs connections, both for the back-to-back VSC connection, which is applied for wind turbines, hydrogen, and PV systems, but also from VSCs (MMCs) used for the interfacing of DC and AC sides.
+
+---
+
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+Code Explanation
+</div>
+
+
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
