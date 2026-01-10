@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aleksandra Lekić, Haixiao Li">
+<meta name="dcterms.date" content="2027-07-10">
+
+<title>Two-level Converter</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="mmc_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="mmc_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="mmc_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="mmc_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="mmc_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="mmc_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="mmc_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="mmc_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="mmc_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="mmc_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="mmc_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="mmc_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script>
+MathJax = {
+  tex: {
+    tags: 'ams',
+    tagSide: 'right',
+    tagIndent: '0em'
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Two-level Converter</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aleksandra Lekić, Haixiao Li </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 10, 2027</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>The Modular Multilevel Converter (<code>MMC</code>) is an emerging technology in modern high-voltage direct current (HVDC) systems, renewable energy integration, and motor drives. MMCs provide high efficiency, scalability, and reduced harmonic distortion compared to traditional voltage-source converters (VSCs). Due to their modular structure, MMCs can operate at high power/voltage ratings while maintaining low switching losses and improved output voltage quality.</em></p>
+</div>
+</div>
+<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+<p>Mathmatical Modeling</p>
+</div>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 MMC Architecture</p>
+</div>
+<p>An MMC consists of multiple cascaded submodules (SMs) per phase, typically arranged in an upper and lower arm configuration. Each phase of the converter consists of:</p>
+<ul>
+<li>Submodules (SMs): Each SM contains capacitors and semiconductor switches, enabling independent voltage control.</li>
+<li>Arms: Each phase-leg has an upper and lower arm, controlling the output voltage and current.</li>
+<li>Arm Inductors: Limiting circulating currents and improving system stability.</li>
+<li>DC-Link: Connects the converter to the DC grid, providing the required power exchange.</li>
+</ul>
+<p>The general structure of a three-phase MMC is shown in <a href="#fig-mmc_structure" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-mmc_structure" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mmc_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets//MMC.png" class="img-fluid figure-img" style="width:35.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mmc_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: General structure of a three-phase MMC.
+</figcaption>
+</figure>
+</div>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Operating Principles</p>
+</div>
+<p>The MMC operates based on the selective activation of submodules, generating a staircase output voltage waveform. The main operational principles include:</p>
+<ul>
+<li>Capacitor Voltage Balancing: Ensuring uniform charge distribution across submodules.</li>
+<li>Circulating Current Suppression: Reducing unwanted AC and DC currents flowing within the converter’s arms that do not contribute to power transfer between the AC and DC sides, which improves efficiency.</li>
+<li>Modulation Techniques: Reducing unwanted AC and DC currents flowing within the converter’s arms that do not contribute to power transfer between the AC and DC sides, which improves efficiency.</li>
+</ul>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 LTI Model</p>
+</div>
+<p>The LTI model presented in <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span> has been extended to include measurement filters that are present in the practical converters.</p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 MMC Dynamics</p>
+</div>
+<p>The detailed dynamics of the converter model are presented using the procedure developed in <span class="citation" data-cites="bergna2018generalized">Bergna-Diaz, Freytes, et al. (<a href="#ref-bergna2018generalized" role="doc-biblioref">2018</a>)</span>,<span class="citation" data-cites="bergna2018pi">Bergna-Diaz, Zonetti, et al. (<a href="#ref-bergna2018pi" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="freytes2017small">Freytes (<a href="#ref-freytes2017small" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>,<span class="citation" data-cites="lekic2020initialisation">Lekić, Ergun, and Beerten (<a href="#ref-lekic2020initialisation" role="doc-biblioref">2020</a>)</span>. <a href="#fig-mmc_structure" class="quarto-xref">Figure&nbsp;1</a> shows a single-phase architecture for a three-phase MMC, with all variables defined for all the phases, <span class="math inline">\(k\in \{a,b,c\}\)</span>. The submodules are represented by an averaged equivalent model, allowing the voltages and currents in the upper and lower arms to be described by (<span class="math inline">\(\ref{eq:VI_UL}\)</span>)</p>
+<p><span class="math display">\[\begin{equation} \label{eq:VI_UL}
+    v_{su,l}^k = m_{u,l}^k v_{cu,l}^k \hspace{1cm} i_{su,l}^k = m_{u,l}^k i_{u,l}^k
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(m^k_{u,l}\)</span> are the corresponding upper and lower arm insertion indices.</p>
+<p>The <span class="math inline">\(\Sigma-\Delta\)</span> nomenclature can be used to represent the variables in the upper and lower arms <span class="citation" data-cites="bergna2018generalized">Bergna-Diaz, Freytes, et al. (<a href="#ref-bergna2018generalized" role="doc-biblioref">2018</a>)</span> as stated in (<span class="math inline">\(\ref{eq:i_SD}\)</span>), (<span class="math inline">\(\ref{eq:vc_SD}\)</span>), (<span class="math inline">\(\ref{eq:m_SD}\)</span>), (<span class="math inline">\(\ref{eq:vs_SD}\)</span>).</p>
+<p><span class="math display">\[\begin{equation}\label{eq:i_SD}
+i^{\Delta k} = i_u^k - i_l^k, \qquad
+i^{\Sigma k} = \frac{i_u^k + i_l^k}{2}.
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:vc_SD}
+v^{\Delta k}_c = \frac{v^k_{cu} - v^k_{cl}}{2}, \qquad
+v^{\Sigma k}_c = \frac{v^k_{cu} + v^k_{cl}}{2}.
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:m_SD}
+m^{\Delta k} = m^k_u - m^k_l, \qquad
+m^{\Sigma k} = m^k_u + m^k_l.
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:vs_SD}
+v^{\Delta k}_s = \frac{-v^k_{su} + v^k_{sl}}{2}
+= -\frac{m^{\Delta k} v^{\Sigma k}_c + m^{\Sigma k} v^{\Delta k}_c}{2}, \qquad
+v^{\Sigma k}_s = \frac{v^k_{su} + v^k_{sl}}{2}
+= \frac{m^{\Sigma k} v^{\Sigma k}_c + m^{\Delta k} v^{\Delta k}_c}{2}.
+\end{equation}\]</span></p>
+<p>The differential equations describing the dynamic behavior of the MMC can be derived by using the variables stated in (<span class="math inline">\(\ref{eq:i_SD}\)</span>), (<span class="math inline">\(\ref{eq:vc_SD}\)</span>), (<span class="math inline">\(\ref{eq:m_SD}\)</span>), (<span class="math inline">\(\ref{eq:vs_SD}\)</span>).</p>
+<p><span class="math display">\[\begin{equation}\label{eq:a}
+\dot{\vec{i}}^{\Delta dq}
+= \frac{\vec{v}_s^{\Delta dq}
+- (\omega L_t \boldsymbol{J}_2 + R_t \boldsymbol{I}_2)\vec{i}^{\Delta dq}
+- \vec{v}^{dq}_{pcc}}{L_t}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:b}
+\dot{\vec{i}}^{\Sigma dq}
+= -\frac{\vec{v}_s^{\Sigma dq}
++ (R_a \boldsymbol{I}_2 - 2\omega L_a \boldsymbol{J}_2)\vec{i}^{\Sigma dq}}{L_a}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:c}
+\dot{i}^{\Sigma z}
+= \frac{v_{dc}}{2L_a}
+- \frac{v_s^{\Sigma z} + R_a i^{\Sigma z}}{L_a}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:d}
+\dot{\vec{v}}_c^{\Delta dq}
+= \frac{N}{2C}\vec{i}_s^{\Delta dq}
+- \omega \boldsymbol{J}_2 \vec{v}_c^{\Delta dq}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:e}
+\dot{\vec{v}}_c^{\Delta Zdq}
+= -\frac{N}{8C}\Psi
+- 3\omega \boldsymbol{J}_2 \vec{v}_c^{\Delta Zdq}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:f}
+\dot{\vec{v}}_c^{\Sigma dqz}
+= \frac{N}{2C}\vec{i}_s^{\Sigma dqz}
++ 2\omega \boldsymbol{J}_3 \vec{v}_c^{\Sigma dqz}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:g}
+\dot{v}_{dc}
+= \frac{1}{C_{dc}}\left(i_{dc} - 3 i^{\Sigma z}\right)
+\end{equation}\]</span></p>
+<p>where,</p>
+<p><span class="math display">\[\begin{equation}
+\vec{i}_s^{\Delta dq}
+=
+\boldsymbol{P}_\omega(t)
+\Big(
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Sigma dqz}
+\circ
+\frac{\boldsymbol{P}_{\omega}^{-1}(t)\vec{i}^{\Delta dqz}}{2}
++
+\boldsymbol{P}_{\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Delta dqZ}
+\circ
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{i}^{\Sigma dqz}
+\Big)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\vec{i}_s^{\Sigma dq}
+=
+\boldsymbol{P}_{-2\omega}(t)
+\Big(
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Sigma dqz}
+\circ
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{i}^{\Sigma dqz}
++
+\boldsymbol{P}_{\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Delta dqZ}
+\circ
+\boldsymbol{P}_{\omega}^{-1}(t)\frac{\vec{i}^{\Delta dqz}}{2}
+\Big)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\vec{v}_s^{\Delta dqz}
+=
+-\frac{\boldsymbol{P}_{\omega}(t)}{2}
+\Big(
+\boldsymbol{P}_{\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Delta dqZ}
+\circ
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{v}_c^{\Sigma dqz}
++
+\boldsymbol{P}_{-2\omega}^{-1}(t)\vec{m}_{\tau_d}^{\Sigma dqz}
+\circ
+\boldsymbol{P}_{\omega}^{-1}(t)\vec{v}_c^{\Delta dqz}
+\Big)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\Psi
+=
+\begin{bmatrix}
+i^{\Delta d} m_{\tau_d}^{\Sigma d}
++ 2 i^{\Sigma d} m_{\tau_d}^{\Delta d}
++ i^{\Delta q} m_{\tau_d}^{\Sigma q}
++ 2 i^{\Sigma q} m_{\tau_d}^{\Delta q}
++ 4 i^{\Sigma z} m_{\tau_d}^{\Delta Zd}
+\\[4pt]
+i^{\Delta q} m_{\tau_d}^{\Sigma d}
++ 2 i^{\Sigma d} m_{\tau_d}^{\Delta q}
+- i^{\Delta d} m_{\tau_d}^{\Sigma q}
+- 2 i^{\Sigma q} m_{\tau_d}^{\Delta d}
++ 4 i^{\Sigma z} m_{\tau_d}^{\Delta Zq}
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p><span class="math inline">\(N\)</span> represents the number of sub-modules, <span class="math inline">\(C\)</span> is the sub-module capacitance, <span class="math inline">\(R_a\)</span> and <span class="math inline">\(L_a\)</span> are the arm resistance and inductance, <span class="math inline">\(R_t = R_r+\frac{R_a}{2}\)</span> and <span class="math inline">\(L_t = L_r+\frac{L_a}{2}\)</span> represent the equivalent AC resistance and inductance, and <span class="math inline">\(C_{dc}\)</span> represents the equivalent DC side capacitance.</p>
+<p>Equations <span class="math inline">\(\eqref{eq:a}\)</span>, <span class="math inline">\(\eqref{eq:b}\)</span>, <span class="math inline">\(\eqref{eq:c}\)</span>, <span class="math inline">\(\eqref{eq:d}\)</span> , <span class="math inline">\(\eqref{eq:e}\)</span>, <span class="math inline">\(\eqref{eq:f}\)</span>, <span class="math inline">\(\eqref{eq:g}\)</span>represent variables using multiple <span class="math inline">\(dqz\)</span>-frames by applying Park’s transformation at different frequencies. The <span class="math inline">\(\Delta\)</span> state variables are derived using the angular frequency components <span class="math inline">\(\omega\)</span> and <span class="math inline">\(3\omega\)</span>, whereas the <span class="math inline">\(\Sigma\)</span> variables use <span class="math inline">\(-2\omega\)</span> components <span class="citation" data-cites="bergna2018generalized">Bergna-Diaz, Freytes, et al. (<a href="#ref-bergna2018generalized" role="doc-biblioref">2018</a>)</span>.</p>
+<p>The insertion indices <span class="math inline">\(\vec{m} = \begin{bmatrix}
+        \vec{m}^{\Delta dq} &amp; \vec{m}^{\Delta Zdq} &amp; \vec{m}^{\Sigma dqz}
+    \end{bmatrix}^T\)</span> are obtained as stated in <span class="math inline">\(\eqref{eq:m_derive}\)</span>. <span class="math display">\[\begin{equation} \label{eq:m_derive}
+    \vec{m} = \frac{2}{v_{dc}}\begin{bmatrix}
+        -\vec{v}_{s,ref}^{\Delta dqZ} \\
+        \vec{v}_{s,ref}^{\Sigma dqz}
+    \end{bmatrix}
+\end{equation}\]</span></p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Time Delays</p>
+</div>
+<p>The MMC’s impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10–100 Hz) and high (several kHz) frequency ranges . Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>.</p>
+<p>The time delay (<span class="math inline">\(\tau_d\)</span>) can be expressed as a rational transfer function using the Pad{'e} approximation stated in <span class="math inline">\(\eqref{eq:pade}\)</span>, where <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are the numerator and denominator approximation orders, respectively . <span class="math display">\[\begin{equation} \label{eq:pade}
+    \boldsymbol{T}_{delay} = e^{-s\tau_d} \approx \frac{b_0 + b_1(\tau_d s)^1 + \cdots + b_m(\tau_d s)^m}{a_0 + a_1(\tau_d s)^1 + \cdots + a_n(\tau_d s)^n}
+\end{equation}\]</span></p>
+<p>The rational transfer function approximation is then converted into the state space form <span class="citation" data-cites="wang2016harmonic">Wang et al. (<a href="#ref-wang2016harmonic" role="doc-biblioref">2016</a>)</span> with inputs <span class="math inline">\(\begin{bmatrix}
+        \vec{m}^{\Delta dq} &amp; \vec{m}^{\Sigma dqz}
+\end{bmatrix}^T\)</span>, the insertion indices obtained from the controller outputs as given in <span class="math inline">\(\eqref{eq:m_derive}\)</span>, and the outputs <span class="math inline">\(\begin{bmatrix}
+    \vec{m}_{\tau_d}^{\Delta dqz} &amp; \vec{m}_{\tau_d}^{\Sigma dqz}
+\end{bmatrix}^T\)</span>, the insertion indices which are used in the differential equations given in <span class="math inline">\(\eqref{eq:a}\)</span>, <span class="math inline">\(\eqref{eq:b}\)</span>, <span class="math inline">\(\eqref{eq:c}\)</span>, <span class="math inline">\(\eqref{eq:d}\)</span> , <span class="math inline">\(\eqref{eq:e}\)</span>, <span class="math inline">\(\eqref{eq:f}\)</span>, <span class="math inline">\(\eqref{eq:g}\)</span>. A third-order (<span class="math inline">\(m=n=3\)</span>) approximation is used in this study because it accurately represents the impact of computational delay up to the 1 kHz frequency range.</p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Controller Dynamics</p>
+</div>
+<p>The voltage references in <span class="math inline">\(\eqref{eq:m_derive}\)</span> are obtained as outputs of the controllers and the thirteen differential equations stated in <span class="math inline">\(\eqref{eq:a}\)</span>, <span class="math inline">\(\eqref{eq:b}\)</span>, <span class="math inline">\(\eqref{eq:c}\)</span>, <span class="math inline">\(\eqref{eq:d}\)</span> , <span class="math inline">\(\eqref{eq:e}\)</span>, <span class="math inline">\(\eqref{eq:f}\)</span>, <span class="math inline">\(\eqref{eq:g}\)</span>. The controllers can specify the voltage references; however, by default, all voltage reference values are set to zero, except for <span class="math inline">\(v_{c,\mathrm{ref}}^{z}\)</span>, which is set to <span class="math inline">\(\frac{v_{dc}}{2}\)</span>. When the controller specifies the voltage references, additional differential equations are required to represent the PI controllers in the <span class="math inline">\(dqz\)</span> frames <span class="citation" data-cites="bergna2018generalized">Bergna-Diaz, Freytes, et al. (<a href="#ref-bergna2018generalized" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="sakinci2019generalized">Sakinci and Beerten (<a href="#ref-sakinci2019generalized" role="doc-biblioref">2019</a>)</span>,<span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>.</p>
+<div id="fig-MMC_control_architecture" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MMC_control_architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="assets/MMC%20Controllers.png" class="img-fluid figure-img" style="width:100.0%"> (a) Inner and outer controllers with time delay</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="assets/PLL.png" class="img-fluid figure-img" style="width:80.0%"> (b) Phase-locked loop (PLL)</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="assets/Generic%20PI%20Structure.png" class="img-fluid figure-img" style="width:100.0%"> (c) Generic PI controller structure</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MMC_control_architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <embed src="assets/droop.pdf" class="img-fluid" style="width:100.0%"> (d) Droop controller
+</figcaption>
+</figure>
+</div>
+<p>Figure: MMC control architecture consisting of (a) inner controllers, outer controllers and time delay, (b) PLL, (c) generic PI structure, and (d) droop controller.</p>
+<p>The primary (inner) and secondary (outer) controllers that constitute the framework of the MMC control architecture are shown in <a href="#fig-MMC_control_architecture" class="quarto-xref">Figure&nbsp;2</a> (a) DC voltage control, active power control, and reactive power control act as the outer controllers, whereas output current control (OCC) and circulating current control (CCC) act as the inner controllers.</p>
+<p>For the PI structure illustrated in <a href="#fig-MMC_control_architecture" class="quarto-xref">Figure&nbsp;2</a> (a), each controller, as well as the phase-locked loop (PLL) shown in <a href="#fig-MMC_control_architecture" class="quarto-xref">Figure&nbsp;2</a> (b), can be defined using a set of differential equations given in <span class="math inline">\(\eqref{eq:generic_PI_1}\)</span>–<span class="math inline">\(\eqref{eq:generic_PI_2}\)</span>.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:generic_PI_1}
+\dot{\xi}
+=
+\text{Ref.} - \text{Meas.}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:generic_PI_2}
+\text{Out}
+=
+K_P \bigl( \text{Ref.} - \text{Meas.} \bigr)
++ K_I \xi
+\end{equation}\]</span></p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Measurment Filters</p>
+</div>
+<p>Filtering measured signals is often required for stable operation of the controllers in order to eliminate noise and correctly track changes in control variables. Filters also improve system stability by reducing undesirable high-frequency oscillations, resulting in more reliable and precise control. However, each filter in the system has a considerable effect on the converter impedance characteristics. As a result, these filters must be considered during modeling.</p>
+<p>Measurement filters can be modeled as first- or second-order low-pass filters, depending on the variable they govern. Commonly filtered variables in the MMC control structure are marked <a href="#fig-MMC_control_architecture" class="quarto-xref">Figure&nbsp;2</a>(a). The variables <span class="math inline">\(v_{pcc}^{dq}\)</span> in the OCC are filtered using a first-order low-pass filter to obtain the filtered voltages <span class="math inline">\(v_{pcc,filt}^{dq}\)</span>.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:vdq_filter_1}
+\dot{\xi}^{filt}
+=
+-\frac{1}{T_{filt}} \xi^{filt}
++ v_{pcc}^{dq}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:vdq_filter_2}
+v_{pcc,filt}^{dq}
+=
+\frac{1}{T_{filt}} \xi^{filt}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(T_{filt}\)</span> represents the time constant of the first-order low-pass filter. The cut-off frequency of the filter is given by</p>
+<p><span class="math display">\[\begin{equation}\label{eq:vdq_filter_cutoff}
+f_{filt}
+=
+\frac{1}{T_{filt}}
+\end{equation}\]</span></p>
+<p>Similarly, the measured input variables of outer controllers, such as <span class="math inline">\(P_{ac}\)</span>, <span class="math inline">\(Q_{ac}\)</span>, and <span class="math inline">\(v_{dc}\)</span>, are subjected to second-order low-pass filters.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:PQvdc_filter_1}
+\dot{\xi}_1^{filt}
+=
+-\omega_{filt}^2 \xi_2^{filt}
+- 2 \zeta \omega_{filt} \xi_1^{filt}
++ x
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:PQvdc_filter_2}
+\dot{\xi}_2^{filt}
+=
+\xi_1^{filt}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:PQvdc_filter_3}
+x_{filt}
+=
+\omega_{filt}^2 \xi_2^{filt}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(x\)</span> represents the input variables <span class="math inline">\(P_{ac}\)</span>, <span class="math inline">\(Q_{ac}\)</span>, and <span class="math inline">\(v_{dc}\)</span>; <span class="math inline">\(x_{filt}\)</span> represents the corresponding filtered variables <span class="math inline">\(P_{ac,filt}\)</span>, <span class="math inline">\(Q_{ac,filt}\)</span>, and <span class="math inline">\(v_{dc,filt}\)</span>, respectively. Furthermore, <span class="math inline">\(\omega_{filt}\)</span> denotes the natural frequency of the filter, and <span class="math inline">\(\zeta\)</span> represents the damping factor.</p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Operating Point</p>
+</div>
+<p>A power flow or steady-state simulation can be used to determine the operating point of the converter . Using this approach, the following parameters are determined: the DC voltage magnitude <span class="math inline">\(V_{dc}\)</span>, the active power at the DC terminal <span class="math inline">\(P_{dc}\)</span> (flowing from the AC side to the DC side), the AC voltage magnitude and phase <span class="math inline">\(V_{ac}\)</span> and <span class="math inline">\(\theta\)</span>, respectively, the active power at the AC terminal <span class="math inline">\(P_{ac}\)</span> (flowing from the AC side to the DC side), and the reactive power at the AC terminal <span class="math inline">\(Q_{ac}\)</span> (flowing from the AC side to the DC side).</p>
+<p>The converter reference values are then obtained using the AC and DC voltages and powers as follows.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:op_vdc_ref}
+v_{dc,\mathrm{ref}} = V_{dc}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:op_vpcc_d}
+v_{pcc}^d = V_{ac} \cos(\theta) ,\quad v_{pcc}^q = - V_{ac} \sin(\theta)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:op_id_ref}
+i_{\mathrm{ref}}^{\Delta d}
+=
+\frac{2 \left( v_{pcc}^d P + v_{pcc}^q Q \right)}
+{3 \left( (v_{pcc}^d)^2 + (v_{pcc}^q)^2 \right)} ,\quad i_{\mathrm{ref}}^{\Delta q}
+=
+\frac{2 \left( v_{pcc}^q P - v_{pcc}^d Q \right)}
+{3 \left( (v_{pcc}^d)^2 + (v_{pcc}^q)^2 \right)}
+\end{equation}\]</span></p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Steady State Solution and Admittance Model</p>
+</div>
+<p>After modeling all the necessary differential equations for the MMC and the controllers, an equilibrium point is obtained using the Julia package NLsolve <span class="citation" data-cites="mogensen2020nlsolve">Mogensen et al. (<a href="#ref-mogensen2020nlsolve" role="doc-biblioref">2020</a>)</span>, which represents the solution to these differential equations. Further, the system of differential equations is represented as a multi-input multi-output (MIMO) system in a linearized form, as given in <span class="math inline">\(\eqref{eq:MIMO_x}\)</span>–<span class="math inline">\(\eqref{eq:MIMO_y}\)</span>.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:MIMO_x}
+\dot{\vec{x}}(t)
+=
+\boldsymbol{A}_{MMC} \vec{x}(t)
++
+\boldsymbol{B}_{MMC} \vec{u}(t)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:MIMO_y}
+\vec{y}(t)
+=
+\boldsymbol{C}_{MMC} \vec{x}(t)
++
+\boldsymbol{D}_{MMC} \vec{u}(t)
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\vec{x}\)</span> represents all state variables given in <span class="math inline">\(\eqref{eq:a}\)</span>, <span class="math inline">\(\eqref{eq:b}\)</span>, <span class="math inline">\(\eqref{eq:c}\)</span>, <span class="math inline">\(\eqref{eq:d}\)</span> , <span class="math inline">\(\eqref{eq:e}\)</span>, <span class="math inline">\(\eqref{eq:f}\)</span>, <span class="math inline">\(\eqref{eq:g}\)</span>, together with additional state variables introduced by the applied controllers. The input vector is defined as <span class="math inline">\(\vec{u} = \begin{bmatrix} v_{dc} &amp; v_{pcc}^d &amp; v_{pcc}^q \end{bmatrix}^T\)</span>, and the output vector is defined as <span class="math inline">\(\vec{y} = \begin{bmatrix} i_{dc} &amp; i^{\Delta d} &amp; i^{\Delta q} \end{bmatrix}^T\)</span>.</p>
+<p>When the MMC controls the DC voltage, the input and output vectors are redefined as <span class="math inline">\(\vec{u} = \begin{bmatrix} i_{dc} &amp; v_{pcc}^d &amp; v_{pcc}^q \end{bmatrix}^T\)</span> and <span class="math inline">\(\vec{y} = \begin{bmatrix} v_{dc} &amp; i^{\Delta d} &amp; i^{\Delta q} \end{bmatrix}^T\)</span>, respectively.</p>
+<p>The associated matrices <span class="math inline">\(\boldsymbol{A}_{MMC}\)</span>, <span class="math inline">\(\boldsymbol{B}_{MMC}\)</span>, <span class="math inline">\(\boldsymbol{C}_{MMC}\)</span>, and <span class="math inline">\(\boldsymbol{D}_{MMC}\)</span> in <span class="math inline">\(\eqref{eq:MIMO_x}\)</span>–<span class="math inline">\(\eqref{eq:MIMO_y}\)</span> are obtained as Jacobians evaluated around the equilibrium point using the Julia package ForwardDiff . Applying the Laplace transform yields the following MIMO transfer function.</p>
+<p><span class="math display">\[\begin{equation}\label{eq:Ymmc_tf}
+\boldsymbol{Y}_{MMC}(s)
+=
+\boldsymbol{C}_{MMC}
+\left( s \boldsymbol{I} - \boldsymbol{A}_{MMC} \right)^{-1}
+\boldsymbol{B}_{MMC}
++
+\boldsymbol{D}_{MMC}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{Y}_{MMC}(s)\)</span> denotes the admittance matrix of the system and is given by</p>
+<p><span class="math display">\[\begin{equation}\label{eq:Ymmc}
+\boldsymbol{Y}_{MMC}(s)
+=
+\begin{bmatrix}
+Y_{1,1}(s) &amp; Y_{1,2}(s) &amp; Y_{1,3}(s) \\
+Y_{2,1}(s) &amp; Y_{2,2}(s) &amp; Y_{2,3}(s) \\
+Y_{3,1}(s) &amp; Y_{3,2}(s) &amp; Y_{3,3}(s)
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:Yac}
+\boldsymbol{Y}_{ac}(s)
+=
+\begin{bmatrix}
+Y_{dd}(s) &amp; Y_{dq}(s) \\
+Y_{qd}(s) &amp; Y_{qq}(s)
+\end{bmatrix}
+=
+\begin{bmatrix}
+- Y_{2,2}(s) &amp; Y_{2,3}(s) \\
+Y_{3,2}(s) &amp; - Y_{3,3}(s)
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq:Ydc}
+\boldsymbol{Y}_{dc}(s)
+=
+Y_{1,1}(s)
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{Y}_{ac}(s)\)</span> represents the AC-side admittance in the <span class="math inline">\(dq\)</span> frame and <span class="math inline">\(\boldsymbol{Y}_{dc}(s)\)</span> represents the DC-side admittance.</p>
+<p>When the MMC controls the DC voltage, an additional transformation is required after computing <span class="math inline">\(\boldsymbol{Y}_{MMC}(s)\)</span> using <span class="math inline">\(\eqref{eq:Ymmc_tf}\)</span>. This transformation involves exchanging the positions of <span class="math inline">\(v_{dc}(s)\)</span> and <span class="math inline">\(i_{dc}(s)\)</span> and removing the effect of the DC-link capacitance <span class="math inline">\(C_{dc}\)</span>. The DC-side impedance is then obtained as</p>
+<p><span class="math display">\[\begin{equation}\label{eq:dcv_transform}
+Y_{dc}(s)
+=
+2 \left(
+\frac{1}{Y_{1,1}(s)}
+-
+s C_{dc}
+\right)
+\end{equation}\]</span></p>
+<hr>
+<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
+<p>🔸 Impedance Measurement</p>
+</div>
+<p>The system diagram of a grid-connected MMC in a monopolar configuration used for impedance measurement is shown in <a href="#fig-measurement_config" class="quarto-xref">Figure&nbsp;3</a>. For simplicity, the AC- and DC-side impedances are depicted together; however, in actual simulations, they must be measured independently.</p>
+<p>A similar configuration is replicated in the RSCAD simulation running on real-time <span class="math inline">\(\text{RTDS}\)</span> simulators. The MMC and its control system are executed on hardware GTFPGA modules within the <span class="math inline">\(\text{RTDS}\)</span> simulator, operating in real-time synchronization with the simulator. The <em>rtds_ss_MMC_GMMX_FPGA_eb</em> model is employed for this implementation .</p>
+<p>To meet the computational requirements, each leg of the MMC is simulated on a separate GTFPGA module, with two additional modules dedicated to capacitor voltage balancing and the lower-level controller. These modules exchange submodule capacitor voltage values and firing sequences via two full-duplex optical fibers connected to the MMC lower-level controller. Consequently, the VSC converter is implemented using a total of five GTFPGA modules. This setup is used to conduct impedance measurements.</p>
+<div id="fig-measurement_config" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-measurement_config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/Impedance%20Measurement%20Circuit%20Diagram%20(Paper).png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-measurement_config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: AC and DC side impedance measurement configuration.
+</figcaption>
+</figure>
+</div>
+<p>The basic principle for measuring both AC- and DC-side impedances is similar. First, the system is brought to a steady state at a specific operating point. Then, a perturbation voltage <span class="math inline">\(V^p\)</span> is injected into the system, and the resulting voltages and currents at the corresponding terminals are measured.</p>
+<p>The detailed procedure for measuring and computing the AC-side impedance in the <span class="math inline">\(dq\)</span> frame is illustrated in <a href="#fig-ac_measurement_steps" class="quarto-xref">Figure&nbsp;4</a>. Since this study focuses exclusively on the impedances of MMCs, <span class="math inline">\(R_g\)</span> and <span class="math inline">\(L_g\)</span> are set to zero. The <em>Harmonic Scan</em> component in RSCAD is used to inject perturbation signals and perform the required post-processing steps to obtain impedance values <span class="citation" data-cites="qi2020identification">Qi et al. (<a href="#ref-qi2020identification" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="jiang1995frequency">Jiang and Gole (<a href="#ref-jiang1995frequency" role="doc-biblioref">1995</a>)</span>， <span class="citation" data-cites="qi2017evaluation">Qi et al. (<a href="#ref-qi2017evaluation" role="doc-biblioref">2017</a>)</span>.</p>
+<div id="fig-ac_measurement_steps" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ac_measurement_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/Impedance%20Measurement%20Flow%20Diagram%20(Paper).png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ac_measurement_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Steps performed for measuring AC-side impedance in the <span class="math inline">\(dq\)</span> frame.
+</figcaption>
+</figure>
+</div>
+<hr>
+<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+<p>Code Explanation</p>
+</div>
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bergna2018generalized" class="csl-entry" role="listitem">
+Bergna-Diaz, Gilbert, Julian Freytes, Xavier Guillaud, Salvatore D’Arco, and Jon Are Suul. 2018. <span>“Generalized Voltage-Based State-Space Modeling of Modular Multilevel Converters with Constant Equilibrium in Steady State.”</span> <em>IEEE Journal of Emerging and Selected Topics in Power Electronics</em> 6 (2): 707–25. <a href="https://doi.org/10.1109/JESTPE.2018.2793159">https://doi.org/10.1109/JESTPE.2018.2793159</a>.
+</div>
+<div id="ref-bergna2018pi" class="csl-entry" role="listitem">
+Bergna-Diaz, Gilbert, Daniele Zonetti, Santiago Sanchez, Romeo Ortega, and Elisabetta Tedeschi. 2018. <span>“PI Passivity-Based Control and Performance Analysis of MMC Multiterminal HVDC Systems.”</span> <em>IEEE Journal of Emerging and Selected Topics in Power Electronics</em> 7 (4): 2453–66. <a href="https://doi.org/10.1109/JESTPE.2018.2889152">https://doi.org/10.1109/JESTPE.2018.2889152</a>.
+</div>
+<div id="ref-freytes2017small" class="csl-entry" role="listitem">
+Freytes, Julian. 2017. <span>“Small-Signal Stability Analysis of Modular Multilevel Converters and Application to MMC–Based Multi-Terminal DC Grids.”</span> Ph.D. dissertation, École Centrale de Lille.
+</div>
+<div id="ref-jiang1995frequency" class="csl-entry" role="listitem">
+Jiang, Xiao, and AM Gole. 1995. <span>“A Frequency Scanning Method for the Identification of Harmonic Instabilities in HVDC Systems.”</span> <em>IEEE Transactions on Power Delivery</em> 10 (4): 1875–81. <a href="https://doi.org/10.1109/61.473368">https://doi.org/10.1109/61.473368</a>.
+</div>
+<div id="ref-lekic2020initialisation" class="csl-entry" role="listitem">
+Lekić, Aleksandra, Hakan Ergun, and Jef Beerten. 2020. <span>“Initialisation of a Hybrid AC/DC Power System for Harmonic Stability Analysis Using a Power Flow Formulation.”</span> <em>High Voltage</em> 5 (5): 534–42. <a href="https://doi.org/10.1049/hve.2020.0066">https://doi.org/10.1049/hve.2020.0066</a>.
+</div>
+<div id="ref-mogensen2020nlsolve" class="csl-entry" role="listitem">
+Mogensen, PK, K Carlsson, S Villemot, S Lyon, M Gomez, C Rackauckas, T Holy, et al. 2020. <span>“NLsolve. Jl.”</span> Zenodo.
+</div>
+<div id="ref-qi2020identification" class="csl-entry" role="listitem">
+Qi, Yi, Hui Ding, Yi Zhang, Xianghua Shi, and Aniruddha M Gole. 2020. <span>“Identification of Sub-Synchronous Interaction in MMC Systems Using Frequency Scanning.”</span> In <em>2020 IEEE Power &amp; Energy Society General Meeting (PESGM)</em>, 1–5. IEEE. <a href="https://doi.org/10.1109/PESGM41954.2020.9281476">https://doi.org/10.1109/PESGM41954.2020.9281476</a>.
+</div>
+<div id="ref-qi2017evaluation" class="csl-entry" role="listitem">
+Qi, Yi, Aniruddha Gole, Hui Ding, and Yi Zhang. 2017. <span>“Evaluation of the Accuracy of Real-Time Digital Simulator Voltage Source Converter Models Determined from Frequency Scanning.”</span> In <em>IPST Conference in Seoul</em>.
+</div>
+<div id="ref-sakinci2019generalized" class="csl-entry" role="listitem">
+Sakinci, Özgür Can, and Jef Beerten. 2019. <span>“Generalized Dynamic Phasor Modeling of the MMC for Small-Signal Stability Analysis.”</span> <em>IEEE Transactions on Power Delivery</em> 34 (3): 991–1000. <a href="https://doi.org/10.1109/TPWRD.2019.2898468">https://doi.org/10.1109/TPWRD.2019.2898468</a>.
+</div>
+<div id="ref-sakinci2022generalized" class="csl-entry" role="listitem">
+Sakinci, Özgür Can, Aleksandra Lekić, and Jef Beerten. 2022. <span>“Generalized Impedance-Based AC/DC Power System Modeling for Harmonic Stability Analysis.”</span> <em>International Journal of Electrical Power &amp; Energy Systems</em> 143: 108456. <a href="https://doi.org/10.1016/j.ijepes.2022.108456">https://doi.org/10.1016/j.ijepes.2022.108456</a>.
+</div>
+<div id="ref-wang2016harmonic" class="csl-entry" role="listitem">
+Wang, Yanbo, Xiongfei Wang, Frede Blaabjerg, and Zhe Chen. 2016. <span>“Harmonic Instability Assessment Using State-Space Modeling and Participation Analysis in Inverter-Fed Power Systems.”</span> <em>IEEE Transactions on Industrial Electronics</em> 64 (1): 806–16. <a href="https://doi.org/10.1109/TIE.2016.2588458">https://doi.org/10.1109/TIE.2016.2588458</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
