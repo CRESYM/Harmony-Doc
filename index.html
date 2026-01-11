@@ -466,16 +466,43 @@
     }
   </style>
 
-  <script>
-    document.addEventListener("mousemove", function(e){
-      const navbar = document.querySelector(".navbar");
-      if (e.clientY < 250) {   // 进入顶部范围
-        navbar.classList.add("show");
-      } else {
-        navbar.classList.remove("show");
-      }
-    });
-  </script>
+<script>
+(function () {
+  const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
+
+  const SHOW_ZONE = 80;     
+  const HIDE_DELAY = 350;  
+  let hideTimer = null;
+
+  function showNav() {
+    clearTimeout(hideTimer);
+    navbar.classList.add("show");
+  }
+
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      // 如果有下拉菜单是展开状态，就不要隐藏
+      const anyDropdownOpen = navbar.querySelector(".dropdown-menu.show");
+      if (!anyDropdownOpen) navbar.classList.remove("show");
+    }, HIDE_DELAY);
+  }
+
+  // 鼠标到屏幕顶部：显示
+  document.addEventListener("mousemove", (e) => {
+    if (e.clientY <= SHOW_ZONE) showNav();
+  });
+
+  // 鼠标在导航栏范围内：一直显示
+  navbar.addEventListener("mouseenter", showNav);
+  navbar.addEventListener("mouseleave", scheduleHide);
+
+  // 下拉菜单打开/关闭：打开时强制显示，关闭后再考虑隐藏
+  navbar.addEventListener("shown.bs.dropdown", showNav);
+  navbar.addEventListener("hidden.bs.dropdown", scheduleHide);
+})();
+</script>
 
 </body>
 </html>

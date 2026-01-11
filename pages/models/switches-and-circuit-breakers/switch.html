@@ -119,8 +119,6 @@
             </ul>
           </li>
 
-          </li>
-
           <!-- Models -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
@@ -176,15 +174,11 @@
         <!-- 左侧导航 -->
         <aside class="col-md-3">
           <div class="list-group">
-            <a href="impedance.html" class="list-group-item">Impedance</a>
-            <a href="admittance.html" class="list-group-item">Admittance</a>
-            <a href="inductor.html" class="list-group-item">Inductor</a>
-            <a href="capacitor.html" class="list-group-item">Capacitor</a>
-            <a href="resistor.html" class="list-group-item">Resistor</a>
+            <a href="switch.html" class="list-group-item">switch</a>
           </div>
         </aside>
 
-        <!-- 右侧主体：加载 impedance_body.html -->
+        <!-- 右侧主体：加载 capacitor_body.html -->
         <div class="col-md-9">
           <h1 class="mb-4"></h1>
           <div id="body-root"></div>
@@ -199,10 +193,10 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- 动态加载 inductor_body.html -->
+  <!-- 动态加载 impedance_body.html -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("inductor_body.html", { cache: "no-cache" })
+      fetch("switch_body.html", { cache: "no-cache" })
         .then(response => {
           if (!response.ok) throw new Error("HTTP " + response.status);
           return response.text();
