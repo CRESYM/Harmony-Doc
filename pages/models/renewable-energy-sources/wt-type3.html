@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impedances - Harmony</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/head.css">
+
+  <!-- 左侧导航 -->
+  <style>
+    .list-group-item {
+      border: none !important;
+      background: transparent !important;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-ink);  
+      transition: all 0.3s ease;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .list-group-item:hover {
+      color: #ab80d3 !important;   
+      font-size: 1.15rem;       
+      transform: translateX(6px); 
+      font-weight: 600;
+    }
+
+    /* 全局继承 Harmony 主体字体 */
+    body {
+      font-family: var(--font-mono);
+    }
+
+    /* 导航栏强制使用代码风格字体 */
+    .navbar, .navbar a, .navbar .dropdown-item, .list-group-item {
+      font-family: var(--font-mono) !important;
+    }
+
+    /* 右侧主体：书页衬线风格 */
+    #body-root {
+      font-family: "Georgia", "Times New Roman", serif !important;
+    }
+
+    /* 内容主体样式 */
+    #body-root {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #2b2b2b;
+      background: #fafaf7;               /* 类似米黄色纸张 */
+      border: 1px solid #e4e0d7;
+      border-radius: 12px;
+      padding: 3rem 4rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      margin: 3rem auto;
+      max-width: 950px;
+      background-image: linear-gradient(#fdfcf9 1px, transparent 1px);
+      background-size: 100% 28px;        /* 横线间距 */
+    }
+    #body-root h1, #body-root h2, #body-root h3 {
+      color: #2f4f75;
+      font-family: "Merriweather", serif;
+    }
+
+    #body-root p {
+      margin-bottom: 1em;
+    }
+
+    #body-root pre, #body-root code {
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      background: #f8f8f8;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+
+  <!-- 数学公式 -->
+  <script>
+    MathJax = {
+      tex: {
+        tags: 'ams',
+        tagSide: 'right',
+        tagIndent: '0em'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js">
+  </script>
+
+</head>
+
+<body>
+  <!-- ======================= 顶部导航栏 ======================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" 
+        href="https://isocpp.org/" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- About -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="./../../../index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="../../about/team.html">Teams</a></li>
+              <li><a class="dropdown-item" href="../../about/doucument.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="../../about/publications.html">Publications</a></li>
+            </ul>
+          </li>
+
+          <!-- Models -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../impedances/impedance.html">Impedances</a></li>
+              <li><a class="dropdown-item" href="../transformers/transformer1.html">Transformers</a></li>
+              <li><a class="dropdown-item" href="../loads/load.html">Loads</a></li>
+              <li><a class="dropdown-item" href="../transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
+              <li><a class="dropdown-item" href="../sources-and-generators/ac-source.html">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="../converters/two-level-converter.html">Converters</a></li>
+              <li><a class="dropdown-item" href="../switches-and-circuit-breakers/switch.html">Switches and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="../renewable-energy-sources/wt-type3.html">Renewable Energy Sources</a></li>
+            </ul>
+          </li>
+
+          <!-- Test Cases -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../../tests/test1.html">Test 1</a></li>
+              <li><a class="dropdown-item" href="../../tests/test2.html">Test 2</a></li>
+              <li><a class="dropdown-item" href="../../tests/test3.html">Test 3</a></li>
+              <li><a class="dropdown-item" href="../../tests/test4.html">Test 4</a></li>
+            </ul>
+          </li>
+
+          <!-- Contact -->
+          <li class="nav-item"><a class="nav-link" href="../../about/contact.html">Contact</a></li>
+
+          <!-- GitHub -->
+          <li class="nav-item d-flex align-items-center ms-3">
+            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
+              <i class="bi bi-github fs-4"></i>
+            </a>
+          </li>
+        </ul>
+
+        <!-- 工具按钮 -->
+        <div class="header-tools ms-3">
+          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
+          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================= 主体布局 ======================= -->
+  <main>
+    <div class="container mt-5 pt-4">
+      <div class="row">
+        <!-- 左侧导航 -->
+        <aside class="col-md-3">
+          <div class="list-group">
+            <a href="wt-type3.html" class="list-group-item">Wind turbine type-3</a>
+            <a href="wt-type4.html" class="list-group-item">Wind turbine type-4</a>
+            <a href="wind-power-plant.html" class="list-group-item">Wind power plant</a>
+            <a href="pv-power-plant.html" class="list-group-item">PV power plant</a>
+          </div>
+        </aside>
+
+        <!-- 右侧主体：加载 capacitor_body.html -->
+        <div class="col-md-9">
+          <h1 class="mb-4"></h1>
+          <div id="body-root"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 隐藏底部版权 -->
+  <footer style="display:none;"></footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 动态加载 impedance_body.html -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("Impedance_body.html", { cache: "no-cache" })
+        .then(response => {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          return response.text();
+        })
+        .then(html => {
+          document.getElementById("body-root").innerHTML = html;
+
+          // ✅ 安全触发 MathJax 渲染
+          if (window.MathJax) {
+            if (window.MathJax.typesetPromise) {
+              MathJax.typesetPromise();
+            } else if (window.MathJax.Hub && window.MathJax.Hub.Queue) {
+              MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            }
+          }
+        })
+        .catch(err => {
+          document.getElementById("body-root").innerHTML =
+            "<p style='color:red;'>❌ Failed to load content: " + err + "</p>";
+        });
+    });
+  </script>
+</body>
+</html>

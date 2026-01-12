@@ -30,7 +30,7 @@ format:
 ---
 
 :::{.callout-tip}
-*This section details the \texttt{Resistor} model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.*
+*This section details the `Resistor` model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.*
 :::
 
 
