@@ -1,9 +1,9 @@
 ---
 layout: page 
-title: Wind Turbine Type-3 # be as specific as possible
+title: Wind Turbine Type-4 # be as specific as possible
 tags: [Opensource, Sources and Generators]
-date: 12/01/2026
-last-updated: 01/12/2026
+date: 01/13/2026
+last-updated: 12/01/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
@@ -36,7 +36,7 @@ format:
 
 
 :::{.callout-tip}
-*Type-III wind turbines (`WT3`), also known as DFIG-based turbines, are widely used in grid-connected wind power plants. In this configuration, the generator stator is directly connected to the grid, while the rotor is interfaced through a back-to-back converter, enabling variable-speed operation and flexible active and reactive power control. `WT3` turbines are typically connected to the grid via a medium-voltage collector system and a substation transformer.*
+*Type-IV wind turbines (`WT4`), also known as full-converter wind turbines, employ a generator fully interfaced with the grid through a back-to-back power electronic converter. In this configuration, all generated power is processed by the converter, allowing complete decoupling between the generator and the grid. This enables wide-range variable-speed operation and flexible, independent control of active and reactive power. Owing to their superior grid-support capability and compliance with stringent grid codes, `WT4` turbines are widely applied in weak-grid and offshore wind power systems, and are typically connected to the grid via a medium-voltage collector network and a substation transformer.*
 :::
 
 <div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
@@ -45,124 +45,91 @@ Mathematical Modeling
 
 ---
 
-The type-III WTs are shown in @fig-wt-type3. A type-III wind turbine feeds the grid side through a back-to-back converter. The wind turbine is connected to the MV bus through transformer $T_1$. The current flowing to the MV bus is scaled by $N_t$, representing that a single wind turbine is equivalent to $N_t$ wind turbines connected in parallel @8672500. A capacitor $C$, representing the shunt capacitance of the cable collector, is connected to the MV bus. The MV bus is connected to the PCC through a substation (SS) transformer $T_2$. The PCC is connected to the grid through the cables.
+The typical structure of the type-4 WT is depicted in @fig-wt-type-4.
 
-![Typical single-line structure of the grid-connected WPP composed of type-3 wind turbines.](assets/WT_type_3_v2.png){#fig-wt-type3}
+![WT type-4 block diagram.](assets/WT_type_4.png){#fig-wt-type-4 width=65%}
 
-The RSC and GSC are controlled by the current controllers implemented at the d-q domain. Since the outer control loops to generate current references operate much more slowly than the inner current loops, the dynamics of these outer loops can be ignored @8068243. In this sense, the equivalent harmonic impedance model can be developed in @fig-wt3-bode.
+For the design of the model of WT type-4, the publication @10401252 is used, with the corrections proposed in @electronics13101917 and @pr13051292.  
+Namely, the WT is modeled by observing the *dq*-domain admittance looking into the GSC, which includes the PLL, current controller, output filter, delay, and a second-order input filter, as shown in Fig. @fig-wt-type-4-gsc.
 
-![Bode plots of the dq admittance for the type-3 WT using the parameters from paper.](assets/WT_type_3_bode.png){#fig-wt3-bode width=50%}
+![Model of the GSC and its controlling loops inside WT type-4, taken from @10401252.](assets/WT_type_4_GCS.png){#fig-wt-type-4-gsc width=50%}
 
-In @fig-wt3-bode, the grid background harmonics are modeled as a voltage source Vg. Zs represents the shunt reactor. The type-3 wind turbine is modeled as a current disturbance source Id paralleled with a rotor side impedance ZRS and a
-grid side impedance ZGS @8068243, @GHANAVATI2021107419, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source $V_d$ represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion \cite{8672500}. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as @8068243:
-
-\begin{eqnarray}
-Z_{RSP}(s) = \frac{
-    sL_{sr} + R_s + \frac{R_r'}{\sigma_p(s)} + \frac{N_2^2}{N_1^2} \frac{H_{ri}(s - j\omega_1) - jK_{rd}}{\sigma_p(s)}
-}{   1 - \frac{T_{PLL}(s - j\omega_1)}{2} \left[ \frac{I_{r1}}{V_1} \frac{N_2^2}{N_1^2} \frac{H_{ri}(s - j\omega_1) - jK_{rd}}{\sigma_p(s)} + \frac{V_{r1}}{V_1} \right]
-} , \\
-Z_{RSn}(s) = 
-\frac{
-    sL_{sr} + R_s + \frac{R_r'}{\sigma_n(s)} + \frac{N_2^2}{N_r^2} \frac{H_{ri}(s + j\omega_1) + jK_{rd}}{\sigma_n(s)}
-}{
-    1 - \frac{T_{PLL}(s + j\omega_1)}{2} 
-    \left[
-        \frac{I_{r1}^*}{V_1^*} \frac{N_2^2}{N_r^2} \frac{H_{ri}(s + j\omega_1) + jK_{rd}}{\sigma_n(s)} 
-        + \frac{V_{r1}^*}{V_1^*}
-    \right]
-},
-\end{eqnarray}
-
-where 
-\begin{eqnarray}
-L_{sr} = L_s + L_r N_{sr}^2, \qquad R'_r = R_r N_{sr}^2, \qquad N_{sr} = \frac{N_s}{N_r}, 
-\end{eqnarray}
+For such a model, the admittance can be calculated by taking into account:
 
 \begin{equation}
-\sigma_{p,n} = \frac{s \mp j\omega_m}{s},
+Z_f = R_f + s L_f,
+\end{equation}
+
+\begin{equation}
+Y_{out} =
+\frac{1}{Z_f^2 + (\omega_g L_f)^2}
+\begin{bmatrix}
+Z_f & \omega_g L_f \\
+-\omega_g L_f & Z_f
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+G_{id} = - V_{dc} \, Y_{out}.
+\end{equation}
+
+\begin{equation}
+H_{PLL} =
+\frac{K_{p,\mathrm{pll}} + \frac{K_{i,\mathrm{pll}}}{s}}
+{s + V_{d,\mathrm{ref}}
+\left(K_{p,\mathrm{pll}} + \frac{K_{i,\mathrm{pll}}}{s}\right)},
+\end{equation}
+
+\begin{equation}
+H^{d}_{PLL} =
+\begin{bmatrix}
+0 & -M_{q0} H_{PLL} \\
+0 & M_{d0} H_{PLL}
+\end{bmatrix},
 \qquad
-H_{ri}(s) = K_{pi} + \frac{K_{ii}}{s}.
-\label{eq:sigma_hri}
-\end{equation}
-       
-\begin{equation}
-T_{PLL}(s)
-=
-\frac{
-V_1 \left( K_{p,\mathrm{PLL}} + \frac{K_{i,\mathrm{PLL}}}{s} \right)
-}{
-s + V_1 \left( K_{p,\mathrm{PLL}} + \frac{K_{i,\mathrm{PLL}}}{s} \right)
-}.
-\label{eq:tpll}
+H^{i}_{PLL} =
+\begin{bmatrix}
+0 & I_{q,\mathrm{ref}} H_{PLL} \\
+0 & -I_{d,\mathrm{ref}} H_{PLL}
+\end{bmatrix}.
 \end{equation}
 
 \begin{equation}
-\mathbf{V}_{rs}
-=
-\mathbf{V}_1
-+
-\mathbf{I}_{r1}
-\left[
-j\omega_1 L_{sr}
-+
-R_s
-+
-\frac{R'_r}{\sigma_p(j\omega_1)}
-\right].
-\label{eq:vrs}
+G_{mf} =
+\begin{bmatrix}
+\dfrac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2} & 0 \\
+0 & \dfrac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2}
+\end{bmatrix},
 \end{equation}
 
-The GSC positive and negative sequence impedances are given with:
-\begin{eqnarray}
-    Z_{GSp}(s) &= 
-\frac{
-    Z_f(s) + H_{si}(s - j\omega_1) - jK_{sd}
-}{
-    1 - \dfrac{T_{PLL}(s-j\omega_1)}{2}
-    \left\{
-        \dfrac{I_{c1}}{V_1}
-        \left[ H_{si}(s-j\omega_1) - jK_{rd} \right]
-        + \dfrac{V_{gs}}{V_1}
-    \right\}
-}
-\\
-Z_{GSn}(s) &= \frac{
-    Z_f(s) + H_{si}(s + j\omega_1) + jK_{sd}
-}{    1 - \dfrac{T_{PLL}(s+j\omega_1)}{2}
-    \left\{
-        \dfrac{I_{c1}^*}{V_1^*}
-        \left[ H_{si}(s+j\omega_1) + jK_{rd} \right]
-        + \dfrac{V_{gs}^*}{V_1^*}
-    \right\}
-},
-\end{eqnarray}
-where
-\begin{subequations}
-    \begin{eqnarray}
-        && H_{si}(s) = K_{sp} + \frac{K_{si}}{s} \\
-        &&\mathbf{V}_{gs} = \mathbf{V}_1 + \mathbf{I}_{c1} Z_f(j\omega_1), \\
-        &&Z_f(s) = R_f + sL_f.
-    \end{eqnarray}
-\end{subequations}
+\begin{equation}
+G_{del} =
+\begin{bmatrix}
+\dfrac{1 - 0.5 T_d s}{1 + 0.5 T_d s} & 0 \\
+0 & \dfrac{1 - 0.5 T_d s}{1 + 0.5 T_d s}
+\end{bmatrix},
+\end{equation}
 
-The equivalent total admittance is obtained as the parallel connection of the positive and negative sequences from RSC and GSC, like:
 \begin{equation}
-    Y_{pn} = \begin{bmatrix}
-        Y_{RSp} + Y_{GSp} & 0 \\
-        0 & Y_{RSn} + Y_{GSn}
-    \end{bmatrix},
+G_{cc} = G_{dec} + G_{pi} =
+\begin{bmatrix}
+-\left(K_{p,cc} + \dfrac{K_{i,cc}}{s}\right)
+& -\dfrac{\omega_g L_f}{V_{dc}^2} \\
+\dfrac{\omega_g L_f}{V_{dc}^2}
+& -\left(K_{p,cc} + \dfrac{K_{i,cc}}{s}\right)
+\end{bmatrix},
 \end{equation}
-and the dq admittance is estimated as:
+
+The admittance in the dq-frame is then calculated based on the flow-chart depicted in @fig-wt-type-4-transfer-function:
 \begin{equation}
-    Y_{dq} = \begin{bmatrix}
-        0.5 & 0.5 \\
-        -0.5j & 0.5j
-    \end{bmatrix} \, Y_{pn} \,
-    \begin{bmatrix}
-        1 & j \\
-        1 & -j
-    \end{bmatrix}.
+    Y_{dq} = (I + G_{del} G_{id} G_{cc} G_{mf})^{-1} \times (Y_{out} + G_{id} G_{del} (H^d_{PLL} + G_{cc} H^i_{PLL}) G_{mf} ).
 \end{equation}
+
+![Transfer function estimation for the GSC of the WT type-4, picture taken from @10401252.](assets/WT_type_4_GCS_transfer_function.png){#fig-wt-type-4-transfer-function width=50%}
+
+The results of the code execution in Harmony are available in Fig. @fig-wt4-bode.
+
+![Bode plots of the dq admittance for the type-4 WT using the parameters from @pr13051292.](assets/WT_type_4_bode.png){#fig-wt4-bode width=65%}
 
 ---
 
