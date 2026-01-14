@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
-<meta name="dcterms.date" content="2026-10-11">
+<meta name="dcterms.date" content="2026-01-14">
 
-<title>Wind Turbine Type-4</title>
+<title>PV Power Plant</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,41 +22,21 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="wt-type4_body_files/libs/clipboard/clipboard.min.js"></script>
-<script src="wt-type4_body_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="wt-type4_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="wt-type4_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="wt-type4_body_files/libs/quarto-html/popper.min.js"></script>
-<script src="wt-type4_body_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="wt-type4_body_files/libs/quarto-html/anchor.min.js"></script>
-<link href="wt-type4_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="wt-type4_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="wt-type4_body_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="wt-type4_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="wt-type4_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="pv-power-plant_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pv-power-plant_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pv-power-plant_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pv-power-plant_body_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pv-power-plant_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pv-power-plant_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pv-power-plant_body_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script>
 MathJax = {
   tex: {
@@ -107,7 +87,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Wind Turbine Type-4</h1>
+<h1 class="title">PV Power Plant</h1>
 </div>
 
 
@@ -124,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 11, 2026</p>
+      <p class="date">January 14, 2026</p>
     </div>
   </div>
   
@@ -149,114 +129,190 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Type-IV wind turbines (<code>WT4</code>), also known as full-converter wind turbines, employ a generator fully interfaced with the grid through a back-to-back power electronic converter. In this configuration, all generated power is processed by the converter, allowing complete decoupling between the generator and the grid. This enables wide-range variable-speed operation and flexible, independent control of active and reactive power. Owing to their superior grid-support capability and compliance with stringent grid codes, <code>WT4</code> turbines are widely applied in weak-grid and offshore wind power systems, and are typically connected to the grid via a medium-voltage collector network and a substation transformer.</em></p>
+<p><em><code>PV power plant</code> is modelled as a two-stage inverter with the first stage being the boost DC-DC converter, and the second stage being the voltage source inverter. At the output of the VSC is attached an LCL filter.</em></p>
 </div>
 </div>
 <div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
 <p>Mathematical Modeling</p>
 </div>
 <hr>
-<p>The typical structure of the type-4 WT is depicted in <a href="#fig-wt-type-4" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="fig-wt-type-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>The PV array is taken as an aggregated model of the entire plant, see Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-pv-inverter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wt-type-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/WT_type_4.png" class="img-fluid figure-img" style="width:65.0%">
+<div aria-describedby="fig-pv-inverter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sections/Elements/pictures/RES/PV_inverter.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt-type-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: WT type-4 block diagram.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pv-inverter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Two-stage PV inverter with LCL filter, image taken from <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>.
 </figcaption>
 </figure>
 </div>
-<p>For the design of the model of WT type-4, the publication <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span> is used, with the corrections proposed in <span class="citation" data-cites="electronics13101917">Arshad, Beik, Manzoor, et al. (<a href="#ref-electronics13101917" role="doc-biblioref">2024</a>)</span> and <span class="citation" data-cites="pr13051292">He et al. (<a href="#ref-pr13051292" role="doc-biblioref">2025</a>)</span>.<br>
-Namely, the WT is modeled by observing the <em>dq</em>-domain admittance looking into the GSC, which includes the PLL, current controller, output filter, delay, and a second-order input filter, as shown in Fig. <a href="#fig-wt-type-4-gsc" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<div id="fig-wt-type-4-gsc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>To estimate the operating point of the boost converter and the VSC, we follow the averaged model described in <span class="citation" data-cites="wen2014small">(<a href="#ref-wen2014small" role="doc-biblioref"><strong>wen2014small?</strong></a>)</span> and <span class="citation" data-cites="khazaei2020small">(<a href="#ref-khazaei2020small" role="doc-biblioref"><strong>khazaei2020small?</strong></a>)</span>, with known PV current and power, <span class="math inline">\(V_{pcc}\)</span>, and assuming ideal PLL operation.</p>
+<p><span class="math display">\[\begin{equation}
+V_{pv} = \frac{P_{pv}}{I_{pv}}, \quad I_{dc} = \frac{P_{pv}}{V_{dc}}, \quad D = 1 - \frac{V_{pv}}{V_{dc}}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+V_{pccd} = V_{pcc}, \sqrt{\frac{2}{3}} \quad V_{pccq} = 0
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+I_{2d} \approx \frac{2 P_{pv}}{3 V_{pccd}}, \quad I_{2q} \approx \frac{2 Q}{3 V_{pccd}}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+V_{Cf,dq} =
+\frac{
+V_{pcc,dq} \pm \omega R_c C_f V_{pcc,qd}
+\mp \omega L_2 I_{2,qd}
++ \omega^2 R_c C_f L_2 I_{2,dq}
+}{
+1 + (\omega R_c C_f)^2
+}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+I_{1,dq} = I_{2,dq} \mp \omega C_f V_{Cf,qd}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+V_{o,dq} =
+V_{pcc,dq}
+- R_1 I_{1,dq} \mp \omega L_1 I_{1,qd}
+- R_2 I_{2,dq} \mp \omega L_2 I_{2,qd}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+M_{dq} = \frac{2 V_{o,dq}}{V_{dc}}
+\end{equation}\]</span></p>
+<p>Based on Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, a small-signal model can be constructed as described in <span class="citation" data-cites="wen2014small">(<a href="#ref-wen2014small" role="doc-biblioref"><strong>wen2014small?</strong></a>)</span> and <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>, and is depicted in Fig. <a href="#fig-pv-small-signal-model" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<div id="fig-pv-small-signal-model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wt-type-4-gsc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/WT_type_4_GCS.png" class="img-fluid figure-img" style="width:50.0%">
+<div aria-describedby="fig-pv-small-signal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sections/Elements/pictures/RES/PV_inverter_small_signal_model.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt-type-4-gsc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Model of the GSC and its controlling loops inside WT type-4, taken from <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span>.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pv-small-signal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Small-signal model in the dq-frame for the two-stage PV inverter shown in Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, image taken from <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>.
 </figcaption>
 </figure>
 </div>
-<p>For such a model, the admittance can be calculated by taking into account:</p>
+<p>Based on this model, the transfer functions between the inputs <span class="math inline">\(\Delta m^s_{dq}\)</span>, <span class="math inline">\(\Delta i^s_{2,dq}\)</span>, and <span class="math inline">\(\Delta v_{dc}\)</span>, and the outputs <span class="math inline">\(v^s_{pcc,dq}\)</span> and <span class="math inline">\(i_{dc}\)</span> can be formulated as follows <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>:</p>
 <p><span class="math display">\[\begin{equation}
-Z_f = R_f + s L_f,
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-Y_{out} =
-\frac{1}{Z_f^2 + (\omega_g L_f)^2}
 \begin{bmatrix}
-Z_f &amp; \omega_g L_f \\
--\omega_g L_f &amp; Z_f
-\end{bmatrix},
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-G_{id} = - V_{dc} \, Y_{out}.
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-H_{PLL} =
-\frac{K_{p,\mathrm{pll}} + \frac{K_{i,\mathrm{pll}}}{s}}
-{s + V_{d,\mathrm{ref}}
-\left(K_{p,\mathrm{pll}} + \frac{K_{i,\mathrm{pll}}}{s}\right)},
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-H^{d}_{PLL} =
+\Delta i_{dc} \\ 0
+\end{bmatrix}
+=
+\underbrace{
+\left(
+N_m Y_C (Z_{RL1} Y_C + I)^{-1} Z_{L2} + N_m
+\right)
+}_{G_{ii}}
 \begin{bmatrix}
-0 &amp; -M_{q0} H_{PLL} \\
-0 &amp; M_{d0} H_{PLL}
-\end{bmatrix},
-\qquad
-H^{i}_{PLL} =
+\Delta i^s_{2d} \\ \Delta i^s_{2q}
+\end{bmatrix}
++
+\underbrace{
+\left(
+N_m Y_C (Z_{RL1} Y_C + I)^{-1}
+\right)
+}_{G_{vi}}
 \begin{bmatrix}
-0 &amp; I_{q,\mathrm{ref}} H_{PLL} \\
-0 &amp; -I_{d,\mathrm{ref}} H_{PLL}
-\end{bmatrix}.
+\Delta v^s_{pccd} \\ \Delta v^s_{pccq}
+\end{bmatrix}
++
+\underbrace{
+N_i
+}_{G_{mi}}
+\begin{bmatrix}
+\Delta m^s_d \\ \Delta m^s_q
+\end{bmatrix}
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-G_{mf} =
 \begin{bmatrix}
-\dfrac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2} &amp; 0 \\
-0 &amp; \dfrac{\omega_n^2}{s^2 + 2 \zeta \omega_n s + \omega_n^2}
-\end{bmatrix},
+\Delta v^s_{pccd} \\ \Delta v^s_{pccq}
+\end{bmatrix}
+=
+\underbrace{
+- H_1^{-1} ( H_1 Z_{L2} + Z_{RL1} )
+}_{G_{iv}}
+\begin{bmatrix}
+\Delta i^s_{2d} \\ \Delta i^s_{2q}
+\end{bmatrix}
++
+\underbrace{
+( H_1^{-1} H_m )
+}_{G_{vv}}
+\begin{bmatrix}
+\Delta v_{dc} \\ 0
+\end{bmatrix}
++
+\underbrace{
+( H_1^{-1} H_v )
+}_{G_{mv}}
+\begin{bmatrix}
+\Delta m^s_d \\ \Delta m^s_q
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p>for <span class="math inline">\(H_1 = Z_{RL1} Y_C (Z_{R_C} Y_C + I)^{-1} + I\)</span>, <span class="math inline">\(N_m = \begin{bmatrix}
+    M_d &amp; M_q \\ 0 &amp; 0 \end{bmatrix}\)</span>, <span class="math inline">\(N_i = \begin{bmatrix}
+        I_{1d} &amp; I_{1q} \\ 0 &amp; 0 \end{bmatrix}\)</span>, <span class="math inline">\(H_m = \begin{bmatrix}
+    M_d/2 &amp; 0 \\ M_q/2 &amp; 0\end{bmatrix}\)</span>, <span class="math inline">\(H_v = \begin{bmatrix}
+    V_{dc}/2 &amp; 0 \\ 0 &amp; V_{dc}/2    \end{bmatrix}\)</span>, <span class="math inline">\(Z_{RL1} = \begin{bmatrix}
+    R_1+sL_1 &amp; -\omega L_1 \\ \omega L_1 &amp; R_1 + sL_1 \end{bmatrix}\)</span>, <span class="math inline">\(Z_{R_C} = \begin{bmatrix} R_C &amp; 0 \\ 0 &amp; R_C \end{bmatrix}\)</span>, <span class="math inline">\(Z_{L2} = \begin{bmatrix} sL_2 &amp; -\omega L_2 \\ \omega L_2 &amp; sL_2 \end{bmatrix}\)</span>, and <span class="math inline">\(I\)</span> is an identity matrix of size <span class="math inline">\(2 \times 2\)</span>.</p>
+<p>The controlling loops influence the system with the introduction of matrices:</p>
+<ul>
+<li><strong>DC voltage control:</strong> <span class="math inline">\(i^c_{2d, ref} = g_{dc} (v_{dc} - v_{dc, ref})\)</span>, <span class="math inline">\(g_{dc} = k_{pdc} + \frac{k_{idc}}{s}\)</span>, and <span class="math inline">\(G_{dc} = \begin{bmatrix} g_{dc} &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span>;</li>
+<li><strong>Current control:</strong> <span class="math inline">\(i^c_{2d, ref} = g_{dc} (v_{dc} - v_{dc, ref})\)</span>, <span class="math inline">\(g_{dc} = k_{pdc} + \frac{k_{idc}}{s}\)</span>, and <span class="math inline">\(G_{dc} = \begin{bmatrix} g_{dc} &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span>;</li>
+<li><strong>PLL:</strong> <span class="math inline">\(H_{PLL} = k_{ppll} + \frac{k_{ipll}}{s}\)</span>, and <span class="math inline">\(G_{PLL} = \frac{H_{PLL}}{s + V_{pccd} H_{PLL}}\)</span>, <span class="math display">\[
+      m^c_{dq} = m^s_{dq} + \underbrace{\begin{bmatrix}
+          0 &amp; G_{PLL} M_q \\ 0 &amp; -G_{PLL} M_d \end{bmatrix}}_{G_{PLLM}} \, v^s_{pcc,dq}, \qquad
+      i^c_{2dq} = i^s_{2dq} + \underbrace{\begin{bmatrix}
+          0 &amp; G_{PLL} I_{2q} \\ 0 &amp; -G_{PLL} I_{2d} \end{bmatrix}}_{G_{PLLI}} \, v^s_{pcc,dq}.
+  \]</span></li>
+</ul>
+<p>Influence of the PV module and boost converter, and controller is given through the impedance <span class="math inline">\(Z_{dc}\)</span>: <span class="math display">\[\begin{equation}
+    z_{dc} = \frac{sL(sC_{pv}-k_{pv}) + 1 + g_B V_{dc} (1-\lambda)}{(1-D)^2 (k_{pv} - sC_{pv}) + (D-1) g_B I_{L} (1-\lambda) -sC_{dc} - sC_{dc} V_{dc} g_B (1-\lambda) + s^2 LC_{dc} (k_{pv} - sC_{pv})},
+\end{equation}\]</span> where <span class="math display">\[\begin{align*}
+    k_{pv} = -\frac{q (N_p I_0 + N_p I_{sc} - I_{pv})}{nkT N_s}, \\
+    k_{mp} = \frac{(nkTN_s / q)^2}{I_0N_pV_{mp} \exp(qV_{pv}/(nkTN_s)) + \frac{I_{pv}}{V_{mp}} (nkTN_s/q)^2}, \\
+    \lambda = k_{pv} k_{mp}, \qquad g_B = k_{pB} + \frac{k_{iB}}{s},
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(N_s\)</span> and <span class="math inline">\(N_p\)</span> are the numbers of series and parallel connected PV panels, respectively, <span class="math inline">\(I_0\)</span> is the diode saturation current under normal conditions, <span class="math inline">\(I_{sc}\)</span> is the short current of PV cell under the standard condition, <span class="math inline">\(T\)</span> is the temperature (taken as <span class="math inline">\(T = T_n  = 298.18 \text{ K}\)</span>), <span class="math inline">\(k = 1.38062 \times 10^{-23} \text{ J/K}\)</span> is the Boltzmann’s constant, <span class="math inline">\(q = 1.60217 \times 10^{-23} \text{ C}\)</span> is the unit electric charge.</p>
+<p>Finally, dq-impedance is calculated as:</p>
+<p><span class="math display">\[\begin{equation}
+Z_{PV}
+=
+-\left(
+J_A F_A^{-1} F_B + J_B
+\right)
+\left(
+J_C - J_A F_A^{-1} F_C
+\right)^{-1}
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-G_{del} =
-\begin{bmatrix}
-\dfrac{1 - 0.5 T_d s}{1 + 0.5 T_d s} &amp; 0 \\
-0 &amp; \dfrac{1 - 0.5 T_d s}{1 + 0.5 T_d s}
-\end{bmatrix},
+J_A = G_{vv} + G_{mv} G_v G_i G_{dc}
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-G_{cc} = G_{dec} + G_{pi} =
-\begin{bmatrix}
--\left(K_{p,cc} + \dfrac{K_{i,cc}}{s}\right)
-&amp; -\dfrac{\omega_g L_f}{V_{dc}^2} \\
-\dfrac{\omega_g L_f}{V_{dc}^2}
-&amp; -\left(K_{p,cc} + \dfrac{K_{i,cc}}{s}\right)
-\end{bmatrix},
+J_B = G_{iv} - G_{mv} G_v G_i
 \end{equation}\]</span></p>
-<p>The admittance in the dq-frame is then calculated based on the flow-chart depicted in <a href="#fig-wt-type-4-transfer-function" class="quarto-xref">Figure&nbsp;3</a>: <span class="math display">\[\begin{equation}
-    Y_{dq} = (I + G_{del} G_{id} G_{cc} G_{mf})^{-1} \times (Y_{out} + G_{id} G_{del} (H^d_{PLL} + G_{cc} H^i_{PLL}) G_{mf} ).
+<p><span class="math display">\[\begin{equation}
+J_C = G_{mv} \left( G_v G_i G_{PLLI} + G_{PLLM} \right) + I
 \end{equation}\]</span></p>
-<div id="fig-wt-type-4-transfer-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p><span class="math display">\[\begin{equation}
+F_A = I - Z_{dc} G_{mi} G_v G_i G_{dc}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+F_B = Z_{dc} G_{ii} - Z_{dc} G_{mi} G_v G_i
+\end{equation}\]</span></p>
+<p>The results of the code execution in Harmony are available in Fig. <span class="math inline">\(\ref{fig:PV_bode}\)</span>. The parameters used for simulation are:</p>
+<ul>
+<li><strong>PV module:</strong> <span class="math inline">\(N_p = 720\)</span>, <span class="math inline">\(N_s = 2760\)</span>, <span class="math inline">\(n = 1.5\)</span>, <span class="math inline">\(I_{sc} = 2.5 \text{ A}\)</span>, <span class="math inline">\(I_0 = 10^{-10} \text{ A}\)</span>, <span class="math inline">\(C_{pv} = 7.2 \text{ mF}\)</span>, <span class="math inline">\(I_{pv} = 6570 \text{ A}\)</span>, <span class="math inline">\(P_{pv} = 2.8 \text{ MW}\)</span>;</li>
+<li><strong>Boost converter:</strong> <span class="math inline">\(L = 16 \, \mu \text{H}\)</span>, <span class="math inline">\(C_{dc} = 70 \text{ mF}\)</span>, <span class="math inline">\(V_{dc} = 900 \text{ V}\)</span>, <span class="math inline">\(k_{pB} = 4.9809 \times 10^{-6}\)</span>, <span class="math inline">\(k_{iB} = 4.9809 \times 10^{-9}\)</span>;</li>
+<li><strong>LCL filter:</strong> <span class="math inline">\(L_1 = 103 \, \mu \text{H}\)</span>, <span class="math inline">\(C_f = 220 \, \mu \text{F}\)</span>, <span class="math inline">\(L_2 = 125 \, \mu \text{H}\)</span>, <span class="math inline">\(R_1 = 0\)</span>, <span class="math inline">\(R_C = 0.1 \, \Omega\)</span>;</li>
+<li><strong>PCC:</strong> <span class="math inline">\(V_{g, rms} = 690 \text{ V}\)</span>, <span class="math inline">\(f_g = 50 \text{ Hz}\)</span>;</li>
+<li><strong>VSC:</strong> current control - <span class="math inline">\(k_{pi} = 0.45\)</span>, and <span class="math inline">\(k_{ii} = 69.7\)</span>, DC voltage control - <span class="math inline">\(k_{pdc} = 1\)</span>, and <span class="math inline">\(k_{idc} = 500\)</span>, PLL - <span class="math inline">\(k_{ppll} = 0.5\)</span>, and <span class="math inline">\(k_{ipll} = 1\)</span>.</li>
+</ul>
+<div id="fig-PV_bode" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wt-type-4-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/WT_type_4_GCS_transfer_function.png" class="img-fluid figure-img" style="width:50.0%">
+<div aria-describedby="fig-PV_bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sections/Elements/pictures/RES/PV_bode_plots.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt-type-4-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Transfer function estimation for the GSC of the WT type-4, picture taken from <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span>.
-</figcaption>
-</figure>
-</div>
-<p>The results of the code execution in Harmony are available in Fig. <a href="#fig-wt4-bode" class="quarto-xref">Figure&nbsp;4</a>.</p>
-<div id="fig-wt4-bode" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wt4-bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/WT_type_4_bode.png" class="img-fluid figure-img" style="width:65.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt4-bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Bode plots of the dq admittance for the type-4 WT using the parameters from <span class="citation" data-cites="pr13051292">He et al. (<a href="#ref-pr13051292" role="doc-biblioref">2025</a>)</span>.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PV_bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Bode plots of the dq admittance for the PV inverter.
 </figcaption>
 </figure>
 </div>
@@ -392,18 +448,7 @@ _This section lists all the references. It must comply with current citation sta
 :::
 -->
 
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-electronics13101917" class="csl-entry" role="listitem">
-Arshad, Muhammad, Omid Beik, Muhammad Owais Manzoor, and Mahzad Gholamian. 2024. <span>“Stability Analysis via Impedance Modelling of a Real-World Wind Generation System with AC Collector and LCC-Based HVDC Transmission Grid.”</span> <em>Electronics</em> 13 (10). <a href="https://doi.org/10.3390/electronics13101917">https://doi.org/10.3390/electronics13101917</a>.
-</div>
-<div id="ref-10401252" class="csl-entry" role="listitem">
-Arshad, Muhammad, Omid Beik, Ruth Pallapati, and Scott Hoberg. 2024. <span>“Overview and Impedance-Based Stability Analyses of Bison Wind Farm: A Practical Example.”</span> <em>IEEE Industry Applications Magazine</em> 30 (4): 50–63. <a href="https://doi.org/10.1109/MIAS.2023.3345835">https://doi.org/10.1109/MIAS.2023.3345835</a>.
-</div>
-<div id="ref-pr13051292" class="csl-entry" role="listitem">
-He, Lifu, Dingshan Liu, Haidong Tao, Yangwu Shen, Jiapeng Ren, Yuting Wang, Jin Li, and Yaqin Xu. 2025. <span>“Small-Signal Stability Analysis of Grid-Connected System for Renewable Energy Based on Network Node Impedance Modelling.”</span> <em>Processes</em> 13 (5). <a href="https://doi.org/10.3390/pr13051292">https://doi.org/10.3390/pr13051292</a>.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
