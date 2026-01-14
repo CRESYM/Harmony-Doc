@@ -2,8 +2,8 @@
 layout: page 
 title: Wind Turbine Type-4 # be as specific as possible
 tags: [Opensource, Sources and Generators]
-date: 1/13/2026
-last-updated: 1/13/2026
+date: 10/13/2026
+last-updated: 10/13/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
