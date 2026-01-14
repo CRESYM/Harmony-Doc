@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="pv-power-plant_body_files/libs/clipboard/clipboard.min.js"></script>
@@ -140,14 +160,14 @@ Tip
 <div id="fig-pv-inverter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pv-inverter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sections/Elements/pictures/RES/PV_inverter.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="assets/PV_inverter.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pv-inverter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Two-stage PV inverter with LCL filter, image taken from <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>.
+Figure&nbsp;1: Two-stage PV inverter with LCL filter, image taken from <span class="citation" data-cites="zhao2022impedance">Zhao et al. (<a href="#ref-zhao2022impedance" role="doc-biblioref">2022</a>)</span>.
 </figcaption>
 </figure>
 </div>
-<p>To estimate the operating point of the boost converter and the VSC, we follow the averaged model described in <span class="citation" data-cites="wen2014small">(<a href="#ref-wen2014small" role="doc-biblioref"><strong>wen2014small?</strong></a>)</span> and <span class="citation" data-cites="khazaei2020small">(<a href="#ref-khazaei2020small" role="doc-biblioref"><strong>khazaei2020small?</strong></a>)</span>, with known PV current and power, <span class="math inline">\(V_{pcc}\)</span>, and assuming ideal PLL operation.</p>
+<p>To estimate the operating point of the boost converter and the VSC, we follow the averaged model described in <span class="citation" data-cites="wen2014small">Wen et al. (<a href="#ref-wen2014small" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="khazaei2020small">Khazaei, Tu, and Liu (<a href="#ref-khazaei2020small" role="doc-biblioref">2020</a>)</span>, with known PV current and power, <span class="math inline">\(V_{pcc}\)</span>, and assuming ideal PLL operation.</p>
 <p><span class="math display">\[\begin{equation}
 V_{pv} = \frac{P_{pv}}{I_{pv}}, \quad I_{dc} = \frac{P_{pv}}{V_{dc}}, \quad D = 1 - \frac{V_{pv}}{V_{dc}}
 \end{equation}\]</span></p>
@@ -179,18 +199,18 @@ V_{pcc,dq}
 <p><span class="math display">\[\begin{equation}
 M_{dq} = \frac{2 V_{o,dq}}{V_{dc}}
 \end{equation}\]</span></p>
-<p>Based on Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, a small-signal model can be constructed as described in <span class="citation" data-cites="wen2014small">(<a href="#ref-wen2014small" role="doc-biblioref"><strong>wen2014small?</strong></a>)</span> and <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>, and is depicted in Fig. <a href="#fig-pv-small-signal-model" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>Based on Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, a small-signal model can be constructed as described in <span class="citation" data-cites="wen2014small">Wen et al. (<a href="#ref-wen2014small" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="zhao2022impedance">Zhao et al. (<a href="#ref-zhao2022impedance" role="doc-biblioref">2022</a>)</span>, and is depicted in Fig. <a href="#fig-pv-small-signal-model" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <div id="fig-pv-small-signal-model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pv-small-signal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sections/Elements/pictures/RES/PV_inverter_small_signal_model.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="assets/PV_inverter_small_signal_model.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pv-small-signal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Small-signal model in the dq-frame for the two-stage PV inverter shown in Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, image taken from <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>.
+Figure&nbsp;2: Small-signal model in the dq-frame for the two-stage PV inverter shown in Fig. <a href="#fig-pv-inverter" class="quarto-xref">Figure&nbsp;1</a>, image taken from <span class="citation" data-cites="zhao2022impedance">Zhao et al. (<a href="#ref-zhao2022impedance" role="doc-biblioref">2022</a>)</span>.
 </figcaption>
 </figure>
 </div>
-<p>Based on this model, the transfer functions between the inputs <span class="math inline">\(\Delta m^s_{dq}\)</span>, <span class="math inline">\(\Delta i^s_{2,dq}\)</span>, and <span class="math inline">\(\Delta v_{dc}\)</span>, and the outputs <span class="math inline">\(v^s_{pcc,dq}\)</span> and <span class="math inline">\(i_{dc}\)</span> can be formulated as follows <span class="citation" data-cites="zhao2022impedance">(<a href="#ref-zhao2022impedance" role="doc-biblioref"><strong>zhao2022impedance?</strong></a>)</span>:</p>
+<p>Based on this model, the transfer functions between the inputs <span class="math inline">\(\Delta m^s_{dq}\)</span>, <span class="math inline">\(\Delta i^s_{2,dq}\)</span>, and <span class="math inline">\(\Delta v_{dc}\)</span>, and the outputs <span class="math inline">\(v^s_{pcc,dq}\)</span> and <span class="math inline">\(i_{dc}\)</span> can be formulated as follows <span class="citation" data-cites="zhao2022impedance">Zhao et al. (<a href="#ref-zhao2022impedance" role="doc-biblioref">2022</a>)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \begin{bmatrix}
 \Delta i_{dc} \\ 0
@@ -298,7 +318,7 @@ F_A = I - Z_{dc} G_{mi} G_v G_i G_{dc}
 <p><span class="math display">\[\begin{equation}
 F_B = Z_{dc} G_{ii} - Z_{dc} G_{mi} G_v G_i
 \end{equation}\]</span></p>
-<p>The results of the code execution in Harmony are available in Fig. <span class="math inline">\(\ref{fig:PV_bode}\)</span>. The parameters used for simulation are:</p>
+<p>The results of the code execution in Harmony are available in <a href="#fig-PV_bode" class="quarto-xref">Figure&nbsp;3</a>. The parameters used for simulation are:</p>
 <ul>
 <li><strong>PV module:</strong> <span class="math inline">\(N_p = 720\)</span>, <span class="math inline">\(N_s = 2760\)</span>, <span class="math inline">\(n = 1.5\)</span>, <span class="math inline">\(I_{sc} = 2.5 \text{ A}\)</span>, <span class="math inline">\(I_0 = 10^{-10} \text{ A}\)</span>, <span class="math inline">\(C_{pv} = 7.2 \text{ mF}\)</span>, <span class="math inline">\(I_{pv} = 6570 \text{ A}\)</span>, <span class="math inline">\(P_{pv} = 2.8 \text{ MW}\)</span>;</li>
 <li><strong>Boost converter:</strong> <span class="math inline">\(L = 16 \, \mu \text{H}\)</span>, <span class="math inline">\(C_{dc} = 70 \text{ mF}\)</span>, <span class="math inline">\(V_{dc} = 900 \text{ V}\)</span>, <span class="math inline">\(k_{pB} = 4.9809 \times 10^{-6}\)</span>, <span class="math inline">\(k_{iB} = 4.9809 \times 10^{-9}\)</span>;</li>
@@ -309,7 +329,7 @@ F_B = Z_{dc} G_{ii} - Z_{dc} G_{mi} G_v G_i
 <div id="fig-PV_bode" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-PV_bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sections/Elements/pictures/RES/PV_bode_plots.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="assets/PV_bode_plots.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PV_bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Bode plots of the dq admittance for the PV inverter.
@@ -448,7 +468,18 @@ _This section lists all the references. It must comply with current citation sta
 :::
 -->
 
-</main>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-khazaei2020small" class="csl-entry" role="listitem">
+Khazaei, Javad, Zhenghong Tu, and Wenxin Liu. 2020. <span>“Small-Signal Modeling and Analysis of Virtual Inertia-Based PV Systems.”</span> <em>IEEE Transactions on Energy Conversion</em> 35 (2): 1129–38.
+</div>
+<div id="ref-wen2014small" class="csl-entry" role="listitem">
+Wen, Bo, Dushan Boroyevich, Rolando Burgos, Paolo Mattavelli, and Zhiyu Shen. 2014. <span>“Small-Signal Stability Analysis of Three-Phase AC Systems in the Presence of Constant Power Loads Based on Measured Dq Frame Impedances.”</span> <em>IEEE Transactions on Power Electronics</em> 30 (10): 5952–63.
+</div>
+<div id="ref-zhao2022impedance" class="csl-entry" role="listitem">
+Zhao, Ensheng, Yang Han, Xiangyang Lin, Ping Yang, Frede Blaabjerg, and Amr S Zalhaf. 2022. <span>“Impedance Characteristics Investigation and Oscillation Stability Analysis for Two-Stage PV Inverter Under Weak Grid Condition.”</span> <em>Electric Power Systems Research</em> 209: 108053.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

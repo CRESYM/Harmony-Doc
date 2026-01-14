@@ -47,7 +47,7 @@ Mathematical Modeling
 
 The PV array is taken as an aggregated model of the entire plant, see Fig. @fig-pv-inverter.
 
-![Two-stage PV inverter with LCL filter, image taken from @zhao2022impedance.](sections/Elements/pictures/RES/PV_inverter.png){#fig-pv-inverter width=100%}
+![Two-stage PV inverter with LCL filter, image taken from @zhao2022impedance.](assets/PV_inverter.png){#fig-pv-inverter width=75%}
 
 To estimate the operating point of the boost converter and the VSC, we follow the averaged model described in @wen2014small and @khazaei2020small, with known PV current and power, $V_{pcc}$, and assuming ideal PLL operation.
 
@@ -91,7 +91,7 @@ M_{dq} = \frac{2 V_{o,dq}}{V_{dc}}
 
 Based on Fig. @fig-pv-inverter, a small-signal model can be constructed as described in @wen2014small and @zhao2022impedance, and is depicted in Fig. @fig-pv-small-signal-model.
 
-![Small-signal model in the dq-frame for the two-stage PV inverter shown in Fig. @fig-pv-inverter, image taken from @zhao2022impedance.](sections/Elements/pictures/RES/PV_inverter_small_signal_model.png){#fig-pv-small-signal-model width=100%}
+![Small-signal model in the dq-frame for the two-stage PV inverter shown in Fig. @fig-pv-inverter, image taken from @zhao2022impedance.](assets/PV_inverter_small_signal_model.png){#fig-pv-small-signal-model width=70%}
 
 Based on this model, the transfer functions between the inputs $\Delta m^s_{dq}$, $\Delta i^s_{2,dq}$, and $\Delta v_{dc}$, and the outputs $v^s_{pcc,dq}$ and $i_{dc}$ can be formulated as follows @zhao2022impedance:
 
@@ -220,7 +220,7 @@ F_A = I - Z_{dc} G_{mi} G_v G_i G_{dc}
 F_B = Z_{dc} G_{ii} - Z_{dc} G_{mi} G_v G_i
 \end{equation}
 
-The results of the code execution in Harmony are available in Fig. \ref{fig:PV_bode}. The parameters used for simulation are:
+The results of the code execution in Harmony are available in @fig-PV_bode. The parameters used for simulation are:
 
 - **PV module:** $N_p = 720$, $N_s = 2760$, $n = 1.5$, $I_{sc} = 2.5 \text{ A}$, $I_0 = 10^{-10} \text{ A}$, $C_{pv} = 7.2 \text{ mF}$, $I_{pv} = 6570 \text{ A}$, $P_{pv} = 2.8 \text{ MW}$;
 - **Boost converter:** $L = 16 \, \mu \text{H}$, $C_{dc} = 70 \text{ mF}$, $V_{dc} = 900 \text{ V}$, $k_{pB} = 4.9809 \times 10^{-6}$, $k_{iB} = 4.9809 \times 10^{-9}$;
@@ -228,7 +228,7 @@ The results of the code execution in Harmony are available in Fig. \ref{fig:PV_b
 - **PCC:** $V_{g, rms} = 690 \text{ V}$, $f_g = 50 \text{ Hz}$;
 - **VSC:** current control - $k_{pi} = 0.45$, and $k_{ii} = 69.7$, DC voltage control - $k_{pdc} = 1$, and $k_{idc} = 500$, PLL - $k_{ppll} = 0.5$, and $k_{ipll} = 1$.
 
-![Bode plots of the dq admittance for the PV inverter.](sections/Elements/pictures/RES/PV_bode_plots.png){#fig-PV_bode width=100%}
+![Bode plots of the dq admittance for the PV inverter.](assets/PV_bode_plots.png){#fig-PV_bode width=70%}
 
 
 ---
