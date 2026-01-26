@@ -94,7 +94,7 @@
   <!-- ======================= 首页展示 ======================= -->
   <section class="hero cpp-bg">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row align-items-start">
         
         <!-- 左侧：标题 + 副标题 -->
         <div class="col-lg-6 text-start">
@@ -104,11 +104,38 @@
           <p class="hero-subtitle mt-3">
             An open-source C++ based framework capable of simulating all components in hybrid power systems stability assessment studies.
           </p>
+
+          <div class="hero-metric">
+            <span>Seconds-level</span>
+            <small>CPU-scale runtime</small>
+          </div>
+
+          <div class="hero-metric">
+            <span>Hybrid AC/DC</span>
+            <small>VSC-HVDC system focus</small>
+          </div>
+          
+
         </div>
 
         <!-- 右侧：图片 -->
         <div class="col-lg-6 text-center">
-          <img src="images/framework.png" alt="Model Diagram" class="model-image" loading="lazy" />
+          <div class="hero-image-switch">
+            <img src="images/framework.png"
+                alt="Framework diagram"
+                class="model-image active"
+                loading="lazy" />
+
+            <img src="images/workpackages.png"
+                alt="Work packages"
+                class="model-image"
+                loading="lazy" />
+
+            <img src="images/plottingsupport.png"
+                alt="Plotting support"
+                class="model-image"
+                loading="lazy" />
+          </div>
         </div>
 
       </div>
@@ -298,11 +325,11 @@
     // 图片 模糊到清晰
     // ---------------------------
     document.addEventListener("DOMContentLoaded", function () {
-      const img = document.querySelector(".model-image");
-      if (img) {
+      const imgs = document.querySelectorAll(".model-image");
+      imgs.forEach(img => {
         if (img.complete) img.classList.add("loaded");
         else img.addEventListener("load", () => img.classList.add("loaded"));
-      }
+      });
     });
 
     // ---------------------------
@@ -465,6 +492,22 @@
       top: 0; /* 显示时滑下 */
     }
   </style>
+
+  <script>
+    (function(){
+      const imgs = document.querySelectorAll(".hero-image-switch .model-image");
+      if (imgs.length < 2) return;
+
+      let index = 0;
+
+      setInterval(() => {
+        imgs[index].classList.remove("active");
+        index = (index + 1) % imgs.length;
+        imgs[index].classList.add("active");
+      }, 8000);
+    })();
+  </script>
+
 
 <script>
 (function () {
