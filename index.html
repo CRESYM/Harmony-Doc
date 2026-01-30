@@ -15,7 +15,7 @@
 <body>
   <!-- ======================= 导航栏 ======================= -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
+    <div class="container-xxl">
       <a class="navbar-brand d-flex align-items-center" 
         href="https://isocpp.org/" 
         target="_blank" rel="noopener">
@@ -93,7 +93,7 @@
 
   <!-- ======================= 首页展示 ======================= -->
   <section class="hero cpp-bg">
-    <div class="container">
+    <div class="container-xxl">
       <div class="row align-items-start">
         
         <!-- 左侧：标题 + 副标题 -->
@@ -114,7 +114,16 @@
             <span>Hybrid AC/DC</span>
             <small>VSC-HVDC system focus</small>
           </div>
-          
+
+          <div class="hero-actions mt-4 d-flex flex-wrap gap-2">
+            <a class="btn hero-btn-github px-3 py-2"
+              href="https://github.com/CRESYM/Harmony"
+              target="_blank" rel="noopener">
+              <i class="bi bi-terminal me-2" aria-hidden="true"></i>
+              View on GitHub
+            </a>
+          </div>
+  
 
         </div>
 
@@ -144,7 +153,7 @@
 
   <!-- ======================= 快速入口 ======================= -->
   <section id="quick-links" class="features" aria-label="Quick links">
-    <div class="container">
+    <div class="container-xxl">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
         <!-- Get Started -->
@@ -207,7 +216,7 @@
 
       <div class="row g-4 align-items-stretch">
         <!-- 文字介绍 -->
-        <div class="col-lg-8 mx-auto">
+        <div class="col-12 col-xl-10 mx-auto">
           <div class="p-1 p-md-2">
             <p class="mb-3">
               Harmony will deliver a mathematical framework capable of simulating all components in hybrid power systems (HPS) for stability assessment studies. The tool is designed to be comprehensive and user-friendly for analyzing stability and mitigating instabilities in the power systems of interest. It will efficiently investigate multi-terminal HVDC systems (offshore/onshore), transmission–distribution interconnections, controller interoperability, and HVDC protection. Existing commercial tools typically require costly equipment, long model-development cycles, and time-consuming simulations (minutes to hours). In contrast, Harmony targets execution times of several seconds on general-purpose CPUs.
@@ -246,10 +255,10 @@
 
   <!-- ======================= Sponsors（12个logo，4列×3行） ======================= -->
   <section id="sponsors" class="sponsors">
-    <div class="container">
+    <div class="container-xxl">
       <h2 class="section-title text-center mb-4">Sponsors</h2>
 
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-4">
         <div class="col"><a class="sponsor-logo-cell" href="https://www.dtu.dk/" target="_blank" rel="noopener">
           <img class="sponsor-logo" src="images/harmony_logos/Danmarks_Tekniske_Universitet_(logo).svg" alt="DTU">
         </a></div>
@@ -300,19 +309,55 @@
       </div>
     </div>
   </section>
-  <hr class="cpp-divider">
 
   <!-- ======================= 页脚 ======================= -->
   <footer class="text-center py-4 bg-light mt-5">
-    <div class="container">
-      <small>
-        &copy; 2023–2025 CRESYM · Released under 
+
+  </footer>
+
+  <!-- ======================= 底部导览（滚动到底部出现） ======================= -->
+  <div id="bottomNav" class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+    <div class="container-xxl bottom-nav-inner">
+      <div class="bottom-nav-left">
+        Copyright © 2023–2025 Authors of Collaborative Open-Source Harmonic Assessment of AC/DC Hybrid Power System Library.
+        Released under the
         <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank" rel="noopener">
           BSD&nbsp;3-Clause License
+        </a>.
+      </div>
+
+      <div class="bottom-nav-right">
+        <div class="bottom-links">
+          <!-- About（和顶部一样的结构：下拉） -->
+          <div class="dropup">
+            <a class="bottom-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="about/team.html">Teams</a></li>
+              <li><a class="dropdown-item" href="about/doucument.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="about/publications.html">Publications</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <a class="bottom-link" href="about/contact.html">Contact</a>
+
+          <!-- Privacy Policy -->
+          <a class="bottom-link" href="about/privacy.html">Privacy Policy</a>
+
+          <!-- Term of Reference -->
+          <a class="bottom-link" href="about/terms.html">Term of Reference</a>
+        </div>
+
+        <!-- GitHub icon -->
+        <a class="bottom-icon" href="https://github.com/CRESYM/Harmony" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="bi bi-github"></i>
         </a>
-      </small>
+      </div>
     </div>
-  </footer>
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -509,43 +554,75 @@
   </script>
 
 
-<script>
-(function () {
-  const navbar = document.querySelector(".navbar");
-  if (!navbar) return;
+  <script>
+    (function () {
+      const navbar = document.querySelector(".navbar");
+      if (!navbar) return;
 
-  const SHOW_ZONE = 80;     
-  const HIDE_DELAY = 350;  
-  let hideTimer = null;
+      const SHOW_ZONE = 80;     
+      const HIDE_DELAY = 350;  
+      let hideTimer = null;
 
-  function showNav() {
-    clearTimeout(hideTimer);
-    navbar.classList.add("show");
-  }
+      function showNav() {
+        clearTimeout(hideTimer);
+        navbar.classList.add("show");
+      }
 
-  function scheduleHide() {
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(() => {
-      // 如果有下拉菜单是展开状态，就不要隐藏
-      const anyDropdownOpen = navbar.querySelector(".dropdown-menu.show");
-      if (!anyDropdownOpen) navbar.classList.remove("show");
-    }, HIDE_DELAY);
-  }
+      function scheduleHide() {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+          // 如果有下拉菜单是展开状态，就不要隐藏
+          const anyDropdownOpen = navbar.querySelector(".dropdown-menu.show");
+          if (!anyDropdownOpen) navbar.classList.remove("show");
+        }, HIDE_DELAY);
+      }
 
-  // 鼠标到屏幕顶部：显示
-  document.addEventListener("mousemove", (e) => {
-    if (e.clientY <= SHOW_ZONE) showNav();
-  });
+      // 鼠标到屏幕顶部：显示
+      document.addEventListener("mousemove", (e) => {
+        if (e.clientY <= SHOW_ZONE) showNav();
+      });
 
-  // 鼠标在导航栏范围内：一直显示
-  navbar.addEventListener("mouseenter", showNav);
-  navbar.addEventListener("mouseleave", scheduleHide);
+      // 鼠标在导航栏范围内：一直显示
+      navbar.addEventListener("mouseenter", showNav);
+      navbar.addEventListener("mouseleave", scheduleHide);
 
-  // 下拉菜单打开/关闭：打开时强制显示，关闭后再考虑隐藏
-  navbar.addEventListener("shown.bs.dropdown", showNav);
-  navbar.addEventListener("hidden.bs.dropdown", scheduleHide);
-})();
-</script>
+      // 下拉菜单打开/关闭：打开时强制显示，关闭后再考虑隐藏
+      navbar.addEventListener("shown.bs.dropdown", showNav);
+      navbar.addEventListener("hidden.bs.dropdown", scheduleHide);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const bar = document.getElementById("bottomNav");
+      if (!bar) return;
+
+      const footer = document.querySelector("footer");
+      const SHOW_BEFORE_FOOTER = 220; // 距离 footer 还有多少 px 就显示
+
+      function update() {
+        // 没有 footer 的兜底：接近页面底部就显示
+        const doc = document.documentElement;
+        const scrollBottom = doc.scrollHeight - (window.scrollY + window.innerHeight);
+        const nearBottom = scrollBottom < 420;
+
+        // 有 footer 时：接近 footer 就显示（更准）
+        let nearFooter = false;
+        if (footer) {
+          const rect = footer.getBoundingClientRect();
+          nearFooter = rect.top - window.innerHeight < SHOW_BEFORE_FOOTER;
+        }
+
+        bar.classList.toggle("show", footer ? nearFooter : nearBottom);
+      }
+
+      update();
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+    })();
+  </script>
+
+
 
 </body>
 </html>

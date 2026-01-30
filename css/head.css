@@ -14,9 +14,10 @@
       /* ---- CPP ---- */
       --brand-cpp-blue: #133f83;
       --brand-cpp-blue-weak: #f3faff;
+      --brand-hover-purple: #ab80d3;
 
       /* ---- 基础色 ---- */
-      --color-bg: #ffffff               
+      --color-bg: #ffffff;               
       --color-ink: #111;             
       --color-ink-muted: #0b1220cc;       
       --color-card: #ffffff;              
@@ -318,7 +319,7 @@
     /* =========================================================
        About 区
     ========================================================== */
-    .about .about-container{ max-width: 1680px; margin: 0 auto; }
+    .about-container{ max-width: 1680px; margin: 0 auto; }
     .about .card-like{ background: transparent !important; border: 0 !important; box-shadow: none !important; }
 
     /* 下拉，默认收起 */
@@ -457,12 +458,264 @@
     .search-hit.active{ outline:2px solid var(--color-accent-strong); outline-offset:2px; }
 
     .container {
-      max-width: 1500px;   /* 页面横宽 */
+      max-width: 1600px;   /* 页面横宽 */
     }
 
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-    }
+    :root{
+    --font-mono: "JetBrains Mono","IBM Plex Mono","Source Code Pro",
+                "Cascadia Code",Consolas,Menlo,"Liberation Mono",
+                "DejaVu Sans Mono","Courier New",monospace;
+  }
+
+  /* 浅色主题颜色 */
+  :root{
+    --brand-cpp-blue: #133f83;
+    --brand-cpp-blue-weak: #f3faff;
+
+    --color-bg: #ffffff;
+    --color-ink: #111;
+    --color-ink-muted: #0b1220cc;
+    --color-card: #ffffff;
+    --color-border: #d8d8d8;
+    --elevation: 0 6px 24px rgba(0,0,0,.08);
+
+    --color-ring: #1c7cc285;
+    --color-divider: #4675a1;
+    --color-search-hit-bg: #fff3b0;
+    --color-search-hit-fg: #111;
+
+    --color-hero-title: #111;
+    --color-hero-subtitle: #111;
+
+    --color-accent: #8a2d2d;
+    --color-accent-strong: #ff7a00;
+    --title-weight: 700;
+  }
+
+  /* 深色主题覆盖 */
+  html.theme-dark{
+    --color-bg: #1a0b2e;
+    --color-ink: #e5e5e5;
+    --color-ink-muted: #b0b8c0;
+    --color-card: #2a2a2a;
+    --color-border: #3a3a3a;
+    --elevation: 0 10px 30px rgba(0,0,0,.45);
+
+    --color-ring: #60a5fa80;
+    --color-divider: #6999D3;
+
+    --color-search-hit-bg: #3b2f0a;
+    --color-search-hit-fg: #fde68a;
+
+    --color-hero-title: #fff;
+    --color-hero-subtitle: #fff;
+  }
+
+  body{
+    font-family: var(--font-mono);
+    line-height: 1.55;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-variant-ligatures: none;
+    font-variant-numeric: tabular-nums;
+    transition: background .35s ease, color .35s ease;
+
+    /* 预留 bottom-nav 不挡内容 */
+    padding-bottom: 110px;
+  }
+
+  /* ✅ 修正：about-container 选择器 */
+  .about-container{ max-width: 1680px; margin: 0 auto; }
+
+  /* ❌ 删除：不要让 footer fixed
+  footer { position: fixed; ... } 这一段删掉
+  */
+
+  /* =======================
+    Bottom nav
+  ======================= */
+  .bottom-nav{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    z-index: 1060;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .bottom-nav.show{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .bottom-nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border-radius: 14px;
+    padding: 10px 14px;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  html.theme-dark .bottom-nav-inner{
+    background: rgba(20,20,20,.72);
+    border-color: rgba(255,255,255,.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  .bottom-nav-left{
+    font-size: 13px;
+    line-height: 1.35;
+    color: rgba(0,0,0,.72);
+    max-width: 64%;
+  }
+  html.theme-dark .bottom-nav-left{ color: rgba(255,255,255,.75); }
+
+  .bottom-nav-left a{
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .bottom-nav-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .bottom-links{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .bottom-link{
+    font-size: 13px;
+    color: rgba(0,0,0,.78);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  html.theme-dark .bottom-link{ color: rgba(255,255,255,.78); }
+
+  .bottom-link:hover{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .bottom-icon{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgba(0,0,0,.85);
+    border: 1px solid rgba(0,0,0,.08);
+  }
+  html.theme-dark .bottom-icon{
+    color: rgba(255,255,255,.85);
+    border-color: rgba(255,255,255,.12);
+  }
+
+  @media (max-width: 768px){
+    .bottom-nav-inner{ flex-direction: column; align-items: flex-start; }
+    .bottom-nav-left{ max-width: 100%; }
+    .bottom-links{ flex-wrap: wrap; gap: 10px 14px; }
+  }
+
+  /* =======================
+   Bottom nav hover = 紫色（同 navbar）
+   ======================= */
+
+  .bottom-nav a:hover,
+  .bottom-nav .bottom-link:hover,
+  .bottom-nav .bottom-icon:hover,
+  .bottom-nav .dropdown-toggle:hover {
+    color: var(--brand-hover-purple) !important;
+  }
+
+  .bottom-nav .dropdown-item:hover{
+    color: var(--brand-hover-purple) !important;
+    background-color: transparent;
+  }
+
+
+  /* =======================
+   Hero CTA: GitHub (no border, tool icon, bounce hover)
+   ======================= */
+  .hero-btn-github{
+    background: rgba(17, 17, 17, 0.06);  /* 浅灰贴合整体 */
+    color: var(--color-ink);
+    border: 0 !important;                /* 无边框 */
+    box-shadow: none !important;
+    border-radius: 12px;
+    font-weight: 650;
+    letter-spacing: .2px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    will-change: transform;
+  }
+
+  .hero-btn-github i{
+    font-size: 1.05em;
+    opacity: .95;
+  }
+
+  /* hover：轻微“跳一下” + 阴影提示选中，不变紫色 */
+  .hero-btn-github:hover{
+    background: rgba(17, 17, 17, 0.09);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  }
+
+  /* active：按下回弹 */
+  .hero-btn-github:active{
+    transform: translateY(0);
+    box-shadow: 0 6px 14px rgba(0,0,0,.10);
+  }
+
+  /* 深色模式：用亮一点的灰 */
+  html.theme-dark .hero-btn-github{
+    background: rgba(255,255,255,.10);
+    color: var(--color-ink);
+  }
+
+  html.theme-dark .hero-btn-github:hover{
+    background: rgba(255,255,255,.16);
+    box-shadow: 0 12px 26px rgba(0,0,0,.35);
+  }
+
+  /* 尊重减少动画设置 */
+  @media (prefers-reduced-motion: reduce){
+    .hero-btn-github{ transition: none; }
+    .hero-btn-github:hover{ transform: none; }
+  }
+
+
+  /* 收紧 Hero 下方空隙 */
+  .hero{
+    padding-bottom: 36px; /* 原来是 80px 统一 padding，这里把底部缩小 */
+  }
+
+  /* 收紧 Quick-links 上方空隙 */
+  .features{
+    padding-top: 18px;    /* 原来 36px */
+  }
+
+  #quick-links{
+    margin-top: -36px;   /* 往上贴一点 */
+    padding-top:-36px;   /* 同时保持内部呼吸感 */
+  }
