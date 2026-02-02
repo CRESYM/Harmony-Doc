@@ -296,23 +296,70 @@
     #quick-links .feature-icon{  font-size: 1.6rem; }
 
     .cpp-divider{
-      border: 0; height: 2px; background: var(--color-divider);
-      margin: 28px auto; max-width: 1300px;
+      position: relative;
+      border: 0;
+      height: 2px;
+      max-width: 1300px;
+      margin: 32px auto;
+      overflow: hidden;
 
+      /* 底层：C++ 渐变线 */
+      background: linear-gradient(
+        90deg,
+        rgba(0,89,156,0) 0%,
+        #00599C 25%,
+        #1F6FEB 50%,
+        #00599C 75%,
+        rgba(0,89,156,0) 100%
+      );
     }
 
-    .features,
-    .sponsors{
-      border-top: 0 !important;
-      border-bottom: 0 !important;
+    /* 电子流光：窄亮带 + 轻微辉光 + 扫过后停顿 */
+    .cpp-divider::after{
+      content:"";
+      position:absolute;
+      top: -2px;
+
+      /* 👇 起点直接放在中右区域 */
+      left: 45%;
+
+      width: 18%;          /* 稍微再窄一点，更像电子束 */
+      height: 6px;
+
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,.25) 35%,
+        rgba(31,111,235,.95) 50%,   /* 用高光蓝，更“谐波” */
+        rgba(255,255,255,.25) 65%,
+        rgba(255,255,255,0) 100%
+      );
+
+      opacity: .52;
+      filter: blur(.35px);
+      mix-blend-mode: screen;
+      pointer-events: none;
+
+      animation: cppBeamWave 4.6s cubic-bezier(.25,.9,.35,1) infinite;
     }
-    .about {
-      border-top: 0 !important;
-      border-bottom: 0 !important;
+
+    /* 扫一下 → 停顿 → 再扫 */
+    @keyframes cppBeam{
+      0%   { transform: translateX(0);      opacity: 0;   }
+      6%   { opacity: .55; }               /* 点亮 */
+      55%  { transform: translateX(155%);  opacity: .55; }/* 快速扫过 */
+      70%  { opacity: 0; }                 /* 关灯 */
+      100% { transform: translateX(155%);  opacity: 0; }  /* 停顿保持 */
     }
-    footer.bg-light {
-      border-top: 0 !important;
-      border-bottom: 0 !important;
+
+    /* 深色模式：稍弱，避免刺眼 */
+    html.theme-dark .cpp-divider::after{
+      opacity: .42;
+    }
+
+    /* 减少动画：尊重系统设置 */
+    @media (prefers-reduced-motion: reduce){
+      .cpp-divider::after{ animation: none; opacity: 0; }
     }
 
 
@@ -330,10 +377,22 @@
       transform: translateY(-6px);
       transition: max-height .45s ease, opacity .35s ease, transform .45s ease;
       will-change: max-height, opacity, transform;
-      border-top: 1px solid var(--color-border);
-      margin-top: 12px;
-      padding-top: 12px;
+
+      max-width: 820px;        /* 不再铺满 */
+      margin: 12px auto 0;     /* 整体居中 */
+      padding-top: 8px;
     }
+
+    .wp-panel::before{
+      content:"";
+      display:block;
+      width: 48px;
+      height: 1px;
+      background: var(--color-border);
+      opacity: .5;
+      margin: 0 auto 10px;
+    }
+
     .about:hover .wp-panel, .about.expanded .wp-panel{
       max-height: 360px;
       opacity: 1;
@@ -396,6 +455,97 @@
     .sponsor-logo:hover {
       transform: scale(1.05);
       filter: grayscale(0%) opacity(1) drop-shadow(0 2px 6px rgba(0,0,0,.25));
+    }
+
+
+    /* =========================================================
+       联系区
+    ========================================================== */
+    .contact-section{ padding: 56px 20px; background: var(--color-bg); }
+
+    .cpp-comment{ opacity:.45; margin-right:.35em; font-weight:400; }
+
+    .contact-card{
+      height: 100%;
+      border-radius: 12px;
+      padding: 18px;
+      background: transparent;
+      outline: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 10px 26px rgba(0,0,0,.08);
+    }
+
+    html.theme-dark .contact-card{
+      outline-color: rgba(255,255,255,.12);
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .contact-card .form-control,
+    .contact-card .form-select{
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-ink);
+    }
+
+    html.theme-dark .contact-card .form-control,
+    html.theme-dark .contact-card .form-select{
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .contact-card .form-control::placeholder{
+      color: rgba(0,0,0,.42);
+    }
+    html.theme-dark .contact-card .form-control::placeholder{
+      color: rgba(255,255,255,.38);
+    }
+
+    .contact-send{
+      border-radius: 12px;
+      font-weight: 650;
+      letter-spacing: .2px;
+    }
+
+    .map-mini-wrap{
+      border-radius: 12px;
+      overflow: hidden;
+      outline: 1px solid rgba(0,0,0,.06);
+    }
+    html.theme-dark .map-mini-wrap{ outline-color: rgba(255,255,255,.10); }
+
+    .contact-map{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 12px;
+    }
+
+    /* 地图只包自己 */
+    .contact-map .map-mini-wrap{
+      margin-bottom: 8px;
+    }
+
+    .map-mini-wrap{
+      width: 260px;        /* 👈 控制正方形大小：240–300 都好看 */
+      height: 260px;
+      margin: 0 auto;
+
+      border-radius: 12px;
+      overflow: hidden;
+
+      outline: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,.10);
+    }
+
+    .map-mini-wrap iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .contact-card.contact-map{
+      height: auto !important;    /* 不撑满列 */
     }
 
     /* =========================================================
@@ -719,3 +869,12 @@
     margin-top: -36px;   /* 往上贴一点 */
     padding-top:-36px;   /* 同时保持内部呼吸感 */
   }
+
+  .cpp-angle{
+    color: var(--color-ink);   /* 纯黑（自动跟随深浅主题） */
+    font-weight: 700;
+    opacity: .85;
+    margin: 0 .35em;
+    font-size: .9em;
+  }
+

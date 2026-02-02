@@ -212,16 +212,40 @@
   <!-- ======================= About Harmony ======================= -->
   <section id="about-harmony" class="about">
     <div class="container about-container">
-      <h2 class="section-title text-center mb-4">About Harmony</h2>
+      <h2 class="section-title text-center mb-4">
+        <span class="cpp-angle">&lt;</span>
+        About Harmony
+        <span class="cpp-angle">&gt;</span>
+      </h2>
 
-      <div class="row g-4 align-items-stretch">
-        <!-- 文字介绍 -->
-        <div class="col-12 col-xl-10 mx-auto">
-          <div class="p-1 p-md-2">
+      <div class="col-12 col-xl-10 mx-auto">
+        <div class="row g-4 p-1 p-md-2 justify-content-center">
+
+          <!-- 左栏 -->
+          <div class="col-12 col-md-5">
             <p class="mb-3">
-              Harmony will deliver a mathematical framework capable of simulating all components in hybrid power systems (HPS) for stability assessment studies. The tool is designed to be comprehensive and user-friendly for analyzing stability and mitigating instabilities in the power systems of interest. It will efficiently investigate multi-terminal HVDC systems (offshore/onshore), transmission–distribution interconnections, controller interoperability, and HVDC protection. Existing commercial tools typically require costly equipment, long model-development cycles, and time-consuming simulations (minutes to hours). In contrast, Harmony targets execution times of several seconds on general-purpose CPUs.
+              Harmony will deliver a mathematical framework capable of simulating
+              all components in hybrid power systems (HPS) for stability assessment
+              studies. The tool is designed to be comprehensive and user-friendly
+              for analyzing stability and mitigating instabilities in the power
+              systems of interest.
             </p>
           </div>
+
+          <!-- 右栏 -->
+          <div class="col-12 col-md-5">
+            <p class="mb-3">
+              It will efficiently investigate multi-terminal HVDC systems
+              (offshore/onshore), transmission–distribution interconnections,
+              controller interoperability, and HVDC protection. Existing commercial
+              tools typically require costly equipment, long model-development cycles,
+              and time-consuming simulations (minutes to hours). In contrast, Harmony
+              targets execution times of several seconds on general-purpose CPUs.
+            </p>
+          </div>
+
+        </div>
+      </div>
 
           <!-- 悬停展开列表 -->
           <div class="wp-panel">
@@ -256,7 +280,11 @@
   <!-- ======================= Sponsors（12个logo，4列×3行） ======================= -->
   <section id="sponsors" class="sponsors">
     <div class="container-xxl">
-      <h2 class="section-title text-center mb-4">Sponsors</h2>
+      <h2 class="section-title text-center mb-4">
+        <span class="cpp-angle">&lt;</span>
+        Parterners
+        <span class="cpp-angle">&gt;</span>
+      </h2>
 
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-4">
         <div class="col"><a class="sponsor-logo-cell" href="https://www.dtu.dk/" target="_blank" rel="noopener">
@@ -309,6 +337,101 @@
       </div>
     </div>
   </section>
+  <hr class="cpp-divider">
+
+  <!-- ======================= 地图 ======================= -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">
+        <span class="cpp-angle">&lt;</span>
+        Contact Us
+        <span class="cpp-angle">&gt;</span>
+      </h2>
+
+      <div class="row g-4 justify-content-center">
+            <!-- Left: Form -->
+            <div class="col-lg-5">
+              <form id="contactForm" class="contact-card" method="POST">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input class="form-control" name="firstName" placeholder="First Name" autocomplete="given-name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" name="lastName" placeholder="Last Name" autocomplete="family-name" required>
+                  </div>
+
+                  <div class="col-12">
+                    <input class="form-control" name="organisation" placeholder="Organisation" autocomplete="organization">
+                  </div>
+
+                  <div class="col-12">
+                    <input class="form-control" type="email" name="email" placeholder="contacts@company.com" autocomplete="email" required>
+                  </div>
+
+                  <div class="col-12">
+                    <input class="form-control" name="phone" placeholder="Phone number" autocomplete="tel">
+                  </div>
+
+                  <div class="col-12">
+                    <select class="form-select" name="topic" required>
+                      <option value="" selected disabled>Select a topic</option>
+                      <option>Getting Started</option>
+                      <option>Bug report</option>
+                      <option>Collaboration</option>
+                      <option>Publication / citation</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <input class="form-control" name="subject" placeholder="Subject" required>
+                  </div>
+
+                  <div class="col-12">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Write your message here" required></textarea>
+                  </div>
+
+                  <!-- Optional: file upload (needs backend to receive file) -->
+                  <div class="col-12">
+                    <label class="form-label small mb-1">Attachment (optional)</label>
+                    <input class="form-control" type="file" name="attachment">
+                    <!-- <div class="form-text">File upload requires a backend or form service.</div> -->
+                  </div>
+
+                  <div class="col-12 d-grid">
+                    <button class="btn btn-primary contact-send" type="submit">
+                      <i class="bi bi-send"></i>&nbsp; Send Message
+                    </button>
+                  </div>
+
+                  <div class="col-12">
+                    <div id="contactStatus" class="small" aria-live="polite"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right: Map -->
+            <div class="col-lg-4">
+              <div class="contact-card contact-map">
+                <div class="map-mini-wrap">
+                  <iframe
+                    title="TU Delft EWI (EEMCS) - Mekelweg 4"
+                    src="https://www.google.com/maps?q=Mekelweg+4,+2628+CD+Delft,+Netherlands&z=16&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+
+                <div class="mt-3 small" style="color: var(--color-ink-muted);">
+                  Mekelweg 4, 2628 CD Delft, NL
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
   <!-- ======================= 页脚 ======================= -->
   <footer class="text-center py-4 bg-light mt-5">
