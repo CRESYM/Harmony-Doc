@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="../css/head.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Getting Start</title>
@@ -136,17 +137,12 @@
 <body>
   <!-- 顶部导航：左侧C++Logo和Back图标；右侧 Home/GitHub/主题切换 -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <div class="d-flex align-items-center">
-        <a class="navbar-brand d-flex align-items-center"
-           href="https://isocpp.org/" target="_blank" rel="noopener">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
-        </a>
-        <a class="btn-back-nav" href="../index.html" aria-label="Back to home">
-          <i class="bi bi-arrow-left-circle-fill"></i>
-          Back
-        </a>
-      </div>
+    <div class="container-xxl">
+      <a class="navbar-brand d-flex align-items-center"
+        href="https://isocpp.org/"
+        target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -154,23 +150,65 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- 右侧：Home -->
+
+          <!-- ✅ getting-started 专有：Home（比主页多这一项） -->
           <li class="nav-item">
-            <a class="nav-link" href="../index.html" data-match="index.html">
+            <a class="nav-link" href="../index.html">
               <i class="bi bi-house-door-fill me-1"></i>Home
             </a>
           </li>
-          <!-- 右侧：GitHub -->
-          <li class="nav-item d-flex align-items-center ms-lg-3">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="./teams.html">Teams</a></li>
+              <li><a class="dropdown-item" href="./getting-started.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="./publications.html">Publications</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="./models/impedances/impedance.html">Impedances</a></li>
+              <li><a class="dropdown-item" href="./models/transformers/transformer1.html">Transofrmers</a></li>
+              <li><a class="dropdown-item" href="./models/loads/load.html">Loads</a></li>
+              <li><a class="dropdown-item" href="./models/transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
+              <li><a class="dropdown-item" href="./models/sources-and-generators/ac-source.html">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="./models/converters/two-level-converter.html">Converters</a></li>
+              <li><a class="dropdown-item" href="./models/switches-and-circuit-breakers/switch.html">Switches and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="./models/renewable-energy-sources/wt-type3.html">Renewable Energy Sources</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
+            <ul class="dropdown-menu">
+              <!-- ⚠️ tests 在主页是 /tests/xxx；在 pages/ 下需要 ../tests/xxx -->
+              <li><a class="dropdown-item" href="../tests/test1.html">Test 1</a></li>
+              <li><a class="dropdown-item" href="../tests/test2.html">Test 2</a></li>
+              <li><a class="dropdown-item" href="../tests/test3.html">Test 3</a></li>
+              <li><a class="dropdown-item" href="../tests/test4.html">Test 4</a></li>
+            </ul>
+          </li>
+
+          <!-- ⚠️ 主页是 about/contact.html；从 pages/ 下应为 ../about/contact.html -->
+          <li class="nav-item"><a class="nav-link" href="../about/contact.html">Contact</a></li>
+
+          <li class="nav-item d-flex align-items-center ms-3">
             <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
               <i class="bi bi-github fs-4"></i>
             </a>
           </li>
         </ul>
 
-        <!-- 右侧：主题切换 -->
+        <!-- 头部：主题切换 + 搜索（与主页一致） -->
         <div class="header-tools ms-3">
           <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
+          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
         </div>
       </div>
     </div>

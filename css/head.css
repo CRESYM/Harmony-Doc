@@ -27,8 +27,8 @@
       /* ---- 交互 ---- */
       --color-ring: #1c7cc285;            
       --color-divider: #4675a1;           
-      --color-search-hit-bg: #fff3b0;      
-      --color-search-hit-fg: #111;     
+      --color-search-hit-bg: #6b0f1a;     
+      --color-search-hit-fg: #6b0f1a;     
 
       /* ---- 首页 ---- */
       --color-hero-title: #111;
@@ -54,8 +54,8 @@
       --color-ring: #60a5fa80;
       --color-divider: #6999D3;
 
-      --color-search-hit-bg: #3b2f0a;
-      --color-search-hit-fg: #fde68a;
+      --color-search-hit-bg: #6b0f1a;
+      --color-search-hit-fg: #6b0f1a;
 
       --color-hero-title: #fff;
       --color-hero-subtitle: #fff;
@@ -583,7 +583,18 @@
       color:#fff; cursor:pointer; font-family: var(--font-mono);
     }
     .search-btn:hover{ background:rgba(255,255,255,.15); }
-    html.theme-dark .search-btn{ border:1px solid var(--color-border); background:var(--color-card); color: var(--color-ink); }
+    .search-btn i{
+      font-size: 1.15rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .search-btn:hover,
+    .search-btn:focus,
+    .search-btn:focus-visible{
+      color: var(--brand-hover-purple) !important;
+      outline: none;
+    }
 
     .search-panel{
       position:fixed; top:12px; right:12px; z-index:1050;
@@ -606,6 +617,47 @@
 
     .search-hit{ background: var(--color-search-hit-bg); color: var(--color-search-hit-fg); padding: 0 .15em; border-radius:.2em; }
     .search-hit.active{ outline:2px solid var(--color-accent-strong); outline-offset:2px; }
+
+    #openSearch.search-btn{
+    width:28px;
+    height:28px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 !important;
+    margin:0;
+    line-height:1 !important;
+
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,.6);
+    background:transparent;
+
+    color:#fff;
+    cursor:pointer;
+
+    /* ✅ 关键：不要用 mono 字体影响 icon */
+    font: inherit;
+
+    /* ✅ 关键：抹平浏览器默认 button 外观差异 */
+    appearance:none;
+    -webkit-appearance:none;
+  }
+
+  #openSearch.search-btn i{
+    font-size: 1.15rem;
+    line-height: 1;
+    display:block;
+    pointer-events:none;
+  }
+
+  #openSearch.search-btn:hover,
+  #openSearch.search-btn:focus,
+  #openSearch.search-btn:focus-visible{
+    background:rgba(255,255,255,.15);
+    color: var(--brand-hover-purple) !important;
+    outline:none;
+  }
 
     .container {
       max-width: 1600px;   /* 页面横宽 */
@@ -878,3 +930,78 @@
     font-size: .9em;
   }
 
+  .search-panel-min{
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, calc(100vw - 24px));
+  height: 42px;
+  padding: 0 10px;
+  border-radius: 12px;
+
+  display: none;
+  align-items: center;
+  gap: 10px;
+
+  /* 透明/半透明效果 */
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  z-index: 3000;
+}
+
+/* 深色主题下稍微更亮一点 */
+html.theme-dark .search-panel-min{
+  background: rgba(0,0,0,.25);
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 12px 34px rgba(0,0,0,.45);
+}
+
+.search-panel-min.show{
+  display: flex;
+}
+
+.search-panel-min .bi-search{
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.95);
+}
+
+.search-panel-min input{
+  flex: 1 1 auto;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  line-height: 1;
+}
+
+.search-panel-min input::placeholder{
+  color: rgba(255,255,255,.75);
+}
+
+.search-cancel{
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,.85);
+  font: inherit;
+  cursor: pointer;
+  padding: 0 6px;
+  border-radius: 8px;
+  transition: color .15s ease, background .15s ease;
+}
+.search-cancel:hover,
+.search-cancel:focus,
+.search-cancel:focus-visible{
+  color: var(--brand-hover-purple);
+  outline: none;
+}
+
+.search-hit{
+  background: var(--color-search-hit-bg) !important;
+  color: var(--color-search-hit-fg) !important;
+}
