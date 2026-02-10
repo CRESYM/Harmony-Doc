@@ -100,7 +100,11 @@
     html.theme-dark .theme-switch::after{ left:23px; }
 
     /* Markdown主内容 */
-    .page{ max-width:920px; margin:2rem auto; padding:0 1rem 3rem; }
+    .page{
+      width: min(1320px, calc(100% - 2rem));
+      margin: 2rem auto;
+      padding: 0 0 3rem;   /* 这里不需要再左右 padding 也行 */
+    }
     .md{
       background:var(--color-card); border:1px solid var(--color-border);
       border-radius:14px; padding:1.25rem 1rem; box-shadow:0 6px 24px rgba(0,0,0,.06);
@@ -132,7 +136,16 @@
       color: var(--nav-active) !important;
     }
 
+
+    #searchClear{
+    display: none;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 8px;
+  }
+  #searchClear.show{ display: inline-flex; align-items:center; justify-content:center; }
   </style>
+
 </head>
 <body>
   <!-- 顶部导航：左侧C++Logo和Back图标；右侧 Home/GitHub/主题切换 -->
@@ -213,6 +226,13 @@
       </div>
     </div>
   </nav>
+
+  <!-- 搜索 -->
+  <div id="searchBar" class="search-panel-min" aria-hidden="true">
+    <i class="bi bi-search"></i>
+    <input id="searchBarInput" type="search" placeholder="Search..." autocomplete="off" />
+    <button id="searchBarClose" class="search-cancel" type="button">Cancel</button>
+  </div>
 
   <!-- 主体：Markdown 内容 -->
   <div class="page">
@@ -298,6 +318,160 @@
         });
     });
   </script>
+
+  <script>
+      (function(){
+        const openBtn = document.getElementById("openSearch");
+        const bar     = document.getElementById("searchBar");
+        const input   = document.getElementById("searchBarInput");
+        const closeBtn= document.getElementById("searchBarClose");
+
+        if(!openBtn || !bar) return;
+
+        function open(){
+          bar.classList.add("show");
+          bar.setAttribute("aria-hidden","false");
+          input && (input.focus(), input.select());
+        }
+        function close(){
+          bar.classList.remove("show");
+          bar.setAttribute("aria-hidden","true");
+          input && (input.value = "");
+        }
+
+        openBtn.addEventListener("click", ()=>{
+          bar.classList.contains("show") ? close() : open();
+        });
+
+        closeBtn && closeBtn.addEventListener("click", close);
+
+        document.addEventListener("keydown", (e)=>{
+          if(e.key === "Escape") close();
+        });
+
+        document.addEventListener("click", (e)=>{
+          if (!bar.contains(e.target) && !openBtn.contains(e.target)) close();
+        });
+      })();
+    </script>
+
+
+  <script>
+  (function(){
+    const input = document.getElementById("searchBarInput");
+    const panel = document.getElementById("searchBar");
+    if(!input || !panel) return;
+
+    // 至少输入3个字符才开始高亮
+    const MIN_LEN = 3;
+
+    // 1) 清除高亮：把 <span class="search-hit"> 解包回纯文本
+    function clearHighlights(){
+      document.querySelectorAll(".search-hit").forEach(span=>{
+        const parent = span.parentNode;
+        while (span.firstChild) parent.insertBefore(span.firstChild, span);
+        parent.removeChild(span);
+        parent.normalize();
+      });
+    }
+
+    // 2) 高亮：先收集所有文本节点，再做替换（避免遍历时破坏 DOM）
+    function highlightAll(term){
+      clearHighlights();
+      if(!term || term.length < MIN_LEN) return;
+
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const rx = new RegExp(escaped, "gi");
+
+      // ✅ 先把所有候选文本节点收集起来
+      const nodes = [];
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node){
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+
+          const p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+
+          const tag = p.nodeName.toLowerCase();
+          if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
+
+          // ✅ 不搜索你自己的搜索面板 & 顶部导航（按你之前逻辑）
+          if (p.closest("#searchBar") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
+
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      let node;
+      while((node = walker.nextNode())){
+        nodes.push(node);
+      }
+
+      // ✅ 对每个文本节点，从后往前包裹匹配片段（避免 index 被打乱）
+      const hits = [];
+      nodes.forEach(textNode=>{
+        const text = textNode.nodeValue;
+        rx.lastIndex = 0;
+
+        const matches = [];
+        let m;
+        while((m = rx.exec(text)) !== null){
+          matches.push([m.index, m.index + m[0].length]);
+          if (m.index === rx.lastIndex) rx.lastIndex++; // 防死循环
+        }
+        if (!matches.length) return;
+
+        for(let i = matches.length - 1; i >= 0; i--){
+          const [s,e] = matches[i];
+          const range = document.createRange();
+          range.setStart(textNode, s);
+          range.setEnd(textNode, e);
+
+          const mark = document.createElement("span");
+          mark.className = "search-hit";
+          range.surroundContents(mark);
+          hits.push(mark);
+        }
+      });
+
+      // ✅ 自动滚到第一个命中
+      if(hits.length){
+        hits[hits.length - 1].scrollIntoView({behavior:"smooth", block:"center"});
+      }
+    }
+
+    // 3) 输入时高亮（实时）
+    input.addEventListener("input", ()=>{
+      const term = input.value.trim();
+      highlightAll(term);
+    });
+
+    // 4) ESC：只清高亮，不关面板（你要关面板的话我再按你逻辑加）
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape"){
+        clearHighlights();
+      }
+    });
+  })();
+  </script>
+
+  <style>
+    :root{
+      --color-search-hit-bg:#f3d6dc;
+      --color-search-hit-fg:#6b0f1a;
+    }
+    html.theme-dark{
+      --color-search-hit-bg:#6b0f1a;
+      --color-search-hit-fg:#f3d6dc;
+    }
+    .search-hit{
+      background: var(--color-search-hit-bg) !important;
+      color: var(--color-search-hit-fg) !important;
+    }
+  </style>
+
+
+
 </body>
 </html>
 
