@@ -43,10 +43,13 @@
     }
 
     body{
-      margin:0; background:var(--color-bg); color:var(--color-ink);
+      margin:0;
+      background:var(--color-bg);
+      color:var(--color-ink);
       font:16px/1.7 system-ui, Segoe UI, Roboto, Arial, sans-serif;
       transition: background .25s ease, color .25s ease;
     }
+
 
     /* 顶部导航 */
     .navbar{ background: var(--brand-cpp-blue) !important; border-bottom:none; }
@@ -99,14 +102,164 @@
     html.theme-dark .theme-switch{ background:#334155; border-color: var(--color-border); }
     html.theme-dark .theme-switch::after{ left:23px; }
 
-    /* Markdown主内容 */
-    .page{
+    .doc-layout{
       width: min(1320px, calc(100% - 2rem));
-      margin: 2rem auto;
-      padding: 0 0 3rem;   /* 这里不需要再左右 padding 也行 */
+      margin: 1.5rem auto 3rem;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 240px;
+      gap: 1rem;
+      align-items: start;
     }
+
+
+
+    /* 左侧：不要边框、不要卡片感（你之前要的） */
+    .doc-sidenav .sidenav-card{
+      position: sticky;
+      top: 1rem;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: .25rem 0;
+    }
+
+    /* 折叠标题按钮 */
+    .sidenav-acc{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .6rem .75rem;
+      background: transparent;
+      border: none;
+      color: var(--color-ink);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-weight: 800;
+
+      font-size: 1.15rem;   /* 👈 比子栏目大 */
+      letter-spacing: .3px;
+      text-align: left;
+      border-radius: 10px;
+      transition: background .2s ease;
+    }
+
+    /* hover：文字变紫（不变背景） */
+    .sidenav-acc:hover{
+      background: transparent;
+      color: var(--nav-active);
+    }
+
+    /* hover：三角也变紫 */
+    .sidenav-acc:hover .acc-icon{
+      color: var(--nav-active);
+    }
+
+    /* 点击瞬间：稍微“按下”一下 */
+    .sidenav-acc:active{
+      transform: translateX(2px);
+    }
+
+    .sidenav-acc .acc-icon{
+      font-size: .95rem;
+      color: var(--color-ink);
+      transition: transform .2s ease, color .2s ease;
+    }
+    .sidenav-acc[aria-expanded="true"] .acc-icon{
+      color: var(--nav-active);
+    }
+
+    /* 抽屉内容 */
+    .acc-panel{
+      padding: .25rem 0 .25rem .15rem;
+    }
+
+    /* 子栏目：沿用你的 list-group-item 风格，但不要 hover 时改字号（避免跳动） */
+    .doc-sidenav .list-group-item{
+      border: none !important;
+      background: transparent !important;
+
+      font-size: 0.95rem;   /* 👈 比 About 小 */
+      font-weight: 500;
+
+      color: var(--color-ink);
+      transition: all 0.25s ease;
+
+      padding: 0.35rem 0.75rem;  /* 👈 更紧凑 */
+      margin: 0;                 /* 👈 消除间距 */
+      padding-left: 1.75rem;     /* 👈 缩进 */
+      line-height: 1.4;          /* 👈 更紧密 */
+    }
+
+    /* 每个栏目前的小符号（默认 ▸） */
+    .doc-sidenav .list-group-item::before{
+      content: "▸";
+      display: inline-block;
+      margin-right: .6rem;
+      font-size: .85rem;
+      color: var(--color-ink);
+      transition: all .3s ease;
+      transform: translateY(-1px);
+    }
+
+    .doc-sidenav .list-group-item:hover{
+      color: #ab80d3 !important;
+      transform: translateX(6px);
+      font-weight: 600;
+    }
+    .doc-sidenav .list-group-item:hover::before{
+      color: #ab80d3;
+      transform: translate(3px, -1px);
+    }
+
+    /* 当前页高亮 */
+    .doc-sidenav .list-group-item.active{
+      color: #ab80d3 !important;
+      font-weight: 700;
+    }
+    .doc-sidenav .list-group-item.active::before{
+      content: "●";
+      color: #ab80d3;
+    }
+
+    :root{ --sticky-top: 72px; } /* 顶部预留给 navbar，用 70~100 自己微调 */
+
+    /* 右侧目录也 mono（可选） */
+    .doc-toc .toc-card{
+      position: sticky; top: 1rem;
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+    .toc-title{
+      font-weight: 800;
+      margin-bottom: .6rem;
+    }
+    .toc-links a{
+      display:block;
+      text-decoration:none;
+      color: var(--color-ink);
+      padding: .25rem .4rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 14px;
+    }
+    .toc-links a:hover{
+      background: rgba(171,128,211,.10);
+      border-color: rgba(171,128,211,.35);
+    }
+    .toc-links a.active{
+      color: var(--nav-active);
+      background: rgba(171,128,211,.12);
+      border-color: rgba(171,128,211,.45);
+      font-weight: 700;
+    }
+    .toc-links a.lvl-3{ padding-left: 1.1rem; opacity: .92; }
+
+
     .md{
-      background:var(--color-card); border:1px solid var(--color-border);
       border-radius:14px; padding:1.25rem 1rem; box-shadow:0 6px 24px rgba(0,0,0,.06);
     }
     .md a{ color:#0969da; text-decoration:none; } .md a:hover{ text-decoration:underline; }
@@ -144,6 +297,58 @@
     padding: 0 8px;
   }
   #searchClear.show{ display: inline-flex; align-items:center; justify-content:center; }
+
+
+  /* 左右栏加固定 */
+    .doc-sidenav,
+    .doc-toc{
+      position: sticky;
+      top: var(--sticky-top);
+      align-self: start;                 /* 关键：让 grid item 从顶部开始 */
+      max-height: calc(100vh - var(--sticky-top) - 16px);
+      overflow: auto;                    /* 目录过长时，侧栏内部滚动 */
+      padding-right: 4px;                /* 避免滚动条贴边 */
+    }
+
+    /* 可选：滚动条更干净（Chrome/Edge） */
+    .doc-sidenav::-webkit-scrollbar,
+    .doc-toc::-webkit-scrollbar{
+      width: 8px;
+    }
+    .doc-sidenav::-webkit-scrollbar-thumb,
+    .doc-toc::-webkit-scrollbar-thumb{
+      background: rgba(128,128,128,.25);
+      border-radius: 99px;
+    }
+
+
+    /* 顶部导航文字：强制 mono */
+    .navbar,
+    .navbar a,
+    .navbar .nav-link,
+    .navbar .dropdown-item{
+      font-family: var(--font-mono) !important;
+    }
+
+    /* 左侧导航文字：mono（兜底） */
+    .doc-sidenav,
+    .doc-sidenav *{
+      font-family: var(--font-mono) !important;
+    }
+
+    /* 右侧目录文字：mono（可选） */
+    .doc-toc,
+    .doc-toc *{
+      font-family: var(--font-mono) !important;
+    }
+
+    /* 中间正文：保持 system-ui（兜底，防 head.css 误伤） */
+    .doc-main,
+    .md,
+    #md-root{
+      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif !important;
+    }
+
   </style>
 
 </head>
@@ -235,9 +440,45 @@
   </div>
 
   <!-- 主体：Markdown 内容 -->
-  <div class="page">
-    <div id="md-root" class="md">Loading Markdown…</div>
+  <div class="doc-layout">
+    <!-- 左侧导航 -->
+    <aside class="doc-sidenav">
+      <div class="sidenav-card">
+
+        <!-- 折叠总标题 -->
+        <button class="sidenav-acc" type="button" aria-expanded="false" aria-controls="aboutMenu">
+          <span class="acc-icon" aria-hidden="true">▸</span>
+          <span class="acc-title">About Harmony</span>
+        </button>
+
+        <!-- 抽屉内容 -->
+        <div id="aboutMenu" class="acc-panel" hidden>
+          <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../index.html">Overview of Harmony</a>
+            <a class="list-group-item" href="./teams.html">Develope Teams</a>
+            <a class="list-group-item" href="./getting-started.html">Getting Started</a>
+            <a class="list-group-item" href="./publications.html">Publication lists</a>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+
+    <!-- 中间内容 -->
+    <main class="doc-main">
+      <div id="md-root" class="md">Loading Markdown…</div>
+    </main>
+
+    <!-- 右侧目录 -->
+    <aside class="doc-toc">
+      <div class="toc-card">
+        <div class="toc-title">On this page</div>
+        <nav id="toc-root" class="toc-links"></nav>
+      </div>
+    </aside>
   </div>
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -309,6 +550,8 @@
         .then(txt => {
           document.getElementById('md-root').innerHTML = marked.parse(txt);
           if (hasHLJS) document.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+
+          buildTOC();
         })
         .catch(err => {
           document.getElementById('md-root').innerHTML =
@@ -468,7 +711,157 @@
       background: var(--color-search-hit-bg) !important;
       color: var(--color-search-hit-fg) !important;
     }
+    
   </style>
+
+
+
+  <script>
+  (function(){
+    // 1) 折叠控制
+    const accBtn = document.querySelector(".sidenav-acc");
+    const panel  = document.getElementById("aboutMenu");
+    const icon   = accBtn?.querySelector(".acc-icon");
+
+    function setExpanded(open){
+      if(!accBtn || !panel || !icon) return;
+      accBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      panel.hidden = !open;
+      icon.textContent = open ? "▾" : "▸";
+    }
+
+    accBtn?.addEventListener("click", ()=>{
+      const open = accBtn.getAttribute("aria-expanded") === "true";
+      setExpanded(!open);
+    });
+
+    // 2) 当前页高亮 + 自动展开（如果当前页属于 About Harmony 子栏目）
+    const current = (location.pathname.split("/").pop() || "").toLowerCase();
+    const links = Array.from(document.querySelectorAll("#aboutMenu .list-group-item"));
+
+    let matched = false;
+    links.forEach(a=>{
+      const href = (a.getAttribute("href") || "").split("/").pop().toLowerCase();
+      const isActive = href && href === current;
+      a.classList.toggle("active", isActive);
+      if(isActive) matched = true;
+    });
+
+    // 如果当前页命中子栏目，自动展开抽屉
+    setExpanded(matched);
+  })();
+  </script>
+
+
+<script>
+function buildTOC(){
+  const tocRoot = document.getElementById("toc-root");
+  const mdRoot  = document.getElementById("md-root");
+  if(!tocRoot || !mdRoot) return;
+
+  tocRoot.innerHTML = "";
+
+  // 抓 h2/h3（你也可以扩展到 h1）
+  const headers = mdRoot.querySelectorAll("h2, h3");
+  if(!headers.length){
+    tocRoot.innerHTML = `<span style="opacity:.7;font-size:14px">No sections</span>`;
+    return;
+  }
+
+  let h2n = 0;
+  let h3n = 0;
+
+  const items = [];
+  headers.forEach(h=>{
+    // 确保每个标题有 id（marked 开 headerIds:true 一般会有，但保险）
+    if(!h.id){
+      const slug = h.textContent.trim()
+        .toLowerCase()
+        .replace(/[\s]+/g,'-')
+        .replace(/[^\w\-]/g,'');
+      h.id = slug || ("sec-" + Math.random().toString(16).slice(2));
+    }
+
+    const tag = h.tagName.toLowerCase();
+    if(tag === "h2"){ h2n++; h3n = 0; }
+    if(tag === "h3"){ h3n++; }
+
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.dataset.target = h.id;
+
+    // 右侧显示编号：1 / 1.1
+    if(tag === "h2"){
+      a.textContent = `${h2n} ${h.textContent.trim()}`;
+    }else{
+      a.textContent = `${h2n}.${h3n} ${h.textContent.trim()}`;
+      a.classList.add("lvl-3");
+    }
+
+    // 点击平滑滚动（避免默认瞬跳）
+    a.addEventListener("click", (e)=>{
+      e.preventDefault();
+      const el = document.getElementById(h.id);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      history.replaceState(null, "", `#${h.id}`);
+    });
+
+    tocRoot.appendChild(a);
+    items.push({ link: a, el: h });
+  });
+
+  // 滚动高亮当前章节
+  const io = new IntersectionObserver((entries)=>{
+    // 找到最靠近顶部且可见的标题
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if(!visible) return;
+
+    items.forEach(x => x.link.classList.remove("active"));
+    const hit = items.find(x => x.el === visible.target);
+    if(hit) hit.link.classList.add("active");
+  }, {
+    root: null,
+    rootMargin: "-20% 0px -70% 0px",
+    threshold: [0.1, 0.2, 0.4, 0.6]
+  });
+
+  items.forEach(x => io.observe(x.el));
+}
+</script>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const nav  = document.querySelector("nav.navbar");
+  if(!nav) return;
+
+  let ticking = false;
+
+  function updateStickyTop(){
+    // nav 在视口中的位置：当 nav 消失到上方时，rect.bottom 会 <= 0
+    const rect = nav.getBoundingClientRect();
+    const top = Math.max(0, Math.floor(rect.bottom)); // 0~navbar可见高度
+    root.style.setProperty("--sticky-top", top + "px");
+    ticking = false;
+  }
+
+  function requestUpdate(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateStickyTop);
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+
+  // 初始化一次
+  updateStickyTop();
+  })();
+
+</script>
 
 
 
