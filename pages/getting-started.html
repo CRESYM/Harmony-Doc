@@ -225,38 +225,103 @@
     :root{ --sticky-top: 72px; } /* 顶部预留给 navbar，用 70~100 自己微调 */
 
     /* 右侧目录也 mono（可选） */
-    .doc-toc .toc-card{
-      position: sticky; top: 1rem;
-      background: var(--color-card);
-      border: 1px solid var(--color-border);
-      border-radius: 14px;
-      padding: 1rem;
-      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+   .doc-toc .toc-card{
+      position: sticky;
+      top: 1rem;
+
+      background: transparent;   /* ✅ 无底色 */
+      border: none;              /* ✅ 无边框 */
+      box-shadow: none;          /* ✅ 无阴影 */
+      border-radius: 0;
+
+      padding: .25rem 0;         /* 轻一点 */
     }
+
+    /* On this page 标题保留一点层次 */
     .toc-title{
-      font-weight: 800;
-      margin-bottom: .6rem;
+      font-weight: 900;
+      margin: 0 0 .6rem 0;
+      font-size: 1rem;
     }
+    /* 外层容器：留出滑轨位置 */
+    .toc-links{
+      position: relative;
+      padding-left: 18px; /* 给滑轨留空间 */
+    }
+
+    /* 紫色竖直滑轨 */
+    .toc-links::before{
+      content:"";
+      position:absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      border-radius: 999px;
+      background: rgba(171,128,211,.35);
+    }
+
+    /* “滑块”用一个伪元素表示，位置由 JS 写入 --thumb-top */
+    .toc-links::after{
+      content:"";
+      position:absolute;
+      left: 5px;
+      top: var(--thumb-top, 10px);
+      width: 6px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--nav-active);
+      box-shadow: 0 8px 20px rgba(171,128,211,.35);
+      transition: top .18s ease, height .18s ease;
+    }
+
+    /* 每一项：默认小一点 */
     .toc-links a{
       display:block;
       text-decoration:none;
       color: var(--color-ink);
-      padding: .25rem .4rem;
-      border-radius: 8px;
+      padding: .28rem .5rem;
+      border-radius: 10px;
       border: 1px solid transparent;
-      font-size: 14px;
+
+      font-size: 13px;
+      opacity: .85;
+      transform: scale(1);
+      transform-origin: left center;
+      transition: transform .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
     }
+
+    /* hover：轻微紫色底 */
     .toc-links a:hover{
       background: rgba(171,128,211,.10);
-      border-color: rgba(171,128,211,.35);
+      border-color: rgba(171,128,211,.30);
+      opacity: 1;
     }
+
+    /* active：变大 + 变紫 */
     .toc-links a.active{
       color: var(--nav-active);
-      background: rgba(171,128,211,.12);
+      background: rgba(171,128,211,.14);
       border-color: rgba(171,128,211,.45);
-      font-weight: 700;
+      font-weight: 800;
+      opacity: 1;
+      transform: scale(1.10);
     }
-    .toc-links a.lvl-3{ padding-left: 1.1rem; opacity: .92; }
+
+    .toc-links a.toc-h3.active{
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* 三级标题缩进保持，但 active 也会一起放大 */
+    .toc-links a.lvl-3{
+      padding-left: 1.15rem;
+      opacity: .78;
+    }
+    .toc-links a.lvl-3.active{
+      opacity: 1;
+    }
 
 
     .md{
@@ -761,19 +826,15 @@ function buildTOC(){
 
   tocRoot.innerHTML = "";
 
-  // 抓 h2/h3（你也可以扩展到 h1）
   const headers = mdRoot.querySelectorAll("h2, h3");
   if(!headers.length){
     tocRoot.innerHTML = `<span style="opacity:.7;font-size:14px">No sections</span>`;
     return;
   }
 
-  let h2n = 0;
-  let h3n = 0;
-
   const items = [];
+
   headers.forEach(h=>{
-    // 确保每个标题有 id（marked 开 headerIds:true 一般会有，但保险）
     if(!h.id){
       const slug = h.textContent.trim()
         .toLowerCase()
@@ -783,22 +844,22 @@ function buildTOC(){
     }
 
     const tag = h.tagName.toLowerCase();
-    if(tag === "h2"){ h2n++; h3n = 0; }
-    if(tag === "h3"){ h3n++; }
 
     const a = document.createElement("a");
     a.href = `#${h.id}`;
     a.dataset.target = h.id;
 
-    // 右侧显示编号：1 / 1.1
+    // ✅ 去掉 1 / 1.1 编号：只显示标题
+    a.textContent = h.textContent.trim();
+
+    // ✅ 主 / 副标题样式区分
     if(tag === "h2"){
-      a.textContent = `${h2n} ${h.textContent.trim()}`;
+      a.classList.add("toc-h2");
     }else{
-      a.textContent = `${h2n}.${h3n} ${h.textContent.trim()}`;
-      a.classList.add("lvl-3");
+      a.classList.add("toc-h3", "lvl-3");
     }
 
-    // 点击平滑滚动（避免默认瞬跳）
+    // 点击平滑滚动
     a.addEventListener("click", (e)=>{
       e.preventDefault();
       const el = document.getElementById(h.id);
@@ -811,9 +872,20 @@ function buildTOC(){
     items.push({ link: a, el: h });
   });
 
+  // ✅ 滑块跟随 active 项
+  function updateThumb(){
+    const active = tocRoot.querySelector("a.active");
+    if(!active) return;
+
+    const rootRect = tocRoot.getBoundingClientRect();
+    const aRect = active.getBoundingClientRect();
+
+    const top = Math.max(4, (aRect.top - rootRect.top) + (aRect.height/2) - 11);
+    tocRoot.style.setProperty("--thumb-top", top + "px");
+  }
+
   // 滚动高亮当前章节
   const io = new IntersectionObserver((entries)=>{
-    // 找到最靠近顶部且可见的标题
     const visible = entries
       .filter(e => e.isIntersecting)
       .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
@@ -822,6 +894,8 @@ function buildTOC(){
     items.forEach(x => x.link.classList.remove("active"));
     const hit = items.find(x => x.el === visible.target);
     if(hit) hit.link.classList.add("active");
+
+    updateThumb();
   }, {
     root: null,
     rootMargin: "-20% 0px -70% 0px",
@@ -829,6 +903,10 @@ function buildTOC(){
   });
 
   items.forEach(x => io.observe(x.el));
+
+  // 初始化一次
+  requestAnimationFrame(updateThumb);
+  window.addEventListener("resize", updateThumb);
 }
 </script>
 
