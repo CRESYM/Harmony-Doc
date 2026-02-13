@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ✅ 和 getting-started 一样：引入 head.css（你项目里已有） -->
+  <link rel="stylesheet" href="../css/head.css">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Teams</title>
@@ -9,21 +12,36 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
+    /* =======================
+       Theme vars（对齐 getting-started）
+    ======================== */
     :root{
-      --font-mono: "JetBrains Mono","IBM Plex Mono","Source Code Pro","Cascadia Code",Consolas,Menlo,"Liberation Mono","DejaVu Sans Mono","Courier New",monospace;
+      --font-mono: "JetBrains Mono","IBM Plex Mono","Source Code Pro",
+                   "Cascadia Code",Consolas,Menlo,"Liberation Mono",
+                   "DejaVu Sans Mono","Courier New",monospace;
+
       --brand-cpp-blue:#005696;
+
       --color-bg:#ffffff;
       --color-ink:#111;
       --color-card:#fff;
       --color-border:#e5e7eb;
-      --ring:#1c7cc285;
-      --nav-active:#ab80d3;
-      --glow: rgba(171,128,211,.22);
+
+      --nav-active:#ab80d3; /* 高亮紫 */
+      --sticky-top: 72px;   /* JS 会动态更新 */
+
+      /* Search highlight（对齐 getting-started） */
+      --color-search-hit-bg:#f3d6dc;
+      --color-search-hit-fg:#6b0f1a;
+
+      /* Teams cards */
+      --gap:18px;
+      --card-min: 320px;   /* ✅ 卡片最小宽度：保证不会“挤没了” */
+      --card-h: 290px;
     }
     html.theme-dark{
       --color-bg:#1a0b2e;
@@ -31,105 +49,285 @@
       --color-card:#1f2937;
       --color-border:#374151;
       --nav-active:#ab80d3;
-      --glow: rgba(171,128,211,.35);
+
+      --color-search-hit-bg:#6b0f1a;
+      --color-search-hit-fg:#f3d6dc;
     }
 
     body{
-      margin:0; background:var(--color-bg); color:var(--color-ink);
+      margin:0;
+      background:var(--color-bg);
+      color:var(--color-ink);
       font:16px/1.7 system-ui, Segoe UI, Roboto, Arial, sans-serif;
       transition: background .25s ease, color .25s ease;
     }
 
-    /* 顶部导航 */
+    /* =======================
+       Top navbar（完全按 getting-started）
+    ======================== */
     .navbar{ background: var(--brand-cpp-blue) !important; border-bottom:none; }
-    .navbar.navbar-dark .navbar-brand, .navbar.navbar-dark .nav-link{ color:#fff !important; }
-    .navbar .nav-link, .navbar .nav-link i{ transition: color .15s ease; }
-    .navbar .nav-link:hover, .navbar .nav-link:focus, .navbar .nav-link:focus-visible{ color: var(--nav-active) !important; }
+    .navbar.navbar-dark .navbar-brand,
+    .navbar.navbar-dark .nav-link{ color:#fff !important; }
+
+    .navbar .nav-link,
+    .navbar .nav-link i{ transition: color .15s ease; }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus,
+    .navbar .nav-link:focus-visible{ color: var(--nav-active) !important; }
+
+    .navbar .nav-link:hover i,
+    .navbar .nav-link:focus i,
+    .navbar .nav-link:focus-visible i{ color: var(--nav-active) !important; }
+
     .navbar .nav-link.active{ color: var(--nav-active) !important; }
     .navbar .nav-link.active i{ color: var(--nav-active) !important; }
+
     .navbar-brand img{ height:48px; width:auto; display:block; }
-    .btn-back-nav{
-      display:inline-flex; align-items:center; gap:.5rem;
-      border:1px solid rgba(255,255,255,.6); color:#fff; background:transparent;
-      padding:.35rem .7rem; border-radius:999px; text-decoration:none;
-      transition: background .2s ease, transform .1s ease, box-shadow .2s ease;
-      font-family: var(--font-mono); font-weight:700; letter-spacing:0;
-      margin-left:.5rem;
+
+    /* navbar 字体（完全按 getting-started） */
+    .navbar,
+    .navbar a,
+    .navbar .nav-link,
+    .navbar .dropdown-item{
+      font-family: var(--font-mono) !important;
     }
-    .btn-back-nav i{ font-size:1.1rem; line-height:1; transition: color .15s ease; }
-    .btn-back-nav:hover{
-      background:rgba(255,255,255,.15);
-      transform: translateY(-1px);
-      box-shadow:0 6px 18px rgba(0,0,0,.18);
-    }
-    .btn-back-nav:hover,
-    .btn-back-nav:focus,
-    .btn-back-nav:focus-visible,
-    .btn-back-nav:active,
-    .btn-back-nav.active{
-      color: var(--nav-active) !important;
-      border-color: var(--nav-active) !important;
-    }
+
+    /* Header tools（完全按 getting-started） */
     .header-tools{ display:flex; align-items:center; gap:.75rem; margin-left:.5rem; }
+
     .theme-switch{
-      position:relative; width:44px; height:24px; background:#cbd5e1;
-      border-radius:999px; cursor:pointer; transition:background .2s ease;
+      position:relative;
+      width:44px; height:24px;
+      background:#cbd5e1;
+      border-radius:999px;
+      cursor:pointer;
+      transition:background .2s ease;
       border:1px solid rgba(255,255,255,.6);
     }
     .theme-switch::after{
-      content:""; position:absolute; top:50%; left:3px; transform:translateY(-50%);
-      width:18px; height:18px; border-radius:50%; background:#fff; transition:left .2s ease;
+      content:"";
+      position:absolute; top:50%; left:3px;
+      transform:translateY(-50%);
+      width:18px; height:18px;
+      border-radius:50%;
+      background:#fff;
+      transition:left .2s ease;
       box-shadow:0 1px 2px rgba(0,0,0,.15);
     }
     html.theme-dark .theme-switch{ background:#334155; border-color: var(--color-border); }
     html.theme-dark .theme-switch::after{ left:23px; }
 
-    .page{ max-width:1200px; margin:2rem auto; padding:0 1rem 3rem; }
-    .page-header{
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem;
+    /* ✅ 你 getting-started 里用到了 search-btn / search-panel-min
+       这里补齐：保证 Teams 的“布局 + 效果”与 getting-started 一致 */
+    .search-btn{
+      border:1px solid rgba(255,255,255,.6);
+      color:#fff;
+      background:transparent;
+      width:44px; height:34px;
+      border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      transition: background .2s ease, transform .1s ease, box-shadow .2s ease, color .15s ease, border-color .15s ease;
     }
-    .title-block h1{
-      margin:0; font-family: var(--font-mono); font-weight:800; letter-spacing:0;
-      display:flex; align-items:center; gap:.6rem;
-    }
-    .title-block .badge-dot{
-      width:.65rem; height:.65rem; border-radius:50%; background: var(--nav-active); box-shadow:0 0 0 .35rem var(--glow);
+    .search-btn:hover{
+      background:rgba(255,255,255,.15);
+      transform: translateY(-1px);
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+      color: var(--nav-active);
+      border-color: var(--nav-active);
     }
 
-    :root{
-      --gap:18px;     
-      --cols:3;   
-      --card-h:280px; 
+    .search-panel-min{
+      position: fixed;
+      top: 76px; /* JS 会动态更新为 navbar 底部 */
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(720px, calc(100% - 2rem));
+      display: none;
+      align-items: center;
+      gap: .6rem;
+      padding: .55rem .75rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      z-index: 1055;
+    }
+    .search-panel-min.show{ display:flex; }
+    .search-panel-min input{
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--color-ink);
+      font-family: var(--font-mono);
+    }
+    .search-cancel{
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-ink);
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .search-cancel:hover{
+      border-color: var(--nav-active);
+      color: var(--nav-active);
     }
 
+    /* =======================
+       Layout：左侧导航“完全同 getting-started”
+       ✅ 但中间内容加宽：不再三栏挤卡片
+    ======================== */
+    .doc-layout{
+      width: min(1560px, calc(100% - 2rem)); /* ✅ 加宽 */
+      margin: 1.5rem auto 3rem;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr); /* ✅ 两栏：左侧 + 主内容（更宽） */
+      gap: 1rem;
+      align-items: start;
+    }
+
+    /* 左栏：sticky（完全同 getting-started） */
+    .doc-sidenav{
+      position: sticky;
+      top: var(--sticky-top);
+      align-self: start;
+      max-height: calc(100vh - var(--sticky-top) - 16px);
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .doc-sidenav::-webkit-scrollbar{ width: 8px; }
+    .doc-sidenav::-webkit-scrollbar-thumb{
+      background: rgba(128,128,128,.25);
+      border-radius: 99px;
+    }
+
+    /* Left sidenav（完全同 getting-started） */
+    .doc-sidenav, .doc-sidenav *{
+      font-family: var(--font-mono) !important;
+    }
+    .doc-sidenav .sidenav-card{
+      position: sticky;
+      top: 1rem;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: .25rem 0;
+    }
+    .sidenav-acc{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .6rem .75rem;
+      background: transparent;
+      border: none;
+      color: var(--color-ink);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: .3px;
+      text-align: left;
+      border-radius: 10px;
+      transition: background .2s ease;
+    }
+    .sidenav-acc:hover{ background: transparent; color: var(--nav-active); }
+    .sidenav-acc:hover .acc-icon{ color: var(--nav-active); }
+    .sidenav-acc:active{ transform: translateX(2px); }
+    .sidenav-acc .acc-icon{
+      font-size: .95rem;
+      color: var(--color-ink);
+      transition: transform .2s ease, color .2s ease;
+    }
+    .sidenav-acc[aria-expanded="true"] .acc-icon{ color: var(--nav-active); }
+    .acc-panel{ padding: .25rem 0 .25rem .15rem; }
+
+    .doc-sidenav .list-group-item{
+      border: none !important;
+      background: transparent !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-ink);
+      transition: all 0.25s ease;
+      padding: 0.35rem 0.75rem;
+      margin: 0;
+      padding-left: 1.75rem;
+      line-height: 1.4;
+    }
+    .doc-sidenav .list-group-item::before{
+      content: "▸";
+      display: inline-block;
+      margin-right: .6rem;
+      font-size: .85rem;
+      color: var(--color-ink);
+      transition: all .3s ease;
+      transform: translateY(-1px);
+    }
+    .doc-sidenav .list-group-item:hover{
+      color: var(--nav-active) !important;
+      transform: translateX(6px);
+      font-weight: 600;
+    }
+    .doc-sidenav .list-group-item:hover::before{
+      color: var(--nav-active);
+      transform: translate(3px, -1px);
+    }
+    .doc-sidenav .list-group-item.active{
+      color: var(--nav-active) !important;
+      font-weight: 700;
+    }
+    .doc-sidenav .list-group-item.active::before{
+      content: "●";
+      color: var(--nav-active);
+    }
+
+    /* 主内容 */
+    .doc-main{ min-width:0; }
+
+    .page{
+      max-width: 1400px;   /* ✅ 主内容再加宽 */
+      margin: 0 auto;
+      padding: 0 0 2rem;
+    }
+
+    .section-caption{
+      margin: 1.6rem 0 .6rem;
+      font-weight:1000;
+      font-family: var(--font-mono);
+      display:flex; align-items:center; gap:.5rem;
+      font-size: 1.6rem;
+    }
+    .section-caption .line{
+      flex:1; height:1px;
+      background:linear-gradient(90deg, var(--color-border), transparent);
+    }
+
+    /* ✅ 卡片：用 grid 自动换列，宽度不会被挤没 */
     .team-grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:var(--gap);
-      align-items:stretch;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
+      gap: var(--gap);
+      align-items: stretch;
     }
 
     .member{
-      flex: 0 1 calc((100% - (var(--cols) - 1)*var(--gap)) / var(--cols));
-      max-width: calc((100% - (var(--cols) - 1)*var(--gap)) / var(--cols));
       height: var(--card-h);
-    }
-
-    .member{
-      grid-column: span 3;
-      background: var(--color-card);   
+      background: var(--color-card);
       border:1px solid var(--color-border);
-      border-radius:16px; padding:14px; position:relative; overflow:hidden;
+      border-radius:16px;
+      padding:14px;
+      position:relative;
+      overflow:hidden;
       transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
     }
-
     .member:hover{
       transform: translateY(-4px) rotateX(2deg) rotateY(-1.5deg);
       box-shadow: 0 18px 40px rgba(0,0,0,.18);
       border-color: rgba(171,128,211,.5);
     }
-    @media (max-width: 1199px){ .member{ grid-column: span 4; } }
-    @media (max-width: 767px){  .member{ grid-column: span 4; } }
 
     .member .top{ display:flex; align-items:center; gap:12px; }
 
@@ -158,29 +356,46 @@
     }
 
     .avatar{
-      width:72px; height:72px; border-radius:14px; overflow:hidden; flex:0 0 auto;
-      border:1px solid var(--color-border); background:#f3f4f6; position:relative;
+      width:72px; height:72px;
+      border-radius:14px;
+      overflow:hidden;
+      flex:0 0 auto;
+      border:1px solid var(--color-border);
+      background:#f3f4f6;
+      position:relative;
     }
     .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
     .avatar .fallback{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
       font-weight:800; font-family: var(--font-mono);
-      background:linear-gradient(135deg, #9ca3af 0%, #6b7280 100%); color:#fff; letter-spacing:.03em;
+      background:linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+      color:#fff;
+      letter-spacing:.03em;
       font-size:1rem;
     }
+
     .meta .name{ margin:0; font-weight:800; letter-spacing:.2px; }
     .meta .role{ margin:0; font-size:.92rem; opacity:.8; }
+
     .tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
     .tag{
-      font-size:.76rem; padding:.15rem .5rem; border-radius:999px; border:1px solid var(--color-border);
+      font-size:.76rem; padding:.15rem .5rem; border-radius:999px;
+      border:1px solid var(--color-border);
       background: transparent; color: var(--color-ink);
     }
+
     .bio{ margin:.6rem 0 0; font-size:.95rem; opacity:.9; min-height:3.3em; }
+
     .actions{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-top:10px; }
     .social{ display:flex; gap:.4rem; align-items:center; }
     .social a{
-      width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid var(--color-border); border-radius:10px; color:var(--color-ink); text-decoration:none;
+      width:34px; height:34px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--color-border);
+      border-radius:10px;
+      color:var(--color-ink);
+      text-decoration:none;
       background: var(--color-card);
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
     }
@@ -192,8 +407,14 @@
     }
 
     .btn-more{
-      border:1px solid var(--color-border); background:var(--color-card); color:var(--color-ink);
-      padding:.35rem .65rem; border-radius:10px; text-decoration:none; font-weight:700; font-family: var(--font-mono);
+      border:1px solid var(--color-border);
+      background:var(--color-card);
+      color:var(--color-ink);
+      padding:.35rem .65rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      font-family: var(--font-mono);
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
     }
     .btn-more:hover{
@@ -203,15 +424,7 @@
       color: var(--nav-active);
     }
 
-    .section-caption{
-      margin: 1.6rem 0 .6rem; font-weight:1000; font-family: var(--font-mono);
-      display:flex; align-items:center; gap:.5rem; font-size: 1.6rem;
-    }
-    .section-caption .line{
-      flex:1; height:1px; background:linear-gradient(90deg, var(--color-border), transparent);
-    }
-
-    .modal-footer .btn {
+    .modal-footer .btn{
       border:1px solid var(--color-border);
       background:var(--color-card);
       color: var(--color-ink);
@@ -221,31 +434,37 @@
       padding:.35rem .65rem;
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
     }
-    .modal-footer .btn:hover {
+    .modal-footer .btn:hover{
       transform: translateY(-1px);
       box-shadow: 0 6px 18px rgba(0,0,0,.12);
       border-color: var(--nav-active);
       color: var(--nav-active);
     }
 
+    /* 小屏：左侧不 sticky，避免挤压 */
+    @media (max-width: 900px){
+      .doc-layout{ grid-template-columns: 1fr; }
+      .doc-sidenav{ position: relative; top:auto; max-height:none; }
+      .page{ max-width: 100%; }
+    }
 
-
+    /* Search hit */
+    .search-hit{
+      background: var(--color-search-hit-bg) !important;
+      color: var(--color-search-hit-fg) !important;
+    }
   </style>
 </head>
-<body>
 
+<body>
+  <!-- Top navbar（结构与 getting-started 一样） -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <div class="d-flex align-items-center">
-        <a class="navbar-brand d-flex align-items-center"
-           href="https://isocpp.org/" target="_blank" rel="noopener">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
-        </a>
-        <a class="btn-back-nav" href="../index.html" aria-label="Back to home">
-          <i class="bi bi-arrow-left-circle-fill"></i>
-          Back
-        </a>
-      </div>
+    <div class="container-xxl">
+      <a class="navbar-brand d-flex align-items-center"
+         href="https://isocpp.org/"
+         target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -254,263 +473,338 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html" data-match="index.html">
+            <a class="nav-link" href="../index.html">
               <i class="bi bi-house-door-fill me-1"></i>Home
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center ms-lg-3">
-            <a class="nav-link p-1" href="https://github.com/your-repo-url" target="_blank" aria-label="GitHub">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="./teams.html">Teams</a></li>
+              <li><a class="dropdown-item" href="./getting-started.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="./publications.html">Publications</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="./models/impedances/impedance.html">Impedances</a></li>
+              <li><a class="dropdown-item" href="./models/transformers/transformer1.html">Transofrmers</a></li>
+              <li><a class="dropdown-item" href="./models/loads/load.html">Loads</a></li>
+              <li><a class="dropdown-item" href="./models/transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
+              <li><a class="dropdown-item" href="./models/sources-and-generators/ac-source.html">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="./models/converters/two-level-converter.html">Converters</a></li>
+              <li><a class="dropdown-item" href="./models/switches-and-circuit-breakers/switch.html">Switches and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="./models/renewable-energy-sources/wt-type3.html">Renewable Energy Sources</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../tests/test1.html">Test 1</a></li>
+              <li><a class="dropdown-item" href="../tests/test2.html">Test 2</a></li>
+              <li><a class="dropdown-item" href="../tests/test3.html">Test 3</a></li>
+              <li><a class="dropdown-item" href="../tests/test4.html">Test 4</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="../about/contact.html">Contact</a></li>
+
+          <li class="nav-item d-flex align-items-center ms-3">
+            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
               <i class="bi bi-github fs-4"></i>
             </a>
           </li>
         </ul>
+
         <div class="header-tools ms-3">
           <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
+          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
         </div>
       </div>
     </div>
   </nav>
 
-  <div class="page">
-    <div class="section-caption">
-      <span>Core members</span><span class="line"></span>
-    </div>
+  <!-- Search panel（和 getting-started 一样） -->
+  <div id="searchBar" class="search-panel-min" aria-hidden="true">
+    <i class="bi bi-search"></i>
+    <input id="searchBarInput" type="search" placeholder="Search..." autocomplete="off" />
+    <button id="searchBarClose" class="search-cancel" type="button">Cancel</button>
+  </div>
+
+  <!-- Main layout：左侧导航 = getting-started（完全同结构/同 JS） -->
+  <div class="doc-layout">
+    <aside class="doc-sidenav">
+      <div class="sidenav-card">
+        <button class="sidenav-acc" type="button" aria-expanded="false" aria-controls="aboutMenu">
+          <span class="acc-icon" aria-hidden="true">▸</span>
+          <span class="acc-title">About Harmony</span>
+        </button>
+
+        <div id="aboutMenu" class="acc-panel" hidden>
+          <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../index.html">Overview of Harmony</a>
+            <a class="list-group-item" href="./teams.html">Develope Teams</a>
+            <a class="list-group-item" href="./getting-started.html">Getting Started</a>
+            <a class="list-group-item" href="./publications.html">Publication lists</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="doc-main">
+      <div class="page">
+        <div class="section-caption">
+          <span>Core members</span><span class="line"></span>
+        </div>
 
     <div id="teamGrid" class="team-grid">
-      <article class="member" data-role="Research Leader" data-tags="Framework,Funding,Supervision" data-name="Aleksandra Lekić">
-        <div class="top">
-          <div class="avatar">
-            <img src="" alt="Aleksandra Lekić" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Aleksandra Lekić">AL</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Aleksandra Lekić</h3>
-            <p class="role">Research Leader </p>
-            <div class="tags">
-              <span class="tag">Framework</span><span class="tag">Funding</span><span class="tag">Supervision</span>
+          <article class="member" data-role="Research Leader" data-tags="Framework,Funding,Supervision" data-name="Aleksandra Lekić">
+            <div class="top">
+              <div class="avatar">
+                <img src="" alt="Aleksandra Lekić" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Aleksandra Lekić">AL</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Aleksandra Lekić</h3>
+                <p class="role">Research Leader </p>
+                <div class="tags">
+                  <span class="tag">Framework</span><span class="tag">Funding</span><span class="tag">Supervision</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <p class="bio">Development of the mathematical framework, design of the toolbox, different functionality interconnections, harmonic stability solver, supervision, and acquisition of the funding.</p>
-        <div class="actions">
-          <div class="social">
-            <a href="https://scholar.google.com/citations?user=xwCWAb0AAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:a.lekic@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="https://nl.linkedin.com/in/aleksandra-leki%C4%87-58274b4b?trk=people-guest_people_search-card" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="https://github.com/control-protection-grids-tudelft"><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0000-0003-2727-0767"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Aleksandra Lekić",
-               "position":"Associate Professor, TUDelft",
-               "img":"../images/head_photo/a.lekic.jpg",
-               "bio":"Aleksandra received B.S., M.S., and Ph.D. degrees in electrical engineering from the School of Electrical Engineering, University of Belgrade, Belgrade, Serbia, in 2012, 2013, and 2017, respectively. Between 2012 and 2018, she was a Teaching Assistant with the School of Electrical Engineering, University of Belgrade, and an Assistant Professor from 2018 to 2019. In 2019, she worked as a Postdoctoral Researcher at the Department of Electrical Engineering ESAT – ELECTA, KU Leuven, and in the Institute EnergyVille, Genk, Belgium. Between 2020-2025, Aleksandra worked as an Assistant Professor at TU Delft, Faculty of Electrical Engineering, Mathematics and Computer Science, where she is now an Associate Professor. Aleksandra leads a team of researchers specializing in the Control of HVDC/AC power systems. She is an Associate Editor in the International Journal of Electrical Power & Energy Systems, Elsevier. Aleksandra represents TU Delft in the General Assembly in the CRESYM organization, committed to open-source software development for the electrical grids.",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
-
-      <article class="member" data-role="Postdoc Researcher" data-tags="DQNsym, Dynamic-phasor, " data-name="Robert Dimitrovski">
-        <div class="top">
-          <div class="avatar">
-            <img src=" " alt="Robert Dimitrovski" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Robert Dimitrovski">AL</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Robert Dimitrovski</h3>
-            <p class="role">Postdoc Researcher</p>
-            <div class="tags">
-              <span class="tag">DQNsym</span><span class="tag">Funding</span><span class="tag">Supervision</span>
+            <p class="bio">Development of the mathematical framework, design of the toolbox, different functionality interconnections, harmonic stability solver, supervision, and acquisition of the funding.</p>
+            <div class="actions">
+              <div class="social">
+                <a href="https://scholar.google.com/citations?user=xwCWAb0AAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:a.lekic@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="https://nl.linkedin.com/in/aleksandra-leki%C4%87-58274b4b?trk=people-guest_people_search-card" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/control-protection-grids-tudelft"><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0000-0003-2727-0767"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Aleksandra Lekić",
+                  "position":"Associate Professor, TUDelft",
+                  "img":"../images/head_photo/a.lekic.jpg",
+                  "bio":"Aleksandra received B.S., M.S., and Ph.D. degrees in electrical engineering from the School of Electrical Engineering, University of Belgrade, Belgrade, Serbia, in 2012, 2013, and 2017, respectively. Between 2012 and 2018, she was a Teaching Assistant with the School of Electrical Engineering, University of Belgrade, and an Assistant Professor from 2018 to 2019. In 2019, she worked as a Postdoctoral Researcher at the Department of Electrical Engineering ESAT – ELECTA, KU Leuven, and in the Institute EnergyVille, Genk, Belgium. Between 2020-2025, Aleksandra worked as an Assistant Professor at TU Delft, Faculty of Electrical Engineering, Mathematics and Computer Science, where she is now an Associate Professor. Aleksandra leads a team of researchers specializing in the Control of HVDC/AC power systems. She is an Associate Editor in the International Journal of Electrical Power & Energy Systems, Elsevier. Aleksandra represents TU Delft in the General Assembly in the CRESYM organization, committed to open-source software development for the electrical grids.",
+                  "tags":[""]
+                }'>View</a>
             </div>
-          </div>
-        </div>
-        <p class="bio"> Dynamic phasor formulation, development of a core of DQNsym, funding acquisition and supervision.</p>
-        <div class="actions">
-          <div class="social">
-            <a href="https://scholar.google.com/citations?user=OXjcVGkAAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:Robert.Dimitrovski@tennet.eu" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="https://de.linkedin.com/in/robert-dimitrovski?trk=people-guest_people_search-card" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href=""><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0000-0002-9775-3265"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Robert Dimitrovski",
-               "position":"Coordinator, TenneT",
-               "img": "../images/head_photo/r.dimitrovski.jpg",
-               "bio":"Robert Dimitrovski received the M.Sc. degree in electrical power engineering from the Brandenburg University of Technology, Cottbus, Germany, in 2011, and the Ph.D. degree in electrical power engineering from the Friedrich-Alexander-Universität Erlangen-Nürnberg, Germany, in 2021. From 2011 to 2014, he was with Siemens AG, Germany, Smart Grid Division, where he was responsible for the real-time testing of various SIPROTEC relay protection devices.,Since 2020, he has been with TenneT TSO GmbH with Energy System Planning / Grid Analysis department. Within TenneT, he is responsible for the EU Funded Project HVDC-Wise. He is involved in various projects related to analysis of electrical power systems and the development of collaborative open-source energy system simulation tools. He is also a Member of the ENTSO-e group Security and Operations of tomorrow, where he is leading the Grid Assessment workstream and a Member of the Cigre working group C4/B4.52.",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
+          </article>
 
-      <article class="member" data-role="Postdoc Researcher" data-tags="OPF, Modeling, Solution" data-name="Hai-Xiao Li">
-        <div class="top">
-          <div class="avatar">
-            <img src="" alt="Hai-Xiao Li" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Hai-Xiao Li">ZM</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Hai-Xiao Li</h3>
-            <p class="role">Postdoc Researcher</p>
-            <div class="tags">
-              <span class="tag">OPF</span><span class="tag">Modeling</span><span class="tag">Solution</span>
+          <article class="member" data-role="Postdoc Researcher" data-tags="DQNsym, Dynamic-phasor, " data-name="Robert Dimitrovski">
+            <div class="top">
+              <div class="avatar">
+                <img src=" " alt="Robert Dimitrovski" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Robert Dimitrovski">AL</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Robert Dimitrovski</h3>
+                <p class="role">Postdoc Researcher</p>
+                <div class="tags">
+                  <span class="tag">DQNsym</span><span class="tag">Funding</span><span class="tag">Supervision</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <p class="bio">Design of the power flow strategy, and formulation of the power flow solution</p>
-        <div class="actions">
-          <div class="social">
-          <div class="social">
-            <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:haixiaoli.ee@gmail.com" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="https://github.com/HLi199305-ee"><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0000-0001-5659-503X"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Hai-Xiao Li",
-               "position":"Postdoc, TUDelft",
-               "img":"../images/head_photo/h.li.jpg",
-               "bio":"Haixiao Li received his B.E. and Ph.D. degrees in electrical engineering from the Department of Electrical Engineering, Chongqing University, Chongqing, China, in 2015 and 2021, respectively. His main research interests include optimal power flow analysis of AC/DC hybrid power systems.",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
-
-      <article class="member" data-role="PHD Student" data-tags="Dynamic-phasor, Modeling, Implementation" data-name="Saif Alsarayreh">
-        <div class="top">
-          <div class="avatar">
-            <img src=" " alt="Saif Alsarayreh" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Saif Alsarayreh">ZM</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Saif Alsarayreh</h3>
-            <p class="role">PHD Student</p>
-            <div class="tags">
-              <span class="tag">Dynamic-phasor</span><span class="tag">Modeling</span><span class="tag">Implementation</span>
+            <p class="bio"> Dynamic phasor formulation, development of a core of DQNsym, funding acquisition and supervision.</p>
+            <div class="actions">
+              <div class="social">
+                <a href="https://scholar.google.com/citations?user=OXjcVGkAAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:Robert.Dimitrovski@tennet.eu" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="https://de.linkedin.com/in/robert-dimitrovski?trk=people-guest_people_search-card" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0000-0002-9775-3265"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Robert Dimitrovski",
+                  "position":"Coordinator, TenneT",
+                  "img": "../images/head_photo/r.dimitrovski.jpg",
+                  "bio":"Robert Dimitrovski received the M.Sc. degree in electrical power engineering from the Brandenburg University of Technology, Cottbus, Germany, in 2011, and the Ph.D. degree in electrical power engineering from the Friedrich-Alexander-Universität Erlangen-Nürnberg, Germany, in 2021. From 2011 to 2014, he was with Siemens AG, Germany, Smart Grid Division, where he was responsible for the real-time testing of various SIPROTEC relay protection devices.,Since 2020, he has been with TenneT TSO GmbH with Energy System Planning / Grid Analysis department. Within TenneT, he is responsible for the EU Funded Project HVDC-Wise. He is involved in various projects related to analysis of electrical power systems and the development of collaborative open-source energy system simulation tools. He is also a Member of the ENTSO-e group Security and Operations of tomorrow, where he is leading the Grid Assessment workstream and a Member of the Cigre working group C4/B4.52.",
+                  "tags":[""]
+                }'>View</a>
             </div>
-          </div>
-        </div>
-        <p class="bio">Dynamic phasor formulation, model design, and implementation</p>
-        <div class="actions">
-          <div class="social">
-          <div class="social">
-            <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:s.alsarayreh@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href=""><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0000-0002-8037-8665"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Saif Alsarayreh",
-               "position":"PHD Student, TUDelft",
-               "img":"../images/head_photo/s.alsarayreh.jpeg",
-               "bio":"Saif Alsarayreh received the Bsc. Degree in Electrical Power and Control Engineering from Mutah University, Al-Karak, Jordan, in 2016. M.Sc. in Electrical Power Systems from Budapest University of Technology and Economics, Budapest, Hungary, in 2019. His research interests include Real-time modeling and simulation, power systems mathematical modeling, electric vehicle power systems, and electric vehicle charging systems integration. Previously, he was with Jaguar Land Rover as Lead HV LV Power System Engineer. He joins TU Delft as a doctoral research student within the framework of the Harmony project",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
+          </article>
 
-      <article class="member" data-role="Postdoc Researcher" data-tags="Toolbox, Programming" data-name="Azadeh Kermansaravi">
-        <div class="top">
-          <div class="avatar">
-            <img src="images/team/A.Kermansaravi" alt="Azadeh Kermansaravi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Azadeh Kermansaravi">ZM</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Azadeh Kermansaravi</h3>
-            <p class="role">Postdoc Researcher</p>
-            <div class="tags">
-              <span class="tag">Toolbox</span><span class="tag">Programming</span>
+          <article class="member" data-role="Postdoc Researcher" data-tags="OPF, Modeling, Solution" data-name="Hai-Xiao Li">
+            <div class="top">
+              <div class="avatar">
+                <img src="" alt="Hai-Xiao Li" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Hai-Xiao Li">ZM</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Hai-Xiao Li</h3>
+                <p class="role">Postdoc Researcher</p>
+                <div class="tags">
+                  <span class="tag">OPF</span><span class="tag">Modeling</span><span class="tag">Solution</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <p class="bio"> programming of the part of the toolbox</p>
-        <div class="actions">
-          <div class="social">
-          <div class="social">
-            <a href="https://scholar.google.com/citations?user=r0e5BqYAAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:a.kermansaravi@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="https://nl.linkedin.com/in/zeinab-azadeh-kermansaravi-researcher-ai-data-scientist" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="https://github.com/Resources-aks"><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0009-0002-0708-7543"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Azadeh Kermansaravi",
-               "position":"Postdoc, TUDelft",
-               "img":"../images/head_photo/a.kermansaravi.jpg",
-               "bio": "Azadeh Kermansaravi received a Ph.D. in Software Engineering from the Department of Computer and Software Engineering, Polytechnique Montreal, Canada, in 2019, following a maste&apos;s degree in Software Engineering from the University of Babol, Iran, in 2013. She has since served as a researcher and AI specialist in Canada, focusing on various AI applications spanning the energy, travel, and manufacturing sectors. She is a postdoc researcher at TU Delft, EEMCS, and is part of the Intelligent Electrical Power Grids group. Her research interests include AI optimizations, RL-based controllers, and the integration of machine learning in power electronics interfaced power systems.",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
-
-      <article class="member" data-role="Engineer" data-tags="Documentation, Installation setup, Testing" data-name="Yasel Quintero">
-        <div class="top">
-          <div class="avatar">
-            <img src="images/team/Y.Quintero" alt="Yasel Quintero" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="fallback" data-avatar="Yasel Quintero">ZM</div>
-          </div>
-          <div class="meta">
-            <h3 class="name">Yasel Quintero</h3>
-            <p class="role">Software Engineer</p>
-            <div class="tags">
-              <span class="tag">Documentation</span><span class="tag">Installation setup</span><span class="tag">Testing</span>
+            <p class="bio">Design of the power flow strategy, and formulation of the power flow solution</p>
+            <div class="actions">
+              <div class="social">
+              <div class="social">
+                <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:haixiaoli.ee@gmail.com" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/HLi199305-ee"><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0000-0001-5659-503X"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Hai-Xiao Li",
+                  "position":"Postdoc, TUDelft",
+                  "img":"../images/head_photo/h.li.jpg",
+                  "bio":"Haixiao Li received his B.E. and Ph.D. degrees in electrical engineering from the Department of Electrical Engineering, Chongqing University, Chongqing, China, in 2015 and 2021, respectively. His main research interests include optimal power flow analysis of AC/DC hybrid power systems.",
+                  "tags":[""]
+                }'>View</a>
             </div>
-          </div>
-        </div>
-        <p class="bio"> Documentation, installation setup, cross-platform compatibility, testing, issuing, release</p>
-        <div class="actions">
-          <div class="social">
-            <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
-            <a href="mailto:Y.Quintero@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
-            <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="https://github.com/yiquintero"><i class="bi bi-github"></i></a>
-            <a href="https://orcid.org/0000-0003-4324-5350"
-              class="orcid" title="ORCID" aria-label="ORCID"
-              target="_blank" rel="me noopener">
-              <i class="fa-brands fa-orcid"></i>
-            </a>
-          </div>
-          <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
-             data-profile='{
-               "name":"Yasel Quintero",
-               "position":"Software Engineer, TUDelft",
-               "img":"../images/head_photo/y.quintero.png",
-               "bio": "Yasel Qunitero work as a Research Software Engineer (RSE) at the Digital Competence Center and the ICT-Innovation Department. In this role, she provides software support to researchers across all TU-Delft faculties, either through hands-on project collaborations or short consultations. As an experienced RSE, she have worked on a variety of projects, primarily in the fields of computational physics and engineering. Her work has focused on developing desktop and high-performance computing applications for numerical solvers, with particular experience in deploying and optimizing code on HPC clusters. Before joining TU Delft, she spent several years at Imperial College London, developing C++ applications in the Mechanical Engineering Department and actively participating in the London RSE Community. she has an MSc in High Performance Computing with Data Science from the University of Edinburgh and a BSc in Physics from the University of Sonora, Mexico.",
-               "tags":[""]
-             }'>View</a>
-        </div>
-      </article>
+          </article>
 
+          <article class="member" data-role="PHD Student" data-tags="Dynamic-phasor, Modeling, Implementation" data-name="Saif Alsarayreh">
+            <div class="top">
+              <div class="avatar">
+                <img src=" " alt="Saif Alsarayreh" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Saif Alsarayreh">ZM</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Saif Alsarayreh</h3>
+                <p class="role">PHD Student</p>
+                <div class="tags">
+                  <span class="tag">Dynamic-phasor</span><span class="tag">Modeling</span><span class="tag">Implementation</span>
+                </div>
+              </div>
+            </div>
+            <p class="bio">Dynamic phasor formulation, model design, and implementation</p>
+            <div class="actions">
+              <div class="social">
+              <div class="social">
+                <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:s.alsarayreh@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0000-0002-8037-8665"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Saif Alsarayreh",
+                  "position":"PHD Student, TUDelft",
+                  "img":"../images/head_photo/s.alsarayreh.jpeg",
+                  "bio":"Saif Alsarayreh received the Bsc. Degree in Electrical Power and Control Engineering from Mutah University, Al-Karak, Jordan, in 2016. M.Sc. in Electrical Power Systems from Budapest University of Technology and Economics, Budapest, Hungary, in 2019. His research interests include Real-time modeling and simulation, power systems mathematical modeling, electric vehicle power systems, and electric vehicle charging systems integration. Previously, he was with Jaguar Land Rover as Lead HV LV Power System Engineer. He joins TU Delft as a doctoral research student within the framework of the Harmony project",
+                  "tags":[""]
+                }'>View</a>
+            </div>
+          </article>
+
+          <article class="member" data-role="Postdoc Researcher" data-tags="Toolbox, Programming" data-name="Azadeh Kermansaravi">
+            <div class="top">
+              <div class="avatar">
+                <img src="images/team/A.Kermansaravi" alt="Azadeh Kermansaravi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Azadeh Kermansaravi">ZM</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Azadeh Kermansaravi</h3>
+                <p class="role">Postdoc Researcher</p>
+                <div class="tags">
+                  <span class="tag">Toolbox</span><span class="tag">Programming</span>
+                </div>
+              </div>
+            </div>
+            <p class="bio"> programming of the part of the toolbox</p>
+            <div class="actions">
+              <div class="social">
+              <div class="social">
+                <a href="https://scholar.google.com/citations?user=r0e5BqYAAAAJ&hl=en" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:a.kermansaravi@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="https://nl.linkedin.com/in/zeinab-azadeh-kermansaravi-researcher-ai-data-scientist" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/Resources-aks"><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0009-0002-0708-7543"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Azadeh Kermansaravi",
+                  "position":"Postdoc, TUDelft",
+                  "img":"../images/head_photo/a.kermansaravi.jpg",
+                  "bio": "Azadeh Kermansaravi received a Ph.D. in Software Engineering from the Department of Computer and Software Engineering, Polytechnique Montreal, Canada, in 2019, following a maste&apos;s degree in Software Engineering from the University of Babol, Iran, in 2013. She has since served as a researcher and AI specialist in Canada, focusing on various AI applications spanning the energy, travel, and manufacturing sectors. She is a postdoc researcher at TU Delft, EEMCS, and is part of the Intelligent Electrical Power Grids group. Her research interests include AI optimizations, RL-based controllers, and the integration of machine learning in power electronics interfaced power systems.",
+                  "tags":[""]
+                }'>View</a>
+            </div>
+          </article>
+
+          <article class="member" data-role="Engineer" data-tags="Documentation, Installation setup, Testing" data-name="Yasel Quintero">
+            <div class="top">
+              <div class="avatar">
+                <img src="images/team/Y.Quintero" alt="Yasel Quintero" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="fallback" data-avatar="Yasel Quintero">ZM</div>
+              </div>
+              <div class="meta">
+                <h3 class="name">Yasel Quintero</h3>
+                <p class="role">Software Engineer</p>
+                <div class="tags">
+                  <span class="tag">Documentation</span><span class="tag">Installation setup</span><span class="tag">Testing</span>
+                </div>
+              </div>
+            </div>
+            <p class="bio"> Documentation, installation setup, cross-platform compatibility, testing, issuing, release</p>
+            <div class="actions">
+              <div class="social">
+                <a href="" title="Google Scholar" aria-label="Scholar"><i class="bi bi-mortarboard"></i></a>
+                <a href="mailto:Y.Quintero@tudelft.nl" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                <a href="" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/yiquintero"><i class="bi bi-github"></i></a>
+                <a href="https://orcid.org/0000-0003-4324-5350"
+                  class="orcid" title="ORCID" aria-label="ORCID"
+                  target="_blank" rel="me noopener">
+                  <i class="fa-brands fa-orcid"></i>
+                </a>
+              </div>
+              <a class="btn-more" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"
+                data-profile='{
+                  "name":"Yasel Quintero",
+                  "position":"Software Engineer, TUDelft",
+                  "img":"../images/head_photo/y.quintero.png",
+                  "bio": "Yasel Qunitero work as a Research Software Engineer (RSE) at the Digital Competence Center and the ICT-Innovation Department. In this role, she provides software support to researchers across all TU-Delft faculties, either through hands-on project collaborations or short consultations. As an experienced RSE, she have worked on a variety of projects, primarily in the fields of computational physics and engineering. Her work has focused on developing desktop and high-performance computing applications for numerical solvers, with particular experience in deploying and optimizing code on HPC clusters. Before joining TU Delft, she spent several years at Imperial College London, developing C++ applications in the Mechanical Engineering Department and actively participating in the London RSE Community. she has an MSc in High Performance Computing with Data Science from the University of Edinburgh and a BSc in Physics from the University of Sonora, Mexico.",
+                  "tags":[""]
+                }'>View</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal（保留一个，不重复） -->
   <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -533,9 +827,11 @@
     </div>
   </div>
 
+  <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    /* 主题切换（完全对齐 getting-started 的 KEY 与逻辑） */
     (function(){
       const root = document.documentElement;
       const KEY  = "harmony-theme";
@@ -544,64 +840,264 @@
       const saved = localStorage.getItem(KEY);
       if (saved === "dark") root.classList.add("theme-dark");
       if (saved === "light") root.classList.remove("theme-dark");
-      if (saved === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+      if (saved === null && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
         root.classList.add("theme-dark");
       }
+
       btn?.addEventListener("click", () => {
         root.classList.toggle("theme-dark");
         const isDark = root.classList.contains("theme-dark");
         localStorage.setItem(KEY, isDark ? "dark" : "light");
       });
+    })();
+  </script>
 
-      // 当前页高亮
-      const current = (location.pathname.split('/').pop() || '').toLowerCase();
-      document.querySelectorAll('.navbar .nav-link[data-match]').forEach(a=>{
-        const list = a.getAttribute('data-match').split(',').map(s=>s.trim().toLowerCase());
-        if (list.includes(current)) {
-          a.classList.add('active');
-          a.setAttribute('aria-current','page');
-        }
-      });
+  <script>
+    /* ✅ 顶部导航：点击哪里，哪里变紫（并且进入新页面后仍能正确高亮）
+       - getting-started 本身只靠 .active 样式，这里把“active 赋值”补齐了
+    */
+    (function(){
+      const here = (location.pathname.split("/").pop() || "").toLowerCase();
 
-      // 头像 
-      document.querySelectorAll('.avatar .fallback').forEach(el=>{
-        const name = (el.getAttribute('data-avatar') || '').trim();
-        if (name) {
-          const init = name.split(/\s+/).slice(0,2).map(s=>s[0]).join('').toUpperCase();
-          el.textContent = init;
-          let h = 0; for (let i=0;i<name.length;i++) h = (h*31 + name.charCodeAt(i))>>>0;
-          const hue = h % 360;
-          el.style.background = `linear-gradient(135deg, hsl(${hue} 30% 45%), hsl(${(hue+40)%360} 30% 35%))`;
-        }
-      });
+      // 清理 active
+      function clearActive(){
+        document.querySelectorAll(".navbar .nav-link.active").forEach(a=>a.classList.remove("active"));
+        document.querySelectorAll(".navbar .dropdown-item.active").forEach(a=>a.classList.remove("active"));
+      }
 
-      // 聚光灯效果
-      document.querySelectorAll('.member').forEach(card=>{
-        card.addEventListener('pointermove', (e)=>{
-          const r = card.getBoundingClientRect();
-          card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-          card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+      // 进入页面：根据 URL 自动给 active
+      function applyByUrl(){
+        clearActive();
+
+        // dropdown-item
+        document.querySelectorAll(".navbar .dropdown-item[href]").forEach(a=>{
+          const href = (a.getAttribute("href")||"").split("/").pop().toLowerCase();
+          if (href && href === here) a.classList.add("active");
+        });
+
+        // top-level nav-link（只有有 href 的才匹配）
+        document.querySelectorAll(".navbar .nav-link[href]").forEach(a=>{
+          const href = (a.getAttribute("href")||"").split("/").pop().toLowerCase();
+          if (href && href === here) a.classList.add("active");
+        });
+      }
+
+      // 点击时：立刻高亮（视觉上“点到哪里哪里紫”）
+      document.querySelectorAll(".navbar a.nav-link, .navbar a.dropdown-item").forEach(a=>{
+        a.addEventListener("click", ()=>{
+          clearActive();
+          a.classList.add("active");
         });
       });
 
-      // 
-      const modal = document.getElementById('profileModal');
-      modal.addEventListener('show.bs.modal', (ev)=>{
+      applyByUrl();
+    })();
+  </script>
+
+  <script>
+    /* 搜索面板开关（完全按 getting-started 的写法） */
+    (function(){
+      const openBtn  = document.getElementById("openSearch");
+      const bar      = document.getElementById("searchBar");
+      const input    = document.getElementById("searchBarInput");
+      const closeBtn = document.getElementById("searchBarClose");
+      if(!openBtn || !bar) return;
+
+      function open(){
+        bar.classList.add("show");
+        bar.setAttribute("aria-hidden","false");
+        input && (input.focus(), input.select());
+      }
+      function close(){
+        bar.classList.remove("show");
+        bar.setAttribute("aria-hidden","true");
+        input && (input.value = "");
+      }
+
+      openBtn.addEventListener("click", () => {
+        bar.classList.contains("show") ? close() : open();
+      });
+      closeBtn && closeBtn.addEventListener("click", close);
+
+      document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") close(); });
+      document.addEventListener("click", (e)=>{
+        if (!bar.contains(e.target) && !openBtn.contains(e.target)) close();
+      });
+    })();
+  </script>
+
+  <script>
+    /* 搜索高亮（完全按 getting-started：MIN_LEN=3、滚动到最后一个命中） */
+    (function(){
+      const input = document.getElementById("searchBarInput");
+      const panel = document.getElementById("searchBar");
+      if(!input || !panel) return;
+
+      const MIN_LEN = 3;
+
+      function clearHighlights(){
+        document.querySelectorAll(".search-hit").forEach(span=>{
+          const parent = span.parentNode;
+          while (span.firstChild) parent.insertBefore(span.firstChild, span);
+          parent.removeChild(span);
+          parent.normalize();
+        });
+      }
+
+      function highlightAll(term){
+        clearHighlights();
+        if(!term || term.length < MIN_LEN) return;
+
+        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const rx = new RegExp(escaped, "gi");
+
+        const nodes = [];
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node){
+            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            const p = node.parentNode;
+            if (!p) return NodeFilter.FILTER_REJECT;
+
+            const tag = p.nodeName.toLowerCase();
+            if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
+
+            // ✅ 与 getting-started 一样：排除 searchBar 和 navbar
+            if (p.closest("#searchBar") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
+
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+
+        let node;
+        while((node = walker.nextNode())) nodes.push(node);
+
+        const hits = [];
+        nodes.forEach(textNode=>{
+          const text = textNode.nodeValue;
+          rx.lastIndex = 0;
+
+          const matches = [];
+          let m;
+          while((m = rx.exec(text)) !== null){
+            matches.push([m.index, m.index + m[0].length]);
+            if (m.index === rx.lastIndex) rx.lastIndex++;
+          }
+          if (!matches.length) return;
+
+          for(let i = matches.length - 1; i >= 0; i--){
+            const [s,e] = matches[i];
+            const range = document.createRange();
+            range.setStart(textNode, s);
+            range.setEnd(textNode, e);
+
+            const mark = document.createElement("span");
+            mark.className = "search-hit";
+            range.surroundContents(mark);
+            hits.push(mark);
+          }
+        });
+
+        if(hits.length){
+          hits[hits.length - 1].scrollIntoView({behavior:"smooth", block:"center"});
+        }
+      }
+
+      input.addEventListener("input", ()=> highlightAll(input.value.trim()));
+      document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") clearHighlights(); });
+    })();
+  </script>
+
+  <script>
+    /* 左侧 About 折叠 + 当前页高亮（完全按 getting-started） */
+    (function(){
+      const accBtn = document.querySelector(".sidenav-acc");
+      const panel  = document.getElementById("aboutMenu");
+      const icon   = accBtn?.querySelector(".acc-icon");
+
+      function setExpanded(open){
+        if(!accBtn || !panel || !icon) return;
+        accBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        panel.hidden = !open;
+        icon.textContent = open ? "▾" : "▸";
+      }
+
+      accBtn?.addEventListener("click", ()=>{
+        const open = accBtn.getAttribute("aria-expanded") === "true";
+        setExpanded(!open);
+      });
+
+      const current = (location.pathname.split("/").pop() || "").toLowerCase();
+      const links = Array.from(document.querySelectorAll("#aboutMenu .list-group-item"));
+
+      let matched = false;
+      links.forEach(a=>{
+        const href = (a.getAttribute("href") || "").split("/").pop().toLowerCase();
+        const isActive = href && href === current;
+        a.classList.toggle("active", isActive);
+        if(isActive) matched = true;
+      });
+
+      setExpanded(matched);
+    })();
+  </script>
+
+  <script>
+    /* 根据 navbar 高度更新 sticky-top（完全按 getting-started） */
+    (function(){
+      const root = document.documentElement;
+      const nav  = document.querySelector("nav.navbar");
+      const bar  = document.getElementById("searchBar");
+      if(!nav) return;
+
+      let ticking = false;
+
+      function updateStickyTop(){
+        const rect = nav.getBoundingClientRect();
+        const top = Math.max(0, Math.floor(rect.bottom));
+        root.style.setProperty("--sticky-top", top + "px");
+        if(bar) bar.style.top = top + "px";
+        ticking = false;
+      }
+
+      function requestUpdate(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateStickyTop);
+      }
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+
+      updateStickyTop();
+    })();
+  </script>
+
+  <script>
+    /* Modal 内容填充（你原来的逻辑） */
+    (function(){
+      const modal = document.getElementById("profileModal");
+      if(!modal) return;
+
+      modal.addEventListener("show.bs.modal", (ev)=>{
         const btn = ev.relatedTarget;
         if (!btn) return;
+
         try{
-          const data = JSON.parse(btn.getAttribute('data-profile')||'{}');
-          modal.querySelector('#mName').textContent = data.name || 'Member';
-          modal.querySelector('#mRole').textContent = data.position || '';
-          const img = modal.querySelector('#mImg');
-          img.src = data.img || '';
-          img.alt = data.name || 'profile';
-          modal.querySelector('#mBio').textContent = data.bio || '';
-          const tagsWrap = modal.querySelector('#mTags');
-          tagsWrap.innerHTML = '';
-          (data.tags||[]).forEach(t=>{
-            const s = document.createElement('span');
-            s.className = 'tag';
+          const data = JSON.parse(btn.getAttribute("data-profile") || "{}");
+          modal.querySelector("#mName").textContent = data.name || "Member";
+          modal.querySelector("#mRole").textContent = data.position || "";
+
+          const img = modal.querySelector("#mImg");
+          img.src = data.img || "";
+          img.alt = data.name || "profile";
+
+          modal.querySelector("#mBio").textContent = data.bio || "";
+
+          const tagsWrap = modal.querySelector("#mTags");
+          tagsWrap.innerHTML = "";
+          (data.tags || []).forEach(t=>{
+            const s = document.createElement("span");
+            s.className = "tag";
             s.textContent = t;
             tagsWrap.appendChild(s);
           });
@@ -609,5 +1105,25 @@
       });
     })();
   </script>
+
+  <script>
+    /* 头像 fallback：首字母 + 稳定颜色 */
+    (function(){
+      document.querySelectorAll(".avatar .fallback").forEach(el=>{
+        const name = (el.getAttribute("data-avatar") || "").trim();
+        if (!name) return;
+
+        const init = name.split(/\s+/).slice(0,2).map(s=>s[0]).join("").toUpperCase();
+        el.textContent = init;
+
+        let h = 0;
+        for (let i=0;i<name.length;i++) h = (h*31 + name.charCodeAt(i))>>>0;
+        const hue = h % 360;
+        el.style.background = `linear-gradient(135deg, hsl(${hue} 30% 45%), hsl(${(hue+40)%360} 30% 35%))`;
+      });
+    })();
+  </script>
 </body>
 </html>
+
+
