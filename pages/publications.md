@@ -1,48 +1,42 @@
-# Publications
 
-This page lists peer-reviewed journal articles, conference papers, and technical reports related to the Harmony project.  
-For each item, links to the **DOI**, **publisher page**, **PDF (if available)**, and **code/data** are provided when possible.
+#### <i class="bi bi-calendar3"></i> 2026 year
+
+- **R. Dimitrovski**, **S. Alsarayreh**, **A. Lekić**, “A Novel Dynamic Phasor-based Mathematical Framework for
+Hybrid AC/DC Power System Simulation,” *IEEE Transactions on Power Delivery*, 2026 (under review).  
+**Links:** [PDF]() 
+
+- **A. Lekić**, **A. Kermansaravi**, **H. Li**, **Y. Quintero Lares**, **S. Alsarayreh**, **R. Dimitrovski**, “Advanced
+Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026 (abstract accpeted).  
+**Links:** [PDF]() 
+
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “implementation of an MMC Model for Dynamic Phasor State-
+space Solver,” *PSCC 2026*, 2026 (accpeted).  
+**Links:** [PDF]() 
+---
+
+#### <i class="bi bi-calendar3"></i> 2025 year 
+
+- R. Rane, **A. Kermansaravi**, P. Vergara, **A. Lekić**, “Transfer Learning Framework for Impedance Characterization of Modular Multilevel Converters,” *IEEE Transactions on Industry Applications*, 2025.  
+  **Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/243254955/Transfer_Learning_Framework_for_Impedance_Characterization_of_Modular_Multilevel_Converters.pdf) 
+
+- **H. Li**, P. Vergara, **R. Dimitrovski**, **A. Lekić**, “Nested Distributed Optimal Power Flow Toward VSC-Interconnected AC/MTDC Hybrid Grids,” *International Journal of Electrical Power & Energy Systems*, 2025.  
+**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/231655836/1-s2.0-S014206152400588X-main.pdf) 
+
+- **H. Li**, **A. Kermansaravi**, **R. Dimitrovskia**, **A. Lekić**, “OpFlowTools: A Cross-Language Benchmark of AC/DC Optimal Power Flow Solutions, *SoftwareX*, 2025.  
+**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/226742885/Distributed_Robust_Optimization_Method_for_AC_MTDC_Hybrid_Power_Systems_with_DC_Network_Cognizant.pdf) 
 
 ---
 
-## 2026
+#### <i class="bi bi-calendar3"></i> 2024 year
 
-### Journal Articles
-- **Author A**, Author B, Author C, “Title of the paper,” *IEEE Transactions on ...*, vol. X, no. Y, pp. 1–12, 2026.  
-  **DOI:** https://doi.org/10.xxxx/xxxxx  
-  **Links:** [Publisher](https://example.com) · [PDF](https://example.com) · [Code](https://github.com/...)  
-  **Keywords:** AC/DC OPF, MTDC, distributed optimization
+- A. Shetgaonkar, T. Karmonka, M. Popov, **A. Lekić**, “Enhanced Real-Time Multi-Terminal HVDC Power System Benchmark Models with Performance Evaluation Strategies,” *CIGRE Science & Engineering*, 2024.  
+  **Links:** [PDF](https://www.researchgate.net/profile/Ajay-Shetgaonkar/publication/379181541_Enhanced_Real-Time_Multi-Terminal_HVDC_Power_System_Benchmark_Models_with_Performance_Evaluation_Strategies/links/65fdd335d3a085514241992b/Enhanced-Real-Time-Multi-Terminal-HVDC-Power-System-Benchmark-Models-with-Performance-Evaluation-Strategies.pdf) 
 
-### Conference Papers
-- **Author A**, Author B, “Title of the paper,” *Proc. of ...*, City, Country, 2026.  
-  **DOI:** https://doi.org/10.xxxx/xxxxx  
-  **Links:** [Publisher](https://example.com) · [Slides](https://example.com)
+- S. Li, J. Wu, J.C. Vasquez, J. M. Guerrero, P. Palensky, **A. Lekić**, “Active Filter Parameter Tuning Method for Harmonic Voltage Mitigation in Wind Power Plants,” *PSCC 2024*, 2024.  
+**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/213018382/1-s2.0-S0378779624006126-main.pdf) 
 
----
+- **H. Li**, H. Ergun, D. V. Hertem, **A. Lekić**, “Scenario-oriented Multi-cut Generalized Benders Decomposition-Based Distributed OPF for AC/DC Hybrid Grids,” *2024 IEEE PES Innovative Smart Grid Technologies Europe (ISGT-Europe)*, 2024.  
+**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://repository.tudelft.nl/file/File_e0bf4b21-bce2-4aa3-98b1-fef130675e8b?preview=1) 
 
-## 2025
-
-### Journal Articles
-- **...**
-
-### Technical Reports / Deliverables
-- **Harmony Consortium**, “Deliverable Dx.y Title,” 2025.  
-  **Links:** [PDF](./files/Dx_y.pdf)
-
----
-
-## BibTeX
-
-> If you want to cite our work, you may copy BibTeX entries below.
-
-```bibtex
-@article{yourkey2026,
-  title   = {Title of the paper},
-  author  = {Author, A. and Author, B.},
-  journal = {IEEE Transactions on ...},
-  year    = {2026},
-  volume  = {X},
-  number  = {Y},
-  pages   = {1--12},
-  doi     = {10.xxxx/xxxxx}
-}
+- **H. Li**, **A. Lekić**, “Distributed Robust Optimization Method for AC/MTDC Hybrid Power Systems with DC Network Cognizant, *2024 International Conference on smart Energy Systems and Technologies (SEST)*, 2024.  
+**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/226742885/Distributed_Robust_Optimization_Method_for_AC_MTDC_Hybrid_Power_Systems_with_DC_Network_Cognizant.pdf) 
