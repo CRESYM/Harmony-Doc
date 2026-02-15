@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Nov. 11, 2025</p>
+      <p class="date">February 15, 2026</p>
     </div>
   </div>
   
@@ -119,33 +119,34 @@ window.Quarto = {
 <!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
 
 <a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-simple callout-tip callout-titled" title="Tip">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>This section details the <code>Impedance</code> model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.</em></p>
+<p>This section details the <strong>Impedance</strong> model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.</p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
+<section id="sec-math-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="sec-math-modeling">Mathematical modeling</h2>
 <p>Impedance is created as a series impedance model as shown in <a href="#fig-impedance_model" class="quarto-xref">Figure&nbsp;1</a>. Impedance values can be given symbolically (dependent on angular frequency) and as a specific value.</p>
 <div id="fig-impedance_model" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Impedance model">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-impedance_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/impedance_model.jpg" class="img-fluid figure-img" alt="Impedance model" width="200">
+<img src="assets/impedance_model.jpg" class="img-fluid figure-img" alt="Impedance model" width="220">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-impedance_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Impedance model
 </figcaption>
 </figure>
 </div>
+<section id="sec-y-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="sec-y-parameters">Y-parameter formulation</h3>
 <p>For the impedance, Y parameters are calculated as:</p>
 <p><span class="math display">\[\begin{equation}
 \label{eq:1}
@@ -155,10 +156,11 @@ Y = \begin{bmatrix}
 \end{bmatrix},
 \quad i \in \{1, \ldots, n\},
 \end{equation}\]</span></p>
-<p>In (<span class="math inline">\(\ref{eq:1}\)</span>), <span class="math inline">\(n\)</span> is several phases. It must be noted here that the Y matrix is defined as a diagonal one as it is assumed that no mutual couplings exist between the three phases.</p>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+<p>In (<span class="math inline">\(\ref{eq:1}\)</span>), <span class="math inline">\(n\)</span> is the number of phases. The Y matrix is diagonal because mutual coupling between phases is neglected.</p>
+</section>
+</section>
+<section id="sec-code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-code-explanation">Code explanation</h2>
 <!--
 **Example:**
 
@@ -286,6 +288,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

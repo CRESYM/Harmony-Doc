@@ -36,17 +36,17 @@ format:
 <a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
 
 
-:::{.callout-tip}
-*This section details the `Impedance` model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.*
+::: {.callout-tip appearance="simple" icon="true" title="Tip"}
+This section details the **Impedance** model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
+## Mathematical modeling {#sec-math-modeling}
 
-Impedance is created as a series impedance model as shown in @fig-impedance_model.  Impedance values can be given symbolically (dependent on angular frequency) and as a specific value. 
+Impedance is created as a series impedance model as shown in @fig-impedance_model. Impedance values can be given symbolically (dependent on angular frequency) and as a specific value.
 
-![Impedance model](assets/impedance_model.jpg){#fig-impedance_model fig-alt="Impedance model" width="200px"}
+![Impedance model](assets/impedance_model.jpg){#fig-impedance_model fig-alt="Impedance model" width="220px"}
+
+### Y-parameter formulation {#sec-y-parameters}
 
 For the impedance, Y parameters are calculated as:
 
@@ -59,11 +59,9 @@ Y = \begin{bmatrix}
 \quad i \in \{1, \ldots, n\},
 \end{equation}
 
-In (\ref{eq:1}), $n$ is several phases.  It must be noted here that the Y matrix is defined as a diagonal one as it is assumed that no mutual couplings exist between the three phases.
+In (\ref{eq:1}), $n$ is the number of phases. The Y matrix is diagonal because mutual coupling between phases is neglected.
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## Code explanation {#sec-code-explanation}
 
 
 <!--
