@@ -36,8 +36,8 @@ format:
 <a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
 
 
-::: {.callout-tip appearance="simple" icon="true" title="Tip"}
-This section details the **Impedance** model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.
+:::{.callout-tip}
+This section details the `Impedance` model. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.
 :::
 
 ## Mathematical modeling {#sec-math-modeling}

@@ -37,21 +37,16 @@ format:
 
 
 :::{.callout-tip}
-*This section details the \texttt{Inductor} model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.*
+*This section details the `Inductor` model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.*
 :::
 
 
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
 
----
+## Mathematical Modeling
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Single-Phase Inductor
-</div>
 
+### Single-Phase Inductor
 
 For a single-phase system, the `Inductor` models a basic inductive component.  
 In the frequency domain, its impedance is:
@@ -75,20 +70,12 @@ v(t) = L \frac{di(t)}{dt}
 
 The MNA formulation for a single-phase inductor incorporates this relationship.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Three-Phase Inductor Model
-</div>
+### Three-Phase Inductor Model
 
 For multi-phase systems, such as a three-phase network, the `Inductor` class handles each phase independently. Each phase ($a$, $b$, $c$) can have its own inductance value. The model assumes **no mutual coupling** between phases, simplifying the representation for both balanced and unbalanced cases.  
 This allows accurate simulation of inductive effects for each individual phase.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Mathematical Representation
-</div>
+### Mathematical Representation
 
 The `Inductor` class supports two primary mathematical representations, depending on the selected constructor:
 
@@ -150,13 +137,7 @@ The `Inductor` class supports two primary mathematical representations, dependin
     $A_{\text{r1}, I_L} = -1$ (current leaving node $n_1$),  
     and $A_{\text{r2}, I_L} = +1$ (current entering node $n_2$)
 
-
----
-
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Nov. 11, 2025</p>
+      <p class="date">February 16, 2026</p>
     </div>
   </div>
   
@@ -129,10 +129,8 @@ Tip
 <p><em>This section details the <code>Admittance</code> model, which represents the admittance behavior of electrical components in single- or multi-phase systems. It supports numerical and symbolic parameters, allowing flexible representation of coupled phase interactions and frequency-dependent characteristics.</em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>An admittance is constructed as an element by calling the constructor: <code>Admittance(const std::string\&amp; symbol, int pins, DenseMatrix values)</code>.</p>
 <p>This constructor creates an admittance element with a specified number of input/output pins. The number of input pins is equal to the number of output pins. The values provided for admittance can either be numerical or symbolic, and they are passed as a matrix. The pins are labeled as 1.1, 1.2, …, 1.n for input pins, and 2.1, 2.2, …, 2.n for output pins, where is the number of pins. The admittance values are given in Siemens and can have symbolic values (e.g., <code>values = 1/s</code> for a symbolic admittance where <code>{s}</code> is the Laplace variable).</p>
 <p>For the case of a single-phase system (1x1 impedance), the values matrix will contain a single entry.</p>
@@ -145,10 +143,10 @@ Tip
 </ul>
 <p>For example, a multi-phase system can be represented as: <code>Admittance("Z", 3, DenseMatrix{[1000, 2000, 3000]})</code> creates a three-phase admittance with different diagonal values for each phase.</p>
 <p>In this example, the Laplace operator <code>s</code> can be used to describe the frequency-dependent behavior of the system. The admittance may also be represented as a transfer function in terms of <code>s</code>, which can be either polynomial, nonlinear or include non-integer powers of <code>s</code>. For example, a time delay might be represented as an exponential function of <code>s</code>.</p>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
 
 </main>
 <!-- /main column -->

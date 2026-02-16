@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2027</p>
+      <p class="date">February 16, 2026</p>
     </div>
   </div>
   
@@ -126,26 +126,21 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>This section details the model implemented in this project, which represents an electrical capacitor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase capacitor configurations, allowing for precise modeling of capacitive effects across various system setups.</em></p>
+<p><em>This section details the <code>Capacitor</code> model implemented in this project, which represents an electrical capacitor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase capacitor configurations, allowing for precise modeling of capacitive effects across various system setups.</em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Single-Phase Capacitor</p>
-</div>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<section id="single-phase-capacitor" class="level3">
+<h3 class="anchored" data-anchor-id="single-phase-capacitor">Single-Phase Capacitor</h3>
 <p><code>Capacitor</code> models a basic capacitive component. In the frequency domain, its impedance is <span class="math inline">\(Z_C = 1 / (j\omega C)\)</span>, where <span class="math inline">\(j\)</span> is the imaginary unit, <span class="math inline">\(\omega\)</span> is the angular frequency, and <span class="math inline">\(C\)</span> is the capacitance. Its admittance is <span class="math inline">\(Y_C = j\omega C\)</span>. In the time domain, the current through an ideal capacitor is proportional to the rate of change of voltage across it, described by <span class="math inline">\(i(t) = C \frac{dv(t)}{dt}\)</span>. The MNA formulation for a single-phase capacitor incorporates this relationship.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Three-Phase Capacitor Model</p>
-</div>
+</section>
+<section id="three-phase-capacitor-model" class="level3">
+<h3 class="anchored" data-anchor-id="three-phase-capacitor-model">Three-Phase Capacitor Model</h3>
 <p>For multi-phase systems, such as a three-phase network, the <code>Capacitor</code> class handles each phase independently. Each phase (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Mathematical Representation</p>
-</div>
+</section>
+<section id="mathematical-representation" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-representation">Mathematical Representation</h3>
 <p>The <code>Capacitor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
 <ol type="1">
 <li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — This model is used for steady-state AC analysis. For a single-phase capacitor with capacitance <span class="math inline">\(C\)</span>, the admittance (<span class="math inline">\(Y\)</span>) is given by: <span class="math display">\[\begin{equation}
@@ -183,10 +178,11 @@ G_a &amp; 0 &amp; 0 &amp; -G_a &amp; 0 &amp; 0 \\
 <li><p>If connected to node <span class="math inline">\(n2\)</span> with index <span class="math inline">\(r2\)</span>: <code>matrix.set(row, r2, minus_one);</code> which implies <span class="math inline">\(-1 \cdot V_{n2}\)</span> in the capacitor’s branch equation row. And <code>matrix.set(r2, row, mul(minus_one, Csym));</code> meaning a contribution of <span class="math inline">\(-C \cdot V_C\)</span> into the KCL equation for node <span class="math inline">\(n2\)</span>.</p></li>
 </ul>
 <p>This implies the row for the capacitor might be formulated as <span class="math inline">\(V_{n1} - V_{n2} = V_C\)</span>, and then the KCL equations use <span class="math inline">\(I_C = C \cdot V_C\)</span> and <span class="math inline">\(-I_C = -C \cdot V_C\)</span>.</p>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
 
 </main>
 <!-- /main column -->

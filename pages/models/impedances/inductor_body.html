@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2027</p>
+      <p class="date">February 15, 2027</p>
     </div>
   </div>
   
@@ -129,16 +129,13 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>This section details the model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.</em></p>
+<p><em>This section details the <code>Inductor</code> model implemented in this project, which represents an electrical inductor component within the simulation of a power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase inductor configurations, allowing for precise modeling of inductive effects across various system setups.</em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Single-Phase Inductor</p>
-</div>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<section id="single-phase-inductor" class="level3">
+<h3 class="anchored" data-anchor-id="single-phase-inductor">Single-Phase Inductor</h3>
 <p>For a single-phase system, the <code>Inductor</code> models a basic inductive component.<br>
 In the frequency domain, its impedance is:</p>
 <p><span class="math display">\[\begin{equation}
@@ -154,16 +151,14 @@ Y_L = \frac{1}{j\omega L}
 v(t) = L \frac{di(t)}{dt}
 \end{equation}\]</span></p>
 <p>The MNA formulation for a single-phase inductor incorporates this relationship.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Three-Phase Inductor Model</p>
-</div>
+</section>
+<section id="three-phase-inductor-model" class="level3">
+<h3 class="anchored" data-anchor-id="three-phase-inductor-model">Three-Phase Inductor Model</h3>
 <p>For multi-phase systems, such as a three-phase network, the <code>Inductor</code> class handles each phase independently. Each phase (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>) can have its own inductance value. The model assumes <strong>no mutual coupling</strong> between phases, simplifying the representation for both balanced and unbalanced cases.<br>
 This allows accurate simulation of inductive effects for each individual phase.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Mathematical Representation</p>
-</div>
+</section>
+<section id="mathematical-representation" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-representation">Mathematical Representation</h3>
 <p>The <code>Inductor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
 <ol type="1">
 <li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — used for steady-state AC analysis.</p>
@@ -210,10 +205,10 @@ The matrix entries for an inductor branch are defined as follows:</p>
 and <span class="math inline">\(A_{\text{r2}, I_L} = +1\)</span> (current entering node <span class="math inline">\(n_2\)</span>)</p></li>
 </ul></li>
 </ol>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
 <!--
 **Example:**
 
@@ -341,6 +336,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

@@ -30,35 +30,21 @@ format:
 ---
 
 :::{.callout-tip}
-*This section details the \texttt{Capacitor} model implemented in this project, which represents an electrical capacitor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase capacitor configurations, allowing for precise modeling of capacitive effects across various system setups.*
+*This section details the `Capacitor` model implemented in this project, which represents an electrical capacitor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) for the time domain. It is designed to handle single-phase and multi-phase capacitor configurations, allowing for precise modeling of capacitive effects across various system setups.*
 :::
 
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
+## Mathematical Modeling
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Single-Phase Capacitor
-</div>
+### Single-Phase Capacitor
 
 `Capacitor` models a basic capacitive component. In the frequency domain, its impedance is $Z_C = 1 / (j\omega C)$, where $j$ is the imaginary unit, $\omega$ is the angular frequency, and $C$ is the capacitance. Its admittance is $Y_C = j\omega C$. In the time domain, the current through an ideal capacitor is proportional to the rate of change of voltage across it, described by $i(t) = C \frac{dv(t)}{dt}$. The MNA formulation for a single-phase capacitor incorporates this relationship.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Three-Phase Capacitor Model
-</div>
+### Three-Phase Capacitor Model
 
 For multi-phase systems, such as a three-phase network, the `Capacitor` class handles each phase independently.  Each phase ($a$, $b$, $c$) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Mathematical Representation
-</div>
+### Mathematical Representation
 
 The `Capacitor` class supports two primary mathematical representations, depending on the selected constructor:
 
@@ -110,9 +96,4 @@ The provided `writeMNAmatrix` implementation, however, sets up equations of a sl
 
  This implies the row for the capacitor might be formulated as $V_{n1} - V_{n2} = V_C$, and then the KCL equations use $I_C = C \cdot V_C$ and $-I_C = -C \cdot V_C$.
 
----
-
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation

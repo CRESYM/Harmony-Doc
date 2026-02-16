@@ -33,32 +33,17 @@ format:
 *This section details the `Resistor` model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.*
 :::
 
+## Mathematical Modeling
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Single-Phase Resistor
-</div>
+### Single-Phase Resistor
 
 For a single-phase system, the `Resistor` models a basic resistive component. In the frequency domain, its impedance is $Z_R = R$, where $R$ is the resistance. Its admittance is $Y_R = 1 / R$. In the time domain, the voltage across an ideal resistor is directly proportional to the current flowing through it, described by Ohm's Law: $v(t) = R i(t)$. The MNA formulation for a single-phase resistor directly incorporates its conductance into the nodal admittance matrix.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Three-Phase Resistor Model
-</div>
+### Three-Phase Resistor Model
 
 For multi-phase systems, such as a three-phase network, the `Resistor` class handles each phase independently.  Each phase ($a$, $b$, $c$) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Mathematical Representation
-</div>
+### Mathematical Representation
 
 The `Resistor` class supports two primary mathematical representations, depending on the selected constructor:
 
@@ -95,8 +80,4 @@ The `Resistor` class supports two primary mathematical representations, dependin
 
  This is the standard nodal admittance stamp for a resistor, which directly accounts for the current flow based on voltage differences.
 
----
-
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## Code Explanation

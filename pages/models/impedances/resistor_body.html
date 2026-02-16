@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2027</p>
+      <p class="date">February 16, 2026</p>
     </div>
   </div>
   
@@ -129,23 +129,18 @@ Tip
 <p><em>This section details the <code>Resistor</code> model implemented in this project, which represents an electrical resistor component within the simulation of the power system. The model supports both frequency domain analysis (using admittance parameters) and modified nodal analysis (MNA) of the time domain. It is designed to handle single-phase and multi-phase resistor configurations, allowing for precise modeling of resistive effects across various system setups.</em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Single-Phase Resistor</p>
-</div>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<section id="single-phase-resistor" class="level3">
+<h3 class="anchored" data-anchor-id="single-phase-resistor">Single-Phase Resistor</h3>
 <p>For a single-phase system, the <code>Resistor</code> models a basic resistive component. In the frequency domain, its impedance is <span class="math inline">\(Z_R = R\)</span>, where <span class="math inline">\(R\)</span> is the resistance. Its admittance is <span class="math inline">\(Y_R = 1 / R\)</span>. In the time domain, the voltage across an ideal resistor is directly proportional to the current flowing through it, described by Ohm’s Law: <span class="math inline">\(v(t) = R i(t)\)</span>. The MNA formulation for a single-phase resistor directly incorporates its conductance into the nodal admittance matrix.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Three-Phase Resistor Model</p>
-</div>
+</section>
+<section id="three-phase-resistor-model" class="level3">
+<h3 class="anchored" data-anchor-id="three-phase-resistor-model">Three-Phase Resistor Model</h3>
 <p>For multi-phase systems, such as a three-phase network, the <code>Resistor</code> class handles each phase independently. Each phase (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>) can have its own capacitance value. The model assumes between phases, simplifying the representation for both balanced and unbalanced systems. This independent modeling allows for accurate simulation of capacitive effects in each phase.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Mathematical Representation</p>
-</div>
+</section>
+<section id="mathematical-representation" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-representation">Mathematical Representation</h3>
 <p>The <code>Resistor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
 <ol type="1">
 <li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — This model is used for steady-state AC analysis. For a single-phase resistor with resistance <span class="math inline">\(R\)</span>, the admittance (<span class="math inline">\(Y\)</span>) is given by: <span class="math display">\[\begin{equation}
@@ -174,10 +169,11 @@ G_a &amp; -G_a &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 </ul></li>
 </ol>
 <p>This is the standard nodal admittance stamp for a resistor, which directly accounts for the current flow based on voltage differences.</p>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
 
 </main>
 <!-- /main column -->
