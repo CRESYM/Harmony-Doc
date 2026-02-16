@@ -34,11 +34,7 @@ format:
 :::
 
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 Based on realizations of the transmission line as defined in PSCAD (see @fig-tl-pscad), five possible realizations are defined as:
 
@@ -179,8 +175,9 @@ From them Y parameters calculate as follows \cite{leterme2020parameters}:
 
 ![Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.](assets/transmission_line.pdf){#fig-tl width=75%}
 
----
+## Code Explanation
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## References
+
+::: {#refs}
+:::

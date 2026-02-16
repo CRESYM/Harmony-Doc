@@ -30,23 +30,17 @@ format:
 ---
 
 :::{.callout-tip}
-* `cable` groups are implemented by focusing on the configurations of the cables available in PSCAD, where a cable can be included either inside the pipe, called pipe-type cables, or placed underground. Cables are usually coaxial with up to 4 layers of both conductors and insulators. *
+* `cable` groups are implemented by focusing on the configurations of the cables available in PSCAD, where a cable can be included either inside the pipe, called pipe-type cables, or placed underground. Cables are usually coaxial with up to 4 layers of both conductors and insulators.
 :::
 
-
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of $n$ cables, each with a maximum of three conducting layers and three insulation layers, as seen in @fig-cable. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: $r^c_i$ and $r^c_o$ as the conductor's inner and outer radius in meters, conductor relative permeability $\mu^c_r$, and conductor resistivity $\rho_c$ (in [$\Omega$m]). The insulator is described using the following parameters:  $r^i_i$ and $r^i_o$ are the insulator's inner and outer radius in meters, $\epsilon^i$ is the insulator's relative permittivity, and $\mu^i_r$ is the insulator's relative permeability.
 
 ![Coaxial cable.](assets/cable.pdf){#fig-cable width=50%}
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Conductor surface impedance
-</div>
+### Conductor surface impedance
+
 A hollow conductor surface impedance is given by:
 \begin{eqnarray}
 \nonumber Z_{aa} = \frac{\rho_c m}{2\pi r^c_i} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_i \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  & \mbox{for inner surface}, \\
@@ -59,17 +53,13 @@ For a non-hollow conductor, the outer surface impedance is
 Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(0.733 mr^c_o) + \frac{0.3179 \rho^c}{\pi {r^c_o}^2} \; \left[\frac{\Omega}{\text{m}}\right].
 \end{eqnarray}
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 The insulator layer between two conductors has an impedance 
-</div>
+The insulator layer between two conductors has an impedance 
 
 \begin{equation}
 Z_i = \frac{j\omega \mu_0 \mu^i_r}{2\pi} \, \log\left(\frac{r^i_o}{r^i_i}\right).
 \end{equation}
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 The earth return impedance of the cable and the mutual impedance between cables is
-</div>
+The earth return impedance of the cable and the mutual impedance between cables is
 
 \begin{eqnarray}
 Z_g = \frac{j\omega \, \mu_g}{2\pi} \, \left(-\log\left(\frac{\gamma m D}{2}\right) + \frac{1}{2} - \frac{2}{3} \, mH\right),
@@ -131,8 +121,4 @@ Y parameters are calculated the same as in the equation that
     \label{eq:tl_y_params}
 \end{eqnarray}
 
----
-
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## Code Explanation

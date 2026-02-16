@@ -149,10 +149,8 @@ Tip
 <p><em><code>overhead-line</code> are widely used in power systems and exhibit strong electromagnetic coupling due to the spatial arrangement of phase conductors and ground wires. Their electrical characteristics are highly dependent on conductor geometry, bundle configuration, and relative positioning with respect to the ground. To accurately capture these effects, a physically based distributed-parameter representation is adopted, in which conductor layouts and material properties are explicitly modeled. This page introduces the geometric configurations and parameter definitions used to construct the overhead transmission line model.</em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>Based on realizations of the transmission line as defined in PSCAD (see <a href="#fig-tl-pscad" class="quarto-xref">Figure&nbsp;1</a>), five possible realizations are defined as:</p>
 <ol type="1">
 <li>flat (horizontal, which presents a flat configuration without ground wires),</li>
@@ -379,13 +377,13 @@ Figure&nbsp;2: Overhead line modeling: a) tower and relative conductor positions
 </figcaption>
 </figure>
 </div>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
-
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-castellanos1997full" class="csl-entry" role="listitem">
 Castellanos, F, and JR Marti. 1997. <span>“Full Frequency-Dependent Phase-Domain Transmission Line Model.”</span> <em>IEEE Transactions on Power Systems</em> 12 (3): 1331–39.
 </div>
@@ -398,7 +396,10 @@ Martinez-Velasco, Juan A. 2017. <em>Power System Transients: Parameter Determina
 <div id="ref-morched1999universal" class="csl-entry" role="listitem">
 Morched, Atef, Bjorn Gustavsen, and Manoocher Tartibi. 1999. <span>“A Universal Model for Accurate Calculation of Electromagnetic Transients on Overhead Lines and Underground Cables.”</span> <em>IEEE Transactions on Power Delivery</em> 14 (3): 1032–38.
 </div>
-</div></section></div></main>
+</div>
+</section>
+
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

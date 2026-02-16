@@ -40,15 +40,9 @@ format:
 *This report provides a detailed description of a `load` model undertaken in this project consisting of resistive $R$, inductive $L$, and capacitive $C$ components in series for both single-phase and three-phase systems. The objective is to model the admittance matrix \(Y\) for a three-phase system, which characterizes the relationship between currents and voltages in the system.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
+## Mathematical Modeling
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Single-Phase Capacitor
-</div>
+### Single-Phase Capacitor
 
 We will first start with the single-phase model, derive the Y parameters, and extend to three-phase models.
 In a single-phase series RLC circuit, the total impedance $Z$ is given by the sum of the resistive, inductive, and capacitive impedances:
@@ -79,11 +73,7 @@ Z_b = R_b + j\omega L_b - \frac{j}{\omega C_b}
 Z_c = R_c + j\omega L_c - \frac{j}{\omega C_c}
 \end{equation}
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Y Parameters
-</div>
+### Y Parameters
 
 The admittance matrix $Y$ for a three-phase system is a $3 \times 3$ matrix that relates the current vector $I = [I_a, I_b, I_c]^T$ and the voltage vector $V = [V_a, V_b, V_c]^T$ as follows:
 
@@ -108,10 +98,7 @@ V_c
 
 For an uncoupled three-phase system, the off-diagonal elements $Y_{ab}, Y_{ac}, Y_{ba},$ etc., are zero, and the diagonal elements are the admittance of the respective phases.
 
----
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Balanced Three-Phase System
-</div>
+### Balanced Three-Phase System
 
 For a balanced three-phase system, we assume that the impedance of each phase is the same:
 
@@ -143,10 +130,7 @@ Y_{aa} & 0 & 0 \\
 \end{equation}
 It must be noted here that for most of the cases, this Y matrix for the three-phase load is diagonal as the mutual coupling between phases is negligible.
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

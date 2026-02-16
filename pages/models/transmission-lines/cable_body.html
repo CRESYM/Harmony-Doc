@@ -131,10 +131,8 @@ Tip
 </ul>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of <span class="math inline">\(n\)</span> cables, each with a maximum of three conducting layers and three insulation layers, as seen in <a href="#fig-cable" class="quarto-xref">Figure&nbsp;1</a>. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: <span class="math inline">\(r^c_i\)</span> and <span class="math inline">\(r^c_o\)</span> as the conductor’s inner and outer radius in meters, conductor relative permeability <span class="math inline">\(\mu^c_r\)</span>, and conductor resistivity <span class="math inline">\(\rho_c\)</span> (in [<span class="math inline">\(\Omega\)</span>m]). The insulator is described using the following parameters: <span class="math inline">\(r^i_i\)</span> and <span class="math inline">\(r^i_o\)</span> are the insulator’s inner and outer radius in meters, <span class="math inline">\(\epsilon^i\)</span> is the insulator’s relative permittivity, and <span class="math inline">\(\mu^i_r\)</span> is the insulator’s relative permeability.</p>
 <div id="fig-cable" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -146,9 +144,8 @@ Figure&nbsp;1: Coaxial cable.
 </figcaption>
 </figure>
 </div>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Conductor surface impedance</p>
-</div>
+<section id="conductor-surface-impedance" class="level3">
+<h3 class="anchored" data-anchor-id="conductor-surface-impedance">Conductor surface impedance</h3>
 <p>A hollow conductor surface impedance is given by: <span class="math display">\[\begin{eqnarray}
 \nonumber Z_{aa} = \frac{\rho_c m}{2\pi r^c_i} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_i \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for inner surface}, \\
 \nonumber Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_o \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for outer surface}, \\
@@ -156,15 +153,11 @@ Z_{ab} =  \frac{\rho^c m}{\pi (r^c_i + r^c_o)} \, \operatorname{csch}(m(r^c_o - 
 \end{eqnarray}\]</span> where <span class="math inline">\(m = \sqrt{j\omega \mu^c_r}\)</span> For a non-hollow conductor, the outer surface impedance is <span class="math display">\[\begin{eqnarray}
 Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(0.733 mr^c_o) + \frac{0.3179 \rho^c}{\pi {r^c_o}^2} \; \left[\frac{\Omega}{\text{m}}\right].
 \end{eqnarray}\]</span></p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 The insulator layer between two conductors has an impedance</p>
-</div>
+<p>The insulator layer between two conductors has an impedance</p>
 <p><span class="math display">\[\begin{equation}
 Z_i = \frac{j\omega \mu_0 \mu^i_r}{2\pi} \, \log\left(\frac{r^i_o}{r^i_i}\right).
 \end{equation}\]</span></p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 The earth return impedance of the cable and the mutual impedance between cables is</p>
-</div>
+<p>The earth return impedance of the cable and the mutual impedance between cables is</p>
 <p><span class="math display">\[\begin{eqnarray}
 Z_g = \frac{j\omega \, \mu_g}{2\pi} \, \left(-\log\left(\frac{\gamma m D}{2}\right) + \frac{1}{2} - \frac{2}{3} \, mH\right),
 \end{eqnarray}\]</span> for <span class="math display">\[\begin{eqnarray}
@@ -208,10 +201,11 @@ P_{ii} &amp; P_{ii} &amp; P_{ii}
     \end{bmatrix}.
     \label{eq:tl_y_params}
 \end{eqnarray}\]</span></p>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
 
 </main>
 <!-- /main column -->

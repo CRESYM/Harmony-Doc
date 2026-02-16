@@ -33,21 +33,12 @@ format:
 *`Long-transmission-line` are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line's length on voltage and current distribution. The telegrapher's equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance $(R)$, inductance $(L)$, capacitance $(C)$, and conductance $(G)$ per unit length. This page aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model @saadat1999power *
 :::
 
+## Mathematical Modeling
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Telegrapher's Equations
-</div>
+### Telegrapher's Equations
 
 The telegrapher's equations are partial differential equations that describe the voltage $V(x, t)$ and current $I(x, t)$ at a point $x$ along a transmission line. They are derived based on Kirchhoff's voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher's equations in the frequency domain are given as:
 
-
-  
   \begin{equation}
    \frac{dV(x)}{dx} = -(R + j\omega L)I(x),
   \end{equation}
@@ -57,11 +48,7 @@ The telegrapher's equations are partial differential equations that describe the
   \end{equation}
 where: 
    
- 
-  
-  <div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Characteristic Impedance and Propagation Constant
-</div>
+### Characteristic Impedance and Propagation Constant
 
 From the telegrapher's equations, we can derive two important parameters:
 
@@ -79,9 +66,7 @@ From the telegrapher's equations, we can derive two important parameters:
 
 The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Voltage and Current Distribution Along the Time
-</div>
+### Voltage and Current Distribution Along the Time
 
 The general solutions for the voltage and current along the transmission line are:
 
@@ -95,9 +80,7 @@ I(x) = \frac{V_+}{Z_0} e^{-\gamma x} - \frac{V_-}{Z_0} e^{\gamma x}
 
 where $V_+$ and $V_-$ represent the forward and backward traveling voltage waves, respectively. These constants can be determined by applying the boundary conditions at the input and output of the line.
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Boundary Conditions
-</div>
+### Boundary Conditions
 
 At $x = 0$ (the input or source end of the transmission line), the boundary conditions are:
 
@@ -123,9 +106,7 @@ I(l) = \frac{V(l)}{Z_L}
 
 where $Z_L$ is the load impedance.
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Computation of Y Parameters
-</div>
+### Computation of Y Parameters
 
 The Y parameters relate the input and output voltages and currents as follows. 
 
@@ -177,8 +158,9 @@ These Y parameters describe the transmission line's behavior regarding its input
 
 Here, we derived the Y parameters for a long transmission line using the telegrapher's equations. We first computed the characteristic impedance and propagation constant, which describe how voltage and current waves propagate along the line. Using the boundary conditions at the source and load ends, we then solved for the traveling wave coefficients. We computed the Y parameters, which are crucial for analyzing transmission lines in networked power systems.
 
----
+## Code Explanation
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## References
+
+::: {#refs}
+:::
