@@ -149,13 +149,10 @@ Tip
 <p><em><code>Long-transmission-line</code> are typically modeled using distributed parameters rather than lumped elements due to the significant effect of the line’s length on voltage and current distribution. The telegrapher’s equations describe the voltage and current along the transmission line as functions of time and space, taking into account resistance <span class="math inline">\((R)\)</span>, inductance <span class="math inline">\((L)\)</span>, capacitance <span class="math inline">\((C)\)</span>, and conductance <span class="math inline">\((G)\)</span> per unit length. This page aims to derive the Y parameters for a long transmission line, which relates the input voltage and current to the output voltage and current, using the distributed parameter model <span class="citation" data-cites="saadat1999power">Saadat et al. (<a href="#ref-saadat1999power" role="doc-biblioref">1999</a>)</span> </em></p>
 </div>
 </div>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Telegrapher’s Equations</p>
-</div>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<section id="telegraphers-equations" class="level3">
+<h3 class="anchored" data-anchor-id="telegraphers-equations">Telegrapher’s Equations</h3>
 <p>The telegrapher’s equations are partial differential equations that describe the voltage <span class="math inline">\(V(x, t)\)</span> and current <span class="math inline">\(I(x, t)\)</span> at a point <span class="math inline">\(x\)</span> along a transmission line. They are derived based on Kirchhoff’s voltage and current laws, combined with the lumped element model for small segments of the line. The telegrapher’s equations in the frequency domain are given as:</p>
 <p><span class="math display">\[\begin{equation}
    \frac{dV(x)}{dx} = -(R + j\omega L)I(x),
@@ -163,16 +160,9 @@ Tip
 <p><span class="math display">\[\begin{equation}
   \frac{dI(x)}{dx} = -(G + j\omega C)V(x),
   \end{equation}\]</span> where:</p>
-<ul>
-<li><span class="math inline">\(R\)</span> - is the resistance per unit length (<span class="math inline">\(\Omega/\text{m}\)</span>);</li>
-<li><span class="math inline">\(L\)</span> - is the inductance per unit length (<span class="math inline">\(\text{H}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(G\)</span> - is the conductance per unit length (<span class="math inline">\(\text{S}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(C\)</span> - is the conductance per unit length (<span class="math inline">\(\text{F}/\text{m}\)</span>);</li>
-<li><span class="math inline">\(\omega\)</span> - is the angular frequency of the source;</li>
-</ul>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Characteristic Impedance and Propagation Constant</p>
-</div>
+</section>
+<section id="characteristic-impedance-and-propagation-constant" class="level3">
+<h3 class="anchored" data-anchor-id="characteristic-impedance-and-propagation-constant">Characteristic Impedance and Propagation Constant</h3>
 <p>From the telegrapher’s equations, we can derive two important parameters:</p>
 <ul>
 <li><p>Characteristic Impedance (<span class="math inline">\(Z_0\)</span>):</p>
@@ -185,9 +175,9 @@ Tip
 \end{equation}\]</span></p></li>
 </ul>
 <p>The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Voltage and Current Distribution Along the Time</p>
-</div>
+</section>
+<section id="voltage-and-current-distribution-along-the-time" class="level3">
+<h3 class="anchored" data-anchor-id="voltage-and-current-distribution-along-the-time">Voltage and Current Distribution Along the Time</h3>
 <p>The general solutions for the voltage and current along the transmission line are:</p>
 <p><span class="math display">\[\begin{equation}
 V(x) = V_+ e^{-\gamma x} + V_- e^{\gamma x}
@@ -196,9 +186,9 @@ V(x) = V_+ e^{-\gamma x} + V_- e^{\gamma x}
 I(x) = \frac{V_+}{Z_0} e^{-\gamma x} - \frac{V_-}{Z_0} e^{\gamma x}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(V_+\)</span> and <span class="math inline">\(V_-\)</span> represent the forward and backward traveling voltage waves, respectively. These constants can be determined by applying the boundary conditions at the input and output of the line.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Boundary Conditions</p>
-</div>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h3>
 <p>At <span class="math inline">\(x = 0\)</span> (the input or source end of the transmission line), the boundary conditions are:</p>
 <p><span class="math display">\[\begin{equation}
 V(0) = V_s
@@ -215,9 +205,9 @@ V(l) = V_+ e^{-\gamma l} + V_- e^{\gamma l}
 I(l) = \frac{V(l)}{Z_L}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(Z_L\)</span> is the load impedance.</p>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Computation of Y Parameters</p>
-</div>
+</section>
+<section id="computation-of-y-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="computation-of-y-parameters">Computation of Y Parameters</h3>
 <p>The Y parameters relate the input and output voltages and currents as follows.</p>
 <p><span class="math display">\[\begin{equation}
 \begin{bmatrix}
@@ -256,17 +246,21 @@ Y_{22} = Y_{11}
 \end{equation}\]</span></p>
 <p>These Y parameters describe the transmission line’s behavior regarding its input and output voltages and currents.</p>
 <p>Here, we derived the Y parameters for a long transmission line using the telegrapher’s equations. We first computed the characteristic impedance and propagation constant, which describe how voltage and current waves propagate along the line. Using the boundary conditions at the source and load ends, we then solved for the traveling wave coefficients. We computed the Y parameters, which are crucial for analyzing transmission lines in networked power systems.</p>
-<hr>
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:3em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
-
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-saadat1999power" class="csl-entry" role="listitem">
 Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
 </div>
-</div></section></div></main>
+</div>
+</section>
+
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -669,5 +663,8 @@ Saadat, Hadi et al. 1999. <em>Power System Analysis</em>. Vol. 2. McGraw-hill.
   });
   </script>
 </div> <!-- /content -->
+
+
+
 
 </body></html>

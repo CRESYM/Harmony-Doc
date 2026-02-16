@@ -30,7 +30,7 @@ format:
 ---
 
 :::{.callout-tip}
-* `cable` groups are implemented by focusing on the configurations of the cables available in PSCAD, where a cable can be included either inside the pipe, called pipe-type cables, or placed underground. Cables are usually coaxial with up to 4 layers of both conductors and insulators.
+*`cable` groups are implemented by focusing on the configurations of the cables available in PSCAD, where a cable can be included either inside the pipe, called pipe-type cables, or placed underground. Cables are usually coaxial with up to 4 layers of both conductors and insulators.*
 :::
 
 ## Mathematical Modeling
