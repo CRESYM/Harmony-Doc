@@ -40,10 +40,7 @@ format:
 *In power system analysis, synchronous `generators` are a fundamental component of energy generation. To model the interaction between the generator and the rest of the power network, admittance parameters (Y-parameters) are often used. The Y-parameters provide a relationship between the voltages and currents at the generator's terminals and can be used in steady-state and dynamic analysis. This report presents the mathematical formulation of the Y-parameters for a synchronous generator, considering key electrical parameters such as field resistance, field inductance, direct-axis reactance, and field time constant.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Generator Model Parameters
-</div>
----
+## Generator Model Parameters
 
 The generator's behavior can be described using the following key parameters, as depicted in @fig-generator:
 
@@ -57,11 +54,7 @@ These parameters represent the electrical characteristics of the synchronous mac
 
 ![Equivalent generator model.](assets/generator_model.pdf){#fig-generator width=50%}
 
----
-
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
+## Mathematical Modeling
 
 In the frequency domain, the impedance of the generator can be described by its field impedance and direct-axis reactance. We form a two-port model with port 1 = stator direct axis and port 2 = field winding. Denote
 
@@ -101,12 +94,7 @@ Y_{22}(s)&=\dfrac{jX_d}{\,jX_d R_f(1+sT_f)+X_m^2\,}.
 
 These expressions include the field first-order dynamics through $T_f=L_f/R_f$ and are reciprocal $(Y_{12}=Y_{21})$.
 
----
-
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

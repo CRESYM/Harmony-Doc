@@ -39,11 +39,7 @@ format:
 *Type-IV wind turbines (`WT4`), also known as full-converter wind turbines, employ a generator fully interfaced with the grid through a back-to-back power electronic converter. In this configuration, all generated power is processed by the converter, allowing complete decoupling between the generator and the grid. This enables wide-range variable-speed operation and flexible, independent control of active and reactive power. Owing to their superior grid-support capability and compliance with stringent grid codes, `WT4` turbines are widely applied in weak-grid and offshore wind power systems, and are typically connected to the grid via a medium-voltage collector network and a substation transformer.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 The typical structure of the type-4 WT is depicted in @fig-wt-type-4.
 
@@ -131,12 +127,12 @@ The results of the code execution in Harmony are available in Fig. @fig-wt4-bode
 
 ![Bode plots of the dq admittance for the type-4 WT using the parameters from @pr13051292.](assets/WT_type_4_bode.png){#fig-wt4-bode width=65%}
 
----
+## Code Explanation
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## References
 
+::: {#refs}
+:::
 
 <!--
 **Example:**

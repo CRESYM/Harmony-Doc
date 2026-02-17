@@ -26,7 +26,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -152,10 +151,8 @@ Tip
 <p><em>Type-IV wind turbines (<code>WT4</code>), also known as full-converter wind turbines, employ a generator fully interfaced with the grid through a back-to-back power electronic converter. In this configuration, all generated power is processed by the converter, allowing complete decoupling between the generator and the grid. This enables wide-range variable-speed operation and flexible, independent control of active and reactive power. Owing to their superior grid-support capability and compliance with stringent grid codes, <code>WT4</code> turbines are widely applied in weak-grid and offshore wind power systems, and are typically connected to the grid via a medium-voltage collector network and a substation transformer.</em></p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>The typical structure of the type-4 WT is depicted in <a href="#fig-wt-type-4" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <div id="fig-wt-type-4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -167,7 +164,7 @@ Figure&nbsp;1: WT type-4 block diagram.
 </figcaption>
 </figure>
 </div>
-<p>For the design of the model of WT type-4, the publication <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span> is used, with the corrections proposed in <span class="citation" data-cites="electronics13101917">Arshad, Beik, Manzoor, et al. (<a href="#ref-electronics13101917" role="doc-biblioref">2024</a>)</span> and <span class="citation" data-cites="pr13051292">He et al. (<a href="#ref-pr13051292" role="doc-biblioref">2025</a>)</span>.<br>
+<p>For the design of the model of WT type-4, the publication <span class="citation" data-cites="10401252">(<a href="#ref-10401252" role="doc-biblioref"><strong>10401252?</strong></a>)</span> is used, with the corrections proposed in <span class="citation" data-cites="electronics13101917">(<a href="#ref-electronics13101917" role="doc-biblioref"><strong>electronics13101917?</strong></a>)</span> and <span class="citation" data-cites="pr13051292">(<a href="#ref-pr13051292" role="doc-biblioref"><strong>pr13051292?</strong></a>)</span>.<br>
 Namely, the WT is modeled by observing the <em>dq</em>-domain admittance looking into the GSC, which includes the PLL, current controller, output filter, delay, and a second-order input filter, as shown in Fig. <a href="#fig-wt-type-4-gsc" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <div id="fig-wt-type-4-gsc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -175,7 +172,7 @@ Namely, the WT is modeled by observing the <em>dq</em>-domain admittance looking
 <img src="assets/WT_type_4_GCS.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt-type-4-gsc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Model of the GSC and its controlling loops inside WT type-4, taken from <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span>.
+Figure&nbsp;2: Model of the GSC and its controlling loops inside WT type-4, taken from <span class="citation" data-cites="10401252">(<a href="#ref-10401252" role="doc-biblioref"><strong>10401252?</strong></a>)</span>.
 </figcaption>
 </figure>
 </div>
@@ -245,7 +242,7 @@ G_{cc} = G_{dec} + G_{pi} =
 <img src="assets/WT_type_4_GCS_transfer_function.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt-type-4-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Transfer function estimation for the GSC of the WT type-4, picture taken from <span class="citation" data-cites="10401252">Arshad, Beik, Pallapati, et al. (<a href="#ref-10401252" role="doc-biblioref">2024</a>)</span>.
+Figure&nbsp;3: Transfer function estimation for the GSC of the WT type-4, picture taken from <span class="citation" data-cites="10401252">(<a href="#ref-10401252" role="doc-biblioref"><strong>10401252?</strong></a>)</span>.
 </figcaption>
 </figure>
 </div>
@@ -256,13 +253,18 @@ Figure&nbsp;3: Transfer function estimation for the GSC of the WT type-4, pictur
 <img src="assets/WT_type_4_bode.png" class="img-fluid figure-img" style="width:65.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt4-bode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Bode plots of the dq admittance for the type-4 WT using the parameters from <span class="citation" data-cites="pr13051292">He et al. (<a href="#ref-pr13051292" role="doc-biblioref">2025</a>)</span>.
+Figure&nbsp;4: Bode plots of the dq admittance for the type-4 WT using the parameters from <span class="citation" data-cites="pr13051292">(<a href="#ref-pr13051292" role="doc-biblioref"><strong>pr13051292?</strong></a>)</span>.
 </figcaption>
 </figure>
 </div>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" role="list">
+
 </div>
 <!--
 **Example:**
@@ -391,19 +393,9 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-electronics13101917" class="csl-entry" role="listitem">
-Arshad, Muhammad, Omid Beik, Muhammad Owais Manzoor, and Mahzad Gholamian. 2024. <span>“Stability Analysis via Impedance Modelling of a Real-World Wind Generation System with AC Collector and LCC-Based HVDC Transmission Grid.”</span> <em>Electronics</em> 13 (10). <a href="https://doi.org/10.3390/electronics13101917">https://doi.org/10.3390/electronics13101917</a>.
-</div>
-<div id="ref-10401252" class="csl-entry" role="listitem">
-Arshad, Muhammad, Omid Beik, Ruth Pallapati, and Scott Hoberg. 2024. <span>“Overview and Impedance-Based Stability Analyses of Bison Wind Farm: A Practical Example.”</span> <em>IEEE Industry Applications Magazine</em> 30 (4): 50–63. <a href="https://doi.org/10.1109/MIAS.2023.3345835">https://doi.org/10.1109/MIAS.2023.3345835</a>.
-</div>
-<div id="ref-pr13051292" class="csl-entry" role="listitem">
-He, Lifu, Dingshan Liu, Haidong Tao, Yangwu Shen, Jiapeng Ren, Yuting Wang, Jin Li, and Yaqin Xu. 2025. <span>“Small-Signal Stability Analysis of Grid-Connected System for Renewable Energy Based on Network Node Impedance Modelling.”</span> <em>Processes</em> 13 (5). <a href="https://doi.org/10.3390/pr13051292">https://doi.org/10.3390/pr13051292</a>.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

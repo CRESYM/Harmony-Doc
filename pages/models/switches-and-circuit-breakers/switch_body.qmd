@@ -41,32 +41,17 @@ format:
 * This section provides a detailed description of the `switch` model implemented in this project. The \texttt{Switch} represents an ideal electrical switch, capable of connecting or disconnecting buses within the power system. It is designed to handle single-phase and multi-phase (e.g., three-phase) systems, each phase operating independently. The primary objective is to accurately model the Switch's behavior within the Modified Nodal Analysis (MNA) framework, reflecting its open and closed states. *
 :::
 
+## Mathematical Modeling
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Single-Phase Switch Model
-</div>
+### Single-Phase Switch Model
 
 The `switch` is a direct connection between two single buses for a single-phase system.  When `closed`, it effectively creates a short circuit, forcing the voltages at the connected buses to be equal.  When `open`, it acts as an open circuit, allowing arbitrary voltage differences and preventing current flow between the buses.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Three-Phase Switch Model
-</div>
+### Three-Phase Switch Model
 
 For multi-phase systems, such as a three-phase system, the `switch` is designed to manage connections across multiple phases.  Each phase of the Switch operates independently, meaning individual phases can be `open` or `closed` irrespective of the others.  This flexibility allows for the simulation of various scenarios, including phase-specific faults or switching operations. The implementation assumes no mutual coupling between the individual phases of the Switch, simplifying the model while maintaining fidelity for common power system applications.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 MNA representation
-</div>
+### MNA representation
 
 Unlike passive elements like loads that are characterized by admittance (Y) parameters directly relating current to voltage, an ideal `switch` in MNA is modeled through constraint equations and auxiliary variables. This approach accurately represents its non-linear, ideal behavior (zero or infinite admittance).
 
@@ -81,12 +66,7 @@ In the MNA matrix ($A$), this equation translates to specific entries: $A_{\text
 
 - **Open State:** When a phase of the switch is \texttt{open}, it represents an open circuit. The Switch introduces no constraint or connection between its associated buses in this state. Consequently, no equations or auxiliary variables related to this open phase are added to the MNA matrix. This corresponds to a connection with zero admittance.
 
----
-
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

@@ -40,21 +40,13 @@ format:
 *An `AC source` can be characterized by its series impedance between terminals. The impedance between each terminal and the source is defined in the impedance matrix $\mathbf{Z}$, and the admittance matrix $\mathbf{Y}$ is derived from $\mathbf{Z}$ by inverting the impedance values.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 Let $Z_{ii}$ be the impedance at terminal $i$. The self-admittance at terminal $i$ is defined as $Y_{ii} = \frac{1}{Z_{ii}}$. This represents the relationship between the voltage and current at terminal $i$. For an AC source with $n$ terminals (pins), we can generalize this for each terminal.
 
 If the impedance is uniform for all terminals, i.e., $Z_{ii} = Z$ for all $i$, the self-admittance becomes $Y_{ii} = \frac{1}{Z}$ for all $i$.
 
----
-
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Y Parameters
-</div>
+### Y Parameters
 
 For an AC source with $n$ terminals, we first construct the diagonal elements of the Y matrix using the series impedance. This means setting:
 
@@ -92,12 +84,7 @@ Y_{11} & 0 & 0 & \cdots & 0 & -Y_{11} & 0 & \cdots & 0 \\
 
 The off-diagonal negative terms (e.g., $-Y_{ii}$) are introduced to account for the interaction between the terminals and ensure that the system satisfies Kirchhoff's Current Law (KCL), which states that the sum of currents entering and leaving a node must equal zero.
 
----
-
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

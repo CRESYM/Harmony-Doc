@@ -132,16 +132,12 @@ Tip
 <p><em>An <code>AC source</code> can be characterized by its series impedance between terminals. The impedance between each terminal and the source is defined in the impedance matrix <span class="math inline">\(\mathbf{Z}\)</span>, and the admittance matrix <span class="math inline">\(\mathbf{Y}\)</span> is derived from <span class="math inline">\(\mathbf{Z}\)</span> by inverting the impedance values.</em></p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>Let <span class="math inline">\(Z_{ii}\)</span> be the impedance at terminal <span class="math inline">\(i\)</span>. The self-admittance at terminal <span class="math inline">\(i\)</span> is defined as <span class="math inline">\(Y_{ii} = \frac{1}{Z_{ii}}\)</span>. This represents the relationship between the voltage and current at terminal <span class="math inline">\(i\)</span>. For an AC source with <span class="math inline">\(n\)</span> terminals (pins), we can generalize this for each terminal.</p>
 <p>If the impedance is uniform for all terminals, i.e., <span class="math inline">\(Z_{ii} = Z\)</span> for all <span class="math inline">\(i\)</span>, the self-admittance becomes <span class="math inline">\(Y_{ii} = \frac{1}{Z}\)</span> for all <span class="math inline">\(i\)</span>.</p>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Y Parameters</p>
-</div>
+<section id="y-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="y-parameters">Y Parameters</h3>
 <p>For an AC source with <span class="math inline">\(n\)</span> terminals, we first construct the diagonal elements of the Y matrix using the series impedance. This means setting:</p>
 <p><span class="math display">\[\begin{equation}
 Y_{ii} = \frac{1}{Z}
@@ -169,10 +165,10 @@ Y_{11} &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -Y_{11} &amp; 0 &amp; \cdots &
 \end{bmatrix}
 \end{equation}\]</span></p>
 <p>The off-diagonal negative terms (e.g., <span class="math inline">\(-Y_{ii}\)</span>) are introduced to account for the interaction between the terminals and ensure that the system satisfies Kirchhoff’s Current Law (KCL), which states that the sum of currents entering and leaving a node must equal zero.</p>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
 <!--
 **Example:**
 
@@ -300,6 +296,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

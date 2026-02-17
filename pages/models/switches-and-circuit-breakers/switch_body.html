@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aleksandra Lekić, Haixiao Li">
-<meta name="dcterms.date" content="2027-07-10">
+<meta name="dcterms.date" content="2026-11-01">
 
-<title>Generator</title>
+<title>Swtich</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,7 +87,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Generator</h1>
+<h1 class="title">Swtich</h1>
 </div>
 
 
@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2027</p>
+      <p class="date">November 1, 2026</p>
     </div>
   </div>
   
@@ -134,23 +134,18 @@ Tip
 </ul>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Single-Phase Switch Model</p>
-</div>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<section id="single-phase-switch-model" class="level3">
+<h3 class="anchored" data-anchor-id="single-phase-switch-model">Single-Phase Switch Model</h3>
 <p>The <code>switch</code> is a direct connection between two single buses for a single-phase system. When <code>closed</code>, it effectively creates a short circuit, forcing the voltages at the connected buses to be equal. When <code>open</code>, it acts as an open circuit, allowing arbitrary voltage differences and preventing current flow between the buses.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 Three-Phase Switch Model</p>
-</div>
+</section>
+<section id="three-phase-switch-model" class="level3">
+<h3 class="anchored" data-anchor-id="three-phase-switch-model">Three-Phase Switch Model</h3>
 <p>For multi-phase systems, such as a three-phase system, the <code>switch</code> is designed to manage connections across multiple phases. Each phase of the Switch operates independently, meaning individual phases can be <code>open</code> or <code>closed</code> irrespective of the others. This flexibility allows for the simulation of various scenarios, including phase-specific faults or switching operations. The implementation assumes no mutual coupling between the individual phases of the Switch, simplifying the model while maintaining fidelity for common power system applications.</p>
-<hr>
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-<p>🔸 MNA representation</p>
-</div>
+</section>
+<section id="mna-representation" class="level3">
+<h3 class="anchored" data-anchor-id="mna-representation">MNA representation</h3>
 <p>Unlike passive elements like loads that are characterized by admittance (Y) parameters directly relating current to voltage, an ideal <code>switch</code> in MNA is modeled through constraint equations and auxiliary variables. This approach accurately represents its non-linear, ideal behavior (zero or infinite admittance).</p>
 <ul>
 <li><strong>Close State</strong> When a specific phase of the Switch is <code>closed</code>, it imposes an ideal short circuit between its two connected buses, say <code>n1</code> (with voltage <span class="math inline">\(V_{n1}\)</span>) and <code>n2</code> (with voltage <span class="math inline">\(V_{n2}\)</span>).<br>
@@ -163,10 +158,10 @@ V_{n1} - V_{n2} = 0
 <ul>
 <li><strong>Open State:</strong> When a phase of the switch is , it represents an open circuit. The Switch introduces no constraint or connection between its associated buses in this state. Consequently, no equations or auxiliary variables related to this open phase are added to the MNA matrix. This corresponds to a connection with zero admittance.</li>
 </ul>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
 <!--
 **Example:**
 
@@ -294,6 +289,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

@@ -132,10 +132,8 @@ Tip
 <p><em>Power electronic <code>converters</code> are key interfacing devices that enable the integration of renewable generation, energy storage, and HVDC links. This section models the interaction between the converter and the surrounding AC/DC network</em></p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Generator Model Parameters</p>
-</div>
-<hr>
+<section id="generator-model-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="generator-model-parameters">Generator Model Parameters</h2>
 <p>In <a href="#fig-2level" class="quarto-xref">Figure&nbsp;1</a>, a two-level converter is depicted. Switches in the same arm are operated complementarily, e.g., <span class="math inline">\(\text{Q3} = \overline{\text{Q1}}\)</span>. In <a href="#fig-2level-arm" class="quarto-xref">Figure&nbsp;2</a> is depicted one arm operation, where is visible that when Q1 is conducting <span class="math inline">\(v_{c,a} = \frac{v_{dc}}{2}\)</span>, and when Q3 conducts <span class="math inline">\(v_{c,a} = -\frac{v_{dc}}{2}\)</span>.</p>
 <div id="fig-2level" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -202,10 +200,9 @@ L \frac{d i_j}{dt} = v_j - v_{C,j}
     \end{bmatrix},
 \end{equation}\]</span> or equivalently with the standard direction of <span class="math inline">\(i_{dc}\)</span> entering the converter and <span class="math inline">\(i^\Delta_{d,q}\)</span> exiting the converter.</p>
 <p>These equations are used for modelling the VSCs connections, both for the back-to-back VSC connection, which is applied for wind turbines, hydrogen, and PV systems, but also from VSCs (MMCs) used for the interfacing of DC and AC sides.</p>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+<section id="code-explanation" class="level2" style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
 <!--
 **Example:**
 
@@ -333,6 +330,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

@@ -40,14 +40,10 @@ format:
 *The Modular Multilevel Converter (`MMC`) is an emerging technology in modern high-voltage direct current (HVDC) systems, renewable energy integration, and motor drives. MMCs provide high efficiency, scalability, and reduced harmonic distortion compared to traditional voltage-source converters (VSCs). Due to their modular structure, MMCs can operate at high power/voltage ratings while maintaining low switching losses and improved output voltage quality.*
 :::
 
-<div style="font-size:1.3em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathmatical Modeling
-</div>
----
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 MMC Architecture
-</div>
+## Mathmatical Modeling
+
+### MMC Architecture
 
 An MMC consists of multiple cascaded submodules (SMs) per phase, typically arranged in an upper and lower arm configuration. Each phase of the converter consists of:
 
@@ -60,11 +56,7 @@ The general structure of a three-phase MMC is shown in @fig-mmc_structure.
 
 ![General structure of a three-phase MMC.](assets//MMC.png){#fig-mmc_structure width=35%}
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Operating Principles
-</div>
+### Operating Principles
 
 The MMC operates based on the selective activation of submodules, generating a staircase output voltage waveform. The main operational principles include:
 
@@ -72,19 +64,11 @@ The MMC operates based on the selective activation of submodules, generating a s
   - Circulating Current Suppression: Reducing unwanted AC and DC currents flowing within the converter's arms that do not contribute to power transfer between the AC and DC sides, which improves efficiency.
   - Modulation Techniques: Reducing unwanted AC and DC currents flowing within the converter's arms that do not contribute to power transfer between the AC and DC sides, which improves efficiency.
   
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 LTI Model
-</div>
+### LTI Model
 
 The LTI model presented in @sakinci2022generalized has been extended to include measurement filters that are present in the practical converters.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 MMC Dynamics
-</div>
+### MMC Dynamics
 
 The detailed dynamics of the converter model are presented using the procedure developed in @bergna2018generalized,@bergna2018pi, @freytes2017small, @sakinci2022generalized,@lekic2020initialisation. @fig-mmc_structure shows a single-phase architecture for a three-phase MMC, with all variables defined for all the phases, $k\in \{a,b,c\}$. The submodules are represented by an averaged equivalent model, allowing the voltages and currents in the upper and lower arms to be described by (\ref{eq:VI_UL})
 
@@ -241,11 +225,7 @@ The insertion indices $\vec{m} = \begin{bmatrix}
     \end{bmatrix}
 \end{equation}
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Time Delays
-</div>
+### Time Delays
 
 The MMC's impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10–100 Hz) and high (several kHz) frequency ranges \cite{bayo2018control}. Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics @{sakinci2022generalized}.
 
@@ -260,13 +240,7 @@ The rational transfer function approximation is then converted into the state sp
     \vec{m}_{\tau_d}^{\Delta dqz} & \vec{m}_{\tau_d}^{\Sigma dqz}
 \end{bmatrix}^T$, the insertion indices which are used in the differential equations given in \eqref{eq:a},  \eqref{eq:b},  \eqref{eq:c},  \eqref{eq:d} , \eqref{eq:e},  \eqref{eq:f},  \eqref{eq:g}. A third-order ($m=n=3$) approximation is used in this study because it accurately represents the impact of computational delay up to the 1 kHz frequency range.
 
-
-
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Controller Dynamics
-</div>
+### Controller Dynamics
 
 The voltage references in \eqref{eq:m_derive} are obtained as outputs of the controllers and the thirteen differential equations stated in \eqref{eq:a},  \eqref{eq:b},  \eqref{eq:c},  \eqref{eq:d} , \eqref{eq:e},  \eqref{eq:f},  \eqref{eq:g}. The controllers can specify the voltage references; however, by default, all voltage reference values are set to zero, except for $v_{c,\mathrm{ref}}^{z}$, which is set to $\frac{v_{dc}}{2}$. When the controller specifies the voltage references, additional differential equations are required to represent the PI controllers in the $dqz$ frames @bergna2018generalized, @sakinci2019generalized,@sakinci2022generalized.
 
@@ -303,11 +277,8 @@ K_P \bigl( \text{Ref.} - \text{Meas.} \bigr)
 + K_I \xi
 \end{equation}
 
----
+### Measurment Filters
 
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Measurment Filters
-</div>
 Filtering measured signals is often required for stable operation of the controllers in order to eliminate noise and correctly track changes in control variables. Filters also improve system stability by reducing undesirable high-frequency oscillations, resulting in more reliable and precise control. However, each filter in the system has a considerable effect on the converter impedance characteristics. As a result, these filters must be considered during modeling.
 
 Measurement filters can be modeled as first- or second-order low-pass filters, depending on the variable they govern. Commonly filtered variables in the MMC control structure are marked @fig-MMC_control_architecture(a). The variables $v_{pcc}^{dq}$ in the OCC are filtered using a first-order low-pass filter to obtain the filtered voltages $v_{pcc,filt}^{dq}$.
@@ -357,11 +328,7 @@ x_{filt}
 
 where $x$ represents the input variables $P_{ac}$, $Q_{ac}$, and $v_{dc}$; $x_{filt}$ represents the corresponding filtered variables $P_{ac,filt}$, $Q_{ac,filt}$, and $v_{dc,filt}$, respectively. Furthermore, $\omega_{filt}$ denotes the natural frequency of the filter, and $\zeta$ represents the damping factor.
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Operating Point
-</div>
+### Operating Point
 
 A power flow or steady-state simulation can be used to determine the operating point of the converter \cite{sakinci2022generalized}. Using this approach, the following parameters are determined: the DC voltage magnitude $V_{dc}$, the active power at the DC terminal $P_{dc}$ (flowing from the AC side to the DC side), the AC voltage magnitude and phase $V_{ac}$ and $\theta$, respectively, the active power at the AC terminal $P_{ac}$ (flowing from the AC side to the DC side), and the reactive power at the AC terminal $Q_{ac}$ (flowing from the AC side to the DC side).
 
@@ -386,11 +353,7 @@ i_{\mathrm{ref}}^{\Delta d}
 {3 \left( (v_{pcc}^d)^2 + (v_{pcc}^q)^2 \right)}
 \end{equation}
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Steady State Solution and Admittance Model
-</div>
+### Steady State Solution and Admittance Model
 
 After modeling all the necessary differential equations for the MMC and the controllers, an equilibrium point is obtained using the Julia package NLsolve @mogensen2020nlsolve, which represents the solution to these differential equations. Further, the system of differential equations is represented as a multi-input multi-output (MIMO) system in a linearized form, as given in \eqref{eq:MIMO_x}–\eqref{eq:MIMO_y}.
 
@@ -479,11 +442,7 @@ s C_{dc}
 \right)
 \end{equation}
 
----
-
-<div style="font-size:1.1em; font-weight:600; color:#1c5d9b; margin-top:1em; margin-bottom:0.4em;">
-🔸 Impedance Measurement
-</div>
+### Impedance Measurement
 
 The system diagram of a grid-connected MMC in a monopolar configuration used for impedance measurement is shown in @fig-measurement_config. For simplicity, the AC- and DC-side impedances are depicted together; however, in actual simulations, they must be measured independently.
 
@@ -500,13 +459,12 @@ The detailed procedure for measuring and computing the AC-side impedance in the 
 
 ![Steps performed for measuring AC-side impedance in the $dq$ frame.](assets/Impedance%20Measurement%20Flow%20Diagram%20(Paper).png){#fig-ac_measurement_steps width=100%}
 
+## Code Explanation
 
----
+## References
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+::: {#refs}
+:::
 
 <!--
 **Example:**

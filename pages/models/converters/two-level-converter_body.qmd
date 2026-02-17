@@ -40,10 +40,7 @@ format:
 *Power electronic `converters` are key interfacing devices that enable the integration of renewable generation, energy storage, and HVDC links. This section models the interaction between the converter and the surrounding AC/DC network*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Generator Model Parameters
-</div>
----
+## Generator Model Parameters
 
 In @fig-2level, a two-level converter is depicted. Switches in the same arm are operated complementarily, e.g., $\text{Q3} = \overline{\text{Q1}}$. In @fig-2level-arm is depicted one arm operation, where is visible that when Q1 is conducting $v_{c,a} = \frac{v_{dc}}{2}$, and when Q3 conducts $v_{c,a} = -\frac{v_{dc}}{2}$. 
 
@@ -123,12 +120,8 @@ with the standard direction of $i_{dc}$ entering the converter and $i^\Delta_{d,
 
 These equations are used for modelling the VSCs connections, both for the back-to-back VSC connection, which is applied for wind turbines, hydrogen, and PV systems, but also from VSCs (MMCs) used for the interfacing of DC and AC sides.
 
----
-
 <div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
-
+## Code Explanation
 
 <!--
 **Example:**

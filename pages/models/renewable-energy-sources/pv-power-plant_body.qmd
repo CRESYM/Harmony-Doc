@@ -39,11 +39,7 @@ format:
 *`PV power plant` is modelled as a two-stage inverter with the first stage being the boost DC-DC converter, and the second stage being the voltage source inverter. At the output of the VSC is attached an LCL filter.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 The PV array is taken as an aggregated model of the entire plant, see Fig. @fig-pv-inverter.
 
@@ -230,12 +226,12 @@ The results of the code execution in Harmony are available in @fig-PV_bode. The 
 
 ![Bode plots of the dq admittance for the PV inverter.](assets/PV_bode_plots.png){#fig-PV_bode width=70%}
 
+## Code Explanation
 
----
+## References
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+::: {#refs}
+:::
 
 
 <!--

@@ -132,10 +132,8 @@ Tip
 <p><em>In power system analysis, synchronous <code>generators</code> are a fundamental component of energy generation. To model the interaction between the generator and the rest of the power network, admittance parameters (Y-parameters) are often used. The Y-parameters provide a relationship between the voltages and currents at the generator’s terminals and can be used in steady-state and dynamic analysis. This report presents the mathematical formulation of the Y-parameters for a synchronous generator, considering key electrical parameters such as field resistance, field inductance, direct-axis reactance, and field time constant.</em></p>
 </div>
 </div>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Generator Model Parameters</p>
-</div>
-<hr>
+<section id="generator-model-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="generator-model-parameters">Generator Model Parameters</h2>
 <p>The generator’s behavior can be described using the following key parameters, as depicted in <a href="#fig-generator" class="quarto-xref">Figure&nbsp;1</a>:</p>
 <ul>
 <li><span class="math inline">\(R_f\)</span> - Field winding resistance;</li>
@@ -155,10 +153,9 @@ Figure&nbsp;1: Equivalent generator model.
 </figcaption>
 </figure>
 </div>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Mathematical Modeling</p>
-</div>
+</section>
+<section id="mathematical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
 <p>In the frequency domain, the impedance of the generator can be described by its field impedance and direct-axis reactance. We form a two-port model with port 1 = stator direct axis and port 2 = field winding. Denote</p>
 <p><span class="math display">\[\begin{equation}
 Z_f(s)=R_f+sL_f=R_f\big(1+sT_f\big),\qquad s=j\omega,
@@ -172,7 +169,7 @@ jX_m &amp; Z_f(s)
 \end{bmatrix},
 \end{equation}\]</span></p>
 <p>whose determinant is <span class="math inline">\(\Delta(s)=jX_d Z_f(s)+X_m^2\)</span>. The admittance matrix is the inverse <span class="math inline">\(\mathbf{Y}(s)=\mathbf{Z}^{-1}(s)\)</span>, which yields <span class="math display">\[\begin{equation}
-\boxed{%
+\boxed{
 \mathbf{Y}(s)=\frac{1}{\,jX_d Z_f(s)+X_m^2\,}
 \begin{bmatrix}
 Z_f(s) &amp; -\,jX_m\\[6pt]
@@ -188,10 +185,9 @@ Y_{22}(s)&amp;=\dfrac{jX_d}{\,jX_d R_f(1+sT_f)+X_m^2\,}.
 \end{aligned}
 \end{equation}\]</span></p>
 <p>These expressions include the field first-order dynamics through <span class="math inline">\(T_f=L_f/R_f\)</span> and are reciprocal <span class="math inline">\((Y_{12}=Y_{21})\)</span>.</p>
-<hr>
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-<p>Code Explanation</p>
-</div>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
 <!--
 **Example:**
 
@@ -319,6 +315,7 @@ _This section lists all the references. It must comply with current citation sta
 ::: {#refs}
 :::
 -->
+</section>
 
 </main>
 <!-- /main column -->

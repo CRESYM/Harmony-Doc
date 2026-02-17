@@ -39,11 +39,7 @@ format:
 *Type-III wind turbines (`WT3`), also known as DFIG-based turbines, are widely used in grid-connected wind power plants. In this configuration, the generator stator is directly connected to the grid, while the rotor is interfaced through a back-to-back converter, enabling variable-speed operation and flexible active and reactive power control. `WT3` turbines are typically connected to the grid via a medium-voltage collector system and a substation transformer.*
 :::
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Mathematical Modeling
-</div>
-
----
+## Mathematical Modeling
 
 The type-III WTs are shown in @fig-wt-type3. A type-III wind turbine feeds the grid side through a back-to-back converter. The wind turbine is connected to the MV bus through transformer $T_1$. The current flowing to the MV bus is scaled by $N_t$, representing that a single wind turbine is equivalent to $N_t$ wind turbines connected in parallel @8672500. A capacitor $C$, representing the shunt capacitance of the cable collector, is connected to the MV bus. The MV bus is connected to the PCC through a substation (SS) transformer $T_2$. The PCC is connected to the grid through the cables.
 
@@ -54,7 +50,7 @@ The RSC and GSC are controlled by the current controllers implemented at the d-q
 ![Bode plots of the dq admittance for the type-3 WT using the parameters from paper.](assets/WT_type_3_bode.png){#fig-wt3-bode width=50%}
 
 In @fig-wt3-bode, the grid background harmonics are modeled as a voltage source Vg. Zs represents the shunt reactor. The type-3 wind turbine is modeled as a current disturbance source Id paralleled with a rotor side impedance ZRS and a
-grid side impedance ZGS @8068243, @GHANAVATI2021107419, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source $V_d$ represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion \cite{8672500}. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as @8068243:
+grid side impedance ZGS @8068243, @2021107419, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source $V_d$ represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion \cite{8672500}. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as @8068243:
 
 \begin{eqnarray}
 Z_{RSP}(s) = \frac{
@@ -164,12 +160,12 @@ and the dq admittance is estimated as:
     \end{bmatrix}.
 \end{equation}
 
----
+## Code Explanation
 
-<div style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
-Code Explanation
-</div>
+## References
 
+::: {#refs}
+:::
 
 <!--
 **Example:**
