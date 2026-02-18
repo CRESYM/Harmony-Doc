@@ -5,20 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Practice Project</title>
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Site styles -->
   <link rel="stylesheet" href="css/head.css" />
 
+  <!-- Page overrides -->
+  <style>
+    /* ========== Navbar：顶部悬停出现 ========== */
+    .navbar{
+      position: fixed;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      transition: top .4s ease-in-out;
+      z-index: 1050;
+    }
+    .navbar.show{ top: 0; }
+
+    /* ========== 搜索高亮颜色 ========== */
+    :root{
+      --color-search-hit-bg:#f3d6dc;
+      --color-search-hit-fg:#6b0f1a;
+    }
+    html.theme-dark{
+      --color-search-hit-bg:#6b0f1a;
+      --color-search-hit-fg:#f3d6dc;
+    }
+    .search-hit{
+      background: var(--color-search-hit-bg) !important;
+      color: var(--color-search-hit-fg) !important;
+    }
+
+    /* ========== Partners：纯展示（无边框） ========== */
+    #sponsors{
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    #sponsors .sponsor-logo-cell{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 10px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transition: transform .25s ease;
+    }
+    #sponsors .sponsor-logo-cell:hover{
+      transform: translateY(-6px);
+    }
+    #sponsors .sponsor-logo{
+      max-height: 85px;
+      width: auto;
+      max-width: 100%;
+      opacity: .92;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    #sponsors .sponsor-logo-cell:hover .sponsor-logo{
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    /* ========== Hero：GitHub 极简链接（无背景方框） ========== */
+    .hero-actions{ align-items: center; }
+
+    .hero-link-github{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .2px;
+
+      text-decoration: none;
+      color: inherit;
+
+      position: relative;
+      padding-bottom: 2px;
+      opacity: .92;
+
+      transition: opacity .2s ease;
+    }
+
+    .hero-link-github .bi-github{
+      font-size: 1.15em;
+      opacity: .85;
+    }
+
+    .hero-link-github .arrow{
+      font-size: 1em;
+      opacity: .55;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    /* 下划线：hover 时展开 */
+    .hero-link-github::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 1px;
+      background: currentColor;
+      transition: width .25s ease;
+      opacity: .65;
+    }
+
+    .hero-link-github:hover{
+      opacity: 1;
+    }
+    .hero-link-github:hover::after{
+      width: 100%;
+    }
+    .hero-link-github:hover .arrow{
+      transform: translate(2px,-2px);
+      opacity: .9;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- ======================= 导航栏 ======================= -->
+  <!-- ====== Navbar ====== -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-xxl">
-      <a class="navbar-brand d-flex align-items-center" 
-        href="https://isocpp.org/" 
-        target="_blank" rel="noopener">
+      <a class="navbar-brand d-flex align-items-center"
+         href="https://isocpp.org/"
+         target="_blank" rel="noopener">
         <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
       </a>
 
@@ -71,7 +187,7 @@
           </li>
         </ul>
 
-        <!-- 头部：主题切换 + 搜索 -->
+        <!-- tools -->
         <div class="header-tools ms-3">
           <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
           <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
@@ -82,23 +198,22 @@
     </div>
   </nav>
 
-  <!-- ======================= 搜索面板（待修） ======================= -->
+  <!-- ====== Search panel ====== -->
   <div id="searchBar" class="search-panel-min" aria-hidden="true">
     <i class="bi bi-search"></i>
     <input id="searchBarInput" type="search" placeholder="Search..." autocomplete="off" />
     <button id="searchBarClose" type="button" class="search-cancel">Cancel</button>
   </div>
 
-  <!-- ======================= 首页展示 ======================= -->
+  <!-- ====== Hero ====== -->
   <section class="hero cpp-bg">
     <div class="container-xxl">
       <div class="row align-items-start">
-        
-        <!-- 左侧：标题 + 副标题 -->
         <div class="col-lg-6 text-start">
           <h1 class="hero-title cpp-gradient">
             <span class="accent-y">HARMON</span>ic stabilit<span class="accent-y">Y</span> assessment of PE-penetrated power systems
           </h1>
+
           <p class="hero-subtitle mt-3">
             An open-source C++ based framework capable of simulating all components in hybrid power systems stability assessment studies.
           </p>
@@ -113,48 +228,33 @@
             <small>VSC-HVDC system focus</small>
           </div>
 
+          <!-- GitHub link (no button background) -->
           <div class="hero-actions mt-4 d-flex flex-wrap gap-2">
-            <a class="btn hero-btn-github px-3 py-2"
-              href="https://github.com/CRESYM/Harmony"
-              target="_blank" rel="noopener">
-              <i class="bi bi-terminal me-2" aria-hidden="true"></i>
-              View on GitHub
+            <a class="hero-link-github"
+               href="https://github.com/CRESYM/Harmony"
+               target="_blank" rel="noopener">
+              <i class="bi bi-github" aria-hidden="true"></i>
+              <span>View on GitHub</span>
+              <i class="bi bi-arrow-up-right arrow" aria-hidden="true"></i>
             </a>
           </div>
-  
-
         </div>
 
-        <!-- 右侧：图片 -->
         <div class="col-lg-6 text-center">
           <div class="hero-image-switch">
-            <img src="images/framework.png"
-                alt="Framework diagram"
-                class="model-image active"
-                loading="lazy" />
-
-            <img src="images/workpackages.png"
-                alt="Work packages"
-                class="model-image"
-                loading="lazy" />
-
-            <img src="images/plottingsupport.png"
-                alt="Plotting support"
-                class="model-image"
-                loading="lazy" />
+            <img src="images/framework.png" alt="Framework diagram" class="model-image active" loading="lazy" />
+            <img src="images/workpackages.png" alt="Work packages" class="model-image" loading="lazy" />
+            <img src="images/plottingsupport.png" alt="Plotting support" class="model-image" loading="lazy" />
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ======================= 快速入口 ======================= -->
+  <!-- ====== Quick links ====== -->
   <section id="quick-links" class="features" aria-label="Quick links">
     <div class="container-xxl">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-
-        <!-- Get Started -->
         <div class="col">
           <div class="feature-item">
             <i class="bi bi-power feature-icon" aria-hidden="true"></i>
@@ -166,7 +266,6 @@
           </div>
         </div>
 
-        <!-- Download -->
         <div class="col">
           <div class="feature-item">
             <i class="bi bi-download feature-icon" aria-hidden="true"></i>
@@ -178,7 +277,6 @@
           </div>
         </div>
 
-        <!-- Docs -->
         <div class="col">
           <div class="feature-item">
             <i class="bi bi-journal-richtext feature-icon" aria-hidden="true"></i>
@@ -190,7 +288,6 @@
           </div>
         </div>
 
-        <!-- Teams -->
         <div class="col">
           <div class="feature-item">
             <i class="bi bi-people feature-icon" aria-hidden="true"></i>
@@ -201,13 +298,13 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
+
   <hr class="cpp-divider">
 
-  <!-- ======================= About Harmony ======================= -->
+  <!-- ====== About ====== -->
   <section id="about-harmony" class="about">
     <div class="container about-container">
       <h2 class="section-title text-center mb-4">
@@ -218,8 +315,6 @@
 
       <div class="col-12 col-xl-10 mx-auto">
         <div class="row g-4 p-1 p-md-2 justify-content-center">
-
-          <!-- 左栏 -->
           <div class="col-12 col-md-5">
             <p class="mb-3">
               Harmony will deliver a mathematical framework capable of simulating
@@ -230,7 +325,6 @@
             </p>
           </div>
 
-          <!-- 右栏 -->
           <div class="col-12 col-md-5">
             <p class="mb-3">
               It will efficiently investigate multi-terminal HVDC systems
@@ -241,41 +335,37 @@
               targets execution times of several seconds on general-purpose CPUs.
             </p>
           </div>
-
         </div>
       </div>
 
-          <!-- 悬停展开列表 -->
-          <div class="wp-panel">
-            <ul class="wp-list">
-              <li class="wp-item">
-                <a href="about/wp1.html">
-                  <span class="tag">WP1</span>
-                  <span>Developing models for HPS and dynamic-phasor (DP) components</span>
-                </a>
-              </li>
-              <li class="wp-item">
-                <a href="https://github.com/CRESYM/ACDC_OPF">
-                  <span class="tag">WP2</span>
-                  <span>Optimization models for harmonic &amp; DP analysis of AC-DC systems</span>
-                </a>
-              </li>
-              <li class="wp-item">
-                <a href="about/wp3.html">
-                  <span class="tag">WP3</span>
-                  <span>Mathematical framework implementation and testing</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
+      <div class="wp-panel">
+        <ul class="wp-list">
+          <li class="wp-item">
+            <a href="about/wp1.html">
+              <span class="tag">WP1</span>
+              <span>Developing models for HPS and dynamic-phasor (DP) components</span>
+            </a>
+          </li>
+          <li class="wp-item">
+            <a href="https://github.com/CRESYM/ACDC_OPF">
+              <span class="tag">WP2</span>
+              <span>Optimization models for harmonic &amp; DP analysis of AC-DC systems</span>
+            </a>
+          </li>
+          <li class="wp-item">
+            <a href="about/wp3.html">
+              <span class="tag">WP3</span>
+              <span>Mathematical framework implementation and testing</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
+
   <hr class="cpp-divider">
 
-  <!-- ======================= Sponsors（12个logo，4列×3行） ======================= -->
+  <!-- ====== Partners ====== -->
   <section id="sponsors" class="sponsors">
     <div class="container-xxl">
       <h2 class="section-title text-center mb-4">
@@ -284,16 +374,7 @@
         <span class="cpp-angle">&gt;</span>
       </h2>
 
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-4">
-
-        <!-- ===== Universities ===== -->
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.dtu.dk/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Danmarks_Tekniske_Universitet_(logo).svg" alt="DTU">
-          </a>
-        </div>
-
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-5 justify-content-center">
         <div class="col">
           <a class="sponsor-logo-cell" href="https://www.tudelft.nl/" target="_blank" rel="noopener">
             <img class="sponsor-logo" src="images/harmony_logos/TUDELFT.svg" alt="TU Delft">
@@ -301,148 +382,29 @@
         </div>
 
         <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.tue.nl/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Eindhoven_University.svg.png" alt="Eindhoven University of Technology">
+          <a class="sponsor-logo-cell" href="https://www.tennet.eu/" target="_blank" rel="noopener">
+            <img class="sponsor-logo" src="images/harmony_logos/Tennet_TSO_logo.svg" alt="TenneT">
           </a>
         </div>
 
         <div class="col">
-          <a class="sponsor-logo-cell" href="https://ethz.ch/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/ETH_Zurich.svg.png" alt="ETH Zurich">
+          <a class="sponsor-logo-cell" href="https://cresym.eu/" target="_blank" rel="noopener">
+            <img class="sponsor-logo" src="images/harmony_logos/Cresym.png" alt="CRESYM">
           </a>
         </div>
 
         <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.rwth-aachen.de/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/RWTH_Logo_3.svg" alt="RWTH Aachen">
+          <a class="sponsor-logo-cell" href="https://www.swissgrid.ch/" target="_blank" rel="noopener">
+            <img class="sponsor-logo" src="images/harmony_logos/Swissgrid-logo.svg" alt="Swissgrid">
           </a>
         </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.uni-due.de/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Universitat_Duisburg-Essen.svg.png" alt="University of Duisburg-Essen">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.univ-grenoble-alpes.fr/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Universite_Grenoble_Alpes.svg.png" alt="Université Grenoble Alpes">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.cut.ac.cy/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Cyprus_University_of_Technology.png" alt="Cyprus University of Technology">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.ntua.gr/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/NTUA.webp" alt="National Technical University of Athens">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.upc.edu/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/UPC.svg.png" alt="UPC BarcelonaTech">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.comillas.edu/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/universidad-pontificia-de-comillas.svg" alt="Comillas">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.uni-lj.si/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/ul-logo_new.svg" alt="University of Ljubljana">
-          </a>
-        </div>
-
-        <!-- ===== Research Institutes ===== -->
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.fraunhofer.de/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/Fraunhofer-Gesellschaft_2009_logo.svg" alt="Fraunhofer">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.epri.com/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/EPRI.webp" alt="EPRI">
-          </a>
-        </div>
-
-        <div class="col">
-          <a class="sponsor-logo-cell" href="https://www.inesctec.pt/" target="_blank" rel="noopener">
-            <img class="sponsor-logo" src="images/harmony_logos/INESCTEC.webp" alt="INESC TEC">
-          </a>
       </div>
-
-      <!-- ===== TSOs / DSOs / Industry ===== -->
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.rte-france.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/RTE_logo.svg" alt="RTE France">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.tennet.eu/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/Tennet_TSO_logo.svg" alt="TenneT">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.swissgrid.ch/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/Swissgrid-logo.svg" alt="Swissgrid">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.eles.si/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/ELES_logo.svg" alt="ELES">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.grtgaz.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/Logo_GRT_Gaz.svg" alt="GRTgaz">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.natrangroup.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/NaTran.svg.png" alt="NaTran">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.alliander.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/Alliander.png" alt="Alliander">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.totalenergies.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/Logo_TotalEnergies.svg" alt="TotalEnergies">
-        </a>
-      </div>
-
-      <div class="col">
-        <a class="sponsor-logo-cell" href="https://www.airliquide.com/" target="_blank" rel="noopener">
-          <img class="sponsor-logo" src="images/harmony_logos/AIR_LIQUIDE.png" alt="Air Liquide">
-        </a>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
   <hr class="cpp-divider">
 
-  <!-- ======================= 地图 ======================= -->
+  <!-- ====== Contact ====== -->
   <section id="contact" class="contact section">
     <div class="container">
       <h2 class="section-title text-center mb-4">
@@ -452,96 +414,90 @@
       </h2>
 
       <div class="row g-4 justify-content-center">
-            <!-- Left: Form -->
-            <div class="col-lg-5">
-              <form id="contactForm" class="contact-card" method="POST">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <input class="form-control" name="firstName" placeholder="First Name" autocomplete="given-name" required>
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control" name="lastName" placeholder="Last Name" autocomplete="family-name" required>
-                  </div>
+        <div class="col-lg-5">
+          <form id="contactForm" class="contact-card" method="POST">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input class="form-control" name="firstName" placeholder="First Name" autocomplete="given-name" required>
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" name="lastName" placeholder="Last Name" autocomplete="family-name" required>
+              </div>
 
-                  <div class="col-12">
-                    <input class="form-control" name="organisation" placeholder="Organisation" autocomplete="organization">
-                  </div>
+              <div class="col-12">
+                <input class="form-control" name="organisation" placeholder="Organisation" autocomplete="organization">
+              </div>
 
-                  <div class="col-12">
-                    <input class="form-control" type="email" name="email" placeholder="contacts@company.com" autocomplete="email" required>
-                  </div>
+              <div class="col-12">
+                <input class="form-control" type="email" name="email" placeholder="contacts@company.com" autocomplete="email" required>
+              </div>
 
-                  <div class="col-12">
-                    <input class="form-control" name="phone" placeholder="Phone number" autocomplete="tel">
-                  </div>
+              <div class="col-12">
+                <input class="form-control" name="phone" placeholder="Phone number" autocomplete="tel">
+              </div>
 
-                  <div class="col-12">
-                    <select class="form-select" name="topic" required>
-                      <option value="" selected disabled>Select a topic</option>
-                      <option>Getting Started</option>
-                      <option>Bug report</option>
-                      <option>Collaboration</option>
-                      <option>Publication / citation</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
+              <div class="col-12">
+                <select class="form-select" name="topic" required>
+                  <option value="" selected disabled>Select a topic</option>
+                  <option>Getting Started</option>
+                  <option>Bug report</option>
+                  <option>Collaboration</option>
+                  <option>Publication / citation</option>
+                  <option>Other</option>
+                </select>
+              </div>
 
-                  <div class="col-12">
-                    <input class="form-control" name="subject" placeholder="Subject" required>
-                  </div>
+              <div class="col-12">
+                <input class="form-control" name="subject" placeholder="Subject" required>
+              </div>
 
-                  <div class="col-12">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Write your message here" required></textarea>
-                  </div>
+              <div class="col-12">
+                <textarea class="form-control" name="message" rows="5" placeholder="Write your message here" required></textarea>
+              </div>
 
-                  <!-- Optional: file upload (needs backend to receive file) -->
-                  <div class="col-12">
-                    <label class="form-label small mb-1">Attachment (optional)</label>
-                    <input class="form-control" type="file" name="attachment">
-                    <!-- <div class="form-text">File upload requires a backend or form service.</div> -->
-                  </div>
+              <div class="col-12">
+                <label class="form-label small mb-1">Attachment (optional)</label>
+                <input class="form-control" type="file" name="attachment">
+              </div>
 
-                  <div class="col-12 d-grid">
-                    <button class="btn btn-primary contact-send" type="submit">
-                      <i class="bi bi-send"></i>&nbsp; Send Message
-                    </button>
-                  </div>
+              <div class="col-12 d-grid">
+                <button class="btn btn-primary contact-send" type="submit">
+                  <i class="bi bi-send"></i>&nbsp; Send Message
+                </button>
+              </div>
 
-                  <div class="col-12">
-                    <div id="contactStatus" class="small" aria-live="polite"></div>
-                  </div>
-                </div>
-              </form>
+              <div class="col-12">
+                <div id="contactStatus" class="small" aria-live="polite"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="contact-card contact-map">
+            <div class="map-mini-wrap">
+              <iframe
+                title="TU Delft EWI (EEMCS) - Mekelweg 4"
+                src="https://www.google.com/maps?q=Mekelweg+4,+2628+CD+Delft,+Netherlands&z=16&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+              </iframe>
             </div>
 
-            <!-- Right: Map -->
-            <div class="col-lg-4">
-              <div class="contact-card contact-map">
-                <div class="map-mini-wrap">
-                  <iframe
-                    title="TU Delft EWI (EEMCS) - Mekelweg 4"
-                    src="https://www.google.com/maps?q=Mekelweg+4,+2628+CD+Delft,+Netherlands&z=16&output=embed"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    allowfullscreen>
-                  </iframe>
-                </div>
-
-                <div class="mt-3 small" style="color: var(--color-ink-muted);">
-                  Mekelweg 4, 2628 CD Delft, NL
-                </div>
-              </div>
+            <div class="mt-3 small" style="color: var(--color-ink-muted);">
+              Mekelweg 4, 2628 CD Delft, NL
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-  <!-- ======================= 页脚 ======================= -->
-  <footer class="text-center py-4 bg-light mt-5">
+  <!-- ====== Footer ====== -->
+  <footer class="text-center py-4 bg-light mt-5"></footer>
 
-  </footer>
-
-  <!-- ======================= 底部导览（滚动到底部出现） ======================= -->
+  <!-- ====== Bottom nav ====== -->
   <div id="bottomNav" class="bottom-nav" role="navigation" aria-label="Bottom navigation">
     <div class="container-xxl bottom-nav-inner">
       <div class="bottom-nav-left">
@@ -554,7 +510,6 @@
 
       <div class="bottom-nav-right">
         <div class="bottom-links">
-          <!-- About（和顶部一样的结构：下拉） -->
           <div class="dropup">
             <a class="bottom-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               About
@@ -567,17 +522,11 @@
             </ul>
           </div>
 
-          <!-- Contact -->
           <a class="bottom-link" href="about/contact.html">Contact</a>
-
-          <!-- Privacy Policy -->
           <a class="bottom-link" href="about/privacy.html">Privacy Policy</a>
-
-          <!-- Term of Reference -->
           <a class="bottom-link" href="about/terms.html">Term of Reference</a>
         </div>
 
-        <!-- GitHub icon -->
         <a class="bottom-icon" href="https://github.com/CRESYM/Harmony" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="bi bi-github"></i>
         </a>
@@ -588,137 +537,97 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- =========================================================
-       JS：图片加载渐显 + 主题切换（含记忆）+ 站内搜索
-  ========================================================== -->
+  <!-- Scripts -->
   <script>
-    // ---------------------------
-    // 图片 模糊到清晰
-    // ---------------------------
-    document.addEventListener("DOMContentLoaded", function () {
-      const imgs = document.querySelectorAll(".model-image");
-      imgs.forEach(img => {
+    // 图片：加载后加
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".model-image").forEach(img => {
         if (img.complete) img.classList.add("loaded");
         else img.addEventListener("load", () => img.classList.add("loaded"));
       });
     });
 
-    // ---------------------------
-    // 主题切换 + 记忆
-    // ---------------------------
+    // 主题切换
     (function(){
-      const root = document.documentElement; 
-      const KEY = "harmony-theme";         
-      const btn = document.getElementById("themeToggle");
+      const root = document.documentElement;
+      const KEY  = "harmony-theme";
+      const btn  = document.getElementById("themeToggle");
 
       root.classList.add("js-theme-locked");
 
-      // 初始化：读取本地记录
       const saved = localStorage.getItem(KEY);
       if (saved === "dark") root.classList.add("theme-dark");
       if (saved === "light") root.classList.remove("theme-dark");
 
-      // 若无记录，跟随系统
       if (saved === null) {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          root.classList.add("theme-dark");
-        } else {
-          root.classList.remove("theme-dark");
-        }
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.classList.toggle("theme-dark", prefersDark);
       }
 
-      // 点击切换
       btn?.addEventListener("click", () => {
         root.classList.toggle("theme-dark");
         localStorage.setItem(KEY, root.classList.contains("theme-dark") ? "dark" : "light");
       });
     })();
 
-  </script>
-
-  <style>
-    .navbar {
-      position: fixed;
-      top: -80px; /* 隐藏在上方 */
-      left: 0;
-      width: 100%;
-      transition: top 0.4s ease-in-out;
-      z-index: 1050;
-    }
-    .navbar.show {
-      top: 0; /* 显示时滑下 */
-    }
-  </style>
-
-  <script>
+    // Hero：图片轮播
     (function(){
       const imgs = document.querySelectorAll(".hero-image-switch .model-image");
       if (imgs.length < 2) return;
 
       let index = 0;
-
       setInterval(() => {
         imgs[index].classList.remove("active");
         index = (index + 1) % imgs.length;
         imgs[index].classList.add("active");
       }, 8000);
     })();
-  </script>
 
-
-  <script>
-    (function () {
+    // Navbar：靠近顶部显示
+    (function(){
       const navbar = document.querySelector(".navbar");
       if (!navbar) return;
 
-      const SHOW_ZONE = 80;     
-      const HIDE_DELAY = 350;  
+      const SHOW_ZONE  = 80;
+      const HIDE_DELAY = 350;
       let hideTimer = null;
 
-      function showNav() {
+      function showNav(){
         clearTimeout(hideTimer);
         navbar.classList.add("show");
       }
-
-      function scheduleHide() {
+      function scheduleHide(){
         clearTimeout(hideTimer);
         hideTimer = setTimeout(() => {
-          // 如果有下拉菜单是展开状态，就不要隐藏
           const anyDropdownOpen = navbar.querySelector(".dropdown-menu.show");
           if (!anyDropdownOpen) navbar.classList.remove("show");
         }, HIDE_DELAY);
       }
 
-      // 鼠标到屏幕顶部：显示
       document.addEventListener("mousemove", (e) => {
         if (e.clientY <= SHOW_ZONE) showNav();
       });
 
-      // 鼠标在导航栏范围内：一直显示
       navbar.addEventListener("mouseenter", showNav);
       navbar.addEventListener("mouseleave", scheduleHide);
 
-      // 下拉菜单打开/关闭：打开时强制显示，关闭后再考虑隐藏
       navbar.addEventListener("shown.bs.dropdown", showNav);
       navbar.addEventListener("hidden.bs.dropdown", scheduleHide);
     })();
-  </script>
 
-  <script>
-    (function () {
+    // Bottom nav：接近 footer 显示
+    (function(){
       const bar = document.getElementById("bottomNav");
       if (!bar) return;
 
       const footer = document.querySelector("footer");
-      const SHOW_BEFORE_FOOTER = 220; // 距离 footer 还有多少 px 就显示
+      const SHOW_BEFORE_FOOTER = 220;
 
-      function update() {
-        // 没有 footer 的兜底：接近页面底部就显示
+      function update(){
         const doc = document.documentElement;
         const scrollBottom = doc.scrollHeight - (window.scrollY + window.innerHeight);
-        const nearBottom = scrollBottom < 420;
+        const nearBottom   = scrollBottom < 420;
 
-        // 有 footer 时：接近 footer 就显示（更准）
         let nearFooter = false;
         if (footer) {
           const rect = footer.getBoundingClientRect();
@@ -732,162 +641,129 @@
       window.addEventListener("scroll", update, { passive: true });
       window.addEventListener("resize", update);
     })();
-  </script>
 
-
-  <script>
+    // 搜索面板：开/关
     (function(){
-      const openBtn = document.getElementById("openSearch");
-      const bar     = document.getElementById("searchBar");
-      const input   = document.getElementById("searchBarInput");
-      const closeBtn= document.getElementById("searchBarClose");
+      const openBtn  = document.getElementById("openSearch");
+      const bar      = document.getElementById("searchBar");
+      const input    = document.getElementById("searchBarInput");
+      const closeBtn = document.getElementById("searchBarClose");
 
       if(!openBtn || !bar) return;
 
       function open(){
         bar.classList.add("show");
         bar.setAttribute("aria-hidden","false");
-        input && (input.focus(), input.select());
+        if (input) { input.focus(); input.select(); }
       }
       function close(){
         bar.classList.remove("show");
         bar.setAttribute("aria-hidden","true");
-        input && (input.value = "");
+        if (input) input.value = "";
       }
 
-      openBtn.addEventListener("click", ()=>{
+      openBtn.addEventListener("click", () => {
         bar.classList.contains("show") ? close() : open();
       });
 
-      closeBtn && closeBtn.addEventListener("click", close);
+      closeBtn?.addEventListener("click", close);
 
-      document.addEventListener("keydown", (e)=>{
-        if(e.key === "Escape") close();
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
       });
 
-      document.addEventListener("click", (e)=>{
+      document.addEventListener("click", (e) => {
         if (!bar.contains(e.target) && !openBtn.contains(e.target)) close();
       });
     })();
+
+    // 页面内高亮
+    (function(){
+      const input = document.getElementById("searchBarInput");
+      const panel = document.getElementById("searchBar");
+      if(!input || !panel) return;
+
+      const MIN_LEN = 3;
+
+      function clearHighlights(){
+        document.querySelectorAll(".search-hit").forEach(span => {
+          const parent = span.parentNode;
+          while (span.firstChild) parent.insertBefore(span.firstChild, span);
+          parent.removeChild(span);
+          parent.normalize();
+        });
+      }
+
+      function highlightAll(term){
+        clearHighlights();
+        if(!term || term.length < MIN_LEN) return;
+
+        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const rx = new RegExp(escaped, "gi");
+
+        const nodes = [];
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node){
+            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+
+            const p = node.parentNode;
+            if (!p) return NodeFilter.FILTER_REJECT;
+
+            const tag = p.nodeName.toLowerCase();
+            if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
+
+            if (p.closest("#searchBar") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+
+        let node;
+        while((node = walker.nextNode())) nodes.push(node);
+
+        const hits = [];
+        nodes.forEach(textNode => {
+          const text = textNode.nodeValue;
+          rx.lastIndex = 0;
+
+          const matches = [];
+          let m;
+          while((m = rx.exec(text)) !== null){
+            matches.push([m.index, m.index + m[0].length]);
+            if (m.index === rx.lastIndex) rx.lastIndex++;
+          }
+          if (!matches.length) return;
+
+          for(let i = matches.length - 1; i >= 0; i--){
+            const [s,e] = matches[i];
+            const range = document.createRange();
+            range.setStart(textNode, s);
+            range.setEnd(textNode, e);
+
+            const mark = document.createElement("span");
+            mark.className = "search-hit";
+            range.surroundContents(mark);
+            hits.push(mark);
+          }
+        });
+
+        if (hits.length) {
+          hits[hits.length - 1].scrollIntoView({ behavior:"smooth", block:"center" });
+        }
+      }
+
+      input.addEventListener("input", () => {
+        highlightAll(input.value.trim());
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") clearHighlights();
+      });
+    })();
   </script>
-
-
- <script>
-(function(){
-  const input = document.getElementById("searchBarInput");
-  const panel = document.getElementById("searchBar");
-  if(!input || !panel) return;
-
-  // 至少输入3个字符才开始高亮
-  const MIN_LEN = 3;
-
-  // 1) 清除高亮：把 <span class="search-hit"> 解包回纯文本
-  function clearHighlights(){
-    document.querySelectorAll(".search-hit").forEach(span=>{
-      const parent = span.parentNode;
-      while (span.firstChild) parent.insertBefore(span.firstChild, span);
-      parent.removeChild(span);
-      parent.normalize();
-    });
-  }
-
-  // 2) 高亮：先收集所有文本节点，再做替换（避免遍历时破坏 DOM）
-  function highlightAll(term){
-    clearHighlights();
-    if(!term || term.length < MIN_LEN) return;
-
-    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const rx = new RegExp(escaped, "gi");
-
-    // ✅ 先把所有候选文本节点收集起来
-    const nodes = [];
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode(node){
-        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-
-        const p = node.parentNode;
-        if (!p) return NodeFilter.FILTER_REJECT;
-
-        const tag = p.nodeName.toLowerCase();
-        if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
-
-        // ✅ 不搜索你自己的搜索面板 & 顶部导航（按你之前逻辑）
-        if (p.closest("#searchBar") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
-
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-
-    let node;
-    while((node = walker.nextNode())){
-      nodes.push(node);
-    }
-
-    // ✅ 对每个文本节点，从后往前包裹匹配片段（避免 index 被打乱）
-    const hits = [];
-    nodes.forEach(textNode=>{
-      const text = textNode.nodeValue;
-      rx.lastIndex = 0;
-
-      const matches = [];
-      let m;
-      while((m = rx.exec(text)) !== null){
-        matches.push([m.index, m.index + m[0].length]);
-        if (m.index === rx.lastIndex) rx.lastIndex++; // 防死循环
-      }
-      if (!matches.length) return;
-
-      for(let i = matches.length - 1; i >= 0; i--){
-        const [s,e] = matches[i];
-        const range = document.createRange();
-        range.setStart(textNode, s);
-        range.setEnd(textNode, e);
-
-        const mark = document.createElement("span");
-        mark.className = "search-hit";
-        range.surroundContents(mark);
-        hits.push(mark);
-      }
-    });
-
-    // ✅ 自动滚到第一个命中
-    if(hits.length){
-      hits[hits.length - 1].scrollIntoView({behavior:"smooth", block:"center"});
-    }
-  }
-
-  // 3) 输入时高亮（实时）
-  input.addEventListener("input", ()=>{
-    const term = input.value.trim();
-    highlightAll(term);
-  });
-
-  // 4) ESC：只清高亮，不关面板（你要关面板的话我再按你逻辑加）
-  document.addEventListener("keydown", (e)=>{
-    if(e.key === "Escape"){
-      clearHighlights();
-    }
-  });
-})();
-</script>
-
-<style>
-  :root{
-    --color-search-hit-bg:#f3d6dc;
-    --color-search-hit-fg:#6b0f1a;
-  }
-  html.theme-dark{
-    --color-search-hit-bg:#6b0f1a;
-    --color-search-hit-fg:#f3d6dc;
-  }
-  .search-hit{
-    background: var(--color-search-hit-bg) !important;
-    color: var(--color-search-hit-fg) !important;
-  }
-</style>
-
 </body>
 </html>
+
+
 
 
 
