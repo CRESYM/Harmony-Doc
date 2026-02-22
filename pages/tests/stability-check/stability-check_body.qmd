@@ -1,6 +1,6 @@
 ---
 layout: page 
-title: MMC # be as specific as possible
+title: Stability Check # be as specific as possible
 tags: [Opensource, Stability Analysis, Impedance Modeling]
 date: 05/01/2026
 last-updated: 05/01/2026
@@ -365,7 +365,7 @@ evaluated at the selected frequency.
 
 ---
 
-### Implement Results 
+### Execution Results 
 
 First, the OPF results are printed, showing the bus voltages, generation, load, and branch flows. 
 
