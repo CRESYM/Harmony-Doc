@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aleksandra Lekić, Haixiao Li">
+<meta name="dcterms.date" content="2026-05-01">
+
+<title>Stability Check</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="stability-check_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="stability-check_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="stability-check_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="stability-check_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="stability-check_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="stability-check_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="stability-check_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="stability-check_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="stability-check_body_files/libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="stability-check_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="stability-check_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="stability-check_body_files/libs/bootstrap/bootstrap-dd1e69cc28de4c0c742d9bb80f8fae17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script>
+MathJax = {
+  tex: {
+    tags: 'ams',
+    tagSide: 'right',
+    tagIndent: '0em'
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Stability Check</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aleksandra Lekić, Haixiao Li </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>The HVDC system induces harmonics in the grid. These harmonics entail serious stability issues and are a real source of problems. Before going into system modeling to study the harmonic effect, a basic overview of the nature of the generated harmonics is important—a brief but detailed overview of the nature of harmonics or the multiples of generated harmonics.</em></p>
+</div>
+</div>
+<section id="theoretical-background" class="level2">
+<h2 class="anchored" data-anchor-id="theoretical-background">Theoretical Background</h2>
+<section id="ajusted-modified-nodal-analysis-approach" class="level3">
+<h3 class="anchored" data-anchor-id="ajusted-modified-nodal-analysis-approach">Ajusted Modified Nodal Analysis Approach</h3>
+<p>To effectively compute the equivalent impedance for a given circuit, the adjusted modified nodal analysis (MNA) approach is utilized <span class="citation" data-cites="ho1975modified">Ho, Ruehli, and Brennan (<a href="#ref-ho1975modified" role="doc-biblioref">1975</a>)</span>, which is applied with following steps:</p>
+<section id="step-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-1">Step 1 👣</h4>
+<p>Determine the input and output of the circuit where you want to determine the equivalent impedance, see <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets//f1.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Schematic diagram regarding circuit cut.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="step-2" class="level4">
+<h4 class="anchored" data-anchor-id="step-2">Step 2 👣</h4>
+<p>Assign input and output current as depicted in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets//f2.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Schematic diagram regarding equivalent impedance determination.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="step-3" class="level4">
+<h4 class="anchored" data-anchor-id="step-3">Step 3 👣</h4>
+<p>Build MNA by adding all components except the ones on the direct connection to the input and output pins. Those components are considered as non-existent as seen in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>. Furthermore, the following sorting of variables should be applied: <span class="math inline">\(\left[V_i, I_i, V_o, I_o, V\right]\)</span>, where where <span class="math inline">\(V_i\)</span> and <span class="math inline">\(I_i\)</span> present voltages and currents at the input like depicted in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>. <span class="math inline">\(V_o\)</span> and <span class="math inline">\(I_o\)</span> are output voltages and currents, and <span class="math inline">\(V\)</span> are other voltage buses/nodes that are not input and output ones.</p>
+</section>
+<section id="step-4" class="level4">
+<h4 class="anchored" data-anchor-id="step-4">Step 4 👣</h4>
+<p>Build MNA by adding all components except the ones on the direct connection to the input and output pins. Those components are considered as non-existent as seen in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>. Furthermore, the following sorting of variables should be applied: <span class="math inline">\(\left[V_i, I_i, V_o, I_o, V\right]\)</span>, where where <span class="math inline">\(V_i\)</span> and <span class="math inline">\(I_i\)</span> present voltages and currents at the input like depicted in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>. <span class="math inline">\(V_o\)</span> and <span class="math inline">\(I_o\)</span> are output voltages and currents, and <span class="math inline">\(V\)</span> are other voltage buses/nodes that are not input and output ones.</p>
+<p><span class="math display">\[\begin{equation}
+        \underbrace{\begin{bmatrix}
+            Y_{ii} &amp; \operatorname{diag}\{-1\} &amp; Y_{io} &amp; 0 &amp; Y_{iv} \\
+            \operatorname{diag}\{1\} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+            Y_{oi} &amp; 0 &amp; Y_{oo} &amp; \operatorname{diag}\{1\} &amp; Y_{ov} \\
+            0 &amp; 0 &amp; \operatorname{diag}\{1\} &amp; 0 &amp; 0 \\
+            Y_{vi} &amp; 0 &amp; Y_{vo} &amp; 0 &amp; Y_{vv}
+        \end{bmatrix}}_{M}
+        \underbrace{\begin{bmatrix}
+            V_i \\
+            I_i \\
+            V_o \\
+            I_o \\
+            V
+        \end{bmatrix}}_{x} =
+        \underbrace{\begin{bmatrix}
+            0 \\
+            V_{1} \\
+            0 \\
+            V_{2} \\
+            0
+        \end{bmatrix}}_{z},
+        \label{eq:mna}
+    \end{equation}\]</span></p>
+<p>where <span class="math inline">\(Y_{xy}\)</span> are Y parameters for the specified block of nodes <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Values <span class="math inline">\(V_1\)</span> and <span class="math inline">\(V_2\)</span> are symbolic vectors of values assigned to input and output nodes. With <span class="math inline">\(0\)</span> is denoted zero matrix. For simplicity, the dimensions are skipped in the previous equation.</p>
+</section>
+<section id="step-5" class="level4">
+<h4 class="anchored" data-anchor-id="step-5">Step 5 👣</h4>
+<p>The previous equation <span class="math inline">\(\eqref{eq:mna}\)</span> is solved using the reduced row echelon form <span class="citation" data-cites="bird2017electrical">Bird (<a href="#ref-bird2017electrical" role="doc-biblioref">2017</a>)</span> on the concatenated matrices <span class="math inline">\(M\)</span> and <span class="math inline">\(z\)</span>. This will solve the system of equations by enforcing the values for variables <span class="math inline">\(x\)</span> to diagonal 1 values, and on the position of <span class="math inline">\(z\)</span> column would be the expected solution.</p>
+</section>
+<section id="step-6" class="level4">
+<h4 class="anchored" data-anchor-id="step-6">Step 6 👣</h4>
+<p>By taking values for <span class="math inline">\(V_i\)</span> and <span class="math inline">\(I_i\)</span> and dividing them, we obtain the equivalent impedance per phase.</p>
+</section>
+</section>
+<section id="stability-assessment-procedure" class="level3">
+<h3 class="anchored" data-anchor-id="stability-assessment-procedure">Stability Assessment Procedure</h3>
+<p>The stability assessment procedure follows the steps:</p>
+<section id="step-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-1">Step 1 👣</h4>
+<p>Divide components per AC and DC areas, and converter group. Enable pointers for the connections with converters. This has been achieved by defining the SubNetwork class that contains network portions.</p>
+</section>
+<section id="step-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-1">Step 2 👣</h4>
+<p>Estimate equivalent admittance parameters of the subnetwork between outputs (connections to converters) for each AC and DC area. Please note that the AC side is transformed to the DQ frame during this calculation inside the Element class <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="hernandez2024comprehensive">Hernández-Ramı́rez, Segundo-Ramı́rez, and Molinas (<a href="#ref-hernandez2024comprehensive" role="doc-biblioref">2024</a>)</span>, given as:</p>
+<p><span class="math display">\[\begin{equation}
+\mathbf Y_{dq}
+= \tfrac{1}{6}\, \left\{\mathbf a\,\mathbf Y(j(\omega-\omega_0))\,\mathbf a^{H}
++ \tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y(j(\omega+\omega_0))\,\mathbf a^{T} \right\}_{dq},
+\label{eq:coeffs_full}
+\end{equation}\]</span></p>
+<p>The derivation follows the corrected theorem from Appendix A from . Namely, starting from Fourier transformation of the Park transform <span class="math inline">\(P_{\omega_0}(j\omega)\)</span> and <span class="math inline">\(P_{\omega_0}^{-1}(j\omega)\)</span> as:</p>
+<p><span class="math display">\[\begin{equation}
+\label{A.3}
+P_{\omega_0}(j\omega)
+= \frac{2\pi}{3}\Big(\,
+    \mathbf{a}\,\delta(\omega-\omega_0)
+  + \mathbf{a}^*\,\delta(\omega+\omega_0)
+  + \mathbf{c}\,\delta(\omega)
+\Big)
+\end{equation}\]</span> and <span class="math display">\[\begin{equation}
+\label{A.4}
+P_{\omega_0}^{-1}(j\omega)
+= \pi\Big(\,
+    \mathbf{a}^T\,\delta(\omega-\omega_0)
+  + \mathbf{a}^{H}\,\delta(\omega+\omega_0)
+  + 2\,\mathbf{c}^T\,\delta(\omega)
+\Big)
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{a}*\)</span> is elementwise complex conjugate of <span class="math inline">\(\mathbf{a}\)</span>, and <span class="math inline">\(\mathbf{a}^H = (\mathbf{a}*)^T\)</span> is Hermitian transpose of <span class="math inline">\(\mathbf{a}\)</span>. Furthermore, <span class="math display">\[\begin{equation}
+    \mathbf{a} = \begin{bmatrix}
+        1 &amp; \exp(j \varphi) &amp; \exp(2j \varphi) \\
+        j &amp; j \exp(j\varphi) &amp; j\exp(2j \varphi) \\
+        0 &amp; 0 &amp; 0
+    \end{bmatrix} , \qquad
+    \mathbf{c} = \begin{bmatrix}
+        0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 \\
+        1 &amp; 1 &amp; 1
+    \end{bmatrix}.
+\end{equation}\]</span></p>
+<p>Starting from relationship <span class="math inline">\(I_{abc}(j\omega) = Y(j\omega) V_{abc}(j\omega)\)</span>, when applying the Park transformation, we get: <span class="math display">\[\begin{equation}
+    I_{dqz}(j\omega) = \frac{1}{2\pi} P_{\omega_0}(j\omega) \otimes \left(Y(j\omega) \frac{1}{2\pi} P^{-1}_{\omega_0} (j\omega) \otimes V_{dqz}(j\omega) \right),
+\end{equation}\]</span> which gives <span class="math display">\[\begin{equation}
+\begin{aligned}
+\mathbf I_{dqz}(j\omega)
+&amp;= \tfrac{1}{6}\,\mathbf a\,\mathbf Y\!\big(j(\omega-\omega_0)\big)\,\mathbf a^{T}\,
+    \mathbf V_{dqz}\!\big(j(\omega-2\omega_0)\big) \\[3pt]
+&amp;\quad + \tfrac{1}{6}\,\mathbf a\,\mathbf Y\!\big(j(\omega-\omega_0)\big)\,\mathbf a^{H}\,
+    \mathbf V_{dqz}\!\big(j\omega\big)
+  + \tfrac{1}{3}\,\mathbf a\,\mathbf Y\!\big(j(\omega-\omega_0)\big)\,\mathbf c^{T}\,
+    \mathbf V_{dqz}\!\big(j(\omega-\omega_0)\big) \\[3pt]
+&amp;\quad + \tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y\!\big(j(\omega+\omega_0)\big)\,\mathbf a^{T}\,
+    \mathbf V_{dqz}\!\big(j\omega\big)
+  + \tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y\!\big(j(\omega+\omega_0)\big)\,\mathbf a^{H}\,
+    \mathbf V_{dqz}\!\big(j(\omega+2\omega_0)\big) \\[3pt]
+&amp;\quad + \tfrac{1}{3}\,\mathbf a^{*}\,\mathbf Y\!\big(j(\omega+\omega_0)\big)\,\mathbf c^{T}\,
+    \mathbf V_{dqz}\!\big(j(\omega+\omega_0)\big) \\[3pt]
+&amp;\quad + \tfrac{1}{6}\,\mathbf c\,\mathbf Y\!\big(j\omega\big)\,\mathbf a^{T}\,
+    \mathbf V_{dqz}\!\big(j(\omega-\omega_0)\big)
+  + \tfrac{1}{6}\,\mathbf c\,\mathbf Y\!\big(j\omega\big)\,\mathbf a^{H}\,
+    \mathbf V_{dqz}\!\big(j(\omega+\omega_0)\big) \\[3pt]
+&amp;\quad + \tfrac{1}{3}\,\mathbf c\,\mathbf Y\!\big(j\omega\big)\,\mathbf c^{T}\,
+    \mathbf V_{dqz}\!\big(j\omega\big).
+\end{aligned}
+\label{eq:Vdq_expanded_corrected}
+\end{equation}\]</span></p>
+</section>
+<section id="step-3-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-1">Step 3 👣</h4>
+<p>Use formulas for converter cross-connections on DC side given in below equation <span class="math inline">\(\eqref{eq:8}\)</span> and <span class="math inline">\(\eqref{eq:9}\)</span>.</p>
+<p><span class="math display">\[\begin{eqnarray}
+     i_{d,q}^\Delta = Y_{dq} v_{d,q} + a_{2 \times 1} v_{dc}, \label{eq:8} \\
+     i_{dc} = b_{1 \times 2} v_{d,q} + Y_{dc} v_{dc},  \label{eq:9}
+   \end{eqnarray}\]</span></p>
+<p>Namely, for the DC admittance visible inside the converter, we use the already known AC side admittance denoted as <span class="math inline">\(Y_{eq,AC}\)</span>. Then we have that: <span class="math display">\[\begin{eqnarray}
+        i^\Delta_{dq} = Y_{dq, conv} v_{dq} + a_{2\times 1, conv} v_{dc} = Y_{eq, AC} v^\Delta_{dq}, \\
+        v^\Delta_{dq} = (Y_{eq,AC} - Y_{dq, conv})^{-1} \, a_{2\times 1, conv} \, v_{dc}, \\
+        i_{dc} = \underbrace{(b_{1\times 2, conv} \, (Y_{eq,AC} - Y_{dq, conv})^{-1} \, a_{2\times 1, conv} + Y_{dc, conv})}_{Y_{eq, conv}} \, v_{dc}, \label{eq:dc_crosscouple}
+    \end{eqnarray}\]</span> which is the value used in further calculation.This case is applicable for every converter that is not considered for the local stability check, and for the DC cutting side of the converter, for the estimation of local stability.</p>
+<p>Please note that the calculated admittance parameters <span class="math inline">\(Y_{eq, AC}\)</span> in this case are also the input in the AC network when looking from the AC side of the converter. That is ensured by defining only one so-called output bus of the SubNetwork class.</p>
+</section>
+<section id="step-4-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-1">Step 4 👣</h4>
+<p>Find closing impedance on DC side. Here, we consider equivalent admittance parameters of the DC of the converter, which is examined for stability check, and that bus connection (with converter) we consider as an input. The other DC network outputs are considered outputs closed with ``closing impedance’’ determined in the previous step. The closing impedance will look as <span class="math inline">\(Y_L = \operatorname{diag}\{ Y_{eq, conv1} , \cdots , Y_{eq, convN} \}\)</span>, for <span class="math inline">\(N\)</span> being the number of converters which are not examined for stability (i.e.&nbsp;one less than the total number of converters in the system, not considering the converters included as a part of RES), and <span class="math inline">\(Z_{eq,conv} = Y_{eq,conv}^{-1}\)</span>.</p>
+<p>Then we have that the admittance parameters can be divided into <span class="math inline">\(Y_{11}\)</span>, <span class="math inline">\(Y_{12}\)</span>, <span class="math inline">\(Y_{21}\)</span>, and <span class="math inline">\(Y_{22}\)</span> after identifying the input and outputs, and have that:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  I_{in} = Y_{11} V_{in} + Y_{12} V_{out}, \\
+  I_{out} = Y_{21} V_{in} + Y_{22} V_{out}, \\
+  V_{out} = - Z_L I_{out},
+\end{eqnarray}\]</span></p>
+<p>and finally, we get that: <span class="math display">\[\begin{equation}
+    I_{in} = \underbrace{Y_{11} + Y_{12} (Y_L + Y_{22}) Y_{21}}_{Y_{eq}} V_{in}.
+    \end{equation}\]</span></p>
+</section>
+<section id="step-5-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-5-1">Step 5 👣</h4>
+<p>Couple AC and DC sides of the converter of interest. Here we identify two cases:</p>
+<ol type="a">
+<li><p>If the system is cut on the DC side, then we will use the formula for the DC side cross-coupling <span class="math inline">\(\eqref{eq:dc_crosscouple}\)</span>, and the admittance on its AC side calculated in step 1, and calculate the transfer function as: <span class="math inline">\(TF(s) = Y_{eq, conv} Y_{eq, DC}^{-1}\)</span>.</p></li>
+<li><p>If the system is cut on the AC side, we use the admittance calculated in step 4, estimate the admittance visible at the converter’s AC side as follows.</p></li>
+</ol>
+<p>To estimate the AC admittance, we follow the same procedure, and we have:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  i_{dc} = b_{1\times 2, conv} \, v_{dq}^\Delta + Y_{dc, conv} \, v_{dc} = Y_{eq,DC} \, v_{dc}, \\
+  v_{dc} = \frac{b_{1\times 2, conv} \, v_{dq}^\Delta}{Y_{eq,DC} - Y_{dc, conv}}, \\
+  i^\Delta_{dq} = \underbrace{\left( Y_{dq,conv} + \frac{a_{2 \times 1, conv} b_{1 \times 2, conv}}{Y_{eq,DC} - Y_{dc, conv}} \right)}_{Y_{eq,conv}} \, v_{dc}.         
+\end{eqnarray}\]</span></p>
+<p>Finally, calculate the transfer function with the AC admittance calculated in step 1 as <span class="math inline">\(TF(s) = Y_{eq, conv} Y_{eq, AC}^{-1}\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="code-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+<p>The following example implements a simple hybrid AC/DC system and evaluates the small-signal transfer function of a selected MMC converter.</p>
+<section id="general-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="general-workflow">General Workflow</h3>
+<hr>
+<section id="network-definition" class="level4">
+<h4 class="anchored" data-anchor-id="network-definition">Network Definition 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Examples.h"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../network.h"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Bus.h"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Include_components.h"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Solver/Stability_Estimate/Stability_estimate.h"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Solver/OPF/powerflow.h"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> example_stability_check<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Network net<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A global <code>Network</code> object is created to store all buses and components.</p>
+<hr>
+</section>
+<section id="ac-and-dc-system-construction" class="level4">
+<h4 class="anchored" data-anchor-id="ac-and-dc-system-construction">AC and DC System Construction 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* AC buses */</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus1_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS01"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus2_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS02"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus3_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS03"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus4_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS04"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* DC buses */</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus1_dc <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"DCBUS01"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus2_dc <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"DCBUS02"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Two AC areas and one DC area are defined.</p>
+<hr>
+</section>
+<section id="component-connections" class="level4">
+<h4 class="anchored" data-anchor-id="component-connections">Component Connections 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Load and source */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Load<span class="op">*</span> load2 <span class="op">=</span> <span class="kw">new</span> Load<span class="op">(</span><span class="st">"LOAD02"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> load_params2<span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>load2<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus4_ac<span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    AC_source<span class="op">*</span> src1 <span class="op">=</span> <span class="kw">new</span> AC_source<span class="op">(</span><span class="st">"SRC01"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="fl">345e3</span><span class="op">,</span> Zsrc<span class="op">);</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>src1<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus1_ac<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* DC branch */</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    Impedance<span class="op">*</span> br1_dc <span class="op">=</span> <span class="kw">new</span> Impedance<span class="op">(</span><span class="st">"br1_dc"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">0.05</span><span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>br1_dc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus1_dc<span class="op">);</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>br1_dc<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> bus2_dc<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Loads, source, and DC impedance define the steady-state power flow structure.</p>
+<hr>
+</section>
+<section id="mmc-converter-modeling" class="level4">
+<h4 class="anchored" data-anchor-id="mmc-converter-modeling">MMC Converter Modeling 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    MMC<span class="op">*</span> mmc1 <span class="op">=</span> <span class="kw">new</span> MMC<span class="op">(</span><span class="st">"MMC1"</span><span class="op">,</span> <span class="st">"AC1_DC1"</span><span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                        converter_params1<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                        controller_params1<span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>mmc1<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus2_ac<span class="op">);</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>mmc1<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> bus1_dc<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The MMC connects the AC and DC areas.</p>
+<hr>
+</section>
+<section id="steady-state-solution" class="level4">
+<h4 class="anchored" data-anchor-id="steady-state-solution">Steady-State Solution 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    PowerFlow pf<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    pf<span class="op">.</span>make_OPF<span class="op">(&amp;</span>net<span class="op">,</span> global_params<span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">true</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An OPF-based steady-state solution is computed before small-signal analysis.<br>
+This provides the operating point for impedance evaluation.</p>
+<hr>
+</section>
+<section id="stability-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="stability-evaluation">Stability Evaluation 👣</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    StabilityEstimate<span class="op">*</span> stability <span class="op">=</span> <span class="kw">new</span> StabilityEstimate<span class="op">();</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    stability<span class="op">-&gt;</span>add_areas<span class="op">(&amp;</span>net<span class="op">);</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    stability<span class="op">-&gt;</span>compute_transfer_function<span class="op">(</span><span class="st">"MMC2"</span><span class="op">,</span> <span class="st">"AC"</span><span class="op">,</span> <span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">delete</span> stability<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The stability module:</p>
+<ul>
+<li>Partitions the network into subnetworks<br>
+</li>
+<li>Aggregates equivalent admittances<br>
+</li>
+<li>Computes the transfer function</li>
+</ul>
+<p>For the AC-cut case, the transfer function corresponds to:</p>
+<p>[ TF(s) = Y_{eq,conv} , Y_{eq,AC}^{-1} ]</p>
+<p>evaluated at the selected frequency.</p>
+<hr>
+</section>
+</section>
+<section id="execution-results" class="level3">
+<h3 class="anchored" data-anchor-id="execution-results">Execution Results</h3>
+<p>First, the OPF results are printed, showing the bus voltages, generation, load, and branch flows.</p>
+<pre class="text"><code>=================================================================================================
+|   AC  Grid Bus Data                                                                           |
+=================================================================================================
+ Area    Bus        Voltage             Generation            Load                 RES
+ #       #     Mag [pu]/Ang [deg]  Pg [MW]   Qg [MVAr]  P [MW]   Q [MVAr]  Pres [MW]  Qres[MVAr]
+-----   -----  ------------------  --------  ---------  -------  -------   ---------  -----------
+  1       1    1.093  /   0.00*         -          -      0.00     0.00         -          -
+  1       2    1.093  /   0.02          -          -      0.00     0.00         -          -
+  1       3    1.093  /  -0.00       52.20      16.85     0.00     0.00         -          -
+  2       1    1.091  /   0.00          -          -      0.00     0.00         -          -
+  2       2    1.091  /   0.02          -          -     50.18    10.07         -          -
+-----   -----  ------------------  --------  ---------  -------  -------   ---------  -----------
+ The total generation cost is $712.44/MWh (€659.66/MWh)
+
+===========================================================================================
+|     AC Grids Branch Data                                                                |
+===========================================================================================
+ Area   Branch  From   To        From Branch Flow         To Branch Flow        Branch Loss
+ #      #       Bus#   Bus#    Pij [MW]   Qij [MVAr]    Pij [MW]   Qij [MVAr]  Pij_loss [MW]
+ ----   ------  -----  -----  ---------  ----------   ----------  ----------  -------------
+  1      1       1      2       52.279      -9.318      -52.275       9.357       0.004
+  1      2       1      3      -52.198      18.328       52.198      13.767       0.000
+  2      1       1      2       50.104       9.295      -50.100      -9.263       0.003
+ ----   ------  -----  -----  ---------  -----------    --------  ----------  -------------
+ The total AC network losses is 0.007 MW.
+
+================================================================================
+|   MTDC Bus Data                                                              |
+================================================================================
+ Bus   Bus    AC   DC Voltage   DC Power   PCC Bus Injection   Converter loss
+ DC #  AC #  Area   Vdc [pu]    Pdc [MW]   Ps [MW]  Qs [MVAr]  Conv_Ploss [MW]
+ -----  ----  ----  ---------    --------   -------  --------   ------------
+   1     1     2     1.197       -51.171   -50.104   -9.295      1.155
+   2     2     1     1.197        51.173    52.275   -9.357      1.188
+-----  ----  ----  ---------    --------   -------  --------    --------
+ The total converter losses is 2.344 MW
+
+===================================================================
+|     MTDC Branch Data                                             |
+===================================================================
+ Branch  From   To     From Branch    To Branch      Branch Loss
+ #       Bus#   Bus#   Flow Pij [MW]  Flow Pij [MW]  Pij_loss [MW]
+ ------  -----  -----   ---------      ---------      ---------
+    1      1      2     -51.171         51.173         0.002
+ ------  -----  -----   ---------      ---------      ---------
+ The total DC network losses is 0.002 MW.
+
+ Execution time is 0.153 s
+</code></pre>
+<p>Then, MMC operating points are updated with the OPF results, and the equilibrium state is printed for each MMC.</p>
+<pre class="text"><code>
+=== Updating 2 MMC elements with OPF results ===
+Converged (small step) in 1491 iterations.
+[Updated MMC] MMC2 | Vm=376.266 kV, theta=0.000 deg, Pac=-50.104 MW, Qac=-9.295 MVar, Vdc=412.837 kV, Pdc=-51.171 MW
+Equilibrium state:
+  -90.697     16.469    -41.317     -0.000     -0.000   -536.614   1909.500      0.646      0.761    236.244  -1317.610 412833.448
+Converged (small step) in 176414 iterations.
+[Updated MMC] MMC1 | Vm=377.189 kV, theta=0.021 deg, Pac=52.275 MW, Qac=-9.357 MVar, Vdc=412.840 kV, Pdc=51.173 MW
+Equilibrium state:
+   92.395     16.537     42.223      0.000      0.000   -538.883  -1975.195      0.701     -0.774    237.911   1345.923 412836.345
+
+=== StabilityEstimate: Area Summary ===
+AC Grids Detected: 2
+ - AC2 (2 buses, 2 elements, 1 outputs)
+ - AC1 (2 buses, 2 elements, 1 outputs)
+DC Grids Detected: 1
+ - DC1 (2 buses, 1 elements, 2 outputs)
+
+Y1 at 1000 Hz:
+(0.0006251813,-0.0045456903) (0.0000080989,-0.0000237153)  (0.0000034384,0.0000338422)
+(-0.0033601746,0.0028059178) (0.0000567312,-0.0000600855) (-0.0000607055,0.0000520370)
+(0.0000149273,-0.0000057094) (-0.0000114782,0.0000123063)  (0.0001530480,0.0002909866)
+
+Y2 at 1000 Hz:
+(-0.1296974762,-1.1061076269)  (-0.0000327654,0.0000043749)  (0.0000325752,-0.0000033223)
+(-1.2724353572,-0.6174201797)  (0.0000380460,-0.0000613489)  (0.0000214998,-0.0000383601)
+(-0.0013739688,-0.0013977386)  (-0.0000002174,0.0000026871)   (0.0002159779,0.0002087296)</code></pre>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bird2017electrical" class="csl-entry" role="listitem">
+Bird, John. 2017. <em>Electrical Circuit Theory and Technology</em>. Routledge.
+</div>
+<div id="ref-hernandez2024comprehensive" class="csl-entry" role="listitem">
+Hernández-Ramı́rez, Julio, Juan Segundo-Ramı́rez, and Marta Molinas. 2024. <span>“Comprehensive DQ Impedance Modeling of AC Power-Electronics-Based Power Systems with Frequency-Dependent Transmission Lines.”</span> <em>Electric Power Systems Research</em> 235: 110847.
+</div>
+<div id="ref-ho1975modified" class="csl-entry" role="listitem">
+Ho, Chung-Wen, Albert Ruehli, and Pierce Brennan. 1975. <span>“The Modified Nodal Approach to Network Analysis.”</span> <em>IEEE Transactions on Circuits and Systems</em> 22 (6): 504–9.
+</div>
+<div id="ref-sakinci2022generalized" class="csl-entry" role="listitem">
+Sakinci, Özgür Can, Aleksandra Lekić, and Jef Beerten. 2022. <span>“Generalized Impedance-Based AC/DC Power System Modeling for Harmonic Stability Analysis.”</span> <em>International Journal of Electrical Power &amp; Energy Systems</em> 143: 108456.
+</div>
+</div>
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">layout:</span><span class="co"> page </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Stability Check # be as specific as possible</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [Opensource, Stability Analysis, Impedance Modeling]</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 05/01/2026</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">last-updated:</span><span class="co"> 05/01/2026</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Aleksandra Lekić, Haixiao Li"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="an">reviewers:</span><span class="co"> "Aleksandra Lekić"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># MathJax</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">    standalone: false</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: mathjax</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show/Hide Code"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">    include-in-header:</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">      text: |</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">        &lt;script&gt;</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">        MathJax = {</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">          tex: {</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">            tags: 'ams',        </span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">            tagSide: 'right',   </span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">            tagIndent: '0em'    </span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">          }</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">        };</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">        &lt;/script&gt;</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd"&gt;Download model template&lt;/a&gt; --&gt;</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>*The HVDC system induces harmonics in the grid. These harmonics entail serious stability issues and are a real source of problems. Before going into system modeling to study the harmonic effect, a basic overview of the nature of the generated harmonics is important—a brief but detailed overview of the nature of harmonics or the multiples of generated harmonics.*</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theoretical Background</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ajusted Modified Nodal Analysis Approach</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>To effectively compute the equivalent impedance for a given circuit, the adjusted modified nodal analysis (MNA) approach is utilized @ho1975modified, which is applied with following steps:</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 👣</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>Determine the input and output of the circuit where you want to determine the equivalent impedance, see @fig-1.</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="al">![Schematic diagram regarding circuit cut.](assets//f1.png)</span>{#fig-1 width=60%}</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 👣</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>Assign input and output current as depicted in @fig-2.</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="al">![Schematic diagram regarding equivalent impedance determination.](assets//f2.png)</span>{#fig-2 width=60%}</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 👣</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>Build MNA by adding all components except the ones on the direct connection to the input and output pins. Those components are considered as non-existent as seen in @fig-2. Furthermore, the following sorting of variables should be applied: $\left<span class="co">[</span><span class="ot">V_i, I_i, V_o, I_o, V\right</span><span class="co">]</span>$, where where $V_i$ and $I_i$ present voltages and currents at the input like depicted in  @fig-2. $V_o$ and $I_o$ are output voltages and currents, and $V$ are other voltage buses/nodes that are not input and output ones.</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 👣</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>Build MNA by adding all components except the ones on the direct connection to the input and output pins. Those components are considered as non-existent as seen in @fig-2. Furthermore, the following sorting of variables should be applied: $\left<span class="co">[</span><span class="ot">V_i, I_i, V_o, I_o, V\right</span><span class="co">]</span>$, where where $V_i$ and $I_i$ present voltages and currents at the input like depicted in  @fig-2. $V_o$ and $I_o$ are output voltages and currents, and $V$ are other voltage buses/nodes that are not input and output ones.</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        \underbrace{\begin{bmatrix}</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>            Y_{ii} &amp; \operatorname{diag}<span class="sc">\{</span>-1<span class="sc">\}</span> &amp; Y_{io} &amp; 0 &amp; Y_{iv} <span class="sc">\\</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>            \operatorname{diag}<span class="sc">\{</span>1<span class="sc">\}</span> &amp; 0 &amp; 0 &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>            Y_{oi} &amp; 0 &amp; Y_{oo} &amp; \operatorname{diag}<span class="sc">\{</span>1<span class="sc">\}</span> &amp; Y_{ov} <span class="sc">\\</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>            0 &amp; 0 &amp; \operatorname{diag}<span class="sc">\{</span>1<span class="sc">\}</span> &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>            Y_{vi} &amp; 0 &amp; Y_{vo} &amp; 0 &amp; Y_{vv}</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        \end{bmatrix}}_{M}</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        \underbrace{\begin{bmatrix}</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>            V_i <span class="sc">\\</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>            I_i <span class="sc">\\</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>            V_o <span class="sc">\\</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>            I_o <span class="sc">\\</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>            V</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        \end{bmatrix}}_{x} =</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        \underbrace{\begin{bmatrix}</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>            0 <span class="sc">\\</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>            V_{1} <span class="sc">\\</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>            0 <span class="sc">\\</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>            V_{2} <span class="sc">\\</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>            0</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>        \end{bmatrix}}_{z},</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>        \label{eq:mna}</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    \end{equation}</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>where $Y_{xy}$ are Y parameters for the specified block of nodes $x$ and $y$. Values $V_1$ and $V_2$ are symbolic vectors of values assigned to input and output nodes. With $0$ is denoted zero matrix. For simplicity, the dimensions are skipped in the previous equation. </span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 👣</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>The previous equation \eqref{eq:mna} is solved using the reduced row echelon form @bird2017electrical on the concatenated matrices $M$ and $z$. This will solve the system of equations by enforcing the values for variables $x$ to diagonal 1 values, and on the position of $z$ column would be the expected solution.</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 6 👣</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>By taking values for $V_i$ and $I_i$ and dividing them, we obtain the equivalent impedance per phase.</span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stability Assessment Procedure</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>The stability assessment procedure follows the steps:</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 1 👣</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>Divide components per AC and DC areas, and converter group. Enable pointers for the connections with converters. This has been achieved by defining the SubNetwork class that contains network portions.</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 2 👣</span></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>Estimate equivalent admittance parameters of the subnetwork between outputs (connections to converters) for each AC and DC area. Please note that the AC side is transformed to the DQ frame during this calculation inside the Element class @sakinci2022generalized, @hernandez2024comprehensive, given as: </span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>\mathbf Y_{dq}</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>= \tfrac{1}{6}\, \left<span class="sc">\{</span>\mathbf a\,\mathbf Y(j(\omega-\omega_0))\,\mathbf a^{H}</span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="ss"> + </span>\tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y(j(\omega+\omega_0))\,\mathbf a^{T} \right\}_{dq},</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>\label{eq:coeffs_full}</span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>The derivation follows the corrected theorem from Appendix A from \cite{sakinci2019generalized}. Namely, starting from Fourier transformation of the Park transform $P_{\omega_0}(j\omega)$ and $P_{\omega_0}^{-1}(j\omega)$ as:</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>\label{A.3}</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>P_{\omega_0}(j\omega)</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>= \frac{2\pi}{3}\Big(\,</span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>    \mathbf{a}\,\delta(\omega-\omega_0)</span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\mathbf{a}^*\,\delta(\omega+\omega_0)</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\mathbf{c}\,\delta(\omega)</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>\Big)</span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>\label{A.4}</span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>P_{\omega_0}^{-1}(j\omega)</span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>= \pi\Big(\,</span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>    \mathbf{a}^T\,\delta(\omega-\omega_0)</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\mathbf{a}^{H}\,\delta(\omega+\omega_0)</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>2\,\mathbf{c}^T\,\delta(\omega)</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>\Big)</span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>where $\mathbf{a}*$ is elementwise complex conjugate of $\mathbf{a}$, and $\mathbf{a}^H = (\mathbf{a}*)^T$ is Hermitian transpose of $\mathbf{a}$. Furthermore,</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>    \mathbf{a} = \begin{bmatrix}</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>        1 &amp; \exp(j \varphi) &amp; \exp(2j \varphi) <span class="sc">\\</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>        j &amp; j \exp(j\varphi) &amp; j\exp(2j \varphi) <span class="sc">\\</span></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>        0 &amp; 0 &amp; 0</span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>    \end{bmatrix} , \qquad</span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>    \mathbf{c} = \begin{bmatrix}</span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>        0 &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>        0 &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>        1 &amp; 1 &amp; 1</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    \end{bmatrix}.</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>Starting from relationship $I_{abc}(j\omega) = Y(j\omega) V_{abc}(j\omega)$, when applying the Park transformation, we get:</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    I_{dqz}(j\omega) = \frac{1}{2\pi} P_{\omega_0}(j\omega) \otimes \left(Y(j\omega) \frac{1}{2\pi} P^{-1}_{\omega_0} (j\omega) \otimes V_{dqz}(j\omega) \right),</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>which gives</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>\mathbf I_{dqz}(j\omega)</span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a> &amp;= \tfrac{1}{6}\,\mathbf a\,\mathbf Y<span class="sc">\!</span>\big(j(\omega-\omega_0)\big)\,\mathbf a^{T}\,</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega-2\omega_0)\big) <span class="sc">\\</span><span class="co">[</span><span class="ot">3pt</span><span class="co">]</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a> &amp;\quad + \tfrac{1}{6}\,\mathbf a\,\mathbf Y<span class="sc">\!</span>\big(j(\omega-\omega_0)\big)\,\mathbf a^{H}\,</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j\omega\big)</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\tfrac{1}{3}\,\mathbf a\,\mathbf Y<span class="sc">\!</span>\big(j(\omega-\omega_0)\big)\,\mathbf c^{T}\,</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega-\omega_0)\big) <span class="sc">\\</span><span class="co">[</span><span class="ot">3pt</span><span class="co">]</span></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a> &amp;\quad + \tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y<span class="sc">\!</span>\big(j(\omega+\omega_0)\big)\,\mathbf a^{T}\,</span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j\omega\big)</span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\tfrac{1}{6}\,\mathbf a^{*}\,\mathbf Y<span class="sc">\!</span>\big(j(\omega+\omega_0)\big)\,\mathbf a^{H}\,</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega+2\omega_0)\big) <span class="sc">\\</span><span class="co">[</span><span class="ot">3pt</span><span class="co">]</span></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a> &amp;\quad + \tfrac{1}{3}\,\mathbf a^{*}\,\mathbf Y<span class="sc">\!</span>\big(j(\omega+\omega_0)\big)\,\mathbf c^{T}\,</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega+\omega_0)\big) <span class="sc">\\</span><span class="co">[</span><span class="ot">3pt</span><span class="co">]</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a> &amp;\quad + \tfrac{1}{6}\,\mathbf c\,\mathbf Y<span class="sc">\!</span>\big(j\omega\big)\,\mathbf a^{T}\,</span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega-\omega_0)\big)</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>\tfrac{1}{6}\,\mathbf c\,\mathbf Y<span class="sc">\!</span>\big(j\omega\big)\,\mathbf a^{H}\,</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j(\omega+\omega_0)\big) <span class="sc">\\</span><span class="co">[</span><span class="ot">3pt</span><span class="co">]</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a> &amp;\quad + \tfrac{1}{3}\,\mathbf c\,\mathbf Y<span class="sc">\!</span>\big(j\omega\big)\,\mathbf c^{T}\,</span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a>    \mathbf V_{dqz}<span class="sc">\!</span>\big(j\omega\big).</span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>\label{eq:Vdq_expanded_corrected}</span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 3 👣</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>Use formulas for converter cross-connections on DC side given in below equation \eqref{eq:8} and \eqref{eq:9}.</span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a>  \begin{eqnarray}</span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a>     i_{d,q}^\Delta = Y_{dq} v_{d,q} + a_{2 \times 1} v_{dc}, \label{eq:8} <span class="sc">\\</span></span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a>     i_{dc} = b_{1 \times 2} v_{d,q} + Y_{dc} v_{dc},  \label{eq:9}</span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>   \end{eqnarray}</span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>Namely, for the DC admittance visible inside the converter, we use the already known AC side admittance denoted as $Y_{eq,AC}$. Then we have that:</span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>    \begin{eqnarray}</span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>        i^\Delta_{dq} = Y_{dq, conv} v_{dq} + a_{2\times 1, conv} v_{dc} = Y_{eq, AC} v^\Delta_{dq}, <span class="sc">\\</span></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>        v^\Delta_{dq} = (Y_{eq,AC} - Y_{dq, conv})^{-1} \, a_{2\times 1, conv} \, v_{dc}, <span class="sc">\\</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>        i_{dc} = \underbrace{(b_{1\times 2, conv} \, (Y_{eq,AC} - Y_{dq, conv})^{-1} \, a_{2\times 1, conv} + Y_{dc, conv})}_{Y_{eq, conv}} \, v_{dc}, \label{eq:dc_crosscouple}</span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>    \end{eqnarray}</span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>which is the value used in further calculation.This case is applicable for every converter that is not considered for the local stability check, and for the DC cutting side of the converter, for the  estimation of local stability.</span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>Please note that the calculated admittance parameters $Y_{eq, AC}$ in this case are also the input in the AC network when looking from the AC side of the converter. That is ensured by defining only one so-called output bus of the SubNetwork class.</span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 4 👣</span></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>Find closing impedance on DC side. Here, we consider equivalent admittance parameters of the DC of the converter, which is examined for stability check, and that bus connection (with converter) we consider as an input. The other DC network outputs are considered outputs closed with ``closing impedance'' determined in the previous step. The closing impedance will look as $Y_L = \operatorname{diag}<span class="sc">\{</span> Y_{eq, conv1} , \cdots , Y_{eq, convN} <span class="sc">\}</span>$, for $N$ being the number of converters which are not examined for stability (i.e. one less than the total number of converters in the system, not considering the converters included as a part of RES), and $Z_{eq,conv} = Y_{eq,conv}^{-1}$.</span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a>Then we have that the admittance parameters can be divided into $Y_{11}$, $Y_{12}$, $Y_{21}$, and $Y_{22}$ after identifying the input and outputs, and have that:</span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a>\begin{eqnarray}</span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a>  I_{in} = Y_{11} V_{in} + Y_{12} V_{out}, <span class="sc">\\</span></span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a>  I_{out} = Y_{21} V_{in} + Y_{22} V_{out}, <span class="sc">\\</span></span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a>  V_{out} = - Z_L I_{out},</span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a>\end{eqnarray}</span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a>and finally, we get that:</span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a>    I_{in} = \underbrace{Y_{11} + Y_{12} (Y_L + Y_{22}) Y_{21}}_{Y_{eq}} V_{in}.</span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>    \end{equation}</span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 5 👣</span></span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a>Couple AC and DC sides of the converter of interest. Here we identify two cases:</span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a>(a) If the system is cut on the DC side, then we will use the formula for the DC side cross-coupling \eqref{eq:dc_crosscouple}, and the admittance on its AC side calculated in step 1, and calculate the transfer function as: $TF(s) = Y_{eq, conv} Y_{eq, DC}^{-1}$.</span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a>(b) If the system is cut on the AC side, we use the admittance calculated in step 4, estimate the admittance visible at the converter's AC side as follows.</span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a>To estimate the AC admittance, we follow the same procedure, and we have:</span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a>\begin{eqnarray}</span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a>  i_{dc} = b_{1\times 2, conv} \, v_{dq}^\Delta + Y_{dc, conv} \, v_{dc} = Y_{eq,DC} \, v_{dc}, <span class="sc">\\</span></span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a>  v_{dc} = \frac{b_{1\times 2, conv} \, v_{dq}^\Delta}{Y_{eq,DC} - Y_{dc, conv}}, <span class="sc">\\</span></span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a>  i^\Delta_{dq} = \underbrace{\left( Y_{dq,conv} + \frac{a_{2 \times 1, conv} b_{1 \times 2, conv}}{Y_{eq,DC} - Y_{dc, conv}} \right)}_{Y_{eq,conv}} \, v_{dc}.         </span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a>\end{eqnarray}</span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a>Finally, calculate the transfer function with the AC admittance calculated in step 1 as $TF(s) = Y_{eq, conv} Y_{eq, AC}^{-1}$.</span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a><span class="fu">## Code Explanation</span></span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a>The following example implements a simple hybrid AC/DC system and evaluates the small-signal transfer function of a selected MMC converter.</span>
+<span id="cb9-250"><a href="#cb9-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Workflow</span></span>
+<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Network Definition 👣</span></span>
+<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Examples.h"</span></span>
+<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../network.h"</span></span>
+<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Bus.h"</span></span>
+<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Include_components.h"</span></span>
+<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Solver/Stability_Estimate/Stability_estimate.h"</span></span>
+<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"../Solver/OPF/powerflow.h"</span></span>
+<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> example_stability_check<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a>    Network net<span class="op">;</span></span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a>A global <span class="in">`Network`</span> object is created to store all buses and components.</span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a><span class="fu">####  AC and DC System Construction 👣</span></span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* AC buses */</span></span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus1_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS01"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus2_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS02"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus3_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS03"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus4_ac <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"ACBUS04"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* DC buses */</span></span>
+<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus1_dc <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"DCBUS01"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a>    Bus<span class="op">*</span> bus2_dc <span class="op">=</span> <span class="kw">new</span> Bus<span class="op">(</span><span class="st">"DCBUS02"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a>Two AC areas and one DC area are defined.  </span>
+<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Component Connections 👣</span></span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Load and source */</span></span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a>    Load<span class="op">*</span> load2 <span class="op">=</span> <span class="kw">new</span> Load<span class="op">(</span><span class="st">"LOAD02"</span><span class="op">,</span> <span class="st">"AC2"</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> load_params2<span class="op">);</span></span>
+<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>load2<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus4_ac<span class="op">);</span></span>
+<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a>    AC_source<span class="op">*</span> src1 <span class="op">=</span> <span class="kw">new</span> AC_source<span class="op">(</span><span class="st">"SRC01"</span><span class="op">,</span> <span class="st">"AC1"</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="fl">345e3</span><span class="op">,</span> Zsrc<span class="op">);</span></span>
+<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>src1<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus1_ac<span class="op">);</span></span>
+<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* DC branch */</span></span>
+<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a>    Impedance<span class="op">*</span> br1_dc <span class="op">=</span> <span class="kw">new</span> Impedance<span class="op">(</span><span class="st">"br1_dc"</span><span class="op">,</span> <span class="st">"DC1"</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">0.05</span><span class="op">);</span></span>
+<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>br1_dc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus1_dc<span class="op">);</span></span>
+<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>br1_dc<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> bus2_dc<span class="op">);</span></span>
+<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a>Loads, source, and DC impedance define the steady-state power flow structure.</span>
+<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a><span class="fu">#### MMC Converter Modeling 👣</span></span>
+<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a>    MMC<span class="op">*</span> mmc1 <span class="op">=</span> <span class="kw">new</span> MMC<span class="op">(</span><span class="st">"MMC1"</span><span class="op">,</span> <span class="st">"AC1_DC1"</span><span class="op">,</span></span>
+<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a>                        converter_params1<span class="op">,</span></span>
+<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a>                        controller_params1<span class="op">);</span></span>
+<span id="cb9-319"><a href="#cb9-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-320"><a href="#cb9-320" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>mmc1<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> bus2_ac<span class="op">);</span></span>
+<span id="cb9-321"><a href="#cb9-321" aria-hidden="true" tabindex="-1"></a>    net<span class="op">.</span>connectElementToBus<span class="op">(</span>mmc1<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> bus1_dc<span class="op">);</span></span>
+<span id="cb9-322"><a href="#cb9-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-323"><a href="#cb9-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-324"><a href="#cb9-324" aria-hidden="true" tabindex="-1"></a>The MMC connects the AC and DC areas.  </span>
+<span id="cb9-325"><a href="#cb9-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-326"><a href="#cb9-326" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-327"><a href="#cb9-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-328"><a href="#cb9-328" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Steady-State Solution 👣</span></span>
+<span id="cb9-329"><a href="#cb9-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-330"><a href="#cb9-330" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-331"><a href="#cb9-331" aria-hidden="true" tabindex="-1"></a>    PowerFlow pf<span class="op">;</span></span>
+<span id="cb9-332"><a href="#cb9-332" aria-hidden="true" tabindex="-1"></a>    pf<span class="op">.</span>make_OPF<span class="op">(&amp;</span>net<span class="op">,</span> global_params<span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">false</span><span class="op">,</span> <span class="kw">true</span><span class="op">);</span></span>
+<span id="cb9-333"><a href="#cb9-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-334"><a href="#cb9-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-335"><a href="#cb9-335" aria-hidden="true" tabindex="-1"></a>An OPF-based steady-state solution is computed before small-signal analysis.  </span>
+<span id="cb9-336"><a href="#cb9-336" aria-hidden="true" tabindex="-1"></a>This provides the operating point for impedance evaluation.</span>
+<span id="cb9-337"><a href="#cb9-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-338"><a href="#cb9-338" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-339"><a href="#cb9-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-340"><a href="#cb9-340" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Stability Evaluation 👣</span></span>
+<span id="cb9-341"><a href="#cb9-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-342"><a href="#cb9-342" aria-hidden="true" tabindex="-1"></a><span class="in">```cpp</span></span>
+<span id="cb9-343"><a href="#cb9-343" aria-hidden="true" tabindex="-1"></a>    StabilityEstimate<span class="op">*</span> stability <span class="op">=</span> <span class="kw">new</span> StabilityEstimate<span class="op">();</span></span>
+<span id="cb9-344"><a href="#cb9-344" aria-hidden="true" tabindex="-1"></a>    stability<span class="op">-&gt;</span>add_areas<span class="op">(&amp;</span>net<span class="op">);</span></span>
+<span id="cb9-345"><a href="#cb9-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-346"><a href="#cb9-346" aria-hidden="true" tabindex="-1"></a>    stability<span class="op">-&gt;</span>compute_transfer_function<span class="op">(</span><span class="st">"MMC2"</span><span class="op">,</span> <span class="st">"AC"</span><span class="op">,</span> <span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb9-347"><a href="#cb9-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-348"><a href="#cb9-348" aria-hidden="true" tabindex="-1"></a>    <span class="kw">delete</span> stability<span class="op">;</span></span>
+<span id="cb9-349"><a href="#cb9-349" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-350"><a href="#cb9-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-351"><a href="#cb9-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-352"><a href="#cb9-352" aria-hidden="true" tabindex="-1"></a>The stability module:</span>
+<span id="cb9-353"><a href="#cb9-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-354"><a href="#cb9-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Partitions the network into subnetworks  </span>
+<span id="cb9-355"><a href="#cb9-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Aggregates equivalent admittances  </span>
+<span id="cb9-356"><a href="#cb9-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Computes the transfer function  </span>
+<span id="cb9-357"><a href="#cb9-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-358"><a href="#cb9-358" aria-hidden="true" tabindex="-1"></a>For the AC-cut case, the transfer function corresponds to:</span>
+<span id="cb9-359"><a href="#cb9-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-360"><a href="#cb9-360" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
+<span id="cb9-361"><a href="#cb9-361" aria-hidden="true" tabindex="-1"></a>TF(s) = Y_{eq,conv} \, Y_{eq,AC}^{-1}</span>
+<span id="cb9-362"><a href="#cb9-362" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
+<span id="cb9-363"><a href="#cb9-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-364"><a href="#cb9-364" aria-hidden="true" tabindex="-1"></a>evaluated at the selected frequency.</span>
+<span id="cb9-365"><a href="#cb9-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-366"><a href="#cb9-366" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-367"><a href="#cb9-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-368"><a href="#cb9-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### Execution Results </span></span>
+<span id="cb9-369"><a href="#cb9-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-370"><a href="#cb9-370" aria-hidden="true" tabindex="-1"></a>First, the OPF results are printed, showing the bus voltages, generation, load, and branch flows. </span>
+<span id="cb9-371"><a href="#cb9-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-372"><a href="#cb9-372" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb9-373"><a href="#cb9-373" aria-hidden="true" tabindex="-1"></a><span class="in">=================================================================================================</span></span>
+<span id="cb9-374"><a href="#cb9-374" aria-hidden="true" tabindex="-1"></a><span class="in">|   AC  Grid Bus Data                                                                           |</span></span>
+<span id="cb9-375"><a href="#cb9-375" aria-hidden="true" tabindex="-1"></a><span class="in">=================================================================================================</span></span>
+<span id="cb9-376"><a href="#cb9-376" aria-hidden="true" tabindex="-1"></a><span class="in"> Area    Bus        Voltage             Generation            Load                 RES</span></span>
+<span id="cb9-377"><a href="#cb9-377" aria-hidden="true" tabindex="-1"></a><span class="in"> #       #     Mag [pu]/Ang [deg]  Pg [MW]   Qg [MVAr]  P [MW]   Q [MVAr]  Pres [MW]  Qres[MVAr]</span></span>
+<span id="cb9-378"><a href="#cb9-378" aria-hidden="true" tabindex="-1"></a><span class="in">-----   -----  ------------------  --------  ---------  -------  -------   ---------  -----------</span></span>
+<span id="cb9-379"><a href="#cb9-379" aria-hidden="true" tabindex="-1"></a><span class="in">  1       1    1.093  /   0.00*         -          -      0.00     0.00         -          -</span></span>
+<span id="cb9-380"><a href="#cb9-380" aria-hidden="true" tabindex="-1"></a><span class="in">  1       2    1.093  /   0.02          -          -      0.00     0.00         -          -</span></span>
+<span id="cb9-381"><a href="#cb9-381" aria-hidden="true" tabindex="-1"></a><span class="in">  1       3    1.093  /  -0.00       52.20      16.85     0.00     0.00         -          -</span></span>
+<span id="cb9-382"><a href="#cb9-382" aria-hidden="true" tabindex="-1"></a><span class="in">  2       1    1.091  /   0.00          -          -      0.00     0.00         -          -</span></span>
+<span id="cb9-383"><a href="#cb9-383" aria-hidden="true" tabindex="-1"></a><span class="in">  2       2    1.091  /   0.02          -          -     50.18    10.07         -          -</span></span>
+<span id="cb9-384"><a href="#cb9-384" aria-hidden="true" tabindex="-1"></a><span class="in">-----   -----  ------------------  --------  ---------  -------  -------   ---------  -----------</span></span>
+<span id="cb9-385"><a href="#cb9-385" aria-hidden="true" tabindex="-1"></a><span class="in"> The total generation cost is $712.44/MWh (€659.66/MWh)</span></span>
+<span id="cb9-386"><a href="#cb9-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a><span class="in">===========================================================================================</span></span>
+<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a><span class="in">|     AC Grids Branch Data                                                                |</span></span>
+<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a><span class="in">===========================================================================================</span></span>
+<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a><span class="in"> Area   Branch  From   To        From Branch Flow         To Branch Flow        Branch Loss</span></span>
+<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a><span class="in"> #      #       Bus#   Bus#    Pij [MW]   Qij [MVAr]    Pij [MW]   Qij [MVAr]  Pij_loss [MW]</span></span>
+<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a><span class="in"> ----   ------  -----  -----  ---------  ----------   ----------  ----------  -------------</span></span>
+<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a><span class="in">  1      1       1      2       52.279      -9.318      -52.275       9.357       0.004</span></span>
+<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a><span class="in">  1      2       1      3      -52.198      18.328       52.198      13.767       0.000</span></span>
+<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a><span class="in">  2      1       1      2       50.104       9.295      -50.100      -9.263       0.003</span></span>
+<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a><span class="in"> ----   ------  -----  -----  ---------  -----------    --------  ----------  -------------</span></span>
+<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a><span class="in"> The total AC network losses is 0.007 MW.</span></span>
+<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a><span class="in">================================================================================</span></span>
+<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a><span class="in">|   MTDC Bus Data                                                              |</span></span>
+<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a><span class="in">================================================================================</span></span>
+<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a><span class="in"> Bus   Bus    AC   DC Voltage   DC Power   PCC Bus Injection   Converter loss</span></span>
+<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a><span class="in"> DC #  AC #  Area   Vdc [pu]    Pdc [MW]   Ps [MW]  Qs [MVAr]  Conv_Ploss [MW]</span></span>
+<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a><span class="in"> -----  ----  ----  ---------    --------   -------  --------   ------------</span></span>
+<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a><span class="in">   1     1     2     1.197       -51.171   -50.104   -9.295      1.155</span></span>
+<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a><span class="in">   2     2     1     1.197        51.173    52.275   -9.357      1.188</span></span>
+<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a><span class="in">-----  ----  ----  ---------    --------   -------  --------    --------</span></span>
+<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a><span class="in"> The total converter losses is 2.344 MW</span></span>
+<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a><span class="in">===================================================================</span></span>
+<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a><span class="in">|     MTDC Branch Data                                             |</span></span>
+<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a><span class="in">===================================================================</span></span>
+<span id="cb9-413"><a href="#cb9-413" aria-hidden="true" tabindex="-1"></a><span class="in"> Branch  From   To     From Branch    To Branch      Branch Loss</span></span>
+<span id="cb9-414"><a href="#cb9-414" aria-hidden="true" tabindex="-1"></a><span class="in"> #       Bus#   Bus#   Flow Pij [MW]  Flow Pij [MW]  Pij_loss [MW]</span></span>
+<span id="cb9-415"><a href="#cb9-415" aria-hidden="true" tabindex="-1"></a><span class="in"> ------  -----  -----   ---------      ---------      ---------</span></span>
+<span id="cb9-416"><a href="#cb9-416" aria-hidden="true" tabindex="-1"></a><span class="in">    1      1      2     -51.171         51.173         0.002</span></span>
+<span id="cb9-417"><a href="#cb9-417" aria-hidden="true" tabindex="-1"></a><span class="in"> ------  -----  -----   ---------      ---------      ---------</span></span>
+<span id="cb9-418"><a href="#cb9-418" aria-hidden="true" tabindex="-1"></a><span class="in"> The total DC network losses is 0.002 MW.</span></span>
+<span id="cb9-419"><a href="#cb9-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-420"><a href="#cb9-420" aria-hidden="true" tabindex="-1"></a><span class="in"> Execution time is 0.153 s</span></span>
+<span id="cb9-421"><a href="#cb9-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-422"><a href="#cb9-422" aria-hidden="true" tabindex="-1"></a><span class="in"> ```</span></span>
+<span id="cb9-423"><a href="#cb9-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-424"><a href="#cb9-424" aria-hidden="true" tabindex="-1"></a> Then, MMC operating points are updated with the OPF results, and the equilibrium state is printed for each MMC. </span>
+<span id="cb9-425"><a href="#cb9-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-426"><a href="#cb9-426" aria-hidden="true" tabindex="-1"></a> <span class="in">```text</span></span>
+<span id="cb9-427"><a href="#cb9-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-428"><a href="#cb9-428" aria-hidden="true" tabindex="-1"></a><span class="in">=== Updating 2 MMC elements with OPF results ===</span></span>
+<span id="cb9-429"><a href="#cb9-429" aria-hidden="true" tabindex="-1"></a><span class="in">Converged (small step) in 1491 iterations.</span></span>
+<span id="cb9-430"><a href="#cb9-430" aria-hidden="true" tabindex="-1"></a><span class="in">[Updated MMC] MMC2 | Vm=376.266 kV, theta=0.000 deg, Pac=-50.104 MW, Qac=-9.295 MVar, Vdc=412.837 kV, Pdc=-51.171 MW</span></span>
+<span id="cb9-431"><a href="#cb9-431" aria-hidden="true" tabindex="-1"></a><span class="in">Equilibrium state:</span></span>
+<span id="cb9-432"><a href="#cb9-432" aria-hidden="true" tabindex="-1"></a><span class="in">   -90.697     16.469    -41.317     -0.000     -0.000   -536.614   1909.500      0.646      0.761    236.244  -1317.610 412833.448</span></span>
+<span id="cb9-433"><a href="#cb9-433" aria-hidden="true" tabindex="-1"></a><span class="in">Converged (small step) in 176414 iterations.</span></span>
+<span id="cb9-434"><a href="#cb9-434" aria-hidden="true" tabindex="-1"></a><span class="in">[Updated MMC] MMC1 | Vm=377.189 kV, theta=0.021 deg, Pac=52.275 MW, Qac=-9.357 MVar, Vdc=412.840 kV, Pdc=51.173 MW</span></span>
+<span id="cb9-435"><a href="#cb9-435" aria-hidden="true" tabindex="-1"></a><span class="in">Equilibrium state:</span></span>
+<span id="cb9-436"><a href="#cb9-436" aria-hidden="true" tabindex="-1"></a><span class="in">    92.395     16.537     42.223      0.000      0.000   -538.883  -1975.195      0.701     -0.774    237.911   1345.923 412836.345</span></span>
+<span id="cb9-437"><a href="#cb9-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-438"><a href="#cb9-438" aria-hidden="true" tabindex="-1"></a><span class="in">=== StabilityEstimate: Area Summary ===</span></span>
+<span id="cb9-439"><a href="#cb9-439" aria-hidden="true" tabindex="-1"></a><span class="in">AC Grids Detected: 2</span></span>
+<span id="cb9-440"><a href="#cb9-440" aria-hidden="true" tabindex="-1"></a><span class="in">  - AC2 (2 buses, 2 elements, 1 outputs)</span></span>
+<span id="cb9-441"><a href="#cb9-441" aria-hidden="true" tabindex="-1"></a><span class="in">  - AC1 (2 buses, 2 elements, 1 outputs)</span></span>
+<span id="cb9-442"><a href="#cb9-442" aria-hidden="true" tabindex="-1"></a><span class="in">DC Grids Detected: 1</span></span>
+<span id="cb9-443"><a href="#cb9-443" aria-hidden="true" tabindex="-1"></a><span class="in">  - DC1 (2 buses, 1 elements, 2 outputs)</span></span>
+<span id="cb9-444"><a href="#cb9-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-445"><a href="#cb9-445" aria-hidden="true" tabindex="-1"></a><span class="in">Y1 at 1000 Hz:</span></span>
+<span id="cb9-446"><a href="#cb9-446" aria-hidden="true" tabindex="-1"></a><span class="in">(0.0006251813,-0.0045456903) (0.0000080989,-0.0000237153)  (0.0000034384,0.0000338422)</span></span>
+<span id="cb9-447"><a href="#cb9-447" aria-hidden="true" tabindex="-1"></a><span class="in">(-0.0033601746,0.0028059178) (0.0000567312,-0.0000600855) (-0.0000607055,0.0000520370)</span></span>
+<span id="cb9-448"><a href="#cb9-448" aria-hidden="true" tabindex="-1"></a><span class="in">(0.0000149273,-0.0000057094) (-0.0000114782,0.0000123063)  (0.0001530480,0.0002909866)</span></span>
+<span id="cb9-449"><a href="#cb9-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-450"><a href="#cb9-450" aria-hidden="true" tabindex="-1"></a><span class="in">Y2 at 1000 Hz:</span></span>
+<span id="cb9-451"><a href="#cb9-451" aria-hidden="true" tabindex="-1"></a><span class="in">(-0.1296974762,-1.1061076269)  (-0.0000327654,0.0000043749)  (0.0000325752,-0.0000033223)</span></span>
+<span id="cb9-452"><a href="#cb9-452" aria-hidden="true" tabindex="-1"></a><span class="in">(-1.2724353572,-0.6174201797)  (0.0000380460,-0.0000613489)  (0.0000214998,-0.0000383601)</span></span>
+<span id="cb9-453"><a href="#cb9-453" aria-hidden="true" tabindex="-1"></a><span class="in">(-0.0013739688,-0.0013977386)  (-0.0000002174,0.0000026871)   (0.0002159779,0.0002087296)</span></span>
+<span id="cb9-454"><a href="#cb9-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-455"><a href="#cb9-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-456"><a href="#cb9-456" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb9-457"><a href="#cb9-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-458"><a href="#cb9-458" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb9-459"><a href="#cb9-459" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-460"><a href="#cb9-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-461"><a href="#cb9-461" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb9-462"><a href="#cb9-462" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb9-463"><a href="#cb9-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-464"><a href="#cb9-464" aria-hidden="true" tabindex="-1"></a><span class="co">The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. </span></span>
+<span id="cb9-465"><a href="#cb9-465" aria-hidden="true" tabindex="-1"></a><span class="co">It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 </span></span>
+<span id="cb9-466"><a href="#cb9-466" aria-hidden="true" tabindex="-1"></a><span class="co">It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. </span></span>
+<span id="cb9-467"><a href="#cb9-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-468"><a href="#cb9-468" aria-hidden="true" tabindex="-1"></a><span class="co">## Model use, assumptions, validity domain and limitations (mandatory)</span></span>
+<span id="cb9-469"><a href="#cb9-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-470"><a href="#cb9-470" aria-hidden="true" tabindex="-1"></a><span class="co">*Each model is an approximation of the reality, and considers some assumptions.*</span></span>
+<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-472"><a href="#cb9-472" aria-hidden="true" tabindex="-1"></a><span class="co">*In this section, details should be given on:*</span></span>
+<span id="cb9-473"><a href="#cb9-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-474"><a href="#cb9-474" aria-hidden="true" tabindex="-1"></a><span class="co">- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*</span></span>
+<span id="cb9-475"><a href="#cb9-475" aria-hidden="true" tabindex="-1"></a><span class="co">- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*</span></span>
+<span id="cb9-476"><a href="#cb9-476" aria-hidden="true" tabindex="-1"></a><span class="co">- *the limitations of the model (what people shouldn't use the model for)*</span></span>
+<span id="cb9-477"><a href="#cb9-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-478"><a href="#cb9-478" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb9-479"><a href="#cb9-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-480"><a href="#cb9-480" aria-hidden="true" tabindex="-1"></a><span class="co">The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:</span></span>
+<span id="cb9-481"><a href="#cb9-481" aria-hidden="true" tabindex="-1"></a><span class="co">- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).</span></span>
+<span id="cb9-482"><a href="#cb9-482" aria-hidden="true" tabindex="-1"></a><span class="co">- The three phases are balanced, meaning the power is shared equally.</span></span>
+<span id="cb9-483"><a href="#cb9-483" aria-hidden="true" tabindex="-1"></a><span class="co">- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).</span></span>
+<span id="cb9-484"><a href="#cb9-484" aria-hidden="true" tabindex="-1"></a><span class="co">- The magnetic field produced by the rotor winding oscillates sinusoidally.</span></span>
+<span id="cb9-485"><a href="#cb9-485" aria-hidden="true" tabindex="-1"></a><span class="co">- The machine may have 2 or more poles, noted as $p_f$</span></span>
+<span id="cb9-486"><a href="#cb9-486" aria-hidden="true" tabindex="-1"></a><span class="co">The model is suitable for transient stability analysis but not for electromagnetic transient analysis.</span></span>
+<span id="cb9-487"><a href="#cb9-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-488"><a href="#cb9-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-489"><a href="#cb9-489" aria-hidden="true" tabindex="-1"></a><span class="co">## Model description (mandatory){#sec-physical-description}</span></span>
+<span id="cb9-490"><a href="#cb9-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-491"><a href="#cb9-491" aria-hidden="true" tabindex="-1"></a><span class="co">*This section gives the full description of the different model's components.*</span></span>
+<span id="cb9-492"><a href="#cb9-492" aria-hidden="true" tabindex="-1"></a><span class="co">*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*</span></span>
+<span id="cb9-493"><a href="#cb9-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-494"><a href="#cb9-494" aria-hidden="true" tabindex="-1"></a><span class="co">- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._</span></span>
+<span id="cb9-495"><a href="#cb9-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-496"><a href="#cb9-496" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _</span></span>
+<span id="cb9-497"><a href="#cb9-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-498"><a href="#cb9-498" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._</span></span>
+<span id="cb9-499"><a href="#cb9-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-500"><a href="#cb9-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-501"><a href="#cb9-501" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb9-502"><a href="#cb9-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-503"><a href="#cb9-503" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Physical description </span></span>
+<span id="cb9-504"><a href="#cb9-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-505"><a href="#cb9-505" aria-hidden="true" tabindex="-1"></a><span class="co">The following schematic shows the components that participate in the synchronous machine operation:</span></span>
+<span id="cb9-506"><a href="#cb9-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-507"><a href="#cb9-507" aria-hidden="true" tabindex="-1"></a><span class="co">![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}</span></span>
+<span id="cb9-508"><a href="#cb9-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-509"><a href="#cb9-509" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb9-510"><a href="#cb9-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-511"><a href="#cb9-511" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Synchronous machine equations</span></span>
+<span id="cb9-512"><a href="#cb9-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-513"><a href="#cb9-513" aria-hidden="true" tabindex="-1"></a><span class="co">#### Variables </span></span>
+<span id="cb9-514"><a href="#cb9-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-515"><a href="#cb9-515" aria-hidden="true" tabindex="-1"></a><span class="co">| Variable    | details  | Unit |</span></span>
+<span id="cb9-516"><a href="#cb9-516" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| ------ | ----- |</span></span>
+<span id="cb9-517"><a href="#cb9-517" aria-hidden="true" tabindex="-1"></a><span class="co">| $\theta_{shaft}$ | Rotor angle | $rad$ |</span></span>
+<span id="cb9-518"><a href="#cb9-518" aria-hidden="true" tabindex="-1"></a><span class="co">| $\omega$ | Electrical rotational speed | $rad/s$ |</span></span>
+<span id="cb9-519"><a href="#cb9-519" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_m$ | Mechanical torque | $Nm$ |</span></span>
+<span id="cb9-520"><a href="#cb9-520" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_e$ | Electrical torque | $Nm$ |</span></span>
+<span id="cb9-521"><a href="#cb9-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-522"><a href="#cb9-522" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb9-523"><a href="#cb9-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-524"><a href="#cb9-524" aria-hidden="true" tabindex="-1"></a><span class="co">#### Parameters</span></span>
+<span id="cb9-525"><a href="#cb9-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-526"><a href="#cb9-526" aria-hidden="true" tabindex="-1"></a><span class="co">| Parameter | Description | Unit |</span></span>
+<span id="cb9-527"><a href="#cb9-527" aria-hidden="true" tabindex="-1"></a><span class="co">| --- | --- | --- |</span></span>
+<span id="cb9-528"><a href="#cb9-528" aria-hidden="true" tabindex="-1"></a><span class="co">| $J$ | Moment of inertia | $kgm^2$ |</span></span>
+<span id="cb9-529"><a href="#cb9-529" aria-hidden="true" tabindex="-1"></a><span class="co">| $p_f$ | Number of pole pairs | - |</span></span>
+<span id="cb9-530"><a href="#cb9-530" aria-hidden="true" tabindex="-1"></a><span class="co">| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |</span></span>
+<span id="cb9-531"><a href="#cb9-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-532"><a href="#cb9-532" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb9-533"><a href="#cb9-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-534"><a href="#cb9-534" aria-hidden="true" tabindex="-1"></a><span class="co">#### System of equations</span></span>
+<span id="cb9-535"><a href="#cb9-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-536"><a href="#cb9-536" aria-hidden="true" tabindex="-1"></a><span class="co">The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.</span></span>
+<span id="cb9-537"><a href="#cb9-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-538"><a href="#cb9-538" aria-hidden="true" tabindex="-1"></a><span class="co">The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:</span></span>
+<span id="cb9-539"><a href="#cb9-539" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb9-540"><a href="#cb9-540" aria-hidden="true" tabindex="-1"></a><span class="co">J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}</span></span>
+<span id="cb9-541"><a href="#cb9-541" aria-hidden="true" tabindex="-1"></a><span class="co">$$  {#eq-inertia}</span></span>
+<span id="cb9-542"><a href="#cb9-542" aria-hidden="true" tabindex="-1"></a><span class="co">$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}</span></span>
+<span id="cb9-543"><a href="#cb9-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-544"><a href="#cb9-544" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb9-545"><a href="#cb9-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-546"><a href="#cb9-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-547"><a href="#cb9-547" aria-hidden="true" tabindex="-1"></a><span class="co">## Source code (optional)</span></span>
+<span id="cb9-548"><a href="#cb9-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-549"><a href="#cb9-549" aria-hidden="true" tabindex="-1"></a><span class="co">_This section is a code section that provides the source code for model described above._</span></span>
+<span id="cb9-550"><a href="#cb9-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-551"><a href="#cb9-551" aria-hidden="true" tabindex="-1"></a><span class="co">_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._</span></span>
+<span id="cb9-552"><a href="#cb9-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-553"><a href="#cb9-553" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb9-554"><a href="#cb9-554" aria-hidden="true" tabindex="-1"></a><span class="co">The code can be presented in a **modeling language code block** like this:</span></span>
+<span id="cb9-555"><a href="#cb9-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-556"><a href="#cb9-556" aria-hidden="true" tabindex="-1"></a><span class="co">```modelica</span></span>
+<span id="cb9-557"><a href="#cb9-557" aria-hidden="true" tabindex="-1"></a><span class="co">model VoltageSource "Constant AC voltage"</span></span>
+<span id="cb9-558"><a href="#cb9-558" aria-hidden="true" tabindex="-1"></a><span class="co">  extends Interfaces.Source;</span></span>
+<span id="cb9-559"><a href="#cb9-559" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Frequency f(start=1) "Frequency of the source";</span></span>
+<span id="cb9-560"><a href="#cb9-560" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Voltage V(start=1) "RMS voltage of the source";</span></span>
+<span id="cb9-561"><a href="#cb9-561" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Angle phi(start=0) "Phase shift of the source";</span></span>
+<span id="cb9-562"><a href="#cb9-562" aria-hidden="true" tabindex="-1"></a><span class="co">equation</span></span>
+<span id="cb9-563"><a href="#cb9-563" aria-hidden="true" tabindex="-1"></a><span class="co">  omega = 2*Modelica.Constants.pi*f;</span></span>
+<span id="cb9-564"><a href="#cb9-564" aria-hidden="true" tabindex="-1"></a><span class="co">  v = Complex(V*cos(phi), V*sin(phi));</span></span>
+<span id="cb9-565"><a href="#cb9-565" aria-hidden="true" tabindex="-1"></a><span class="co">end VoltageSource;</span></span>
+<span id="cb9-566"><a href="#cb9-566" aria-hidden="true" tabindex="-1"></a><span class="co">```</span></span>
+<span id="cb9-567"><a href="#cb9-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-568"><a href="#cb9-568" aria-hidden="true" tabindex="-1"></a><span class="co">## Open source implementations (if any)</span></span>
+<span id="cb9-569"><a href="#cb9-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-570"><a href="#cb9-570" aria-hidden="true" tabindex="-1"></a><span class="co">_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._</span></span>
+<span id="cb9-571"><a href="#cb9-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-572"><a href="#cb9-572" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb9-573"><a href="#cb9-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-574"><a href="#cb9-574" aria-hidden="true" tabindex="-1"></a><span class="co">This model has been successfully implemented in :</span></span>
+<span id="cb9-575"><a href="#cb9-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-576"><a href="#cb9-576" aria-hidden="true" tabindex="-1"></a><span class="co">| Software      | URL | Language | Open-Source License | Last consulted date | Comments |</span></span>
+<span id="cb9-577"><a href="#cb9-577" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| --- | --------- | ------------------- |------------------- | -------- |</span></span>
+<span id="cb9-578"><a href="#cb9-578" aria-hidden="true" tabindex="-1"></a><span class="co">| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |</span></span>
+<span id="cb9-579"><a href="#cb9-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-580"><a href="#cb9-580" aria-hidden="true" tabindex="-1"></a><span class="co">## Table of references &amp; license</span></span>
+<span id="cb9-581"><a href="#cb9-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-582"><a href="#cb9-582" aria-hidden="true" tabindex="-1"></a><span class="co">_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._</span></span>
+<span id="cb9-583"><a href="#cb9-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-584"><a href="#cb9-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-585"><a href="#cb9-585" aria-hidden="true" tabindex="-1"></a><span class="co">::: {#refs}</span></span>
+<span id="cb9-586"><a href="#cb9-586" aria-hidden="true" tabindex="-1"></a><span class="co">:::</span></span>
+<span id="cb9-587"><a href="#cb9-587" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

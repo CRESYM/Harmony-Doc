@@ -17,13 +17,13 @@ space Solver,” *PSCC 2026*, 2026 (accpeted).
 #### <i class="bi bi-calendar3"></i> 2025 year 
 
 - R. Rane, **A. Kermansaravi**, P. Vergara, **A. Lekić**, “Transfer Learning Framework for Impedance Characterization of Modular Multilevel Converters,” *IEEE Transactions on Industry Applications*, 2025.  
-  **Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/243254955/Transfer_Learning_Framework_for_Impedance_Characterization_of_Modular_Multilevel_Converters.pdf) 
+  **Links:** [PDF](https://ieeexplore.ieee.org/document/10840271) 
 
 - **H. Li**, P. Vergara, **R. Dimitrovski**, **A. Lekić**, “Nested Distributed Optimal Power Flow Toward VSC-Interconnected AC/MTDC Hybrid Grids,” *International Journal of Electrical Power & Energy Systems*, 2025.  
-**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/231655836/1-s2.0-S014206152400588X-main.pdf) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S014206152400588X) 
 
 - **H. Li**, **A. Kermansaravi**, **R. Dimitrovskia**, **A. Lekić**, “OpFlowTools: A Cross-Language Benchmark of AC/DC Optimal Power Flow Solutions, *SoftwareX*, 2025.  
-**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/226742885/Distributed_Robust_Optimization_Method_for_AC_MTDC_Hybrid_Power_Systems_with_DC_Network_Cognizant.pdf) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711025002900) 
 
 ---
 
@@ -33,10 +33,10 @@ space Solver,” *PSCC 2026*, 2026 (accpeted).
   **Links:** [PDF](https://www.researchgate.net/profile/Ajay-Shetgaonkar/publication/379181541_Enhanced_Real-Time_Multi-Terminal_HVDC_Power_System_Benchmark_Models_with_Performance_Evaluation_Strategies/links/65fdd335d3a085514241992b/Enhanced-Real-Time-Multi-Terminal-HVDC-Power-System-Benchmark-Models-with-Performance-Evaluation-Strategies.pdf) 
 
 - S. Li, J. Wu, J.C. Vasquez, J. M. Guerrero, P. Palensky, **A. Lekić**, “Active Filter Parameter Tuning Method for Harmonic Voltage Mitigation in Wind Power Plants,” *PSCC 2024*, 2024.  
-**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/213018382/1-s2.0-S0378779624006126-main.pdf) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/abs/pii/S0378779624006126) 
 
 - **H. Li**, H. Ergun, D. V. Hertem, **A. Lekić**, “Scenario-oriented Multi-cut Generalized Benders Decomposition-Based Distributed OPF for AC/DC Hybrid Grids,” *2024 IEEE PES Innovative Smart Grid Technologies Europe (ISGT-Europe)*, 2024.  
-**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://repository.tudelft.nl/file/File_e0bf4b21-bce2-4aa3-98b1-fef130675e8b?preview=1) 
+**Links:** [PDF](https://ieeexplore.ieee.org/document/10863082) 
 
 - **H. Li**, **A. Lekić**, “Distributed Robust Optimization Method for AC/MTDC Hybrid Power Systems with DC Network Cognizant, *2024 International Conference on smart Energy Systems and Technologies (SEST)*, 2024.  
-**Links:** [PDF](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://pure.tudelft.nl/ws/portalfiles/portal/226742885/Distributed_Robust_Optimization_Method_for_AC_MTDC_Hybrid_Power_Systems_with_DC_Network_Cognizant.pdf) 
+**Links:** [PDF](https://ieeexplore.ieee.org/document/10694436) 
