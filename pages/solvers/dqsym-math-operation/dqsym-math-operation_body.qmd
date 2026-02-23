@@ -2,8 +2,8 @@
 layout: page 
 title: Dynamic Phasor-based Time Domain Simulation # be as specific as possible
 tags: [Opensource, Dynamic Phasor Theory, Time Domain Simulation]
-date: 02/23/2026
-last-updated: 02/23/2026
+date: 05/01/2026
+last-updated: 05/01/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
