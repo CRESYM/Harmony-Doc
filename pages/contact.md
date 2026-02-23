@@ -20,4 +20,4 @@ please contact:
 
 ---
 
-Harmony Development Team  
+HARMONY Development Team  

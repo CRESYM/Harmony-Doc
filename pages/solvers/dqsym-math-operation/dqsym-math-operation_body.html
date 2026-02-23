@@ -666,20 +666,24 @@ y(t) = C x(t) + D u(t),
 <p>Dynamic phasors rely on Fourier components of states. When switching occurs, harmonic content changes. Updating matrices ensures the harmonic coupling terms (off-diagonal entries in the DP system matrix) are updated properly, improving the frequency-domain accuracy of the DP model. Ignoring the effect of a switching event can lead to significant errors in both transient and steady-state operations.</p>
 <p>Furthermore, the state-space representation allows the consistent operation of multiple switches functioning at once, as the matrices can be updated by an algorithm in accordance with the switch vector that defines the network configuration at any given moment, in comparison to manually deriving or switching between multiple predefined matrices, which is error-prone. This unified representation enables accurate switching event representation in system matrices at each operational point, via suitable parameters of <span class="math inline">\(R_{\text{on}}\)</span> and <span class="math inline">\(R_{\text{off}}\)</span>. Meanwhile, keeping the state-space formulation facilitates the eigenvalue analysis of the system. Provided that a proper linearization around the operating point is performed. To maintain numerical stability when switching occurs within a sampling interval, a predictor–corrector scheme is applied <span class="citation" data-cites="n58">Cai, Zhang, and Yu (<a href="#ref-n58" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="n59">Tzounas and Hug (<a href="#ref-n59" role="doc-biblioref">2023</a>)</span>. Taking <span class="math inline">\((A_{d},B_{d})_{old}\)</span> as the unupdated matrices, <span class="math inline">\((A_{d},B_{d})_{new}\)</span> as the updated matrices with switching effect, and <span class="math inline">\(T_{s}\)</span> as the discretisation time-step, the half-step states are computed as</p>
 <p><span class="math display">\[\begin{equation*}
-x_{{T_s}-\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{{T_s}-1} +B^{dqn}_{\text{old}} u_{T_s} \big),
+x_{T_s-\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{T_s-1} +B^{dqn}_{\text{old}} u_{T_s} \big),
 \label{eq:half-pre}
-\end{equation*}\]</span> <span class="math display">\[\begin{equation}
-x_{{T_s}+\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{{T_s}-1} + B^{dqn}_{\text{new}} u_{T_s} \big),
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+x_{T_s+\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s-1} + B^{dqn}_{\text{new}} u_{T_s} \big),
 \label{eq:half-post}
-\end{equation}\]</span> and the corrected state is their average,<br>
-<span class="math display">\[\begin{equation}
-x_{T_s} = \tfrac{1}{2}\left(x_{{T_s}-\tfrac{1}{2}} + x_{{T_s}+\tfrac{1}{2}}\right).
+\end{equation}\]</span></p>
+<p>and the corrected state is their average,</p>
+<p><span class="math display">\[\begin{equation}
+x_{T_s} = \tfrac{1}{2}\left(x_{T_s-\tfrac{1}{2}} + x_{T_s+\tfrac{1}{2}}\right).
 \label{eq:state-corrected}
-\end{equation}\]</span> The final state and output update then follow<br>
-<span class="math display">\[\begin{equation*}
-x_{{T_s}+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,
+\end{equation}\]</span></p>
+<p>The final state and output update then follow</p>
+<p><span class="math display">\[\begin{equation*}
+x_{T_s+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,
 \label{eq:state-update}
-\end{equation*}\]</span> <span class="math display">\[\begin{equation}
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
 y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.
 \label{eq:output-update}
 \end{equation}\]</span></p>
@@ -1905,164 +1909,170 @@ _This section lists all the references. It must comply with current citation sta
 <span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>Furthermore, the state-space representation allows the consistent operation of multiple switches functioning at once, as the matrices can be updated by an algorithm in accordance with the switch vector that defines the network configuration at any given moment, in comparison to manually deriving or switching between multiple predefined matrices, which is error-prone. This unified representation enables accurate switching event representation in system matrices at each operational point, via suitable parameters of $R_{\text{on}}$ and $R_{\text{off}}$. Meanwhile, keeping the state-space formulation facilitates the eigenvalue analysis of the system. Provided that a proper linearization around the operating point is performed. To maintain numerical stability when switching occurs within a sampling interval, a predictor–corrector scheme is applied @n58, @n59. Taking $(A_{d},B_{d})_{old}$ as the unupdated matrices, $(A_{d},B_{d})_{new}$ as the updated matrices with switching effect, and $T_{s}$ as the discretisation time-step, the half-step states are computed as  </span>
 <span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>x_{{T_s}-\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{{T_s}-1} +B^{dqn}_{\text{old}} u_{T_s} \big),</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>x_{T_s-\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{T_s-1} +B^{dqn}_{\text{old}} u_{T_s} \big),</span>
 <span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>\label{eq:half-pre}</span>
 <span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>x_{{T_s}+\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{{T_s}-1} + B^{dqn}_{\text{new}} u_{T_s} \big),</span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>\label{eq:half-post}</span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>and the corrected state is their average,  </span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>x_{T_s} = \tfrac{1}{2}\left(x_{{T_s}-\tfrac{1}{2}} + x_{{T_s}+\tfrac{1}{2}}\right).</span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>\label{eq:state-corrected}</span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>The final state and output update then follow  </span>
-<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>x_{{T_s}+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,</span>
-<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>\label{eq:state-update}</span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
-<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.</span>
-<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>\label{eq:output-update}</span>
-<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>This algorithm in @fig-DQnstatespacesolver enables efficient and numerically stable simulation of switched three-phase systems in the time domain, capturing both transient and steady-state phasor dynamics.</span>
-<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="al">![Flowchart of the state space solver algorithm for harmonic-rich states.](assets/SSalgo2.jpg)</span>{#fig-DQnstatespacesolver width=50%}</span>
-<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>x_{T_s+\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s-1} + B^{dqn}_{\text{new}} u_{T_s} \big),</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>\label{eq:half-post}</span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>and the corrected state is their average,</span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>x_{T_s} = \tfrac{1}{2}\left(x_{T_s-\tfrac{1}{2}} + x_{T_s+\tfrac{1}{2}}\right).</span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>\label{eq:state-corrected}</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>The final state and output update then follow</span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>x_{T_s+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>\label{eq:state-update}</span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a>y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>\label{eq:output-update}</span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
 <span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
-<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>This algorithm in @fig-DQnstatespacesolver enables efficient and numerically stable simulation of switched three-phase systems in the time domain, capturing both transient and steady-state phasor dynamics.</span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="al">![Flowchart of the state space solver algorithm for harmonic-rich states.](assets/SSalgo2.jpg)</span>{#fig-DQnstatespacesolver width=50%}</span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
 <span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="co">The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. </span></span>
-<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a><span class="co">It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 </span></span>
-<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="co">It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. </span></span>
-<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">## Model use, assumptions, validity domain and limitations (mandatory)</span></span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
 <span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="co">*Each model is an approximation of the reality, and considers some assumptions.*</span></span>
-<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="co">*In this section, details should be given on:*</span></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="co">The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. </span></span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a><span class="co">It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 </span></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="co">It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. </span></span>
 <span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="co">- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*</span></span>
-<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a><span class="co">- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*</span></span>
-<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="co">- *the limitations of the model (what people shouldn't use the model for)*</span></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="co">## Model use, assumptions, validity domain and limitations (mandatory)</span></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="co">*Each model is an approximation of the reality, and considers some assumptions.*</span></span>
 <span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="co">*In this section, details should be given on:*</span></span>
 <span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="co">The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:</span></span>
-<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a><span class="co">- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).</span></span>
-<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="co">- The three phases are balanced, meaning the power is shared equally.</span></span>
-<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a><span class="co">- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).</span></span>
-<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="co">- The magnetic field produced by the rotor winding oscillates sinusoidally.</span></span>
-<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a><span class="co">- The machine may have 2 or more poles, noted as $p_f$</span></span>
-<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="co">The model is suitable for transient stability analysis but not for electromagnetic transient analysis.</span></span>
-<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="co">## Model description (mandatory){#sec-physical-description}</span></span>
-<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="co">*This section gives the full description of the different model's components.*</span></span>
-<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="co">*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*</span></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="co">- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*</span></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a><span class="co">- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*</span></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="co">- *the limitations of the model (what people shouldn't use the model for)*</span></span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="co">The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:</span></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a><span class="co">- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).</span></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a><span class="co">- The three phases are balanced, meaning the power is shared equally.</span></span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="co">- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).</span></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a><span class="co">- The magnetic field produced by the rotor winding oscillates sinusoidally.</span></span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="co">- The machine may have 2 or more poles, noted as $p_f$</span></span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="co">The model is suitable for transient stability analysis but not for electromagnetic transient analysis.</span></span>
 <span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="co">- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._</span></span>
-<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _</span></span>
-<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._</span></span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a><span class="co">## Model description (mandatory){#sec-physical-description}</span></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a><span class="co">*This section gives the full description of the different model's components.*</span></span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="co">*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*</span></span>
 <span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
-<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Physical description </span></span>
-<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="co">The following schematic shows the components that participate in the synchronous machine operation:</span></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a><span class="co">- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._</span></span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _</span></span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._</span></span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a><span class="co">![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}</span></span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
 <span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Physical description </span></span>
 <span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Synchronous machine equations</span></span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="co">The following schematic shows the components that participate in the synchronous machine operation:</span></span>
 <span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a><span class="co">#### Variables </span></span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a><span class="co">![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}</span></span>
 <span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="co">| Variable    | details  | Unit |</span></span>
-<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| ------ | ----- |</span></span>
-<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a><span class="co">| $\theta_{shaft}$ | Rotor angle | $rad$ |</span></span>
-<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a><span class="co">| $\omega$ | Electrical rotational speed | $rad/s$ |</span></span>
-<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_m$ | Mechanical torque | $Nm$ |</span></span>
-<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_e$ | Electrical torque | $Nm$ |</span></span>
-<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
-<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a><span class="co">#### Parameters</span></span>
-<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="co">| Parameter | Description | Unit |</span></span>
-<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="co">| --- | --- | --- |</span></span>
-<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a><span class="co">| $J$ | Moment of inertia | $kgm^2$ |</span></span>
-<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a><span class="co">| $p_f$ | Number of pole pairs | - |</span></span>
-<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a><span class="co">| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |</span></span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Synchronous machine equations</span></span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a><span class="co">#### Variables </span></span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a><span class="co">| Variable    | details  | Unit |</span></span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| ------ | ----- |</span></span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a><span class="co">| $\theta_{shaft}$ | Rotor angle | $rad$ |</span></span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a><span class="co">| $\omega$ | Electrical rotational speed | $rad/s$ |</span></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_m$ | Mechanical torque | $Nm$ |</span></span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_e$ | Electrical torque | $Nm$ |</span></span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a><span class="co">#### Parameters</span></span>
 <span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
-<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a><span class="co">#### System of equations</span></span>
-<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a><span class="co">The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.</span></span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a><span class="co">| Parameter | Description | Unit |</span></span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a><span class="co">| --- | --- | --- |</span></span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a><span class="co">| $J$ | Moment of inertia | $kgm^2$ |</span></span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a><span class="co">| $p_f$ | Number of pole pairs | - |</span></span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a><span class="co">| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |</span></span>
 <span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a><span class="co">The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:</span></span>
-<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a><span class="co">J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}</span></span>
-<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a><span class="co">$$  {#eq-inertia}</span></span>
-<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a><span class="co">$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}</span></span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a><span class="co">#### System of equations</span></span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a><span class="co">The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.</span></span>
 <span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
-<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a><span class="co">## Source code (optional)</span></span>
-<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a><span class="co">_This section is a code section that provides the source code for model described above._</span></span>
-<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a><span class="co">_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._</span></span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a><span class="co">The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:</span></span>
+<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a><span class="co">J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}</span></span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a><span class="co">$$  {#eq-inertia}</span></span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a><span class="co">$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}</span></span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
-<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a><span class="co">The code can be presented in a **modeling language code block** like this:</span></span>
-<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a><span class="co">```modelica</span></span>
-<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a><span class="co">model VoltageSource "Constant AC voltage"</span></span>
-<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a><span class="co">  extends Interfaces.Source;</span></span>
-<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Frequency f(start=1) "Frequency of the source";</span></span>
-<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Voltage V(start=1) "RMS voltage of the source";</span></span>
-<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Angle phi(start=0) "Phase shift of the source";</span></span>
-<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="co">equation</span></span>
-<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a><span class="co">  omega = 2*Modelica.Constants.pi*f;</span></span>
-<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a><span class="co">  v = Complex(V*cos(phi), V*sin(phi));</span></span>
-<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a><span class="co">end VoltageSource;</span></span>
-<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a><span class="co">```</span></span>
-<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a><span class="co">## Open source implementations (if any)</span></span>
-<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a><span class="co">_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._</span></span>
-<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a><span class="co">## Source code (optional)</span></span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a><span class="co">_This section is a code section that provides the source code for model described above._</span></span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a><span class="co">_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._</span></span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a><span class="co">The code can be presented in a **modeling language code block** like this:</span></span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="co">```modelica</span></span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a><span class="co">model VoltageSource "Constant AC voltage"</span></span>
+<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a><span class="co">  extends Interfaces.Source;</span></span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Frequency f(start=1) "Frequency of the source";</span></span>
+<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Voltage V(start=1) "RMS voltage of the source";</span></span>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Angle phi(start=0) "Phase shift of the source";</span></span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a><span class="co">equation</span></span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a><span class="co">  omega = 2*Modelica.Constants.pi*f;</span></span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a><span class="co">  v = Complex(V*cos(phi), V*sin(phi));</span></span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a><span class="co">end VoltageSource;</span></span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a><span class="co">```</span></span>
 <span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a><span class="co">This model has been successfully implemented in :</span></span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a><span class="co">## Open source implementations (if any)</span></span>
 <span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a><span class="co">| Software      | URL | Language | Open-Source License | Last consulted date | Comments |</span></span>
-<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| --- | --------- | ------------------- |------------------- | -------- |</span></span>
-<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a><span class="co">| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |</span></span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a><span class="co">_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._</span></span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
 <span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a><span class="co">## Table of references &amp; license</span></span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a><span class="co">This model has been successfully implemented in :</span></span>
 <span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a><span class="co">_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._</span></span>
-<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a><span class="co">::: {#refs}</span></span>
-<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a><span class="co">:::</span></span>
-<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a><span class="co">| Software      | URL | Language | Open-Source License | Last consulted date | Comments |</span></span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| --- | --------- | ------------------- |------------------- | -------- |</span></span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a><span class="co">| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |</span></span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a><span class="co">## Table of references &amp; license</span></span>
+<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-772"><a href="#cb1-772" aria-hidden="true" tabindex="-1"></a><span class="co">_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._</span></span>
+<span id="cb1-773"><a href="#cb1-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-774"><a href="#cb1-774" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-775"><a href="#cb1-775" aria-hidden="true" tabindex="-1"></a><span class="co">::: {#refs}</span></span>
+<span id="cb1-776"><a href="#cb1-776" aria-hidden="true" tabindex="-1"></a><span class="co">:::</span></span>
+<span id="cb1-777"><a href="#cb1-777" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

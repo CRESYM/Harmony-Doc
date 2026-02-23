@@ -611,23 +611,29 @@ Dynamic phasors rely on Fourier components of states. When switching occurs, har
 Furthermore, the state-space representation allows the consistent operation of multiple switches functioning at once, as the matrices can be updated by an algorithm in accordance with the switch vector that defines the network configuration at any given moment, in comparison to manually deriving or switching between multiple predefined matrices, which is error-prone. This unified representation enables accurate switching event representation in system matrices at each operational point, via suitable parameters of $R_{\text{on}}$ and $R_{\text{off}}$. Meanwhile, keeping the state-space formulation facilitates the eigenvalue analysis of the system. Provided that a proper linearization around the operating point is performed. To maintain numerical stability when switching occurs within a sampling interval, a predictor–corrector scheme is applied @n58, @n59. Taking $(A_{d},B_{d})_{old}$ as the unupdated matrices, $(A_{d},B_{d})_{new}$ as the updated matrices with switching effect, and $T_{s}$ as the discretisation time-step, the half-step states are computed as  
 
 \begin{equation*}
-x_{{T_s}-\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{{T_s}-1} +B^{dqn}_{\text{old}} u_{T_s} \big),
+x_{T_s-\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{T_s-1} +B^{dqn}_{\text{old}} u_{T_s} \big),
 \label{eq:half-pre}
 \end{equation*}
+
 \begin{equation}
-x_{{T_s}+\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{{T_s}-1} + B^{dqn}_{\text{new}} u_{T_s} \big),
+x_{T_s+\tfrac{1}{2}} = x_{T_s-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s-1} + B^{dqn}_{\text{new}} u_{T_s} \big),
 \label{eq:half-post}
 \end{equation}
-and the corrected state is their average,  
+
+and the corrected state is their average,
+
 \begin{equation}
-x_{T_s} = \tfrac{1}{2}\left(x_{{T_s}-\tfrac{1}{2}} + x_{{T_s}+\tfrac{1}{2}}\right).
+x_{T_s} = \tfrac{1}{2}\left(x_{T_s-\tfrac{1}{2}} + x_{T_s+\tfrac{1}{2}}\right).
 \label{eq:state-corrected}
 \end{equation}
-The final state and output update then follow  
+
+The final state and output update then follow
+
 \begin{equation*}
-x_{{T_s}+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,
+x_{T_s+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,
 \label{eq:state-update}
 \end{equation*}
+
 \begin{equation}
 y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.
 \label{eq:output-update}
