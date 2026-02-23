@@ -1,0 +1,888 @@
+---
+layout: page 
+title: Optimal Power Flow # be as specific as possible
+tags: [Opensource, Optimal Power Flow Analysis, Power Flow Analysis]
+date: 05/01/2026
+last-updated: 05/01/2026
+author: "Aleksandra Lekić, Haixiao Li"
+reviewers: "Aleksandra Lekić"
+bibliography: references.bib
+order: 1
+
+# MathJax
+format:
+  html:
+    standalone: false
+    toc: false
+    page-layout: full
+    html-math-method: mathjax
+    code-fold: true
+    code-summary: "Show/Hide Code"
+    code-tools: true
+    highlight-style: github
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          tex: {
+            tags: 'ams',        
+            tagSide: 'right',   
+            tagIndent: '0em'    
+          }
+        };
+        </script>
+
+        
+---
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+
+
+:::{.callout-tip}
+*AC/DC Optimal Power Flow (AC/DC OPF) is an optimization method used to determine the most economical and secure operating point of hybrid AC/DC power systems. It simultaneously considers AC network constraints, DC grid equations, and converter coupling relationships. By coordinating generators and converters, it minimizes operational cost while satisfying voltage, power flow, and equipment limits. AC/DC OPF is essential for modern grids with high renewable penetration and multi-terminal DC transmission systems.*
+:::
+
+## Nomenclature
+
+### A. Indices and Sets
+
+$\left(\overline{\cdot}\right)/\left(\underline{\cdot}\right)$  
+: Upper/lower bound of corresponding optimization variables and parameters  
+
+$\textit{AC}$  
+: Alternating current  
+
+$\textit{MTDC}$  
+: Multi-terminal direct current  
+
+$\textit{VSC}$  
+: Voltage source converter  
+
+$\textit{h, i, j}$  
+: System node  
+
+$\textit{ij}$  
+: System branch  
+
+$\textit{ref}$  
+: Reference value  
+
+$\textit{droop}$  
+: Droop parameters  
+
+$\textit{loss}$  
+: Power loss  
+
+$\textit{cost}$  
+: Generation cost  
+
+$\textit{gen}$  
+: Generator  
+
+$\textit{load}$  
+: Load  
+
+$\mathcal{L}$  
+: Branch set  
+
+$\mathcal{N}$  
+: Node set  
+
+$\lvert \cdot \rvert$  
+: Magnitude  
+
+---
+
+### B. AC System Variables
+
+$v_i^{AC}$  
+: AC bus $i$ voltage  
+
+$\theta_{ij}^{AC}$  
+: Phase difference of AC branch $ij$  
+
+$p_i^{AC}$ / $q_i^{AC}$  
+: Real/Reactive power injection at AC bus $i$  
+
+$p_{ij}^{AC}$ / $q_{ij}^{AC}$  
+: Real/Reactive power of AC branch $ij$  
+
+$p_{i,gen}^{AC}$ / $q_{i,gen}^{AC}$  
+: Real/Reactive generator output at AC bus $i$  
+
+$p_{i,load}^{AC}$ / $q_{i,load}^{AC}$  
+: Real/Reactive load at AC bus $i$  
+
+$p_{i,A2V}^{AC}$ / $q_{i,A2V}^{AC}$  
+: Power delivered from AC grid to VSC at bus $i$  
+
+$c_{i,2}^{AC}$ / $c_{i,1}^{AC}$ / $c_{i,0}^{AC}$  
+: Quadratic/Linear/Constant generation cost coefficients  
+
+$c_{ij}^{AC}$ / $s_{ij}^{AC}$  
+: Optimization variables related to AC nodal voltages  
+
+---
+
+### C. MTDC System Variables
+
+$v_j^{MTDC}$  
+: MTDC bus $j$ voltage  
+
+$u_j^{MTDC}$  
+: Squared MTDC bus voltage  
+
+$p_{jh}^{MTDC}$  
+: Power of MTDC branch $jh$  
+
+$l_{jh}^{MTDC}$  
+: Squared current of MTDC branch $jh$  
+
+$p_{i,ref}^{MTDC}$  
+: DC power reference at MTDC bus $i$  
+
+$V_{i,ref}^{MTDC}$  
+: DC voltage reference at MTDC bus $i$  
+
+$k_{i,droop}^{MTDC}$  
+: Droop slope at MTDC bus $i$  
+
+---
+
+### D. VSC Variables
+
+$v_s^{VSC}$ / $v_f^{VSC}$ / $v_c^{VSC}$  
+: VSC bus $s/f/c$ voltage  
+
+$\theta_s^{VSC}$ / $\theta_f^{VSC}$ / $\theta_c^{VSC}$  
+: VSC bus phase angle  
+
+$g_{sf}^{VSC}$ / $g_{fc}^{VSC}$  
+: Conductance of VSC branches  
+
+$b_{sf}^{VSC}$ / $b_{fc}^{VSC}$  
+: Susceptance of VSC branches  
+
+$b_f^{VSC}$  
+: Shunt susceptance at VSC bus $f$  
+
+$p_{loss}^{VSC}$  
+: VSC power loss  
+
+$a_{loss}^{VSC}$ / $b_{loss}^{VSC}$ / $c_{loss}^{VSC}$  
+: Constant/Linear/Quadratic loss coefficients  
+
+$I_c^{VSC}$  
+: Phase current at bus $c$  
+
+$l_c^{VSC}$  
+: Squared phase current  
+
+$q_{s,ref}^{VSC}$  
+: Reactive power reference  
+
+$v_{s,ref}^{VSC}$  
+: AC voltage reference  
+
+$c_{sf}^{VSC}$ / $s_{sf}^{VSC}$ / $c_{cf}^{VSC}$ / $s_{cf}^{VSC}$  
+: Optimization variables related to VSC nodal voltages  
+
+## Second-Order Cone Programming (SOCP) Formulation
+
+The speicifc AC/DC OPF model utilized in HARMONY is presented below.
+
+### Varables
+
+\begin{align*}
+    & p_i^{AC}, q_i^{AC}, p_{i, gen}^{A C}, q_{i, gen}^{A C}, p_{i, A2V}^{AC}, q_{i, A2V}^{AC}, s_{ij}^{AC}, c_{ij}^{AC}&& i,j\in\mathcal{N}^{AC} \\
+    & p_{ij}^{AC}, q_{ij}^{AC} && (i,j)\in\mathcal{L}^{AC} \\
+    & p_{j}^{MTDC},  v_{j}^{MTDC} && j\in\mathcal{N}^{M T D C} \\
+    & p_{jh}^{MTDC},l_{jh}^{MTDC}&& (j, h)\in\mathcal{L}^{M T D C} \\
+    & p_s^{VSC}, q_s^{VSC} && s\in\mathcal{N}^{MTDC}\\
+    & p_c^{VSC}, q_c^{VSC}, I_c^{VSC}, l_c^{VSC} && c\in\mathcal{N}^{MTDC}\\
+     & q_f^{VSC} && f\in\mathcal{N}^{MTDC}\\
+     & c_{mn}^{VSC}, c_{mn}^{VSC} && m, n \in \{s, f, c\} && s,f,c\in\mathcal{N}^{MTDC}\\
+\end{align*}
+
+### AC Constraints
+\begin{equation}
+p_{ij}^{AC}
+=
+G_{ij}
+\left(
+c_{ii}^{AC}
+-
+c_{ij}^{AC}
+\right)
++
+B_{ij}
+s_{ij}^{AC},
+\quad
+\forall i,j\in\mathcal{N}^{AC},
+\quad
+\forall (i,j)\in\mathcal{L}^{AC}
+\tag{1a}
+\label{eq:1a}
+\end{equation}
+
+\begin{equation}
+q_{ij}^{AC}
+=
+-
+B_{ij}
+\left(
+c_{ii}^{AC}
+-
+c_{ij}^{AC}
+\right)
++
+G_{ij}
+s_{ij}^{AC},
+\quad
+\forall i,j\in\mathcal{N}^{AC},
+\quad
+\forall (i,j)\in\mathcal{L}^{AC}
+\tag{1b}
+\label{eq:1b}
+\end{equation}
+
+\begin{equation}
+p_i^{AC}
+=
+c_{ii}^{AC} G_{ii}
++
+\sum_{j}
+\left(
+c_{ij}^{AC} G_{ij}
+-
+s_{ij}^{AC} B_{ij}
+\right),
+\quad
+\forall i,j\in\mathcal{N}^{AC}
+\tag{1c}
+\label{eq:1c}
+\end{equation}
+
+\begin{equation}
+q_i^{AC}
+=
+-
+c_{ii}^{AC} B_{ii}
+-
+\sum_{j}
+\left(
+c_{ij}^{AC} B_{ij}
++
+s_{ij}^{AC} G_{ij}
+\right),
+\quad
+\forall i,j\in\mathcal{N}^{AC}
+\tag{1d}
+\label{eq:1d}
+\end{equation}
+
+\begin{equation}
+c_{ij}^{AC}
+=
+c_{ji}^{AC},
+\quad
+\forall i,j\in\mathcal{N}^{AC}
+\tag{1e}
+\label{eq:1e}
+\end{equation}
+
+\begin{equation}
+s_{ij}^{AC}
+=
+-
+s_{ji}^{AC},
+\quad
+\forall i,j\in\mathcal{N}^{AC}
+\tag{1f}
+\label{eq:1f}
+\end{equation}
+
+\begin{equation}
+(c_{ij}^{AC})^2
++
+(s_{ij}^{AC})^2
+\le
+c_{ii}^{AC}
+c_{jj}^{AC},
+\quad
+\forall i,j\in\mathcal{N}^{AC}
+\tag{1g}
+\label{eq:1g}
+\end{equation}
+
+\begin{equation}
+p_i^{AC}
+=
+p_{i,gen}^{AC}
+-
+p_{i,load}^{AC}
+-
+p_{i,A2V}^{AC},
+\quad
+\forall i\in\mathcal{N}^{AC}
+\tag{2a}
+\label{eq:2a}
+\end{equation}
+
+\begin{equation}
+q_i^{AC}
+=
+q_{i,gen}^{AC}
+-
+q_{i,load}^{AC}
+-
+q_{i,A2V}^{AC},
+\quad
+\forall i\in\mathcal{N}^{AC}
+\tag{2b}
+\label{eq:2b}
+\end{equation}
+
+\begin{equation}
+\underline{p}_{i,gen}^{AC}
+\le
+p_{i,gen}^{AC}
+\le
+\overline{p}_{i,gen}^{AC},
+\quad
+\forall i\in\mathcal{N}^{AC}
+\tag{3a}
+\label{eq:3a}
+\end{equation}
+
+\begin{equation}
+\underline{q}_{i,gen}^{AC}
+\le
+q_{i,gen}^{AC}
+\le
+\overline{q}_{i,gen}^{AC},
+\quad
+\forall i\in\mathcal{N}^{AC}
+\tag{3b}
+\label{eq:3b}
+\end{equation}
+
+\begin{equation}
+\underline{|v_i^{AC}|}^2
+\le
+c_{ii}^{AC}
+\le
+\overline{|v_i^{AC}|}^2,
+\quad
+\forall i\in\mathcal{N}^{AC}
+\tag{4}
+\label{eq:4}
+\end{equation}
+
+### DC Constraints
+\begin{equation}
+p_{j}^{MTDC}
+=
+\sum_{(j,h)}
+p_{jh}^{MTDC},
+\quad
+\forall j\in\mathcal{N}^{MTDC},
+\quad
+\forall(j,h)\in\mathcal{L}^{MTDC}
+\tag{5a}
+\label{eq:5a}
+\end{equation}
+
+\begin{equation}
+p_{jh}^{MTDC}
++
+p_{hj}^{MTDC}
+=
+r_{jh}^{MTDC}
+l_{jh}^{MTDC},
+\quad
+\forall(j,h)\in\mathcal{L}^{MTDC}
+\tag{5b}
+\label{eq:5b}
+\end{equation}
+
+\begin{equation}
+u_{j}^{MTDC}
+-
+u_{h}^{MTDC}
+=
+r_{jh}^{MTDC}
+\left(
+p_{jh}^{MTDC}
+-
+p_{hj}^{MTDC}
+\right),
+\quad
+\forall j,h\in\mathcal{N}^{MTDC},
+\quad
+\forall(j,h)\in\mathcal{L}^{MTDC}
+\tag{5c}
+\label{eq:5c}
+\end{equation}
+
+\begin{equation}
+(p_{jh}^{MTDC})^2
+\le
+l_{jh}^{MTDC} u_j^{MTDC},
+\quad
+\forall(j,h)\in\mathcal{L}^{MTDC}
+\tag{5d}
+\label{eq:5d}
+\end{equation}
+
+\begin{equation}
+\underline{u}_j^{MTDC}
+\le
+u_j^{MTDC}
+\le
+\overline{u}_j^{MTDC},
+\quad
+\forall j\in\mathcal{N}^{MTDC}
+\tag{6}
+\label{eq:6}
+\end{equation}
+
+\begin{equation}
+p_j^{MTDC}
+=
+p_{j,ref}^{MTDC},
+\quad
+\forall j\in\mathcal{N}^{MTDC}
+\tag{7a}
+\label{eq:7a}
+\end{equation}
+
+\begin{equation}
+v_j^{MTDC}
+=
+v_{j,ref}^{MTDC},
+\quad
+\forall j\in\mathcal{N}^{MTDC}
+\tag{7b}
+\label{eq:7b}
+\end{equation}
+
+\begin{equation}
+p_j^{MTDC}
+=
+p_{j,ref}^{MTDC}
+-
+\frac{1}{k_{j,droop}^{MTDC}}
+\left(
+v_j^{MTDC}
+-
+v_{j,ref}^{MTDC}
+\right),
+\quad
+\forall j\in\mathcal{N}^{MTDC}
+\tag{7c}
+\label{eq:7c}
+\end{equation}
+
+### VSC Constraints
+
+\begin{equation}
+p_s^{VSC}=p_{i,A2V}^{AC},
+\quad s\in\mathcal{N}^{VSC}
+\tag{8a}
+\label{eq:8a}
+\end{equation}
+
+\begin{equation}
+q_s^{VSC}=q_{i,A2V}^{AC},
+\quad s\in\mathcal{N}^{VSC}
+\tag{8b}
+\label{eq:8b}
+\end{equation}
+
+\begin{equation}
+p_{s}^{VSC}
+=
+c_{ss}^{VSC}g_{sf}^{VSC}
+-
+c_{sf}^{VSC}g_{sf}^{VSC}
++
+s_{sf}^{VSC}b_{sf}^{VSC},
+\quad s,f\in\mathcal{N}^{MTDC}
+\tag{9a}
+\label{eq:9a}
+\end{equation}
+
+\begin{equation}
+q_{s}^{VSC}
+=
+- c_{ss}^{VSC}b_{sf}^{VSC}
++
+c_{sf}^{VSC}b_{sf}^{VSC}
++
+s_{sf}^{VSC}g_{sf}^{VSC},
+\quad s,f\in\mathcal{N}^{MTDC}
+\tag{9b}
+\label{eq:9b}
+\end{equation}
+
+\begin{equation}
+c_{sf}^{VSC}
+=
+c_{fs}^{VSC},
+\quad s,f\in\mathcal{N}^{AC}
+\tag{9c}
+\label{eq:9c}
+\end{equation}
+
+\begin{equation}
+s_{sf}^{VSC}
+=
+- s_{fs}^{VSC},
+\quad s,f\in\mathcal{N}^{VSC}
+\tag{9d}
+\label{eq:9d}
+\end{equation}
+
+\hypertarget{eq:9e}{}
+\begin{equation}
+(c_{sf}^{VSC})^2+(s_{sf}^{VSC})^2
+\le
+c_{ss}^{VSC}c_{ff}^{VSC},
+\quad s,f\in\mathcal{N}^{AC}
+\tag{9e}
+\label{eq:9e}
+\end{equation}
+
+\begin{equation}
+p_{c}^{VSC}
+=
+c_{cc}^{VSC}g_{cf}^{VSC}
+-
+c_{cf}^{VSC}g_{cf}^{VSC}
++
+s_{cf}^{VSC}b_{cf}^{VSC},
+\quad c,f\in\mathcal{N}^{MTDC}
+\tag{10a}
+\label{eq:10a}
+\end{equation}
+
+\begin{equation}
+q_{c}^{VSC}
+=
+- c_{cc}^{VSC}b_{cf}^{VSC}
++
+c_{cf}^{VSC}b_{cf}^{VSC}
++
+s_{cf}^{VSC}g_{cf}^{VSC},
+\quad c,f\in\mathcal{N}^{MTDC}
+\tag{10b}
+\label{eq:10b}
+\end{equation}
+
+\begin{equation}
+c_{cf}^{VSC}=c_{fc}^{VSC},
+\quad c,f\in\mathcal{N}^{VSC}
+\tag{10c}
+\label{10c}
+\end{equation}
+
+\begin{equation}
+s_{cf}^{VSC}=-s_{fc}^{VSC},
+\quad c,f\in\mathcal{N}^{VSC}
+\tag{10d}
+\label{eq:10d}
+\end{equation}
+
+\begin{equation}
+(c_{cf}^{VSC})^2+(s_{cf}^{VSC})^2
+\le
+c_{cc}^{VSC}c_{ff}^{VSC},
+\quad c,f\in\mathcal{N}^{VSC}
+\tag{10e}
+\label{eq:10e}
+\end{equation}
+
+\begin{equation}
+q_f^{VSC}
+=
+- c_{ff}^{VSC} b_f^{VSC},
+\quad f\in\mathcal{N}^{VSC}
+\tag{11}
+\label{eq:11}
+\end{equation}
+
+\begin{equation}
+p_c^{VSC}
++
+p_{loss}^{VSC}
++
+p_j^{MTDC}
+=
+0,
+\quad j\in\mathcal{N}^{MTDC},
+\quad c\in\mathcal{N}^{VSC}
+\tag{12}
+\label{eq:12}
+\end{equation}
+
+\begin{equation}
+p_{loss}^{VSC}
+=
+a_{loss}^{VSC}
++
+b_{loss}^{VSC}|I_c^{VSC}|
++
+c_{loss}^{VSC}l_c^{VSC},
+\quad c\in\mathcal{N}^{VSC}
+\tag{13a}
+\label{eq:13a}
+\end{equation}
+
+\begin{equation}
+0
+\le
+|I_c^{VSC}|
+\le
+|\overline{I_c^{VSC}}|,
+\quad c\in\mathcal{N}^{VSC}
+\tag{13b}
+\label{eq:13b}
+\end{equation}
+
+\begin{equation}
+0
+\le
+l_c^{VSC}
+\le
+|\overline{I_c^{VSC}}|^2,
+\quad c\in\mathcal{N}^{VSC}
+\tag{13c}
+\label{eq:13c}
+\end{equation}
+
+\begin{equation}
+|I_c^{VSC}|^2
+\le
+l_c^{VSC},
+\quad c\in\mathcal{N}^{VSC}
+\tag{14a}
+\label{eq:14a}
+\end{equation}
+
+\begin{equation}
+(p_c^{VSC})^2+(q_c^{VSC})^2
+\le
+c_{cc}^{VSC}l_c^{VSC},
+\quad c\in\mathcal{N}^{VSC}
+\tag{14b}
+\label{eq:14b}
+\end{equation}
+
+\begin{equation}
+c_{ss}^{VSC}
+=
+(v_{s,ref}^{VSC})^2,
+\quad s\in\mathcal{N}^{VSC}
+\tag{15a}
+\label{eq:15a}
+\end{equation}
+
+\begin{equation}
+q_s^{VSC}
+=
+q_{s,ref}^{VSC},
+\quad s\in\mathcal{N}^{VSC}
+\tag{15b}
+\label{eq:15b}
+\end{equation}
+
+### Optimization Goal
+
+\begin{equation}
+\min
+\sum_{i\in\mathcal{N}^{AC}}
+\left(
+c_{i,2}^{AC}\left(p_{i,gen}^{AC}\right)^2
++
+c_{i,1}^{AC}p_{i,gen}^{AC}
++
+c_{i,0}^{AC}
+\right)
+\tag{16}
+\label{eq:16}
+\end{equation}
+
+- AC Constraints: (\ref{eq:1a}) to (\ref{eq:1g}) are SOCP AC power flow constraints @yasasvi2018exact. (\ref{eq:2a}) and (\ref{eq:2b}) are power balance constraints at each AC bus. (\ref{eq:3a}) and (\ref{eq:3b}) are generator output limits, while (\ref{eq:4}) is the voltage bound.
+- DC Constraints: (\ref{eq:5a}) is the power balance constraint at each DC bus, while (\ref{eq:5b}) and (\ref{eq:5d}) are SOCP DC power flow constratins @gan2014optimal. (\ref{eq:6}) is the voltage bound, while (\ref{eq:7a}), (\ref{eq:7b}), and (\ref{eq:7c}) are the power/voltage reference and droop control constraints.
+- VSC Constraints: (\ref{eq:8a}) and (\ref{eq:8b}) are the power coupling constraints between AC grid and VSC, while (\ref{eq:9a}) to (\ref{eq:9e}) and (\ref{eq:10a}) to (\ref{eq:10e}) are the power flow constraints at VSC AC and DC sides, respectively. (\ref{eq:11}) is the shunt reactive power constraint, while (\ref{eq:12}) is the power balance constraint at VSC DC side. (\ref{eq:13a}) to (\ref{eq:13c}) are the loss model and current limits, while (\ref{eq:14a}) and (\ref{eq:14b}) are the second-order cone relaxations of current and apparent power limits, respectively. Finally, (\ref{eq:15a}) and (\ref{eq:15b}) are the voltage and reactive power reference constraints for VSCs operating in grid-following mode.
+- Optimization Goal: (\ref{eq:16}) is minimization of total generation cost.
+
+## Voltage phase recovery
+
+For second-order cone relaxations in AC grid power flow or VSC AC-side power flow, the bus voltage phase is eliminated. However, the voltage phase is important in harmonic stability analysis of AC/DC hybrid power systems. Therefore, it is necessary to recover the system-wide voltage phase from the obtained AC/DC OPF results.
+
+Considering the complex AC nodal voltage is $\dot{v}_i^{A C}=v_i^{A C} e^{\mathrm{j} \theta_i^{A C}}$, the nonlinear coupling appears in power flow equations, such that:
+
+\begin{equation}
+\dot{v}_i^{AC}\bigl(\dot{v}_j^{AC}\bigr)^{*}
+= v_i^{AC} v_j^{AC}\left(\cos\delta_{ij}^{AC} + \mathrm{j}\sin\delta_{ij}^{AC}\right).
+\tag{17}
+\label{eq:17}
+\end{equation}
+
+where $\delta_{i j}^{A C}=\theta_i^{A C}-\theta_j^{A C}$.
+
+To convexify the OPF model, SOC relaxation substitutes that $c_{i j}^{A C}=v_i^{A C} v_j^{A C} \cos \delta_{i j}^{A C}$ and $s_{i j}^{A C}=v_i v_j \sin \delta_{i j}^{A C}$. Thus avoiding explicit use of $\theta_i^{A C}$. According to \ref{eq:17}, we can see that the optimized variables satisfy:
+
+\begin{equation}
+\delta_{i j}^{A C}=\arctan 2\left(s_{i j}^{A C}, c_{i j}^{A C}\right),
+\tag{18}
+\label{eq:18}
+\end{equation}
+thus $\delta_{i j}^{A C}$, the AC branch phase difference, can be directly obtained based on $s_{i j}^{A C}$ and $c_{i j}^{A C}$. 
+
+Let $\mathcal{G}^{A C}:=\left(\mathcal{N}^{A C}, \varepsilon^{A C}\right)$ denote the AC network graph. If we choose a slack bus with reference phase 0, then all bus phases can be recovered, along any spanning tree of $\mathcal{G}^{A C}$, such that:  
+
+\begin{equation}
+\theta_j^{A C}=\theta_i^{A C}+\delta_{i j}^{A C},
+\tag{19}
+\label{eq:19}
+\end{equation}
+
+Then, we continue to consider that a VSC is connected to AC grid bus $j$. In this case, the PCC node s voltage phase can be directly obtained and regarded as reference voltage. Following the approach same to (\ref{eq:17})-(\ref{eq:19}), the VSC AC-side voltage phase can be calculated.
+
+## References
+
+::: {#refs}
+:::
+
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
