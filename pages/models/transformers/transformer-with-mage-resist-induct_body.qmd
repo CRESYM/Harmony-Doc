@@ -56,7 +56,7 @@ where the values are:
   
   The transformer model is depicted in Fig. @fig-transformer_model
 
-  ![Single-phase transformer with a neglected phase shift](assets/transformer.pdf){#fig-transformer_model fig-alt="Transformer model" width="500px"}
+  ![Single-phase transformer with a neglected phase shift](assets/transformer.jpg){#fig-transformer_model fig-alt="Transformer model" width="500px"}
 
   For the transformer depicted in Fig. @fig-transformer_model, the Y-parameters are as follows:
   \begin{equation}
