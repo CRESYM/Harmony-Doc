@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aleksandra Lekić, Haixiao Li">
+<meta name="dcterms.date" content="2026-02-23">
+
+<title>Dynamic Phasor-based Time Domain Simulation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="dqsym-math-operation_body_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/popper.min.js"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dqsym-math-operation_body_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dqsym-math-operation_body_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dqsym-math-operation_body_files/libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dqsym-math-operation_body_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dqsym-math-operation_body_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dqsym-math-operation_body_files/libs/bootstrap/bootstrap-dd1e69cc28de4c0c742d9bb80f8fae17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script>
+MathJax = {
+  tex: {
+    tags: 'ams',
+    tagSide: 'right',
+    tagIndent: '0em'
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Dynamic Phasor-based Time Domain Simulation</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aleksandra Lekić, Haixiao Li </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 23, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**
+
+<a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd">Download model template</a> -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>DQSym is founded on dynamic phasor theory, which represents periodic electrical variables using time-varying Fourier coefficients. By transforming three-phase quantities into a structured phasor domain, it captures both fundamental-frequency dynamics and harmonic interactions in hybrid AC/DC systems. This formulation enables systematic modeling and small-signal stability analysis of modern power systems with high penetration of power electronics.</em></p>
+</div>
+</div>
+<section id="dynamic-phasor-theory" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-phasor-theory">Dynamic Phasor Theory</h2>
+<p>DPs express signals in a complex-valued, frequency-shifted form that captures both amplitude and phase variations over time. A DP is defined as a time-varying Fourier coefficient obtained through a linear transformation of a band-limited signal. This transformation is realized by projecting the signal onto complex exponential basis functions over a sliding time window, thereby enabling a compact time-frequency representation~.<br>
+For a nearly periodic waveform <span class="math inline">\(x(\tau)\)</span> defined over the interval <span class="math inline">\((t-T,\,t)\)</span>, the signal can be expressed using a Fourier series expansion as <span class="math display">\[\begin{equation}
+    x(\tau) = \sum_{k=-\infty}^{\infty} X_k(t) e^{j k \omega_c \tau},
+    \label{eq:dp_series}
+\end{equation}\]</span> where <span class="math inline">\(\omega_c = \tfrac{2\pi}{T}\)</span> is the fundamental frequency and <span class="math inline">\(X_k(t)\)</span> denotes the <span class="math inline">\(n^{\text{th}}\)</span> DP. Each coefficient varies with time to capture localized spectral content and is computed as <span class="math display">\[\begin{equation}
+    X_k(t) = \frac{1}{T} \int_{t-T}^{t} x(\tau) e^{-j k \omega_c \tau} \, d\tau = \langle x \rangle_k(t),
+    \label{eq:dp_coeff}
+\end{equation}\]</span> which formally defines the DP as a time-localized projection of the signal.</p>
+<p>The dimensionality of a DP model grows with the number of harmonics <span class="math inline">\(k\)</span> included. However, under steady-state conditions, the coefficients converge to constant (DC-like) values, yielding a time-invariant representation that facilitates analysis.</p>
+<p>An alternative representation to the complex valued is obtained by representing any arbitrary bandpass signal in terms of its amplitude <span class="math inline">\(A_n(t)\)</span>, phase <span class="math inline">\(\theta_n(t)\)</span>, and fundamental frequency <span class="math inline">\(\omega_c\)</span>: <span class="math display">\[\begin{equation}
+    x(t) = a_0 + \sum_{n=1}^{k} A_n(t)\cos(n \omega_c t + \theta_n(t)),
+\end{equation}\]</span> where <span class="math inline">\(a_0\)</span> is the DC component. This signal can be decomposed into and components as: <span class="math display">\[\begin{equation}
+    x(t) = a_0 + \sum_{n=1}^{k} x_{In}(t)\cos(n \omega_c t) - x_{Qn}(t)\sin(n \omega_c t),
+\end{equation}\]</span> with <span class="math display">\[\begin{equation}
+    x_{In}(t) = A_n(t)\cos(\theta_n(t)), \quad x_{Qn}(t) = A_n(t)\sin(\theta_n(t)).
+\end{equation}\]</span></p>
+<p>From these components, a complex-valued variable can be constructed to represent the DP at <span class="math inline">\(k^{\text{th}}\)</span> harmonic order : <span class="math display">\[\begin{equation}
+    \langle x \rangle_n(t) = x_{In}(t) + j x_{Qn}(t) = A_n(t)e^{j\theta_n(t)}.
+    \label{eq:118}
+\end{equation}\]</span> The original signal can then be recovered by remodulating with <span class="math inline">\(e^{j n \omega_c t}\)</span> and taking the real part: <span class="math display">\[\begin{align}
+    x(t) &amp;= \Re\left\{\langle x \rangle_n(t)e^{j n \omega_c t}\right\} = A_n(t)\cos(n\omega_c t + \theta_n(t)).
+\end{align}\]</span></p>
+<p>DPs also possess several mathematical properties, obtained through their link to Fourier series, that make them particularly suitable for system modeling and analysis:</p>
+<ul>
+<li><p><strong>Time derivative:</strong></p>
+<p><span class="math display">\[
+\frac{d \langle x \rangle_k}{dt}
+=
+\left\langle \frac{dx}{dt} \right\rangle_k
+-
+j k \omega_c \langle x \rangle_k
+\]</span></p></li>
+<li><p><strong>Multiplication:</strong></p>
+<p><span class="math display">\[
+\langle xy \rangle_k(t)
+=
+\sum_i
+\langle x \rangle_{k-i}(t)\,
+\langle y \rangle_i(t)
+\]</span></p></li>
+<li><p><strong>Complex conjugate:</strong></p>
+<p><span class="math display">\[
+\langle x \rangle_{-k}(t)
+=
+\langle x \rangle_k^*(t)
+\]</span></p></li>
+</ul>
+<p>These properties enable the construction of DP models with an arbitrary number of harmonics, offering a compact yet flexible representation of systems with rich spectral content. However, including higher-order harmonics increases the computational burden. Thus, a key factor in practical applications is the appropriate selection of Fourier coefficients <span class="math inline">\(k\)</span>, balancing model accuracy against simulation efficiency.</p>
+</section>
+<section id="proposed-framework" class="level2">
+<h2 class="anchored" data-anchor-id="proposed-framework">Proposed Framework</h2>
+<p>This section presents the <span class="math inline">\(DQsym\)</span> framework, beginning with the mathematical foundation of DPs, followed by the state-space formulation and its integration into <span class="math inline">\(DQsym\)</span> framework.</p>
+<section id="transformation-of-dynamic-phasor-quantities-from-abc-to-dq-pnz-frame" class="level3">
+<h3 class="anchored" data-anchor-id="transformation-of-dynamic-phasor-quantities-from-abc-to-dq-pnz-frame">Transformation of Dynamic Phasor Quantities from <span class="math inline">\(abc\)</span> to DQ-pnz Frame</h3>
+<p>As stated DPs (<span class="math inline">\(X_k(t)\)</span>) are time-varying Fourier coefficients, slowly varying when the signal is near-periodic around a base frequency. Their in-phase (<span class="math inline">\(x_I(t)=\Re\{X_k(t)\}\)</span>) and quadrature (<span class="math inline">\(x_Q(t)=\Im\{X_k(t)\}\)</span>) components are orthogonal, which allows each phasor to represent a specific <span class="math inline">\(k^{\text{th}}\)</span> harmonic without coupling formation with other harmonic DPs. These properties form the basis for transforming DP quantities from the <span class="math inline">\(abc\)</span> frame to the rotating <span class="math inline">\(dq0\)</span> frame.</p>
+<p>Considering a general three-phase signal <span class="math inline">\(\vec{x}_{abc}(t) = \begin{bmatrix} x_a(t) &amp; x_b(t) &amp; x_c(t) \end{bmatrix}^T, \label{eq:xabc}\)</span> which may be time-varying and unbalanced, applying the classical symmetrical component transformation <span class="math inline">\(T_{pnz}\)</span>, the three-phase signals are decomposed into positive-, negative-, and zero-sequence components: <span class="math display">\[\begin{equation}
+    \vec{x}_{pnz}(t) = T_{pnz} \cdot\vec{x}_{abc}(t) = \vec{x}_{p}(t) + \vec{x}_{n}(t) + \vec{x}_{z}(t),
+    \label{eq:xabc_total2}
+\end{equation}\]</span></p>
+<p>where <span class="math display">\[\begin{equation}
+T_{pnz}
+=
+\frac{1}{3}
+\begin{bmatrix}
+1 &amp; a &amp; a^2 \\
+1 &amp; a^2 &amp; a \\
+1 &amp; 1 &amp; 1
+\end{bmatrix},
+\quad a = e^{j \tfrac{2\pi}{3}}.
+\end{equation}\]</span></p>
+<p>In order to describe it in a simpler manner, let us assume that signal <span class="math inline">\(\vec{x}_{abc}(t)\)</span> is a sinusoid with amplitude <span class="math inline">\(X_i(t)\)</span> and phase <span class="math inline">\(\theta_i(t)\)</span>, <span class="math inline">\(i \in \{a,b,c\}\)</span>, displaced by <span class="math inline">\(120^\circ\)</span>: <span class="math display">\[\begin{equation}
+\begin{bmatrix}
+    x_{a}\\
+    x_{b}\\
+    x_{c}
+\end{bmatrix}
+=
+\begin{bmatrix}
+        X_a(t)\cos(\omega t + \theta_{a}(t)) \\
+        X_b(t)\cos\left(\omega t + \theta_{b}(t) - \tfrac{2\pi}{3} \right) \\
+        X_c(t)\cos\left(\omega t + \theta_{c}(t) + \tfrac{2\pi}{3} \right)
+    \end{bmatrix}.
+\label{realvalued}
+\end{equation}\]</span> Then, based on equation <span class="math inline">\(\eqref{eq:xabc_total2}\)</span>, each component can be expressed as <span class="math display">\[\begin{equation}
+\vec{x}_{j}(t) = X_{j} \cdot
+    \begin{bmatrix}
+        \cos(\omega t + \theta_{j}) \\
+        \cos\left(\omega t + \theta_{j} + i \tfrac{2\pi}{3} \right) \\
+        \cos\left(\omega t + \theta_{j} - i \tfrac{2\pi}{3} \right)
+    \end{bmatrix}, \\
+    i =
+    \begin{cases}
+        -1, &amp; j = p \\
+        1,  &amp; j = n \\
+        0,  &amp; j = z
+    \end{cases}.
+\label{eq:sequence_components1}
+\end{equation}\]</span></p>
+<p>or equivalently in phasor form : <span class="math display">\[\begin{equation}
+\vec{x}_{j}(t) = X_j \cdot
+\begin{bmatrix}
+e^{j(\omega t + \theta_j)} \\
+e^{j(\omega t + \theta_j +  \tfrac{2i\pi}{3})} \\
+e^{j(\omega t + \theta_j - \tfrac{2i\pi}{3})}
+\end{bmatrix}.
+\label{eq:phasor_components}
+\end{equation}\]</span></p>
+<p>Mapping the three-phase system into the stationary <span class="math inline">\(\alpha\beta0\)</span> frame using Clarke transformation as: <span class="math display">\[\begin{equation}
+    \vec{x}_{\alpha\beta0,j}(t) = T_c \cdot \vec{x}_{j}(t),\quad
+    T_c = \frac{2}{3}
+\begin{bmatrix}
+1 &amp; -\tfrac{1}{2} &amp; -\tfrac{1}{2} \\
+0 &amp; \tfrac{\sqrt{3}}{2} &amp; -\tfrac{\sqrt{3}}{2} \\
+\tfrac{1}{2} &amp; \tfrac{1}{2} &amp; \tfrac{1}{2}
+\end{bmatrix},
+\label{eq:alphbetaclark}
+\end{equation}\]</span> which is in complex form: <span class="math display">\[\begin{equation}
+\begin{bmatrix}
+x_{\alpha\beta,p} \\
+x_{\alpha\beta,n} \\
+x_{0,z}
+\end{bmatrix}
+=
+\begin{bmatrix}
+X_p e^{j(\omega t + \theta_p)} \\
+X_n e^{-j(\omega t + \theta_n)} \\
+X_z e^{j(\omega t + \theta_z)}
+\end{bmatrix}.
+\label{eq:alphabetaincomplex}
+\end{equation}\]</span></p>
+<p>Extracting the DPs requires a frequency shift <span class="citation" data-cites="n4">Mirz (<a href="#ref-n4" role="doc-biblioref">2020</a>)</span>: <span class="math display">\[\begin{equation}
+    \begin{bmatrix}
+    \langle x_{\alpha\beta,p} \rangle \\
+    \langle x_{\alpha\beta,n} \rangle \\
+    \langle x_{0,z} \rangle
+\end{bmatrix}
+=
+\begin{bmatrix}
+    X_p e^{j\theta_p} \\
+    X_n e^{-j\theta_n} \\
+    X_z e^{j\theta_z}
+\end{bmatrix}.
+\label{eq:alphabetadps}
+\end{equation}\]</span></p>
+<p>The negative-sequence phasor may equivalently be expressed in a positively rotating frame:<span class="math inline">\(\langle x_{\alpha\beta,n} \rangle = \langle x_{\alpha\beta,n} \rangle^* = X_n e^{j\theta_n}.\)</span></p>
+<p>Finally, the Park transformation rotates the <span class="math inline">\(\alpha\beta0\)</span> components into the <span class="math inline">\(dq0\)</span> frame: <span class="math display">\[\begin{equation}
+    \begin{bmatrix}
+    \langle x_{dq,p} \rangle_k \\
+    \langle x_{dq,n} \rangle_k \\
+    \langle x_{dq,z} \rangle_k
+\end{bmatrix}
+=
+\begin{bmatrix}
+    e^{-j\theta} &amp; 0 &amp; 0 \\
+    0 &amp; e^{-j\theta} &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+    \langle x_{\alpha\beta,p} \rangle_k \\
+    \langle x_{\alpha\beta,n} \rangle_k^* \\
+    \langle x_{0,z} \rangle_k
+\end{bmatrix}.
+\end{equation}\]</span></p>
+<p>Thus, in DP form is: <span class="math display">\[\begin{equation}
+    \begin{bmatrix}
+    \langle x_{dq,p} \rangle_k \\
+    \langle x_{dq,n} \rangle_k \\
+    \langle x_{dq,z} \rangle_k
+\end{bmatrix}
+=
+\begin{bmatrix}
+    X^p_k e^{j\theta^p_k} \\
+    X^n_k e^{j\theta^n_k} \\
+    X^z_k e^{j\theta^z_k}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbf{x}_d^{p}(k) + j \mathbf{x}_q^{p}(k) \\
+\mathbf{x}_d^{n}(k) + j \mathbf{x}_q^{n}(k) \\
+\mathbf{x}_d^{z}(k) + j \mathbf{x}_q^{z}(k)
+\end{bmatrix}.
+\label{eq:finaldpqn}
+\end{equation}\]</span></p>
+<p> shows that this procedure maps DPs in the <span class="math inline">\(abc\)</span> frame into the <span class="math inline">\(dq0\)</span> frame by (i) applying the symmetrical component transformation, and (ii) rotating the positive- and negative-sequence phasors by <span class="math inline">\(-\theta\)</span> (multiplication by <span class="math inline">\(e^{-j\theta}\)</span> in complex form). Below equation summarizes this transformation: DPs are first constructed in the <span class="math inline">\(abc\)</span> frame using in-phase and quadrature coefficients (<span class="math inline">\(C^c\)</span> and <span class="math inline">\(C^s\)</span>), then transformed into symmetrical components, and finally rotated into the <span class="math inline">\(dq0\)</span> frame.</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+&amp; \begin{bmatrix}
+\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s} \\
+\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s} \\
+\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \langle x_{a} \rangle_k \\
+    \langle x_{b} \rangle_k \\
+    \langle x_{c} \rangle_k
+\end{bmatrix}
+\xRightarrow{T_{pnz}}
+\begin{bmatrix}
+    \langle x_{\alpha\beta,p} \rangle_k \\
+    \langle x_{\alpha\beta,n} \rangle_k^* \\
+    \langle x_{0,z} \rangle_k
+\end{bmatrix},\\&amp;
+\begin{bmatrix}
+    e^{-j\theta} &amp; 0 &amp; 0 \\
+    0 &amp; e^{-j\theta} &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+    \langle x_{\alpha\beta,p} \rangle_k \\
+    \langle x_{\alpha\beta,n} \rangle_k^* \\
+    \langle x_{0,z} \rangle_k
+\end{bmatrix} \Rightarrow
+    \begin{bmatrix}
+    \langle x_{dq,p} \rangle_k \\
+    \langle x_{dq,n} \rangle_k \\
+    \langle x_{dq,z} \rangle_k
+\end{bmatrix}
+\label{eq:111}
+\end{split}
+\end{equation}\]</span></p>
+</section>
+</section>
+<section id="mathematical-operation" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-operation">Mathematical Operation</h2>
+<p>The following set of mathematical operations—summation, multiplication, and integration—form the basis of the DQsym approach and enable its application to full system simulations.</p>
+</section>
+<section id="summation" class="level2">
+<h2 class="anchored" data-anchor-id="summation">Summation</h2>
+<p>Summing DPs in <span class="math inline">\(dq0\)</span> form adheres to complex-number rules with no change in the form of the inputs or additional operations needed (i.e.&nbsp;simple elementwise additivity), as follows:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+\begin{bmatrix}
+\mathbf{x}^{p}(0) &amp; \cdots &amp; \mathbf{x}^{p}(n)\\
+\mathbf{x}^{n}(0) &amp; \cdots &amp; \mathbf{x}^{n}(n)\\
+\mathbf{x}^{z}(0) &amp; \cdots &amp; \mathbf{x}^{z}(n)
+\end{bmatrix}
+&amp;+
+\begin{bmatrix}
+\mathbf{y}^{p}(0) &amp; \cdots &amp; \mathbf{y}^{p}(n)\\
+\mathbf{y}^{n}(0) &amp; \cdots &amp; \mathbf{y}^{n}(n)\\
+\mathbf{y}^{z}(0) &amp; \cdots &amp; \mathbf{y}^{z}(n)
+\end{bmatrix}
+\\&amp;=
+\begin{bmatrix}
+\mathbf{z}^{p}(0) &amp; \cdots &amp; \mathbf{z}^{p}(n)\\
+\mathbf{z}^{n}(0) &amp; \cdots &amp; \mathbf{z}^{n}(n)\\
+\mathbf{z}^{z}(0) &amp; \cdots &amp; \mathbf{z}^{z}(n)
+\end{bmatrix}
+\end{split}
+\end{equation}\]</span> where <span class="math inline">\(z^{p,n,z}_{d,q}(i) = x^{p,n,z}_{d,q}(i) + y^{p,n,z}_{d,q}(i)\)</span>, for <span class="math inline">\(i \in \{0, \ldots, n\}\)</span>.</p>
+</section>
+<section id="multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="multiplication">Multiplication</h2>
+<p>Any time-varying signal can be represented as an infinite sum of sine and cosine functions at integer multiples of the fundamental frequency <span class="math inline">\(\omega_{c}\)</span>, and each sinusoid <span class="math inline">\(\sin(n\omega_c t)\)</span> or <span class="math inline">\(\cos(n\omega_c t)\)</span> corresponds to the <span class="math inline">\(n^{\text{th}}\)</span> harmonic of <span class="math inline">\(x(t)\)</span>. This expansion is known as the trigonometric Fourier series of <span class="math inline">\(x(t)\)</span>, with coefficients <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> denoting the Fourier sine and cosine coefficients. The coefficient <span class="math inline">\(a_0\)</span> represents the DC component (average value) of the signal, while <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span> (<span class="math inline">\(n \neq 0\)</span>) define the amplitudes of the sinusoidal terms that constitute the AC component:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+    x(t) &amp;= a_0 + a_1 \cos \omega_0 t + b_1 \sin \omega_0 t + a_2 \cos 2\omega_0 t \\
+     &amp;\quad + b_2 \sin 2\omega_0 t + a_3 \cos 3\omega_0 t + b_3 \sin 3\omega_0 t + \cdots
+\end{split}
+\end{equation}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\begin{equation}
+x(t) = \underbrace{a_0}_{\text{dc}} + \underbrace{\sum_{n=1}^{\infty} \left( a_n \cos n\omega_0 t + b_n \sin n\omega_0 t \right)}_{\text{ac}} .
+\end{equation}\]</span></p>
+<p>When two harmonic-rich signals are multiplied, the resulting product contains additional frequency components.</p>
+<section id="theorem" class="level3">
+<h3 class="anchored" data-anchor-id="theorem">Theorem</h3>
+<p>The product of two periodic signals with fundamental frequency <span class="math inline">\(\omega\)</span> represented by a truncated Fourier series of order <span class="math inline">\(N\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+x(t) = a_0 + \sum_{i=1}^{N} \left( a_i^s \sin(i\omega t) + a_i^c \cos(i\omega t) \right),
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+y(t) = b_0 + \sum_{j=1}^{N} \left( b_j^s \sin(j\omega t) + b_j^c \cos(j\omega t) \right).
+\end{equation}\]</span></p>
+<p>denoted as <span class="math inline">\(z(t) = x(t)y(t)\)</span> can be expressed as</p>
+<p><span class="math display">\[\begin{equation}
+z(t) = C_0 + \sum_{k=1}^{2N} \left( C_k^s \sin(k\omega t) + C_k^c \cos(k\omega t) \right),
+\label{eq:SICOprodcut}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+C_0 = a_0 b_0 + \sum_{i=1}^N \left( \tfrac{1}{2} a_i^s b_i^s + \tfrac{1}{2} a_i^c b_i^c \right),
+\label{eq:C0}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+C_k^s =
+\sum_{\substack{i+j = k \\ 1 \leq i,j \leq N}} \tfrac{1}{2} \left( a_i^s b_j^c + a_i^c b_j^s \right)
++ \sum_{\substack{|i-j| = k \\ 1 \leq i,j \leq N}}
+\Big[
+\tfrac{1}{2}\big( \operatorname{sgn}(i-j) a_i^s b_j^c - \operatorname{sign}(i-j) a_i^c b_j^s \big)
++\, a_0 b_k^s + b_0 a_k^s
+\Big],
+\label{eq:Cs}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+C_k^c =
+\sum_{\substack{i+j = k \\ 1 \leq i,j \leq N}} \tfrac{1}{2} \left( a_i^c b_j^c - a_i^s b_j^s \right)
++ \sum_{\substack{|i-j| = k \\ 1 \leq i,j \leq N}}
+\Big[
+\tfrac{1}{2}\big( a_i^c b_j^c + a_i^s b_j^s \big)
++ a_0 b_k^c + b_0 a_k^c
+\Big],
+\label{eq:Cc}
+\end{equation}\]</span></p>
+</section>
+<section id="proof" class="level3">
+<h3 class="anchored" data-anchor-id="proof">Proof</h3>
+<p>The validity of the coefficient expressions in <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span> can be established using mathematical induction on the harmonic order <span class="math inline">\(N\)</span>. Let us check the correctness of the coefficient for:</p>
+<section id="base-case-n0" class="level4">
+<h4 class="anchored" data-anchor-id="base-case-n0">Base Case <span class="math inline">\(N=0\)</span></h4>
+<p>For constant signals</p>
+<p><span class="math display">\[\begin{equation*}
+x(t) = a_0, \quad y(t) = b_0,
+\end{equation*}\]</span></p>
+<p>the product is <span class="math inline">\(z(t) = a_0 b_0\)</span>,</p>
+<p>which implies</p>
+<p><span class="math display">\[\begin{equation*}
+C_0 = a_0 b_0, \quad C_k^s = 0, \quad C_k^c = 0.
+\end{equation*}\]</span></p>
+<p>Thus, <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span> hold for <span class="math inline">\(N=0\)</span>.</p>
+</section>
+<section id="base-case-n1" class="level4">
+<h4 class="anchored" data-anchor-id="base-case-n1">Base Case <span class="math inline">\(N=1\)</span></h4>
+<p>For first-order expansions</p>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;= a_0 + a_1^s \sin(\omega t) + a_1^c \cos(\omega t), \\
+y(t) &amp;= b_0 + b_1^s \sin(\omega t) + b_1^c \cos(\omega t),
+\end{align*}\]</span></p>
+<p>their product is</p>
+<p><span class="math display">\[\begin{align*}
+z(t) &amp;= x(t)y(t) \nonumber \\
+&amp;= a_0 b_0 + a_0 b_1^s \sin(\omega t) + a_0 b_1^c \cos(\omega t) \nonumber \\
+&amp;\quad + b_0 a_1^s \sin(\omega t) + b_0 a_1^c \cos(\omega t) \nonumber \\
+&amp;\quad + a_1^s b_1^s \sin^2(\omega t) + a_1^c b_1^c \cos^2(\omega t) \nonumber \\
+&amp;\quad + (a_1^s b_1^c + a_1^c b_1^s) \sin(\omega t)\cos(\omega t).
+\end{align*}\]</span></p>
+<p>Using trigonometric identities,</p>
+<p><span class="math display">\[\begin{align*}
+&amp;&amp; \sin(i\omega t) \sin (j\omega t) = \tfrac{1}{2}(\cos((i-j)\omega t) - \cos((i+j)\omega t)), \\
+&amp;&amp; \cos(i\omega t) \cos(j\omega t) = \tfrac{1}{2}(\cos((i-j)\omega t) + \cos((i+j)\omega t)), \\
+&amp;&amp; \sin(i\omega t)\cos(j\omega t) = \tfrac{1}{2}(\sin((i+j)\omega t) + \sin((i-j)\omega t)),
+\end{align*}\]</span></p>
+<p>we group the terms as</p>
+<p><span class="math display">\[\begin{align*}
+z(t) &amp;= \underbrace{\Big(a_0 b_0 + \tfrac{1}{2}a_1^s b_1^s + \tfrac{1}{2}a_1^c b_1^c\Big)}_{C_0} \nonumber \\
+&amp;\quad + \underbrace{(a_1^s b_0 + a_0 b_1^s)}_{C_1^s}\sin(\omega t) + \underbrace{(a_1^sb_0 + a_0b_1^s)}_{C_1^c}\cos(\omega t) \nonumber \\
+&amp;\quad + \underbrace{\frac{1}{2}(a_1^sb_1^c + a_1^cb_1^s)}_{C_2^s}\sin(2\omega t) + \underbrace{\frac{1}{2}(a_1^cb_1^c - a_1^sb_1^s)}_{C_2^c}\cos(2\omega t),
+\end{align*}\]</span></p>
+<p>where the coefficients are consistent with the structure given in <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span>. Thus, the case <span class="math inline">\(N=1\)</span> is verified.</p>
+</section>
+</section>
+<section id="induction-step" class="level3">
+<h3 class="anchored" data-anchor-id="induction-step">Induction Step</h3>
+<p>Assume that <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span> holds for Fourier series truncated at order <span class="math inline">\(N\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+x'(t) &amp;= a_0 + \sum_{i=1}^N \big( a_i^s \sin(i\omega t) + a_i^c \cos(i\omega t) \big), \\
+y'(t) &amp;= b_0 + \sum_{j=1}^N \big( b_j^s \sin(j\omega t) + b_j^c \cos(j\omega t) \big),
+\end{align}\]</span></p>
+<p>with <span class="math inline">\(z'(t) = x'(t)y'(t)\)</span> satisfies the equation <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span>, denoted with <span class="math inline">\(C'_0\)</span>, <span class="math inline">\({C_k^{s}}'\)</span> and <span class="math inline">\({C^{c}_k}'\)</span>, for <span class="math inline">\(k \in \{1, \ldots 2N\}\)</span>, respectively.</p>
+<p>Now we have to show that it is valied for <span class="math inline">\(N+1\)</span>, so we extend <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> with the <span class="math inline">\((N+1)\)</span>-th harmonics:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+x(t) &amp;= x'(t) + \underbrace{a_{N+1}^s \sin((N+1)\omega t) + a_{N+1}^c \cos((N+1)\omega t)}_{x^{(N+1)}(t)}, \\
+y(t) &amp;= y'(t) + \underbrace{b_{N+1}^s \sin((N+1)\omega t) + b_{N+1}^c \cos((N+1)\omega t)}_{y^{(N+1)}(t)}
+\end{split}
+\end{equation}\]</span></p>
+<p>The product expands as</p>
+<p><span class="math display">\[\begin{align*}
+&amp;&amp;z(t) = x(t)y(t) = x'(t)y'(t) + x'(t) \, y^{(N+1)}(t)\nonumber \\
+&amp;&amp;\quad + y'(t)x^{(N+1)}(t) + x^{(N+1)}(t)y^{(N+1)}(t).
+\end{align*}\]</span></p>
+<p>The first and last terms yield valid Fourier series with harmonics up to order <span class="math inline">\(2N\)</span> and <span class="math inline">\(2N+2\)</span>. Thus, the term <span class="math inline">\(C_0\)</span> is only influenced by <span class="math inline">\(x'(t)y'(t)\)</span> and <span class="math inline">\(x^{(N+1)}(t)y^{(N+1)}(t)\)</span>, and equal to:</p>
+<p><span class="math display">\[\begin{align*}
+C_0 &amp;= C_0'+ \frac{1}{2}(a_{N+1}^s b_{N+1}^s + a_{N+1}^c b_{N+1}^c) \\
+&amp; = a_0 b_0 + \sum_{i=1}^{N+1} \left( \tfrac{1}{2} a_i^s b_i^s + \tfrac{1}{2} a_i^c b_i^c \right),
+\end{align*}\]</span></p>
+<p>and corresponds to the equation <span class="math inline">\(\eqref{eq:C0}\)</span>.</p>
+<p>The multiplication cross-terms introduce frequencies of the form <span class="math inline">\(j = i \pm (N+1)\)</span>, where <span class="math inline">\(1 \leq i \leq N\)</span>, generating harmonics up to <span class="math inline">\((2N+1)\omega\)</span>. Namely, we obtain that:</p>
+<p><span class="math display">\[\begin{align*}
+&amp;x'y^{(N+1)} =\\
+&amp;= a_0 b_{N+1}^s \sin((N+1)\omega t) + a_0 b^c_{N+1} \cos((N+1)\omega t) \\
+&amp; \sum_{i=1}^{N} \left(\frac{1}{2} (a_i^c b_{N+1}^c - a_i^s b_{N+1}^s) \cos((N+1+i)\omega t) \right.\\
+&amp; + \frac{1}{2} (a_i^c b_{N+1}^c + a_i^s b_{N+1}^s) \cos((N+1-i)\omega t) \\
+&amp; + \frac{1}{2} (a_i^c b_{N+1}^s + a_i^s b_{N+1}^c) \sin((N+1+i)\omega t) \\
+&amp; + \left.\frac{1}{2} (a_i^c b_{N+1}^s - a_i^s b_{N+1}^c) \sin((N+1-i)\omega t)\right),
+\end{align*}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\begin{align*}
+&amp;y'x^{(N+1)} = \\
+&amp;= b_0 a_{N+1}^s \sin((N+1)\omega t) + b_0 a^c_{N+1} \cos((N+1)\omega t) \\
+&amp;\sum_{i=1}^{N} \left(\frac{1}{2} (b_i^c a_{N+1}^c - b_i^s a_{N+1}^s) \cos((N+1+i)\omega t) \right. \\
+&amp; + \frac{1}{2} (b_i^c a_{N+1}^c + b_i^s a_{N+1}^s) \cos((N+1-i)\omega t) \\
+&amp; + \frac{1}{2} (b_i^c a_{N+1}^s + b_i^s a_{N+1}^c) \sin((N+1+i)\omega t) \\
+&amp; + \left.\frac{1}{2} (b_i^c a_{N+1}^s - b_i^s a_{N+1}^c) \sin((N+1-i)\omega t)\right),
+\end{align*}\]</span></p>
+<p>and thus, they add spectral components to <span class="math inline">\(C^{s,k}_{N+1 \pm i} = C^{s,k}_j\)</span>. For</p>
+<p><span class="math display">\[\begin{align*}
+C^s_{N+1\pm i} = {C^s_j}' + \frac{1}{2} (a_i^c b_{N+1}^s + b_i^c a_{N+1}^s \pm a_i^s b_{N+1}^c \pm b_i^s a_{N+1}^c), \\
+C^c_{N+1\pm i} = {C^c_j}' + \frac{1}{2} (a_i^c b_{N+1}^c + b_i^c a_{N+1}^c \mp a_i^s b_{N+1}^s \mp b_i^s a_{N+1}^s),
+\end{align*}\]</span></p>
+<p>which together corresponds to the format as in equation <span class="math inline">\(\eqref{eq:Cs}\)</span> and equation <span class="math inline">\(\eqref{eq:Cc}\)</span>.</p>
+<p>At <span class="math inline">\(k = N+1\)</span>, <span class="math inline">\(C_{N+1}^{s} = {C_{N+1}^s}'+ a_0 b_{N+1}^s + b_0 a_{N+1}^s\)</span> and <span class="math inline">\(C_{N+1}^{c} = {C_{N+1}^c}'+ a_0 b_{N+1}^c + b_0 a_{N+1}^c\)</span> also correspond equation <span class="math inline">\(\eqref{eq:Cs}\)</span> and equation <span class="math inline">\(\eqref{eq:Cc}\)</span>.</p>
+<p>Furthermore, the coefficients for when <span class="math inline">\(k =2(N+1)\)</span> only depend on <span class="math inline">\(x^{(N+1)}(t)y^{(N+1)}(t)\)</span> and are equal to:</p>
+<p><span class="math display">\[\begin{align*}
+C_{2(N+1)}^s = \frac{1}{2} (a_{N+1}^s b_{N+1}^c + a_{N+1}^c b_{N+1}^s), \\
+C_{2(N+1)}^c = \frac{1}{2} (a_{N+1}^cb_{N+1}^c - a_{N+1}^s b_{N+1}^s),
+\end{align*}\]</span></p>
+<p>and also satisfies equations <span class="math inline">\(\eqref{eq:Cs}\)</span> and <span class="math inline">\(\eqref{eq:Cc}\)</span> for <span class="math inline">\(k=2(N+1)\)</span>.</p>
+<p>By induction, the coefficient expressions in <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span> hold for all <span class="math inline">\(N \geq 0\)</span>, which completes the proof.</p>
+<p>This derivation highlights the similarity between the Fourier coefficients of the product and the in-phase and quadrature components in dynamic phasor theory. Hence, dynamic phasors can be constructed directly from <span class="math inline">\(C_k^c\)</span> and <span class="math inline">\(C_k^s\)</span> for each harmonic <span class="math inline">\(k\)</span>, with <span class="math inline">\(C_0\)</span> representing the DC term. The overall multiplication process is illustrated in <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a> and it includes the following steps</p>
+<ul>
+<li>Transform the input signals <span class="math inline">\(x^{p,n,z}_{dq}\)</span> and <span class="math inline">\(y^{p,n,z}_{dq}\)</span> into their phase-domain representations <span class="math inline">\(x^{a,b,c}_{dq}\)</span> and <span class="math inline">\(y^{a,b,c}_{dq}\)</span>.</li>
+<li>Extract the sine and cosine Fourier coefficients for each phase of the input signals.</li>
+<li>Perform phase-by-phase multiplication, computing the coefficient products <span class="math inline">\(C_{0}\)</span>, <span class="math inline">\(C_{k}^s\)</span>, and <span class="math inline">\(C_{k}^c\)</span> using <span class="math inline">\(\eqref{eq:C0}\)</span>, <span class="math inline">\(\eqref{eq:Cs}\)</span>, and <span class="math inline">\(\eqref{eq:Cc}\)</span>.</li>
+<li>Collect the resulting terms and transform the output <span class="math inline">\(z^{a,b,c}_{dq}\)</span> back to the <span class="math inline">\(z^{p,n,z}_{dq}\)</span> representation.</li>
+</ul>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/algovfull10.jpg" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Flowchart of the multiplication algorithm for harmonic-rich signals <span class="math inline">\(x_{\mathrm{dqn}}^{p,n,z}(i)\)</span> and <span class="math inline">\(y_{\mathrm{dqn}}^{p,n,z}(i)\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>An example of the multiplication of two harmonic-rich signals, including components up to the 5<span class="math inline">\(^{\text{th}}\)</span> order, is shown in <a href="#fig-2" class="quarto-xref">Figure&nbsp;2</a>, with EMT simulation results in MATLAB provided for comparison.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/Zmulti.jpg" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Output signal <span class="math inline">\(Z_{\mathrm{dqn}}^{p,n,z}(10) = x_{\mathrm{dqn}}^{p,n,z}(5) \cdot y_{\mathrm{dqn}}^{p,n,z}(5)\)</span> from the multiplication block, compared with EMT results.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="integration" class="level3">
+<h3 class="anchored" data-anchor-id="integration">Integration</h3>
+<p>Time-varying signals up to the <span class="math inline">\(n^{\text{th}}\)</span> harmonic order can be expressed using a Fourier series <span class="math display">\[\begin{equation}
+f(t) = a_{0} + \sum_{n=1}^{\infty} \left( a_n \cos (n\omega_0 t) + b_n \sin (n\omega_0 t) \right)
+\end{equation}\]</span> Any antiderivative <span class="math inline">\(F(t)\)</span> can be obtained term-by-term based on the integration theorem of the Fourier series: <span class="math display">\[\begin{equation}\label{eq:Fs-2pi}
+F(t) = a_{0}\,t + \sum_{n=1}^{\infty}\frac{a_n}{n\omega_0}\sin(n\omega_0 t)
+- \sum_{n=1}^{\infty}\frac{b_n}{n\omega_0}\cos(n\omega_0 t),
+\end{equation}\]</span> which corresponds to the standard integration of the Fourier coefficients. Considering <span class="math inline">\(f_{dq}\)</span> in complex form, i.e., <span class="math inline">\(f_d(n) + j f_q(n)\)</span>, integration with respect to time yields <span class="math inline">\(\eqref{eq:fdpint1}\)</span>. In contrast, when <span class="math inline">\(f_{dq}\)</span> is expressed in DP representation, the factor <span class="math inline">\(e^{j n \omega_0 t}\)</span> is removed, and integration yields <span class="math inline">\(\eqref{eq:fdpint2}\)</span>, which demonstrates that integrating DPs in <span class="math inline">\(dq\)</span> form introduces cross-coupling between the <span class="math inline">\(d\)</span> and <span class="math inline">\(q\)</span> components. <span class="math display">\[\begin{equation}
+\begin{split}
+\int f_{dq}(n) e^{j n \omega_0 t} dt = \big( f_d(n) + j f_q(n) \big) \int e^{j n \omega_0 t} dt
+&amp;= \big( f_d(n) + j f_q(n) \big) \frac{-j}{n \omega_0} e^{j n \omega_0 t} + C
+\end{split}
+\label{eq:fdpint1}
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+\begin{split}
+\langle f_{dq} \rangle \Rightarrow \boxed{\int} \Rightarrow \langle F_{dq} \rangle = \big( f_d(n) + j f_q(n) \big) \frac{-j}{n \omega_0} + C
+\end{split}
+\label{eq:fdpint2}
+\end{equation}\]</span></p>
+<p>This process can be generalized to the integration of <span class="math inline">\(\langle f^{p,n,z}_{dq}\rangle\)</span>, yielding <span class="math inline">\(\langle F^{p,n,z}_{dq}\rangle\)</span>. Both vectors are equal in dimension up to the <span class="math inline">\(n^{\text{th}}\)</span> harmonic order.</p>
+</section>
+</section>
+<section id="dynamic-phasor-state-space-solver" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-phasor-state-space-solver">Dynamic Phasor State-Space Solver</h2>
+<p>The proposed solver is based on a phasor-domain state-space formulation of a switched linear system. The continuous-time model is described by<br>
+<span class="math display">\[\begin{equation}
+\dot{x}(t) = A x(t) + B u(t), \qquad
+y(t) = C x(t) + D u(t),
+\label{eq:ss-cont}
+\end{equation}\]</span> where <span class="math inline">\(x \in \mathbb{C}^n\)</span> is the state vector, <span class="math inline">\(u \in \mathbb{C}^m\)</span> the input, and <span class="math inline">\(y \in \mathbb{C}^p\)</span> the output. For numerical integration, discrete-time matrices <span class="math inline">\((A_d,B_d,C_d,D_d)\)</span> are obtained from <span class="math inline">\((A,B,C,D)\)</span> using a suitable method such as trapezoidal (Tustin) discretisation. Using the derivative property of dynamic phasors, the system equations in the <span class="math inline">\(DQn\)</span> domain take the form <span class="math display">\[\begin{equation}
+\begin{split}
+    \dot{x}_k(t) &amp;= \big(A_{dqn} - j k \omega_s I\big) x_k(t) + B_{dqn} u_k(t), \\
+    y_k(t) &amp;= C_{dqn} x_k(t) + D_{dqn} u_k(t),
+\end{split}
+\end{equation}\]</span> where <span class="math inline">\(x_k(t)\)</span> and <span class="math inline">\(u_k(t)\)</span> are the dynamic phasor states and algebraic inputs at harmonic order <span class="math inline">\(k\)</span>, and <span class="math inline">\(y_k(t)\)</span> is the corresponding output.</p>
+<p>In power electronic systems, the presence of switching devices introduces discrete changes in the circuit topology, which must be explicitly represented in the state-space formulation. On the other hand, passive elements, which exhibit time-invariant behaviour, a switch alters the system equations based on its on or off state. A closed switch functions as a low-resistance pathway with conductance <span class="math inline">\(G_{\text{on}}=1/R_{\text{on}}\)</span>, whereas an open switch is represented as a high-resistance pathway with <span class="math inline">\(G_{\text{off}}=1/R_{\text{off}}\)</span>. The conductances have a direct influence on the nodal or state-space representation, changing the effective system matrices <span class="math inline">\((A,B,C,D)\)</span>. Hence, each switching event generates a new array of matrices representing the modified circuit architecture.</p>
+<p>Dynamic phasors rely on Fourier components of states. When switching occurs, harmonic content changes. Updating matrices ensures the harmonic coupling terms (off-diagonal entries in the DP system matrix) are updated properly, improving the frequency-domain accuracy of the DP model. Ignoring the effect of a switching event can lead to significant errors in both transient and steady-state operations.</p>
+<p>Furthermore, the state-space representation allows the consistent operation of multiple switches functioning at once, as the matrices can be updated by an algorithm in accordance with the switch vector that defines the network configuration at any given moment, in comparison to manually deriving or switching between multiple predefined matrices, which is error-prone. This unified representation enables accurate switching event representation in system matrices at each operational point, via suitable parameters of <span class="math inline">\(R_{\text{on}}\)</span> and <span class="math inline">\(R_{\text{off}}\)</span>. Meanwhile, keeping the state-space formulation facilitates the eigenvalue analysis of the system. Provided that a proper linearization around the operating point is performed. To maintain numerical stability when switching occurs within a sampling interval, a predictor–corrector scheme is applied <span class="citation" data-cites="n58">Cai, Zhang, and Yu (<a href="#ref-n58" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="n59">Tzounas and Hug (<a href="#ref-n59" role="doc-biblioref">2023</a>)</span>. Taking <span class="math inline">\((A_{d},B_{d})_{old}\)</span> as the unupdated matrices, <span class="math inline">\((A_{d},B_{d})_{new}\)</span> as the updated matrices with switching effect, and <span class="math inline">\(T_{s}\)</span> as the discretisation time-step, the half-step states are computed as</p>
+<p><span class="math display">\[\begin{equation*}
+x_{{T_s}-\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{{T_s}-1} +B^{dqn}_{\text{old}} u_{T_s} \big),
+\label{eq:half-pre}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation}
+x_{{T_s}+\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{{T_s}-1} + B^{dqn}_{\text{new}} u_{T_s} \big),
+\label{eq:half-post}
+\end{equation}\]</span> and the corrected state is their average,<br>
+<span class="math display">\[\begin{equation}
+x_{T_s} = \tfrac{1}{2}\left(x_{{T_s}-\tfrac{1}{2}} + x_{{T_s}+\tfrac{1}{2}}\right).
+\label{eq:state-corrected}
+\end{equation}\]</span> The final state and output update then follow<br>
+<span class="math display">\[\begin{equation*}
+x_{{T_s}+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,
+\label{eq:state-update}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation}
+y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.
+\label{eq:output-update}
+\end{equation}\]</span></p>
+<p>This algorithm in <a href="#fig-DQnstatespacesolver" class="quarto-xref">Figure&nbsp;3</a> enables efficient and numerically stable simulation of switched three-phase systems in the time domain, capturing both transient and steady-state phasor dynamics.</p>
+<div id="fig-DQnstatespacesolver" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-DQnstatespacesolver-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/SSalgo2.jpg" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-DQnstatespacesolver-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Flowchart of the state space solver algorithm for harmonic-rich states.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-n58" class="csl-entry" role="listitem">
+Cai, Yiming, Junbo Zhang, and Weizhou Yu. 2019. <span>“A Predictor-Corrector Method for Power System Variable Step Numerical Simulation.”</span> <em>IEEE Transactions on Power Systems</em> 34 (4): 3283–85. <a href="https://doi.org/10.1109/TPWRS.2019.2908054">https://doi.org/10.1109/TPWRS.2019.2908054</a>.
+</div>
+<div id="ref-n4" class="csl-entry" role="listitem">
+Mirz, Markus. 2020. <span>“A Dynamic Phasor Real-Time Simulation Based Digital Twin for Power Systems.”</span> PhD thesis, Dissertation, RWTH Aachen University, 2020.
+</div>
+<div id="ref-n59" class="csl-entry" role="listitem">
+Tzounas, Georgios, and Gabriela Hug. 2023. <span>“Unified Numerical Stability and Accuracy Analysis of the Partitioned-Solution Approach.”</span> <em>IEEE Transactions on Power Systems</em> 39 (2): 3141–52.
+</div>
+</div>
+<!--
+**Example:**
+
+The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
+It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 
+It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. 
+
+## Model use, assumptions, validity domain and limitations (mandatory)
+
+*Each model is an approximation of the reality, and considers some assumptions.*
+
+*In this section, details should be given on:*
+
+- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*
+- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*
+- *the limitations of the model (what people shouldn't use the model for)*
+
+**Example:**
+
+The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:
+- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).
+- The three phases are balanced, meaning the power is shared equally.
+- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).
+- The magnetic field produced by the rotor winding oscillates sinusoidally.
+- The machine may have 2 or more poles, noted as $p_f$
+The model is suitable for transient stability analysis but not for electromagnetic transient analysis.
+
+
+## Model description (mandatory){#sec-physical-description}
+
+*This section gives the full description of the different model's components.*
+*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*
+
+- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._
+
+- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _
+
+- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._
+
+
+**Example:**
+
+### Physical description 
+
+The following schematic shows the components that participate in the synchronous machine operation:
+
+![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}
+
+[...]
+
+### Synchronous machine equations
+
+#### Variables 
+
+| Variable    | details  | Unit |
+| --------------| ------ | ----- |
+| $\theta_{shaft}$ | Rotor angle | $rad$ |
+| $\omega$ | Electrical rotational speed | $rad/s$ |
+| $T_m$ | Mechanical torque | $Nm$ |
+| $T_e$ | Electrical torque | $Nm$ |
+
+[...]
+
+#### Parameters
+
+| Parameter | Description | Unit |
+| --- | --- | --- |
+| $J$ | Moment of inertia | $kgm^2$ |
+| $p_f$ | Number of pole pairs | - |
+| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |
+
+[...]
+
+#### System of equations
+
+The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.
+
+The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:
+$$
+J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}
+$$  {#eq-inertia}
+$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}
+
+[...]
+
+
+## Source code (optional)
+
+_This section is a code section that provides the source code for model described above._
+
+_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._
+
+**Example:**
+The code can be presented in a **modeling language code block** like this:
+
+```modelica
+model VoltageSource "Constant AC voltage"
+  extends Interfaces.Source;
+  parameter SI.Frequency f(start=1) "Frequency of the source";
+  parameter SI.Voltage V(start=1) "RMS voltage of the source";
+  parameter SI.Angle phi(start=0) "Phase shift of the source";
+equation
+  omega = 2*Modelica.Constants.pi*f;
+  v = Complex(V*cos(phi), V*sin(phi));
+end VoltageSource;
+```
+
+## Open source implementations (if any)
+
+_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._
+
+**Example:**
+
+This model has been successfully implemented in :
+
+| Software      | URL | Language | Open-Source License | Last consulted date | Comments |
+| --------------| --- | --------- | ------------------- |------------------- | -------- |
+| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |
+
+## Table of references & license
+
+_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._
+
+
+::: {#refs}
+:::
+-->
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">layout:</span><span class="co"> page </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Dynamic Phasor-based Time Domain Simulation # be as specific as possible</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [Opensource, Dynamic Phasor Theory, Time Domain Simulation]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 02/23/2026</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">last-updated:</span><span class="co"> 02/23/2026</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Aleksandra Lekić, Haixiao Li"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">reviewers:</span><span class="co"> "Aleksandra Lekić"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># MathJax</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    standalone: false</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: mathjax</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show/Hide Code"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">    include-in-header:</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">      text: |</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">        &lt;script&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">        MathJax = {</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">          tex: {</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">            tags: 'ams',        </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">            tagSide: 'right',   </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">            tagIndent: '0em'    </span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">          }</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">        };</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">        &lt;/script&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--**This model page can be used as template for your own model. If you want to download this page in qmd format, click here:**</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;a href="../download/modelTemplate.qmd.txt" download="modelTemplate.qmd"&gt;Download model template&lt;/a&gt; --&gt;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>*DQSym is founded on dynamic phasor theory, which represents periodic electrical variables using time-varying Fourier coefficients. By transforming three-phase quantities into a structured phasor domain, it captures both fundamental-frequency dynamics and harmonic interactions in hybrid AC/DC systems. This formulation enables systematic modeling and small-signal stability analysis of modern power systems with high penetration of power electronics.*</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamic Phasor Theory</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>DPs express signals in a complex-valued, frequency-shifted form that captures both amplitude and phase variations over time. A DP is defined as a time-varying Fourier coefficient obtained through a linear transformation of a band-limited signal. This transformation is realized by projecting the signal onto complex exponential basis functions over a sliding time window, thereby enabling a compact time-frequency representation~\cite{n19}.  </span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>For a nearly periodic waveform $x(\tau)$ defined over the interval $(t-T,\,t)$, the signal can be expressed using a Fourier series expansion as</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    x(\tau) = \sum_{k=-\infty}^{\infty} X_k(t) e^{j k \omega_c \tau},</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    \label{eq:dp_series}</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>where $\omega_c = \tfrac{2\pi}{T}$ is the fundamental frequency and $X_k(t)$ denotes the $n^{\text{th}}$ DP. Each coefficient varies with time to capture localized spectral content and is computed as</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    X_k(t) = \frac{1}{T} \int_{t-T}^{t} x(\tau) e^{-j k \omega_c \tau} \, d\tau = \langle x \rangle_k(t),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    \label{eq:dp_coeff}</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>which formally defines the DP as a time-localized projection of the signal.  </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>The dimensionality of a DP model grows with the number of harmonics $k$ included. However, under steady-state conditions, the coefficients converge to constant (DC-like) values, yielding a time-invariant representation that facilitates analysis.  </span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>An alternative representation to the complex valued is obtained by representing any arbitrary bandpass signal in terms of its amplitude $A_n(t)$, phase $\theta_n(t)$, and fundamental frequency $\omega_c$:</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    x(t) = a_0 + \sum_{n=1}^{k} A_n(t)\cos(n \omega_c t + \theta_n(t)),</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>where $a_0$ is the DC component. This signal can be decomposed into \textit{in-phase} and \textit{quadrature} components as:</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    x(t) = a_0 + \sum_{n=1}^{k} x_{In}(t)\cos(n \omega_c t) - x_{Qn}(t)\sin(n \omega_c t),</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>with</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    x_{In}(t) = A_n(t)\cos(\theta_n(t)), \quad x_{Qn}(t) = A_n(t)\sin(\theta_n(t)).</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>From these components, a complex-valued variable can be constructed to represent the DP at $k^{\text{th}}$ harmonic order \cite{n51}:</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    \langle x \rangle_n(t) = x_{In}(t) + j x_{Qn}(t) = A_n(t)e^{j\theta_n(t)}.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    \label{eq:118}</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>The original signal can then be recovered by remodulating with $e^{j n \omega_c t}$ and taking the real part:</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    x(t) &amp;= \Re\left<span class="sc">\{</span>\langle x \rangle_n(t)e^{j n \omega_c t}\right<span class="sc">\}</span> = A_n(t)\cos(n\omega_c t + \theta_n(t)).</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>DPs also possess several mathematical properties, obtained through their link to Fourier series, that make them particularly suitable for system modeling and analysis:</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Time derivative:**</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>  \frac{d \langle x \rangle_k}{dt}</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>  =</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>  \left\langle \frac{dx}{dt} \right\rangle_k</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>  -</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  j k \omega_c \langle x \rangle_k</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Multiplication:**</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  \langle xy \rangle_k(t)</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>  =</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  \sum_i</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  \langle x \rangle_{k-i}(t)\,</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  \langle y \rangle_i(t)</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Complex conjugate:**</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>  \langle x \rangle_{-k}(t)</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  =</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>  \langle x \rangle_k^*(t)</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>These properties enable the construction of DP models with an arbitrary number of harmonics, offering a compact yet flexible representation of systems with rich spectral content. However, including higher-order harmonics increases the computational burden. Thus, a key factor in practical applications is the appropriate selection of Fourier coefficients $k$, balancing model accuracy against simulation efficiency.</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Proposed Framework</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>This section presents the $DQsym$ framework,  beginning with the mathematical foundation of DPs, followed by the state-space formulation and its integration into $DQsym$ framework.</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transformation of Dynamic Phasor Quantities from $abc$ to DQ-pnz Frame</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>As stated DPs ($X_k(t)$) are time-varying Fourier coefficients, slowly varying when the signal is near-periodic around a base frequency. Their in-phase ($x_I(t)=\Re<span class="sc">\{</span>X_k(t)<span class="sc">\}</span>$) and quadrature ($x_Q(t)=\Im<span class="sc">\{</span>X_k(t)<span class="sc">\}</span>$) components are orthogonal, which allows each phasor to represent a specific $k^{\text{th}}$ harmonic without coupling formation with other harmonic DPs. These properties form the basis for transforming DP quantities from the $abc$ frame to the rotating $dq0$ frame.</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>Considering a general three-phase signal $\vec{x}_{abc}(t) = \begin{bmatrix} x_a(t) &amp; x_b(t) &amp; x_c(t) \end{bmatrix}^T, \label{eq:xabc}$</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>which may be time-varying and unbalanced, applying the classical symmetrical component transformation $T_{pnz}$, the three-phase signals are decomposed into positive-, negative-, and zero-sequence components:</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    \vec{x}_{pnz}(t) = T_{pnz} \cdot\vec{x}_{abc}(t) = \vec{x}_{p}(t) + \vec{x}_{n}(t) + \vec{x}_{z}(t),</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    \label{eq:xabc_total2}</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>where</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>T_{pnz}</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>\frac{1}{3}</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>1 &amp; a &amp; a^2 <span class="sc">\\</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>1 &amp; a^2 &amp; a <span class="sc">\\</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>1 &amp; 1 &amp; 1</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>\end{bmatrix},</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>\quad a = e^{j \tfrac{2\pi}{3}}.</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>In order to describe it in a simpler manner, let us assume that signal $\vec{x}_{abc}(t)$ is a sinusoid with amplitude $X_i(t)$ and phase $\theta_i(t)$, $i \in <span class="sc">\{</span>a,b,c<span class="sc">\}</span>$, displaced by $120^\circ$:</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>    x_{a}<span class="sc">\\</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>    x_{b}<span class="sc">\\</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>    x_{c}</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>        X_a(t)\cos(\omega t + \theta_{a}(t)) <span class="sc">\\</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>        X_b(t)\cos\left(\omega t + \theta_{b}(t) - \tfrac{2\pi}{3} \right) <span class="sc">\\</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>        X_c(t)\cos\left(\omega t + \theta_{c}(t) + \tfrac{2\pi}{3} \right)</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>    \end{bmatrix}.</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>\label{realvalued}</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>Then, based on equation \eqref{eq:xabc_total2}, each component can be expressed as</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>\vec{x}_{j}(t) = X_{j} \cdot </span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>    \begin{bmatrix}</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>        \cos(\omega t + \theta_{j}) <span class="sc">\\</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>        \cos\left(\omega t + \theta_{j} + i \tfrac{2\pi}{3} \right) <span class="sc">\\</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>        \cos\left(\omega t + \theta_{j} - i \tfrac{2\pi}{3} \right)</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    \end{bmatrix}, <span class="sc">\\</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    i = </span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>    \begin{cases}</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>        -1, &amp; j = p <span class="sc">\\</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>        1,  &amp; j = n <span class="sc">\\</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>        0,  &amp; j = z</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>    \end{cases}.</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>\label{eq:sequence_components1}</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>or equivalently in phasor form \cite{n4}:</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>\vec{x}_{j}(t) = X_j \cdot</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>e^{j(\omega t + \theta_j)} <span class="sc">\\</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>e^{j(\omega t + \theta_j +  \tfrac{2i\pi}{3})} <span class="sc">\\</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>e^{j(\omega t + \theta_j - \tfrac{2i\pi}{3})}</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}.</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>\label{eq:phasor_components}</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>Mapping the three-phase system into the stationary $\alpha\beta0$ frame using Clarke transformation as:</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>    \vec{x}_{\alpha\beta0,j}(t) = T_c \cdot \vec{x}_{j}(t),\quad </span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>    T_c = \frac{2}{3}</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>1 &amp; -\tfrac{1}{2} &amp; -\tfrac{1}{2} <span class="sc">\\</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>0 &amp; \tfrac{\sqrt{3}}{2} &amp; -\tfrac{\sqrt{3}}{2} <span class="sc">\\</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>\tfrac{1}{2} &amp; \tfrac{1}{2} &amp; \tfrac{1}{2}</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>\end{bmatrix},</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>\label{eq:alphbetaclark}</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>which is in complex form:</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>x_{\alpha\beta,p} <span class="sc">\\</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>x_{\alpha\beta,n} <span class="sc">\\</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>x_{0,z}</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>X_p e^{j(\omega t + \theta_p)} <span class="sc">\\</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>X_n e^{-j(\omega t + \theta_n)} <span class="sc">\\</span></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>X_z e^{j(\omega t + \theta_z)}</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>\label{eq:alphabetaincomplex}</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>Extracting the DPs requires a frequency shift @n4:</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>    \begin{bmatrix}</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,p} \rangle <span class="sc">\\</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,n} \rangle <span class="sc">\\</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>    \langle x_{0,z} \rangle</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>    X_p e^{j\theta_p} <span class="sc">\\</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>    X_n e^{-j\theta_n} <span class="sc">\\</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>    X_z e^{j\theta_z}</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}.</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>\label{eq:alphabetadps}</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>The negative-sequence phasor may equivalently be expressed in a positively rotating frame:$\langle x_{\alpha\beta,n} \rangle = \langle x_{\alpha\beta,n} \rangle^* = X_n e^{j\theta_n}.$</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>Finally, the Park transformation rotates the $\alpha\beta0$ components into the $dq0$ frame:</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>    \begin{bmatrix}</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,n} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,z} \rangle_k</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>    e^{-j\theta} &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>    0 &amp; e^{-j\theta} &amp; 0 <span class="sc">\\</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>    0 &amp; 0 &amp; 1</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,n} \rangle_k^* <span class="sc">\\</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>    \langle x_{0,z} \rangle_k</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}.</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>Thus, in DP form is:</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>    \begin{bmatrix}</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,n} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,z} \rangle_k</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>    X^p_k e^{j\theta^p_k} <span class="sc">\\</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>    X^n_k e^{j\theta^n_k} <span class="sc">\\</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>    X^z_k e^{j\theta^z_k}</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>\mathbf{x}_d^{p}(k) + j \mathbf{x}_q^{p}(k) <span class="sc">\\</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>\mathbf{x}_d^{n}(k) + j \mathbf{x}_q^{n}(k) <span class="sc">\\</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>\mathbf{x}_d^{z}(k) + j \mathbf{x}_q^{z}(k)</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}.</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>\label{eq:finaldpqn}</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>\cite{n4} shows that this procedure maps DPs in the $abc$ frame into the $dq0$ frame by (i) applying the symmetrical component transformation, and (ii) rotating the positive- and negative-sequence phasors by $-\theta$ (multiplication by $e^{-j\theta}$ in complex form). Below equation summarizes this transformation: DPs are first constructed in the $abc$ frame using in-phase and quadrature coefficients ($C^c$ and $C^s$), then transformed into symmetrical components, and finally rotated into the $dq0$ frame.</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>&amp; \begin{bmatrix}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s} <span class="sc">\\</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s} <span class="sc">\\</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>\mathbf{C}_{k}^{c} + j \mathbf{C}_{k}^{s}</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    \langle x_{a} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>    \langle x_{b} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>    \langle x_{c} \rangle_k</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>\xRightarrow{T_{pnz}}</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,n} \rangle_k^* <span class="sc">\\</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    \langle x_{0,z} \rangle_k</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>\end{bmatrix},<span class="sc">\\</span>&amp;</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>    e^{-j\theta} &amp; 0 &amp; 0 <span class="sc">\\</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>    0 &amp; e^{-j\theta} &amp; 0 <span class="sc">\\</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>    0 &amp; 0 &amp; 1</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>    \langle x_{\alpha\beta,n} \rangle_k^* <span class="sc">\\</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>    \langle x_{0,z} \rangle_k</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>\end{bmatrix} \Rightarrow</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    \begin{bmatrix}</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,p} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,n} \rangle_k <span class="sc">\\</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>    \langle x_{dq,z} \rangle_k</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>\label{eq:111}</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Operation</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>The following set of mathematical operations---summation, multiplication, and integration---form the basis of the DQsym approach and enable its application to full system simulations.</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summation</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>Summing DPs in $dq0$ form adheres to complex-number rules with no change in the form of the inputs or additional operations needed (i.e. simple elementwise additivity), as follows:</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>\mathbf{x}^{p}(0) &amp; \cdots &amp; \mathbf{x}^{p}(n)<span class="sc">\\</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>\mathbf{x}^{n}(0) &amp; \cdots &amp; \mathbf{x}^{n}(n)<span class="sc">\\</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>\mathbf{x}^{z}(0) &amp; \cdots &amp; \mathbf{x}^{z}(n)</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>&amp;+</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>\mathbf{y}^{p}(0) &amp; \cdots &amp; \mathbf{y}^{p}(n)<span class="sc">\\</span></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>\mathbf{y}^{n}(0) &amp; \cdots &amp; \mathbf{y}^{n}(n)<span class="sc">\\</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>\mathbf{y}^{z}(0) &amp; \cdots &amp; \mathbf{y}^{z}(n)</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="sc">\\</span>&amp;=</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>\mathbf{z}^{p}(0) &amp; \cdots &amp; \mathbf{z}^{p}(n)<span class="sc">\\</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>\mathbf{z}^{n}(0) &amp; \cdots &amp; \mathbf{z}^{n}(n)<span class="sc">\\</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\mathbf{z}^{z}(0) &amp; \cdots &amp; \mathbf{z}^{z}(n)</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>where  $z^{p,n,z}_{d,q}(i) = x^{p,n,z}_{d,q}(i) + y^{p,n,z}_{d,q}(i)$, for $i \in <span class="sc">\{</span>0, \ldots, n<span class="sc">\}</span>$.</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiplication</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>Any time-varying signal can be represented as an infinite sum of sine and cosine functions at integer multiples of the fundamental frequency $\omega_{c}$, and each sinusoid $\sin(n\omega_c t)$ or $\cos(n\omega_c t)$ corresponds to the $n^{\text{th}}$ harmonic of $x(t)$. This expansion is known as the trigonometric Fourier series of $x(t)$, with coefficients $a_n$ and $b_n$ denoting the Fourier sine and cosine coefficients. The coefficient $a_0$ represents the DC component (average value) of the signal, while $a_n$ and $b_n$ ($n \neq 0$) define the amplitudes of the sinusoidal terms that constitute the AC component:</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>    x(t) &amp;= a_0 + a_1 \cos \omega_0 t + b_1 \sin \omega_0 t + a_2 \cos 2\omega_0 t <span class="sc">\\</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>     &amp;\quad + b_2 \sin 2\omega_0 t + a_3 \cos 3\omega_0 t + b_3 \sin 3\omega_0 t + \cdots </span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>or </span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>x(t) = \underbrace{a_0}_{\text{dc}} + \underbrace{\sum_{n=1}^{\infty} \left( a_n \cos n\omega_0 t + b_n \sin n\omega_0 t \right)}_{\text{ac}} .</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>When two harmonic-rich signals are multiplied, the resulting product contains additional frequency components.</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a><span class="fu">### Theorem</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>The product of two periodic signals with fundamental frequency $\omega$ represented by a truncated Fourier series of order $N$:</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>x(t) = a_0 + \sum_{i=1}^{N} \left( a_i^s \sin(i\omega t) + a_i^c \cos(i\omega t) \right),</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>y(t) = b_0 + \sum_{j=1}^{N} \left( b_j^s \sin(j\omega t) + b_j^c \cos(j\omega t) \right).</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>denoted as $z(t) = x(t)y(t)$ can be expressed as</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>z(t) = C_0 + \sum_{k=1}^{2N} \left( C_k^s \sin(k\omega t) + C_k^c \cos(k\omega t) \right),</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>\label{eq:SICOprodcut}</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>C_0 = a_0 b_0 + \sum_{i=1}^N \left( \tfrac{1}{2} a_i^s b_i^s + \tfrac{1}{2} a_i^c b_i^c \right),</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>\label{eq:C0}</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>C_k^s =</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\sum_{\substack{i+j = k <span class="sc">\\</span> 1 \leq i,j \leq N}} \tfrac{1}{2} \left( a_i^s b_j^c + a_i^c b_j^s \right)</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\sum_{\substack{|i-j| = k <span class="sc">\\</span> 1 \leq i,j \leq N}}</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>\Big[</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>\tfrac{1}{2}\big( \operatorname{sgn}(i-j) a_i^s b_j^c - \operatorname{sign}(i-j) a_i^c b_j^s \big)</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>+\, a_0 b_k^s + b_0 a_k^s</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>\Big],</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>\label{eq:Cs}</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>C_k^c =</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>\sum_{\substack{i+j = k <span class="sc">\\</span> 1 \leq i,j \leq N}} \tfrac{1}{2} \left( a_i^c b_j^c - a_i^s b_j^s \right)</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\sum_{\substack{|i-j| = k <span class="sc">\\</span> 1 \leq i,j \leq N}}</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>\Big[</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>\tfrac{1}{2}\big( a_i^c b_j^c + a_i^s b_j^s \big)</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>a_0 b_k^c + b_0 a_k^c</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>\Big],</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>\label{eq:Cc}</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proof</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>The validity of the coefficient expressions in \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc} can be established using mathematical induction on the harmonic order $N$. Let us check the correctness of the coefficient for:</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Base Case $N=0$</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>For constant signals</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>x(t) = a_0, \quad y(t) = b_0,</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>the product is $z(t) = a_0 b_0$,</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>which implies</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>C_0 = a_0 b_0, \quad C_k^s = 0, \quad C_k^c = 0.</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>Thus, \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc} hold for $N=0$.</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Base Case $N=1$</span></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>For first-order expansions</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>x(t) &amp;= a_0 + a_1^s \sin(\omega t) + a_1^c \cos(\omega t), <span class="sc">\\</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>y(t) &amp;= b_0 + b_1^s \sin(\omega t) + b_1^c \cos(\omega t),</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>their product is</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>z(t) &amp;= x(t)y(t) \nonumber <span class="sc">\\</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>&amp;= a_0 b_0 + a_0 b_1^s \sin(\omega t) + a_0 b_1^c \cos(\omega t) \nonumber <span class="sc">\\</span></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>&amp;\quad + b_0 a_1^s \sin(\omega t) + b_0 a_1^c \cos(\omega t) \nonumber <span class="sc">\\</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>&amp;\quad + a_1^s b_1^s \sin^2(\omega t) + a_1^c b_1^c \cos^2(\omega t) \nonumber <span class="sc">\\</span></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>&amp;\quad + (a_1^s b_1^c + a_1^c b_1^s) \sin(\omega t)\cos(\omega t).</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>Using trigonometric identities,</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>&amp;&amp; \sin(i\omega t) \sin (j\omega t) = \tfrac{1}{2}(\cos((i-j)\omega t) - \cos((i+j)\omega t)), <span class="sc">\\</span></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>&amp;&amp; \cos(i\omega t) \cos(j\omega t) = \tfrac{1}{2}(\cos((i-j)\omega t) + \cos((i+j)\omega t)), <span class="sc">\\</span></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>&amp;&amp; \sin(i\omega t)\cos(j\omega t) = \tfrac{1}{2}(\sin((i+j)\omega t) + \sin((i-j)\omega t)),</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>we group the terms as</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>z(t) &amp;= \underbrace{\Big(a_0 b_0 + \tfrac{1}{2}a_1^s b_1^s + \tfrac{1}{2}a_1^c b_1^c\Big)}_{C_0} \nonumber <span class="sc">\\</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>&amp;\quad + \underbrace{(a_1^s b_0 + a_0 b_1^s)}_{C_1^s}\sin(\omega t) + \underbrace{(a_1^sb_0 + a_0b_1^s)}_{C_1^c}\cos(\omega t) \nonumber <span class="sc">\\</span></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>&amp;\quad + \underbrace{\frac{1}{2}(a_1^sb_1^c + a_1^cb_1^s)}_{C_2^s}\sin(2\omega t) + \underbrace{\frac{1}{2}(a_1^cb_1^c - a_1^sb_1^s)}_{C_2^c}\cos(2\omega t),</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>where the coefficients are consistent with the structure given in \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc}. Thus, the case $N=1$ is verified.</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a><span class="fu">### Induction Step</span></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>Assume that \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc} holds for Fourier series truncated at order $N$:</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>x'(t) &amp;= a_0 + \sum_{i=1}^N \big( a_i^s \sin(i\omega t) + a_i^c \cos(i\omega t) \big), <span class="sc">\\</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>y'(t) &amp;= b_0 + \sum_{j=1}^N \big( b_j^s \sin(j\omega t) + b_j^c \cos(j\omega t) \big),</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>with $z'(t) = x'(t)y'(t)$ satisfies the equation \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc}, denoted with $C'_0$, ${C_k^{s}}'$ and ${C^{c}_k}'$, for $k \in <span class="sc">\{</span>1, \ldots 2N<span class="sc">\}</span>$, respectively.</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>Now we have to show that it is valied for $N+1$, so we extend $x(t)$ and $y(t)$ with the $(N+1)$-th harmonics:</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>x(t) &amp;= x'(t) + \underbrace{a_{N+1}^s \sin((N+1)\omega t) + a_{N+1}^c \cos((N+1)\omega t)}_{x^{(N+1)}(t)}, <span class="sc">\\</span></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>y(t) &amp;= y'(t) + \underbrace{b_{N+1}^s \sin((N+1)\omega t) + b_{N+1}^c \cos((N+1)\omega t)}_{y^{(N+1)}(t)}</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>The product expands as</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>&amp;&amp;z(t) = x(t)y(t) = x'(t)y'(t) + x'(t) \, y^{(N+1)}(t)\nonumber <span class="sc">\\</span></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>&amp;&amp;\quad + y'(t)x^{(N+1)}(t) + x^{(N+1)}(t)y^{(N+1)}(t).</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>The first and last terms yield valid Fourier series with harmonics up to order $2N$ and $2N+2$. Thus, the term $C_0$ is only influenced by $x'(t)y'(t)$ and $x^{(N+1)}(t)y^{(N+1)}(t)$, and equal to:</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>C_0 &amp;= C_0'+ \frac{1}{2}(a_{N+1}^s b_{N+1}^s + a_{N+1}^c b_{N+1}^c) <span class="sc">\\</span></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>&amp; = a_0 b_0 + \sum_{i=1}^{N+1} \left( \tfrac{1}{2} a_i^s b_i^s + \tfrac{1}{2} a_i^c b_i^c \right),</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>and corresponds to the equation \eqref{eq:C0}.</span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>The multiplication cross-terms introduce frequencies of the form $j = i \pm (N+1)$, where $1 \leq i \leq N$, generating harmonics up to $(2N+1)\omega$. Namely, we obtain that:</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>&amp;x'y^{(N+1)} =<span class="sc">\\</span></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>&amp;= a_0 b_{N+1}^s \sin((N+1)\omega t) + a_0 b^c_{N+1} \cos((N+1)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>&amp; \sum_{i=1}^{N} \left(\frac{1}{2} (a_i^c b_{N+1}^c - a_i^s b_{N+1}^s) \cos((N+1+i)\omega t) \right.<span class="sc">\\</span></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>&amp; + \frac{1}{2} (a_i^c b_{N+1}^c + a_i^s b_{N+1}^s) \cos((N+1-i)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>&amp; + \frac{1}{2} (a_i^c b_{N+1}^s + a_i^s b_{N+1}^c) \sin((N+1+i)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>&amp; + \left.\frac{1}{2} (a_i^c b_{N+1}^s - a_i^s b_{N+1}^c) \sin((N+1-i)\omega t)\right),</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>and</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>&amp;y'x^{(N+1)} = <span class="sc">\\</span></span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>&amp;= b_0 a_{N+1}^s \sin((N+1)\omega t) + b_0 a^c_{N+1} \cos((N+1)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>&amp;\sum_{i=1}^{N} \left(\frac{1}{2} (b_i^c a_{N+1}^c - b_i^s a_{N+1}^s) \cos((N+1+i)\omega t) \right. <span class="sc">\\</span></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>&amp; + \frac{1}{2} (b_i^c a_{N+1}^c + b_i^s a_{N+1}^s) \cos((N+1-i)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>&amp; + \frac{1}{2} (b_i^c a_{N+1}^s + b_i^s a_{N+1}^c) \sin((N+1+i)\omega t) <span class="sc">\\</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>&amp; + \left.\frac{1}{2} (b_i^c a_{N+1}^s - b_i^s a_{N+1}^c) \sin((N+1-i)\omega t)\right),</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>and thus, they add spectral components to $C^{s,k}_{N+1 \pm i} = C^{s,k}_j$. For </span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>C^s_{N+1\pm i} = {C^s_j}' + \frac{1}{2} (a_i^c b_{N+1}^s + b_i^c a_{N+1}^s \pm a_i^s b_{N+1}^c \pm b_i^s a_{N+1}^c), <span class="sc">\\</span></span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>C^c_{N+1\pm i} = {C^c_j}' + \frac{1}{2} (a_i^c b_{N+1}^c + b_i^c a_{N+1}^c \mp a_i^s b_{N+1}^s \mp b_i^s a_{N+1}^s),</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>which together corresponds to the format as in equation \eqref{eq:Cs} and equation \eqref{eq:Cc}.</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>At $k = N+1$, $C_{N+1}^{s} = {C_{N+1}^s}'+ a_0 b_{N+1}^s + b_0 a_{N+1}^s$ and $C_{N+1}^{c} = {C_{N+1}^c}'+ a_0 b_{N+1}^c + b_0 a_{N+1}^c$ also correspond equation \eqref{eq:Cs} and equation \eqref{eq:Cc}.</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>Furthermore, the coefficients for when $k =2(N+1)$ only depend on $x^{(N+1)}(t)y^{(N+1)}(t)$ and are equal to:</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>C_{2(N+1)}^s = \frac{1}{2} (a_{N+1}^s b_{N+1}^c + a_{N+1}^c b_{N+1}^s), <span class="sc">\\</span></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>C_{2(N+1)}^c = \frac{1}{2} (a_{N+1}^cb_{N+1}^c - a_{N+1}^s b_{N+1}^s),</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>and also satisfies equations \eqref{eq:Cs} and \eqref{eq:Cc} for $k=2(N+1)$.</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>By induction, the coefficient expressions in \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc} hold for all $N \geq 0$, which completes the proof.</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>This derivation highlights the similarity between the Fourier coefficients of the product and the in-phase and quadrature components in dynamic phasor theory. Hence, dynamic phasors can be constructed directly from $C_k^c$ and $C_k^s$ for each harmonic $k$, with $C_0$ representing the DC term. The overall multiplication process is illustrated in @fig-1 and it includes the following steps</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Transform the input signals $x^{p,n,z}_{dq}$ and $y^{p,n,z}_{dq}$ into their phase-domain representations $x^{a,b,c}_{dq}$ and $y^{a,b,c}_{dq}$.</span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Extract the sine and cosine Fourier coefficients for each phase of the input signals.</span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Perform phase-by-phase multiplication, computing the coefficient products $C_{0}$, $C_{k}^s$, and $C_{k}^c$ using \eqref{eq:C0}, \eqref{eq:Cs}, and \eqref{eq:Cc}.</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Collect the resulting terms and transform the output $z^{a,b,c}_{dq}$ back to the $z^{p,n,z}_{dq}$ representation.</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="al">![Flowchart of the multiplication algorithm for harmonic-rich signals $x_{\mathrm{dqn}}^{p,n,z}(i)$ and $y_{\mathrm{dqn}}^{p,n,z}(i)$.](assets/algovfull10.jpg)</span>{#fig-1 width=50%}</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>An example of the multiplication of two harmonic-rich signals, including components up to the 5$^{\text{th}}$ order, is shown in @fig-2, with EMT simulation results in MATLAB provided for comparison. </span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="al">![Output signal $Z_{\mathrm{dqn}}^{p,n,z}(10) = x_{\mathrm{dqn}}^{p,n,z}(5) \cdot y_{\mathrm{dqn}}^{p,n,z}(5)$ from the multiplication block, compared with EMT results.](assets/Zmulti.jpg)</span>{#fig-2 width=50%}</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="fu">### Integration</span></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>Time-varying signals  up to the $n^{\text{th}}$ harmonic order can be expressed using a Fourier series</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>f(t) = a_{0} + \sum_{n=1}^{\infty} \left( a_n \cos (n\omega_0 t) + b_n \sin (n\omega_0 t) \right)</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>Any antiderivative $F(t)$ can be obtained term-by-term based on the integration theorem of the Fourier series:</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>\begin{equation}\label{eq:Fs-2pi}</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>F(t) = a_{0}\,t + \sum_{n=1}^{\infty}\frac{a_n}{n\omega_0}\sin(n\omega_0 t)</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>\sum_{n=1}^{\infty}\frac{b_n}{n\omega_0}\cos(n\omega_0 t),</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>which corresponds to the standard integration of the Fourier coefficients. </span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>Considering $f_{dq}$ in complex form, i.e., $f_d(n) + j f_q(n)$, integration with respect to time yields \eqref{eq:fdpint1}. In contrast, when $f_{dq}$ is expressed in DP representation, the factor $e^{j n \omega_0 t}$ is removed, and integration yields \eqref{eq:fdpint2}, which demonstrates that integrating DPs in $dq$ form introduces cross-coupling between the $d$ and $q$ components.</span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a> \int f_{dq}(n) e^{j n \omega_0 t} dt = \big( f_d(n) + j f_q(n) \big) \int e^{j n \omega_0 t} dt</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>&amp;= \big( f_d(n) + j f_q(n) \big) \frac{-j}{n \omega_0} e^{j n \omega_0 t} + C</span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>\label{eq:fdpint1}</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>\langle f_{dq} \rangle \Rightarrow \boxed{\int} \Rightarrow \langle F_{dq} \rangle = \big( f_d(n) + j f_q(n) \big) \frac{-j}{n \omega_0} + C</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>\label{eq:fdpint2}</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>This process can be generalized to the integration of $\langle f^{p,n,z}_{dq}\rangle$, yielding $\langle F^{p,n,z}_{dq}\rangle$. Both vectors are equal in dimension up to the $n^{\text{th}}$ harmonic order.</span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamic Phasor State-Space Solver</span></span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>The proposed solver is based on a phasor-domain state-space formulation of a switched linear system. The continuous-time model is described by  </span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>\dot{x}(t) = A x(t) + B u(t), \qquad </span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>y(t) = C x(t) + D u(t),</span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>\label{eq:ss-cont}</span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>where $x \in \mathbb{C}^n$ is the state vector, $u \in \mathbb{C}^m$ the input, and $y \in \mathbb{C}^p$ the output. For numerical integration, discrete-time matrices $(A_d,B_d,C_d,D_d)$ are obtained from $(A,B,C,D)$ using a suitable method such as trapezoidal (Tustin) discretisation. </span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>Using the derivative property of dynamic phasors, the system equations in the $DQn$ domain take the form</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>    \dot{x}_k(t) &amp;= \big(A_{dqn} - j k \omega_s I\big) x_k(t) + B_{dqn} u_k(t), <span class="sc">\\</span></span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>    y_k(t) &amp;= C_{dqn} x_k(t) + D_{dqn} u_k(t),</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>where $x_k(t)$ and $u_k(t)$ are the dynamic phasor states and algebraic inputs at harmonic order $k$, and $y_k(t)$ is the corresponding output. </span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>In power electronic systems, the presence of switching devices introduces discrete changes in the circuit topology, which must be explicitly represented in the state-space formulation. On the other hand, passive elements, which exhibit time-invariant behaviour, a switch alters the system equations based on its on or off state. A closed switch functions as a low-resistance pathway with conductance $G_{\text{on}}=1/R_{\text{on}}$, whereas an open switch is represented as a high-resistance pathway with $G_{\text{off}}=1/R_{\text{off}}$. The conductances have a direct influence on the nodal or state-space representation, changing the effective system matrices $(A,B,C,D)$. Hence, each switching event generates a new array of matrices representing the modified circuit architecture. </span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>Dynamic phasors rely on Fourier components of states. When switching occurs, harmonic content changes. Updating matrices ensures the harmonic coupling terms (off-diagonal entries in the DP system matrix) are updated properly, improving the frequency-domain accuracy of the DP model. Ignoring the effect of a switching event can lead to significant errors in both transient and steady-state operations. </span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>Furthermore, the state-space representation allows the consistent operation of multiple switches functioning at once, as the matrices can be updated by an algorithm in accordance with the switch vector that defines the network configuration at any given moment, in comparison to manually deriving or switching between multiple predefined matrices, which is error-prone. This unified representation enables accurate switching event representation in system matrices at each operational point, via suitable parameters of $R_{\text{on}}$ and $R_{\text{off}}$. Meanwhile, keeping the state-space formulation facilitates the eigenvalue analysis of the system. Provided that a proper linearization around the operating point is performed. To maintain numerical stability when switching occurs within a sampling interval, a predictor–corrector scheme is applied @n58, @n59. Taking $(A_{d},B_{d})_{old}$ as the unupdated matrices, $(A_{d},B_{d})_{new}$ as the updated matrices with switching effect, and $T_{s}$ as the discretisation time-step, the half-step states are computed as  </span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>x_{{T_s}-\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2} \big( \big(A^{dqn}_{\text{old}} - j k \omega_s I\big) x_{{T_s}-1} +B^{dqn}_{\text{old}} u_{T_s} \big),</span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>\label{eq:half-pre}</span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>x_{{T_s}+\tfrac{1}{2}} = x_{{T_s}-1} + \tfrac{T_s}{2}\big(  \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{{T_s}-1} + B^{dqn}_{\text{new}} u_{T_s} \big),</span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>\label{eq:half-post}</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>and the corrected state is their average,  </span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>x_{T_s} = \tfrac{1}{2}\left(x_{{T_s}-\tfrac{1}{2}} + x_{{T_s}+\tfrac{1}{2}}\right).</span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>\label{eq:state-corrected}</span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>The final state and output update then follow  </span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>\begin{equation*}</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>x_{{T_s}+1} = \big(A^{dqn}_{\text{new}} - j k \omega_s I\big) x_{T_s} + B^{dqn}_{\text{new}} u_k,</span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>\label{eq:state-update}</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>\end{equation*}</span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>y_{T_s} = C^{dqn}_{\text{new}} x_{T_s} + D^{dqn}_{\text{new}}u_{T_s}.</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>\label{eq:output-update}</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>This algorithm in @fig-DQnstatespacesolver enables efficient and numerically stable simulation of switched three-phase systems in the time domain, capturing both transient and steady-state phasor dynamics.</span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="al">![Flowchart of the state space solver algorithm for harmonic-rich states.](assets/SSalgo2.jpg)</span>{#fig-DQnstatespacesolver width=50%}</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="co">The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. </span></span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a><span class="co">It is the most common type of generators, and it is present in most power plants (thermal, hydro, and some wind) as an interface between the mechanical energy and electrical energy. The mathematical model presented in this article develops the dynamic equations of synchronous machines @DUMMY:1 </span></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="co">It only covers the physical part of the machine (see @sec-physical-description) not the regulations nor protections schemes. </span></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">## Model use, assumptions, validity domain and limitations (mandatory)</span></span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="co">*Each model is an approximation of the reality, and considers some assumptions.*</span></span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="co">*In this section, details should be given on:*</span></span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="co">- *the validity domain of the model (frequency range, type of dynamics, type of stability phenomena) that the model covers,*</span></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a><span class="co">- *the model assumptions (e.g., neglecting the DC side of the converter, simplistic PLL representation)*</span></span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="co">- *the limitations of the model (what people shouldn't use the model for)*</span></span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="co">The model presents the general expressions in abc reference frame of the differential equations that model a general synchronous machine with the following assumptions:</span></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a><span class="co">- There are three stator windings ( $a, b, c$) distributed 120º apart one from each other, each of them with equal parameters (i.e. same resistance, inductance...).</span></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="co">- The three phases are balanced, meaning the power is shared equally.</span></span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a><span class="co">- The rotor has one winding with a field ($e_f$) applied and three damper windings, with no power source, one of them with the axis parallel to the field winding ($1d$) and the other two with a perpendicular axis ($1q,2q$).</span></span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="co">- The magnetic field produced by the rotor winding oscillates sinusoidally.</span></span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a><span class="co">- The machine may have 2 or more poles, noted as $p_f$</span></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="co">The model is suitable for transient stability analysis but not for electromagnetic transient analysis.</span></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="co">## Model description (mandatory){#sec-physical-description}</span></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="co">*This section gives the full description of the different model's components.*</span></span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="co">*For each component, is given: a brief explanation about the functioning of the component (how it works, what it is made of, which implementation choices are made) and the component equations or control diagram. The author can also point to another component page if the component is already explained in another page. In such case, he clearly needs to make coherence is achieved with the rest of the model in terms of notation, convention, and connection aspects.*</span></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="co">- _**For the equation system / algorithm :** the author can use Latex language, which is fully compatible with markdown. He can also use numbered equations. The variables and parameters should be clearly specified, as well as their type (complex, real, etc.), unit (MW, MVA, etc), and meaning (phase to neutral voltage for the output terminal A). The notation should follow scientific standards._</span></span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Images or Electric/Electronic/Control/Phasor diagramscan be added** for clarity. The image must be of good quality and more preferably in .svg format. Diagrams can be used instead of equations to describe the component. The selected control blocks should be unambiguous, that is to say that their equations should be clearly understood from the diagram. A list of basic blocks can be found in colib here: pages/models/controlBlocks/.  Several packages can be used to display diagrams, e.g.: [draw.io](https://www.drawio.com/) plugin for github allows you to make your own diagram easily. The diagram is fully editable with github commit using a graphical interface, and allowing multiple format outputs (for more details, see: [draw.io github](https://app.diagrams.net/)). _</span></span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="co">- _**Initial equations/boundary conditions:** when initial equations or boundary conditions are necessary to fully described the system, a subsection dedicated to those aspects can be added in this section._</span></span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Physical description </span></span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="co">The following schematic shows the components that participate in the synchronous machine operation:</span></span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a><span class="co">![Synchronous machine](../../models/1-SynchronousMachines/Generator/SM1/SM1_model_scheme.svg){#fig-SM1 fig-alt="Synchronous machine" width="400px"}</span></span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="al">###</span><span class="co"> Synchronous machine equations</span></span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a><span class="co">#### Variables </span></span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="co">| Variable    | details  | Unit |</span></span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| ------ | ----- |</span></span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a><span class="co">| $\theta_{shaft}$ | Rotor angle | $rad$ |</span></span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a><span class="co">| $\omega$ | Electrical rotational speed | $rad/s$ |</span></span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_m$ | Mechanical torque | $Nm$ |</span></span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a><span class="co">| $T_e$ | Electrical torque | $Nm$ |</span></span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a><span class="co">#### Parameters</span></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="co">| Parameter | Description | Unit |</span></span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="co">| --- | --- | --- |</span></span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a><span class="co">| $J$ | Moment of inertia | $kgm^2$ |</span></span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a><span class="co">| $p_f$ | Number of pole pairs | - |</span></span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a><span class="co">| $R_a$, $R_b$, $R_c$ | Stator phase resistances | $\Omega$ |</span></span>
+<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a><span class="co">#### System of equations</span></span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a><span class="co">The following system of equations describe a general synchronous machine with the considered assumptions. Some of its parameters are generally non-constant, meaning it is not directly solved without making some additional assumptions. The particular models are derivations of this system of equations.</span></span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a><span class="co">The equations  @eq-inertia, @eq-theta  represent the mechanical dynamic equations:</span></span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a><span class="co">J\frac{2}{p_f}  \frac{d\omega_m}{dt} = T_m - T_e - T_{fw}</span></span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a><span class="co">$$  {#eq-inertia}</span></span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a><span class="co">$$\frac{d\theta_{shaft}}{dt} = \frac{2}{p_f} \omega$$  {#eq-theta}</span></span>
+<span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a><span class="co">[...]</span></span>
+<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a><span class="co">## Source code (optional)</span></span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a><span class="co">_This section is a code section that provides the source code for model described above._</span></span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a><span class="co">_The code **should correspond strictly the equations/diagram/algorithm described before** and should have been validated in a tool. The date of the code should be specified at the beginning of the section, the code should be clean, readable and organized._</span></span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a><span class="co">The code can be presented in a **modeling language code block** like this:</span></span>
+<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a><span class="co">```modelica</span></span>
+<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a><span class="co">model VoltageSource "Constant AC voltage"</span></span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a><span class="co">  extends Interfaces.Source;</span></span>
+<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Frequency f(start=1) "Frequency of the source";</span></span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Voltage V(start=1) "RMS voltage of the source";</span></span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a><span class="co">  parameter SI.Angle phi(start=0) "Phase shift of the source";</span></span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="co">equation</span></span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a><span class="co">  omega = 2*Modelica.Constants.pi*f;</span></span>
+<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a><span class="co">  v = Complex(V*cos(phi), V*sin(phi));</span></span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a><span class="co">end VoltageSource;</span></span>
+<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a><span class="co">```</span></span>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a><span class="co">## Open source implementations (if any)</span></span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a><span class="co">_This section give a list of the different open source implementations of this model. It provides the reader with links and languages/software used for each implementations. A markdown table can be used to display such list._</span></span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a><span class="co">**Example:**</span></span>
+<span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a><span class="co">This model has been successfully implemented in :</span></span>
+<span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a><span class="co">| Software      | URL | Language | Open-Source License | Last consulted date | Comments |</span></span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a><span class="co">| --------------| --- | --------- | ------------------- |------------------- | -------- |</span></span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a><span class="co">| Software name | [Link](https://github.com/toto) | modelica | [MPL v2.0](https://www.mozilla.org/en-US/MPL/2.0/)  | XX/0X/20XX | Comments can contain implementations details such as validation means, implementations key choices, etc. |</span></span>
+<span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a><span class="co">## Table of references &amp; license</span></span>
+<span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a><span class="co">_This section lists all the references. It must comply with current citation standards. Quarto uses BibTeX for managing reference._</span></span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a><span class="co">::: {#refs}</span></span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a><span class="co">:::</span></span>
+<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
