@@ -44,9 +44,9 @@ format:
 
 In @fig-2level, a two-level converter is depicted. Switches in the same arm are operated complementarily, e.g., $\text{Q3} = \overline{\text{Q1}}$. In @fig-2level-arm is depicted one arm operation, where is visible that when Q1 is conducting $v_{c,a} = \frac{v_{dc}}{2}$, and when Q3 conducts $v_{c,a} = -\frac{v_{dc}}{2}$. 
 
-![Two-level VSC.](assets/VSC.pdf){#fig-2level width=50%}
+![Two-level VSC.](assets/VSC.jpg){#fig-2level width=50%}
 
-![One arm operation of the VSC.](assets/VSC_operation.pdf){#fig-2level-arm width=35%}
+![One arm operation of the VSC.](assets/VSC_operation.jpg){#fig-2level-arm width=35%}
 
 VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of $\frac{2\pi}{3}$ for each phase \cite{anaya2014offshore}. This modulation is no longer used because it cannot vary magnitude.
 

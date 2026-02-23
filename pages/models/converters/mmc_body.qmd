@@ -254,7 +254,7 @@ The voltage references in \eqref{eq:m_derive} are obtained as outputs of the con
 ![](assets/Generic%20PI%20Structure.png){width=100%}
 (c) Generic PI controller structure
 
-![](assets/droop.pdf){width=100%}
+![](assets/droop.jpg){width=80%}
 (d) Droop controller
 :::
 
