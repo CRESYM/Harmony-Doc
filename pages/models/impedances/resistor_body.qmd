@@ -64,12 +64,12 @@ The `Resistor` class supports two primary mathematical representations, dependin
     \begin{equation}
     Y =
     \begin{bmatrix}
-    G_a & -G_a & 0 & 0 & 0 & 0 \\
-    -G_a & G_a & 0 & 0 & 0 & 0 \\
-    0 & 0 & G_b & -G_b & 0 & 0 \\
-    0 & 0 & -G_b & G_b & 0 & 0 \\
-    0 & 0 & 0 & 0 & G_c & -G_c \\
-    0 & 0 & 0 & 0 & -G_c & G_c
+    G_a & 0 & 0 & -G_a & 0 & 0 \\
+    0 & G_b & 0 & 0 & -G_b & 0 \\
+    0 & 0 &  G_c & 0 & 0 & -G_c \\
+    -G_a & 0 & 0 & G_a & 0 & 0 \\
+    0 & -G_b & 0 & 0 & G_b & 0 \\
+    0 & 0 & -G_c & 0 & 0 & G_c
     \end{bmatrix}
     \end{equation}
 

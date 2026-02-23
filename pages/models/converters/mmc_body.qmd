@@ -248,13 +248,13 @@ The voltage references in \eqref{eq:m_derive} are obtained as outputs of the con
 ![](assets/MMC%20Controllers.png){width=100%}
 (a) Inner and outer controllers with time delay
 
-![](assets/PLL.png){width=80%}
+![](assets/PLL.png){width=100%}
 (b) Phase-locked loop (PLL)
 
 ![](assets/Generic%20PI%20Structure.png){width=100%}
 (c) Generic PI controller structure
 
-![](assets/droop.jpg){width=80%}
+![](assets/droop.jpg){width=100%}
 (d) Droop controller
 :::
 

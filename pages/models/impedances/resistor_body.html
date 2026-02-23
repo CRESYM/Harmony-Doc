@@ -104,7 +104,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 16, 2026</p>
+      <p class="date">July 10, 2027</p>
     </div>
   </div>
   
@@ -154,12 +154,12 @@ G &amp; -G \\
 \end{equation}\]</span> For a multi-phase uncoupled system with <span class="math inline">\(N\)</span> phases, the is a <span class="math inline">\(2N \times 2N\)</span> block diagonal matrix. Each <span class="math inline">\(2 \times 2\)</span> diagonal block corresponds to the admittance matrix of an individual phase, similar to the single-phase representation. For instance, for a three-phase system with resistances <span class="math inline">\(R_a, R_b, R_c\)</span> (and conductances <span class="math inline">\(G_a=1/R_a\)</span>, etc.): <span class="math display">\[\begin{equation}
 Y =
 \begin{bmatrix}
-G_a &amp; -G_a &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
--G_a &amp; G_a &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; G_b &amp; -G_b &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; -G_b &amp; G_b &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; G_c &amp; -G_c \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; -G_c &amp; G_c
+G_a &amp; 0 &amp; 0 &amp; -G_a &amp; 0 &amp; 0 \\
+0 &amp; G_b &amp; 0 &amp; 0 &amp; -G_b &amp; 0 \\
+0 &amp; 0 &amp;  G_c &amp; 0 &amp; 0 &amp; -G_c \\
+-G_a &amp; 0 &amp; 0 &amp; G_a &amp; 0 &amp; 0 \\
+0 &amp; -G_b &amp; 0 &amp; 0 &amp; G_b &amp; 0 \\
+0 &amp; 0 &amp; -G_c &amp; 0 &amp; 0 &amp; G_c
 \end{bmatrix}
 \end{equation}\]</span></p></li>
 <li><p><strong>Time-Domain (MNA-based)</strong> — This model is used for transient analysis or general MNA. For a resistor connected between two nodes, <span class="math inline">\(n1\)</span> and <span class="math inline">\(n2\)</span>, the current flowing from <span class="math inline">\(n1\)</span> to <span class="math inline">\(n2\)</span> is <span class="math inline">\(I = \frac{V_{n1} - V_{n2}}{R}\)</span>. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase <span class="math inline">\(i\)</span> of a resistor connected between corresponding sub-nodes <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>:</p>

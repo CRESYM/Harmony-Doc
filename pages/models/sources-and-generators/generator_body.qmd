@@ -52,7 +52,7 @@ The generator's behavior can be described using the following key parameters, as
 
 These parameters represent the electrical characteristics of the synchronous machine and are used to derive the generator's impedance and admittance.
 
-![Equivalent generator model.](assets/generator_model.pdf){#fig-generator width=50%}
+![Equivalent generator model.](assets/generator_model.jpg){#fig-generator width=50%}
 
 ## Mathematical Modeling
 
