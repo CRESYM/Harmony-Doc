@@ -2,8 +2,8 @@
 layout: page 
 title: Transformer with Magnetization Resistance and Inductance
 tags: [Opensource, Transformer]
-date: 2/24/2026
-last-updated: 2/24/2025
+date: 5/1/2026
+last-updated: 5/1/2026pd
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib
