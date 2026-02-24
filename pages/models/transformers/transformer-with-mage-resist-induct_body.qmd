@@ -2,8 +2,8 @@
 layout: page 
 title: Transformer with Magnetization Resistance and Inductance
 tags: [Opensource, Transformer]
-date: 31/10/2025
-last-updated: 08/03/2024
+date: 2/24/2026
+last-updated: 2/24/2025
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib
@@ -38,11 +38,11 @@ format:
 A single-phase transformer consists of a primary winding and a secondary winding. The voltage and current relationships can be expressed as:
   
   \begin{equation}
-  frac{V_p}{V_s} = \frac{N_p}{N_s} = a \, \exp(j \phi),
+  \frac{V_p}{V_s} = \frac{N_p}{N_s} = a \, \exp(j \phi),
   \end{equation}
 
   \begin{equation}
-  -frac{I_p}{I_s} = \frac{N_p}{N_s} = \frac{1}{a} \, \exp(-j\phi),
+  -\frac{I_p}{I_s} = \frac{N_p}{N_s} = \frac{1}{a} \, \exp(-j\phi),
   \end{equation}
 where the values are: 
 

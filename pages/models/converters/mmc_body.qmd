@@ -244,18 +244,29 @@ The rational transfer function approximation is then converted into the state sp
 
 The voltage references in \eqref{eq:m_derive} are obtained as outputs of the controllers and the thirteen differential equations stated in \eqref{eq:a},  \eqref{eq:b},  \eqref{eq:c},  \eqref{eq:d} , \eqref{eq:e},  \eqref{eq:f},  \eqref{eq:g}. The controllers can specify the voltage references; however, by default, all voltage reference values are set to zero, except for $v_{c,\mathrm{ref}}^{z}$, which is set to $\frac{v_{dc}}{2}$. When the controller specifies the voltage references, additional differential equations are required to represent the PI controllers in the $dqz$ frames @bergna2018generalized, @sakinci2019generalized,@sakinci2022generalized.
 
-::: {#fig-MMC_control_architecture layout-ncol=2}
-![](assets/MMC%20Controllers.png){width=100%}
-(a) Inner and outer controllers with time delay
+::: {#fig-MMC_control_architecture}
 
-![](assets/PLL.png){width=100%}
-(b) Phase-locked loop (PLL)
+::: {.subfigure}
+![](assets/MMC%20Controllers.png){width=50%}
+（a）Inner and outer controllers with time delay
+:::
 
-![](assets/Generic%20PI%20Structure.png){width=100%}
-(c) Generic PI controller structure
+::: {.subfigure}
+![](assets/PLL.png){width=30%}
+（b）Phase-locked loop (PLL)
+:::
 
-![](assets/droop.jpg){width=100%}
-(d) Droop controller
+::: {.subfigure}
+![](assets/Generic%20PI%20Structure.png){width=30%}
+（c）Generic PI controller structure
+:::
+
+::: {.subfigure}
+![](assets/droop.jpg){width=50%}
+（d）Droop controller
+:::
+
+Figure: MMC control architecture.
 :::
 
 Figure: MMC control architecture consisting of (a) inner controllers, outer controllers and time delay, (b) PLL, (c) generic PI structure, and (d) droop controller.

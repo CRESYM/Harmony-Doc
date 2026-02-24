@@ -148,9 +148,9 @@ The ABCD parameters of a transmission line can be defined as \cite{castellanos19
 \end{bmatrix}
 \label{eq_tl_abcd}
 \end{equation}
-where $\mathrm{\Gamma} = \sqrt{\mathbf{Z}\mathbf{Y}}$ and $\mathbf{Y}_c = \mathbf{Z}^{-1} \, \Gamma $, and $l$ standing for the line or cable length. The formula used is based on the frequency-dependent phase domain model.
+where $\mathrm{\Gamma} = \sqrt{\mathbf{Z}\mathbf{Y}}$ and $\mathbf{Y}_c = \mathbf{Z}^{-1} \, \Gamma$, and $l$ standing for the line or cable length. The formula used is based on the frequency-dependent phase domain model.
 
-Y parameters: The ABCD parameters of a transmission line can be defined as @castellanos1997full, @morched1999universal
+Y parameters: The ABCD parameters of a transmission line can be defined as @630478, @772350
 
 \begin{equation}
 \begin{bmatrix}
@@ -173,7 +173,7 @@ From them Y parameters calculate as follows \cite{leterme2020parameters}:
     \end{bmatrix}.
 \end{eqnarray}
 
-![Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.](assets/transmission_line.pdf){#fig-tl width=75%}
+![Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.](assets/transmission_line.jpg){#fig-tl width=75%}
 
 ## Code Explanation
 

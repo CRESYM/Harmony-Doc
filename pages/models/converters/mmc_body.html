@@ -336,25 +336,24 @@ i^{\Delta q} m_{\tau_d}^{\Sigma d}
 <section id="controller-dynamics" class="level3">
 <h3 class="anchored" data-anchor-id="controller-dynamics">Controller Dynamics</h3>
 <p>The voltage references in <span class="math inline">\(\eqref{eq:m_derive}\)</span> are obtained as outputs of the controllers and the thirteen differential equations stated in <span class="math inline">\(\eqref{eq:a}\)</span>, <span class="math inline">\(\eqref{eq:b}\)</span>, <span class="math inline">\(\eqref{eq:c}\)</span>, <span class="math inline">\(\eqref{eq:d}\)</span> , <span class="math inline">\(\eqref{eq:e}\)</span>, <span class="math inline">\(\eqref{eq:f}\)</span>, <span class="math inline">\(\eqref{eq:g}\)</span>. The controllers can specify the voltage references; however, by default, all voltage reference values are set to zero, except for <span class="math inline">\(v_{c,\mathrm{ref}}^{z}\)</span>, which is set to <span class="math inline">\(\frac{v_{dc}}{2}\)</span>. When the controller specifies the voltage references, additional differential equations are required to represent the PI controllers in the <span class="math inline">\(dqz\)</span> frames <span class="citation" data-cites="bergna2018generalized">Bergna-Diaz, Freytes, et al. (<a href="#ref-bergna2018generalized" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="sakinci2019generalized">Sakinci and Beerten (<a href="#ref-sakinci2019generalized" role="doc-biblioref">2019</a>)</span>,<span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>.</p>
-<div id="fig-MMC_control_architecture" class="quarto-layout-panel">
+<div id="fig-MMC_control_architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-MMC_control_architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="assets/MMC%20Controllers.png" class="img-fluid figure-img" style="width:100.0%"> (a) Inner and outer controllers with time delay</p>
+<div class="subfigure">
+<p><img src="assets/MMC%20Controllers.png" class="img-fluid figure-img" style="width:50.0%"> （a）Inner and outer controllers with time delay</p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="assets/PLL.png" class="img-fluid figure-img" style="width:100.0%"> (b) Phase-locked loop (PLL)</p>
+<div class="subfigure">
+<p><img src="assets/PLL.png" class="img-fluid figure-img" style="width:30.0%"> （b）Phase-locked loop (PLL)</p>
 </div>
+<div class="subfigure">
+<p><img src="assets/Generic%20PI%20Structure.png" class="img-fluid figure-img" style="width:30.0%"> （c）Generic PI controller structure</p>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="assets/Generic%20PI%20Structure.png" class="img-fluid figure-img" style="width:100.0%"> (c) Generic PI controller structure</p>
-</div>
+<div class="subfigure">
+<p><img src="assets/droop.jpg" class="img-fluid figure-img" style="width:50.0%"> （d）Droop controller</p>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MMC_control_architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: <img src="assets/droop.jpg" class="img-fluid figure-img" style="width:100.0%"> (d) Droop controller
+Figure&nbsp;2: Figure: MMC control architecture.
 </figcaption>
 </figure>
 </div>

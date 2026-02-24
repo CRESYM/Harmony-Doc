@@ -2,8 +2,8 @@
 layout: page 
 title: Cable
 tags: [Opensource, Cable]
-date: 31/10/2025
-last-updated: 12/30/2025
+date: 3/1/2025
+last-updated: 2/24/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
@@ -37,7 +37,7 @@ format:
 
 Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of $n$ cables, each with a maximum of three conducting layers and three insulation layers, as seen in @fig-cable. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: $r^c_i$ and $r^c_o$ as the conductor's inner and outer radius in meters, conductor relative permeability $\mu^c_r$, and conductor resistivity $\rho_c$ (in [$\Omega$m]). The insulator is described using the following parameters:  $r^i_i$ and $r^i_o$ are the insulator's inner and outer radius in meters, $\epsilon^i$ is the insulator's relative permittivity, and $\mu^i_r$ is the insulator's relative permeability.
 
-![Coaxial cable.](assets/cable.pdf){#fig-cable width=50%}
+![Coaxial cable.](assets/cable.jpg){#fig-cable width=50%}
 
 ### Conductor surface impedance
 
