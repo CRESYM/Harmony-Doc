@@ -2,8 +2,8 @@
 layout: page 
 title: PV Power Plant # be as specific as possible
 tags: [Opensource, Sources and Generators]
-date: 2026-01-14
-last-updated: 2026-01-14
+date: 1/14/2026
+last-updated: 3/7/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
