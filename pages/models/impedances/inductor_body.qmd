@@ -2,8 +2,8 @@
 layout: page 
 title: Inductor 
 tags: [Opensource, Inductor]
-date: 31/10/2025
-last-updated: 08/03/2024
+date: 2026-02-15
+last-updated: 3/7/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib

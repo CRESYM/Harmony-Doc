@@ -2,8 +2,8 @@
 layout: page 
 title: Admittance
 tags: [Opensource, Admittance]
-date: 31/10/2025
-last-updated: 08/03/2024
+date: 2025-11-05
+last-updated: 3/7/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib
