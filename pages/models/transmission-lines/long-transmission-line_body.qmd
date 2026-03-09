@@ -2,8 +2,8 @@
 layout: page 
 title: Long Transmission Line
 tags: [Opensource, Transmission Lines]
-date: 31/10/2025
-last-updated: 12/28/2025
+date: 2025-12-28
+last-updated: 3/9/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib
