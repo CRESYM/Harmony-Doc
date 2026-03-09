@@ -2,8 +2,8 @@
 layout: page 
 title: Optimal Power Flow # be as specific as possible
 tags: [Opensource, Optimal Power Flow Analysis, Power Flow Analysis]
-date: 05/01/2026
-last-updated: 05/01/2026
+date: 2026-02-20
+last-updated: 3/9/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
