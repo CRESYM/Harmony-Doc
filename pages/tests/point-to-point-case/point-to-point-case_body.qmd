@@ -2,8 +2,8 @@
 layout: page 
 title: Point to Point Case # be as specific as possible
 tags: [Opensource, Point to Point, Stability, OPF]
-date: 05/01/2026
-last-updated: 05/01/2026
+date: 2/23/2026
+last-updated: 3/24/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
