@@ -61,9 +61,9 @@ Y = \begin{bmatrix}
 
 In (\ref{eq:1}), $n$ is the number of phases. The Y matrix is diagonal because mutual coupling between phases is neglected.
 
-## Code explanation {#sec-code-explanation}
+## Code Explanation
 
-
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 <!--
 **Example:**
 

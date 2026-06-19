@@ -57,3 +57,6 @@ For example, a multi-phase system can be represented as: `Admittance("Z", 3, Den
 In this example, the Laplace operator `s` can be used to describe the frequency-dependent behavior of the system. The admittance may also be represented as a transfer function in terms of `s`, which can be either polynomial, nonlinear or include non-integer powers of `s`. For example, a time delay might be represented as an exponential function of `s`.
 
 ## Code Explanation
+
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).

@@ -96,6 +96,8 @@ These expressions include the field first-order dynamics through $T_f=L_f/R_f$ a
 
 ## Code Explanation
 
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 <!--
 **Example:**
 

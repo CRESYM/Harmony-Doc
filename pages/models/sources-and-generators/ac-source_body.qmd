@@ -86,6 +86,8 @@ The off-diagonal negative terms (e.g., $-Y_{ii}$) are introduced to account for 
 
 ## Code Explanation
 
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 <!--
 **Example:**
 

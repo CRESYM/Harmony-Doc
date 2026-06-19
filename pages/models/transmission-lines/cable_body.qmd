@@ -128,3 +128,6 @@ The cable Y parameters are calculated from the distributed-parameter transmissio
 This formulation is consistent with the implementation strategy adopted in PowerImpedanceACDC @powerimpedanceacdc and the parameter determination methodology summarized in @martinez2017powersystem.
 
 ## Code Explanation
+
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).

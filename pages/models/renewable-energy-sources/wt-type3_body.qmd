@@ -162,6 +162,8 @@ and the dq admittance is estimated as:
 
 ## Code Explanation
 
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 ## References
 
 ::: {#refs}

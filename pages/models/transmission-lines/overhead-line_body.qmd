@@ -165,6 +165,8 @@ From them Y parameters calculate as follows \cite{leterme2020parameters}:
 
 ## Code Explanation
 
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 ## References
 
 ::: {#refs}

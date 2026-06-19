@@ -129,6 +129,8 @@ The results of the code execution in Harmony are available in Fig. @fig-wt4-bode
 
 ## Code Explanation
 
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
 ## References
 
 ::: {#refs}

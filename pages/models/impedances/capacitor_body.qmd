@@ -97,3 +97,5 @@ The provided `writeMNAmatrix` implementation, however, sets up equations of a sl
  This implies the row for the capacitor might be formulated as $V_{n1} - V_{n2} = V_C$, and then the KCL equations use $I_C = C \cdot V_C$ and $-I_C = -C \cdot V_C$.
 
 ## Code Explanation
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).

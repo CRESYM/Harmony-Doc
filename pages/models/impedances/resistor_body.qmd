@@ -81,3 +81,6 @@ The `Resistor` class supports two primary mathematical representations, dependin
  This is the standard nodal admittance stamp for a resistor, which directly accounts for the current flow based on voltage differences.
 
 ## Code Explanation
+
+
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
