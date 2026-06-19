@@ -3,7 +3,7 @@ layout: page
 title: MMC # be as specific as possible
 tags: [Opensource, Sources and Generators]
 date: 2026-01-01
-last-updated: 3/7/2026
+last-updated: 6/19/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekić"
 bibliography: references.bib
@@ -453,22 +453,6 @@ s C_{dc}
 \right)
 \end{equation}
 
-### Impedance Measurement
-
-The system diagram of a grid-connected MMC in a monopolar configuration used for impedance measurement is shown in @fig-measurement_config. For simplicity, the AC- and DC-side impedances are depicted together; however, in actual simulations, they must be measured independently.
-
-A similar configuration is replicated in the RSCAD simulation running on real-time $\text{RTDS}$ simulators. The MMC and its control system are executed on hardware GTFPGA modules within the $\text{RTDS}$ simulator, operating in real-time synchronization with the simulator. The *rtds\_ss\_MMC\_GMMX\_FPGA\_eb* model is employed for this implementation \cite{maguire2013efficient,ou2014research}.
-
-To meet the computational requirements, each leg of the MMC is simulated on a separate GTFPGA module, with two additional modules dedicated to capacitor voltage balancing and the lower-level controller. These modules exchange submodule capacitor voltage values and firing sequences via two full-duplex optical fibers connected to the MMC lower-level controller. Consequently, the VSC converter is implemented using a total of five GTFPGA modules. This setup is used to conduct impedance measurements.
-
-![AC and DC side impedance measurement configuration.](assets/Impedance%20Measurement%20Circuit%20Diagram%20(Paper).png){#fig-measurement_config width=80%}
-
-
-The basic principle for measuring both AC- and DC-side impedances is similar. First, the system is brought to a steady state at a specific operating point. Then, a perturbation voltage $V^p$ is injected into the system, and the resulting voltages and currents at the corresponding terminals are measured.
-
-The detailed procedure for measuring and computing the AC-side impedance in the $dq$ frame is illustrated in @fig-ac_measurement_steps. Since this study focuses exclusively on the impedances of MMCs, $R_g$ and $L_g$ are set to zero. The *Harmonic Scan* component in RSCAD is used to inject perturbation signals and perform the required post-processing steps to obtain impedance values @qi2020identification, @jiang1995frequency， @qi2017evaluation.
-
-![Steps performed for measuring AC-side impedance in the $dq$ frame.](assets/Impedance%20Measurement%20Flow%20Diagram%20(Paper).png){#fig-ac_measurement_steps width=80%}
 
 ## Code Explanation
 

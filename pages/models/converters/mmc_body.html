@@ -502,34 +502,6 @@ s C_{dc}
 \right)
 \end{equation}\]</span></p>
 </section>
-<section id="impedance-measurement" class="level3">
-<h3 class="anchored" data-anchor-id="impedance-measurement">Impedance Measurement</h3>
-<p>The system diagram of a grid-connected MMC in a monopolar configuration used for impedance measurement is shown in <a href="#fig-measurement_config" class="quarto-xref">Figure&nbsp;3</a>. For simplicity, the AC- and DC-side impedances are depicted together; however, in actual simulations, they must be measured independently.</p>
-<p>A similar configuration is replicated in the RSCAD simulation running on real-time <span class="math inline">\(\text{RTDS}\)</span> simulators. The MMC and its control system are executed on hardware GTFPGA modules within the <span class="math inline">\(\text{RTDS}\)</span> simulator, operating in real-time synchronization with the simulator. The <em>rtds_ss_MMC_GMMX_FPGA_eb</em> model is employed for this implementation .</p>
-<p>To meet the computational requirements, each leg of the MMC is simulated on a separate GTFPGA module, with two additional modules dedicated to capacitor voltage balancing and the lower-level controller. These modules exchange submodule capacitor voltage values and firing sequences via two full-duplex optical fibers connected to the MMC lower-level controller. Consequently, the VSC converter is implemented using a total of five GTFPGA modules. This setup is used to conduct impedance measurements.</p>
-<div id="fig-measurement_config" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-measurement_config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/Impedance%20Measurement%20Circuit%20Diagram%20(Paper).png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-measurement_config-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: AC and DC side impedance measurement configuration.
-</figcaption>
-</figure>
-</div>
-<p>The basic principle for measuring both AC- and DC-side impedances is similar. First, the system is brought to a steady state at a specific operating point. Then, a perturbation voltage <span class="math inline">\(V^p\)</span> is injected into the system, and the resulting voltages and currents at the corresponding terminals are measured.</p>
-<p>The detailed procedure for measuring and computing the AC-side impedance in the <span class="math inline">\(dq\)</span> frame is illustrated in <a href="#fig-ac_measurement_steps" class="quarto-xref">Figure&nbsp;4</a>. Since this study focuses exclusively on the impedances of MMCs, <span class="math inline">\(R_g\)</span> and <span class="math inline">\(L_g\)</span> are set to zero. The <em>Harmonic Scan</em> component in RSCAD is used to inject perturbation signals and perform the required post-processing steps to obtain impedance values <span class="citation" data-cites="qi2020identification">Qi et al. (<a href="#ref-qi2020identification" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="jiang1995frequency">Jiang and Gole (<a href="#ref-jiang1995frequency" role="doc-biblioref">1995</a>)</span>， <span class="citation" data-cites="qi2017evaluation">Qi et al. (<a href="#ref-qi2017evaluation" role="doc-biblioref">2017</a>)</span>.</p>
-<div id="fig-ac_measurement_steps" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ac_measurement_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/Impedance%20Measurement%20Flow%20Diagram%20(Paper).png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ac_measurement_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Steps performed for measuring AC-side impedance in the <span class="math inline">\(dq\)</span> frame.
-</figcaption>
-</figure>
-</div>
-</section>
 </section>
 <section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
@@ -546,20 +518,11 @@ Bergna-Diaz, Gilbert, Daniele Zonetti, Santiago Sanchez, Romeo Ortega, and Elisa
 <div id="ref-freytes2017small" class="csl-entry" role="listitem">
 Freytes, Julian. 2017. <span>“Small-Signal Stability Analysis of Modular Multilevel Converters and Application to MMC–Based Multi-Terminal DC Grids.”</span> Ph.D. dissertation, École Centrale de Lille.
 </div>
-<div id="ref-jiang1995frequency" class="csl-entry" role="listitem">
-Jiang, Xiao, and AM Gole. 1995. <span>“A Frequency Scanning Method for the Identification of Harmonic Instabilities in HVDC Systems.”</span> <em>IEEE Transactions on Power Delivery</em> 10 (4): 1875–81. <a href="https://doi.org/10.1109/61.473368">https://doi.org/10.1109/61.473368</a>.
-</div>
 <div id="ref-lekic2020initialisation" class="csl-entry" role="listitem">
 Lekić, Aleksandra, Hakan Ergun, and Jef Beerten. 2020. <span>“Initialisation of a Hybrid AC/DC Power System for Harmonic Stability Analysis Using a Power Flow Formulation.”</span> <em>High Voltage</em> 5 (5): 534–42. <a href="https://doi.org/10.1049/hve.2020.0066">https://doi.org/10.1049/hve.2020.0066</a>.
 </div>
 <div id="ref-mogensen2020nlsolve" class="csl-entry" role="listitem">
 Mogensen, PK, K Carlsson, S Villemot, S Lyon, M Gomez, C Rackauckas, T Holy, et al. 2020. <span>“NLsolve. Jl.”</span> Zenodo.
-</div>
-<div id="ref-qi2020identification" class="csl-entry" role="listitem">
-Qi, Yi, Hui Ding, Yi Zhang, Xianghua Shi, and Aniruddha M Gole. 2020. <span>“Identification of Sub-Synchronous Interaction in MMC Systems Using Frequency Scanning.”</span> In <em>2020 IEEE Power &amp; Energy Society General Meeting (PESGM)</em>, 1–5. IEEE. <a href="https://doi.org/10.1109/PESGM41954.2020.9281476">https://doi.org/10.1109/PESGM41954.2020.9281476</a>.
-</div>
-<div id="ref-qi2017evaluation" class="csl-entry" role="listitem">
-Qi, Yi, Aniruddha Gole, Hui Ding, and Yi Zhang. 2017. <span>“Evaluation of the Accuracy of Real-Time Digital Simulator Voltage Source Converter Models Determined from Frequency Scanning.”</span> In <em>IPST Conference in Seoul</em>.
 </div>
 <div id="ref-sakinci2019generalized" class="csl-entry" role="listitem">
 Sakinci, Özgür Can, and Jef Beerten. 2019. <span>“Generalized Dynamic Phasor Modeling of the MMC for Small-Signal Stability Analysis.”</span> <em>IEEE Transactions on Power Delivery</em> 34 (3): 991–1000. <a href="https://doi.org/10.1109/TPWRD.2019.2898468">https://doi.org/10.1109/TPWRD.2019.2898468</a>.
