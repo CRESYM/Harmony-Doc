@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Cable
 tags: [Opensource, Cable]
 date: 2025-12-30
@@ -21,9 +21,9 @@ format:
         <script>
         MathJax = {
           tex: {
-            tags: 'ams',        
-            tagSide: 'right',   
-            tagIndent: '0em'    
+            tags: 'ams',
+            tagSide: 'right',
+            tagIndent: '0em'
           }
         };
         </script>
@@ -35,7 +35,9 @@ format:
 
 ## Mathematical Modeling
 
-Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of $n$ cables, each with a maximum of three conducting layers and three insulation layers, as seen in @fig-cable. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: $r^c_i$ and $r^c_o$ as the conductor's inner and outer radius in meters, conductor relative permeability $\mu^c_r$, and conductor resistivity $\rho_c$ (in [$\Omega$m]). The insulator is described using the following parameters:  $r^i_i$ and $r^i_o$ are the insulator's inner and outer radius in meters, $\epsilon^i$ is the insulator's relative permittivity, and $\mu^i_r$ is the insulator's relative permeability.
+The mathematical formulation adopted for cable modeling follows the classical impedance-based parameter determination approach for coaxial cable systems presented in @ametani1980general @de1987computation @martinez2017powersystem. The implementation in Harmony is also consistent with the methodology adopted in the open-source package PowerImpedanceACDC, which provides impedance-based representations for frequency-domain stability analysis of hybrid AC/DC power systems @powerimpedanceacdc.
+
+Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of $n$ cables, each with a maximum of three conducting layers and three insulation layers, as seen in @fig-cable. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: $r^c_i$ and $r^c_o$ as the conductor's inner and outer radius in meters, conductor relative permeability $\mu^c_r$, and conductor resistivity $\rho_c$ (in [$\Omega$m]). The insulator is described using the following parameters: $r^i_i$ and $r^i_o$ are the insulator's inner and outer radius in meters, $\epsilon^i$ is the insulator's relative permittivity, and $\mu^i_r$ is the insulator's relative permeability.
 
 ![Coaxial cable.](assets/cable.png){#fig-cable width=50%}
 
@@ -47,7 +49,8 @@ A hollow conductor surface impedance is given by:
 \nonumber Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_o \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  & \mbox{for outer surface}, \\
 Z_{ab} =  \frac{\rho^c m}{\pi (r^c_i + r^c_o)} \, \operatorname{csch}(m(r^c_o - r^c_i)) \; \left[\frac{\Omega}{\text{m}}\right],
 \end{eqnarray}
-where $m = \sqrt{j\omega \mu^c_r}$
+where $m = \sqrt{j\omega \mu^c_r}$.
+
 For a non-hollow conductor, the outer surface impedance is
 \begin{eqnarray}
 Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(0.733 mr^c_o) + \frac{0.3179 \rho^c}{\pi {r^c_o}^2} \; \left[\frac{\Omega}{\text{m}}\right].
@@ -73,17 +76,17 @@ r_i & \quad \mbox{radius of the cable }i,
 \nonumber &H = \left\{ \begin{array}{ll}
 y_i + y_j & \quad \mbox{for cables } i \neq j, \\
 2y_i & \quad \mbox{for the cable }i,
-\end{array} \right. \\
+\end{array} \right.
 \end{eqnarray}
 and $\gamma \approx 0.5772156649$ being Euler's constant.
-\end{itemize}
 
-According to \cite{ametani1980general, de1987computation}, one cable is represented with its series impedance $\mathbf{Z}_{ii}$ matrix. 
+According to @ametani1980general @de1987computation @martinez2017powersystem, one cable is represented by its series impedance $\mathbf{Z}_{ii}$ matrix.
+
 Each matrix $\mathbf{Z}_{ii}$ has the size $n_c \times n_c$ and its entries for $j \in \{1, \ldots, n_c-1\}$ are given by
 \begin{eqnarray}
 \nonumber \mathbf{Z}_{ii} \left\langle j,j \right\rangle = Z^j_{bb} + Z^j_i + Z^{j+1}_{aa}, \\ 
-\nonumber \mathbf{Z}_{ii} \left\langle j,j+1 \right\rangle = Z_{ii}\left\langle j+1,j \right\rangle = - Z^{j+1}_{ab}, \\ 
-\mathbf{Z}_{ii} \left\langle n_c, n_c \right\rangle = Z^{n_c}_{bb} + Z^{n_c}_i + Z^{ii}_g, 
+\nonumber \mathbf{Z}_{ii} \left\langle j,j+1 \right\rangle = \mathbf{Z}_{ii}\left\langle j+1,j \right\rangle = - Z^{j+1}_{ab}, \\ 
+\mathbf{Z}_{ii} \left\langle n_c, n_c \right\rangle = Z^{n_c}_{bb} + Z^{n_c}_i + Z^{ii}_g.
 \end{eqnarray}
 and otherwise, the matrix entries are 0.
 
@@ -107,12 +110,13 @@ P_a & P_a & P_a
 \begin{bmatrix}
 P_{ii} & P_{ii} & P_{ii} \\
 P_{ii} & P_{ii} & P_{ii} \\
-P_{ii} & P_{ii} & P_{ii} 
+P_{ii} & P_{ii} & P_{ii}
 \end{bmatrix},
 \end{equation}
-where $P_{c,s,a}$ belong respectively to core, shield and armor insulators and have the following values: $P = \frac{\log(r_o/r_i)}{2\pi\epsilon}$ and $P_{ii} = \frac{\log(2h_i/r)}{2\pi\epsilon_0}$ is an earth return. Matrices $\mathbf{P}_{ij}$, for $i \neq j$,have all components equal to $P_{ij} = \frac{\log(D_2/D_1)}{2\pi\epsilon_0}$, where $D_1 = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $D_2 = \sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}$ \cite{ametani1980general}.
+where $P_{c,s,a}$ belong respectively to core, shield and armor insulators and have the following values: $P = \frac{\log(r_o/r_i)}{2\pi\epsilon}$ and $P_{ii} = \frac{\log(2h_i/r)}{2\pi\epsilon_0}$ is an earth return. Matrices $\mathbf{P}_{ij}$, for $i \neq j$, have all components equal to $P_{ij} = \frac{\log(D_2/D_1)}{2\pi\epsilon_0}$, where $D_1 = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $D_2 = \sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}$ @ametani1980general @martinez2017powersystem.
 
-Y parameters are calculated the same as in the equation that
+The cable Y parameters are calculated from the distributed-parameter transmission-line formulation:
+
 \begin{eqnarray}
     Y = \begin{bmatrix}
         \textbf{Y}_c \operatorname{coth}(\Gamma l) & -\textbf{Y}_c \operatorname{cosech}(\Gamma l) \\
@@ -120,5 +124,7 @@ Y parameters are calculated the same as in the equation that
     \end{bmatrix}.
     \label{eq:tl_y_params}
 \end{eqnarray}
+
+This formulation is consistent with the implementation strategy adopted in PowerImpedanceACDC @powerimpedanceacdc and the parameter determination methodology summarized in @martinez2017powersystem.
 
 ## Code Explanation

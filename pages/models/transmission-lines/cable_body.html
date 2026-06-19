@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="cable_body_files/libs/clipboard/clipboard.min.js"></script>
@@ -131,6 +151,7 @@ Tip
 </div>
 <section id="mathematical-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
+<p>The mathematical formulation adopted for cable modeling follows the classical impedance-based parameter determination approach for coaxial cable systems presented in <span class="citation" data-cites="ametani1980general">Ametani (<a href="#ref-ametani1980general" role="doc-biblioref">1980</a>)</span> <span class="citation" data-cites="de1987computation">Arizon and Dommel (<a href="#ref-de1987computation" role="doc-biblioref">1987</a>)</span> <span class="citation" data-cites="martinez2017powersystem">Martinez-Velasco (<a href="#ref-martinez2017powersystem" role="doc-biblioref">2017</a>)</span>. The implementation in Harmony is also consistent with the methodology adopted in the open-source package PowerImpedanceACDC, which provides impedance-based representations for frequency-domain stability analysis of hybrid AC/DC power systems <span class="citation" data-cites="powerimpedanceacdc">Electa (<a href="#ref-powerimpedanceacdc" role="doc-biblioref">2025</a>)</span>.</p>
 <p>Cables can be insulated or pipe-type coaxial cables. At the moment, only a group of coaxial cables is implemented in the package. A cable group consists of <span class="math inline">\(n\)</span> cables, each with a maximum of three conducting layers and three insulation layers, as seen in <a href="#fig-cable" class="quarto-xref">Figure&nbsp;1</a>. The conducting layers of the cable are denoted as the core, sheath, and armor. There are insulators between the conducting layers, except for the last conductor, where the insulator is not a strict necessity but is common. For each conductor, the following set of parameters is given: <span class="math inline">\(r^c_i\)</span> and <span class="math inline">\(r^c_o\)</span> as the conductor’s inner and outer radius in meters, conductor relative permeability <span class="math inline">\(\mu^c_r\)</span>, and conductor resistivity <span class="math inline">\(\rho_c\)</span> (in [<span class="math inline">\(\Omega\)</span>m]). The insulator is described using the following parameters: <span class="math inline">\(r^i_i\)</span> and <span class="math inline">\(r^i_o\)</span> are the insulator’s inner and outer radius in meters, <span class="math inline">\(\epsilon^i\)</span> is the insulator’s relative permittivity, and <span class="math inline">\(\mu^i_r\)</span> is the insulator’s relative permeability.</p>
 <div id="fig-cable" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -148,7 +169,8 @@ Figure&nbsp;1: Coaxial cable.
 \nonumber Z_{aa} = \frac{\rho_c m}{2\pi r^c_i} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_i \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for inner surface}, \\
 \nonumber Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(m(r^c_o - r^c_i)) + \frac{\rho^c}{2\pi r^c_o \, (r^c_i + r^c_o)} \; \left[\frac{\Omega}{\text{m}}\right]  &amp; \mbox{for outer surface}, \\
 Z_{ab} =  \frac{\rho^c m}{\pi (r^c_i + r^c_o)} \, \operatorname{csch}(m(r^c_o - r^c_i)) \; \left[\frac{\Omega}{\text{m}}\right],
-\end{eqnarray}\]</span> where <span class="math inline">\(m = \sqrt{j\omega \mu^c_r}\)</span> For a non-hollow conductor, the outer surface impedance is <span class="math display">\[\begin{eqnarray}
+\end{eqnarray}\]</span> where <span class="math inline">\(m = \sqrt{j\omega \mu^c_r}\)</span>.</p>
+<p>For a non-hollow conductor, the outer surface impedance is <span class="math display">\[\begin{eqnarray}
 Z_{bb} = \frac{\rho^c m}{2\pi r^c_o} \, \coth(0.733 mr^c_o) + \frac{0.3179 \rho^c}{\pi {r^c_o}^2} \; \left[\frac{\Omega}{\text{m}}\right].
 \end{eqnarray}\]</span></p>
 <p>The insulator layer between two conductors has an impedance</p>
@@ -166,12 +188,13 @@ r_i &amp; \quad \mbox{radius of the cable }i,
 \nonumber &amp;H = \left\{ \begin{array}{ll}
 y_i + y_j &amp; \quad \mbox{for cables } i \neq j, \\
 2y_i &amp; \quad \mbox{for the cable }i,
-\end{array} \right. \\
-\end{eqnarray}\]</span> and <span class="math inline">\(\gamma \approx 0.5772156649\)</span> being Euler’s constant. \end{itemize}</p>
-<p>According to , one cable is represented with its series impedance <span class="math inline">\(\mathbf{Z}_{ii}\)</span> matrix. Each matrix <span class="math inline">\(\mathbf{Z}_{ii}\)</span> has the size <span class="math inline">\(n_c \times n_c\)</span> and its entries for <span class="math inline">\(j \in \{1, \ldots, n_c-1\}\)</span> are given by <span class="math display">\[\begin{eqnarray}
+\end{array} \right.
+\end{eqnarray}\]</span> and <span class="math inline">\(\gamma \approx 0.5772156649\)</span> being Euler’s constant.</p>
+<p>According to <span class="citation" data-cites="ametani1980general">Ametani (<a href="#ref-ametani1980general" role="doc-biblioref">1980</a>)</span> <span class="citation" data-cites="de1987computation">Arizon and Dommel (<a href="#ref-de1987computation" role="doc-biblioref">1987</a>)</span> <span class="citation" data-cites="martinez2017powersystem">Martinez-Velasco (<a href="#ref-martinez2017powersystem" role="doc-biblioref">2017</a>)</span>, one cable is represented by its series impedance <span class="math inline">\(\mathbf{Z}_{ii}\)</span> matrix.</p>
+<p>Each matrix <span class="math inline">\(\mathbf{Z}_{ii}\)</span> has the size <span class="math inline">\(n_c \times n_c\)</span> and its entries for <span class="math inline">\(j \in \{1, \ldots, n_c-1\}\)</span> are given by <span class="math display">\[\begin{eqnarray}
 \nonumber \mathbf{Z}_{ii} \left\langle j,j \right\rangle = Z^j_{bb} + Z^j_i + Z^{j+1}_{aa}, \\
-\nonumber \mathbf{Z}_{ii} \left\langle j,j+1 \right\rangle = Z_{ii}\left\langle j+1,j \right\rangle = - Z^{j+1}_{ab}, \\
-\mathbf{Z}_{ii} \left\langle n_c, n_c \right\rangle = Z^{n_c}_{bb} + Z^{n_c}_i + Z^{ii}_g,
+\nonumber \mathbf{Z}_{ii} \left\langle j,j+1 \right\rangle = \mathbf{Z}_{ii}\left\langle j+1,j \right\rangle = - Z^{j+1}_{ab}, \\
+\mathbf{Z}_{ii} \left\langle n_c, n_c \right\rangle = Z^{n_c}_{bb} + Z^{n_c}_i + Z^{ii}_g.
 \end{eqnarray}\]</span> and otherwise, the matrix entries are 0.</p>
 <p>Mutual surface impedances between the cables are given by the matrix <span class="math inline">\(\mathbf{Z}_{ij}\)</span> having all components equal to <span class="math inline">\(Z^{ij}_g\)</span>.</p>
 <p>The shunt admittance matrix can be estimated as <span class="math inline">\(\mathbf{Y} = s\mathbf{P}^{-1}\)</span> and matrix <span class="math inline">\(P\)</span>, which has the form <span class="math display">\[\begin{equation*}
@@ -191,21 +214,37 @@ P_{ii} &amp; P_{ii} &amp; P_{ii} \\
 P_{ii} &amp; P_{ii} &amp; P_{ii} \\
 P_{ii} &amp; P_{ii} &amp; P_{ii}
 \end{bmatrix},
-\end{equation}\]</span> where <span class="math inline">\(P_{c,s,a}\)</span> belong respectively to core, shield and armor insulators and have the following values: <span class="math inline">\(P = \frac{\log(r_o/r_i)}{2\pi\epsilon}\)</span> and <span class="math inline">\(P_{ii} = \frac{\log(2h_i/r)}{2\pi\epsilon_0}\)</span> is an earth return. Matrices <span class="math inline">\(\mathbf{P}_{ij}\)</span>, for <span class="math inline">\(i \neq j\)</span>,have all components equal to <span class="math inline">\(P_{ij} = \frac{\log(D_2/D_1)}{2\pi\epsilon_0}\)</span>, where <span class="math inline">\(D_1 = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}\)</span> and <span class="math inline">\(D_2 = \sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}\)</span> .</p>
-<p>Y parameters are calculated the same as in the equation that <span class="math display">\[\begin{eqnarray}
+\end{equation}\]</span> where <span class="math inline">\(P_{c,s,a}\)</span> belong respectively to core, shield and armor insulators and have the following values: <span class="math inline">\(P = \frac{\log(r_o/r_i)}{2\pi\epsilon}\)</span> and <span class="math inline">\(P_{ii} = \frac{\log(2h_i/r)}{2\pi\epsilon_0}\)</span> is an earth return. Matrices <span class="math inline">\(\mathbf{P}_{ij}\)</span>, for <span class="math inline">\(i \neq j\)</span>, have all components equal to <span class="math inline">\(P_{ij} = \frac{\log(D_2/D_1)}{2\pi\epsilon_0}\)</span>, where <span class="math inline">\(D_1 = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}\)</span> and <span class="math inline">\(D_2 = \sqrt{(x_i-x_j)^2 + (y_i+y_j)^2}\)</span> <span class="citation" data-cites="ametani1980general">Ametani (<a href="#ref-ametani1980general" role="doc-biblioref">1980</a>)</span> <span class="citation" data-cites="martinez2017powersystem">Martinez-Velasco (<a href="#ref-martinez2017powersystem" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The cable Y parameters are calculated from the distributed-parameter transmission-line formulation:</p>
+<p><span class="math display">\[\begin{eqnarray}
     Y = \begin{bmatrix}
         \textbf{Y}_c \operatorname{coth}(\Gamma l) &amp; -\textbf{Y}_c \operatorname{cosech}(\Gamma l) \\
         -\textbf{Y}_c \operatorname{cosech}(\Gamma l) &amp; \textbf{Y}_c \operatorname{coth}(\Gamma l)
     \end{bmatrix}.
     \label{eq:tl_y_params}
 \end{eqnarray}\]</span></p>
+<p>This formulation is consistent with the implementation strategy adopted in PowerImpedanceACDC <span class="citation" data-cites="powerimpedanceacdc">Electa (<a href="#ref-powerimpedanceacdc" role="doc-biblioref">2025</a>)</span> and the parameter determination methodology summarized in <span class="citation" data-cites="martinez2017powersystem">Martinez-Velasco (<a href="#ref-martinez2017powersystem" role="doc-biblioref">2017</a>)</span>.</p>
 </section>
 </section>
-<section id="code-explanation" class="level2">
-<h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
+<section id="code-explanation" class="level2 unnumbered">
+
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Code Explanation</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ametani1980general" class="csl-entry" role="listitem">
+Ametani, A. 1980. <span>“A General Formulation of Impedance and Admittance of Cables.”</span> <em>IEEE Transactions on Power Apparatus and Systems</em> PAS-99 (3): 902–10. <a href="https://doi.org/10.1109/TPAS.1980.319718">https://doi.org/10.1109/TPAS.1980.319718</a>.
+</div>
+<div id="ref-de1987computation" class="csl-entry" role="listitem">
+Arizon, Paloma de, and Hermann W. Dommel. 1987. <span>“Computation of Cable Impedances Based on Subdivision of Conductors.”</span> <em>IEEE Transactions on Power Delivery</em> 2 (1): 21–27. <a href="https://doi.org/10.1109/TPWRD.1987.4308068">https://doi.org/10.1109/TPWRD.1987.4308068</a>.
+</div>
+<div id="ref-powerimpedanceacdc" class="csl-entry" role="listitem">
+Electa. 2025. <span>“PowerImpedanceACDC: Impedance-Based Stability Analyses.”</span> <a href="https://github.com/Electa-Git/PowerImpedanceACDC.jl" class="uri">https://github.com/Electa-Git/PowerImpedanceACDC.jl</a>.
+</div>
+<div id="ref-martinez2017powersystem" class="csl-entry" role="listitem">
+Martinez-Velasco, Juan A. 2017. <em>Power System Transients: Parameter Determination</em>. CRC Press.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
