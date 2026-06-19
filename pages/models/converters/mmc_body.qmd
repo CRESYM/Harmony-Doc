@@ -455,6 +455,7 @@ s C_{dc}
 
 
 ## Code Explanation
+https://github.com/CRESYM/Harmony/tree/main/docs/manual
 
 ## References
 
