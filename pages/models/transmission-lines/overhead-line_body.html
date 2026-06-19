@@ -151,26 +151,8 @@ Tip
 </div>
 <section id="mathematical-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-modeling">Mathematical Modeling</h2>
-<p>Based on realizations of the transmission line as defined in PSCAD (see <a href="#fig-tl-pscad" class="quarto-xref">Figure&nbsp;1</a>), five possible realizations are defined as:</p>
-<ol type="1">
-<li>flat (horizontal, which presents a flat configuration without ground wires),</li>
-<li>vertical,</li>
-<li>delta (for at least three phases),</li>
-<li>offset (for at least three phases),</li>
-<li>concentric (for at least three phases).</li>
-</ol>
-<p>Besides, the conductor positions can be added manually as absolute <span class="math inline">\((x,y)\)</span> positions.</p>
-<div id="fig-tl-pscad" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tl-pscad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/tl.png" class="img-fluid figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tl-pscad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: PSCAD overhead line organization: 1) single conductor with groundwire; 2) single conductor; 3) 2 conductors flat; 4) 3 conductors flat; 5) 3 conductors delta; 6) 3 conductors horizontal; 7) 3 conductors vertical; 8) 3 conductors concentric; 9) 3 conductors offset.
-</figcaption>
-</figure>
-</div>
-<p>Thus, the simulator enables the creation of overhead lines with the conductors having the properties <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> presented in the table <a href="#tbl-ohl-conductors" class="quarto-xref">Table&nbsp;1</a>. <strong>Ground wires</strong> have the properties presented in Table <a href="#tbl-ohl-groundwires" class="quarto-xref">Table&nbsp;2</a>.</p>
+<p>The overhead transmission line model is constructed using the procedure from <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> and follows the previously developed code of the project authors <span class="citation" data-cites="PowerImpedanceACDC2025">Electa (<a href="#ref-PowerImpedanceACDC2025" role="doc-biblioref">2025</a>)</span>. The model supports several conductor layout options, including flat, vertical, delta, offset, and concentric configurations. For greater flexibility, conductor positions can also be specified manually using absolute <span class="math inline">\((x,y)\)</span> coordinates.</p>
+<p>The simulator enables the creation of overhead lines using the conductor properties summarized in <a href="#tbl-ohl-conductors" class="quarto-xref">Table&nbsp;1</a>. The corresponding ground-wire properties are summarized in <a href="#tbl-ohl-groundwires" class="quarto-xref">Table&nbsp;2</a>.</p>
 <div id="tbl-ohl-conductors" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ohl-conductors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -250,7 +232,6 @@ Table&nbsp;1: OHL conductor parameters
 </div>
 </figure>
 </div>
-<p>The transmission line model is constructed using the procedure from <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> and in following the previously developed code of the project authors . The overhead transmission line consists of <span class="math inline">\(n_b\)</span> including sub-conductors, stranding, etc. and <span class="math inline">\(n_g\)</span> ground wires.</p>
 <div id="tbl-ohl-groundwires" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ohl-groundwires-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -302,8 +283,8 @@ Table&nbsp;2: OHL ground wire parameters
 </div>
 </figure>
 </div>
-<p>The transmission line model is constructed using the procedure from <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span> and in following the previously developed code of the project authors <span class="citation" data-cites="PowerImpedanceACDC2025">Electa (<a href="#ref-PowerImpedanceACDC2025" role="doc-biblioref">2025</a>)</span>. The overhead transmission line consists of <span class="math inline">\(n_b\)</span> including sub-conductors, stranding, etc. and <span class="math inline">\(n_g\)</span> ground wires.</p>
-<p>Each line/conductor positioned as <span class="math inline">\(x_c\)</span> relatively starting from the central tower position and <span class="math inline">\(y_c\)</span> vertically, measured from ground, with the sag at the midpoint between towers <span class="math inline">\(d_{sag}\)</span>, see <a href="#fig-tl" class="quarto-xref">Figure&nbsp;2</a>. Thus, the modified vertical position is used in calculations as <span class="math inline">\(\hat{y}_c = y_c - \frac{2}{3} \, d_{sag}\)</span>. The conductor is formed using <span class="math inline">\(n_{sb}\)</span> sub-conductors grouped in the bundle, where all sub-conductors are grouped using a symmetrical equidistant pattern with the distance between the two nearest sub-conductors being <span class="math inline">\(d_{bc}\)</span>, or a bundle spacing. Using conductor position, the position of the each sub-conductor can be estimated. Knowing the angle between two sub-conductors on the circle and its radius</p>
+<p>The overhead transmission line consists of <span class="math inline">\(n_b\)</span> conductor bundles, including their sub-conductors and stranding arrangements, and <span class="math inline">\(n_g\)</span> ground wires.</p>
+<p>Each conductor is positioned horizontally at <span class="math inline">\(x_c\)</span> relative to the tower center and vertically at <span class="math inline">\(y_c\)</span> above ground. Considering the sag at the midpoint between towers, denoted by <span class="math inline">\(d_{sag}\)</span>, the modified vertical position used in the calculations is <span class="math inline">\(\hat{y}_c = y_c - \frac{2}{3} \, d_{sag}\)</span>, as shown in <a href="#fig-tl" class="quarto-xref">Figure&nbsp;1</a>. The conductor is formed using <span class="math inline">\(n_{sb}\)</span> sub-conductors grouped in the bundle, where all sub-conductors are grouped using a symmetrical equidistant pattern with the distance between the two nearest sub-conductors being <span class="math inline">\(d_{bc}\)</span>, or a bundle spacing. Using the conductor position, the position of each sub-conductor can be estimated. Knowing the angle between two sub-conductors on the circle and its radius</p>
 <p><span class="math display">\[\begin{eqnarray}
 \nonumber \varphi = \frac{360^\circ}{n_{sb}}, \\
 r = \frac{d_{sb}}{2 \sin(\varphi/2)},
@@ -312,7 +293,7 @@ r = \frac{d_{sb}}{2 \sin(\varphi/2)},
 y_{bc} = y_c + r \sin(\varphi_s + k \, \varphi) - \frac{2}{3} \, d_{sag},
 \end{eqnarray}\]</span></p>
 <p>for <span class="math inline">\(k \in \{1, 2, ..., n_{bc}\}\)</span>. If the number of sub-conductors is equal to one, its position is given by <span class="math inline">\((x_c, \hat{y}_c)\)</span>. Each conductor is characterized by the relative permeability of the material <span class="math inline">\(\mu_r\)</span>, the conductor dc resistance <span class="math inline">\(R_{dc}\)</span>, and the radius <span class="math inline">\(r_i\)</span>.</p>
-<p>Ground wires are modeled similarly, represented with their relative position <span class="math inline">\((x_g,y_g)\)</span>, radius <span class="math inline">\(r_g\)</span>, dc resistance <span class="math inline">\(R_{gdc}\)</span>, and relative permeability of the material <span class="math inline">\(\mu_r\)</span>.</p>
+<p>Ground wires are modeled similarly and are represented by their relative position <span class="math inline">\((x_g,y_g)\)</span>, radius <span class="math inline">\(r_g\)</span>, dc resistance <span class="math inline">\(R_{gdc}\)</span>, and relative permeability <span class="math inline">\(\mu_r\)</span>.</p>
 <p>Earth parameters are given with permeability <span class="math inline">\(\mu_e\)</span>, permittivity <span class="math inline">\(\epsilon_e\)</span> and conductivity <span class="math inline">\(\rho_e\)</span>.</p>
 <p>The characteristic impedance describes the ratio of voltage to current for a wave traveling along the transmission line, while the propagation constant describes how the wave attenuates and changes phase as it propagates along the line.</p>
 <p>To represent the transmission line using ABCD parameters, it is necessary to calculate series impedance and shunt admittance matrices <span class="citation" data-cites="martinez2017power">Martinez-Velasco (<a href="#ref-martinez2017power" role="doc-biblioref">2017</a>)</span>. Both matrices are of the size <span class="math inline">\(n \times n\)</span>, where <span class="math inline">\(n = \sum\limits_{i=1}^{n_c} n^i_{bc} + n_g\)</span>. The impedance matrix has the following form:</p>
@@ -373,7 +354,7 @@ r_i, &amp; \quad i = j,
 <img src="assets/transmission_line.jpg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.
+Figure&nbsp;1: Overhead line modeling: a) tower and relative conductor positions; b) sub-conductor bundle.
 </figcaption>
 </figure>
 </div>

@@ -3,7 +3,7 @@ layout: page
 title: Overhead Line
 tags: [Opensource, Transmission Lines]
 date: 2025-12-28
-last-updated: 3/9/2026
+last-updated: 6/19/2026
 author: "Aleksandra Lekić, Haixiao Li"
 reviewers: "Aleksandra Lekic"
 bibliography: references.bib
@@ -36,19 +36,9 @@ format:
 
 ## Mathematical Modeling
 
-Based on realizations of the transmission line as defined in PSCAD (see @fig-tl-pscad), five possible realizations are defined as:
+The overhead transmission line model is constructed using the procedure from @martinez2017power and follows the previously developed code of the project authors @PowerImpedanceACDC2025. The model supports several conductor layout options, including flat, vertical, delta, offset, and concentric configurations. For greater flexibility, conductor positions can also be specified manually using absolute $(x,y)$ coordinates.
 
-1. flat (horizontal, which presents a flat configuration without ground wires),
-2. vertical,
-3. delta (for at least three phases),
-4. offset (for at least three phases),
-5. concentric (for at least three phases).
-
-Besides, the conductor positions can be added manually as absolute $(x,y)$ positions.
-
-![PSCAD overhead line organization: 1) single conductor with groundwire; 2) single conductor; 3) 2 conductors flat; 4) 3 conductors flat; 5) 3 conductors delta; 6) 3 conductors horizontal; 7) 3 conductors vertical; 8) 3 conductors concentric; 9) 3 conductors offset.](assets/tl.png){#fig-tl-pscad width=100%}
-
-Thus, the simulator enables the creation of overhead lines with the conductors having the properties @martinez2017power presented in the table @tbl-ohl-conductors. **Ground wires** have the properties presented in Table @tbl-ohl-groundwires.
+The simulator enables the creation of overhead lines using the conductor properties summarized in @tbl-ohl-conductors. The corresponding ground-wire properties are summarized in @tbl-ohl-groundwires.
 
 | Symbol | Meaning |
 |:---:|---|
@@ -69,8 +59,6 @@ Thus, the simulator enables the creation of overhead lines with the conductors h
 
 : OHL conductor parameters {#tbl-ohl-conductors}
 
-The transmission line model is constructed using the procedure from @martinez2017power and in following the previously developed code of the project authors \cite{PowerImpedanceACDC2025}. The overhead transmission line consists of $n_b$  including sub-conductors, stranding, etc. and $n_g$ ground wires. 
-
 | Symbol        | Meaning                                                     |
 |---------------|-------------------------------------------------------------|
 | $n_g$         | number of ground wires                                      |
@@ -83,9 +71,9 @@ The transmission line model is constructed using the procedure from @martinez201
 
 : OHL ground wire parameters {#tbl-ohl-groundwires}
 
-The transmission line model is constructed using the procedure from @martinez2017power and in following the previously developed code of the project authors @PowerImpedanceACDC2025. The overhead transmission line consists of $n_b$  including sub-conductors, stranding, etc. and $n_g$ ground wires. 
+The overhead transmission line consists of $n_b$ conductor bundles, including their sub-conductors and stranding arrangements, and $n_g$ ground wires.
 
-Each line/conductor positioned as $x_c$ relatively starting from the central tower position and $y_c$ vertically, measured from ground, with the sag at the midpoint between towers $d_{sag}$, see @fig-tl. Thus, the modified vertical position is used in calculations as $\hat{y}_c = y_c - \frac{2}{3} \, d_{sag}$. The conductor is formed using $n_{sb}$ sub-conductors grouped in the bundle, where all sub-conductors are grouped using a symmetrical equidistant pattern with the distance between the two nearest sub-conductors being $d_{bc}$, or a bundle spacing. Using conductor position, the position of the each sub-conductor can be estimated. Knowing the angle between two sub-conductors on the circle and its radius
+Each conductor is positioned horizontally at $x_c$ relative to the tower center and vertically at $y_c$ above ground. Considering the sag at the midpoint between towers, denoted by $d_{sag}$, the modified vertical position used in the calculations is $\hat{y}_c = y_c - \frac{2}{3} \, d_{sag}$, as shown in @fig-tl. The conductor is formed using $n_{sb}$ sub-conductors grouped in the bundle, where all sub-conductors are grouped using a symmetrical equidistant pattern with the distance between the two nearest sub-conductors being $d_{bc}$, or a bundle spacing. Using the conductor position, the position of each sub-conductor can be estimated. Knowing the angle between two sub-conductors on the circle and its radius
 
 \begin{eqnarray}
 \nonumber \varphi = \frac{360^\circ}{n_{sb}}, \\
@@ -100,7 +88,7 @@ y_{bc} = y_c + r \sin(\varphi_s + k \, \varphi) - \frac{2}{3} \, d_{sag},
 for $k \in \{1, 2, ..., n_{bc}\}$. If the number of sub-conductors is equal to one, its position is given by $(x_c, \hat{y}_c)$.
 Each conductor is characterized by the relative permeability of the material $\mu_r$, the conductor dc resistance $R_{dc}$, and the radius $r_i$.
   
-Ground wires are modeled similarly, represented with their relative position $(x_g,y_g)$, radius $r_g$, dc resistance $R_{gdc}$, and relative permeability of the material $\mu_r$.
+Ground wires are modeled similarly and are represented by their relative position $(x_g,y_g)$, radius $r_g$, dc resistance $R_{gdc}$, and relative permeability $\mu_r$.
 
 Earth parameters are given with permeability $\mu_e$, permittivity $\epsilon_e$ and conductivity $\rho_e$.
 
