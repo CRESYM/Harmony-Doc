@@ -1,0 +1,7 @@
+<map id="harmony/src/json/computation_runner.h" name="harmony/src/json/computation_runner.h">
+<area shape="rect" id="Node000001" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="124,5,344,45"/>
+<area shape="rect" id="Node000002" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="5,93,225,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,56,143,95,140,91,195,51"/>
+<area shape="rect" id="Node000003" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="249,93,456,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,51,328,91,325,95,270,56"/>
+</map>

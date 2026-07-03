@@ -1,0 +1,9 @@
+<map id="Load_base" name="Load_base">
+<area shape="rect" id="Node000001" title="Common base for load models with power&#45;flow support." alt="" coords="29,79,120,104"/>
+<area shape="rect" id="Node000003" href="$classLoad.html" title="Load with resistive, inductive, and capacitive components in series." alt="" coords="5,152,59,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="63,117,41,153,37,151,58,114"/>
+<area shape="rect" id="Node000004" href="$classLoadPQ.html" title="Constant P&#45;Q load for AC power&#45;flow studies." alt="" coords="83,152,154,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,114,114,150,109,153,87,117"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="37,5,113,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
+</map>

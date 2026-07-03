@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['n_0',['n',['../structCVODEUserData.html#ae23a9ed31ea76a9307f940b3dae15fba',1,'CVODEUserData::n'],['../structKINSOLUserData.html#a2ea93edc03ab7af6e1b94d16189c12d5',1,'KINSOLUserData::n']]],
+  ['names_1',['names',['../classJsonParameterTable.html#af8a03048df7e27e152c59ea1a9cdc78d',1,'JsonParameterTable']]],
+  ['nbuses_5fac_2',['nbuses_ac',['../structOPFVisualData.html#a50a300659a360879740e0d6a07278818',1,'OPFVisualData']]],
+  ['nbuses_5fdc_3',['nbuses_dc',['../structOPFVisualData.html#a54b0ca147a5a3ba25905f851b2679251',1,'OPFVisualData']]],
+  ['nconvs_5fdc_4',['nconvs_dc',['../structOPFVisualData.html#a0dab5117b304f8aed8b68cb0b85b7a01',1,'OPFVisualData']]],
+  ['net_5',['Net',['../network_8h.html#ae825fdae7a4dbdb8bf3eb61dcf30abf9',1,'network.h']]],
+  ['network_6',['network',['../classNetwork.html',1,'Network'],['../classNetwork.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8',1,'Network::Network()']]],
+  ['network_20elements_7',['Network elements',['../group__elements.html',1,'']]],
+  ['network_20topology_8',['Network topology',['../group__network.html',1,'']]],
+  ['network_2ecpp_9',['network.cpp',['../network_8cpp.html',1,'']]],
+  ['network_2eh_10',['network.h',['../network_8h.html',1,'']]],
+  ['newton_11',['Newton',['../Differential__equations_8h.html#acfe44c04a6df4ea00b10689f146660aba1c8b97c83b0726216cd5dbc88a64b0ed',1,'Differential_equations.h']]],
+  ['ngens_5fac_12',['ngens_ac',['../structOPFVisualData.html#a877326239e4219c6ddac1f72a8368686',1,'OPFVisualData']]],
+  ['ngrids_13',['ngrids',['../structOPFVisualData.html#a24e083de6d293249240d90a1ce488a16',1,'OPFVisualData']]],
+  ['ninputs_14',['nInputs',['../structDSSState.html#a9d0da9ceb57bd89ac8844aac376322a8',1,'DSSState']]],
+  ['nkeep_15',['nKeep',['../structConfig.html#afba288490f97ae769fa71c267ce53771',1,'Config']]],
+  ['noutputs_16',['nOutputs',['../structDSSState.html#a3c8a55a3e3b0c77d9581fea2d7567d37',1,'DSSState']]],
+  ['nstates_17',['nStates',['../structDSSState.html#a9958331afddcf43c6ea8ca16a3295389',1,'DSSState']]],
+  ['nswitches_18',['nSwitches',['../structDSSState.html#a1826ea9f42742e49cc15b29e4553cf8c',1,'DSSState']]],
+  ['nv2eigen_19',['nv2eigen',['../Differential__equations_8cpp.html#a2153494c2a1f77423f6942264ea08d9e',1,'Differential_equations.cpp']]],
+  ['nyquist_5fplot_5fimplot_20',['nyquist_plot_implot',['../Visualization_8cpp.html#a949c13c101f64f6d8afff8ce89a525f7',1,'nyquist_plot_implot(const std::vector&lt; std::vector&lt; std::complex&lt; double &gt; &gt; &gt; &amp;H_data, const std::vector&lt; std::string &gt; &amp;labels, const std::string &amp;title):&#160;Visualization.cpp'],['../Visualization_8h.html#a949c13c101f64f6d8afff8ce89a525f7',1,'nyquist_plot_implot(const std::vector&lt; std::vector&lt; std::complex&lt; double &gt; &gt; &gt; &amp;H_data, const std::vector&lt; std::string &gt; &amp;labels, const std::string &amp;title):&#160;Visualization.cpp']]],
+  ['nyquistplottf_21',['nyquistplotTF',['../classStabilityEstimate.html#a50ef603d61ec6564705f4b16f7a5e8e7',1,'StabilityEstimate']]]
+];

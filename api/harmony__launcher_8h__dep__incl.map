@@ -1,0 +1,7 @@
+<map id="harmony/src/ui/harmony_launcher.h" name="harmony/src/ui/harmony_launcher.h">
+<area shape="rect" id="Node000001" title="Interactive Harmony launcher (HarmonyUI)." alt="" coords="108,5,289,45"/>
+<area shape="rect" id="Node000002" href="$harmony__launcher_8cpp.html" title="HarmonyUI launcher: pick examples/JSON, run solvers, optional plots and PNG export." alt="" coords="5,93,187,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,56,120,95,117,91,164,52"/>
+<area shape="rect" id="Node000003" href="$harmony__ui__main_8cpp.html" title="Entry point for the HarmonyUI launcher executable." alt="" coords="211,93,392,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,52,280,91,277,95,230,56"/>
+</map>

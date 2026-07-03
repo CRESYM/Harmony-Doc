@@ -1,0 +1,21 @@
+<map id="harmony/src/SubNetwork.h" name="harmony/src/SubNetwork.h">
+<area shape="rect" id="Node000001" title="Hierarchical sub&#45;network view for modular AC/DC grids and converter interfaces." alt="" coords="689,5,888,31"/>
+<area shape="rect" id="Node000002" href="$Stability__estimate_8h.html" title="Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="501,79,658,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="749,38,644,81,642,76,747,33"/>
+<area shape="rect" id="Node000009" href="$SubNetwork_8cpp.html" title="Implementation of Hierarchical sub&#45;network view for modular AC/DC grids and converter interfaces." alt="" coords="682,93,895,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="791,45,791,93,786,93,786,45"/>
+<area shape="rect" id="Node000010" href="$network_8cpp.html" title="Implementation of Top&#45;level electrical network container: buses, elements, connections,..." alt="" coords="919,93,1106,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="833,33,984,91,982,96,831,38"/>
+<area shape="rect" id="Node000003" href="$Stability__estimate_8cpp.html" title="Implementation of Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="5,181,177,236"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="487,126,347,151,191,184,178,187,177,182,189,179,346,146,487,120"/>
+<area shape="rect" id="Node000004" href="$example__OPF__PV_8cpp.html" title="Runnable example: OPF study including a PV plant." alt="" coords="202,189,373,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="492,140,343,191,341,186,490,135"/>
+<area shape="rect" id="Node000005" href="$example__OPF__WT_8cpp.html" title="Runnable example: OPF study including a wind&#45;turbine plant." alt="" coords="397,189,567,229"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="546,145,503,190,499,186,542,141"/>
+<area shape="rect" id="Node000006" href="$example__point2point__case_8cpp.html" title="Runnable example: Point&#45;to&#45;point HVDC&#45;style OPF case." alt="" coords="591,181,762,236"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="616,141,653,179,649,183,612,145"/>
+<area shape="rect" id="Node000007" href="$example__stability__check_8cpp.html" title="Runnable example: Full AC–DC hybrid stability study." alt="" coords="787,189,1001,229"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="672,134,836,186,834,191,670,139"/>
+<area shape="rect" id="Node000008" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="1025,189,1245,229"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="672,131,769,148,845,157,920,165,1014,179,1052,186,1051,191,1014,184,919,170,844,162,768,153,671,136"/>
+</map>

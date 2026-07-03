@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['b_0',['b',['../classCable_1_1Insulator.html#a39dabe3d527006852da91c69be622f5f',1,'Cable::Insulator']]],
+  ['b_5fmatrix_1',['B_matrix',['../classConverter.html#aa28582e80b94f8c774a9f4299d4294a4',1,'Converter']]],
+  ['basemva_5fac_2',['baseMVA_ac',['../structOPFVisualData.html#ac699921753d06a08823084599b0dc26e',1,'OPFVisualData']]],
+  ['basemw_5fdc_3',['baseMW_dc',['../structOPFVisualData.html#a9c916621bd21a32b85e965cace50a2a0',1,'OPFVisualData']]],
+  ['bcolumnindex_4',['bColumnIndex',['../structInputMapping.html#ac905ba9c1f76a3c8100d67e1766ce22e',1,'InputMapping']]],
+  ['bd_5fmatrix_5',['Bd_matrix',['../classConverter.html#a38a6c2d147c7cfbc65ee41f8ee8cfc44',1,'Converter']]],
+  ['bdelay_6',['Bdelay',['../classConverter.html#a84754ea6b2d04f865081a8820b11a9b5',1,'Converter']]],
+  ['bds_7',['Bds',['../structDSSState.html#a5febb1a687e21f97c61a59c9d6e6d935',1,'DSSState']]],
+  ['branch_5fdc_8',['branch_dc',['../structOPFVisualData.html#abb23cf52fb9a8f97a11b9626450e73b8',1,'OPFVisualData']]],
+  ['branch_5fentire_5fac_9',['branch_entire_ac',['../structOPFVisualData.html#aa9182422c8ea4acba701e2a2e366dcb3',1,'OPFVisualData']]],
+  ['breakerfunction_10',['breakerFunction',['../structConfig.html#a231a9f33b529bf25ee721e834c5011f7',1,'Config']]],
+  ['brkhistory_11',['brkHistory',['../structDQsymResult.html#aca4fcd1b14e5875a5b3cb2c0f83b3261',1,'DQsymResult']]],
+  ['bus_5fdc_12',['bus_dc',['../structOPFVisualData.html#af8d816f123d1b298cffbba33c8d65967',1,'OPFVisualData']]],
+  ['bus_5fentire_5fac_13',['bus_entire_ac',['../structOPFVisualData.html#aefb8ea01885ca1f18839dbd60fcd4026',1,'OPFVisualData']]],
+  ['buses_14',['buses',['../classNetwork.html#a2f555badb8364e4e4d05152294544781',1,'Network']]],
+  ['busindex_15',['busIndex',['../structDCBusResult.html#a4a6a6778faa5c5adb6f1c47bc87afc8a',1,'DCBusResult']]],
+  ['busname_16',['busname',['../structDCBusResult.html#a8197974d63c49a78ffd04f8daeb93dd0',1,'DCBusResult::busName'],['../structOutputMapping.html#a30080f946e288e27a1c59f4afd62b89e',1,'OutputMapping::busName']]]
+];

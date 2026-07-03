@@ -1,0 +1,13 @@
+<map id="CliOptions" name="CliOptions">
+<area shape="rect" id="Node000001" title=" " alt="" coords="114,343,203,368"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="31,218,118,243"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,253,153,341,149,344,88,256"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,93,144,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,147,77,218,72,218,72,147"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="143,211,345,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,264,169,344,165,341,221,261"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="179,101,309,126"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="247,140,247,210,241,210,241,140"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="225,5,263,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="247,44,247,101,241,101,241,44"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="harmony/src/Solver/Helper_Functions/viz_opf.cpp" name="harmony/src/Solver/Helper_Functions/viz_opf.cpp">
+<area shape="rect" id="Node000001" title="Implementation of Standalone OPF network visualization interface." alt="" coords="515,5,676,60"/>
+<area shape="rect" id="Node000002" href="$viz__opf_8h.html" title="Standalone OPF network visualization interface." alt="" coords="123,108,203,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="515,52,217,111,217,111,216,105,216,105,514,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="228,108,368,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="515,60,352,107,351,101,514,55"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="392,108,455,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="544,62,460,104,458,99,542,58"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="479,108,539,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="571,62,532,100,528,96,567,58"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="563,108,627,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="598,60,598,94,593,94,593,60"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="651,108,766,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="632,58,684,97,681,102,628,62"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="791,108,915,133"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="675,58,806,101,805,106,673,63"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="939,108,1025,133"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="677,49,927,104,925,110,676,54"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1049,108,1123,133"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="677,43,838,69,1036,105,1035,110,837,75,676,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,108,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,136,87,176,84,171,145,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="132,181,195,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="166,134,166,168,161,168,161,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="219,181,275,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="179,131,225,170,221,174,175,135"/>
+</map>

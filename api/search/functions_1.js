@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['bode_5fplot_5fimplot_0',['bode_plot_implot',['../Visualization_8cpp.html#a590c85047fae6fcb0f57be1d4b943a3b',1,'bode_plot_implot(const std::vector&lt; double &gt; &amp;freq, const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;mag_dB, const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;phase_deg, const std::vector&lt; std::string &gt; &amp;labels, const std::string &amp;title):&#160;Visualization.cpp'],['../Visualization_8h.html#a590c85047fae6fcb0f57be1d4b943a3b',1,'bode_plot_implot(const std::vector&lt; double &gt; &amp;freq, const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;mag_dB, const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;phase_deg, const std::vector&lt; std::string &gt; &amp;labels, const std::string &amp;title):&#160;Visualization.cpp']]],
+  ['bodeplottf_1',['bodeplotTF',['../classStabilityEstimate.html#a4ceaa7e2e94fd6852b9d182c68c9b604',1,'StabilityEstimate']]],
+  ['buildfromjson_2',['buildfromjson',['../classComponentBuilder.html#a312e4ccb1bfe1e9eccae18e5afa71edb',1,'ComponentBuilder::buildFromJSON()'],['../classSimulationBuilder.html#a67d8582dac04d2ac5199f732d6e8ed97',1,'SimulationBuilder::buildFromJSON()']]],
+  ['buildinputvector_3',['buildInputVector',['../classStateSpaceModel.html#ab7b99ff129db00fbbc744035a0133fef',1,'StateSpaceModel']]],
+  ['buildjsonsearchpaths_4',['buildjsonsearchpaths',['../cli_8cpp.html#a0c05ed0f8b7f2ed65ee731b49e3542af',1,'buildJsonSearchPaths(const std::vector&lt; std::filesystem::path &gt; &amp;jsonPathOverrides, const std::vector&lt; std::filesystem::path &gt; &amp;extraSearchPaths):&#160;cli.cpp'],['../cli_8h.html#a0c05ed0f8b7f2ed65ee731b49e3542af',1,'buildJsonSearchPaths(const std::vector&lt; std::filesystem::path &gt; &amp;jsonPathOverrides, const std::vector&lt; std::filesystem::path &gt; &amp;extraSearchPaths):&#160;cli.cpp']]],
+  ['buildmatricesforstate_5',['buildMatricesForState',['../classDQsym.html#af217347086b064a13e8414cb684e7c3a',1,'DQsym']]],
+  ['builtinjsonsearchpaths_6',['builtinjsonsearchpaths',['../cli_8cpp.html#a984519df5de2a6c95eea7b221669f98a',1,'builtinJsonSearchPaths():&#160;cli.cpp'],['../cli_8h.html#a984519df5de2a6c95eea7b221669f98a',1,'builtinJsonSearchPaths():&#160;cli.cpp']]],
+  ['bus_7',['Bus',['../classBus.html#a5b93755929a71ef5abea24a52ffcfc48',1,'Bus']]]
+];

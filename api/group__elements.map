@@ -1,0 +1,9 @@
+<map id="Network elements" name="Network elements">
+<area shape="rect" id="Node000004" href="$group__converter.html" title="Converter base class and MMC implementation." alt="" coords="227,5,362,31"/>
+<area shape="rect" id="Node000001" title="Component models (R, L, C, sources, converters, etc.) and their stamping interfaces." alt="" coords="5,129,148,155"/>
+<area shape="rect" id="Node000002" href="$group__impedance.html" title="Resistors, inductors, capacitors, and generic impedance/admittance." alt="" coords="215,55,374,80"/>
+<area shape="rect" id="Node000005" href="$group__res.html" title="Wind and PV plant models." alt="" coords="196,104,393,129"/>
+<area shape="rect" id="Node000007" href="$group__source.html" title="AC/DC sources, generators, and load models." alt="" coords="225,153,365,179"/>
+<area shape="rect" id="Node000003" href="$group__transformer.html" title="Ideal and real transformer topologies (YY, Y&#45;D, Δ&#45;Y, …)." alt="" coords="219,203,371,228"/>
+<area shape="rect" id="Node000006" href="$group__transmission.html" title="Overhead lines, cables, and lumped transmission lines." alt="" coords="223,252,366,277"/>
+</map>
