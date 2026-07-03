@@ -1,0 +1,18 @@
+<map id="harmony/src/json/component_builder.h" name="harmony/src/json/component_builder.h">
+<area shape="rect" id="Node000001" title="Factory for constructing Element objects from JSON component entries." alt="" coords="217,5,428,45"/>
+<area shape="rect" id="Node000002" href="$component__builder_8cpp.html" title="Implementation of JSON&#45;based Element factory (ComponentBuilder)." alt="" coords="5,93,216,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,53,158,96,156,91,263,48"/>
+<area shape="rect" id="Node000003" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="240,93,405,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="325,59,325,93,320,93,320,59"/>
+<area shape="rect" id="Node000004" href="$simulation__builder_8h.html" title="Builds a Network from a JSON simulation file and runs configured analyses." alt="" coords="430,93,637,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="382,48,488,91,486,96,380,53"/>
+<area shape="rect" id="Node000005" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="249,189,399,214"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="476,141,353,191,351,186,474,136"/>
+<area shape="rect" id="Node000006" href="$computation__runner_8h.html" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="423,181,643,221"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="536,147,536,181,531,181,531,147"/>
+<area shape="rect" id="Node000008" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="578,269,785,309"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="604,137,633,155,658,180,671,202,678,226,684,269,679,269,673,227,666,204,654,183,630,160,601,142"/>
+<area shape="rect" id="Node000007" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="334,269,554,309"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="505,233,466,271,462,267,502,229"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="579,226,650,267,648,272,577,231"/>
+</map>

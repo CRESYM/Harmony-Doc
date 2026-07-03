@@ -1,0 +1,9 @@
+<map id="Impedance_base" name="Impedance_base">
+<area shape="rect" id="Node000001" title="Common base for resistive, reactive, and generic admittance elements." alt="" coords="48,79,180,104"/>
+<area shape="rect" id="Node000003" href="$classAdmittance.html" title="Generic admittance matrix element for single&#45; or multi&#45;phase networks." alt="" coords="5,152,103,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,116,66,154,62,150,93,113"/>
+<area shape="rect" id="Node000004" href="$classImpedance.html" title="Series impedance for each phase with diagonal (or matrix) Z entries." alt="" coords="127,152,221,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="135,113,166,150,162,154,131,116"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="76,5,152,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,44,117,79,111,79,111,44"/>
+</map>

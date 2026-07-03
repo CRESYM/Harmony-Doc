@@ -1,0 +1,32 @@
+<map id="DC_source" name="DC_source">
+<area shape="rect" id="Node000001" title="DC&#45;side voltage source for hybrid AC&#45;DC networks." alt="" coords="1253,65,1344,90"/>
+<area shape="rect" id="Node000002" href="$classSource__base.html" title="Common properties and power&#45;flow methods for source elements." alt="" coords="1100,65,1204,90"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1218,75,1253,75,1253,80,1218,80"/>
+<area shape="rect" id="Node000003" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="975,110,1051,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1063,104,1111,88,1113,93,1065,109"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="281,218,368,243"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="382,236,458,244,553,250,657,249,761,239,817,229,859,217,900,201,949,174,976,154,998,134,1001,138,980,158,952,178,902,205,861,222,818,234,762,244,657,255,552,255,457,249,382,241"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="595,160,758,200"/>
+<area shape="poly" id="edge11_Node000011_Node000004" title=" " alt="" coords="382,225,470,218,568,205,605,197,606,203,568,211,470,224,382,231"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,211,144,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="158,228,281,228,281,233,158,233"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="592,61,761,86"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="775,78,861,88,951,103,975,108,974,114,950,108,860,93,775,84"/>
+<area shape="rect" id="Node000007" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="301,61,348,86"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="362,71,592,71,592,76,362,76"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="257,110,392,135"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="406,112,568,91,610,83,611,89,568,96,406,117"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="406,133,595,164,594,169,405,138"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="55,110,94,135"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="108,120,257,120,257,125,108,125"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="55,41,94,66"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="108,60,279,107,277,112,107,65"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="260,11,389,37"/>
+<area shape="poly" id="edge16_Node000014_Node000010" title=" " alt="" coords="108,47,259,29,260,34,108,52"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="771,169,858,157,950,140,976,133,977,138,951,145,859,163,772,174"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="624,110,729,135"/>
+<area shape="poly" id="edge13_Node000003_Node000012" title=" " alt="" coords="743,120,974,120,974,125,743,125"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="785,19,951,45"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="962,44,1100,67,1099,72,961,49"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="403,22,785,28,785,33,403,28"/>
+</map>

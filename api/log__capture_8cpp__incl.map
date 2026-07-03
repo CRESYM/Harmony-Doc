@@ -1,0 +1,15 @@
+<map id="harmony/src/ui/log_capture.cpp" name="harmony/src/ui/log_capture.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="188,5,331,45"/>
+<area shape="rect" id="Node000002" href="$log__capture_8h.html" title=" " alt="" coords="144,93,255,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,47,219,84,214,81,243,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="279,93,359,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="276,44,304,81,300,84,272,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,92,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,121,87,163,85,158,174,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="117,167,181,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="193,121,167,157,163,154,189,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="205,167,295,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="210,117,236,154,232,157,206,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="319,167,378,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="224,116,313,158,311,163,222,121"/>
+</map>

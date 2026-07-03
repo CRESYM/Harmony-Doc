@@ -1,0 +1,5 @@
+<map id="Overhead_Line" name="Overhead_Line">
+<area shape="rect" id="Node000001" title="Overhead line model with bundle geometry and frequency&#45;dependent Y parameters." alt="" coords="5,79,124,104"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="27,5,103,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,44,67,79,62,79,62,44"/>
+</map>
