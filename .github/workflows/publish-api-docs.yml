@@ -1,0 +1,54 @@
+name: Publish API docs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Harmony-Doc
+        uses: actions/checkout@v4
+
+      - name: Checkout Harmony
+        uses: actions/checkout@v4
+        with:
+          repository: CRESYM/Harmony
+          path: harmony
+          ref: main
+
+      - name: Install Doxygen and Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      - name: Build Doxygen HTML
+        run: |
+          set -euo pipefail
+          harmony="${GITHUB_WORKSPACE}/harmony"
+          out="${harmony}/build/docs"
+          mkdir -p "${harmony}/build"
+          sed \
+            -e "s|@CMAKE_SOURCE_DIR@|${harmony}|g" \
+            -e "s|@DOXYGEN_OUTPUT_DIR@|${out}|g" \
+            "${harmony}/docs/Doxyfile.in" > "${harmony}/build/Doxyfile"
+          doxygen "${harmony}/build/Doxyfile"
+          test -f "${out}/html/index.html"
+
+      - name: Publish to api/
+        run: |
+          rm -rf api
+          cp -R "${GITHUB_WORKSPACE}/harmony/build/docs/html" api
+          touch .nojekyll api/.nojekyll
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api/ .nojekyll
+          git diff --staged --quiet && echo "No API doc changes." && exit 0
+          git commit -m "Update Doxygen API docs from CRESYM/Harmony@main"
+          git push
