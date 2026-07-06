@@ -6,12 +6,12 @@ Hybrid AC/DC Power System Simulation,” *IEEE Transactions on Power Delivery*, 
 **Links:** [PDF]() 
 
 - **A. Lekić**, **A. Kermansaravi**, **H. Li**, **Y. Quintero Lares**, **S. Alsarayreh**, **R. Dimitrovski**, “Advanced
-Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026 (abstract accpeted).  
-**Links:** [PDF]() 
+Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026.  
+**Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:hkOj_22Ku90C) 
 
-- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “implementation of an MMC Model for Dynamic Phasor State-
-space Solver,” *PSCC 2026*, 2026 (accpeted).  
-**Links:** [PDF]() 
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “Implementation of an MMC Model for Dynamic Phasor State-
+space Solver,” *PSCC 2026*, 2026.  
+**Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:5awf1xo2G04C) 
 ---
 
 #### <i class="bi bi-calendar3"></i> 2025 year 

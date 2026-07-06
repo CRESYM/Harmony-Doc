@@ -26,6 +26,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -174,7 +175,7 @@ Figure&nbsp;2: One arm operation of the VSC.
 </figcaption>
 </figure>
 </div>
-<p>VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of <span class="math inline">\(\frac{2\pi}{3}\)</span> for each phase . This modulation is no longer used because it cannot vary magnitude.</p>
+<p>VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of <span class="math inline">\(\frac{2\pi}{3}\)</span> for each phase <span class="citation" data-cites="anaya2014offshore">Anaya-Lara et al. (<a href="#ref-anaya2014offshore" role="doc-biblioref">2014</a>)</span>. This modulation is no longer used because it cannot vary magnitude.</p>
 <p>Therefore, VSCs are usually controlled using Pulse Width Modulation (PWM). PWM can be designed in various ways, but the goal for it is to ensure that the averaged (over the converter’s switching frequency) currents and voltages have the desired waveforms (usually sine waveforms).</p>
 <p>PWM modulated two-level VSC should have desired voltage/current waveforms. Therefore, for the further analysis is introduced dimensionless parameter denoted as modulation index and represented as <span class="math inline">\(m_j\)</span> for <span class="math inline">\({j \in \{a,b,c\}}\)</span> being the phase. For the each switching interval <span class="math inline">\(m_j(t) \in [0,1]\)</span>.</p>
 <p>The converter operates in such manner that in the steady-state is <span class="math inline">\(v_A = \frac{v_{dc}}{2}\)</span> and <span class="math inline">\(v_B = -\frac{v_{dc}}{2}\)</span>. The following equations can be written</p>
@@ -226,8 +227,10 @@ L \frac{d i_j}{dt} = v_j - v_{C,j}
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<div id="refs" role="list">
-
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-anaya2014offshore" class="csl-entry" role="listitem">
+Anaya-Lara, Olimpo, David Campos-Gaona, Edgar Moreno-Goytia, and Grain Adam. 2014. <em>Offshore Wind Energy Generation: Control, Protection, and Integration to Electrical Systems</em>. Wiley.
+</div>
 </div>
 <!--
 **Example:**

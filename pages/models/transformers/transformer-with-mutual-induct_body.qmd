@@ -60,6 +60,7 @@ as estimated in @izadian2019laplace page 317.
 
 
 For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
+
 ## References
 
 ::: {#refs}

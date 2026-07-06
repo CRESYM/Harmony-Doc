@@ -48,7 +48,7 @@ In @fig-2level, a two-level converter is depicted. Switches in the same arm are 
 
 ![One arm operation of the VSC.](assets/VSC_operation.jpg){#fig-2level-arm width=35%}
 
-VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of $\frac{2\pi}{3}$ for each phase \cite{anaya2014offshore}. This modulation is no longer used because it cannot vary magnitude.
+VSC can have square-mode operation, where each switch (IGBT) conducts for a half period, with the phase shift of $\frac{2\pi}{3}$ for each phase @anaya2014offshore. This modulation is no longer used because it cannot vary magnitude.
 
 Therefore, VSCs are usually controlled using Pulse Width Modulation (PWM). PWM can be designed in various ways, but the goal for it is to ensure that the averaged (over the converter's switching frequency) currents and voltages have the desired waveforms (usually sine waveforms). 
 
@@ -127,8 +127,8 @@ For detailed code information, see [the Harmony manual](https://github.com/CRESY
 
 ## References
 
-:::: {#refs}
-::::
+::: {#refs}
+:::
 <!--
 **Example:**
 

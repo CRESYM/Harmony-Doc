@@ -124,7 +124,7 @@ The shunt admittance is a matrix formed as
 \end{equation}
 from matrix $\mathbf{P}$ with its components $\mathbf{P}_{ij} = \frac{1}{2\pi\epsilon_0} \, \log\left( \frac{D_{ij}}{d_{ij}}\right)$ and $\mathbf{G} = \operatorname{diag}\{g_c\}$.
 
-The ABCD parameters of a transmission line can be defined as \cite{castellanos1997full, morched1999universal}
+The ABCD parameters of a transmission line can be defined as @630478, @772350
 \begin{equation}
 \begin{bmatrix}
 \mathbf{A} & \mathbf{B} \\
@@ -153,7 +153,7 @@ Y parameters: The ABCD parameters of a transmission line can be defined as @6304
 
 where $\mathrm{\Gamma} = \sqrt{\mathbf{Z}\mathbf{Y}}$ and $\mathbf{Y}_c = \mathbf{Z}^{-1}\,\Gamma$, and $l$ standing for the line or cable length. The formula used is based on the frequency-dependent phase domain model.
 
-From them Y parameters calculate as follows \cite{leterme2020parameters}:
+From them Y parameters calculate as follows @630478, @772350:
 \begin{eqnarray}
     Y = \begin{bmatrix}
         \textbf{Y}_c \operatorname{coth}(\Gamma l) & -\textbf{Y}_c \operatorname{cosech}(\Gamma l) \\
@@ -167,6 +167,7 @@ From them Y parameters calculate as follows \cite{leterme2020parameters}:
 
 
 For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
+
 ## References
 
 ::: {#refs}

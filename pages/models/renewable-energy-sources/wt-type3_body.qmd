@@ -169,7 +169,6 @@ For detailed code information, see [the Harmony manual](https://github.com/CRESY
 
 ::: {#refs}
 :::
-
 <!--
 **Example:**
 

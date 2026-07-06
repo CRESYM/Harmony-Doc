@@ -227,14 +227,14 @@ The insertion indices $\vec{m} = \begin{bmatrix}
 
 ### Time Delays
 
-The MMC's impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10â€?00 Hz) and high (several kHz) frequency ranges \cite{bayo2018control}. Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics @{sakinci2022generalized}.
+The MMC's impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10â€?00 Hz) and high (several kHz) frequency ranges @sakinci2022generalized. Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics @sakinci2022generalized.
 
-The time delay ($\tau_d$) can be expressed as a rational transfer function using the Pad{\'e} approximation stated in \eqref{eq:pade}, where $m$ and $n$ are the numerator and denominator approximation orders, respectively \cite{sakinci2022generalized,wang2016harmonic}.
+The time delay ($\tau_d$) can be expressed as a rational transfer function using the Pad{\'e} approximation stated in \eqref{eq:pade}, where $m$ and $n$ are the numerator and denominator approximation orders, respectively @sakinci2022generalized, @wang2016harmonic.
 \begin{equation} \label{eq:pade}
     \boldsymbol{T}_{delay} = e^{-s\tau_d} \approx \frac{b_0 + b_1(\tau_d s)^1 + \cdots + b_m(\tau_d s)^m}{a_0 + a_1(\tau_d s)^1 + \cdots + a_n(\tau_d s)^n}
 \end{equation}
 
-The rational transfer function approximation is then converted into the state space form @{wang2016harmonic} with inputs $\begin{bmatrix}
+The rational transfer function approximation is then converted into the state space form @wang2016harmonic with inputs $\begin{bmatrix}
         \vec{m}^{\Delta dq} & \vec{m}^{\Sigma dqz}
 \end{bmatrix}^T$, the insertion indices obtained from the controller outputs as given in \eqref{eq:m_derive}, and the outputs $\begin{bmatrix}
     \vec{m}_{\tau_d}^{\Delta dqz} & \vec{m}_{\tau_d}^{\Sigma dqz}
@@ -341,7 +341,7 @@ where $x$ represents the input variables $P_{ac}$, $Q_{ac}$, and $v_{dc}$; $x_{f
 
 ### Operating Point
 
-A power flow or steady-state simulation can be used to determine the operating point of the converter \cite{sakinci2022generalized}. Using this approach, the following parameters are determined: the DC voltage magnitude $V_{dc}$, the active power at the DC terminal $P_{dc}$ (flowing from the AC side to the DC side), the AC voltage magnitude and phase $V_{ac}$ and $\theta$, respectively, the active power at the AC terminal $P_{ac}$ (flowing from the AC side to the DC side), and the reactive power at the AC terminal $Q_{ac}$ (flowing from the AC side to the DC side).
+A power flow or steady-state simulation can be used to determine the operating point of the converter @sakinci2022generalized. Using this approach, the following parameters are determined: the DC voltage magnitude $V_{dc}$, the active power at the DC terminal $P_{dc}$ (flowing from the AC side to the DC side), the AC voltage magnitude and phase $V_{ac}$ and $\theta$, respectively, the active power at the AC terminal $P_{ac}$ (flowing from the AC side to the DC side), and the reactive power at the AC terminal $Q_{ac}$ (flowing from the AC side to the DC side).
 
 The converter reference values are then obtained using the AC and DC voltages and powers as follows.
 
@@ -395,7 +395,7 @@ and
 $\vec{y} = \begin{bmatrix} v_{dc} & i^{\Delta d} & i^{\Delta q} \end{bmatrix}^T$,
 respectively.
 
-The associated matrices $\boldsymbol{A}_{MMC}$, $\boldsymbol{B}_{MMC}$, $\boldsymbol{C}_{MMC}$, and $\boldsymbol{D}_{MMC}$ in \eqref{eq:MIMO_x}â€“\eqref{eq:MIMO_y} are obtained as Jacobians evaluated around the equilibrium point using the Julia package ForwardDiff \cite{revels2016forward}. Applying the Laplace transform yields the following MIMO transfer function.
+The associated matrices $\boldsymbol{A}_{MMC}$, $\boldsymbol{B}_{MMC}$, $\boldsymbol{C}_{MMC}$, and $\boldsymbol{D}_{MMC}$ in \eqref{eq:MIMO_x}â€“\eqref{eq:MIMO_y} are obtained as Jacobians evaluated around the equilibrium point using the Julia package ForwardDiff @revels2016forward. Applying the Laplace transform yields the following MIMO transfer function.
 
 \begin{equation}\label{eq:Ymmc_tf}
 \boldsymbol{Y}_{MMC}(s)
@@ -461,7 +461,6 @@ For detailed code information, see [the Harmony manual](https://github.com/CRESY
 
 ::: {#refs}
 :::
-
 <!--
 **Example:**
 
