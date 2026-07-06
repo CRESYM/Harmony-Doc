@@ -1,0 +1,5 @@
+<map id="Filter" name="Filter">
+<area shape="rect" id="Node000001" title="LTI filter with configurable time constant, damping, and bandwidth." alt="" coords="31,79,85,104"/>
+<area shape="rect" id="Node000002" href="$classControlBlock.html" title="Abstract base for filters, integrators, and controllers." alt="" coords="5,5,111,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,44,61,79,55,79,55,44"/>
+</map>

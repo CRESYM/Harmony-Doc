@@ -1,0 +1,9 @@
+<map id="harmony/src/Solver/Helper_Functions/viz_opf.h" name="harmony/src/Solver/Helper_Functions/viz_opf.h">
+<area shape="rect" id="Node000001" title="Standalone OPF network visualization interface." alt="" coords="63,5,263,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,108,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,48,85,87,82,83,136,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="132,93,195,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,46,166,79,161,79,161,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="219,93,275,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,44,227,82,223,86,182,48"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="ProportionalController" name="ProportionalController">
+<area shape="rect" id="Node000001" title="Single&#45;gain proportional controller: output = K * (reference &#45; u) + c." alt="" coords="95,359,261,384"/>
+<area shape="rect" id="Node000002" href="$classController.html" title="Abstract controller with per&#45;channel reference values." alt="" coords="135,284,221,309"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,324,181,358,175,358,175,324"/>
+<area shape="rect" id="Node000003" href="$classControlBlock.html" title="Abstract base for filters, integrators, and controllers." alt="" coords="5,196,111,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,227,163,282,160,286,84,232"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="135,196,221,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="181,235,181,283,175,283,175,235"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="109,93,247,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="181,147,181,196,175,196,175,147"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="251,196,417,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="326,235,316,249,304,262,264,283,222,293,221,288,262,278,300,258,312,246,321,232"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="272,101,401,126"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="339,140,337,196,332,196,333,140"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="317,5,356,31"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="339,44,339,101,334,101,334,44"/>
+</map>

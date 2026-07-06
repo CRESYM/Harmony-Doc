@@ -1,0 +1,13 @@
+<map id="RES_base" name="RES_base">
+<area shape="rect" id="Node000001" title="Common base for wind and PV plant elements." alt="" coords="148,79,233,104"/>
+<area shape="rect" id="Node000003" href="$classPVplant.html" title="Two&#45;stage PV inverter plant with boost DC&#45;DC stage and LCL&#45;filtered VSC." alt="" coords="5,152,77,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,112,67,154,65,149,153,107"/>
+<area shape="rect" id="Node000004" href="$classWPplant.html" title="Wind power plant composed of multiple wind turbine instances." alt="" coords="102,152,178,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="176,117,150,153,146,150,172,114"/>
+<area shape="rect" id="Node000005" href="$classWTtype3.html" title="Type 3 wind turbine with DFIG, RSC/GSC converters, and filter." alt="" coords="203,152,283,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="209,114,236,150,232,153,205,117"/>
+<area shape="rect" id="Node000006" href="$classWTtype4.html" title="Type 4 wind turbine with full&#45;scale back&#45;to&#45;back converter and filter." alt="" coords="307,152,387,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="229,107,322,149,320,154,227,112"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="153,5,229,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,44,193,79,188,79,188,44"/>
+</map>

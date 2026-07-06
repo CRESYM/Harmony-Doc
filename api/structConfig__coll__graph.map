@@ -1,0 +1,11 @@
+<map id="Config" name="Config">
+<area shape="rect" id="Node000001" title="Simulation configuration for a DQsym run." alt="" coords="52,269,115,295"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,161,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,221,86,269,81,269,81,221"/>
+<area shape="rect" id="Node000003" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="8,93,55,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="35,132,43,156,53,169,66,179,62,183,49,172,38,159,30,133"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="79,93,208,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="129,132,94,182,90,179,125,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="124,5,163,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="146,45,146,93,141,93,141,45"/>
+</map>

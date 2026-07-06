@@ -1,0 +1,5 @@
+<map id="Capacitor" name="Capacitor">
+<area shape="rect" id="Node000001" title="Models a single&#45; or multi&#45;phase capacitive branch." alt="" coords="5,79,89,104"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="9,5,85,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,44,50,79,45,79,45,44"/>
+</map>

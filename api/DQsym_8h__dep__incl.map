@@ -1,0 +1,17 @@
+<map id="harmony/src/Solver/DQsym/DQsym.h" name="harmony/src/Solver/DQsym/DQsym.h">
+<area shape="rect" id="Node000001" title="Dynamic phasor (DQsym) time&#45;domain solver with switch handling." alt="" coords="748,5,896,45"/>
+<area shape="rect" id="Node000002" href="$DQsym_8cpp.html" title="Implementation of Dynamic phasor (DQsym) time&#45;domain solver with switch handling." alt="" coords="5,101,159,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="734,33,480,52,325,71,171,96,140,103,139,98,169,91,324,65,479,47,734,28"/>
+<area shape="rect" id="Node000003" href="$example__DQsym__DSSS2_8cpp.html" title="Runnable example: DQsym switching / DSSS demonstration." alt="" coords="183,101,397,141"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="735,42,410,96,374,103,373,98,410,91,734,37"/>
+<area shape="rect" id="Node000004" href="$example__DQsym__MMC__controlled_8cpp.html" title="Runnable example: Controlled MMC model in the DQsym solver." alt="" coords="422,101,699,141"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="757,52,614,103,613,98,756,47"/>
+<area shape="rect" id="Node000005" href="$example__DQsym__RLC_8cpp.html" title="Runnable example: Simple RLC circuit in the DQsym framework." alt="" coords="723,101,921,141"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="825,59,825,101,819,101,819,59"/>
+<area shape="rect" id="Node000006" href="$example__DQsym__Simple__MMC_8cpp.html" title="Runnable example: Simplified MMC model in the DQsym solver." alt="" coords="945,93,1136,148"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="880,48,980,91,978,96,877,53"/>
+<area shape="rect" id="Node000007" href="$example__DQsym__math__operations_8cpp.html" title="Runnable example: Validate core dynamic&#45;phasor (DQsym) math operations." alt="" coords="1161,101,1443,141"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="911,41,1205,98,1204,103,910,46"/>
+<area shape="rect" id="Node000008" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="1468,101,1688,141"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="910,30,1156,53,1306,70,1456,91,1496,98,1495,103,1455,96,1305,75,1156,58,910,36"/>
+</map>

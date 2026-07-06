@@ -1,0 +1,9 @@
+<map id="harmony/src/json/json_validator.h" name="harmony/src/json/json_validator.h">
+<area shape="rect" id="Node000001" title="Strict per&#45;component JSON schema validation at load time." alt="" coords="179,5,344,45"/>
+<area shape="rect" id="Node000002" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="5,101,155,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,54,105,103,103,98,208,49"/>
+<area shape="rect" id="Node000003" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="179,93,344,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,59,264,93,259,93,259,59"/>
+<area shape="rect" id="Node000004" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="369,93,575,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="321,48,427,91,425,96,319,53"/>
+</map>

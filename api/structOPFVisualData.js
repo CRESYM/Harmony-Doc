@@ -1,0 +1,26 @@
+var structOPFVisualData =
+[
+    [ "baseMVA_ac", "structOPFVisualData.html#ac699921753d06a08823084599b0dc26e", null ],
+    [ "baseMW_dc", "structOPFVisualData.html#a9c916621bd21a32b85e965cace50a2a0", null ],
+    [ "branch_dc", "structOPFVisualData.html#abb23cf52fb9a8f97a11b9626450e73b8", null ],
+    [ "branch_entire_ac", "structOPFVisualData.html#aa9182422c8ea4acba701e2a2e366dcb3", null ],
+    [ "bus_dc", "structOPFVisualData.html#af8d816f123d1b298cffbba33c8d65967", null ],
+    [ "bus_entire_ac", "structOPFVisualData.html#aefb8ea01885ca1f18839dbd60fcd4026", null ],
+    [ "conv_dc", "structOPFVisualData.html#a10c757486c065dd3f335042a73c805df", null ],
+    [ "gen_entire_ac", "structOPFVisualData.html#a3fad8fca4874c4ba22a548a45a06e8a2", null ],
+    [ "nbuses_ac", "structOPFVisualData.html#a50a300659a360879740e0d6a07278818", null ],
+    [ "nbuses_dc", "structOPFVisualData.html#a54b0ca147a5a3ba25905f851b2679251", null ],
+    [ "nconvs_dc", "structOPFVisualData.html#a0dab5117b304f8aed8b68cb0b85b7a01", null ],
+    [ "ngens_ac", "structOPFVisualData.html#a877326239e4219c6ddac1f72a8368686", null ],
+    [ "ngrids", "structOPFVisualData.html#a24e083de6d293249240d90a1ce488a16", null ],
+    [ "pgen_ac_k", "structOPFVisualData.html#ac740aff0125d98465ade5f683868e882", null ],
+    [ "pij_ac_k", "structOPFVisualData.html#a384739d4038e1af4dfc4609594379be8", null ],
+    [ "pij_dc_k", "structOPFVisualData.html#ad371429467622105ef67f447187eeb62", null ],
+    [ "pol_dc", "structOPFVisualData.html#a5f3bcbb3bb2524c36996d4d1b361660e", null ],
+    [ "ps_dc_k", "structOPFVisualData.html#a2b456ab81e0e6986aed52e4d734577ea", null ],
+    [ "qgen_ac_k", "structOPFVisualData.html#af807dddeb2883d79809fec0606886a70", null ],
+    [ "qij_ac_k", "structOPFVisualData.html#aa58f1f67a4cdacff998e48dc6273cbe2", null ],
+    [ "qs_dc_k", "structOPFVisualData.html#a1a3f8d69a2b72f85aeb46706a96bfb2a", null ],
+    [ "vn2_ac_k", "structOPFVisualData.html#acade44178de7c0d4f7ea8d4a94dc2bae", null ],
+    [ "vn2_dc_k", "structOPFVisualData.html#aaee86327bb5ebc8d49de21b311ece1c6", null ]
+];

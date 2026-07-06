@@ -1,0 +1,13 @@
+<map id="harmony/src/json/json_parameters.h" name="harmony/src/json/json_parameters.h">
+<area shape="rect" id="Node000001" title="Named numeric parameters for JSON simulation files (Type A indirection)." alt="" coords="112,5,277,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,56,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,48,68,90,66,85,154,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="80,93,139,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,48,134,86,130,82,172,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="163,93,226,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,46,197,79,192,79,192,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="251,93,397,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="227,43,295,84,292,88,225,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="421,93,565,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="267,43,437,87,436,92,266,48"/>
+</map>
