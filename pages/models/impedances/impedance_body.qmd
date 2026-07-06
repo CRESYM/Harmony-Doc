@@ -63,7 +63,7 @@ In (\ref{eq:1}), $n$ is the number of phases. The Y matrix is diagonal because m
 
 ## Code Explanation
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
 <!--
 **Example:**
 

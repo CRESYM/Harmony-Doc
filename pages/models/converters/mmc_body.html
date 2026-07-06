@@ -323,7 +323,7 @@ i^{\Delta q} m_{\tau_d}^{\Sigma d}
 </section>
 <section id="time-delays" class="level3">
 <h3 class="anchored" data-anchor-id="time-delays">Time Delays</h3>
-<p>The MMC’s impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10–100 Hz) and high (several kHz) frequency ranges . Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>.</p>
+<p>The MMC’s impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10�?00 Hz) and high (several kHz) frequency ranges . Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics <span class="citation" data-cites="sakinci2022generalized">Sakinci, Lekić, and Beerten (<a href="#ref-sakinci2022generalized" role="doc-biblioref">2022</a>)</span>.</p>
 <p>The time delay (<span class="math inline">\(\tau_d\)</span>) can be expressed as a rational transfer function using the Pad{'e} approximation stated in <span class="math inline">\(\eqref{eq:pade}\)</span>, where <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are the numerator and denominator approximation orders, respectively . <span class="math display">\[\begin{equation} \label{eq:pade}
     \boldsymbol{T}_{delay} = e^{-s\tau_d} \approx \frac{b_0 + b_1(\tau_d s)^1 + \cdots + b_m(\tau_d s)^m}{a_0 + a_1(\tau_d s)^1 + \cdots + a_n(\tau_d s)^n}
 \end{equation}\]</span></p>
@@ -505,7 +505,7 @@ s C_{dc}
 </section>
 <section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
-<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual">the Harmony manual</a>.</p>
+<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual" target="_blank" rel="noopener">the Harmony manual</a>.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

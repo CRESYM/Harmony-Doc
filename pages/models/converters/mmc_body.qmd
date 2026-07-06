@@ -227,7 +227,7 @@ The insertion indices $\vec{m} = \begin{bmatrix}
 
 ### Time Delays
 
-The MMC's impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10â€“100 Hz) and high (several kHz) frequency ranges \cite{bayo2018control}. Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics @{sakinci2022generalized}.
+The MMC's impedance characteristics are highly susceptible to time delays (computational time delay, sampling delay, modulation delay, etc.) in the system, particularly in the low (10â€?00 Hz) and high (several kHz) frequency ranges \cite{bayo2018control}. Therefore, these time delays must be considered during the modeling of the impedances. For simplicity, all time delays within the control architecture are consolidated into a single delay, based on the assumption that this aggregated delay can effectively represent the impact of the computational time delay on the impedance characteristics @{sakinci2022generalized}.
 
 The time delay ($\tau_d$) can be expressed as a rational transfer function using the Pad{\'e} approximation stated in \eqref{eq:pade}, where $m$ and $n$ are the numerator and denominator approximation orders, respectively \cite{sakinci2022generalized,wang2016harmonic}.
 \begin{equation} \label{eq:pade}
@@ -455,7 +455,7 @@ s C_{dc}
 
 
 ## Code Explanation
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
 
 ## References
 

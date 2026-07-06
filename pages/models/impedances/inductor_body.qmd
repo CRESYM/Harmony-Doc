@@ -79,7 +79,7 @@ This allows accurate simulation of inductive effects for each individual phase.
 
 The `Inductor` class supports two primary mathematical representations, depending on the selected constructor:
 
-1. **Frequency-Domain (Y-Parameter based)** â€” used for steady-state AC analysis.
+1. **Frequency-Domain (Y-Parameter based)** â€?used for steady-state AC analysis.
 
    For a single-phase inductor with inductance $L$, the admittance is:
 
@@ -104,7 +104,7 @@ The `Inductor` class supports two primary mathematical representations, dependin
 
    The constructor for this mode directly computes and stores this symbolic admittance matrix.
 
-2. **Time-Domain (MNA-based)** â€” used for transient or general MNA analyses.
+2. **Time-Domain (MNA-based)** â€?used for transient or general MNA analyses.
 
    For an inductor connected between two nodes, $n_1$ and $n_2$, carrying current $I_L$, the fundamental relationship is:
 
@@ -140,7 +140,7 @@ The `Inductor` class supports two primary mathematical representations, dependin
 ## Code Explanation
 
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
 <!--
 **Example:**
 

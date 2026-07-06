@@ -176,7 +176,7 @@ Figure&nbsp;2: Bode plots of the dq admittance for the type-3 WT using the param
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-wt3-bode" class="quarto-xref">Figure&nbsp;2</a>, the grid background harmonics are modeled as a voltage source Vg. Zs represents the shunt reactor. The type-3 wind turbine is modeled as a current disturbance source Id paralleled with a rotor side impedance ZRS and a grid side impedance ZGS <span class="citation" data-cites="8068243">Vieto and Sun (<a href="#ref-8068243" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="2021107419">Ghanavati et al. (<a href="#ref-2021107419" role="doc-biblioref">2021</a>)</span>, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source <span class="math inline">\(V_d\)</span> represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion . The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as <span class="citation" data-cites="8068243">Vieto and Sun (<a href="#ref-8068243" role="doc-biblioref">2018</a>)</span>:</p>
+<p>In <a href="#fig-wt3-bode" class="quarto-xref">Figure&nbsp;2</a>, the grid background harmonics are modeled as a voltage source Vg. Zs represents the shunt reactor. The type-3 wind turbine is modeled as a current disturbance source Id paralleled with a rotor side impedance ZRS and a grid side impedance ZGS <span class="citation" data-cites="8068243">Vieto and Sun (<a href="#ref-8068243" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="2021107419">Ghanavati et al. (<a href="#ref-2021107419" role="doc-biblioref">2021</a>)</span>, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source <span class="math inline">\(V_d\)</span> represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion <span class="citation" data-cites="8672500">Guest, Jensen, and Rasmussen (<a href="#ref-8672500" role="doc-biblioref">2020</a>)</span>. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as <span class="citation" data-cites="8068243">Vieto and Sun (<a href="#ref-8068243" role="doc-biblioref">2018</a>)</span>:</p>
 <p><span class="math display">\[\begin{eqnarray}
 Z_{RSP}(s) = \frac{
     sL_{sr} + R_s + \frac{R_r'}{\sigma_p(s)} + \frac{N_2^2}{N_1^2} \frac{H_{ri}(s - j\omega_1) - jK_{rd}}{\sigma_p(s)}
@@ -268,7 +268,10 @@ Z_{GSn}(s) &amp;= \frac{
 </section>
 <section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
-<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual">the Harmony manual</a>. ## References</p>
+<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual" target="_blank" rel="noopener">the Harmony manual</a>.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-2021107419" class="csl-entry" role="listitem">
 Ghanavati, Hamed, Łukasz H Kocewiak, Alireza Jalilian, and Oriol Gomis-Bellmunt. 2021. <span>“Transfer Function-Based Analysis of Harmonic and Interharmonic Current Summation in Type-III Wind Power Plants Using DFIG Sequence Impedance Modeling.”</span> <em>Electric Power Systems Research</em> 199: 107419.

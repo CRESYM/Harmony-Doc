@@ -50,7 +50,7 @@ The RSC and GSC are controlled by the current controllers implemented at the d-q
 ![Bode plots of the dq admittance for the type-3 WT using the parameters from paper.](assets/WT_type_3_bode.png){#fig-wt3-bode width=50%}
 
 In @fig-wt3-bode, the grid background harmonics are modeled as a voltage source Vg. Zs represents the shunt reactor. The type-3 wind turbine is modeled as a current disturbance source Id paralleled with a rotor side impedance ZRS and a
-grid side impedance ZGS @8068243, @2021107419, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source $V_d$ represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion \cite{8672500}. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as @8068243:
+grid side impedance ZGS @8068243, @2021107419, which can be equivalent to a voltage disturbance source Vd in series with the total wind turbine impedance ZDFIG. The disturbance source $V_d$ represents the harmonic components coming from non-ideal PWM of converters, i.e., dead-time and pulse deletion @8672500. The ZRS includes the rotor machine impedance and the impedance provided by the RSC controller, which is presented as @8068243:
 
 \begin{eqnarray}
 Z_{RSP}(s) = \frac{
@@ -163,7 +163,8 @@ and the dq admittance is estimated as:
 ## Code Explanation
 
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
+
 ## References
 
 ::: {#refs}

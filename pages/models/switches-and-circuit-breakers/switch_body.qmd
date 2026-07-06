@@ -69,7 +69,7 @@ In the MNA matrix ($A$), this equation translates to specific entries: $A_{\text
 ## Code Explanation
 
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.
 <!--
 **Example:**
 

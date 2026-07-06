@@ -22,7 +22,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="two-level-converter_body_files/libs/clipboard/clipboard.min.js"></script>
@@ -201,9 +220,16 @@ L \frac{d i_j}{dt} = v_j - v_{C,j}
 \end{equation}\]</span> or equivalently with the standard direction of <span class="math inline">\(i_{dc}\)</span> entering the converter and <span class="math inline">\(i^\Delta_{d,q}\)</span> exiting the converter.</p>
 <p>These equations are used for modelling the VSCs connections, both for the back-to-back VSC connection, which is applied for wind turbines, hydrogen, and PV systems, but also from VSCs (MMCs) used for the interfacing of DC and AC sides.</p>
 </section>
-<section id="code-explanation" class="level2" style="font-size:1.2em; font-weight:600; color:#1c5d9b; border-left:3px solid #1c5d9b; padding-left:10px; margin-top:1.2em; margin-bottom:0.8em;">
+<section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
-<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual">the Harmony manual</a>. <!--
+<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual" target="_blank" rel="noopener">the Harmony manual</a>.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" role="list">
+
+</div>
+<!--
 **Example:**
 
 The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 
@@ -329,7 +355,7 @@ _This section lists all the references. It must comply with current citation sta
 
 ::: {#refs}
 :::
---></p>
+-->
 </section>
 
 </main>

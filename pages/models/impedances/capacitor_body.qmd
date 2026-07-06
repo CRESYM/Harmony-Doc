@@ -48,7 +48,7 @@ For multi-phase systems, such as a three-phase network, the `Capacitor` class ha
 
 The `Capacitor` class supports two primary mathematical representations, depending on the selected constructor:
 
-1. **Frequency-Domain (Y-Parameter based)** â€” This model is used for steady-state AC analysis. For a single-phase capacitor with capacitance $C$, the admittance ($Y$) is given by:
+1. **Frequency-Domain (Y-Parameter based)** â€?This model is used for steady-state AC analysis. For a single-phase capacitor with capacitance $C$, the admittance ($Y$) is given by:
     \begin{equation} 
     Y = j\omega C = sC 
     \end{equation}
@@ -66,7 +66,7 @@ The `Capacitor` class supports two primary mathematical representations, dependi
     \end{equation}
     The constructor for this mode directly computes and stores this symbolic admittance matrix.
 
-2. **Time-Domain (MNA-based)** â€” This model is used for transient analysis or general MNA where the capacitor's behavior is integrated into the system equations. For a capacitor connected between two nodes, $n1$ and $n2$, with voltage difference $V_{n1} - V_{n2}$, and carrying current $I_C$, the fundamental relationship is:
+2. **Time-Domain (MNA-based)** â€?This model is used for transient analysis or general MNA where the capacitor's behavior is integrated into the system equations. For a capacitor connected between two nodes, $n1$ and $n2$, with voltage difference $V_{n1} - V_{n2}$, and carrying current $I_C$, the fundamental relationship is:
 
   \begin{equation} 
   I_C = C \frac{dV_{n1 \text{ - } n2}}{dt} 
@@ -98,4 +98,4 @@ The provided `writeMNAmatrix` implementation, however, sets up equations of a sl
 
 ## Code Explanation
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.

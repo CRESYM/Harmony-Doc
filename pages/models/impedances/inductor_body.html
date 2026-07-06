@@ -161,7 +161,7 @@ This allows accurate simulation of inductive effects for each individual phase.<
 <h3 class="anchored" data-anchor-id="mathematical-representation">Mathematical Representation</h3>
 <p>The <code>Inductor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
 <ol type="1">
-<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — used for steady-state AC analysis.</p>
+<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> �?used for steady-state AC analysis.</p>
 <p>For a single-phase inductor with inductance <span class="math inline">\(L\)</span>, the admittance is:</p>
 <p><span class="math display">\[\begin{equation}
 Y = \frac{1}{j\omega L} = \frac{1}{sL}
@@ -180,7 +180,7 @@ Y =
 \end{bmatrix}
 \end{equation}\]</span></p>
 <p>The constructor for this mode directly computes and stores this symbolic admittance matrix.</p></li>
-<li><p><strong>Time-Domain (MNA-based)</strong> — used for transient or general MNA analyses.</p>
+<li><p><strong>Time-Domain (MNA-based)</strong> �?used for transient or general MNA analyses.</p>
 <p>For an inductor connected between two nodes, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, carrying current <span class="math inline">\(I_L\)</span>, the fundamental relationship is:</p>
 <p><span class="math display">\[
 V_{n_1} - V_{n_2} = L \frac{dI_L}{dt}
@@ -209,7 +209,7 @@ and <span class="math inline">\(A_{\text{r2}, I_L} = +1\)</span> (current enteri
 </section>
 <section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
-<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual">the Harmony manual</a>. <!--
+<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual" target="_blank" rel="noopener">the Harmony manual</a>. <!--
 **Example:**
 
 The synchronous machine is one of the most studied component of a power system, being its main source of electrical energy. 

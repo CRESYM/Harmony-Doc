@@ -47,7 +47,7 @@ For multi-phase systems, such as a three-phase network, the `Resistor` class han
 
 The `Resistor` class supports two primary mathematical representations, depending on the selected constructor:
 
-1. **Frequency-Domain (Y-Parameter based)** â€” This model is used for steady-state AC analysis. For a single-phase resistor with resistance $R$, the admittance ($Y$) is given by:
+1. **Frequency-Domain (Y-Parameter based)** â€?This model is used for steady-state AC analysis. For a single-phase resistor with resistance $R$, the admittance ($Y$) is given by:
     \begin{equation}
      Y = \frac{1}{R} = G 
      \end{equation}
@@ -73,7 +73,7 @@ The `Resistor` class supports two primary mathematical representations, dependin
     \end{bmatrix}
     \end{equation}
 
-2. **Time-Domain (MNA-based)** â€” This model is used for transient analysis or general MNA. For a resistor connected between two nodes, $n1$ and $n2$, the current flowing from $n1$ to $n2$ is $I = \frac{V_{n1} - V_{n2}}{R}$. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase $i$ of a resistor connected between corresponding sub-nodes $n1_i$ and $n2_i$:
+2. **Time-Domain (MNA-based)** â€?This model is used for transient analysis or general MNA. For a resistor connected between two nodes, $n1$ and $n2$, the current flowing from $n1$ to $n2$ is $I = \frac{V_{n1} - V_{n2}}{R}$. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase $i$ of a resistor connected between corresponding sub-nodes $n1_i$ and $n2_i$:
 
    - The conductance $G_i = 1/R_i$ is added to the diagonal elements corresponding to $n1_i$ and $n2_i$.
    - The negative of the conductance, $-G_i$, is added to the off-diagonal elements corresponding to $(n1_i, n2_i)$ and $(n2_i, n1_i)$.
@@ -83,4 +83,4 @@ The `Resistor` class supports two primary mathematical representations, dependin
 ## Code Explanation
 
 
-For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual).
+For detailed code information, see [the Harmony manual](https://github.com/CRESYM/Harmony/tree/main/docs/manual){target="_blank" rel="noopener"}.

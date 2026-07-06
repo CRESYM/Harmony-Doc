@@ -143,7 +143,7 @@ Tip
 <h3 class="anchored" data-anchor-id="mathematical-representation">Mathematical Representation</h3>
 <p>The <code>Resistor</code> class supports two primary mathematical representations, depending on the selected constructor:</p>
 <ol type="1">
-<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> — This model is used for steady-state AC analysis. For a single-phase resistor with resistance <span class="math inline">\(R\)</span>, the admittance (<span class="math inline">\(Y\)</span>) is given by: <span class="math display">\[\begin{equation}
+<li><p><strong>Frequency-Domain (Y-Parameter based)</strong> �?This model is used for steady-state AC analysis. For a single-phase resistor with resistance <span class="math inline">\(R\)</span>, the admittance (<span class="math inline">\(Y\)</span>) is given by: <span class="math display">\[\begin{equation}
   Y = \frac{1}{R} = G
   \end{equation}\]</span> where <span class="math inline">\(G\)</span> is the conductance. For a single resistor connected between two nodes (e.g., as a two-port element), its admittance matrix is: <span class="math display">\[\begin{equation}
 Y =
@@ -162,7 +162,7 @@ G_a &amp; 0 &amp; 0 &amp; -G_a &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; -G_c &amp; 0 &amp; 0 &amp; G_c
 \end{bmatrix}
 \end{equation}\]</span></p></li>
-<li><p><strong>Time-Domain (MNA-based)</strong> — This model is used for transient analysis or general MNA. For a resistor connected between two nodes, <span class="math inline">\(n1\)</span> and <span class="math inline">\(n2\)</span>, the current flowing from <span class="math inline">\(n1\)</span> to <span class="math inline">\(n2\)</span> is <span class="math inline">\(I = \frac{V_{n1} - V_{n2}}{R}\)</span>. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase <span class="math inline">\(i\)</span> of a resistor connected between corresponding sub-nodes <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>:</p>
+<li><p><strong>Time-Domain (MNA-based)</strong> �?This model is used for transient analysis or general MNA. For a resistor connected between two nodes, <span class="math inline">\(n1\)</span> and <span class="math inline">\(n2\)</span>, the current flowing from <span class="math inline">\(n1\)</span> to <span class="math inline">\(n2\)</span> is <span class="math inline">\(I = \frac{V_{n1} - V_{n2}}{R}\)</span>. In the MNA formulation, the contribution of a resistor to the nodal admittance matrix is directly stamped. For each phase <span class="math inline">\(i\)</span> of a resistor connected between corresponding sub-nodes <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>:</p>
 <ul>
 <li>The conductance <span class="math inline">\(G_i = 1/R_i\)</span> is added to the diagonal elements corresponding to <span class="math inline">\(n1_i\)</span> and <span class="math inline">\(n2_i\)</span>.</li>
 <li>The negative of the conductance, <span class="math inline">\(-G_i\)</span>, is added to the off-diagonal elements corresponding to <span class="math inline">\((n1_i, n2_i)\)</span> and <span class="math inline">\((n2_i, n1_i)\)</span>.</li>
@@ -173,7 +173,7 @@ G_a &amp; 0 &amp; 0 &amp; -G_a &amp; 0 &amp; 0 \\
 </section>
 <section id="code-explanation" class="level2">
 <h2 class="anchored" data-anchor-id="code-explanation">Code Explanation</h2>
-<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual">the Harmony manual</a>.</p>
+<p>For detailed code information, see <a href="https://github.com/CRESYM/Harmony/tree/main/docs/manual" target="_blank" rel="noopener">the Harmony manual</a>.</p>
 </section>
 
 </main>
