@@ -12,6 +12,12 @@ Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026.
 - **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “Implementation of an MMC Model for Dynamic Phasor State-
 space Solver,” *PSCC 2026*, 2026.  
 **Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:5awf1xo2G04C) 
+
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “DQsym modelling library: Power system dynamic phasor-based modelling library,” *SoftwareX*, 2026.  
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) 
+
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “Dynamic phasor state-space solver for hybrid AC/DC systems,” *Electric Power System Research*, 2026.  
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S0378779626008400) 
 ---
 
 #### <i class="bi bi-calendar3"></i> 2025 year 
