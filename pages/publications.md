@@ -13,11 +13,14 @@ Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026.
 space Solver,” *PSCC 2026*, 2026.  
 **Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:5awf1xo2G04C) 
 
-- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “DQsym modelling library: Power system dynamic phasor-based modelling library,” *SoftwareX*, 2026.  
-**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) 
+- H. Du, T. B. Hashfi, R. Prasad, P. P. Vergara, P. Palensky, **A. Lekić**, “Optimal droop control strategy for coordinated voltage regulation and power sharing in hybrid AC–MTDC systems,” *IEEE Access*, 2026.  
+**Links:** [PDF](https://ieeexplore.ieee.org/abstract/document/11534225) 
 
-- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “Dynamic phasor state-space solver for hybrid AC/DC systems,” *Electric Power System Research*, 2026.  
-**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S0378779626008400) 
+- **H. Li**, **A. Lekić**, “Leveraging Optimal Information-Power Flow for Transmission Switching in AC/MTDC Grids,” *26TH International Conference on Environment and Electrical Engineering (EEEIC2026)*, 2026.  
+**Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:JQOojiI6XY0C) 
+
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “DQsym modelling library: Power system dynamic phasor-based modelling library,” *SoftwareX*, 2026.  
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) [Respository](https://github.com/control-protection-grids-tudelft/DP) 
 ---
 
 #### <i class="bi bi-calendar3"></i> 2025 year 
@@ -29,7 +32,7 @@ space Solver,” *PSCC 2026*, 2026.
 **Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S014206152400588X) 
 
 - **H. Li**, **A. Kermansaravi**, **R. Dimitrovskia**, **A. Lekić**, “OpFlowTools: A Cross-Language Benchmark of AC/DC Optimal Power Flow Solutions, *SoftwareX*, 2025.  
-**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711025002900) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711025002900) [Respository](https://github.com/CRESYM/ACDC_OPF) 
 
 ---
 
