@@ -20,7 +20,7 @@ space Solver,” *PSCC 2026*, 2026.
 **Links:** [PDF](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xwCWAb0AAAAJ&sortby=pubdate&citation_for_view=xwCWAb0AAAAJ:JQOojiI6XY0C) 
 
 - **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “DQsym modelling library: Power system dynamic phasor-based modelling library,” *SoftwareX*, 2026.  
-**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) [Respository](https://github.com/control-protection-grids-tudelft/DP) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) [Repository](https://github.com/control-protection-grids-tudelft/DP) 
 ---
 
 #### <i class="bi bi-calendar3"></i> 2025 year 
@@ -32,7 +32,7 @@ space Solver,” *PSCC 2026*, 2026.
 **Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S014206152400588X) 
 
 - **H. Li**, **A. Kermansaravi**, **R. Dimitrovskia**, **A. Lekić**, “OpFlowTools: A Cross-Language Benchmark of AC/DC Optimal Power Flow Solutions, *SoftwareX*, 2025.  
-**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711025002900) [Respository](https://github.com/CRESYM/ACDC_OPF) 
+**Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711025002900) [Repository](https://github.com/CRESYM/ACDC_OPF) 
 
 ---
 
