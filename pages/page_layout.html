@@ -305,51 +305,51 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../../../index.html"><i class="bi bi-house-door-fill me-1"></i>Home</a>
+            <a class="nav-link" href="../index.html"><i class="bi bi-house-door-fill me-1"></i>Home</a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../../index.html">Overview</a></li>
-              <li><a class="dropdown-item" href="../../teams.html">Teams</a></li>
-              <li><a class="dropdown-item" href="../../getting-started.html">Getting Started</a></li>
-              <li><a class="dropdown-item" href="../../publications.html">Publications</a></li>
-              <li><a class="dropdown-item" href="../../../api/index.html">API Reference (Doxygen)</a></li>
+              <li><a class="dropdown-item" href="../index.html">Overview</a></li>
+              <li><a class="dropdown-item" href="./teams.html">Teams</a></li>
+              <li><a class="dropdown-item" href="./getting-started.html">Getting Started</a></li>
+              <li><a class="dropdown-item" href="./publications.html">Publications</a></li>
+              <li><a class="dropdown-item" href="../api/index.html">API Reference (Doxygen)</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Models</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pages/page_layout.html?file=impedance">Impedances</a></li>
-              <li><a class="dropdown-item" href="../transformers/transformer1.html">Transformers</a></li>
-              <li><a class="dropdown-item" href="../loads/load.html">Loads</a></li>
-              <li><a class="dropdown-item" href="../transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
-              <li><a class="dropdown-item" href="../sources-and-generators/ac-source.html">Sources and Generators</a></li>
-              <li><a class="dropdown-item" href="../converters/two-level-converter.html">Converters</a></li>
-              <li><a class="dropdown-item" href="../switches-and-circuit-breakers/switch.html">Switches and Circuit Breakers</a></li>
-              <li><a class="dropdown-item" href="../renewable-energy-sources/wt-type3.html">Renewable Energy Sources</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=impedance">Impedances</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=transformer_magnetization_resistance">Transformers</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=load">Loads</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=long_transmission_line">Transmission Lines</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=ac_source">Sources and Generators</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=two_level_converter">Converters</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=switch">Switches and Circuit Breakers</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=wt_type3">Renewable Energy Sources</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solvers</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../solvers/stability-check/stability-check.html">Stability Check</a></li>
-              <li><a class="dropdown-item" href="../../solvers/optimal-power-flow/optimal-power-flow.html">Optimal Power Flow</a></li>
-              <li><a class="dropdown-item" href="../../solvers/dqsym-math-operation/dqsym-math-operation.html">DQsym Math Operation</a></li>
+              <li><a class="dropdown-item" href="./solvers/stability-check/stability-check.html">Stability Check</a></li>
+              <li><a class="dropdown-item" href="./solvers/optimal-power-flow/optimal-power-flow.html">Optimal Power Flow</a></li>
+              <li><a class="dropdown-item" href="./solvers/dqsym-math-operation/dqsym-math-operation.html">DQsym Math Operation</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../tests/point-to-point-case/point-to-point-case.html">Point to Point Case</a></li>
+              <li><a class="dropdown-item" href="./tests/point-to-point-case/point-to-point-case.html">Point to Point Case</a></li>
             </ul>
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="../../contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
 
           <li class="nav-item d-flex align-items-center ms-3">
             <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
@@ -375,8 +375,10 @@
     <button id="searchBarClose" class="search-cancel" type="button">Cancel</button>
   </div>
 
-  <!-- Left-side navigation menu -->
+  <!-- 3-Column Layout: Left/Right Menus + Central content -->
   <div class="hdoc-layout">
+    <!-- Left-side navigation menu -->
+    <!--
     <aside class="hdoc-sidenav">
       <div class="sidenav-card">
         <button id="impAccBtn" class="sidenav-acc" type="button" aria-expanded="true" aria-controls="impMenu">
@@ -394,6 +396,9 @@
           </div>
         </div>
       </div>
+    </aside>
+    -->
+    <aside class="hdoc-sidenav" id="dynamicSidenav">
     </aside>
 
     <!-- Page contents -->
@@ -458,6 +463,7 @@
   </script>
 
   <!-- Collapsible left sidebar menu -->
+  <!--
   <script>
     (function () {
       const btn = document.getElementById("impAccBtn");
@@ -475,8 +481,10 @@
       btn.addEventListener("click", () => setState(btn.getAttribute("aria-expanded") !== "true"));
     })();
   </script>
+  -->
 
   <!-- Highlights the active page in the left sidebar menu so users can see which page they are currently reading.  -->
+  <!--
   <script>
     (function(){
       const params = new URLSearchParams(location.search);
@@ -488,6 +496,7 @@
       });
     })();
   </script>
+  -->
 
   <!-- Table of contents (right-side menu) -->
   <script>
@@ -704,6 +713,7 @@
   </script>
 
   <!-- Automatically detects which page the user is visiting and dynamically loads the correct content and page title into the main viewing frame. -->
+  <!--
   <script>
     (function() {
       const params = new URLSearchParams(location.search);
@@ -747,6 +757,151 @@
       frameEl.src = activeRoute.src;
     })();
   </script>
+  -->
+
+  <script>
+    (function () {
+    // 1. CONFIGURATION: Central source of truth for categories & routes
+    const siteConfig = {
+      categories: {
+        impedances: {
+          title: "Impedances",
+          items: [
+            { id: "impedance", label: "Impedance", src: "./models/impedances/impedance_body.html" },
+            { id: "admittance", label: "Admittance", src: "./models/impedances/admittance_body.html" },
+            { id: "inductor", label: "Inductor", src: "./models/impedances/inductor_body.html" },
+            { id: "capacitor", label: "Capacitor", src: "./models/impedances/capacitor_body.html" },
+            { id: "resistor", label: "Resistor", src: "./models/impedances/resistor_body.html" }
+          ]
+        },
+        transformers: {
+          title: "Transformers",
+          items: [
+            { id: "transformer_magnetization_resistance", label: "Transformer with Magnetization Resistance and Inductance", src: "./models/transformers/transformer-with-mage-resist-induct_body.html" },
+            { id: "transformer_mutual_inductance", label: "Transformer with Mutual Inductance", src: "./models/transformers/transformer-with-mutual-induct_body.html" }
+          ]
+        },
+        loads: {
+          title: "Loads",
+          items: [
+            { id: "load", label: "Load", src: "./models/loads/load_body.html" }
+          ]
+        },
+        transmission_lines: {
+          title: "Transmission Lines",
+          items: [
+            { id: "long_transmission_line", label: "Long Transmission Line", src: "./models/transmission-lines/long-transmission-line_body.html" },
+            { id: "overhead_line", label: "Overhead Line", src: "./models/transmission-lines/overhead-line_body.html" },
+            { id: "cable", label: "Cable", src: "./models/transmission-lines/cable_body.html" }
+          ]
+        },
+        sources_and_generators: {
+          title: "Sources and Generators",
+          items: [
+            { id: "ac_source", label: "AC Source", src: "./models/sources-and-generators/ac-source_body.html" },
+            { id: "generator", label: "Generator", src: "./models/sources-and-generators/generator_body.html" }
+          ]
+        },
+        converters: {
+          title: "Converters",
+          items: [
+            { id: "two_level_converter", label: "Two Level Converter", src: "./models/converters/two-level-converter_body.html" },
+            { id: "mmc", label: "MMC", src: "./models/converters/mmc_body.html" }
+          ]
+        },
+        switches_and_circuit_breakers: {
+          title: "Switches and Circuit Breakers",
+          items: [
+            { id: "switch", label: "Switch", src: "./models/switches-and-circuit-breakers/switch_body.html" }
+          ]
+        },
+        renewable_energy_sources: {
+          title: "Renewable Energy Sources",
+          items: [
+            { id: "wt_type3", label: "WT Type 3", src: "./models/renewable-energy-sources/wt-type3_body.html" },
+            { id: "wt_type4", label: "WT Type 4", src: "./models/renewable-energy-sources/wt-type4_body.html" },
+            { id: "pv_power_plant", label: "PV Power Plant", src: "./models/renewable-energy-sources/pv-power-plant_body.html" }
+          ]
+        }
+      }
+    };
+
+    // 2. PARSE QUERY PARAMETER
+    const params = new URLSearchParams(window.location.search);
+    const currentFile = (params.get("file")).toLowerCase();
+
+    // 3. LOCATE CATEGORY AND ACTIVE FILE
+    let activeCategory = null;
+    let activeItem = null;
+
+    for (const catKey in siteConfig.categories) {
+      const category = siteConfig.categories[catKey];
+      const found = category.items.find((item) => item.id.toLowerCase() === currentFile);
+      if (found) {
+        activeCategory = category;
+        activeItem = found;
+        break;
+      }
+    }
+
+    // Fallback to the first category & item if the parameter doesn't match
+    if (!activeCategory || !activeItem) {
+      activeCategory = siteConfig.categories["impedances"];
+      activeItem = activeCategory.items[0];
+    }
+
+    // 4. UPDATE PAGE TITLE & IFRAME (MAIN CONTENT)
+    const titleEl = document.getElementById("pageTitle");
+    const frameEl = document.getElementById("contentFrame");
+
+    const fullTitle = `${activeItem.label} - Harmony`;
+    if (titleEl) titleEl.textContent = fullTitle; // This line might not be necessary
+    document.title = fullTitle;
+
+    if (frameEl) frameEl.src = activeItem.src;
+
+    // 5. DYNAMICALLY BUILD THE SIDEBAR LEFT MENU
+    const sidenavEl = document.getElementById("dynamicSidenav");
+    if (!sidenavEl) return;
+
+    const linksHTML = activeCategory.items
+      .map((item) => {
+        const isActive = item.id.toLowerCase() === activeItem.id.toLowerCase();
+        const activeClass = isActive ? " active" : "";
+        return `<a class="list-group-item${activeClass}" href="./page_layout.html?file=${item.id}">${item.label}</a>`;
+      })
+      .join("\n");
+
+    sidenavEl.innerHTML = `
+      <div class="sidenav-card">
+        <button id="catAccBtn" class="sidenav-acc" type="button" aria-expanded="true" aria-controls="catMenu">
+          <span class="acc-icon" aria-hidden="true">▾</span>
+          <span class="acc-title">${activeCategory.title}</span>
+        </button>
+
+        <div id="catMenu" class="acc-panel">
+          <div class="list-group list-group-flush">
+            ${linksHTML}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // 6. ATTACH COLLAPSIBLE TOGGLE EVENT TO THE GENERATED BUTTON (LEFT-SIDE MENU)
+    const accBtn = document.getElementById("catAccBtn");
+    const accPanel = document.getElementById("catMenu");
+    const accIcon = accBtn?.querySelector(".acc-icon");
+
+    if (accBtn && accPanel && accIcon) {
+      accBtn.addEventListener("click", () => {
+        const isExpanded = accBtn.getAttribute("aria-expanded") === "true";
+        accBtn.setAttribute("aria-expanded", !isExpanded);
+        accPanel.style.display = isExpanded ? "none" : "";
+        accIcon.textContent = isExpanded ? "▸" : "▾";
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
