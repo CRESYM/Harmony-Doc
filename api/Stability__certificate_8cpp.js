@@ -1,0 +1,27 @@
+var Stability__certificate_8cpp =
+[
+    [ "dwHermitianMargin", "Stability__certificate_8cpp.html#a791ed24fea807cc228debbb18922e9af", null ],
+    [ "elementAdmittance", "Stability__certificate_8cpp.html#ae4a54aa2c6cf8af997fa70c43888f42c", null ],
+    [ "extractAcDqBlock", "Stability__certificate_8cpp.html#a60724f9c87f91cdb9532213ba6c1ccc5", null ],
+    [ "finalizeCertificateSweep", "Stability__certificate_8cpp.html#a5dfd2af6318c5db4b18230bd0d6ed069", null ],
+    [ "maxEigenPhaseDeg", "Stability__certificate_8cpp.html#a071c2a378f44f5d3ee528d75e83f9141", null ],
+    [ "passivityIndex", "Stability__certificate_8cpp.html#a896b79a06c4e87a742403db3eecfdf14", null ],
+    [ "plot_certificate_dw_shell", "Stability__certificate_8cpp.html#a1864124ceb31aeb3c3eb269301d70973", null ],
+    [ "plot_certificate_dw_slice", "Stability__certificate_8cpp.html#a0c4db5deb4bd66ff81e82e2eeb12fd37", null ],
+    [ "plot_certificate_gate", "Stability__certificate_8cpp.html#a70152149b7758c3d42ecb6a13e03c12d", null ],
+    [ "plot_certificate_geometric_sweep", "Stability__certificate_8cpp.html#ad15fa63c0e96bb7664e31a100b0ea2b8", null ],
+    [ "plot_certificate_local_vs_system", "Stability__certificate_8cpp.html#a2b5b17a8787c8fce7b0cf154c498f110", null ],
+    [ "plot_certificate_numerical_range", "Stability__certificate_8cpp.html#aea9f9f7660b9eddb0fe660914fd951c6", null ],
+    [ "plot_certificate_operating_region", "Stability__certificate_8cpp.html#a839d5885fc29b9072de0b2280c44572d", null ],
+    [ "plot_certificate_passivity", "Stability__certificate_8cpp.html#af55843332344694685f201f86c54ace6", null ],
+    [ "plot_certificate_phase", "Stability__certificate_8cpp.html#a7169c5e7b1e9b0af30b2964a82dc9526", null ],
+    [ "plot_certificate_tuning_compare", "Stability__certificate_8cpp.html#aeca49190e97fbcf2ffd856b775431d54", null ],
+    [ "shiftedPassivityIndex", "Stability__certificate_8cpp.html#a890dea8216572e010c065a5c6a028ecd", null ],
+    [ "sweepDeviceCertificate", "Stability__certificate_8cpp.html#a8b177389543a4c4f498d56fc1c611a8f", null ],
+    [ "sweepDeviceCertificate", "Stability__certificate_8cpp.html#a503fac6d384bfb7d7328a82f35dfb319", null ],
+    [ "sweepPassesSpec", "Stability__certificate_8cpp.html#a6fd984aad752eaf63236b256411246dd", null ],
+    [ "sweepReturnRatioCertificate", "Stability__certificate_8cpp.html#a770e1110ec0521cf06c4a44301fdcb3c", null ],
+    [ "sweepReturnRatioCertificate", "Stability__certificate_8cpp.html#ab6a6ffe0cc797a2a3c67975838de8b77", null ],
+    [ "writeCertificateSweepCsv", "Stability__certificate_8cpp.html#a25192baaed698b0951e9f194bc4a7f6c", null ],
+    [ "writeOperatingRegionCsv", "Stability__certificate_8cpp.html#aebcfb5b7bc9d3b0b49c8f512667a0ea8", null ]
+];

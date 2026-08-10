@@ -40,14 +40,17 @@ var searchData=
   ['transformer_5fy_5fy_5freal_2eh_37',['Transformer_Y_Y_real.h',['../Transformer__Y__Y__real_8h.html',1,'']]],
   ['transformerdeltadelta_38',['transformerdeltadelta',['../classTransformerDeltaDelta.html#ac1dfee64ca383da122796e1112ff15e6',1,'TransformerDeltaDelta::TransformerDeltaDelta()'],['../classTransformerDeltaDelta.html',1,'TransformerDeltaDelta']]],
   ['transformerdeltay_39',['transformerdeltay',['../classTransformerDeltaY.html#a86430f1cc87a128acf4bb581e8dfe8c9',1,'TransformerDeltaY::TransformerDeltaY()'],['../classTransformerDeltaY.html',1,'TransformerDeltaY']]],
-  ['transformerdeltay_5freal_40',['transformerdeltay_real',['../classTransformerDeltaY__real.html#aced0dd2873327733c018aaf439e5f59a',1,'TransformerDeltaY_real::TransformerDeltaY_real()'],['../classTransformerDeltaY__real.html',1,'TransformerDeltaY_real']]],
+  ['transformerdeltay_5freal_40',['transformerdeltay_real',['../classTransformerDeltaY__real.html',1,'TransformerDeltaY_real'],['../classTransformerDeltaY__real.html#aced0dd2873327733c018aaf439e5f59a',1,'TransformerDeltaY_real::TransformerDeltaY_real()']]],
   ['transformerydelta_41',['transformerydelta',['../classTransformerYDelta.html',1,'TransformerYDelta'],['../classTransformerYDelta.html#aca9b9aaf81060ec19c5bbc9ca076f89e',1,'TransformerYDelta::TransformerYDelta()']]],
   ['transformeryy_42',['transformeryy',['../classTransformerYY.html',1,'TransformerYY'],['../classTransformerYY.html#ad241c898a3d42a61741f1f5384aed8c2',1,'TransformerYY::TransformerYY()']]],
   ['transformeryy_5freal_43',['transformeryy_real',['../classTransformerYY__real.html',1,'TransformerYY_real'],['../classTransformerYY__real.html#ae1e9fceb3bd48acab6c74fef65daf58b',1,'TransformerYY_real::TransformerYY_real()']]],
   ['transmission_20lines_44',['Transmission lines',['../group__transmission.html',1,'']]],
-  ['transmissionline_45',['transmissionline',['../classTransmissionLine.html#a2d98433585c8cf363500991e2f45e829',1,'TransmissionLine::TransmissionLine()'],['../classTransmissionLine.html',1,'TransmissionLine']]],
+  ['transmissionline_45',['transmissionline',['../classTransmissionLine.html',1,'TransmissionLine'],['../classTransmissionLine.html#a2d98433585c8cf363500991e2f45e829',1,'TransmissionLine::TransmissionLine()']]],
   ['transmissionline_2ecpp_46',['Transmissionline.cpp',['../Transmissionline_8cpp.html',1,'']]],
   ['transmissionline_2eh_47',['Transmissionline.h',['../Transmissionline_8h.html',1,'']]],
   ['tree_48',['tree',['../classStateSpaceModel_1_1Tree.html#a7fdfb5cc431822bb2cdf88b708f7eca7',1,'StateSpaceModel::Tree::Tree()'],['../classStateSpaceModel_1_1Tree.html',1,'StateSpaceModel::Tree']]],
-  ['truncateharmonics_49',['truncateharmonics',['../DQsym__Conversion__Functions_8cpp.html#a9e82412d529320088f457f12e087e86d',1,'truncateHarmonics(const MatrixXcd &amp;X, int nColsToKeep):&#160;DQsym_Conversion_Functions.cpp'],['../DQsym__Conversion__Functions_8h.html#a9e82412d529320088f457f12e087e86d',1,'truncateHarmonics(const MatrixXcd &amp;X, int nColsToKeep):&#160;DQsym_Conversion_Functions.cpp']]]
+  ['truncateharmonics_49',['truncateharmonics',['../DQsym__Conversion__Functions_8cpp.html#a9e82412d529320088f457f12e087e86d',1,'truncateHarmonics(const MatrixXcd &amp;X, int nColsToKeep):&#160;DQsym_Conversion_Functions.cpp'],['../DQsym__Conversion__Functions_8h.html#a9e82412d529320088f457f12e087e86d',1,'truncateHarmonics(const MatrixXcd &amp;X, int nColsToKeep):&#160;DQsym_Conversion_Functions.cpp']]],
+  ['tunegfmdroops_50',['tunegfmdroops',['../Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e',1,'tuneGfmDroops(MMC &amp;mmc, const CertificateSpec &amp;spec, const GfmTuningBounds &amp;bounds):&#160;Tuning_assistant.cpp'],['../Tuning__assistant_8h.html#a201fb18b37d829ba6c6db4036c09f686',1,'tuneGfmDroops(MMC &amp;mmc, const CertificateSpec &amp;spec, const GfmTuningBounds &amp;bounds={}):&#160;Tuning_assistant.cpp']]],
+  ['tuning_5fassistant_2ecpp_51',['Tuning_assistant.cpp',['../Tuning__assistant_8cpp.html',1,'']]],
+  ['tuning_5fassistant_2eh_52',['Tuning_assistant.h',['../Tuning__assistant_8h.html',1,'']]]
 ];

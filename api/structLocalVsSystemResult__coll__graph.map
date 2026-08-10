@@ -1,0 +1,15 @@
+<map id="LocalVsSystemResult" name="LocalVsSystemResult">
+<area shape="rect" id="Node000001" title="Side&#45;by&#45;side local vs system certificate comparison." alt="" coords="100,533,263,559"/>
+<area shape="rect" id="Node000002" href="$structCertificateSweep.html" title="Frequency&#45;domain certificate sweep for one device (or one H)." alt="" coords="49,431,181,456"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,468,146,508,168,531,165,535,142,511,121,470"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,189,171,214"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,228,116,430,111,431,88,228"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="23,93,153,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,132,91,189,85,189,85,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="69,5,107,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,45,91,93,85,93,85,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="215,431,302,456"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="244,469,211,511,193,535,189,531,207,508,240,465"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="195,181,333,221"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="266,235,262,431,256,430,261,235"/>
+</map>

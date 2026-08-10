@@ -6,5 +6,7 @@ var searchData=
   ['load_5fbase_3',['Load_base',['../classLoad__base.html#a4854846ce5557f8295b41c7ea2c1d8bc',1,'Load_base']]],
   ['load_5fparams_5fac_4',['load_params_ac',['../classPowerFlow.html#a3d1bd3761ba6fbbd2f77d011b016cac1',1,'PowerFlow']]],
   ['load_5fparams_5fdc_5',['load_params_dc',['../classPowerFlow.html#af970b9f2769318bcaa605fe8e4770573',1,'PowerFlow']]],
-  ['loadpq_6',['LoadPQ',['../classLoadPQ.html#af76af646d4d1ca8468ab7db9a518b800',1,'LoadPQ']]]
+  ['loadjson_6',['loadJson',['../classPnPCertificateLibrary.html#af7b3dec306ed0b2878d3402268fdb6c1',1,'PnPCertificateLibrary']]],
+  ['loadpq_7',['LoadPQ',['../classLoadPQ.html#af76af646d4d1ca8468ab7db9a518b800',1,'LoadPQ']]],
+  ['loopshiftedsector_8',['loopshiftedsector',['../Geometric__certificates_8cpp.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp'],['../Geometric__certificates_8h.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp']]]
 ];

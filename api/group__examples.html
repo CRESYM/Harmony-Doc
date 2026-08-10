@@ -153,6 +153,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8697160197c44a291d3729bc780434e2" id="r_ga8697160197c44a291d3729bc780434e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC</a> (bool plotting_enabled=true)</td></tr>
 <tr class="memdesc:ga8697160197c44a291d3729bc780434e2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> equilibrium, ABCD, Y-matrix, and eigenvalue study.  <br /></td></tr>
 <tr class="separator:ga8697160197c44a291d3729bc780434e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf011602e994d4f00f6cf8815a1ca360b" id="r_gaf011602e994d4f00f6cf8815a1ca360b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm</a> (bool plotting_enabled=true)</td></tr>
+<tr class="memdesc:gaf011602e994d4f00f6cf8815a1ca360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">GFM <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> control mode with <a class="el" href="classStabilityEstimate.html" title="Performs impedance-based stability assessment of network areas.">StabilityEstimate</a> reuse.  <br /></td></tr>
+<tr class="separator:gaf011602e994d4f00f6cf8815a1ca360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga852c443e52c9e5bcb55e1a0d9b56cf09" id="r_ga852c443e52c9e5bcb55e1a0d9b56cf09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__examples.html#ga852c443e52c9e5bcb55e1a0d9b56cf09">example_certificate_figures</a> (bool plotting_enabled=true)</td></tr>
+<tr class="memdesc:ga852c443e52c9e5bcb55e1a0d9b56cf09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paper-style device certificate figures (passivity/phase/gate/(P,Q)/local-vs-H).  <br /></td></tr>
+<tr class="separator:ga852c443e52c9e5bcb55e1a0d9b56cf09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaea563d9a62f6ca9e858641b74dddf462" id="r_gaea563d9a62f6ca9e858641b74dddf462"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__examples.html#gaea563d9a62f6ca9e858641b74dddf462">example_WT_type_3</a> (bool plotting_enabled=true)</td></tr>
 <tr class="memdesc:gaea563d9a62f6ca9e858641b74dddf462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type-3 wind-turbine model demonstration.  <br /></td></tr>
 <tr class="separator:gaea563d9a62f6ca9e858641b74dddf462"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,6 +260,42 @@ Functions</h2></td></tr>
 </dl>
 
 <p class="reference">References <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">Element::plotYParameters()</a>, <a class="el" href="classCable.html#ace7e378ee6b97495a825a6c7ad8b2366">Cable::printElementValues()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">Element::writeFile()</a>.</p>
+
+</div>
+</div>
+<a id="ga852c443e52c9e5bcb55e1a0d9b56cf09" name="ga852c443e52c9e5bcb55e1a0d9b56cf09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga852c443e52c9e5bcb55e1a0d9b56cf09">&#9670;&#160;</a></span>example_certificate_figures()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void example_certificate_figures </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>plotting_enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Paper-style device certificate figures (passivity/phase/gate/(P,Q)/local-vs-H). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plotting_enabled</td><td>Enable result plots. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="structCertificateSpec.html#abfc30a0609855fc9545c756d97922f53">CertificateSpec::ac_dq_block</a>, <a class="el" href="classNetwork.html#af46205edf9f5392423a2657eff27b807">Network::add_areas()</a>, <a class="el" href="classStabilityEstimate.html#a4c75db48e63f87261364cd361b7c8fad">StabilityEstimate::add_areas()</a>, <a class="el" href="classNetwork.html#a29ce4c02e3c7562689342ddc0e3859b0">Network::addBus()</a>, <a class="el" href="classNetwork.html#a7698cbd994aa80942a5107c4f582ef05">Network::addElement()</a>, <a class="el" href="classPnPCertificateLibrary.html#a540dd826bad4346b06b9267bf9c1e167">PnPCertificateLibrary::addFromGate()</a>, <a class="el" href="structGfmTuningResult.html#a420c1ad05fca5deca9f8eaeb657ee26e">GfmTuningResult::after</a>, <a class="el" href="structGfmTuningResult.html#a1d69bca77251d559e7e33a1c65df4e50">GfmTuningResult::before</a>, <a class="el" href="Operating__region_8cpp.html#aaf4165e94cd13c74d45caccdef4b392e">certifyOperatingRegion()</a>, <a class="el" href="Local__vs__system_8cpp.html#a85d6f09aa14f633629d52da27a7cc6f2">compareLocalVsSystem()</a>, <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">MMC::computeABCD()</a>, <a class="el" href="classNetwork.html#abdabffdb66f3c32a367a24ae7d1a102a">Network::connectElementToBus()</a>, <a class="el" href="Stability__certificate_8cpp.html#ae4a54aa2c6cf8af997fa70c43888f42c">elementAdmittance()</a>, <a class="el" href="Device__gate_8cpp.html#a398da10f988298307b0502700c5e1b89">evaluateDeviceGate()</a>, <a class="el" href="structOperatingRegionGrid.html#ada9accc9bb041bee9b5c31fa6de63a03">OperatingRegionGrid::n_P</a>, <a class="el" href="structGfmTuningBounds.html#aeecbe2a814bb5e757b5e726f75ef8e87">GfmTuningBounds::n_P</a>, <a class="el" href="structCertificateSpec.html#a98796be1df907684dd0270e891062978">CertificateSpec::n_points</a>, <a class="el" href="structOperatingRegionGrid.html#a70d2960d252e528e20c33e2b25effea7">OperatingRegionGrid::n_Q</a>, <a class="el" href="structGfmTuningBounds.html#aeebde92e75de041fdbad0830877a3411">GfmTuningBounds::n_Q</a>, <a class="el" href="structOperatingRegionGrid.html#ac2f9b990cf679c89d681794f7c3b84cc">OperatingRegionGrid::P_max</a>, <a class="el" href="structOperatingRegionGrid.html#a987a2cc22760465aa068b5da51a769f0">OperatingRegionGrid::P_min</a>, <a class="el" href="structCertificateSpec.html#a7160565816de1c8c195d020cba19ce0e">CertificateSpec::phase_limit_deg</a>, <a class="el" href="Stability__certificate_8cpp.html#a1864124ceb31aeb3c3eb269301d70973">plot_certificate_dw_shell()</a>, <a class="el" href="Stability__certificate_8cpp.html#a0c4db5deb4bd66ff81e82e2eeb12fd37">plot_certificate_dw_slice()</a>, <a class="el" href="Stability__certificate_8cpp.html#ad15fa63c0e96bb7664e31a100b0ea2b8">plot_certificate_geometric_sweep()</a>, <a class="el" href="Stability__certificate_8cpp.html#aea9f9f7660b9eddb0fe660914fd951c6">plot_certificate_numerical_range()</a>, <a class="el" href="classPnPCertificateLibrary.html#a3d4cc7e03166bf0eaf573f50142886fe">PnPCertificateLibrary::printSummary()</a>, <a class="el" href="structOperatingRegionGrid.html#a1470c843a17ecbe6cda421f3a94a223f">OperatingRegionGrid::Q_max</a>, <a class="el" href="structOperatingRegionGrid.html#a40c96f98b9faaf4f55fb3eb246a3272a">OperatingRegionGrid::Q_min</a>, <a class="el" href="Device__gate_8cpp.html#a1fc65be4971321f54b91effe888ce0ca">reportDeviceGate()</a>, <a class="el" href="Tuning__assistant_8cpp.html#a2221ea554d5cae75e324206958448f76">reportGfmTuning()</a>, <a class="el" href="Local__vs__system_8cpp.html#a9a4a66dbbc7ed091e866790dcbe3b1df">reportLocalVsSystem()</a>, <a class="el" href="Operating__region_8cpp.html#afe728cc46b1c3571ce691bd41384f710">reportOperatingRegion()</a>, <a class="el" href="structCertificateSpec.html#a12e917afff2316b4270c81a7fed0cc8f">CertificateSpec::require_phase</a>, <a class="el" href="structOperatingRegionResult.html#a61c0908695d5a8b9c08ca78a898443e8">OperatingRegionResult::samples</a>, <a class="el" href="classPnPCertificateLibrary.html#ad092db5fa1c12ccf1514de3e38396ec8">PnPCertificateLibrary::saveCsv()</a>, <a class="el" href="classPnPCertificateLibrary.html#a595c4b0db1bf771271dee2167ddc52af">PnPCertificateLibrary::saveJson()</a>, <a class="el" href="structGfmTuningBounds.html#a8c926fbbf5b14c6d63bbfef616964e9c">GfmTuningBounds::scale_P_hi</a>, <a class="el" href="structGfmTuningBounds.html#aefff0544d9374dfcf3f649a24f244c81">GfmTuningBounds::scale_P_lo</a>, <a class="el" href="structGfmTuningBounds.html#a7fc91a10f72b08d959d910f16ea3d885">GfmTuningBounds::scale_Q_hi</a>, <a class="el" href="structGfmTuningBounds.html#a3397bb37eeba7cec0bfe33cbdbb1d9a1">GfmTuningBounds::scale_Q_lo</a>, <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">MMC::solveEquilibrium()</a>, <a class="el" href="structDeviceGateResult.html#a6ad1e84c6a4e227eba5fa2727b9e38ea">DeviceGateResult::sweep</a>, <a class="el" href="structLocalVsSystemResult.html#a8863641f92895779ea8308ca44f79b06">LocalVsSystemResult::system_H</a>, <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>, <a class="el" href="classMMC.html#a8891bab55060aa67242fdc2c2cbd0490">MMC::update_MMC()</a>, <a class="el" href="structOperatingRegionGrid.html#a89bea8991e9a9540094166a016f53eb8">OperatingRegionGrid::Vdc</a>, <a class="el" href="structOperatingRegionGrid.html#a98d6a80083b73653a81261745c1a9d1b">OperatingRegionGrid::Vm</a>, <a class="el" href="Stability__certificate_8cpp.html#a25192baaed698b0951e9f194bc4a7f6c">writeCertificateSweepCsv()</a>, and <a class="el" href="Stability__certificate_8cpp.html#aebcfb5b7bc9d3b0b49c8f512667a0ea8">writeOperatingRegionCsv()</a>.</p>
 
 </div>
 </div>
@@ -527,6 +569,42 @@ Functions</h2></td></tr>
 </dl>
 
 <p class="reference">References <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC::compute_y_parameters()</a>, <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">MMC::computeABCD()</a>, <a class="el" href="classMMC.html#ac795f3aa98f3224e95fd5114eaa28b40">MMC::computeABCD_analytical()</a>, <a class="el" href="classConverter.html#a82e19162f83a42daabcfd5f2e842b84e">Converter::getA()</a>, <a class="el" href="classConverter.html#a4bfbf17726b6d6d220694b1218aaebde">Converter::getB()</a>, <a class="el" href="classConverter.html#a034e2a493b8de017b933aa4753b9c16e">Converter::getC()</a>, <a class="el" href="classConverter.html#a7d898a75c2cc98268b716dd60333a7f4">Converter::getEquilibriumState()</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classConverter.html#aade753232880aa032829949174c9e6ac">Converter::plotEigenvalues()</a>, <a class="el" href="classConverter.html#aa5d6b796944f25b836691e4326831408">Converter::plotParticipationFactors()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">Element::plotYParameters()</a>, <a class="el" href="classConverter.html#af3a93b6401f16bf50048a93a3124e1c5">Converter::printEigenvalues()</a>, <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">MMC::solveEquilibrium()</a>, <a class="el" href="Standard__functions_8cpp.html#a4ddb6f284e9b68e9fd84f6b6bb674478">vectorToMatrix()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">Element::writeFile()</a>.</p>
+
+</div>
+</div>
+<a id="gaf011602e994d4f00f6cf8815a1ca360b" name="gaf011602e994d4f00f6cf8815a1ca360b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf011602e994d4f00f6cf8815a1ca360b">&#9670;&#160;</a></span>example_MMC_gfm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void example_MMC_gfm </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>plotting_enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>GFM <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> control mode with <a class="el" href="classStabilityEstimate.html" title="Performs impedance-based stability assessment of network areas.">StabilityEstimate</a> reuse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plotting_enabled</td><td>Enable result plots. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classNetwork.html#af46205edf9f5392423a2657eff27b807">Network::add_areas()</a>, <a class="el" href="classStabilityEstimate.html#a4c75db48e63f87261364cd361b7c8fad">StabilityEstimate::add_areas()</a>, <a class="el" href="classNetwork.html#a29ce4c02e3c7562689342ddc0e3859b0">Network::addBus()</a>, <a class="el" href="classNetwork.html#a7698cbd994aa80942a5107c4f582ef05">Network::addElement()</a>, <a class="el" href="classStabilityEstimate.html#a4ceaa7e2e94fd6852b9d182c68c9b604">StabilityEstimate::bodeplotTF()</a>, <a class="el" href="classConverter.html#a248c686cba785acb19573731f3228bac">Converter::checkStability()</a>, <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">StabilityEstimate::compute_transfer_function()</a>, <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC::compute_y_parameters()</a>, <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">MMC::computeABCD()</a>, <a class="el" href="classMMC.html#a7765f16e00eb96da459b0913d1f1f101">MMC::computeStateDerivatives()</a>, <a class="el" href="classNetwork.html#abdabffdb66f3c32a367a24ae7d1a102a">Network::connectElementToBus()</a>, <a class="el" href="classConverter.html#a82e19162f83a42daabcfd5f2e842b84e">Converter::getA()</a>, <a class="el" href="classConverter.html#a4bfbf17726b6d6d220694b1218aaebde">Converter::getB()</a>, <a class="el" href="classConverter.html#a7d898a75c2cc98268b716dd60333a7f4">Converter::getEquilibriumState()</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classConverter.html#aade753232880aa032829949174c9e6ac">Converter::plotEigenvalues()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">Element::plotYParameters()</a>, <a class="el" href="classStabilityEstimate.html#a3a1d99f24fbab938af8d233ca4960861">StabilityEstimate::print_summary()</a>, <a class="el" href="classConverter.html#af3a93b6401f16bf50048a93a3124e1c5">Converter::printEigenvalues()</a>, <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">MMC::solveEquilibrium()</a>, and <a class="el" href="Standard__functions_8cpp.html#a4ddb6f284e9b68e9fd84f6b6bb674478">vectorToMatrix()</a>.</p>
 
 </div>
 </div>

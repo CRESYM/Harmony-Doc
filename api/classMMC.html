@@ -195,6 +195,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8891bab55060aa67242fdc2c2cbd0490" id="r_a8891bab55060aa67242fdc2c2cbd0490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#a8891bab55060aa67242fdc2c2cbd0490">update_MMC</a> (double Vm, double <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">theta</a>, double Pac, double Qac, double Vdc, double Pdc)</td></tr>
 <tr class="memdesc:a8891bab55060aa67242fdc2c2cbd0490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> operating point and controller references.  <br /></td></tr>
 <tr class="separator:a8891bab55060aa67242fdc2c2cbd0490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad84f037c9b83dc64a947f2f3a292cb00" id="r_ad84f037c9b83dc64a947f2f3a292cb00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#ad84f037c9b83dc64a947f2f3a292cb00">hasGfm</a> () const</td></tr>
+<tr class="memdesc:ad84f037c9b83dc64a947f2f3a292cb00"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when GFM outer-loop states are enabled.  <br /></td></tr>
+<tr class="separator:ad84f037c9b83dc64a947f2f3a292cb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dea1feb51b945f80505992aac743d51" id="r_a3dea1feb51b945f80505992aac743d51"><td class="memItemLeft" align="right" valign="top">std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#a3dea1feb51b945f80505992aac743d51">getGfmDroops</a> () const</td></tr>
+<tr class="memdesc:a3dea1feb51b945f80505992aac743d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return current GFM droops (Kdroop_P, Kdroop_Q).  <br /></td></tr>
+<tr class="separator:a3dea1feb51b945f80505992aac743d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb953bf26a3079d89c0a0e70277c384a" id="r_aeb953bf26a3079d89c0a0e70277c384a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#aeb953bf26a3079d89c0a0e70277c384a">setGfmDroops</a> (double Kdroop_P, double Kdroop_Q)</td></tr>
+<tr class="memdesc:aeb953bf26a3079d89c0a0e70277c384a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set GFM droops (Kdroop_P, Kdroop_Q); no-op if GFM disabled.  <br /></td></tr>
+<tr class="separator:aeb953bf26a3079d89c0a0e70277c384a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9bd572fc285ff3bded7f93ecd6142b7" id="r_af9bd572fc285ff3bded7f93ecd6142b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#af9bd572fc285ff3bded7f93ecd6142b7">~MMC</a> () override=default</td></tr>
 <tr class="separator:af9bd572fc285ff3bded7f93ecd6142b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf0667f0026d13fb5dbf92b0653a73b" id="r_abaf0667f0026d13fb5dbf92b0653a73b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">solveEquilibrium</a> () override</td></tr>
@@ -862,7 +871,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classConverter.html#acc5eb149e3696a867effa2f8cd3b2671">Converter::A_matrix</a>, <a class="el" href="classConverter.html#aa28582e80b94f8c774a9f4299d4294a4">Converter::B_matrix</a>, <a class="el" href="classConverter.html#af56e5377952b9088edbf7a42764f93a3">Converter::C_matrix</a>, <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#a21b89b512583bb5fd80e31f9328d0040">Converter::D_matrix</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, and <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Element::Y_matrix</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>, and <a class="el" href="group__examples.html#ga987b5747fec06f865ca7c7af9308d79d">example_stability_check()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>, <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, and <a class="el" href="group__examples.html#ga987b5747fec06f865ca7c7af9308d79d">example_stability_check()</a>.</p>
 
 </div>
 </div>
@@ -902,7 +911,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classConverter.html#acc5eb149e3696a867effa2f8cd3b2671">Converter::A_matrix</a>, <a class="el" href="classConverter.html#aa28582e80b94f8c774a9f4299d4294a4">Converter::B_matrix</a>, <a class="el" href="classConverter.html#af56e5377952b9088edbf7a42764f93a3">Converter::C_matrix</a>, <a class="el" href="Differential__equations_8cpp.html#a87acbf519e195c0beee91078fc1976fb">computeJacobians()</a>, <a class="el" href="classMMC.html#a7765f16e00eb96da459b0913d1f1f101">computeStateDerivatives()</a>, <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#a21b89b512583bb5fd80e31f9328d0040">Converter::D_matrix</a>, <a class="el" href="classConverter.html#a264e7beebe826bfb9df0cf611068919b">Converter::equilibrium_state</a>, <a class="el" href="MMC_8cpp.html#aab7cdc3ce4693eb6f1179fd51173acf6">makeOperatingInput()</a>, <a class="el" href="classConverter.html#a0458189ff0452aeea94780a5dc0e6bca">Converter::P_dc</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>, and <a class="el" href="classConverter.html#a9c2d7c8f01ee32d094da1e24e4ae5439">Converter::V_m</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga852c443e52c9e5bcb55e1a0d9b56cf09">example_certificate_figures()</a>, <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>, <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, and <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>.</p>
 
 </div>
 </div>
@@ -1095,9 +1104,32 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classConverter.html#a32ebed3e73221d8b3ed7f9a878921348">Converter</a>.</p>
 
-<p class="reference">References <a class="el" href="classConverter.html#aef94904303de9190ce1be4c009e3407a">Converter::Adelay</a>, <a class="el" href="classConverter.html#a84754ea6b2d04f865081a8820b11a9b5">Converter::Bdelay</a>, <a class="el" href="classConverter.html#a6d193479a52212bc1356ee5855bf012d">Converter::Cdelay</a>, <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#acf2224383aad95eb6ed6a5e9558b4429">Converter::Ddelay</a>, <a class="el" href="classConverter.html#ae9ea585f8c8344384409fd06f0d28dad">Converter::filters</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="classConverter.html#a79c69a5c5c89c0ac004d4c992575d66d">Converter::L_reactor</a>, <a class="el" href="classMMC.html#a95f2fbd2dc214374fca7624e4eb03f64">last_vMDelta_d_ref_</a>, <a class="el" href="classMMC.html#a4d4a1926afe29bd0a93da49daa9afc77">last_vMDelta_q_ref_</a>, <a class="el" href="classMMC.html#abfaeb09a0061cd0a43d85275f67daaeb">last_vMSigma_d_ref_</a>, <a class="el" href="classMMC.html#ab2d792901fcadd7870e3dc537974948c">last_vMSigma_q_ref_</a>, <a class="el" href="classMMC.html#a077679f9f0f8a61bb423579f3c88530d">last_vMSigma_z_ref_</a>, <a class="el" href="classConverter.html#a60b1f0fbb0553c1d91db7fa978425cdd">Converter::omega_0</a>, <a class="el" href="classConverter.html#afc7ed72b8a5a28c4f9c6019d82785ed0">Converter::pade_order</a>, <a class="el" href="classConverter.html#a4cccae136c484f588d2cb05d2f33409f">Converter::R_reactor</a>, <a class="el" href="classConverter.html#a7322574a53ea57b51ebda83bc2d47507">Converter::t_delay</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, and <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>.</p>
+<p class="reference">References <a class="el" href="classConverter.html#aef94904303de9190ce1be4c009e3407a">Converter::Adelay</a>, <a class="el" href="classConverter.html#a84754ea6b2d04f865081a8820b11a9b5">Converter::Bdelay</a>, <a class="el" href="classConverter.html#a6d193479a52212bc1356ee5855bf012d">Converter::Cdelay</a>, <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#acf2224383aad95eb6ed6a5e9558b4429">Converter::Ddelay</a>, <a class="el" href="classConverter.html#ae9ea585f8c8344384409fd06f0d28dad">Converter::filters</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="classConverter.html#a79c69a5c5c89c0ac004d4c992575d66d">Converter::L_reactor</a>, <a class="el" href="classMMC.html#a95f2fbd2dc214374fca7624e4eb03f64">last_vMDelta_d_ref_</a>, <a class="el" href="classMMC.html#a4d4a1926afe29bd0a93da49daa9afc77">last_vMDelta_q_ref_</a>, <a class="el" href="classMMC.html#abfaeb09a0061cd0a43d85275f67daaeb">last_vMSigma_d_ref_</a>, <a class="el" href="classMMC.html#ab2d792901fcadd7870e3dc537974948c">last_vMSigma_q_ref_</a>, <a class="el" href="classMMC.html#a077679f9f0f8a61bb423579f3c88530d">last_vMSigma_z_ref_</a>, <a class="el" href="classConverter.html#a60b1f0fbb0553c1d91db7fa978425cdd">Converter::omega_0</a>, <a class="el" href="classConverter.html#abbed0cdc04b0b8b55284026d45b1d9c9">Converter::P</a>, <a class="el" href="classConverter.html#afc7ed72b8a5a28c4f9c6019d82785ed0">Converter::pade_order</a>, <a class="el" href="classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1">Converter::Q</a>, <a class="el" href="classConverter.html#a4cccae136c484f588d2cb05d2f33409f">Converter::R_reactor</a>, <a class="el" href="classConverter.html#a7322574a53ea57b51ebda83bc2d47507">Converter::t_delay</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, and <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">computeABCD()</a>, <a class="el" href="classMMC.html#ac795f3aa98f3224e95fd5114eaa28b40">computeABCD_analytical()</a>, <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">solveEquilibrium()</a>, and <a class="el" href="classMMC.html#a07e8a418e66fc943ac007013952bbb4a">stepControllers()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">computeABCD()</a>, <a class="el" href="classMMC.html#ac795f3aa98f3224e95fd5114eaa28b40">computeABCD_analytical()</a>, <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">solveEquilibrium()</a>, and <a class="el" href="classMMC.html#a07e8a418e66fc943ac007013952bbb4a">stepControllers()</a>.</p>
+
+</div>
+</div>
+<a id="a3dea1feb51b945f80505992aac743d51" name="a3dea1feb51b945f80505992aac743d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dea1feb51b945f80505992aac743d51">&#9670;&#160;</a></span>getGfmDroops()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; double, double &gt; MMC::getGfmDroops </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return current GFM droops (Kdroop_P, Kdroop_Q). </p>
+
+<p class="reference">References <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, and <a class="el" href="classMMC.html#ad84f037c9b83dc64a947f2f3a292cb00">hasGfm()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>.</p>
 
 </div>
 </div>
@@ -1227,6 +1259,37 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ad84f037c9b83dc64a947f2f3a292cb00" name="ad84f037c9b83dc64a947f2f3a292cb00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad84f037c9b83dc64a947f2f3a292cb00">&#9670;&#160;</a></span>hasGfm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MMC::hasGfm </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when GFM outer-loop states are enabled. </p>
+
+<p class="reference">References <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classMMC.html#a3dea1feb51b945f80505992aac743d51">getGfmDroops()</a>, <a class="el" href="classMMC.html#aeb953bf26a3079d89c0a0e70277c384a">setGfmDroops()</a>, and <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>.</p>
+
+</div>
+</div>
 <a id="ab960a62a7606489754438aa9aec0a83b" name="ab960a62a7606489754438aa9aec0a83b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab960a62a7606489754438aa9aec0a83b">&#9670;&#160;</a></span>init_Controller()</h2>
 
@@ -1322,6 +1385,40 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aeb953bf26a3079d89c0a0e70277c384a" name="aeb953bf26a3079d89c0a0e70277c384a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb953bf26a3079d89c0a0e70277c384a">&#9670;&#160;</a></span>setGfmDroops()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MMC::setGfmDroops </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kdroop_P</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kdroop_Q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set GFM droops (Kdroop_P, Kdroop_Q); no-op if GFM disabled. </p>
+
+<p class="reference">References <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, and <a class="el" href="classMMC.html#ad84f037c9b83dc64a947f2f3a292cb00">hasGfm()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>.</p>
+
+</div>
+</div>
 <a id="ac4c41b6d66dd68525e2970b11bfe4cb5" name="ac4c41b6d66dd68525e2970b11bfe4cb5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4c41b6d66dd68525e2970b11bfe4cb5">&#9670;&#160;</a></span>simulateInputStep()</h2>
 
@@ -1401,7 +1498,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classMMC.html#a7765f16e00eb96da459b0913d1f1f101">computeStateDerivatives()</a>, <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#a264e7beebe826bfb9df0cf611068919b">Converter::equilibrium_state</a>, <a class="el" href="Differential__equations_8cpp.html#aade76441c66434f64b576f6e7503ee9a">findEquilibriumRobust()</a>, <a class="el" href="MMC_8cpp.html#aab7cdc3ce4693eb6f1179fd51173acf6">makeOperatingInput()</a>, <a class="el" href="classConverter.html#abbed0cdc04b0b8b55284026d45b1d9c9">Converter::P</a>, <a class="el" href="classConverter.html#a0458189ff0452aeea94780a5dc0e6bca">Converter::P_dc</a>, <a class="el" href="classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1">Converter::Q</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>, and <a class="el" href="classConverter.html#a9c2d7c8f01ee32d094da1e24e4ae5439">Converter::V_m</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga852c443e52c9e5bcb55e1a0d9b56cf09">example_certificate_figures()</a>, <a class="el" href="group__examples.html#ga8697160197c44a291d3729bc780434e2">example_MMC()</a>, <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, and <a class="el" href="Tuning__assistant_8cpp.html#a870f2215acf507605f2ef791d3cefd7e">tuneGfmDroops()</a>.</p>
 
 </div>
 </div>
@@ -1507,6 +1604,8 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p class="reference">References <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#abbed0cdc04b0b8b55284026d45b1d9c9">Converter::P</a>, <a class="el" href="classConverter.html#a0458189ff0452aeea94780a5dc0e6bca">Converter::P_dc</a>, <a class="el" href="classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1">Converter::Q</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>, and <a class="el" href="classConverter.html#a9c2d7c8f01ee32d094da1e24e4ae5439">Converter::V_m</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga852c443e52c9e5bcb55e1a0d9b56cf09">example_certificate_figures()</a>.</p>
 
 </div>
 </div>

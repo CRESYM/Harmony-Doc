@@ -9,7 +9,7 @@ var searchData=
   ['harmony_5flauncher_2ecpp_6',['harmony_launcher.cpp',['../harmony__launcher_8cpp.html',1,'']]],
   ['harmony_5flauncher_2eh_7',['harmony_launcher.h',['../harmony__launcher_8h.html',1,'']]],
   ['harmony_5fui_5fmain_2ecpp_8',['harmony_ui_main.cpp',['../harmony__ui__main_8cpp.html',1,'']]],
-  ['harmonyapplyplotstyle_9',['harmonyapplyplotstyle',['../harmony__banner__gui_8cpp.html#a1907539d0e49bb1e8a69df4098531f4c',1,'harmonyApplyPlotStyle():&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8h.html#a1907539d0e49bb1e8a69df4098531f4c',1,'harmonyApplyPlotStyle():&#160;harmony_banner_gui.cpp']]],
+  ['harmonyapplyplotstyle_9',['harmonyapplyplotstyle',['../harmony__banner__gui_8h.html#a1907539d0e49bb1e8a69df4098531f4c',1,'harmonyApplyPlotStyle():&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8cpp.html#a1907539d0e49bb1e8a69df4098531f4c',1,'harmonyApplyPlotStyle():&#160;harmony_banner_gui.cpp']]],
   ['harmonyapplyuistylescale_10',['harmonyapplyuistylescale',['../harmony__banner__gui_8h.html#aecb407d64580eb547bef945a3800c376',1,'harmonyApplyUiStyleScale(float scale=kHarmonyUiStyleScale):&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8cpp.html#a41fb8425539bb63a727aa5228a2875b8',1,'harmonyApplyUiStyleScale(const float scale):&#160;harmony_banner_gui.cpp']]],
   ['harmonyasciibanner_11',['harmonyAsciiBanner',['../harmony__banner_8h.html#af285cf2ad79afade501dbb5e4a752430',1,'harmony_banner.h']]],
   ['harmonyconfigurelauncherui_12',['harmonyconfigurelauncherui',['../harmony__banner__gui_8cpp.html#abfd37838e029f56c1dd63a87be355d50',1,'harmonyConfigureLauncherUi(ImGuiIO &amp;io, ImFont **bannerFontOut):&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8h.html#abfd37838e029f56c1dd63a87be355d50',1,'harmonyConfigureLauncherUi(ImGuiIO &amp;io, ImFont **bannerFontOut):&#160;harmony_banner_gui.cpp']]],
@@ -18,10 +18,11 @@ var searchData=
   ['harmonyinitbannerfont_15',['harmonyinitbannerfont',['../harmony__banner__gui_8cpp.html#a125b5ac1594ebff4b30475522677d3e9',1,'harmonyInitBannerFont(ImGuiIO &amp;io, const float sizePixels):&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8h.html#a72d1a2a8938e1a30ea4b56eabb537c23',1,'harmonyInitBannerFont(ImGuiIO &amp;io, float sizePixels=10.0f):&#160;harmony_banner_gui.cpp']]],
   ['harmonyinituifont_16',['harmonyinituifont',['../harmony__banner__gui_8cpp.html#a9027d0bcf188e45ba5939570cdb0abea',1,'harmonyInitUiFont(ImGuiIO &amp;io, const float sizePixels):&#160;harmony_banner_gui.cpp'],['../harmony__banner__gui_8h.html#ac6ecf35d8ca3053fd41100f80434db31',1,'harmonyInitUiFont(ImGuiIO &amp;io, float sizePixels=kHarmonyUiFontSizePx):&#160;harmony_banner_gui.cpp']]],
   ['harmonyreporoot_17',['harmonyreporoot',['../cli_8h.html#a241a969979b55a90942d1358995fa0bc',1,'harmonyRepoRoot():&#160;cli.cpp'],['../cli_8cpp.html#a241a969979b55a90942d1358995fa0bc',1,'harmonyRepoRoot():&#160;cli.cpp']]],
-  ['hasproperty_18',['hasProperty',['../classCable.html#a54a1b74b7f72b612e3b7594cf4611b44',1,'Cable']]],
-  ['hasrun_19',['hasRun',['../classDQsym.html#a3d014886f50ee25191ecee364825ae1a',1,'DQsym']]],
-  ['help_20',['Help',['../structCliOptions.html#aaa0a4fbef8bcbf14766325348f28b793a6a26f548831e6a8c26bfbbd9f6ec61e0',1,'CliOptions']]],
-  ['helper_20functions_21',['Helper functions',['../group__helpers.html',1,'']]],
-  ['helper_5ffunctions_2eh_22',['Helper_Functions.h',['../Helper__Functions_8h.html',1,'']]],
-  ['html_20docs_20locally_23',['Generate HTML docs locally',['../md_harmony_2docs_2doxygen_2README.html#autotoc_md5',1,'']]]
+  ['hasgfm_18',['hasGfm',['../classMMC.html#ad84f037c9b83dc64a947f2f3a292cb00',1,'MMC']]],
+  ['hasproperty_19',['hasProperty',['../classCable.html#a54a1b74b7f72b612e3b7594cf4611b44',1,'Cable']]],
+  ['hasrun_20',['hasRun',['../classDQsym.html#a3d014886f50ee25191ecee364825ae1a',1,'DQsym']]],
+  ['help_21',['Help',['../structCliOptions.html#aaa0a4fbef8bcbf14766325348f28b793a6a26f548831e6a8c26bfbbd9f6ec61e0',1,'CliOptions']]],
+  ['helper_20functions_22',['Helper functions',['../group__helpers.html',1,'']]],
+  ['helper_5ffunctions_2eh_23',['Helper_Functions.h',['../Helper__Functions_8h.html',1,'']]],
+  ['html_20docs_20locally_24',['Generate HTML docs locally',['../md_harmony_2docs_2doxygen_2README.html#autotoc_md5',1,'']]]
 ];

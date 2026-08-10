@@ -2,6 +2,7 @@ var Examples_8h =
 [
     [ "example_admittance_parameters", "group__examples.html#ga13afe0711b69bb55608d22662fd4c128", null ],
     [ "example_cable", "group__examples.html#ga054887e331f50855b184bc200d64bbee", null ],
+    [ "example_certificate_figures", "group__examples.html#ga852c443e52c9e5bcb55e1a0d9b56cf09", null ],
     [ "example_constructors", "group__examples.html#gad621cb69c2917a8d939aaf7d9eb9e72a", null ],
     [ "example_DQsym_DSSS2", "group__examples.html#ga7238534427f5a438feec580fc2a9754c", null ],
     [ "example_DQsym_math_operations", "group__examples.html#ga5c63291787c353f33196f0db383b5bd8", null ],
@@ -10,6 +11,7 @@ var Examples_8h =
     [ "example_DQsym_validation", "group__examples.html#ga1dc062d791b617413a7d0e1886d2ca76", null ],
     [ "example_generator", "group__examples.html#ga87c213b477dca7f14429d6ee9f4b88c1", null ],
     [ "example_MMC", "group__examples.html#ga8697160197c44a291d3729bc780434e2", null ],
+    [ "example_MMC_gfm", "group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b", null ],
     [ "example_OHL", "group__examples.html#ga822257e0aafd43e615ced5e6ebf7b08b", null ],
     [ "example_OPF_ac", "group__examples.html#gab084e6acd1f2b39bdd95adfe3cdf8738", null ],
     [ "example_OPF_csv", "group__examples.html#ga8784227038673d26dc4595d86d632ae0", null ],

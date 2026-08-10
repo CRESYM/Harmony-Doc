@@ -19,5 +19,7 @@ var searchData=
   ['transformer_5fy_5fy_5freal_2ecpp_16',['Transformer_Y_Y_real.cpp',['../Transformer__Y__Y__real_8cpp.html',1,'']]],
   ['transformer_5fy_5fy_5freal_2eh_17',['Transformer_Y_Y_real.h',['../Transformer__Y__Y__real_8h.html',1,'']]],
   ['transmissionline_2ecpp_18',['Transmissionline.cpp',['../Transmissionline_8cpp.html',1,'']]],
-  ['transmissionline_2eh_19',['Transmissionline.h',['../Transmissionline_8h.html',1,'']]]
+  ['transmissionline_2eh_19',['Transmissionline.h',['../Transmissionline_8h.html',1,'']]],
+  ['tuning_5fassistant_2ecpp_20',['Tuning_assistant.cpp',['../Tuning__assistant_8cpp.html',1,'']]],
+  ['tuning_5fassistant_2eh_21',['Tuning_assistant.h',['../Tuning__assistant_8h.html',1,'']]]
 ];

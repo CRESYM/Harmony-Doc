@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['zsrc_0',['Zsrc',['../classSource__base.html#a9fc7258f176fd8cd90d612250a1d06de',1,'Source_base']]]
+  ['y_5fmatrix_0',['Y_matrix',['../classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3',1,'Element']]],
+  ['yswitch_1',['yswitch',['../structDSSState.html#af614428bfc0805502033b482eabed8b4',1,'DSSState']]]
 ];

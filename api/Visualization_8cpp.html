@@ -302,7 +302,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a9d66c092c531a9436a9cd6f8525c9f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capture a pending PNG save after ImGui::Render() on <code>window</code>.  <br /></td></tr>
 <tr class="separator:a9d66c092c531a9436a9cd6f8525c9f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0e774a9a69b6bb925ca5b4558160189" id="r_ac0e774a9a69b6bb925ca5b4558160189"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Visualization_8cpp.html#ac0e774a9a69b6bb925ca5b4558160189">visualization_wait</a> ()</td></tr>
-<tr class="memdesc:ac0e774a9a69b6bb925ca5b4558160189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until the window is closed by the user.  <br /></td></tr>
+<tr class="memdesc:ac0e774a9a69b6bb925ca5b4558160189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until the standalone visualization window is closed by the user.  <br /></td></tr>
 <tr class="separator:ac0e774a9a69b6bb925ca5b4558160189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9cef18168549514e6b8d91dad059123" id="r_ae9cef18168549514e6b8d91dad059123"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Visualization_8cpp.html#ae9cef18168549514e6b8d91dad059123">visualization_save_tab</a> (const std::string &amp;tab_title, const std::filesystem::path &amp;output_dir)</td></tr>
 <tr class="memdesc:ae9cef18168549514e6b8d91dad059123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule a PNG capture of the named tab on the next rendered frame.  <br /></td></tr>
@@ -383,6 +383,8 @@ Functions</h2></td></tr>
 <p>Registers a custom ImGui/ImPlot draw callback as a new tab. </p>
 
 <p class="reference">References <a class="el" href="Visualization_8cpp.html#a8cc2c27f026d9dd2bfe02bf1ed515d2d">add_tab()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="Stability__certificate_8cpp.html#a1864124ceb31aeb3c3eb269301d70973">plot_certificate_dw_shell()</a>, <a class="el" href="Stability__certificate_8cpp.html#a0c4db5deb4bd66ff81e82e2eeb12fd37">plot_certificate_dw_slice()</a>, <a class="el" href="Stability__certificate_8cpp.html#a70152149b7758c3d42ecb6a13e03c12d">plot_certificate_gate()</a>, <a class="el" href="Stability__certificate_8cpp.html#ad15fa63c0e96bb7664e31a100b0ea2b8">plot_certificate_geometric_sweep()</a>, <a class="el" href="Stability__certificate_8cpp.html#a2b5b17a8787c8fce7b0cf154c498f110">plot_certificate_local_vs_system()</a>, <a class="el" href="Stability__certificate_8cpp.html#aea9f9f7660b9eddb0fe660914fd951c6">plot_certificate_numerical_range()</a>, <a class="el" href="Stability__certificate_8cpp.html#a839d5885fc29b9072de0b2280c44572d">plot_certificate_operating_region()</a>, <a class="el" href="Stability__certificate_8cpp.html#af55843332344694685f201f86c54ace6">plot_certificate_passivity()</a>, <a class="el" href="Stability__certificate_8cpp.html#a7169c5e7b1e9b0af30b2964a82dc9526">plot_certificate_phase()</a>, and <a class="el" href="Stability__certificate_8cpp.html#aeca49190e97fbcf2ffd856b775431d54">plot_certificate_tuning_compare()</a>.</p>
 
 </div>
 </div>
@@ -960,7 +962,7 @@ Functions</h2></td></tr>
 <p>Returns whether the visualization window is currently open. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if the GUI is running. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b">runJsonSimulation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8cpp.html#a471eebdf1c4560b565d0caedb9a30058">runCppExample()</a>, and <a class="el" href="cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b">runJsonSimulation()</a>.</p>
 
 </div>
 </div>
@@ -1096,10 +1098,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Block until the window is closed by the user. </p>
+<p>Block until the standalone visualization window is closed by the user. </p>
 <p>Blocks until the user closes the visualization window. </p>
 
-<p class="reference">Referenced by <a class="el" href="cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b">runJsonSimulation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8cpp.html#a471eebdf1c4560b565d0caedb9a30058">runCppExample()</a>, and <a class="el" href="cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b">runJsonSimulation()</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1123,7 @@ Functions</h2></td></tr>
 
 <p>Registers an "AC/DC OPF" network diagram tab in the visualization window. </p>
 <p>Opens an interactive AC/DC OPF network diagram.</p>
-<p>Returns immediately; the window stays open until the user closes it or <a class="el" href="Visualization_8cpp.html#a633357ce3a47f11a873bd85225eb6698" title="Closes the visualization window and stops the GUI thread.">visualization_stop()</a> / <a class="el" href="Visualization_8cpp.html#ac0e774a9a69b6bb925ca5b4558160189" title="Block until the window is closed by the user.">visualization_wait()</a> is called.</p>
+<p>Returns immediately; the window stays open until the user closes it or <a class="el" href="Visualization_8cpp.html#a633357ce3a47f11a873bd85225eb6698" title="Closes the visualization window and stops the GUI thread.">visualization_stop()</a> / <a class="el" href="Visualization_8cpp.html#ac0e774a9a69b6bb925ca5b4558160189" title="Block until the standalone visualization window is closed by the user.">visualization_wait()</a> is called.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>OPF topology and solved bus/branch quantities. </td></tr>

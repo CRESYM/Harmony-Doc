@@ -2,6 +2,7 @@ var dir_a3666f56a0579196076807edeb09aa71 =
 [
     [ "example_admittance_parameters.cpp", "example__admittance__parameters_8cpp.html", "example__admittance__parameters_8cpp" ],
     [ "example_cable.cpp", "example__cable_8cpp.html", "example__cable_8cpp" ],
+    [ "example_certificate_figures.cpp", "example__certificate__figures_8cpp.html", "example__certificate__figures_8cpp" ],
     [ "example_constructors.cpp", "example__constructors_8cpp.html", "example__constructors_8cpp" ],
     [ "example_DQsym_DSSS2.cpp", "example__DQsym__DSSS2_8cpp.html", "example__DQsym__DSSS2_8cpp" ],
     [ "example_DQsym_math_operations.cpp", "example__DQsym__math__operations_8cpp.html", "example__DQsym__math__operations_8cpp" ],
@@ -10,6 +11,7 @@ var dir_a3666f56a0579196076807edeb09aa71 =
     [ "example_DQsym_Simple_MMC.cpp", "example__DQsym__Simple__MMC_8cpp.html", "example__DQsym__Simple__MMC_8cpp" ],
     [ "example_generator.cpp", "example__generator_8cpp.html", "example__generator_8cpp" ],
     [ "example_MMC.cpp", "example__MMC_8cpp.html", "example__MMC_8cpp" ],
+    [ "example_MMC_gfm.cpp", "example__MMC__gfm_8cpp.html", "example__MMC__gfm_8cpp" ],
     [ "example_OHL.cpp", "example__OHL_8cpp.html", "example__OHL_8cpp" ],
     [ "example_OPF_ac.cpp", "example__OPF__ac_8cpp.html", "example__OPF__ac_8cpp" ],
     [ "example_OPF_csv.cpp", "example__OPF__csv_8cpp.html", "example__OPF__csv_8cpp" ],
