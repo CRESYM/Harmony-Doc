@@ -336,16 +336,16 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solvers</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./solvers/stability-check/stability-check.html">Stability Check</a></li>
-              <li><a class="dropdown-item" href="./solvers/optimal-power-flow/optimal-power-flow.html">Optimal Power Flow</a></li>
-              <li><a class="dropdown-item" href="./solvers/dqsym-math-operation/dqsym-math-operation.html">DQsym Math Operation</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=stability_check">Stability Check</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=optimal_power_flow">Optimal Power Flow</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=dqsym_math_operation">DQsym Math Operation</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./tests/point-to-point-case/point-to-point-case.html">Point to Point Case</a></li>
+              <li><a class="dropdown-item" href="./page_layout.html?file=point_to_point_case">Point to Point Case</a></li>
             </ul>
           </li>
 
@@ -764,63 +764,82 @@
     // 1. CONFIGURATION: Central source of truth for categories & routes
     const siteConfig = {
       categories: {
-        impedances: {
-          title: "Impedances",
+        models: {
+          title: "Models",
+          sections: {
+            impedances: {
+              title: "Impedances",
+              items: [
+                { id: "impedance", label: "Impedance", src: "./models/impedances/impedance_body.html" },
+                { id: "admittance", label: "Admittance", src: "./models/impedances/admittance_body.html" },
+                { id: "inductor", label: "Inductor", src: "./models/impedances/inductor_body.html" },
+                { id: "capacitor", label: "Capacitor", src: "./models/impedances/capacitor_body.html" },
+                { id: "resistor", label: "Resistor", src: "./models/impedances/resistor_body.html" }
+              ]
+            },
+            transformers: {
+              title: "Transformers",
+              items: [
+                { id: "transformer_magnetization_resistance", label: "Transformer with Magnetization Resistance and Inductance", src: "./models/transformers/transformer-with-mage-resist-induct_body.html" },
+                { id: "transformer_mutual_inductance", label: "Transformer with Mutual Inductance", src: "./models/transformers/transformer-with-mutual-induct_body.html" }
+              ]
+            },
+            loads: {
+              title: "Loads",
+              items: [
+                { id: "load", label: "Load", src: "./models/loads/load_body.html" }
+              ]
+            },
+            transmission_lines: {
+              title: "Transmission Lines",
+              items: [
+                { id: "long_transmission_line", label: "Long Transmission Line", src: "./models/transmission-lines/long-transmission-line_body.html" },
+                { id: "overhead_line", label: "Overhead Line", src: "./models/transmission-lines/overhead-line_body.html" },
+                { id: "cable", label: "Cable", src: "./models/transmission-lines/cable_body.html" }
+              ]
+            },
+            sources_and_generators: {
+              title: "Sources and Generators",
+              items: [
+                { id: "ac_source", label: "AC Source", src: "./models/sources-and-generators/ac-source_body.html" },
+                { id: "generator", label: "Generator", src: "./models/sources-and-generators/generator_body.html" }
+              ]
+            },
+            converters: {
+              title: "Converters",
+              items: [
+                { id: "two_level_converter", label: "Two Level Converter", src: "./models/converters/two-level-converter_body.html" },
+                { id: "mmc", label: "MMC", src: "./models/converters/mmc_body.html" }
+              ]
+            },
+            switches_and_circuit_breakers: {
+              title: "Switches and Circuit Breakers",
+              items: [
+                { id: "switch", label: "Switch", src: "./models/switches-and-circuit-breakers/switch_body.html" }
+              ]
+            },
+            renewable_energy_sources: {
+              title: "Renewable Energy Sources",
+              items: [
+                { id: "wt_type3", label: "WT Type 3", src: "./models/renewable-energy-sources/wt-type3_body.html" },
+                { id: "wt_type4", label: "WT Type 4", src: "./models/renewable-energy-sources/wt-type4_body.html" },
+                { id: "pv_power_plant", label: "PV Power Plant", src: "./models/renewable-energy-sources/pv-power-plant_body.html" }
+              ]
+            }
+          }
+        },
+        solvers: {
+          title: "Solvers",
           items: [
-            { id: "impedance", label: "Impedance", src: "./models/impedances/impedance_body.html" },
-            { id: "admittance", label: "Admittance", src: "./models/impedances/admittance_body.html" },
-            { id: "inductor", label: "Inductor", src: "./models/impedances/inductor_body.html" },
-            { id: "capacitor", label: "Capacitor", src: "./models/impedances/capacitor_body.html" },
-            { id: "resistor", label: "Resistor", src: "./models/impedances/resistor_body.html" }
+            { id: "stability_check", label: "Stability Check", src: "./solvers/stability-check/stability-check_body.html" },
+            { id: "optimal_power_flow", label: "Optimal Power Flow", src: "./solvers/optimal-power-flow/optimal-power-flow_body.html" },
+            { id: "dqsym_math_operation", label: "DQsym Math Operation", src: "./solvers/dqsym-math-operation/dqsym-math-operation_body.html" }
           ]
         },
-        transformers: {
-          title: "Transformers",
+        tests: {
+          title: "Test Cases",
           items: [
-            { id: "transformer_magnetization_resistance", label: "Transformer with Magnetization Resistance and Inductance", src: "./models/transformers/transformer-with-mage-resist-induct_body.html" },
-            { id: "transformer_mutual_inductance", label: "Transformer with Mutual Inductance", src: "./models/transformers/transformer-with-mutual-induct_body.html" }
-          ]
-        },
-        loads: {
-          title: "Loads",
-          items: [
-            { id: "load", label: "Load", src: "./models/loads/load_body.html" }
-          ]
-        },
-        transmission_lines: {
-          title: "Transmission Lines",
-          items: [
-            { id: "long_transmission_line", label: "Long Transmission Line", src: "./models/transmission-lines/long-transmission-line_body.html" },
-            { id: "overhead_line", label: "Overhead Line", src: "./models/transmission-lines/overhead-line_body.html" },
-            { id: "cable", label: "Cable", src: "./models/transmission-lines/cable_body.html" }
-          ]
-        },
-        sources_and_generators: {
-          title: "Sources and Generators",
-          items: [
-            { id: "ac_source", label: "AC Source", src: "./models/sources-and-generators/ac-source_body.html" },
-            { id: "generator", label: "Generator", src: "./models/sources-and-generators/generator_body.html" }
-          ]
-        },
-        converters: {
-          title: "Converters",
-          items: [
-            { id: "two_level_converter", label: "Two Level Converter", src: "./models/converters/two-level-converter_body.html" },
-            { id: "mmc", label: "MMC", src: "./models/converters/mmc_body.html" }
-          ]
-        },
-        switches_and_circuit_breakers: {
-          title: "Switches and Circuit Breakers",
-          items: [
-            { id: "switch", label: "Switch", src: "./models/switches-and-circuit-breakers/switch_body.html" }
-          ]
-        },
-        renewable_energy_sources: {
-          title: "Renewable Energy Sources",
-          items: [
-            { id: "wt_type3", label: "WT Type 3", src: "./models/renewable-energy-sources/wt-type3_body.html" },
-            { id: "wt_type4", label: "WT Type 4", src: "./models/renewable-energy-sources/wt-type4_body.html" },
-            { id: "pv_power_plant", label: "PV Power Plant", src: "./models/renewable-energy-sources/pv-power-plant_body.html" }
+            { id: "point_to_point_case", label: "Point to Point Case", src: "./tests/point-to-point-case/point-to-point-case_body.html" }
           ]
         }
       }
@@ -828,26 +847,46 @@
 
     // 2. PARSE QUERY PARAMETER
     const params = new URLSearchParams(window.location.search);
-    const currentFile = (params.get("file")).toLowerCase();
+    const currentFile = (params.get("file") || "").toLowerCase();
 
-    // 3. LOCATE CATEGORY AND ACTIVE FILE
+    // 3. LOCATE CATEGORY, SECTION AND ACTIVE FILE
     let activeCategory = null;
+    let activeSection = null;
     let activeItem = null;
 
-    for (const catKey in siteConfig.categories) {
+    categoryLoop: for (const catKey in siteConfig.categories) {
       const category = siteConfig.categories[catKey];
-      const found = category.items.find((item) => item.id.toLowerCase() === currentFile);
-      if (found) {
-        activeCategory = category;
-        activeItem = found;
-        break;
+
+      // If Category has nested sections (e.g. models)
+      if (category.sections) {
+        for (const secKey in category.sections) {
+          const section = category.sections[secKey];
+          const found = section.items?.find((item) => item.id.toLowerCase() === currentFile);
+          if (found) {
+            activeCategory = category;
+            activeSection = section;
+            activeItem = found;
+            break categoryLoop; // Exit all loops once found
+          }
+        }
+      }
+      // If Category has direct items with no sub-sections (e.g. solvers)
+      else {
+        const found = category.items.find((item) => item.id.toLowerCase() === currentFile);
+        if (found) {
+          activeCategory = category;
+          activeSection = null;
+          activeItem = found;
+          break categoryLoop; // Exit all loops once found
+        }
       }
     }
 
     // Fallback to the first category & item if the parameter doesn't match
-    if (!activeCategory || !activeItem) {
-      activeCategory = siteConfig.categories["impedances"];
-      activeItem = activeCategory.items[0];
+    if (!activeItem) {
+      activeCategory = siteConfig.categories["models"];
+      activeSection = activeCategory.sections["impedances"];
+      activeItem = activeSection.items[0];
     }
 
     // 4. UPDATE PAGE TITLE & IFRAME (MAIN CONTENT)
@@ -864,7 +903,8 @@
     const sidenavEl = document.getElementById("dynamicSidenav");
     if (!sidenavEl) return;
 
-    const linksHTML = activeCategory.items
+    const currentGroup = activeSection || activeCategory;
+    const linksHTML = currentGroup?.items
       .map((item) => {
         const isActive = item.id.toLowerCase() === activeItem.id.toLowerCase();
         const activeClass = isActive ? " active" : "";
@@ -876,7 +916,7 @@
       <div class="sidenav-card">
         <button id="catAccBtn" class="sidenav-acc" type="button" aria-expanded="true" aria-controls="catMenu">
           <span class="acc-icon" aria-hidden="true">▾</span>
-          <span class="acc-title">${activeCategory.title}</span>
+          <span class="acc-title">${currentGroup?.title || ""}</span>
         </button>
 
         <div id="catMenu" class="acc-panel">
