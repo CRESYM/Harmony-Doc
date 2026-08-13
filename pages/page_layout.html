@@ -291,82 +291,8 @@
 </head>
 
 <body>
-    <!-- Top Menu (to be replaced with reusable component) -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-xxl">
-      <a class="navbar-brand d-flex align-items-center" href="https://isocpp.org/" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html"><i class="bi bi-house-door-fill me-1"></i>Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../index.html">Overview</a></li>
-              <li><a class="dropdown-item" href="./teams.html">Teams</a></li>
-              <li><a class="dropdown-item" href="./getting-started.html">Getting Started</a></li>
-              <li><a class="dropdown-item" href="./publications.html">Publications</a></li>
-              <li><a class="dropdown-item" href="../api/index.html">API Reference (Doxygen)</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=impedance">Impedances</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=transformer_magnetization_resistance">Transformers</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=load">Loads</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=long_transmission_line">Transmission Lines</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=ac_source">Sources and Generators</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=two_level_converter">Converters</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=switch">Switches and Circuit Breakers</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=wt_type3">Renewable Energy Sources</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solvers</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=stability_check">Stability Check</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=optimal_power_flow">Optimal Power Flow</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=dqsym_math_operation">DQsym Math Operation</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=point_to_point_case">Point to Point Case</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-
-          <li class="nav-item d-flex align-items-center ms-3">
-            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
-              <i class="bi bi-github fs-4"></i>
-            </a>
-          </li>
-        </ul>
-
-        <div class="header-tools ms-3">
-          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
-          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <!-- Navigation Bar (Top Menu)  -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark"></nav>
 
   <!-- Top search bar -->
   <div id="searchBar" class="search-panel" aria-hidden="true">
@@ -378,26 +304,6 @@
   <!-- 3-Column Layout: Left/Right Menus + Central content -->
   <div class="hdoc-layout">
     <!-- Left-side navigation menu -->
-    <!--
-    <aside class="hdoc-sidenav">
-      <div class="sidenav-card">
-        <button id="impAccBtn" class="sidenav-acc" type="button" aria-expanded="true" aria-controls="impMenu">
-          <span class="acc-icon" aria-hidden="true">▾</span>
-          <span class="acc-title">Impedances</span>
-        </button>
-
-        <div id="impMenu" class="acc-panel">
-          <div class="list-group list-group-flush">
-            <a class="list-group-item" href="./page_layout.html?file=impedance">Impedance</a>
-            <a class="list-group-item" href="./page_layout.html?file=admittance">Admittance</a>
-            <a class="list-group-item" href="./page_layout.html?file=inductor">Inductor</a>
-            <a class="list-group-item" href="./page_layout.html?file=capacitor">Capacitor</a>
-            <a class="list-group-item" href="./page_layout.html?file=resistor">Resistor</a>
-          </div>
-        </div>
-      </div>
-    </aside>
-    -->
     <aside class="hdoc-sidenav" id="dynamicSidenav">
     </aside>
 
@@ -461,42 +367,6 @@
       updateStickyTop();
     })();
   </script>
-
-  <!-- Collapsible left sidebar menu -->
-  <!--
-  <script>
-    (function () {
-      const btn = document.getElementById("impAccBtn");
-      const panel = document.getElementById(btn?.getAttribute("aria-controls") || "");
-      const icon = btn?.querySelector(".acc-icon");
-      if (!btn || !panel || !icon) return;
-
-      function setState(expanded) {
-        btn.setAttribute("aria-expanded", expanded ? "true" : "false");
-        panel.style.display = expanded ? "" : "none";
-        icon.textContent = expanded ? "▾" : "▸";
-      }
-
-      setState(true);
-      btn.addEventListener("click", () => setState(btn.getAttribute("aria-expanded") !== "true"));
-    })();
-  </script>
-  -->
-
-  <!-- Highlights the active page in the left sidebar menu so users can see which page they are currently reading.  -->
-  <!--
-  <script>
-    (function(){
-      const params = new URLSearchParams(location.search);
-      const currentFile = (params.get("file") || "impedance.html").toLowerCase();
-      document.querySelectorAll("#impMenu .list-group-item").forEach(a=>{
-        const href = a.getAttribute("href") || "";
-        const itemFile = new URLSearchParams(href.split("?")[1] || "").get("file") || "";
-        a.classList.toggle("active", itemFile.toLowerCase() === currentFile);
-      });
-    })();
-  </script>
-  -->
 
   <!-- Table of contents (right-side menu) -->
   <script>
@@ -712,53 +582,19 @@
     })();
   </script>
 
-  <!-- Automatically detects which page the user is visiting and dynamically loads the correct content and page title into the main viewing frame. -->
-  <!--
+  <!-- Fetch Navbar (main menu) component -->
   <script>
-    (function() {
-      const params = new URLSearchParams(location.search);
-      let currentFile = (params.get("file")).toLowerCase();
-  
-      const titleEl = document.getElementById("pageTitle");
-      const frameEl = document.getElementById("contentFrame");
-      if (!titleEl || !frameEl) return;
-
-      // 2. Route configuration map: [filename]: { title, source_file }
-      const routes = {
-        "admittance": {
-          title: "Admittance - Harmony",
-          src: "./models/impedances/admittance_body.html"
-        },
-        "capacitor": {
-          title: "Capacitor - Harmony",
-          src: "./models/impedances/capacitor_body.html"
-        },
-        "impedance": {
-          title: "Impedance - Harmony",
-          src: "./models/impedances/impedance_body.html"
-        },
-        "inductor": {
-          title: "Inductor - Harmony",
-          src: "./models/impedances/inductor_body.html"
-        },
-        "resistor": {
-          title: "Resistor - Harmony",
-          src: "./models/impedances/resistor_body.html"
-        }
-      };
-
-      // 3. Fallback default if the current file isn't explicitly listed in our routes
-      const defaultRoute = routes["impedance.html"];
-
-      // 4. Apply the correct title and content source
-      const activeRoute = routes[currentFile] || defaultRoute;
-      titleEl.textContent = activeRoute.title;
-      document.title = activeRoute.title;
-      frameEl.src = activeRoute.src;
+    (function () {
+      fetch('../navbar.html')
+        .then(res => res.text())
+        .then(html => {
+          const nav = document.getElementById('navbar');
+          if (nav) nav.innerHTML = html;
+        });
     })();
   </script>
-  -->
 
+  <!-- Main Page Logic -->
   <script>
     (function () {
     // 1. CONFIGURATION: Central source of truth for categories & routes
