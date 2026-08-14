@@ -597,7 +597,8 @@
   <!-- Main Page Logic -->
   <script>
     (function () {
-    // 1. CONFIGURATION: Central source of truth for categories & routes
+    // 1. CONFIGURATION: must match the structure in navbar.html
+    // siteConfig is used to generate the left-side menu for each 
     const siteConfig = {
       categories: {
         models: {
@@ -606,60 +607,60 @@
             impedances: {
               title: "Impedances",
               items: [
-                { id: "impedance", label: "Impedance", src: "./models/impedances/impedance_body.html" },
-                { id: "admittance", label: "Admittance", src: "./models/impedances/admittance_body.html" },
-                { id: "inductor", label: "Inductor", src: "./models/impedances/inductor_body.html" },
-                { id: "capacitor", label: "Capacitor", src: "./models/impedances/capacitor_body.html" },
-                { id: "resistor", label: "Resistor", src: "./models/impedances/resistor_body.html" }
+                { id: "impedance", label: "Impedance", src: "./models/impedances/impedance_body.html", page_layout: true },
+                { id: "admittance", label: "Admittance", src: "./models/impedances/admittance_body.html", page_layout: true },
+                { id: "inductor", label: "Inductor", src: "./models/impedances/inductor_body.html", page_layout: true },
+                { id: "capacitor", label: "Capacitor", src: "./models/impedances/capacitor_body.html", page_layout: true },
+                { id: "resistor", label: "Resistor", src: "./models/impedances/resistor_body.html", page_layout: true }
               ]
             },
             transformers: {
               title: "Transformers",
               items: [
-                { id: "transformer_magnetization_resistance", label: "Transformer with Magnetization Resistance and Inductance", src: "./models/transformers/transformer-with-mage-resist-induct_body.html" },
-                { id: "transformer_mutual_inductance", label: "Transformer with Mutual Inductance", src: "./models/transformers/transformer-with-mutual-induct_body.html" }
+                { id: "transformer_magnetization_resistance", label: "Transformer with Magnetization Resistance and Inductance", src: "./models/transformers/transformer-with-mage-resist-induct_body.html", page_layout: true },
+                { id: "transformer_mutual_inductance", label: "Transformer with Mutual Inductance", src: "./models/transformers/transformer-with-mutual-induct_body.html", page_layout: true }
               ]
             },
             loads: {
               title: "Loads",
               items: [
-                { id: "load", label: "Load", src: "./models/loads/load_body.html" }
+                { id: "load", label: "Load", src: "./models/loads/load_body.html", page_layout: true }
               ]
             },
             transmission_lines: {
               title: "Transmission Lines",
               items: [
-                { id: "long_transmission_line", label: "Long Transmission Line", src: "./models/transmission-lines/long-transmission-line_body.html" },
-                { id: "overhead_line", label: "Overhead Line", src: "./models/transmission-lines/overhead-line_body.html" },
-                { id: "cable", label: "Cable", src: "./models/transmission-lines/cable_body.html" }
+                { id: "long_transmission_line", label: "Long Transmission Line", src: "./models/transmission-lines/long-transmission-line_body.html", page_layout: true },
+                { id: "overhead_line", label: "Overhead Line", src: "./models/transmission-lines/overhead-line_body.html", page_layout: true },
+                { id: "cable", label: "Cable", src: "./models/transmission-lines/cable_body.html", page_layout: true }
               ]
             },
             sources_and_generators: {
               title: "Sources and Generators",
               items: [
-                { id: "ac_source", label: "AC Source", src: "./models/sources-and-generators/ac-source_body.html" },
-                { id: "generator", label: "Generator", src: "./models/sources-and-generators/generator_body.html" }
+                { id: "ac_source", label: "AC Source", src: "./models/sources-and-generators/ac-source_body.html", page_layout: true },
+                { id: "generator", label: "Generator", src: "./models/sources-and-generators/generator_body.html", page_layout: true }
               ]
             },
             converters: {
               title: "Converters",
               items: [
-                { id: "two_level_converter", label: "Two Level Converter", src: "./models/converters/two-level-converter_body.html" },
-                { id: "mmc", label: "MMC", src: "./models/converters/mmc_body.html" }
+                { id: "two_level_converter", label: "Two Level Converter", src: "./models/converters/two-level-converter_body.html", page_layout: true },
+                { id: "mmc", label: "MMC", src: "./models/converters/mmc_body.html", page_layout: true }
               ]
             },
             switches_and_circuit_breakers: {
               title: "Switches and Circuit Breakers",
               items: [
-                { id: "switch", label: "Switch", src: "./models/switches-and-circuit-breakers/switch_body.html" }
+                { id: "switch", label: "Switch", src: "./models/switches-and-circuit-breakers/switch_body.html", page_layout: true }
               ]
             },
             renewable_energy_sources: {
               title: "Renewable Energy Sources",
               items: [
-                { id: "wt_type3", label: "WT Type 3", src: "./models/renewable-energy-sources/wt-type3_body.html" },
-                { id: "wt_type4", label: "WT Type 4", src: "./models/renewable-energy-sources/wt-type4_body.html" },
-                { id: "pv_power_plant", label: "PV Power Plant", src: "./models/renewable-energy-sources/pv-power-plant_body.html" }
+                { id: "wt_type3", label: "WT Type 3", src: "./models/renewable-energy-sources/wt-type3_body.html", page_layout: true },
+                { id: "wt_type4", label: "WT Type 4", src: "./models/renewable-energy-sources/wt-type4_body.html", page_layout: true },
+                { id: "pv_power_plant", label: "PV Power Plant", src: "./models/renewable-energy-sources/pv-power-plant_body.html", page_layout: true }
               ]
             }
           }
@@ -667,15 +668,32 @@
         solvers: {
           title: "Solvers",
           items: [
-            { id: "stability_check", label: "Stability Check", src: "./solvers/stability-check/stability-check_body.html" },
-            { id: "optimal_power_flow", label: "Optimal Power Flow", src: "./solvers/optimal-power-flow/optimal-power-flow_body.html" },
-            { id: "dqsym_math_operation", label: "DQsym Math Operation", src: "./solvers/dqsym-math-operation/dqsym-math-operation_body.html" }
+            { id: "stability_check", label: "Stability Check", src: "./solvers/stability-check/stability-check_body.html", page_layout: true },
+            { id: "optimal_power_flow", label: "Optimal Power Flow", src: "./solvers/optimal-power-flow/optimal-power-flow_body.html", page_layout: true },
+            { id: "dqsym_math_operation", label: "DQsym Math Operation", src: "./solvers/dqsym-math-operation/dqsym-math-operation_body.html", page_layout: true }
           ]
         },
         tests: {
           title: "Test Cases",
           items: [
-            { id: "point_to_point_case", label: "Point to Point Case", src: "./tests/point-to-point-case/point-to-point-case_body.html" }
+            { id: "point_to_point_case", label: "Point to Point Case", src: "./tests/point-to-point-case/point-to-point-case_body.html", page_layout: true }
+          ]
+        },
+        contact: {
+          title: "Contact",
+          items: [
+            { id: "contact", label: "Contact", src: "./contact.html", page_layout: true }
+          ]
+        },
+        about: {
+          title: "About",
+          items: [
+            { id: "overview", label: "Overview", src: "../index.html", page_layout: false },
+            { id: "team", label: "Team", src: "./teams.html", page_layout: false },
+            { id: "getting_started", label: "Getting Started", src: "./getting-started.html", page_layout: true },
+            { id: "publications", label: "Publications", src: "./publications.html", page_layout: true },
+            { id: "api_reference", label: "API Reference (Doxygen)", src: "../api/index.html", page_layout: false },
+            { id: "terms", label: "Terms of Reference", src: "./terms.html", page_layout: true }
           ]
         }
       }
@@ -744,7 +762,13 @@
       .map((item) => {
         const isActive = item.id.toLowerCase() === activeItem.id.toLowerCase();
         const activeClass = isActive ? " active" : "";
-        return `<a class="list-group-item${activeClass}" href="./page_layout.html?file=${item.id}">${item.label}</a>`;
+
+        // Determine href based on page_layout flag
+        const href = item.page_layout 
+          ? `./page_layout.html?file=${item.id}` 
+          : item.src;
+
+        return `<a class="list-group-item${activeClass}" href="${href}">${item.label}</a>`;
       })
       .join("\n");
 

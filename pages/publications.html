@@ -1,814 +1,499 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="../css/head.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Publications</title>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
 
-  <!-- Markdown + code highlight -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-  <link id="hljs-theme" rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <style>
-    /* =======================
-       Theme vars
-    ======================== */
-    :root{
-      --font-mono: "JetBrains Mono","IBM Plex Mono","Source Code Pro",
-                   "Cascadia Code",Consolas,Menlo,"Liberation Mono",
-                   "DejaVu Sans Mono","Courier New",monospace;
 
-      --brand-cpp-blue:#005696;
+<title>publications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
 
-      --color-bg:#ffffff;
-      --color-ink:#111;
-      --color-card:#fff;
-      --color-border:#e5e7eb;
 
-      --nav-active:#ab80d3; 
-      --sticky-top: 72px;   
-    }
-    html.theme-dark{
-      --color-bg:#1a0b2e;
-      --color-ink:#e5e5e5;
-      --color-card:#1f2937;
-      --color-border:#374151;
-      --nav-active:#ab80d3;
-    }
+<script src="publications_files/libs/clipboard/clipboard.min.js"></script>
+<script src="publications_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="publications_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="publications_files/libs/quarto-html/popper.min.js"></script>
+<script src="publications_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="publications_files/libs/quarto-html/anchor.min.js"></script>
+<link href="publications_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="publications_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="publications_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="publications_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="publications_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-    body{
-      margin:0;
-      background:var(--color-bg);
-      color:var(--color-ink);
-      font:16px/1.7 system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      transition: background .25s ease, color .25s ease;
-    }
 
-    /* =======================
-       Top navbar
-    ======================== */
-    .navbar{ background: var(--brand-cpp-blue) !important; border-bottom:none; }
-    .navbar.navbar-dark .navbar-brand,
-    .navbar.navbar-dark .nav-link{ color:#fff !important; }
-
-    .navbar .nav-link,
-    .navbar .nav-link i{ transition: color .15s ease; }
-
-    .navbar .nav-link:hover,
-    .navbar .nav-link:focus,
-    .navbar .nav-link:focus-visible{ color: var(--nav-active) !important; }
-
-    .navbar .nav-link:hover i,
-    .navbar .nav-link:focus i,
-    .navbar .nav-link:focus-visible i{ color: var(--nav-active) !important; }
-
-    .navbar .nav-link.active{ color: var(--nav-active) !important; }
-    .navbar .nav-link.active i{ color: var(--nav-active) !important; }
-
-    .navbar-brand img{ height:48px; width:auto; display:block; }
-
-    /* navbar 字体 */
-    .navbar,
-    .navbar a,
-    .navbar .nav-link,
-    .navbar .dropdown-item{
-      font-family: var(--font-mono) !important;
-    }
-
-    /* =======================
-       Header tools (theme/search)
-    ======================== */
-    .header-tools{ display:flex; align-items:center; gap:.75rem; margin-left:.5rem; }
-
-    .theme-switch{
-      position:relative;
-      width:44px; height:24px;
-      background:#cbd5e1;
-      border-radius:999px;
-      cursor:pointer;
-      transition:background .2s ease;
-      border:1px solid rgba(255,255,255,.6);
-    }
-    .theme-switch::after{
-      content:"";
-      position:absolute; top:50%; left:3px;
-      transform:translateY(-50%);
-      width:18px; height:18px;
-      border-radius:50%;
-      background:#fff;
-      transition:left .2s ease;
-      box-shadow:0 1px 2px rgba(0,0,0,.15);
-    }
-    html.theme-dark .theme-switch{ background:#334155; border-color: var(--color-border); }
-    html.theme-dark .theme-switch::after{ left:23px; }
-
-    /* =======================
-       Layout
-    ======================== */
-    .doc-layout{
-      width: min(1320px, calc(100% - 2rem));
-      margin: 1.5rem auto 3rem;
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr) 240px;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    /* 左/右栏：随滚动固定 */
-    .doc-sidenav,
-    .doc-toc{
-      position: sticky;
-      top: var(--sticky-top);
-      align-self: start;
-      max-height: calc(100vh - var(--sticky-top) - 16px);
-      overflow: auto;
-      padding-right: 4px;
-    }
-    .doc-sidenav::-webkit-scrollbar,
-    .doc-toc::-webkit-scrollbar{ width: 8px; }
-    .doc-sidenav::-webkit-scrollbar-thumb,
-    .doc-toc::-webkit-scrollbar-thumb{
-      background: rgba(128,128,128,.25);
-      border-radius: 99px;
-    }
-
-    /* =======================
-       Left sidenav
-    ======================== */
-    .doc-sidenav, .doc-sidenav *{
-      font-family: var(--font-mono) !important;
-    }
-
-    .doc-sidenav .sidenav-card{
-      position: sticky;
-      top: 1rem;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: .25rem 0;
-    }
-
-    .sidenav-acc{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: .55rem;
-      padding: .6rem .75rem;
-      background: transparent;
-      border: none;
-      color: var(--color-ink);
-      cursor: pointer;
-      font-family: var(--font-mono);
-      font-weight: 800;
-      font-size: 1.15rem;
-      letter-spacing: .3px;
-      text-align: left;
-      border-radius: 10px;
-      transition: background .2s ease;
-    }
-    .sidenav-acc:hover{ background: transparent; color: var(--nav-active); }
-    .sidenav-acc:hover .acc-icon{ color: var(--nav-active); }
-    .sidenav-acc:active{ transform: translateX(2px); }
-
-    .sidenav-acc .acc-icon{
-      font-size: .95rem;
-      color: var(--color-ink);
-      transition: transform .2s ease, color .2s ease;
-    }
-    .sidenav-acc[aria-expanded="true"] .acc-icon{ color: var(--nav-active); }
-
-    .acc-panel{ padding: .25rem 0 .25rem .15rem; }
-
-    .doc-sidenav .list-group-item{
-      border: none !important;
-      background: transparent !important;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--color-ink);
-      transition: all 0.25s ease;
-      padding: 0.35rem 0.75rem;
-      margin: 0;
-      padding-left: 1.75rem;
-      line-height: 1.4;
-    }
-    .doc-sidenav .list-group-item::before{
-      content: "▸";
-      display: inline-block;
-      margin-right: .6rem;
-      font-size: .85rem;
-      color: var(--color-ink);
-      transition: all .3s ease;
-      transform: translateY(-1px);
-    }
-    .doc-sidenav .list-group-item:hover{
-      color: var(--nav-active) !important;
-      transform: translateX(6px);
-      font-weight: 600;
-    }
-    .doc-sidenav .list-group-item:hover::before{
-      color: var(--nav-active);
-      transform: translate(3px, -1px);
-    }
-    .doc-sidenav .list-group-item.active{
-      color: var(--nav-active) !important;
-      font-weight: 700;
-    }
-    .doc-sidenav .list-group-item.active::before{
-      content: "●";
-      color: var(--nav-active);
-    }
-
-    /* =======================
-       Right TOC (rail + thumb)
-    ======================== */
-    .doc-toc, .doc-toc *{
-      font-family: var(--font-mono) !important;
-    }
-
-    .doc-toc .toc-card{
-      position: sticky;
-      top: 1rem;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      border-radius: 0;
-      padding: .25rem 0;
-    }
-
-    .toc-title{
-      font-weight: 900;
-      margin: 0 0 .6rem 0;
-      font-size: 1rem;
-    }
-
-    .toc-links{
-      position: relative;
-      padding-left: 18px;
-    }
-    .toc-links::before{
-      content:"";
-      position:absolute;
-      left: 6px;
-      top: 4px;
-      bottom: 4px;
-      width: 4px;
-      border-radius: 999px;
-      background: rgba(171,128,211,.35);
-    }
-    .toc-links::after{
-      content:"";
-      position:absolute;
-      left: 5px;
-      top: var(--thumb-top, 10px);
-      width: 6px;
-      height: 22px;
-      border-radius: 999px;
-      background: var(--nav-active);
-      box-shadow: 0 8px 20px rgba(171,128,211,.35);
-      transition: top .18s ease, height .18s ease;
-    }
-
-    .toc-links a{
-      display:block;
-      text-decoration:none;
-      color: var(--color-ink);
-      padding: .28rem .5rem;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      font-size: 13px;
-      opacity: .85;
-      transform: scale(1);
-      transform-origin: left center;
-      transition: transform .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
-    }
-    .toc-links a:hover{
-      background: rgba(171,128,211,.10);
-      border-color: rgba(171,128,211,.30);
-      opacity: 1;
-    }
-    .toc-links a.active{
-      color: var(--nav-active);
-      background: transparent !important;
-      border-color: transparent !important;
-      box-shadow: none !important;
-      font-weight: 800;
-      opacity: 1;
-      transform: none !important;
-    }
-
-    .toc-links a.toc-h3.active{
-      background: transparent !important;
-      border-color: transparent !important;
-      box-shadow: none !important;
-    }
-
-    .toc-links a.lvl-3{
-      padding-left: 1.15rem;
-      opacity: .78;
-    }
-    .toc-links a.lvl-3.active{ opacity: 1; }
-
-    /* =======================
-       Main content
-    ======================== */
-    .doc-main, .md, #md-root{
-      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif !important;
-    }
-
-    .md{
-      border-radius:14px;
-      padding:1.25rem 1rem;
-      box-shadow:0 6px 24px rgba(0,0,0,.06);
-    }
-    .md a{ color:#0969da; text-decoration:none; }
-    .md a:hover{ text-decoration:underline; }
-    .md code{ background:#f6f8fa; padding:.15em .35em; border-radius:4px; }
-    .md pre{
-      background:#f6f8fa;
-      padding:1rem;
-      border-radius:12px;
-      overflow:auto;
-      border:1px solid var(--color-border);
-    }
-    html.theme-dark .md code{ background:#0b1220; color:#e5e7eb; }
-    html.theme-dark .md pre{ background:#0b1220; border-color:#26324a; }
-
-    /* =======================
-       Search highlight
-    ======================== */
-    :root{
-      --color-search-hit-bg:#f3d6dc;
-      --color-search-hit-fg:#6b0f1a;
-    }
-    html.theme-dark{
-      --color-search-hit-bg:#6b0f1a;
-      --color-search-hit-fg:#f3d6dc;
-    }
-    .search-hit{
-      background: var(--color-search-hit-bg) !important;
-      color: var(--color-search-hit-fg) !important;
-    }
-    
-  </style>
 </head>
 
-<body>
-  <!-- Top navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-xxl">
-      <a class="navbar-brand d-flex align-items-center"
-         href="https://isocpp.org/"
-         target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
-      </a>
+<body class="fullcontent quarto-light">
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">
-              <i class="bi bi-house-door-fill me-1"></i>Home
-            </a>
-          </li>
+<main class="content" id="quarto-document-content">
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../index.html">Overview</a></li>
-              <li><a class="dropdown-item" href="./teams.html">Teams</a></li>
-              <li><a class="dropdown-item" href="./getting-started.html">Getting Started</a></li>
-              <li><a class="dropdown-item" href="./publications.html">Publications</a></li>
-              <li><a class="dropdown-item" href="../api/index.html">API Reference (Doxygen)</a></li>
-            </ul>
-          </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=impedance">Impedances</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=transformer_magnetization_resistance">Transformers</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=load">Loads</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=long_transmission_line">Transmission Lines</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=ac_source">Sources and Generators</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=two_level_converter">Converters</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=switch">Switches and Circuit Breakers</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=wt_type3">Renewable Energy Sources</a></li>
-            </ul>
-          </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solvers</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=stability_check">Stability Check</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=optimal_power_flow">Optimal Power Flow</a></li>
-              <li><a class="dropdown-item" href="./page_layout.html?file=dqsym_math_operation">DQsym Math Operation</a></li>
-            </ul>
-          </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./page_layout.html?file=point_to_point_case">Point to Point Case</a></li>
-            </ul>
-          </li>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"><i class="bi bi-calendar3"></i> 2026</h2>
+<ul>
+<li><p><strong>R. Dimitrovski</strong>, <strong>S. Alsarayreh</strong>, <strong>A. Lekić</strong>, “A Novel Dynamic Phasor-based Mathematical Framework for Hybrid AC/DC Power System Simulation,” <em>IEEE Transactions on Power Delivery</em>, 2026 (under review).<br>
+<strong>Links:</strong> <a href="">PDF</a></p></li>
+<li><p><strong>A. Lekić</strong>, <strong>A. Kermansaravi</strong>, <strong>H. Li</strong>, <strong>Y. Quintero Lares</strong>, <strong>S. Alsarayreh</strong>, <strong>R. Dimitrovski</strong>, “Advanced Simulation Framework for AC/MTDC Power Systems,” <em>CIGRE 2026</em>, 2026.<br>
+<strong>Links:</strong> <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xwCWAb0AAAAJ&amp;sortby=pubdate&amp;citation_for_view=xwCWAb0AAAAJ:hkOj_22Ku90C">PDF</a></p></li>
+<li><p><strong>S. Alsarayreh</strong>, <strong>R. Dimitrovski</strong>, <strong>A. Lekić</strong>, “Implementation of an MMC Model for Dynamic Phasor State- space Solver,” <em>PSCC 2026</em>, 2026.<br>
+<strong>Links:</strong> <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xwCWAb0AAAAJ&amp;sortby=pubdate&amp;citation_for_view=xwCWAb0AAAAJ:5awf1xo2G04C">PDF</a></p></li>
+<li><p>H. Du, T. B. Hashfi, R. Prasad, P. P. Vergara, P. Palensky, <strong>A. Lekić</strong>, “Optimal droop control strategy for coordinated voltage regulation and power sharing in hybrid AC–MTDC systems,” <em>IEEE Access</em>, 2026.<br>
+<strong>Links:</strong> <a href="https://ieeexplore.ieee.org/abstract/document/11534225">PDF</a></p></li>
+<li><p><strong>H. Li</strong>, <strong>A. Lekić</strong>, “Leveraging Optimal Information-Power Flow for Transmission Switching in AC/MTDC Grids,” <em>26TH International Conference on Environment and Electrical Engineering (EEEIC2026)</em>, 2026.<br>
+<strong>Links:</strong> <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xwCWAb0AAAAJ&amp;sortby=pubdate&amp;citation_for_view=xwCWAb0AAAAJ:JQOojiI6XY0C">PDF</a></p></li>
+<li><p><strong>S. Alsarayreh</strong>, <strong>R. Dimitrovski</strong>, <strong>A. Lekić</strong>, “DQsym modelling library: Power system dynamic phasor-based modelling library,” <em>SoftwareX</em>, 2026.<br>
+<strong>Links:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S2352711026002116">PDF</a> <a href="https://github.com/control-protection-grids-tudelft/DP">Repository</a> —</p></li>
+</ul>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"><i class="bi bi-calendar3"></i> 2025</h2>
+<ul>
+<li><p>R. Rane, <strong>A. Kermansaravi</strong>, P. Vergara, <strong>A. Lekić</strong>, “Transfer Learning Framework for Impedance Characterization of Modular Multilevel Converters,” <em>IEEE Transactions on Industry Applications</em>, 2025.<br>
+<strong>Links:</strong> <a href="https://ieeexplore.ieee.org/document/10840271">PDF</a></p></li>
+<li><p><strong>H. Li</strong>, P. Vergara, <strong>R. Dimitrovski</strong>, <strong>A. Lekić</strong>, “Nested Distributed Optimal Power Flow Toward VSC-Interconnected AC/MTDC Hybrid Grids,” <em>International Journal of Electrical Power &amp; Energy Systems</em>, 2025.<br>
+<strong>Links:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S014206152400588X">PDF</a></p></li>
+<li><p><strong>H. Li</strong>, <strong>A. Kermansaravi</strong>, <strong>R. Dimitrovskia</strong>, <strong>A. Lekić</strong>, “OpFlowTools: A Cross-Language Benchmark of AC/DC Optimal Power Flow Solutions, <em>SoftwareX</em>, 2025.<br>
+<strong>Links:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S2352711025002900">PDF</a> <a href="https://github.com/CRESYM/ACDC_OPF">Repository</a></p></li>
+</ul>
+<hr>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"><i class="bi bi-calendar3"></i> 2024</h2>
+<ul>
+<li><p>A. Shetgaonkar, T. Karmonka, M. Popov, <strong>A. Lekić</strong>, “Enhanced Real-Time Multi-Terminal HVDC Power System Benchmark Models with Performance Evaluation Strategies,” <em>CIGRE Science &amp; Engineering</em>, 2024.<br>
+<strong>Links:</strong> <a href="https://www.researchgate.net/profile/Ajay-Shetgaonkar/publication/379181541_Enhanced_Real-Time_Multi-Terminal_HVDC_Power_System_Benchmark_Models_with_Performance_Evaluation_Strategies/links/65fdd335d3a085514241992b/Enhanced-Real-Time-Multi-Terminal-HVDC-Power-System-Benchmark-Models-with-Performance-Evaluation-Strategies.pdf">PDF</a></p></li>
+<li><p>S. Li, J. Wu, J.C. Vasquez, J. M. Guerrero, P. Palensky, <strong>A. Lekić</strong>, “Active Filter Parameter Tuning Method for Harmonic Voltage Mitigation in Wind Power Plants,” <em>PSCC 2024</em>, 2024.<br>
+<strong>Links:</strong> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378779624006126">PDF</a></p></li>
+<li><p><strong>H. Li</strong>, H. Ergun, D. V. Hertem, <strong>A. Lekić</strong>, “Scenario-oriented Multi-cut Generalized Benders Decomposition-Based Distributed OPF for AC/DC Hybrid Grids,” <em>2024 IEEE PES Innovative Smart Grid Technologies Europe (ISGT-Europe)</em>, 2024.<br>
+<strong>Links:</strong> <a href="https://ieeexplore.ieee.org/document/10863082">PDF</a></p></li>
+<li><p><strong>H. Li</strong>, <strong>A. Lekić</strong>, “Distributed Robust Optimization Method for AC/MTDC Hybrid Power Systems with DC Network Cognizant, <em>2024 International Conference on smart Energy Systems and Technologies (SEST)</em>, 2024.<br>
+<strong>Links:</strong> <a href="https://ieeexplore.ieee.org/document/10694436">PDF</a></p></li>
+</ul>
+</section>
 
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-
-          <li class="nav-item d-flex align-items-center ms-3">
-            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
-              <i class="bi bi-github fs-4"></i>
-            </a>
-          </li>
-        </ul>
-
-        <div class="header-tools ms-3">
-          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
-          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Search panel -->
-  <div id="searchBar" class="search-panel-min" aria-hidden="true">
-    <i class="bi bi-search"></i>
-    <input id="searchBarInput" type="search" placeholder="Search..." autocomplete="off" />
-    <button id="searchBarClose" class="search-cancel" type="button">Cancel</button>
-  </div>
-
-  <!-- Main layout -->
-  <div class="doc-layout">
-    <aside class="doc-sidenav">
-      <div class="sidenav-card">
-        <button class="sidenav-acc" type="button" aria-expanded="false" aria-controls="aboutMenu">
-          <span class="acc-icon" aria-hidden="true">▸</span>
-          <span class="acc-title">About Harmony</span>
-        </button>
-
-        <div id="aboutMenu" class="acc-panel" hidden>
-          <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../index.html">Overview of Harmony</a>
-            <a class="list-group-item" href="./teams.html">Develope Teams</a>
-            <a class="list-group-item" href="./getting-started.html">Getting Started</a>
-            <a class="list-group-item" href="./publications.html">Publication lists</a>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <main class="doc-main">
-      <div id="md-root" class="md">Loading Markdown…</div>
-    </main>
-
-    <aside class="doc-toc">
-      <div class="toc-card">
-        <div class="toc-title">On this page</div>
-        <nav id="toc-root" class="toc-links"></nav>
-      </div>
-    </aside>
-  </div>
-
-  <!-- Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    /* 主题切换 + 高亮.js 主题 */
-    (function(){
-      const root = document.documentElement;
-      const KEY  = "harmony-theme";
-      const btn  = document.getElementById("themeToggle");
-
-      const HLJS_LIGHT = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css";
-      const HLJS_DARK  = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css";
-
-      function applyHljsTheme(isDark){
-        const link = document.getElementById("hljs-theme");
-        if (link) link.href = isDark ? HLJS_DARK : HLJS_LIGHT;
-      }
-
-      const saved = localStorage.getItem(KEY);
-      if (saved === "dark") root.classList.add("theme-dark");
-      if (saved === "light") root.classList.remove("theme-dark");
-      if (saved === null && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
-        root.classList.add("theme-dark");
-      }
-      applyHljsTheme(root.classList.contains("theme-dark"));
-
-      btn?.addEventListener("click", () => {
-        root.classList.toggle("theme-dark");
-        const isDark = root.classList.contains("theme-dark");
-        localStorage.setItem(KEY, isDark ? "dark" : "light");
-        applyHljsTheme(isDark);
-      });
-    })();
-  </script>
-
-  <script>
-    /* Markdown 渲染 */
-    window.addEventListener("DOMContentLoaded", () => {
-      const MD_PATH = "./publications.md";   
-      const hasHLJS = typeof window.hljs !== "undefined";
-
-      marked.setOptions({
-        gfm: true,
-        headerIds: true,
-        mangle: false,
-        highlight: (code, lang) => {
-          if (!hasHLJS) return code;
-          try {
-            if (lang && hljs.getLanguage(lang)) return hljs.highlight(code, { language: lang }).value;
-            return hljs.highlightAuto(code).value;
-          } catch(e){
-            return code;
-          }
-        }
-      });
-
-      fetch(MD_PATH, { cache: "no-cache" })
-        .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-        .then(txt => {
-          document.getElementById("md-root").innerHTML = marked.parse(txt);
-          if (hasHLJS) document.querySelectorAll("pre code").forEach(el => hljs.highlightElement(el));
-          buildTOCYears();
-        })
-        .catch(err => {
-          document.getElementById("md-root").innerHTML =
-            `<p style="color:#b91c1c">Failed to load: ${err.message}</p>
-             <p>Please make sure <code>${MD_PATH}</code> is in the same directory as this page and is accessed via http(s).</p>`;
-          console.error("Markdown load error:", err);
-        });
-    });
-  </script>
-
-  <script>
-    /* 搜索面板开关 */
-    (function(){
-      const openBtn  = document.getElementById("openSearch");
-      const bar      = document.getElementById("searchBar");
-      const input    = document.getElementById("searchBarInput");
-      const closeBtn = document.getElementById("searchBarClose");
-      if(!openBtn || !bar) return;
-
-      function open(){
-        bar.classList.add("show");
-        bar.setAttribute("aria-hidden","false");
-        input && (input.focus(), input.select());
-      }
-      function close(){
-        bar.classList.remove("show");
-        bar.setAttribute("aria-hidden","true");
-        input && (input.value = "");
-      }
-
-      openBtn.addEventListener("click", () => {
-        bar.classList.contains("show") ? close() : open();
-      });
-      closeBtn && closeBtn.addEventListener("click", close);
-
-      document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") close(); });
-      document.addEventListener("click", (e)=>{
-        if (!bar.contains(e.target) && !openBtn.contains(e.target)) close();
-      });
-    })();
-  </script>
-
-  <script>
-    /* 搜索高亮（仅正文） */
-    (function(){
-      const input = document.getElementById("searchBarInput");
-      const panel = document.getElementById("searchBar");
-      if(!input || !panel) return;
-
-      const MIN_LEN = 3;
-
-      function clearHighlights(){
-        document.querySelectorAll(".search-hit").forEach(span=>{
-          const parent = span.parentNode;
-          while (span.firstChild) parent.insertBefore(span.firstChild, span);
-          parent.removeChild(span);
-          parent.normalize();
-        });
-      }
-
-      function highlightAll(term){
-        clearHighlights();
-        if(!term || term.length < MIN_LEN) return;
-
-        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const rx = new RegExp(escaped, "gi");
-
-        const nodes = [];
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-          acceptNode(node){
-            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-            const p = node.parentNode;
-            if (!p) return NodeFilter.FILTER_REJECT;
-
-            const tag = p.nodeName.toLowerCase();
-            if (["script","style","noscript","input","textarea","svg"].includes(tag)) return NodeFilter.FILTER_REJECT;
-            if (p.closest("#searchBar") || p.closest("nav.navbar")) return NodeFilter.FILTER_REJECT;
-
-            return NodeFilter.FILTER_ACCEPT;
-          }
-        });
-
-        let node;
-        while((node = walker.nextNode())) nodes.push(node);
-
-        const hits = [];
-        nodes.forEach(textNode=>{
-          const text = textNode.nodeValue;
-          rx.lastIndex = 0;
-
-          const matches = [];
-          let m;
-          while((m = rx.exec(text)) !== null){
-            matches.push([m.index, m.index + m[0].length]);
-            if (m.index === rx.lastIndex) rx.lastIndex++;
-          }
-          if (!matches.length) return;
-
-          for(let i = matches.length - 1; i >= 0; i--){
-            const [s,e] = matches[i];
-            const range = document.createRange();
-            range.setStart(textNode, s);
-            range.setEnd(textNode, e);
-
-            const mark = document.createElement("span");
-            mark.className = "search-hit";
-            range.surroundContents(mark);
-            hits.push(mark);
-          }
-        });
-
-        if(hits.length){
-          hits[hits.length - 1].scrollIntoView({behavior:"smooth", block:"center"});
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-
-      input.addEventListener("input", ()=> highlightAll(input.value.trim()));
-      document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") clearHighlights(); });
-    })();
-  </script>
-
-  <script>
-    /* 左侧 About 折叠 + 当前页高亮 */
-    (function(){
-      const accBtn = document.querySelector(".sidenav-acc");
-      const panel  = document.getElementById("aboutMenu");
-      const icon   = accBtn?.querySelector(".acc-icon");
-
-      function setExpanded(open){
-        if(!accBtn || !panel || !icon) return;
-        accBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        panel.hidden = !open;
-        icon.textContent = open ? "▾" : "▸";
-      }
-
-      accBtn?.addEventListener("click", ()=>{
-        const open = accBtn.getAttribute("aria-expanded") === "true";
-        setExpanded(!open);
-      });
-
-      const current = (location.pathname.split("/").pop() || "").toLowerCase();
-      const links = Array.from(document.querySelectorAll("#aboutMenu .list-group-item"));
-
-      let matched = false;
-      links.forEach(a=>{
-        const href = (a.getAttribute("href") || "").split("/").pop().toLowerCase();
-        const isActive = href && href === current;
-        a.classList.toggle("active", isActive);
-        if(isActive) matched = true;
-      });
-
-      setExpanded(matched);
-    })();
-  </script>
-
-  <script>
-    /* Publications 右侧 TOC：只以年份分组标题为子标题 */
-    function buildTOCYears(){
-      const tocRoot = document.getElementById("toc-root");
-      const mdRoot  = document.getElementById("md-root");
-      if(!tocRoot || !mdRoot) return;
-
-      tocRoot.innerHTML = "";
-
-      const headers = Array.from(mdRoot.querySelectorAll("h2, h3, h4"));
-
-      const yearRx = /\b(2024|2025|2026)\b/i;
-      const yearHeads = headers.filter(h => yearRx.test((h.textContent || "").trim()));
-
-      if(!yearHeads.length){
-        tocRoot.innerHTML = `<span style="opacity:.7;font-size:14px">No year sections</span>`;
-        return;
-      }
-
-      const items = [];
-
-      yearHeads.forEach(h=>{
-        if(!h.id){
-          const slug = h.textContent.trim()
-            .toLowerCase()
-            .replace(/[\s]+/g,'-')
-            .replace(/[^\w\-]/g,'');
-          h.id = slug || ("sec-" + Math.random().toString(16).slice(2));
-        }
-
-        const a = document.createElement("a");
-        a.href = `#${h.id}`;
-        a.dataset.target = h.id;
-        a.textContent = h.textContent.trim();
-        a.classList.add("toc-h2"); 
-
-        a.addEventListener("click", (e)=>{
-          e.preventDefault();
-          const el = document.getElementById(h.id);
-          if(!el) return;
-          el.scrollIntoView({behavior:"smooth", block:"start"});
-          history.replaceState(null, "", `#${h.id}`);
-        });
-
-        tocRoot.appendChild(a);
-        items.push({ link: a, el: h });
-      });
-
-      function updateThumb(){
-        const active = tocRoot.querySelector("a.active");
-        if(!active) return;
-
-        const rootRect = tocRoot.getBoundingClientRect();
-        const aRect = active.getBoundingClientRect();
-        const top = Math.max(4, (aRect.top - rootRect.top) + (aRect.height/2) - 11);
-
-        tocRoot.style.setProperty("--thumb-top", top + "px");
-      }
-
-      const io = new IntersectionObserver((entries)=>{
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
-        if(!visible) return;
-
-        items.forEach(x => x.link.classList.remove("active"));
-        const hit = items.find(x => x.el === visible.target);
-        if(hit) hit.link.classList.add("active");
-
-        updateThumb();
-      }, {
-        root: null,
-        rootMargin: "-20% 0px -70% 0px",
-        threshold: [0.1, 0.2, 0.4, 0.6]
-      });
-
-      items.forEach(x => io.observe(x.el));
-
-      requestAnimationFrame(updateThumb);
-      window.addEventListener("resize", updateThumb);
+      return false;
     }
-  </script>
-
-  <script>
-    /* 根据 navbar 高度更新 左右导航固定高度 */
-    (function(){
-      const root = document.documentElement;
-      const nav  = document.querySelector("nav.navbar");
-      if(!nav) return;
-
-      let ticking = false;
-
-      function updateStickyTop(){
-        const rect = nav.getBoundingClientRect();
-        const top = Math.max(0, Math.floor(rect.bottom));
-        root.style.setProperty("--sticky-top", top + "px");
-        ticking = false;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-
-      function requestUpdate(){
-        if(ticking) return;
-        ticking = true;
-        requestAnimationFrame(updateStickyTop);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-
-      window.addEventListener("scroll", requestUpdate, { passive: true });
-      window.addEventListener("resize", requestUpdate);
-
-      updateStickyTop();
-    })();
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
   </script>
-</body>
-</html>
+</div> <!-- /content -->
 
 
+
+
+</body></html>
