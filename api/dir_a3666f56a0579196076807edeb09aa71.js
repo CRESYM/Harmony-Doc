@@ -19,6 +19,7 @@ var dir_a3666f56a0579196076807edeb09aa71 =
     [ "example_OPF_double_area.cpp", "example__OPF__double__area_8cpp.html", "example__OPF__double__area_8cpp" ],
     [ "example_OPF_PV.cpp", "example__OPF__PV_8cpp.html", "example__OPF__PV_8cpp" ],
     [ "example_OPF_single_area.cpp", "example__OPF__single__area_8cpp.html", "example__OPF__single__area_8cpp" ],
+    [ "example_OPF_SLO.cpp", "example__OPF__SLO_8cpp.html", "example__OPF__SLO_8cpp" ],
     [ "example_OPF_WT.cpp", "example__OPF__WT_8cpp.html", "example__OPF__WT_8cpp" ],
     [ "example_PLL_test.cpp", "example__PLL__test_8cpp.html", "example__PLL__test_8cpp" ],
     [ "example_point2point_case.cpp", "example__point2point__case_8cpp.html", "example__point2point__case_8cpp" ],

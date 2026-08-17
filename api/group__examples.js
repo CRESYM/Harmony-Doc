@@ -20,6 +20,7 @@ var group__examples =
     [ "example_OPF_double_area", "group__examples.html#ga34355fda9d11d56ab67d73c812c4704a", null ],
     [ "example_OPF_PV", "group__examples.html#gaa37b69fbead04de908dba444d5fbdb15", null ],
     [ "example_OPF_single_area", "group__examples.html#ga7d47e6cd95512588c40c805f83381262", null ],
+    [ "example_OPF_SLO", "group__examples.html#ga5cfae248de0baff4c614543a97143dd7", null ],
     [ "example_OPF_WT", "group__examples.html#gafa1aed6cad05f49b98d5c40fe41bfca5", null ],
     [ "example_point2point_case", "group__examples.html#ga5610ec126bfd349bd1f7e9bf641607ac", null ],
     [ "example_PV_plant", "group__examples.html#ga88fcdce69f55f615df24cf2630f738a5", null ],

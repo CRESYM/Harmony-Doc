@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"structDCBusResult.html#a8197974d63c49a78ffd04f8daeb93dd0":[3,0,19,1],
+"structDCBusResult.html#a92005e86ee7d6bc837ad87c6e171e1ea":[3,0,19,9],
 "structDCBusResult.html#a925fbf31f1ecffbe044ec0c894847cfe":[3,0,19,7],
 "structDCBusResult.html#aad81d499718201d19335f6a1ff5b5a59":[3,0,19,10],
 "structDCBusResult.html#adebf76eaaf520d30717186036a1beae4":[3,0,19,3],

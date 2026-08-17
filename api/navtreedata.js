@@ -70,8 +70,8 @@ var NAVTREEINDEX =
 "classCable.html#a70716e3b87f7294aec4b7b71651f414f",
 "classLoadPQ.html#ac327460c353812fa2e9f6b66c3b5cccd",
 "classTransformerDeltaDelta.html#a263c90701d2a8c72b9113317d5d18574",
-"globals_func_h.html",
-"structDCBusResult.html#a925fbf31f1ecffbe044ec0c894847cfe"
+"globals_func_g.html",
+"structDCBusResult.html#a8197974d63c49a78ffd04f8daeb93dd0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
