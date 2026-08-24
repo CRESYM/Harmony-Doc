@@ -17,6 +17,7 @@ var dir_a3666f56a0579196076807edeb09aa71 =
     [ "example_OPF_csv.cpp", "example__OPF__csv_8cpp.html", "example__OPF__csv_8cpp" ],
     [ "example_OPF_csv_1.cpp", "example__OPF__csv__1_8cpp.html", "example__OPF__csv__1_8cpp" ],
     [ "example_OPF_double_area.cpp", "example__OPF__double__area_8cpp.html", "example__OPF__double__area_8cpp" ],
+    [ "example_OPF_ieee.cpp", "example__OPF__ieee_8cpp.html", "example__OPF__ieee_8cpp" ],
     [ "example_OPF_PV.cpp", "example__OPF__PV_8cpp.html", "example__OPF__PV_8cpp" ],
     [ "example_OPF_single_area.cpp", "example__OPF__single__area_8cpp.html", "example__OPF__single__area_8cpp" ],
     [ "example_OPF_SLO.cpp", "example__OPF__SLO_8cpp.html", "example__OPF__SLO_8cpp" ],

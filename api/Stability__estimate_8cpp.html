@@ -90,11 +90,13 @@ $(document).ready(function(){initNavTree('Stability__estimate_8cpp.html',''); in
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Stability_estimate.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of Small-signal stability and impedance analysis for AC/DC areas.  
+<p>MIMO impedance-based stability assessment via unified MNA.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="Stability__estimate_8h_source.html">Stability_estimate.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="network_8h_source.html">../../network.h</a>&quot;</code><br />
@@ -105,7 +107,7 @@ Include dependency graph for Stability_estimate.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Stability__estimate_8cpp__incl.png" border="0" usemap="#aharmony_2src_2Solver_2Stability__Estimate_2Stability__estimate_8cpp" alt=""/></div>
 <map name="aharmony_2src_2Solver_2Stability__Estimate_2Stability__estimate_8cpp" id="aharmony_2src_2Solver_2Stability__Estimate_2Stability__estimate_8cpp">
-<area shape="rect" title="Implementation of Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="4662,5,4834,60"/>
+<area shape="rect" title="MIMO impedance&#45;based stability assessment via unified MNA." alt="" coords="4662,5,4834,60"/>
 <area shape="rect" href="Stability__estimate_8h.html" title="Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="4729,277,4882,302"/>
 <area shape="poly" title=" " alt="" coords="4757,60,4802,262,4797,264,4751,61"/>
 <area shape="rect" href="network_8h.html" title="Top&#45;level electrical network container: buses, elements, connections, and hierarchical grids." alt="" coords="4863,453,4950,478"/>
@@ -305,9 +307,105 @@ Include dependency graph for Stability_estimate.cpp:</div>
 <area shape="poly" title=" " alt="" coords="4545,476,4588,522,4584,525,4541,480"/>
 </map>
 </div>
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation of Small-signal stability and impedance analysis for AC/DC areas. </p>
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac65b45747764281a6186f9b9088936cb" id="r_ac65b45747764281a6186f9b9088936cb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Stability__estimate_8cpp.html#ac65b45747764281a6186f9b9088936cb">locStartsWith</a> (<a class="el" href="classBus.html">Bus</a> *bus, const char *prefix)</td></tr>
+<tr class="memdesc:ac65b45747764281a6186f9b9088936cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the bus location string starts with the given prefix (case-insensitive).  <br /></td></tr>
+<tr class="separator:ac65b45747764281a6186f9b9088936cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7f90d0d4c10cb9d0de8382d869c4219" id="r_aa7f90d0d4c10cb9d0de8382d869c4219"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Stability__estimate_8cpp.html#aa7f90d0d4c10cb9d0de8382d869c4219">strStartsWith</a> (const std::string &amp;<a class="el" href="Symbolic__functions_8cpp.html#aa3c62ad43e416269d6291c060e37cc23">s</a>, const char *prefix)</td></tr>
+<tr class="memdesc:aa7f90d0d4c10cb9d0de8382d869c4219"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the string <code>s</code> starts with <code>prefix</code> (case-insensitive).  <br /></td></tr>
+<tr class="separator:aa7f90d0d4c10cb9d0de8382d869c4219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>MIMO impedance-based stability assessment via unified MNA. </p>
+<p>All port dimensions are derived at runtime from <a class="el" href="classBus.html#aa456da532345ff43afcc96bb5584aa7f" title="Get the number of pins/phases on this bus.">Bus::getPinNumber()</a>, so the implementation handles 1-pin (DC scalar), 2-pin (dq AC) and 3-pin (abc AC) buses without any hard-coded dimension assumptions. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ac65b45747764281a6186f9b9088936cb" name="ac65b45747764281a6186f9b9088936cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac65b45747764281a6186f9b9088936cb">&#9670;&#160;</a></span>locStartsWith()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool locStartsWith </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBus.html">Bus</a> *&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the bus location string starts with the given prefix (case-insensitive). </p>
+
+<p class="reference">References <a class="el" href="classBus.html#aee85c8861b6cbf04d2add0bb9fcb02d8">Bus::getBusLocation()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">StabilityEstimate::compute_transfer_function()</a>.</p>
+
+</div>
+</div>
+<a id="aa7f90d0d4c10cb9d0de8382d869c4219" name="aa7f90d0d4c10cb9d0de8382d869c4219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7f90d0d4c10cb9d0de8382d869c4219">&#9670;&#160;</a></span>strStartsWith()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool strStartsWith </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if the string <code>s</code> starts with <code>prefix</code> (case-insensitive). </p>
+
+<p class="reference">References <a class="el" href="Symbolic__functions_8cpp.html#aa3c62ad43e416269d6291c060e37cc23">s</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a6cfc55d365fe2bf2bcda2db063fa7157">StabilityEstimate::compute_equivalent_admittance_parameters_num()</a>, and <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">StabilityEstimate::compute_transfer_function()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -352,9 +352,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad58600dbb9c295187e7fa4a13fd5484c" id="r_ad58600dbb9c295187e7fa4a13fd5484c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli_8cpp.html#ad58600dbb9c295187e7fa4a13fd5484c">printJsonNotFoundHelp</a> (const std::string &amp;input, const std::vector&lt; std::filesystem::path &gt; &amp;searchPaths)</td></tr>
 <tr class="memdesc:ad58600dbb9c295187e7fa4a13fd5484c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print why a JSON file was not found (search paths, repo root, env).  <br /></td></tr>
 <tr class="separator:ad58600dbb9c295187e7fa4a13fd5484c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a471eebdf1c4560b565d0caedb9a30058" id="r_a471eebdf1c4560b565d0caedb9a30058"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli_8cpp.html#a471eebdf1c4560b565d0caedb9a30058">runCppExample</a> (const std::string &amp;name, const bool plot, const bool verbose)</td></tr>
-<tr class="memdesc:a471eebdf1c4560b565d0caedb9a30058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run a named C++ example.  <br /></td></tr>
-<tr class="separator:a471eebdf1c4560b565d0caedb9a30058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01f44f0677efeaf2e6fa8470df7bcbb0" id="r_a01f44f0677efeaf2e6fa8470df7bcbb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli_8cpp.html#a01f44f0677efeaf2e6fa8470df7bcbb0">runCppExample</a> (const std::string &amp;name, const bool plot, const bool verbose, const bool waitForPlotClose)</td></tr>
+<tr class="memdesc:a01f44f0677efeaf2e6fa8470df7bcbb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run a named C++ example.  <br /></td></tr>
+<tr class="separator:a01f44f0677efeaf2e6fa8470df7bcbb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab13468cb61957fb6003f6733d5d8c19b" id="r_ab13468cb61957fb6003f6733d5d8c19b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b">runJsonSimulation</a> (const std::filesystem::path &amp;jsonPath, const bool verbose, const bool plot, const bool waitForPlotClose)</td></tr>
 <tr class="memdesc:ab13468cb61957fb6003f6733d5d8c19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run a JSON simulation file.  <br /></td></tr>
 <tr class="separator:ab13468cb61957fb6003f6733d5d8c19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -722,8 +722,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a471eebdf1c4560b565d0caedb9a30058" name="a471eebdf1c4560b565d0caedb9a30058"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a471eebdf1c4560b565d0caedb9a30058">&#9670;&#160;</a></span>runCppExample()</h2>
+<a id="a01f44f0677efeaf2e6fa8470df7bcbb0" name="a01f44f0677efeaf2e6fa8470df7bcbb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01f44f0677efeaf2e6fa8470df7bcbb0">&#9670;&#160;</a></span>runCppExample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -744,7 +744,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verbose</em>&#160;</td>
+          <td class="paramname"><em>verbose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>waitForPlotClose</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -756,6 +762,12 @@ Functions</h2></td></tr>
 
 <p>Run a named C++ example. </p>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, non-zero on failure. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">waitForPlotClose</td><td>When true (CLI default), block until the plot window closes. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="reference">References <a class="el" href="Visualization_8cpp.html#aae0aeeda0d1d629f431d26a365cc2098">visualization_is_running()</a>, and <a class="el" href="Visualization_8cpp.html#ac0e774a9a69b6bb925ca5b4558160189">visualization_wait()</a>.</p>
 

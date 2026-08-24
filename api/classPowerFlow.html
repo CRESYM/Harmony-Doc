@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10b1736ea3914fe3cd2cbbf189ef605f" id="r_a10b1736ea3914fe3cd2cbbf189ef605f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPowerFlow.html#a10b1736ea3914fe3cd2cbbf189ef605f">opfSolved</a> () const</td></tr>
 <tr class="memdesc:a10b1736ea3914fe3cd2cbbf189ef605f"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when the most recent <a class="el" href="classPowerFlow.html#a63b507039f281e4ee69cb0df8ea9b076">solve_opf</a> completed with a usable solution.  <br /></td></tr>
 <tr class="separator:a10b1736ea3914fe3cd2cbbf189ef605f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ded9e22788334876cf8bd11dd93682f" id="r_a9ded9e22788334876cf8bd11dd93682f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPowerFlow.html#a9ded9e22788334876cf8bd11dd93682f">totalGenerationCost</a> () const</td></tr>
+<tr class="memdesc:a9ded9e22788334876cf8bd11dd93682f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objective value of the most recent <a class="el" href="classPowerFlow.html#a63b507039f281e4ee69cb0df8ea9b076">solve_opf</a>, in $/h.  <br /></td></tr>
+<tr class="separator:a9ded9e22788334876cf8bd11dd93682f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Combined AC/DC optimal power flow solver. </p>
@@ -1217,7 +1220,35 @@ The converter loss coefficients (<code>aloss_dc</code>, <code>bloss_dc</code>, a
 
 <p class="reference">References <a class="el" href="structOPFVisualData.html#ac699921753d06a08823084599b0dc26e">OPFVisualData::baseMVA_ac</a>, <a class="el" href="structOPFVisualData.html#a9c916621bd21a32b85e965cace50a2a0">OPFVisualData::baseMW_dc</a>, <a class="el" href="structOPFVisualData.html#abb23cf52fb9a8f97a11b9626450e73b8">OPFVisualData::branch_dc</a>, <a class="el" href="structOPFVisualData.html#aa9182422c8ea4acba701e2a2e366dcb3">OPFVisualData::branch_entire_ac</a>, <a class="el" href="structOPFVisualData.html#af8d816f123d1b298cffbba33c8d65967">OPFVisualData::bus_dc</a>, <a class="el" href="structOPFVisualData.html#aefb8ea01885ca1f18839dbd60fcd4026">OPFVisualData::bus_entire_ac</a>, <a class="el" href="structOPFVisualData.html#a10c757486c065dd3f335042a73c805df">OPFVisualData::conv_dc</a>, <a class="el" href="structOPFVisualData.html#a3fad8fca4874c4ba22a548a45a06e8a2">OPFVisualData::gen_entire_ac</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="classPowerFlow.html#a3d1bd3761ba6fbbd2f77d011b016cac1">load_params_ac()</a>, <a class="el" href="classPowerFlow.html#af970b9f2769318bcaa605fe8e4770573">load_params_dc()</a>, <a class="el" href="structOPFVisualData.html#a50a300659a360879740e0d6a07278818">OPFVisualData::nbuses_ac</a>, <a class="el" href="structOPFVisualData.html#a54b0ca147a5a3ba25905f851b2679251">OPFVisualData::nbuses_dc</a>, <a class="el" href="structOPFVisualData.html#a0dab5117b304f8aed8b68cb0b85b7a01">OPFVisualData::nconvs_dc</a>, <a class="el" href="structOPFVisualData.html#a877326239e4219c6ddac1f72a8368686">OPFVisualData::ngens_ac</a>, <a class="el" href="structOPFVisualData.html#a24e083de6d293249240d90a1ce488a16">OPFVisualData::ngrids</a>, <a class="el" href="Powerflow__solver_8cpp.html#a51e6543fe5bbbe3f13d7800e4f7233dc">OPF_OUT</a>, <a class="el" href="structOPFVisualData.html#ac740aff0125d98465ade5f683868e882">OPFVisualData::pgen_ac_k</a>, <a class="el" href="structOPFVisualData.html#a384739d4038e1af4dfc4609594379be8">OPFVisualData::pij_ac_k</a>, <a class="el" href="structOPFVisualData.html#ad371429467622105ef67f447187eeb62">OPFVisualData::pij_dc_k</a>, <a class="el" href="structOPFVisualData.html#a5f3bcbb3bb2524c36996d4d1b361660e">OPFVisualData::pol_dc</a>, <a class="el" href="structOPFVisualData.html#a2b456ab81e0e6986aed52e4d734577ea">OPFVisualData::ps_dc_k</a>, <a class="el" href="structOPFVisualData.html#af807dddeb2883d79809fec0606886a70">OPFVisualData::qgen_ac_k</a>, <a class="el" href="structOPFVisualData.html#aa58f1f67a4cdacff998e48dc6273cbe2">OPFVisualData::qij_ac_k</a>, <a class="el" href="structOPFVisualData.html#a1a3f8d69a2b72f85aeb46706a96bfb2a">OPFVisualData::qs_dc_k</a>, <a class="el" href="Visualization_8cpp.html#a115bac86617f40704e536c97eedd7170">viz_opf()</a>, <a class="el" href="structOPFVisualData.html#acade44178de7c0d4f7ea8d4a94dc2bae">OPFVisualData::vn2_ac_k</a>, and <a class="el" href="structOPFVisualData.html#aaee86327bb5ebc8d49de21b311ece1c6">OPFVisualData::vn2_dc_k</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#gab084e6acd1f2b39bdd95adfe3cdf8738">example_OPF_ac()</a>, <a class="el" href="group__examples.html#ga8784227038673d26dc4595d86d632ae0">example_OPF_csv()</a>, <a class="el" href="group__examples.html#ga0efcc0d5081abb3adadc508f94bf07a1">example_OPF_csv_1()</a>, and <a class="el" href="classPowerFlow.html#a2ef9bd2ebb3e0715264b0270feba7968">make_OPF()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#gab084e6acd1f2b39bdd95adfe3cdf8738">example_OPF_ac()</a>, <a class="el" href="group__examples.html#ga8784227038673d26dc4595d86d632ae0">example_OPF_csv()</a>, <a class="el" href="group__examples.html#ga0efcc0d5081abb3adadc508f94bf07a1">example_OPF_csv_1()</a>, <a class="el" href="group__examples.html#ga1227cbeed53fb0517ea0bd3113f248c4">example_OPF_ieee39()</a>, <a class="el" href="group__examples.html#ga2169b3dd776129631692c72960ab5fe2">example_OPF_ieee39_hvdc()</a>, <a class="el" href="group__examples.html#ga5d0ac02c541f4a8042463a952ac429a9">example_OPF_ieee9()</a>, <a class="el" href="group__examples.html#gade10163e2257c4ef99b299a7d93cbe15">example_OPF_ieee9_hvdc()</a>, <a class="el" href="group__examples.html#gad9ff2afe283dcc2912af5b53d5f0c827">example_OPF_rts24_hvdc()</a>, and <a class="el" href="classPowerFlow.html#a2ef9bd2ebb3e0715264b0270feba7968">make_OPF()</a>.</p>
+
+</div>
+</div>
+<a id="a9ded9e22788334876cf8bd11dd93682f" name="a9ded9e22788334876cf8bd11dd93682f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ded9e22788334876cf8bd11dd93682f">&#9670;&#160;</a></span>totalGenerationCost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PowerFlow::totalGenerationCost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Objective value of the most recent <a class="el" href="classPowerFlow.html#a63b507039f281e4ee69cb0df8ea9b076">solve_opf</a>, in $/h. </p>
+<p>Zero if it did not solve. </p>
 
 </div>
 </div>

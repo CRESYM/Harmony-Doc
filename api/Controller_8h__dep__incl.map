@@ -1,109 +1,110 @@
 <map id="harmony/src/Control/Controller/Controller.h" name="harmony/src/Control/Controller/Controller.h">
-<area shape="rect" id="Node000001" title="Base class for reference&#45;tracking controllers." alt="" coords="3319,5,3488,45"/>
-<area shape="rect" id="Node000002" href="$Controller_8cpp.html" title="Implementation of Base class for reference&#45;tracking controllers." alt="" coords="3010,101,3194,141"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3330,52,3164,103,3162,98,3328,47"/>
-<area shape="rect" id="Node000003" href="$ProportionalIntegral__controller_8h.html" title="Proportional–integral (PI) controller." alt="" coords="3219,93,3441,148"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="3382,58,3353,95,3349,92,3378,55"/>
-<area shape="rect" id="Node000005" href="$Include__control__blocks_8h.html" title="Umbrella header for control blocks used by converters." alt="" coords="3401,203,3555,243"/>
-<area shape="poly" id="edge56_Node000001_Node000005" title=" " alt="" coords="3432,55,3455,92,3473,152,3480,203,3474,203,3467,153,3450,94,3427,58"/>
-<area shape="rect" id="Node000050" href="$Proportional__controller_8h.html" title="Proportional (P) controller." alt="" coords="3515,93,3689,148"/>
-<area shape="poly" id="edge53_Node000001_Node000050" title=" " alt="" coords="3457,49,3547,91,3545,96,3455,54"/>
-<area shape="rect" id="Node000004" href="$ProportionalIntegral__controller_8cpp.html" title="Implementation of Proportional–integral (PI) controller." alt="" coords="3155,196,3377,251"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="3308,161,3285,197,3280,194,3304,158"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="3381,153,3451,201,3448,205,3378,158"/>
-<area shape="rect" id="Node000006" href="$Converter_8h.html" title="Base class for power electronic converters with state&#45;space models." alt="" coords="3332,299,3501,339"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="3460,256,3431,300,3427,297,3456,253"/>
-<area shape="rect" id="Node000008" href="$MMC_8h.html" title="Modular Multilevel Converter (MMC) state&#45;space and MNA model." alt="" coords="3455,387,3623,427"/>
-<area shape="poly" id="edge52_Node000005_Node000008" title=" " alt="" coords="3497,255,3517,298,3530,345,3539,386,3534,387,3525,346,3511,300,3493,257"/>
-<area shape="rect" id="Node000007" href="$Converter_8cpp.html" title="Implementation of Base class for power electronic converters with state&#45;space models." alt="" coords="3195,387,3379,427"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="3378,349,3317,389,3314,384,3375,344"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="3456,344,3514,384,3511,389,3453,349"/>
-<area shape="rect" id="Node000010" href="$Include__components_8h.html" title="Umbrella header for network element models and the state&#45;space model." alt="" coords="3215,482,3370,522"/>
-<area shape="poly" id="edge51_Node000006_Node000010" title=" " alt="" coords="3417,353,3410,390,3394,428,3364,460,3331,484,3328,480,3361,456,3389,425,3405,389,3412,352"/>
-<area shape="rect" id="Node000009" href="$MMC_8cpp.html" title="Implementation of Modular Multilevel Converter (MMC) state&#45;space and MNA model." alt="" coords="3394,482,3562,522"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="3522,440,3493,483,3488,480,3517,437"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="3478,434,3343,484,3342,479,3476,429"/>
-<area shape="rect" id="Node000012" href="$Powerflow__network__params_8cpp.html" title="Implementation of PowerFlow network parameter assembly." alt="" coords="6249,577,6432,632"/>
-<area shape="poly" id="edge50_Node000008_Node000012" title=" " alt="" coords="3559,437,3594,491,3612,514,3627,527,3675,538,3769,547,4068,560,4471,567,4926,569,5786,569,6089,570,6237,575,6249,577,6249,582,6236,580,6088,575,5786,574,4926,574,4470,572,4068,565,3769,553,3674,543,3625,532,3608,517,3589,494,3554,440"/>
-<area shape="rect" id="Node000048" href="$Operating__region_8cpp.html" title=" " alt="" coords="3637,475,3799,529"/>
-<area shape="poly" id="edge48_Node000008_Node000048" title=" " alt="" coords="3589,431,3669,472,3666,477,3586,435"/>
-<area shape="rect" id="Node000049" href="$Tuning__assistant_8cpp.html" title=" " alt="" coords="3823,475,3971,529"/>
-<area shape="poly" id="edge49_Node000008_Node000049" title=" " alt="" coords="3634,427,3812,472,3823,475,3822,480,3811,477,3633,432"/>
+<area shape="rect" id="Node000001" title="Base class for reference&#45;tracking controllers." alt="" coords="3425,5,3595,45"/>
+<area shape="rect" id="Node000002" href="$Controller_8cpp.html" title="Implementation of Base class for reference&#45;tracking controllers." alt="" coords="3117,101,3301,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3437,52,3270,103,3269,98,3435,47"/>
+<area shape="rect" id="Node000003" href="$ProportionalIntegral__controller_8h.html" title="Proportional–integral (PI) controller." alt="" coords="3325,93,3548,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="3489,58,3459,95,3455,92,3485,55"/>
+<area shape="rect" id="Node000005" href="$Include__control__blocks_8h.html" title="Umbrella header for control blocks used by converters." alt="" coords="3507,203,3662,243"/>
+<area shape="poly" id="edge57_Node000001_Node000005" title=" " alt="" coords="3539,55,3562,92,3579,152,3586,203,3581,203,3574,153,3557,94,3534,58"/>
+<area shape="rect" id="Node000050" href="$Proportional__controller_8h.html" title="Proportional (P) controller." alt="" coords="3622,93,3795,148"/>
+<area shape="poly" id="edge54_Node000001_Node000050" title=" " alt="" coords="3564,49,3654,91,3652,96,3561,54"/>
+<area shape="rect" id="Node000004" href="$ProportionalIntegral__controller_8cpp.html" title="Implementation of Proportional–integral (PI) controller." alt="" coords="3261,196,3484,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="3415,161,3392,197,3387,194,3410,158"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="3488,153,3558,201,3555,205,3485,158"/>
+<area shape="rect" id="Node000006" href="$Converter_8h.html" title="Base class for power electronic converters with state&#45;space models." alt="" coords="3439,299,3608,339"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="3567,256,3538,300,3534,297,3562,253"/>
+<area shape="rect" id="Node000008" href="$MMC_8h.html" title="Modular Multilevel Converter (MMC) state&#45;space and MNA model." alt="" coords="3562,387,3730,427"/>
+<area shape="poly" id="edge53_Node000005_Node000008" title=" " alt="" coords="3604,255,3623,298,3637,345,3645,386,3640,387,3632,346,3618,300,3599,257"/>
+<area shape="rect" id="Node000007" href="$Converter_8cpp.html" title="Implementation of Base class for power electronic converters with state&#45;space models." alt="" coords="3302,387,3486,427"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="3484,349,3424,389,3421,384,3482,344"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="3563,344,3620,384,3617,389,3560,349"/>
+<area shape="rect" id="Node000010" href="$Include__components_8h.html" title="Umbrella header for network element models and the state&#45;space model." alt="" coords="3322,482,3477,522"/>
+<area shape="poly" id="edge52_Node000006_Node000010" title=" " alt="" coords="3524,353,3517,390,3500,428,3471,460,3437,484,3434,480,3467,456,3496,425,3512,389,3519,352"/>
+<area shape="rect" id="Node000009" href="$MMC_8cpp.html" title="Implementation of Modular Multilevel Converter (MMC) state&#45;space and MNA model." alt="" coords="3501,482,3669,522"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="3628,440,3599,483,3595,480,3624,437"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="3585,434,3450,484,3448,479,3583,429"/>
+<area shape="rect" id="Node000012" href="$Powerflow__network__params_8cpp.html" title="Implementation of PowerFlow network parameter assembly." alt="" coords="6300,577,6483,632"/>
+<area shape="poly" id="edge51_Node000008_Node000012" title=" " alt="" coords="3666,437,3700,491,3718,514,3734,527,3781,538,3873,547,4165,559,4559,566,5004,568,5846,569,6142,570,6288,575,6300,577,6299,582,6287,580,6142,575,5846,574,5004,574,4559,571,4165,565,3873,552,3780,543,3731,532,3715,517,3696,494,3661,440"/>
+<area shape="rect" id="Node000048" href="$Operating__region_8cpp.html" title=" " alt="" coords="3744,475,3905,529"/>
+<area shape="poly" id="edge49_Node000008_Node000048" title=" " alt="" coords="3695,431,3776,472,3773,477,3693,435"/>
+<area shape="rect" id="Node000049" href="$Tuning__assistant_8cpp.html" title=" " alt="" coords="3929,475,4077,529"/>
+<area shape="poly" id="edge50_Node000008_Node000049" title=" " alt="" coords="3741,427,3919,472,3930,475,3928,480,3917,477,3740,432"/>
 <area shape="rect" id="Node000011" href="$DQsym_8cpp.html" title="Implementation of Dynamic phasor (DQsym) time&#45;domain solver with switch handling." alt="" coords="5,585,159,625"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="3202,507,2568,513,1620,527,705,549,368,563,249,571,170,580,138,587,137,582,170,575,249,566,368,558,705,544,1620,522,2568,508,3202,501"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="3362,523,3382,527,3511,542,3659,553,4004,563,4395,562,4809,555,5222,548,5613,546,5959,553,6108,562,6237,575,6249,577,6249,582,6236,580,6108,567,5959,558,5613,551,5222,553,4809,561,4395,567,4004,568,3659,558,3510,547,3382,532,3361,528"/>
-<area shape="rect" id="Node000013" href="$Stability__estimate_8cpp.html" title="Implementation of Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="183,577,355,632"/>
-<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="3202,507,2603,515,1717,530,865,552,551,565,366,580,355,582,355,577,366,575,551,560,864,547,1717,525,2603,510,3201,502"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="3308,507,2655,513,1673,526,725,548,376,563,252,571,170,580,138,587,137,582,170,575,252,566,375,557,725,543,1673,521,2655,507,3308,501"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="3469,523,3489,527,3615,542,3760,552,4099,562,4482,561,4887,555,5293,548,5676,546,6015,553,6161,562,6288,575,6300,577,6299,582,6287,580,6161,567,6015,558,5676,551,5293,554,4887,560,4482,567,4099,567,3760,557,3614,547,3488,532,3468,528"/>
+<area shape="rect" id="Node000013" href="$Stability__estimate_8cpp.html" title="MIMO impedance&#45;based stability assessment via unified MNA." alt="" coords="183,577,355,632"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="3308,507,2691,514,1771,529,885,551,558,565,366,580,355,582,355,577,366,575,558,559,884,546,1771,524,2691,509,3308,502"/>
 <area shape="rect" id="Node000014" href="$State__Space__Model_8cpp.html" title="Implementation of State&#45;space model assembly from network MNA formulation." alt="" coords="379,577,569,632"/>
-<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="3202,506,2693,508,1934,517,1533,526,1154,539,828,557,582,580,570,582,569,577,582,575,828,552,1154,534,1532,521,1934,512,2693,502,3202,501"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="3308,506,2780,507,1991,516,1573,525,1179,538,838,556,582,580,570,582,569,577,582,575,838,551,1178,533,1573,519,1991,510,2780,502,3308,500"/>
 <area shape="rect" id="Node000015" href="$example__DQsym__MMC__controlled_8cpp.html" title="Runnable example: Controlled MMC model in the DQsym solver." alt="" coords="594,585,871,625"/>
-<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="3202,507,2743,514,2073,528,1387,550,1100,564,884,580,830,587,829,582,883,575,1100,558,1387,544,2073,522,2743,509,3202,502"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="3308,507,2832,513,2130,527,1411,549,1111,563,884,580,829,587,828,582,883,575,1110,558,1411,543,2130,522,2832,508,3308,502"/>
 <area shape="rect" id="Node000016" href="$example__DQsym__Simple__MMC_8cpp.html" title="Runnable example: Simplified MMC model in the DQsym solver." alt="" coords="896,577,1087,632"/>
-<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="3201,507,2779,511,2171,523,1553,545,1295,561,1100,580,1088,582,1087,577,1099,575,1294,555,1552,540,2171,518,2779,506,3201,501"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="3308,506,2868,511,2229,522,1893,531,1577,544,1305,560,1100,580,1088,582,1087,577,1099,575,1305,555,1577,539,1893,526,2229,517,2868,505,3308,501"/>
 <area shape="rect" id="Node000017" href="$example__MMC_8cpp.html" title="Runnable example: MMC equilibrium, ABCD, Y&#45;matrix, and eigenvalue study." alt="" coords="1111,585,1282,625"/>
-<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="3201,507,2812,511,2261,523,1703,545,1470,561,1294,580,1259,587,1258,582,1294,575,1470,555,1702,540,2261,518,2812,506,3201,501"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="3308,506,2901,511,2319,522,2013,531,1727,544,1480,560,1294,580,1259,587,1258,582,1294,575,1480,555,1727,538,2013,526,2318,517,2901,505,3308,501"/>
 <area shape="rect" id="Node000018" href="$example__MMC__gfm_8cpp.html" title="GFM MMC mode: equilibrium, ABCD/Y, and StabilityEstimate reuse." alt="" coords="1307,585,1489,625"/>
-<area shape="poly" id="edge17_Node000010_Node000018" title=" " alt="" coords="3201,507,2849,514,2358,528,1864,549,1658,563,1502,580,1465,587,1464,582,1502,575,1657,558,1863,544,2358,522,2849,509,3201,502"/>
+<area shape="poly" id="edge17_Node000010_Node000018" title=" " alt="" coords="3308,507,2937,513,2415,526,1888,548,1668,562,1502,580,1465,587,1464,582,1502,575,1668,557,1888,542,2415,521,2937,508,3308,502"/>
 <area shape="rect" id="Node000019" href="$example__OHL_8cpp.html" title="Runnable example: Overhead transmission line geometry and Y&#45;parameter sweep." alt="" coords="1514,585,1685,625"/>
-<area shape="poly" id="edge18_Node000010_Node000019" title=" " alt="" coords="3202,508,2884,515,2449,529,2014,550,1834,564,1697,580,1662,587,1661,582,1696,575,1833,559,2014,545,2449,524,2884,510,3201,502"/>
+<area shape="poly" id="edge18_Node000010_Node000019" title=" " alt="" coords="3308,507,2972,514,2506,527,2039,549,1844,563,1697,580,1662,587,1661,582,1696,575,1844,558,2038,544,2506,522,2972,509,3308,502"/>
 <area shape="rect" id="Node000020" href="$example__OPF__PV_8cpp.html" title="Runnable example: OPF study including a PV plant." alt="" coords="1709,585,1879,625"/>
-<area shape="poly" id="edge19_Node000010_Node000020" title=" " alt="" coords="3201,508,2541,532,2165,553,2010,566,1892,580,1857,587,1856,582,1891,575,2009,560,2165,548,2540,527,3201,503"/>
+<area shape="poly" id="edge19_Node000010_Node000020" title=" " alt="" coords="3308,508,3007,516,2597,530,2189,551,2020,565,1892,580,1857,587,1856,582,1891,575,2019,559,2189,546,2597,525,3007,511,3308,503"/>
 <area shape="rect" id="Node000021" href="$example__OPF__SLO_8cpp.html" title="SLO9 AC OPF assembled explicitly, one component at a time." alt="" coords="1904,585,2079,625"/>
-<area shape="poly" id="edge20_Node000010_Node000021" title=" " alt="" coords="3202,506,3001,508,2725,518,2410,541,2249,558,2092,580,2057,587,2056,582,2091,575,2248,553,2410,536,2725,513,3001,503,3202,500"/>
+<area shape="poly" id="edge20_Node000010_Node000021" title=" " alt="" coords="3308,505,3091,506,2789,515,2619,525,2443,538,2265,556,2092,580,2056,587,2055,582,2091,575,2264,551,2442,533,2619,519,2789,510,3091,501,3308,500"/>
 <area shape="rect" id="Node000022" href="$example__OPF__WT_8cpp.html" title="Runnable example: OPF study including a wind&#45;turbine plant." alt="" coords="2103,585,2274,625"/>
-<area shape="poly" id="edge21_Node000010_Node000022" title=" " alt="" coords="3202,507,3031,512,2803,524,2545,545,2414,561,2286,580,2253,587,2252,582,2286,575,2414,555,2545,540,2802,518,3031,506,3202,502"/>
+<area shape="poly" id="edge21_Node000010_Node000022" title=" " alt="" coords="3308,506,3121,510,2866,520,2578,542,2430,559,2286,580,2252,587,2251,582,2286,575,2430,554,2577,537,2866,515,3120,504,3308,501"/>
 <area shape="rect" id="Node000023" href="$example__OPF__double__area_8cpp.html" title="Runnable example: Extended hybrid OPF demonstration." alt="" coords="2299,585,2529,625"/>
-<area shape="poly" id="edge22_Node000010_Node000023" title=" " alt="" coords="3201,512,2907,536,2724,556,2541,580,2499,587,2498,582,2540,575,2724,550,2906,531,3201,507"/>
+<area shape="poly" id="edge22_Node000010_Node000023" title=" " alt="" coords="3308,510,2969,533,2756,553,2541,580,2499,587,2498,582,2540,575,2755,548,2969,528,3307,505"/>
 <area shape="rect" id="Node000024" href="$example__OPF__single__area_8cpp.html" title="Runnable example: Basic hybrid AC–DC optimal power flow case." alt="" coords="2553,585,2779,625"/>
-<area shape="poly" id="edge23_Node000010_Node000024" title=" " alt="" coords="3202,518,3013,544,2792,580,2753,587,2752,582,2791,575,3012,539,3201,513"/>
+<area shape="poly" id="edge23_Node000010_Node000024" title=" " alt="" coords="3309,515,3074,541,2792,580,2752,587,2751,582,2791,575,3073,535,3308,509"/>
 <area shape="rect" id="Node000025" href="$example__PLL__test_8cpp.html" title="Runnable example: PLL controller test using ProportionalIntegralController." alt="" coords="2803,585,2974,625"/>
-<area shape="poly" id="edge24_Node000010_Node000025" title=" " alt="" coords="3203,527,2987,580,2958,587,2957,582,2985,575,3201,522"/>
+<area shape="poly" id="edge24_Node000010_Node000025" title=" " alt="" coords="3308,520,3157,546,2987,580,2957,587,2955,582,2985,575,3156,541,3308,515"/>
 <area shape="rect" id="Node000026" href="$example__PV__plant_8cpp.html" title="Runnable example: Photovoltaic plant model demonstration." alt="" coords="2999,585,3173,625"/>
-<area shape="poly" id="edge25_Node000010_Node000026" title=" " alt="" coords="3243,530,3126,587,3124,582,3240,526"/>
+<area shape="poly" id="edge25_Node000010_Node000026" title=" " alt="" coords="3329,529,3146,587,3144,582,3327,524"/>
 <area shape="rect" id="Node000027" href="$example__WT__type__3_8cpp.html" title="Runnable example: Type&#45;3 wind&#45;turbine model demonstration." alt="" coords="3198,585,3387,625"/>
-<area shape="poly" id="edge26_Node000010_Node000027" title=" " alt="" coords="3295,536,3295,585,3290,585,3290,536"/>
+<area shape="poly" id="edge26_Node000010_Node000027" title=" " alt="" coords="3371,534,3314,587,3311,583,3367,530"/>
 <area shape="rect" id="Node000028" href="$example__WT__type__4_8cpp.html" title="Runnable example: Type&#45;4 wind&#45;turbine model demonstration." alt="" coords="3411,585,3601,625"/>
-<area shape="poly" id="edge27_Node000010_Node000028" title=" " alt="" coords="3346,525,3467,582,3465,587,3344,530"/>
+<area shape="poly" id="edge27_Node000010_Node000028" title=" " alt="" coords="3431,530,3488,583,3484,587,3428,534"/>
 <area shape="rect" id="Node000029" href="$example__admittance__parameters_8cpp.html" title="Runnable example: Equivalent admittance parameter utilities." alt="" coords="3625,585,3899,625"/>
-<area shape="poly" id="edge28_Node000010_Node000029" title=" " alt="" coords="3368,523,3383,527,3661,582,3660,587,3381,532,3367,528"/>
+<area shape="poly" id="edge28_Node000010_Node000029" title=" " alt="" coords="3477,523,3489,527,3692,582,3690,587,3488,532,3475,528"/>
 <area shape="rect" id="Node000030" href="$example__cable_8cpp.html" title="Runnable example: Underground cable layers and Y&#45;parameter sweep." alt="" coords="3923,585,4094,625"/>
-<area shape="poly" id="edge29_Node000010_Node000030" title=" " alt="" coords="3365,523,3382,527,3462,540,3530,547,3647,552,3763,556,3832,563,3912,575,3945,582,3944,587,3911,580,3831,568,3763,561,3646,557,3530,552,3461,545,3382,532,3363,528"/>
+<area shape="poly" id="edge29_Node000010_Node000030" title=" " alt="" coords="3472,523,3489,527,3607,545,3700,551,3793,558,3912,575,3945,582,3943,587,3911,580,3793,563,3700,557,3606,550,3488,532,3471,528"/>
 <area shape="rect" id="Node000031" href="$example__certificate__figures_8cpp.html" title="All five certificate workflows + paper&#45;style figures." alt="" coords="4118,577,4289,632"/>
-<area shape="poly" id="edge30_Node000010_Node000031" title=" " alt="" coords="3364,523,3382,527,3492,543,3584,550,3744,552,3903,553,3997,560,4106,575,4118,577,4117,582,4106,580,3996,565,3903,558,3744,557,3584,556,3491,548,3382,532,3363,528"/>
+<area shape="poly" id="edge30_Node000010_Node000031" title=" " alt="" coords="3471,523,3489,527,3582,541,3661,548,3797,552,3933,555,4013,561,4106,575,4118,577,4117,582,4106,580,4012,567,3933,560,3797,557,3661,554,3581,546,3488,532,3470,528"/>
 <area shape="rect" id="Node000032" href="$example__constructors_8cpp.html" title="Runnable example: Instantiate basic element types via constructors." alt="" coords="4313,585,4510,625"/>
-<area shape="poly" id="edge31_Node000010_Node000032" title=" " alt="" coords="3363,523,3382,527,3521,546,3639,555,3743,557,3841,555,3938,552,4043,552,4162,559,4301,575,4341,582,4340,587,4300,580,4161,564,4043,558,3938,557,3841,560,3743,562,3639,560,3520,551,3382,532,3362,528"/>
+<area shape="poly" id="edge31_Node000010_Node000032" title=" " alt="" coords="3470,523,3489,527,3611,544,3716,553,3808,555,3894,554,4073,554,4178,560,4301,575,4340,582,4339,587,4300,580,4177,565,4073,559,3894,560,3808,560,3715,558,3611,550,3488,532,3469,528"/>
 <area shape="rect" id="Node000033" href="$example__generator_8cpp.html" title="Runnable example: Generator element demonstration." alt="" coords="4534,585,4713,625"/>
-<area shape="poly" id="edge32_Node000010_Node000033" title=" " alt="" coords="3363,523,3382,527,3554,549,3701,558,3830,558,3951,554,4073,549,4203,547,4350,555,4522,575,4559,582,4558,587,4522,580,4349,560,4203,553,4073,554,3952,559,3830,564,3701,564,3554,555,3382,532,3362,528"/>
+<area shape="poly" id="edge32_Node000010_Node000033" title=" " alt="" coords="3470,523,3489,527,3645,548,3778,556,3895,557,4005,553,4115,549,4233,549,4366,556,4522,575,4559,582,4558,587,4522,580,4365,561,4232,554,4115,555,4005,559,3895,562,3777,562,3644,553,3488,532,3469,528"/>
 <area shape="rect" id="Node000034" href="$example__point2point__case_8cpp.html" title="Runnable example: Point&#45;to&#45;point HVDC&#45;style OPF case." alt="" coords="4737,577,4907,632"/>
-<area shape="poly" id="edge33_Node000010_Node000034" title=" " alt="" coords="3363,523,3382,527,3585,552,3758,562,3910,560,4053,553,4196,546,4349,543,4522,551,4725,575,4737,577,4736,582,4724,580,4521,556,4349,549,4196,551,4053,558,3910,566,3757,567,3584,558,3382,532,3362,528"/>
+<area shape="poly" id="edge33_Node000010_Node000034" title=" " alt="" coords="3470,523,3489,527,3676,551,3834,560,3975,559,4106,553,4238,547,4379,545,4538,553,4725,575,4737,577,4736,582,4724,580,4538,558,4378,550,4238,552,4106,558,3975,564,3834,565,3675,556,3488,532,3469,528"/>
 <area shape="rect" id="Node000035" href="$example__stability__check_8cpp.html" title="Runnable example: Full AC–DC hybrid stability study." alt="" coords="4932,585,5147,625"/>
-<area shape="poly" id="edge34_Node000010_Node000035" title=" " alt="" coords="3363,523,3382,527,3503,544,3614,556,3812,568,3986,567,4149,560,4313,551,4488,547,4686,553,4920,575,4963,582,4962,587,4919,580,4686,558,4488,552,4313,556,4150,565,3986,572,3812,573,3614,561,3503,549,3382,532,3362,528"/>
+<area shape="poly" id="edge34_Node000010_Node000035" title=" " alt="" coords="3470,523,3489,527,3705,554,3889,565,4051,565,4203,559,4355,552,4518,548,4703,554,4920,575,4963,582,4962,587,4919,580,4702,560,4518,554,4355,557,4203,564,4051,571,3888,571,3704,560,3488,532,3468,528"/>
 <area shape="rect" id="Node000036" href="$example__state__space_8cpp.html" title="Runnable example: Build state&#45;space (A, B, C, D) matrices for an RLC network." alt="" coords="5171,585,5366,625"/>
-<area shape="poly" id="edge35_Node000010_Node000036" title=" " alt="" coords="3363,523,3382,527,3522,546,3651,560,3769,568,3879,571,4081,568,4269,558,4458,547,4661,541,4771,543,4890,548,5019,559,5160,575,5200,582,5199,587,5159,580,5019,564,4890,553,4771,548,4661,546,4459,552,4270,563,4081,574,3879,577,3769,573,3650,565,3522,552,3382,532,3362,528"/>
+<area shape="poly" id="edge35_Node000010_Node000036" title=" " alt="" coords="3470,523,3489,527,3621,545,3741,558,3852,566,3956,569,4145,567,4323,558,4500,547,4691,542,4906,549,5028,559,5160,575,5200,582,5199,587,5159,580,5027,565,4906,555,4691,548,4501,553,4323,563,4146,572,3956,575,3852,571,3741,563,3620,550,3488,532,3468,528"/>
 <area shape="rect" id="Node000037" href="$example__transformer_8cpp.html" title="Runnable example: Transformer topologies and Y&#45;parameters." alt="" coords="5391,585,5584,625"/>
-<area shape="poly" id="edge36_Node000010_Node000037" title=" " alt="" coords="3363,523,3382,527,3472,538,3576,546,3817,555,4090,557,4379,555,4942,553,5184,559,5288,565,5378,575,5419,582,5418,587,5378,580,5288,571,5184,564,4942,558,4379,560,4090,562,3817,560,3575,551,3472,543,3382,532,3362,528"/>
+<area shape="poly" id="edge36_Node000010_Node000037" title=" " alt="" coords="3470,523,3489,527,3638,547,3774,561,3900,570,4017,573,4231,570,4432,558,4633,546,4848,540,4966,541,5092,547,5229,558,5378,575,5419,582,5418,587,5378,580,5228,563,5092,552,4965,546,4848,545,4633,551,4432,564,4232,575,4017,579,3900,575,3774,567,3637,553,3488,532,3468,528"/>
 <area shape="rect" id="Node000038" href="$example__visuals_8cpp.html" title="Runnable example: Plotting and visualization utilities." alt="" coords="5609,585,5779,625"/>
-<area shape="poly" id="edge37_Node000010_Node000038" title=" " alt="" coords="3363,523,3382,527,3482,539,3597,547,3865,556,4168,556,4489,553,4810,549,5113,548,5382,556,5497,564,5597,575,5633,582,5632,587,5596,580,5497,569,5381,561,5113,554,4810,554,4489,558,4168,562,3865,561,3597,553,3481,544,3382,532,3362,528"/>
+<area shape="poly" id="edge37_Node000010_Node000038" title=" " alt="" coords="3469,523,3489,527,3584,538,3693,547,3948,555,4237,556,4542,553,4848,549,5137,549,5392,557,5502,564,5597,575,5633,582,5632,587,5596,580,5501,569,5392,562,5137,555,4848,555,4542,558,4237,561,3948,560,3693,552,3583,544,3488,532,3468,528"/>
 <area shape="rect" id="Node000039" href="$component__builder_8h.html" title="Factory for constructing Element objects from JSON component entries." alt="" coords="5803,585,6014,625"/>
-<area shape="poly" id="edge38_Node000010_Node000039" title=" " alt="" coords="3363,523,3382,527,3491,540,3616,549,3907,559,4237,561,4586,557,4935,553,5265,552,5557,558,5683,565,5792,575,5835,582,5834,587,5791,580,5682,570,5557,563,5265,557,4935,558,4586,562,4237,566,3907,565,3616,555,3490,545,3382,532,3362,528"/>
-<area shape="rect" id="Node000047" href="$network_8cpp.html" title="Implementation of Top&#45;level electrical network container: buses, elements, connections,..." alt="" coords="6038,592,6225,617"/>
-<area shape="poly" id="edge47_Node000010_Node000047" title=" " alt="" coords="3362,523,3382,527,3501,541,3639,551,3958,561,4320,561,4703,555,5087,549,5449,547,5769,554,5907,563,6026,575,6094,589,6093,594,6026,580,5906,568,5769,560,5449,553,5087,555,4703,560,4320,566,3958,566,3638,556,3501,546,3382,532,3361,528"/>
-<area shape="rect" id="Node000040" href="$component__builder_8cpp.html" title="Implementation of JSON&#45;based Element factory (ComponentBuilder)." alt="" coords="5591,680,5802,720"/>
-<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="5854,633,5741,682,5738,677,5852,628"/>
-<area shape="rect" id="Node000041" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="5826,680,5991,720"/>
-<area shape="poly" id="edge40_Node000039_Node000041" title=" " alt="" coords="5911,638,5911,680,5906,680,5906,638"/>
-<area shape="rect" id="Node000042" href="$simulation__builder_8h.html" title="Builds a Network from a JSON simulation file and runs configured analyses." alt="" coords="6016,680,6223,720"/>
-<area shape="poly" id="edge41_Node000039_Node000042" title=" " alt="" coords="5965,628,6078,678,6076,682,5963,633"/>
-<area shape="rect" id="Node000043" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="5835,775,5985,801"/>
-<area shape="poly" id="edge42_Node000042_Node000043" title=" " alt="" coords="6062,728,5939,778,5937,773,6060,723"/>
-<area shape="rect" id="Node000044" href="$computation__runner_8h.html" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="6009,768,6229,808"/>
-<area shape="poly" id="edge43_Node000042_Node000044" title=" " alt="" coords="6122,734,6122,768,6117,768,6117,734"/>
-<area shape="rect" id="Node000046" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="6164,856,6371,896"/>
-<area shape="poly" id="edge46_Node000042_Node000046" title=" " alt="" coords="6190,724,6219,742,6244,766,6257,788,6264,812,6270,855,6265,856,6259,814,6252,790,6240,770,6216,746,6187,728"/>
-<area shape="rect" id="Node000045" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="5920,856,6140,896"/>
-<area shape="poly" id="edge44_Node000044_Node000045" title=" " alt="" coords="6091,820,6052,858,6048,854,6088,816"/>
-<area shape="poly" id="edge45_Node000044_Node000046" title=" " alt="" coords="6165,813,6236,854,6234,858,6163,817"/>
-<area shape="poly" id="edge55_Node000050_Node000005" title=" " alt="" coords="3561,159,3503,205,3500,201,3557,155"/>
-<area shape="rect" id="Node000051" href="$Proportional__controller_8cpp.html" title="Implementation of Proportional (P) controller." alt="" coords="3579,196,3753,251"/>
-<area shape="poly" id="edge54_Node000050_Node000051" title=" " alt="" coords="3628,158,3652,194,3647,197,3624,161"/>
+<area shape="poly" id="edge38_Node000010_Node000039" title=" " alt="" coords="3469,523,3489,527,3593,539,3712,548,3990,558,4306,560,4639,557,4973,553,5288,552,5567,558,5687,565,5792,575,5835,582,5834,587,5791,580,5687,570,5567,564,5288,558,4973,558,4639,562,4306,565,3990,564,3712,554,3592,545,3488,532,3468,528"/>
+<area shape="rect" id="Node000045" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="5927,856,6147,896"/>
+<area shape="poly" id="edge47_Node000010_Node000045" title=" " alt="" coords="3469,523,3489,527,3907,532,4765,536,5219,541,5618,548,5906,559,5990,566,6027,575,6052,608,6066,645,6073,685,6073,725,6062,801,6046,857,6041,855,6057,800,6068,725,6067,685,6061,646,6047,610,6025,580,5990,571,5905,564,5618,553,5219,546,4765,541,3907,537,3488,532,3468,528"/>
+<area shape="rect" id="Node000047" href="$network_8cpp.html" title="Implementation of Top&#45;level electrical network container: buses, elements, connections,..." alt="" coords="6089,592,6275,617"/>
+<area shape="poly" id="edge48_Node000010_Node000047" title=" " alt="" coords="3469,523,3489,527,3605,541,3739,551,4051,561,4405,561,4778,557,5153,551,5506,550,5819,556,5954,563,6070,575,6142,589,6141,594,6070,580,5953,569,5819,561,5506,555,5153,557,4779,562,4405,566,4051,566,3739,556,3605,546,3488,532,3468,528"/>
+<area shape="rect" id="Node000040" href="$component__builder_8cpp.html" title="Implementation of JSON&#45;based Element factory (ComponentBuilder)." alt="" coords="5378,680,5589,720"/>
+<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="5811,630,5792,635,5571,683,5570,677,5791,629,5810,625"/>
+<area shape="rect" id="Node000041" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="5613,680,5778,720"/>
+<area shape="poly" id="edge40_Node000039_Node000041" title=" " alt="" coords="5854,633,5740,682,5737,677,5852,628"/>
+<area shape="rect" id="Node000042" href="$simulation__builder_8h.html" title="Builds a Network from a JSON simulation file and runs configured analyses." alt="" coords="5803,680,6009,720"/>
+<area shape="poly" id="edge41_Node000039_Node000042" title=" " alt="" coords="5910,638,5909,680,5904,680,5905,638"/>
+<area shape="rect" id="Node000043" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="5569,775,5718,801"/>
+<area shape="poly" id="edge42_Node000042_Node000043" title=" " alt="" coords="5836,727,5679,778,5677,773,5834,722"/>
+<area shape="rect" id="Node000044" href="$computation__runner_8h.html" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="5793,768,6013,808"/>
+<area shape="poly" id="edge43_Node000042_Node000044" title=" " alt="" coords="5908,734,5907,768,5901,768,5902,734"/>
+<area shape="rect" id="Node000046" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="5681,856,5888,896"/>
+<area shape="poly" id="edge46_Node000042_Node000046" title=" " alt="" coords="5831,729,5805,746,5784,769,5776,791,5775,813,5781,855,5776,856,5769,814,5771,789,5780,767,5801,742,5828,724"/>
+<area shape="poly" id="edge44_Node000044_Node000045" title=" " alt="" coords="5946,813,6009,854,6006,858,5943,818"/>
+<area shape="poly" id="edge45_Node000044_Node000046" title=" " alt="" coords="5867,818,5812,858,5809,854,5864,814"/>
+<area shape="poly" id="edge56_Node000050_Node000005" title=" " alt="" coords="3667,159,3610,205,3606,201,3664,155"/>
+<area shape="rect" id="Node000051" href="$Proportional__controller_8cpp.html" title="Implementation of Proportional (P) controller." alt="" coords="3686,196,3859,251"/>
+<area shape="poly" id="edge55_Node000050_Node000051" title=" " alt="" coords="3735,158,3758,194,3754,197,3731,161"/>
 </map>

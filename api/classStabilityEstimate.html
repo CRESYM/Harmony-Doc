@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('classStabilityEstimate.html',''); init
 </div><!--header-->
 <div class="contents">
 
-<p>Performs impedance-based stability assessment of network areas.  
+<p>Performs impedance-based MIMO stability assessment of AC/MTDC networks.  
  <a href="classStabilityEstimate.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Stability__estimate_8h_source.html">Stability_estimate.h</a>&gt;</code></p>
@@ -105,45 +105,37 @@ $(document).ready(function(){initNavTree('classStabilityEstimate.html',''); init
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aca69a398376783972bd320fd859c119b" id="r_aca69a398376783972bd320fd859c119b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#aca69a398376783972bd320fd859c119b">StabilityEstimate</a> ()=default</td></tr>
-<tr class="memdesc:aca69a398376783972bd320fd859c119b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:aca69a398376783972bd320fd859c119b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a93c9b0f8cd1e80f3c98a1fcdd60737" id="r_a1a93c9b0f8cd1e80f3c98a1fcdd60737"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a1a93c9b0f8cd1e80f3c98a1fcdd60737">~StabilityEstimate</a> ()=default</td></tr>
-<tr class="memdesc:a1a93c9b0f8cd1e80f3c98a1fcdd60737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
 <tr class="separator:a1a93c9b0f8cd1e80f3c98a1fcdd60737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c75db48e63f87261364cd361b7c8fad" id="r_a4c75db48e63f87261364cd361b7c8fad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a4c75db48e63f87261364cd361b7c8fad">add_areas</a> (<a class="el" href="classNetwork.html">Network</a> *net)</td></tr>
-<tr class="memdesc:a4c75db48e63f87261364cd361b7c8fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates AC/DC area maps from the network hierarchy.  <br /></td></tr>
+<tr class="memdesc:a4c75db48e63f87261364cd361b7c8fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate AC/DC area maps from the network hierarchy.  <br /></td></tr>
 <tr class="separator:a4c75db48e63f87261364cd361b7c8fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cfc55d365fe2bf2bcda2db063fa7157" id="r_a6cfc55d365fe2bf2bcda2db063fa7157"><td class="memItemLeft" align="right" valign="top">MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a6cfc55d365fe2bf2bcda2db063fa7157">compute_equivalent_admittance_parameters_num</a> (<a class="el" href="classSubNetwork.html">SubNetwork</a> *subnet, double frequency)</td></tr>
-<tr class="memdesc:a6cfc55d365fe2bf2bcda2db063fa7157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes numeric equivalent admittance parameters for a subnetwork.  <br /></td></tr>
+<tr class="memdesc:a6cfc55d365fe2bf2bcda2db063fa7157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multi-port admittance parameters of a passive subnetwork.  <br /></td></tr>
 <tr class="separator:a6cfc55d365fe2bf2bcda2db063fa7157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd33e98492e4be0fc1c52734cf8b6d80" id="r_afd33e98492e4be0fc1c52734cf8b6d80"><td class="memItemLeft" align="right" valign="top">MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#afd33e98492e4be0fc1c52734cf8b6d80">compute_closing_impedance</a> (<a class="el" href="classSubNetwork.html">SubNetwork</a> *, string &amp;, MatrixXcd &amp;, MatrixXcd &amp;)</td></tr>
-<tr class="memdesc:afd33e98492e4be0fc1c52734cf8b6d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the visible impedance when other subnetwork outputs are shorted.  <br /></td></tr>
-<tr class="separator:afd33e98492e4be0fc1c52734cf8b6d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5686b77c81757b0ea385c552ab14fd46" id="r_a5686b77c81757b0ea385c552ab14fd46"><td class="memItemLeft" align="right" valign="top">MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function</a> (string converter_name, string location, double frequency)</td></tr>
-<tr class="memdesc:a5686b77c81757b0ea385c552ab14fd46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a converter transfer function at a single frequency.  <br /></td></tr>
+<tr class="memdesc:a5686b77c81757b0ea385c552ab14fd46"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIMO transfer function at a single frequency.  <br /></td></tr>
 <tr class="separator:a5686b77c81757b0ea385c552ab14fd46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad48b44cef2bf2d2d116541c102fd9945" id="r_ad48b44cef2bf2d2d116541c102fd9945"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#ad48b44cef2bf2d2d116541c102fd9945">writeFileTF</a> (string converter_name, string location, double start_frequency, double end_frequency, int number_of_points)</td></tr>
-<tr class="memdesc:ad48b44cef2bf2d2d116541c102fd9945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes transfer function data to a file over a frequency sweep.  <br /></td></tr>
+<tr class="memdesc:ad48b44cef2bf2d2d116541c102fd9945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write transfer function data to a CSV file over a frequency sweep.  <br /></td></tr>
 <tr class="separator:ad48b44cef2bf2d2d116541c102fd9945"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ceaa7e2e94fd6852b9d182c68c9b604" id="r_a4ceaa7e2e94fd6852b9d182c68c9b604"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a4ceaa7e2e94fd6852b9d182c68c9b604">bodeplotTF</a> (string converter_name, string location, double start_frequency, double end_frequency, int number_of_points)</td></tr>
-<tr class="memdesc:a4ceaa7e2e94fd6852b9d182c68c9b604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots the transfer function as a Bode diagram over a frequency sweep.  <br /></td></tr>
+<tr class="memdesc:a4ceaa7e2e94fd6852b9d182c68c9b604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bode plot of the transfer function over a frequency sweep.  <br /></td></tr>
 <tr class="separator:a4ceaa7e2e94fd6852b9d182c68c9b604"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50ef603d61ec6564705f4b16f7a5e8e7" id="r_a50ef603d61ec6564705f4b16f7a5e8e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a50ef603d61ec6564705f4b16f7a5e8e7">nyquistplotTF</a> (string converter_name, string location, double start_frequency, double end_frequency, int number_of_points)</td></tr>
-<tr class="memdesc:a50ef603d61ec6564705f4b16f7a5e8e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots the transfer function as a Nyquist diagram over a frequency sweep.  <br /></td></tr>
+<tr class="memdesc:a50ef603d61ec6564705f4b16f7a5e8e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nyquist plot of the transfer function over a frequency sweep.  <br /></td></tr>
 <tr class="separator:a50ef603d61ec6564705f4b16f7a5e8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a1d99f24fbab938af8d233ca4960861" id="r_a3a1d99f24fbab938af8d233ca4960861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a3a1d99f24fbab938af8d233ca4960861">print_summary</a> () const</td></tr>
-<tr class="memdesc:a3a1d99f24fbab938af8d233ca4960861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a summary of identified AC/DC areas and converters.  <br /></td></tr>
+<tr class="memdesc:a3a1d99f24fbab938af8d233ca4960861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a summary of identified AC/DC areas and converters.  <br /></td></tr>
 <tr class="separator:a3a1d99f24fbab938af8d233ca4960861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac23b720739d90c9f2a10f15d7abc1717" id="r_ac23b720739d90c9f2a10f15d7abc1717"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="classSubNetwork.html">SubNetwork</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#ac23b720739d90c9f2a10f15d7abc1717">get_ac_grids</a> ()</td></tr>
-<tr class="memdesc:ac23b720739d90c9f2a10f15d7abc1717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the map of AC grid subnetworks by name.  <br /></td></tr>
 <tr class="separator:ac23b720739d90c9f2a10f15d7abc1717"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a519c174f953ccd162f529bd2083b0414" id="r_a519c174f953ccd162f529bd2083b0414"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="classSubNetwork.html">SubNetwork</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html#a519c174f953ccd162f529bd2083b0414">get_dc_grids</a> ()</td></tr>
-<tr class="memdesc:a519c174f953ccd162f529bd2083b0414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the map of DC grid subnetworks by name.  <br /></td></tr>
 <tr class="separator:a519c174f953ccd162f529bd2083b0414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Performs impedance-based stability assessment of network areas. </p>
-<p>Partitions a <a class="el" href="classNetwork.html" title="Root network model holding buses, elements, and AC/DC grid hierarchy.">Network</a> into AC grids, DC grids, and converter subnetworks, then evaluates equivalent admittance parameters and transfer functions at specified frequencies for stability margin analysis. </p>
+<div class="textblock"><p>Performs impedance-based MIMO stability assessment of AC/MTDC networks. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aca69a398376783972bd320fd859c119b" name="aca69a398376783972bd320fd859c119b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca69a398376783972bd320fd859c119b">&#9670;&#160;</a></span>StabilityEstimate()</h2>
@@ -167,8 +159,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Default constructor. </p>
 
 </div>
 </div>
@@ -195,8 +185,6 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default destructor. </p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -216,7 +204,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Populates AC/DC area maps from the network hierarchy. </p>
+<p>Populate AC/DC area maps from the network hierarchy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">net</td><td><a class="el" href="classNetwork.html" title="Root network model holding buses, elements, and AC/DC grid hierarchy.">Network</a> whose area decomposition is used. </td></tr>
@@ -274,99 +262,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Plots the transfer function as a Bode diagram over a frequency sweep. </p>
-<p>Generates data and triggers a Bode plot for the Y-parameter matrix.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">converter_name</td><td>Name of the converter element. </td></tr>
-    <tr><td class="paramname">location</td><td>Output port or bus identifier. </td></tr>
-    <tr><td class="paramname">start_frequency</td><td>Sweep start frequency in Hz. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>Sweep end frequency in Hz. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>Number of frequency points.</td></tr>
-    <tr><td class="paramname">start_frequency</td><td>The starting frequency for the plot. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>The ending frequency for the plot. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>The number of points to plot across the frequency range. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Bode plot of the transfer function over a frequency sweep. </p>
 
 <p class="reference">References <a class="el" href="Visualization_8cpp.html#a590c85047fae6fcb0f57be1d4b943a3b">bode_plot_implot()</a>, <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function()</a>, and <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, and <a class="el" href="group__examples.html#ga987b5747fec06f865ca7c7af9308d79d">example_stability_check()</a>.</p>
-
-</div>
-</div>
-<a id="afd33e98492e4be0fc1c52734cf8b6d80" name="afd33e98492e4be0fc1c52734cf8b6d80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd33e98492e4be0fc1c52734cf8b6d80">&#9670;&#160;</a></span>compute_closing_impedance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MatrixXcd StabilityEstimate::compute_closing_impedance </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classSubNetwork.html">SubNetwork</a> *&#160;</td>
-          <td class="paramname"><em>sub</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string &amp;&#160;</td>
-          <td class="paramname"><em>bus_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MatrixXcd &amp;&#160;</td>
-          <td class="paramname"><em>Y_parameters</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MatrixXcd &amp;&#160;</td>
-          <td class="paramname"><em>Y_closing</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the visible impedance when other subnetwork outputs are shorted. </p>
-<p>Computes the equivalent closing impedance for a subnetwork port.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">subnet</td><td>Subnetwork under test. </td></tr>
-    <tr><td class="paramname">location</td><td>Output port identifier (modified in place if needed). </td></tr>
-    <tr><td class="paramname">Y_param</td><td><a class="el" href="classAdmittance.html" title="Generic admittance matrix element for single- or multi-phase networks.">Admittance</a> matrix of the subnetwork. </td></tr>
-    <tr><td class="paramname">Z_param</td><td><a class="el" href="classImpedance.html" title="Series impedance for each phase with diagonal (or matrix) Z entries.">Impedance</a> matrix of the subnetwork. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Closing impedance seen at <code>location</code>.</dd></dl>
-<p>This function calculates the equivalent impedance seen from a specific output port (<code>connection_name</code>) of a subnetwork, considering the loading effects of other connected converters represented by <code>Z_closing</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sub</td><td>Pointer to the <a class="el" href="classSubNetwork.html" title="Named sub-network that inherits Network topology APIs but acts as a non-owning view.">SubNetwork</a> object. </td></tr>
-    <tr><td class="paramname">connection_name</td><td>The name of the output port for which to compute the impedance. </td></tr>
-    <tr><td class="paramname">Y_parameters</td><td>The multi-port admittance matrix of the subnetwork. </td></tr>
-    <tr><td class="paramname">Z_closing</td><td>The closing impedance matrix representing loads at other ports. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An Eigen::MatrixXcd representing the equivalent closing impedance. </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>if the connection_name is not found in the subnetwork's outputs. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="reference">References <a class="el" href="classSubNetwork.html#ab99dcdf1fd1a7c84ff1440e5c14c550c">SubNetwork::getOutputs()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function()</a>.</p>
 
 </div>
 </div>
@@ -396,32 +296,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes numeric equivalent admittance parameters for a subnetwork. </p>
-<p>Computes the numerical equivalent multi-port admittance parameters for a subnetwork.</p>
+<p>Multi-port admittance parameters of a passive subnetwork. </p>
+<p>Implements adjusted MNA eq. (2): excites each output port in turn with unit voltage (all others shorted) and reads back the resulting currents. Converters connected to the subnetwork are excluded automatically.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">subnet</td><td>Subnetwork whose Y-parameters are evaluated. </td></tr>
+    <tr><td class="paramname">subnet</td><td>Subnetwork to analyse. </td></tr>
     <tr><td class="paramname">frequency</td><td>Evaluation frequency in Hz. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Complex admittance matrix at <code>frequency</code>.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">subnet</td><td>Pointer to the <a class="el" href="classSubNetwork.html" title="Named sub-network that inherits Network topology APIs but acts as a non-owning view.">SubNetwork</a> object. </td></tr>
-    <tr><td class="paramname">frequency</td><td>The frequency in Hz for the calculation. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An Eigen::MatrixXcd containing the computed Y-parameter matrix for the subnetwork's output ports. </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>if the subnet pointer is null or the subnetwork name is invalid. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>Y-parameter matrix of size (sum_pins × sum_pins) where sum_pins is the total number of pins across all output buses. </dd></dl>
 
-<p class="reference">References <a class="el" href="classNetwork.html#a6c96ac4d8153cb35d9e096a7b8315a8d">Network::getBuses()</a>, <a class="el" href="classSubNetwork.html#a1971b3982ec26b93c4b14613d0b349cd">SubNetwork::getName()</a>, <a class="el" href="classSubNetwork.html#ab99dcdf1fd1a7c84ff1440e5c14c550c">SubNetwork::getOutputs()</a>, <a class="el" href="classSubNetwork.html#a174a8d34c9aa9a67f0f83c46c054734c">SubNetwork::getTransformation()</a>, <a class="el" href="classBus.html#a1065c5e116b1a771cf616f3bea62fe50">Bus::isGround()</a>, and <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>.</p>
+<p class="reference">References <a class="el" href="classNetwork.html#a6c96ac4d8153cb35d9e096a7b8315a8d">Network::getBuses()</a>, <a class="el" href="classSubNetwork.html#a1971b3982ec26b93c4b14613d0b349cd">SubNetwork::getName()</a>, <a class="el" href="classSubNetwork.html#ab99dcdf1fd1a7c84ff1440e5c14c550c">SubNetwork::getOutputs()</a>, <a class="el" href="classSubNetwork.html#a174a8d34c9aa9a67f0f83c46c054734c">SubNetwork::getTransformation()</a>, <a class="el" href="classBus.html#a1065c5e116b1a771cf616f3bea62fe50">Bus::isGround()</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, and <a class="el" href="Stability__estimate_8cpp.html#aa7f90d0d4c10cb9d0de8382d869c4219">strStartsWith()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function()</a>.</p>
 
@@ -459,28 +345,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Evaluates a converter transfer function at a single frequency. </p>
-<p>Computes the transfer function for stability analysis of a specific converter.</p>
+<p>MIMO transfer function at a single frequency. </p>
+<p>Cuts the network at <code>location</code> of <code>converter_name</code> and returns H(jω) = Y_n(jω) · Z_eq(jω).</p>
+<p>The cut side determines which port is excited:</p><ul>
+<li>DC location → H is (p_dc × p_dc) where p_dc = DC bus pin count.</li>
+<li>AC location → H is (p_ac × p_ac) where p_ac = AC bus pin count.</li>
+</ul>
+<p>All other converters are eliminated into the DC closing admittance via the unified AC+converter MNA (eqs. 10-12 generalised to arbitrary pin counts).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">converter_name</td><td>Name of the converter element. </td></tr>
-    <tr><td class="paramname">location</td><td>Output port or bus identifier. </td></tr>
+    <tr><td class="paramname">location</td><td><a class="el" href="classBus.html" title="A network node connecting one or more element terminals.">Bus</a> name or area prefix identifying the cut side. </td></tr>
     <tr><td class="paramname">frequency</td><td>Evaluation frequency in Hz. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Complex transfer function value.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">converter_name</td><td>The name of the converter under analysis. </td></tr>
-    <tr><td class="paramname">location</td><td>The side of the converter from which the analysis is performed (e.g., "AC1" or "DC1"). </td></tr>
-    <tr><td class="paramname">frequency</td><td>The frequency in Hz for the calculation. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An Eigen::MatrixXcd representing the resulting transfer function matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Complex transfer function matrix H(jω). </dd></dl>
 
-<p class="reference">References <a class="el" href="classStabilityEstimate.html#afd33e98492e4be0fc1c52734cf8b6d80">compute_closing_impedance()</a>, <a class="el" href="classStabilityEstimate.html#a6cfc55d365fe2bf2bcda2db063fa7157">compute_equivalent_admittance_parameters_num()</a>, <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">Element::compute_y_parameters()</a>, <a class="el" href="classConverter.html#a976f7811fcf907b1a6b6bde92bd5b271">Converter::getACarea()</a>, <a class="el" href="classBus.html#aee85c8861b6cbf04d2add0bb9fcb02d8">Bus::getBusLocation()</a>, <a class="el" href="classBus.html#aa823adda33b36bfb929df0010139ae54">Bus::getBusName()</a>, <a class="el" href="classElement.html#acc1ef043c2919010234ee64fc112316c">Element::getConnections()</a>, <a class="el" href="classConverter.html#a764c398a7e3dcec46e0625104e1e7584">Converter::getDCarea()</a>, and <a class="el" href="Standard__functions_8cpp.html#a4ddb6f284e9b68e9fd84f6b6bb674478">vectorToMatrix()</a>.</p>
+<p class="reference">References <a class="el" href="classStabilityEstimate.html#a6cfc55d365fe2bf2bcda2db063fa7157">compute_equivalent_admittance_parameters_num()</a>, <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">Element::compute_y_parameters()</a>, <a class="el" href="classConverter.html#a976f7811fcf907b1a6b6bde92bd5b271">Converter::getACarea()</a>, <a class="el" href="classBus.html#aa823adda33b36bfb929df0010139ae54">Bus::getBusName()</a>, <a class="el" href="classElement.html#acc1ef043c2919010234ee64fc112316c">Element::getConnections()</a>, <a class="el" href="classConverter.html#a764c398a7e3dcec46e0625104e1e7584">Converter::getDCarea()</a>, <a class="el" href="classBus.html#aa456da532345ff43afcc96bb5584aa7f">Bus::getPinNumber()</a>, <a class="el" href="classSubNetwork.html#a174a8d34c9aa9a67f0f83c46c054734c">SubNetwork::getTransformation()</a>, <a class="el" href="Stability__estimate_8cpp.html#ac65b45747764281a6186f9b9088936cb">locStartsWith()</a>, <a class="el" href="Stability__estimate_8cpp.html#aa7f90d0d4c10cb9d0de8382d869c4219">strStartsWith()</a>, and <a class="el" href="Standard__functions_8cpp.html#a4ddb6f284e9b68e9fd84f6b6bb674478">vectorToMatrix()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a4ceaa7e2e94fd6852b9d182c68c9b604">bodeplotTF()</a>, <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>, <a class="el" href="group__examples.html#ga987b5747fec06f865ca7c7af9308d79d">example_stability_check()</a>, <a class="el" href="classStabilityEstimate.html#a50ef603d61ec6564705f4b16f7a5e8e7">nyquistplotTF()</a>, <a class="el" href="Stability__certificate_8cpp.html#a770e1110ec0521cf06c4a44301fdcb3c">sweepReturnRatioCertificate()</a>, and <a class="el" href="classStabilityEstimate.html#ad48b44cef2bf2d2d116541c102fd9945">writeFileTF()</a>.</p>
 
@@ -509,9 +391,6 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the map of AC grid subnetworks by name. </p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to the AC grids map. </dd></dl>
-
 </div>
 </div>
 <a id="a519c174f953ccd162f529bd2083b0414" name="a519c174f953ccd162f529bd2083b0414"></a>
@@ -536,9 +415,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the map of DC grid subnetworks by name. </p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to the DC grids map. </dd></dl>
 
 </div>
 </div>
@@ -586,21 +462,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Plots the transfer function as a Nyquist diagram over a frequency sweep. </p>
-<p>Generates data and triggers a Nyquist plot for the Y-parameter matrix.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">converter_name</td><td>Name of the converter element. </td></tr>
-    <tr><td class="paramname">location</td><td>Output port or bus identifier. </td></tr>
-    <tr><td class="paramname">start_frequency</td><td>Sweep start frequency in Hz. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>Sweep end frequency in Hz. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>Number of frequency points.</td></tr>
-    <tr><td class="paramname">start_frequency</td><td>The starting frequency for the plot. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>The ending frequency for the plot. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>The number of points to plot across the frequency range. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Nyquist plot of the transfer function over a frequency sweep. </p>
 
 <p class="reference">References <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function()</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, and <a class="el" href="Visualization_8cpp.html#a949c13c101f64f6d8afff8ce89a525f7">nyquist_plot_implot()</a>.</p>
 
@@ -623,7 +485,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Prints a summary of identified AC/DC areas and converters. </p>
+<p>Print a summary of identified AC/DC areas and converters. </p>
 
 <p class="reference">Referenced by <a class="el" href="group__examples.html#gaf011602e994d4f00f6cf8815a1ca360b">example_MMC_gfm()</a>.</p>
 
@@ -673,21 +535,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Writes transfer function data to a file over a frequency sweep. </p>
-<p>Writes the Y-parameter matrix to a CSV file over a specified frequency range.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">converter_name</td><td>Name of the converter element. </td></tr>
-    <tr><td class="paramname">location</td><td>Output port or bus identifier. </td></tr>
-    <tr><td class="paramname">start_frequency</td><td>Sweep start frequency in Hz. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>Sweep end frequency in Hz. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>Number of logarithmically spaced frequency points.</td></tr>
-    <tr><td class="paramname">start_frequency</td><td>The starting frequency for the sweep. </td></tr>
-    <tr><td class="paramname">end_frequency</td><td>The ending frequency for the sweep. </td></tr>
-    <tr><td class="paramname">number_of_points</td><td>The number of frequency points to compute and write. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Write transfer function data to a CSV file over a frequency sweep. </p>
 
 <p class="reference">References <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">compute_transfer_function()</a>, and <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>.</p>
 

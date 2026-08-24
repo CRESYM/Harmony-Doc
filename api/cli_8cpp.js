@@ -14,7 +14,7 @@ var cli_8cpp =
     [ "printCliHelp", "cli_8cpp.html#a80fdd37ab6e72bf44101101bda7e4d5f", null ],
     [ "printJsonNotFoundHelp", "cli_8cpp.html#ad58600dbb9c295187e7fa4a13fd5484c", null ],
     [ "resolveJsonPath", "cli_8cpp.html#a2fffee35967258fe2f87385a8f47a9e9", null ],
-    [ "runCppExample", "cli_8cpp.html#a471eebdf1c4560b565d0caedb9a30058", null ],
+    [ "runCppExample", "cli_8cpp.html#a01f44f0677efeaf2e6fa8470df7bcbb0", null ],
     [ "runJsonSimulation", "cli_8cpp.html#ab13468cb61957fb6003f6733d5d8c19b", null ],
     [ "validateJsonFile", "cli_8cpp.html#a7c2ec5fd4fae4fe68f63391c0b0991ab", null ]
 ];

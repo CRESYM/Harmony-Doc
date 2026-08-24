@@ -19,5 +19,6 @@ var classPowerFlow =
     [ "make_OPF", "classPowerFlow.html#a2ef9bd2ebb3e0715264b0270feba7968", null ],
     [ "make_RES", "classPowerFlow.html#ac7050032818d134a4be28da88a635760", null ],
     [ "opfSolved", "classPowerFlow.html#a10b1736ea3914fe3cd2cbbf189ef605f", null ],
-    [ "solve_opf", "classPowerFlow.html#a63b507039f281e4ee69cb0df8ea9b076", null ]
+    [ "solve_opf", "classPowerFlow.html#a63b507039f281e4ee69cb0df8ea9b076", null ],
+    [ "totalGenerationCost", "classPowerFlow.html#a9ded9e22788334876cf8bd11dd93682f", null ]
 ];

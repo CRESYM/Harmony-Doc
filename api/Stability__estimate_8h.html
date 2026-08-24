@@ -268,7 +268,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" title="Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="785,5,942,60"/>
 <area shape="rect" href="Stability__certificate_8cpp.html" title="Device certificate metrics and paper&#45;style ImPlot figures." alt="" coords="5,108,156,163"/>
 <area shape="poly" title=" " alt="" coords="771,41,499,63,333,83,168,111,157,113,156,108,167,105,333,77,499,57,771,36"/>
-<area shape="rect" href="Stability__estimate_8cpp.html" title="Implementation of Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="180,108,352,163"/>
+<area shape="rect" href="Stability__estimate_8cpp.html" title="MIMO impedance&#45;based stability assessment via unified MNA." alt="" coords="180,108,352,163"/>
 <area shape="poly" title=" " alt="" coords="771,47,582,73,364,111,353,113,352,108,363,105,582,67,770,42"/>
 <area shape="rect" href="example__MMC__gfm_8cpp.html" title="GFM MMC mode: equilibrium, ABCD/Y, and StabilityEstimate reuse." alt="" coords="376,115,559,155"/>
 <area shape="poly" title=" " alt="" coords="772,60,543,118,541,113,771,55"/>
@@ -292,12 +292,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStabilityEstimate.html">StabilityEstimate</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs impedance-based stability assessment of network areas.  <a href="classStabilityEstimate.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs impedance-based MIMO stability assessment of AC/MTDC networks.  <a href="classStabilityEstimate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Small-signal stability and impedance analysis for AC/DC areas. </p>
-<p>Computes equivalent admittances, closing impedances, and frequency-domain transfer functions for converter-interfaced subnetworks. Supports Bode and Nyquist plotting and file export over a swept frequency range. </p>
+<p>Computes multi-port equivalent admittances and MIMO transfer functions for converter-interfaced subnetworks via a unified MNA that stamps both passive grid elements and converter Y-parameters into a single system matrix. Supports Bode and Nyquist plotting and file export over a swept frequency range.</p>
+<p>Algorithm (Lekic et al., CIGRE Paris 2026, eqs. 10-17): Step 1 Partition the network into AC grids, DC grids, and converters. Step 2 Build the multi-port Y-parameters of each passive AC/DC subnetwork via adjusted MNA (eq. 2 of the paper). Step 3 For every converter that is NOT the device-under-test, stamp its full Y-matrix into a unified MNA together with the passive AC grid it connects to, and solve for the equivalent DC-side admittance Y_eq,conv (generalised eqs. 10-12). Step 4 Close the DC grid around the converter under test (eq. 13-14). Step 5 Form the MIMO transfer function H = Y_n * Z_eq (eqs. 15-17).</p>
+<p>The implementation is fully dimension-agnostic: all port sizes are read from <a class="el" href="classBus.html#aa456da532345ff43afcc96bb5584aa7f" title="Get the number of pins/phases on this bus.">Bus::getPinNumber()</a>, so 1-pin (DC scalar), 2-pin (dq AC) and 3-pin (abc AC) buses are handled identically. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

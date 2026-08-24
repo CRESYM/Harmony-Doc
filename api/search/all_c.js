@@ -34,7 +34,8 @@ var searchData=
   ['local_5fvs_5fsystem_2eh_31',['Local_vs_system.h',['../Local__vs__system_8h.html',1,'']]],
   ['locally_32',['Generate HTML docs locally',['../md_harmony_2docs_2doxygen_2README.html#autotoc_md5',1,'']]],
   ['localvssystemresult_33',['LocalVsSystemResult',['../structLocalVsSystemResult.html',1,'']]],
-  ['log_5fcapture_2ecpp_34',['log_capture.cpp',['../log__capture_8cpp.html',1,'']]],
-  ['log_5fcapture_2eh_35',['log_capture.h',['../log__capture_8h.html',1,'']]],
-  ['loopshiftedsector_36',['loopshiftedsector',['../Geometric__certificates_8h.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp'],['../Geometric__certificates_8cpp.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp']]]
+  ['locstartswith_34',['locStartsWith',['../Stability__estimate_8cpp.html#ac65b45747764281a6186f9b9088936cb',1,'Stability_estimate.cpp']]],
+  ['log_5fcapture_2ecpp_35',['log_capture.cpp',['../log__capture_8cpp.html',1,'']]],
+  ['log_5fcapture_2eh_36',['log_capture.h',['../log__capture_8h.html',1,'']]],
+  ['loopshiftedsector_37',['loopshiftedsector',['../Geometric__certificates_8cpp.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp'],['../Geometric__certificates_8h.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp']]]
 ];

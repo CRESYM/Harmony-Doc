@@ -193,7 +193,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a84370ccde159e1f002bb6be7e2a4fbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the filter(s) in <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> using provided parameters.  <br /></td></tr>
 <tr class="separator:a84370ccde159e1f002bb6be7e2a4fbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8891bab55060aa67242fdc2c2cbd0490" id="r_a8891bab55060aa67242fdc2c2cbd0490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#a8891bab55060aa67242fdc2c2cbd0490">update_MMC</a> (double Vm, double <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">theta</a>, double Pac, double Qac, double Vdc, double Pdc)</td></tr>
-<tr class="memdesc:a8891bab55060aa67242fdc2c2cbd0490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> operating point and controller references.  <br /></td></tr>
+<tr class="memdesc:a8891bab55060aa67242fdc2c2cbd0490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set operating point.  <br /></td></tr>
 <tr class="separator:a8891bab55060aa67242fdc2c2cbd0490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad84f037c9b83dc64a947f2f3a292cb00" id="r_ad84f037c9b83dc64a947f2f3a292cb00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMMC.html#ad84f037c9b83dc64a947f2f3a292cb00">hasGfm</a> () const</td></tr>
 <tr class="memdesc:ad84f037c9b83dc64a947f2f3a292cb00"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when GFM outer-loop states are enabled.  <br /></td></tr>
@@ -1590,18 +1590,21 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> operating point and controller references. </p>
+<p>Set operating point. </p>
+<p>Update <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> operating point and controller references.</p>
+<p>Pac/Pdc use <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> machine signs (see <a class="el" href="MMC_8cpp.html" title="Implementation of Modular Multilevel Converter (MMC) state-space and MNA model.">MMC.cpp</a>).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Vm</td><td>AC voltage magnitude. </td></tr>
-    <tr><td class="paramname">theta</td><td>AC voltage phase angle. </td></tr>
-    <tr><td class="paramname">Pac</td><td>Active power. </td></tr>
-    <tr><td class="paramname">Qac</td><td>Reactive power. </td></tr>
-    <tr><td class="paramname">Vdc</td><td>DC voltage. </td></tr>
-    <tr><td class="paramname">Pdc</td><td>DC power. </td></tr>
+    <tr><td class="paramname">Vm</td><td>AC voltage magnitude [V peak phase]. </td></tr>
+    <tr><td class="paramname">theta</td><td>AC voltage phase angle [rad]. </td></tr>
+    <tr><td class="paramname">Pac</td><td>Active power [W], <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> machine convention: positive = export to AC (AC current leaving the converter). </td></tr>
+    <tr><td class="paramname">Qac</td><td>Reactive power [VAr], same sign convention as Pac (standard dq Q). </td></tr>
+    <tr><td class="paramname">Vdc</td><td>DC voltage [V]. </td></tr>
+    <tr><td class="paramname">Pdc</td><td>DC power [W], <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> machine convention: positive = import from DC (DC current entering the converter). For a lossless inverter, Pac and Pdc are both positive.</td></tr>
   </table>
   </dd>
 </dl>
+<p>When applying MatACDC/Harmony OPF results, negate network injections: Pac = -ps, Qac = -qs, Pdc = -pn (see <a class="el" href="classPowerFlow.html#a2ef9bd2ebb3e0715264b0270feba7968" title="Builds OPF data structures from a Harmony network and runs the solver.">PowerFlow::make_OPF</a>). </p>
 
 <p class="reference">References <a class="el" href="classConverter.html#ae455575ab03f27560c3c2c52e4851343">Converter::controls</a>, <a class="el" href="classConverter.html#abbed0cdc04b0b8b55284026d45b1d9c9">Converter::P</a>, <a class="el" href="classConverter.html#a0458189ff0452aeea94780a5dc0e6bca">Converter::P_dc</a>, <a class="el" href="classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1">Converter::Q</a>, <a class="el" href="classConverter.html#aa63bdf27da0b0e0b608dfec6da018ceb">Converter::theta</a>, <a class="el" href="classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679">Converter::V_dc</a>, and <a class="el" href="classConverter.html#a9c2d7c8f01ee32d094da1e24e4ae5439">Converter::V_m</a>.</p>
 

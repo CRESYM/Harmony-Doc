@@ -8,5 +8,6 @@ var searchData=
   ['load_5fparams_5fdc_5',['load_params_dc',['../classPowerFlow.html#af970b9f2769318bcaa605fe8e4770573',1,'PowerFlow']]],
   ['loadjson_6',['loadJson',['../classPnPCertificateLibrary.html#af7b3dec306ed0b2878d3402268fdb6c1',1,'PnPCertificateLibrary']]],
   ['loadpq_7',['LoadPQ',['../classLoadPQ.html#af76af646d4d1ca8468ab7db9a518b800',1,'LoadPQ']]],
-  ['loopshiftedsector_8',['loopshiftedsector',['../Geometric__certificates_8cpp.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp'],['../Geometric__certificates_8h.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp']]]
+  ['locstartswith_8',['locStartsWith',['../Stability__estimate_8cpp.html#ac65b45747764281a6186f9b9088936cb',1,'Stability_estimate.cpp']]],
+  ['loopshiftedsector_9',['loopshiftedsector',['../Geometric__certificates_8cpp.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp'],['../Geometric__certificates_8h.html#ae90bae818e46e5bbf6de136446e49775',1,'loopShiftedSector(const Eigen::MatrixXcd &amp;A, double alpha, double beta):&#160;Geometric_certificates.cpp']]]
 ];

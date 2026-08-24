@@ -332,16 +332,16 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The state vector 'x' in <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> is ordered as follows (from end to start): [iDelta_d, iDelta_q, iSigma_d, iSigma_q, iSigma_z, vCDelta_d, vCDelta_q, vCDelta_Zd, vCDelta_Zq, vCSigma_d, vCSigma_q, vCSigma_z] where:</p><ul>
+<p>The state vector 'x' in <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> is ordered as follows (from end to start): [iDelta_d, iDelta_q, iSigma_z, iSigma_d, iSigma_q, vCDelta_d, vCDelta_q, vCDelta_Zd, vCDelta_Zq, vCSigma_d, vCSigma_q, vCSigma_z] where plant currents/voltages are expressed in the grid dq frame:</p><ul>
 <li>iDelta_d, iDelta_q : AC differential currents (d/q axis)</li>
-<li>iSigma_d, iSigma_q : Circulating currents (d/q axis)</li>
 <li>iSigma_z : Zero-sequence circulating current</li>
+<li>iSigma_d, iSigma_q : Circulating currents (d/q axis)</li>
 <li>vCDelta_d, vCDelta_q : AC capacitor voltages (d/q axis)</li>
 <li>vCDelta_Zd, vCDelta_Zq : Zero-sequence capacitor voltages (d/q axis)</li>
 <li>vCSigma_d, vCSigma_q : Circulating capacitor voltages (d/q axis)</li>
 <li>vCSigma_z : Zero-sequence circulating capacitor voltage</li>
 </ul>
-<p>Additional states (if present) are prepended for controllers, filters, PLL, and delay blocks. The index 'i' is set to (number_of_states - 12) to access the main <a class="el" href="classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops.">MMC</a> states above. Controller/filter/PLL/delay states are accessed at lower indices (i.e., x[0] ... x[i-1]). </p>
+<p>With a PLL, controllers operate in the converter dq frame (rotated by θ_pll); plant derivatives remain in the grid frame. Additional states (if present) are prepended for controllers, filters, PLL, and delay blocks. </p>
 
 <p class="reference">Referenced by <a class="el" href="classMMC.html#a66683344e11cb93712f47ee4aaeab69e">MMC::computeABCD()</a>, <a class="el" href="classMMC.html#ac795f3aa98f3224e95fd5114eaa28b40">MMC::computeABCD_analytical()</a>, and <a class="el" href="classMMC.html#abaf0667f0026d13fb5dbf92b0653a73b">MMC::solveEquilibrium()</a>.</p>
 
