@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Practice Project</title>
+  <title>Harmony</title>
 
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -146,80 +146,7 @@
 
 <body>
   <!-- ====== Navbar ====== -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-xxl">
-      <a class="navbar-brand d-flex align-items-center"
-         href="https://isocpp.org/"
-         target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="index.html">Overview</a></li>
-              <li><a class="dropdown-item" href="pages/teams.html">Teams</a></li>
-              <li><a class="dropdown-item" href="pages/getting-started.html">Getting Started</a></li>
-              <li><a class="dropdown-item" href="pages/publications.html">Publications</a></li>
-              <li><a class="dropdown-item" href="api/index.html">API Reference (Doxygen)</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pages/models/impedances/impedance.html">Impedances</a></li>
-              <li><a class="dropdown-item" href="pages/models/transformers/transformer1.html">Transformers</a></li>
-              <li><a class="dropdown-item" href="pages/models/loads/load.html">Loads</a></li>
-              <li><a class="dropdown-item" href="pages/models/transmission-lines/long-transmission-line.html">Transmission Lines</a></li>
-              <li><a class="dropdown-item" href="pages/models/sources-and-generators/ac-source.html">Sources and Generators</a></li>
-              <li><a class="dropdown-item" href="pages/models/converters/two-level-converter.html">Converters</a></li>
-              <li><a class="dropdown-item" href="pages/models/switches-and-circuit-breakers/switch.html">Switches and Circuit Breakers</a></li>
-              <li><a class="dropdown-item" href="pages/models/renewable-energy-sources/wt-type3.html">Renewable Energy Sources</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solvers</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pages/solvers/stability-check/stability-check.html">Stability Check</a></li>
-              <li><a class="dropdown-item" href="pages/solvers/optimal-power-flow/optimal-power-flow.html">Optimal Power Flow</a></li>
-              <li><a class="dropdown-item" href="pages/solvers/dqsym-math-operation/dqsym-math-operation.html">DQsym Math Operation</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Test Cases</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pages/tests/point-to-point-case/point-to-point-case.html">Point to Point Case</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link" href="./pages/contact.html">Contact</a></li>
-
-          <li class="nav-item d-flex align-items-center ms-3">
-            <a class="nav-link p-1" href="https://github.com/CRESYM/Harmony" target="_blank" aria-label="GitHub">
-              <i class="bi bi-github fs-4"></i>
-            </a>
-          </li>
-        </ul>
-
-        <!-- tools -->
-        <div class="header-tools ms-3">
-          <button id="themeToggle" class="theme-switch" title="Toggle light/dark" aria-label="Toggle theme"></button>
-          <button id="openSearch" class="search-btn" title="Search in page" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark"></nav>
 
   <!-- ====== Search panel ====== -->
   <div id="searchBar" class="search-panel-min" aria-hidden="true">
@@ -315,7 +242,7 @@
           <div class="feature-item">
             <i class="bi bi-people feature-icon" aria-hidden="true"></i>
             <div>
-              <h3 class="feature-title">Teams</h3>
+              <h3 class="feature-title">Team</h3>
               <p class="feature-text">Meet the contributors and collaborators behind Harmony.</p>
               <a class="feature-link" href="pages/teams.html">Our team →</a>
             </div>
@@ -566,15 +493,15 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="index.html">Overview</a></li>
-              <li><a class="dropdown-item" href="pages/teams.html">Teams</a></li>
-              <li><a class="dropdown-item" href="pages/getting-started.html">Getting Started</a></li>
-              <li><a class="dropdown-item" href="pages/publications.html">Publications</a></li>
+              <li><a class="dropdown-item" href="pages/teams.html">Team</a></li>
+              <li><a class="dropdown-item" href="pages/page_layout.html?file=getting_started">Getting Started</a></li>
+              <li><a class="dropdown-item" href="pages/page_layout.html?file=publications">Publications</a></li>
             </ul>
           </div>
 
-          <a class="bottom-link" href="pages/contact.html">Contact</a>
+          <a class="bottom-link" href="pages/page_layout.html?file=contact">Contact</a>
           <a class="bottom-link" href="https://cresym.eu/privacy-policy/">Privacy Policy</a>
-          <a class="bottom-link" href="pages/terms.html">Term of Reference</a>
+          <a class="bottom-link" href="pages/page_layout.html?file=terms">Term of Reference</a>
         </div>
 
         <a class="bottom-icon" href="https://github.com/CRESYM/Harmony" target="_blank" rel="noopener" aria-label="GitHub">
@@ -588,6 +515,18 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Scripts -->
+  <!-- Fetch Navbar (main menu) component -->
+  <script>
+    (function () {
+      fetch('navbar.html')
+        .then(res => res.text())
+        .then(html => {
+          const nav = document.getElementById('navbar');
+          if (nav) nav.innerHTML = html;
+        });
+    })();
+  </script>
+
   <script>
     // 图片：加载后加
     document.addEventListener("DOMContentLoaded", () => {
