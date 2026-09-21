@@ -1,4 +1,4 @@
-name: Publish API docs
+name: Publish API docs and test coverage
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
           path: harmony
           ref: main
           # Use HARMONY_REPO_TOKEN when Harmony is private (see repo secrets).
-          token: ${{ secrets.HARMONY_REPO_TOKEN || github.token }}
+          #token: ${{ secrets.HARMONY_REPO_TOKEN || github.token }}
 
       - name: Install Doxygen and Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
@@ -46,11 +46,22 @@ jobs:
           cp -R "${GITHUB_WORKSPACE}/harmony/build/docs/html" api
           touch .nojekyll api/.nojekyll
 
+      - name: Download test coverage artifact from Harmony repo
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          ggithub_token: ${{ secrets.HARMONY_TEST_COVERAGE_TOKEN }}
+          repo: CRESYM/Harmony
+          workflow: test_coverage.yml
+          name: harmony-test-coverage
+          workflow_conclusion: success
+          path: ./test_coverage
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add api/ .nojekyll
+          git add test_coverage/
           git diff --staged --quiet && echo "No API doc changes." && exit 0
-          git commit -m "Update Doxygen API docs from CRESYM/Harmony@main"
+          git commit -m "Update Doxygen API docs and test coverage report from CRESYM/Harmony@main"
           git push
