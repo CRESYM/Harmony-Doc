@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/harmony_banner.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src">src</a> - harmony_banner.cpp<span style="font-size: 80%;"> (source / <a href="harmony_banner.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+                  <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : #include &quot;harmony_banner.h&quot;</span>
+<span id="L2"><span class="lineNum">       2</span>              : </span>
+<span id="L3"><span class="lineNum">       3</span>              : #include &lt;ostream&gt;</span>
+<span id="L4"><span class="lineNum">       4</span>              : </span>
+<span id="L5"><span class="lineNum">       5</span>              : namespace {</span>
+<span id="L6"><span class="lineNum">       6</span>              : </span>
+<span id="L7"><span class="lineNum">       7</span>              : constexpr const char kBanner[] = R&quot;( ,ggg,        gg            ,ggg, ,ggggggggggg,   ,ggg, ,ggg,_,ggg,    _,gggggg,_      ,ggg, ,ggggggg,  ,ggg,         gg </span>
+<span id="L8"><span class="lineNum">       8</span>              : dP&quot;&quot;Y8b       88           dP&quot;&quot;8IdP&quot;&quot;&quot;88&quot;&quot;&quot;&quot;&quot;&quot;Y8,dP&quot;&quot;Y8dP&quot;&quot;Y8dP&quot;&quot;Y8b ,d8P&quot;&quot;d8P&quot;Y8b,   dP&quot;&quot;Y8,8P&quot;&quot;&quot;&quot;&quot;Y8bdP&quot;&quot;Y8a        88 </span>
+<span id="L9"><span class="lineNum">       9</span>              : Yb, `88       88          dP   88Yb,  88      `8bYb, `88'  `88'  `88,d8'   Y8   &quot;8b,dPYb, `8dP'     `88Yb, `88        88 </span>
+<span id="L10"><span class="lineNum">      10</span>              :  `&quot;  88       88         dP    88 `&quot;  88      ,8P `&quot;  88    88    88d8'    `Ybaaad88P' `&quot;  88'       88 `&quot;  88        88 </span>
+<span id="L11"><span class="lineNum">      11</span>              :      88aaaaaaa88        ,8'    88     88aaaad8P&quot;      88    88    888P       `&quot;&quot;&quot;&quot;Y8       88        88     88        88 </span>
+<span id="L12"><span class="lineNum">      12</span>              :      88&quot;&quot;&quot;&quot;&quot;&quot;&quot;88        d88888888     88&quot;&quot;&quot;&quot;Yb,       88    88    888b            d8       88        88     88        88 </span>
+<span id="L13"><span class="lineNum">      13</span>              :      88       88  __   ,8&quot;     88     88     &quot;8b      88    88    88Y8,          ,8P       88        88     88       ,88 </span>
+<span id="L14"><span class="lineNum">      14</span>              :      88       88 dP&quot;  ,8P      Y8     88      `8i     88    88    88`Y8,        ,8P'       88        88     Y8b,___,d888 </span>
+<span id="L15"><span class="lineNum">      15</span>              :      88       Y8,Yb,_,dP       `8b,   88       Yb,    88    88    Y8,`Y8b,,__,,d8P'        88        Y8,     &quot;Y88888P&quot;88,</span>
+<span id="L16"><span class="lineNum">      16</span>              :      88       `Y8 &quot;Y8P&quot;         `Y8   88        Y8    88    88    `Y8  `&quot;Y8888P&quot;'          88        `Y8          ,ad8888</span>
+<span id="L17"><span class="lineNum">      17</span>              :                                                                                                                  d8P&quot; 88 </span>
+<span id="L18"><span class="lineNum">      18</span>              :                                                                                                                ,d8'   88 </span>
+<span id="L19"><span class="lineNum">      19</span>              :                                                                                                                d8'    88 </span>
+<span id="L20"><span class="lineNum">      20</span>              :                                                                                                                88     88 </span>
+<span id="L21"><span class="lineNum">      21</span>              :                                                                                                                Y8,_ _,88 </span>
+<span id="L22"><span class="lineNum">      22</span>              :                                                                                                                 &quot;Y888P&quot;  </span>
+<span id="L23"><span class="lineNum">      23</span>              : )&quot;;</span>
+<span id="L24"><span class="lineNum">      24</span>              : </span>
+<span id="L25"><span class="lineNum">      25</span>              : } // namespace</span>
+<span id="L26"><span class="lineNum">      26</span>              : </span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaUNC">           0 : std::string_view harmonyAsciiBanner() {</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :         return kBanner;</span></span>
+<span id="L29"><span class="lineNum">      29</span>              : }</span>
+<span id="L30"><span class="lineNum">      30</span>              : </span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaUNC">           0 : void printHarmonyBanner(std::ostream&amp; out) {</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaUNC">           0 :         out &lt;&lt; kBanner &lt;&lt; '\n';</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaUNC">           0 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

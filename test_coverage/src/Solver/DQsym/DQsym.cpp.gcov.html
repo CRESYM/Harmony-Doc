@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Solver/DQsym/DQsym.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Solver/DQsym">src/Solver/DQsym</a> - DQsym.cpp<span style="font-size: 80%;"> (source / <a href="DQsym.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">90.6&nbsp;%</td>
+            <td class="headerCovTableEntry">255</td>
+            <td class="headerCovTableEntry">231</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">66.7&nbsp;%</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">6</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * @file DQsym.cpp</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * @brief Implementation of Dynamic phasor (DQsym) time-domain solver with switch handling.</span>
+<span id="L4"><span class="lineNum">       4</span>              :  */</span>
+<span id="L5"><span class="lineNum">       5</span>              : #include &quot;DQsym.h&quot;</span>
+<span id="L6"><span class="lineNum">       6</span>              : #include &quot;../../Constants.h&quot;</span>
+<span id="L7"><span class="lineNum">       7</span>              : </span>
+<span id="L8"><span class="lineNum">       8</span>              : #include &quot;../../network.h&quot;      // For access to the Network class and its members</span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;../../Include_components.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : </span>
+<span id="L11"><span class="lineNum">      11</span>              : </span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           2 : void DQsym::initialize(Network* net)</span></span>
+<span id="L13"><span class="lineNum">      13</span>              : {</span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           2 :     net_ = net;</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">           2 :     ac_grid_names.clear();</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           2 :     dc_grid_names.clear();</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           2 :     ac_grids.clear();</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           2 :     dc_grids.clear();</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           2 :     converters.clear();</span></span>
+<span id="L20"><span class="lineNum">      20</span>              : </span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           2 :         net-&gt;is_area_empty() ? net-&gt;add_areas() : void();</span></span>
+<span id="L22"><span class="lineNum">      22</span>              : </span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           2 :         ac_grids = net-&gt;get_ac_grids();</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">           2 :         dc_grids = net-&gt;get_dc_grids();</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">           2 :         ac_grid_names = net-&gt;get_ac_grid_names();</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           2 :         dc_grid_names = net-&gt;get_dc_grid_names();</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           2 :         converters = net-&gt;get_converters();</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L29"><span class="lineNum">      29</span>              : </span>
+<span id="L30"><span class="lineNum">      30</span>              : /**</span>
+<span id="L31"><span class="lineNum">      31</span>              :  * @brief Solves the discrete-time state-space system with switch-dependent matrices.</span>
+<span id="L32"><span class="lineNum">      32</span>              :  *</span>
+<span id="L33"><span class="lineNum">      33</span>              :  * This function computes the output of a discrete-time state-space system for a given</span>
+<span id="L34"><span class="lineNum">      34</span>              :  * sequence of inputs. It supports dynamic changes in the system matrices based on the</span>
+<span id="L35"><span class="lineNum">      35</span>              :  * state of switches (breakers). The state-space model is updated whenever the switch</span>
+<span id="L36"><span class="lineNum">      36</span>              :  * configuration changes.</span>
+<span id="L37"><span class="lineNum">      37</span>              :  *</span>
+<span id="L38"><span class="lineNum">      38</span>              :  * The core calculation is performed in the phasor domain. The state vector is rotated</span>
+<span id="L39"><span class="lineNum">      39</span>              :  * at each time step to account for the system's fundamental frequency, and the final</span>
+<span id="L40"><span class="lineNum">      40</span>              :  * output is computed based on the updated state.</span>
+<span id="L41"><span class="lineNum">      41</span>              :  *</span>
+<span id="L42"><span class="lineNum">      42</span>              :  * @note This implementation does not include a half-step predictor/corrector.</span>
+<span id="L43"><span class="lineNum">      43</span>              :  *</span>
+<span id="L44"><span class="lineNum">      44</span>              :  * @param Ad The discrete-time state matrix.</span>
+<span id="L45"><span class="lineNum">      45</span>              :  * @param Bd The discrete-time input matrix.</span>
+<span id="L46"><span class="lineNum">      46</span>              :  * @param Cd The discrete-time output matrix.</span>
+<span id="L47"><span class="lineNum">      47</span>              :  * @param Dd The discrete-time feed-through matrix.</span>
+<span id="L48"><span class="lineNum">      48</span>              :  * @param swOnRes A vector of ON-resistances for the switches.</span>
+<span id="L49"><span class="lineNum">      49</span>              :  * @param swOffRes A vector of OFF-resistances for the switches.</span>
+<span id="L50"><span class="lineNum">      50</span>              :  * @param swType A vector indicating the type of each switch.</span>
+<span id="L51"><span class="lineNum">      51</span>              :  * @param brkVec A vector representing the current state of the breakers (switches).</span>
+<span id="L52"><span class="lineNum">      52</span>              :  * @param u The input matrix over the simulation time.</span>
+<span id="L53"><span class="lineNum">      53</span>              :  * @param xo The initial state vector.</span>
+<span id="L54"><span class="lineNum">      54</span>              :  * @param dt The time step for the simulation.</span>
+<span id="L55"><span class="lineNum">      55</span>              :  * @param f0 The fundamental frequency of the system.</span>
+<span id="L56"><span class="lineNum">      56</span>              :  * @return A matrix representing the system's output over the simulation time.</span>
+<span id="L57"><span class="lineNum">      57</span>              :  */</span>
+<span id="L58"><span class="lineNum">      58</span>              :  // ===================================================================</span>
+<span id="L59"><span class="lineNum">      59</span>              :  //  DSSS — operates directly on the supplied DSSState</span>
+<span id="L60"><span class="lineNum">      60</span>              :  // ===================================================================</span>
+<span id="L61"><span class="lineNum">      61</span>              : </span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">      276003 : MatrixXcd DQsym::DSSS(</span></span>
+<span id="L63"><span class="lineNum">      63</span>              :     DSSState&amp; st,</span>
+<span id="L64"><span class="lineNum">      64</span>              :     const MatrixXcd&amp; Ad, const MatrixXcd&amp; Bd,</span>
+<span id="L65"><span class="lineNum">      65</span>              :     const MatrixXcd&amp; Cd, const MatrixXcd&amp; Dd,</span>
+<span id="L66"><span class="lineNum">      66</span>              :     const VectorXd&amp; swOnRes, const VectorXd&amp; swOffRes,</span>
+<span id="L67"><span class="lineNum">      67</span>              :     const VectorXi&amp; swType, const VectorXi&amp; brkVec,</span>
+<span id="L68"><span class="lineNum">      68</span>              :     const MatrixXcd&amp; u, const VectorXcd&amp; xo,</span>
+<span id="L69"><span class="lineNum">      69</span>              :     double dt, double f0)</span>
+<span id="L70"><span class="lineNum">      70</span>              : {</span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">      276003 :     int T = u.cols();</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">      276003 :     int nx = Ad.rows();</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">      276003 :     int ny = Cd.rows();</span></span>
+<span id="L74"><span class="lineNum">      74</span>              : </span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">      276003 :     MatrixXcd x = MatrixXcd::Zero(nx, T);</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">      276003 :     MatrixXcd y = MatrixXcd::Zero(ny, T);</span></span>
+<span id="L77"><span class="lineNum">      77</span>              : </span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaGNC">      276003 :     MatrixXcd A0, B0, C0, D0;</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">      276003 :     convertToPhasor(Ad, Bd, Cd, Dd, A0, B0, C0, D0);</span></span>
+<span id="L80"><span class="lineNum">      80</span>              : </span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">      276003 :     if (!st.initialized)</span></span>
+<span id="L82"><span class="lineNum">      82</span>              :     {</span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">           5 :         st.nStates = nx;</span></span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">           5 :         st.nInputs = Bd.cols();</span></span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">           5 :         st.nOutputs = ny;</span></span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">           5 :         st.nSwitches = (swType.array() == 1).count();</span></span>
+<span id="L87"><span class="lineNum">      87</span>              : </span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaGNC">           5 :         st.x_old = MatrixXcd::Zero(nx, T);</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">           5 :         st.x_old.col(0) = xo;</span></span>
+<span id="L90"><span class="lineNum">      90</span>              : </span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaGNC">           5 :         st.swVec = brkVec;</span></span>
+<span id="L92"><span class="lineNum">      92</span> <span class="tlaGNC">           5 :         st.swVecOld = st.swVec;</span></span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">           5 :         st.yswitch = VectorXcd::Zero(st.nSwitches);</span></span>
+<span id="L94"><span class="lineNum">      94</span>              : </span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaGNC">           5 :         buildMatricesForState(A0, B0, C0, D0,</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaGNC">           5 :             st.swVec, swType, swOnRes, swOffRes,</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaGNC">           5 :             st.Ads, st.Bds, st.Cds, st.Dds);</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">           5 :         st.initialized = true;</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">           5 :     }</span></span>
+<span id="L100"><span class="lineNum">     100</span>              : </span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">      276003 :     if ((swType.array() != 0).any())</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">           3 :         st.swVec = brkVec;</span></span>
+<span id="L103"><span class="lineNum">     103</span>              : </span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">      276006 :     if ((swType.array() != 0).any() &amp;&amp;</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">           3 :         (st.swVecOld.array() != st.swVec.array()).any())</span></span>
+<span id="L106"><span class="lineNum">     106</span>              :     {</span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           2 :         buildMatricesForState(A0, B0, C0, D0,</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">           2 :             st.swVec, swType, swOnRes, swOffRes,</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">           2 :             st.Ads, st.Bds, st.Cds, st.Dds);</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">           2 :         st.swVecOld = st.swVec;</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">           2 :     }</span></span>
+<span id="L112"><span class="lineNum">     112</span>              : </span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaGNC">      276003 :     x = st.Ads * st.x_old + st.Bds * u;</span></span>
+<span id="L114"><span class="lineNum">     114</span>              : </span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaGNC">      276003 :     VectorXcd expVec(T);</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaGNC">     1731009 :     for (int k = 0; k &lt; T; ++k)</span></span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaGNC">     1455006 :         expVec(k) = std::exp(std::complex&lt;double&gt;(0.0, -2.0 * M_PI * f0 * dt * k));</span></span>
+<span id="L118"><span class="lineNum">     118</span>              : </span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">      276003 :     MatrixXcd x2 = x * expVec.asDiagonal();</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">      276003 :     st.x_old = x2;</span></span>
+<span id="L121"><span class="lineNum">     121</span>              : </span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">      276003 :     y = st.Cds * x2 + st.Dds * u;</span></span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaGNC">      276003 :     return y;</span></span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">      276003 : }</span></span>
+<span id="L125"><span class="lineNum">     125</span>              : </span>
+<span id="L126"><span class="lineNum">     126</span>              : </span>
+<span id="L127"><span class="lineNum">     127</span>              : // ===================================================================</span>
+<span id="L128"><span class="lineNum">     128</span>              : //  buildMatricesForState</span>
+<span id="L129"><span class="lineNum">     129</span>              : // ===================================================================</span>
+<span id="L130"><span class="lineNum">     130</span>              : </span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">           7 : void DQsym::buildMatricesForState(</span></span>
+<span id="L132"><span class="lineNum">     132</span>              :     const MatrixXcd&amp; A0, const MatrixXcd&amp; B0,</span>
+<span id="L133"><span class="lineNum">     133</span>              :     const MatrixXcd&amp; C0, const MatrixXcd&amp; D0,</span>
+<span id="L134"><span class="lineNum">     134</span>              :     const VectorXi&amp; swVec_in, const VectorXi&amp; swType,</span>
+<span id="L135"><span class="lineNum">     135</span>              :     const VectorXd&amp; swOnRes, const VectorXd&amp; swOffRes,</span>
+<span id="L136"><span class="lineNum">     136</span>              :     MatrixXcd&amp; Ao, MatrixXcd&amp; Bo, MatrixXcd&amp; Co, MatrixXcd&amp; Do)</span>
+<span id="L137"><span class="lineNum">     137</span>              : {</span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">           7 :     Ao = A0;  Bo = B0;  Co = C0;  Do = D0;</span></span>
+<span id="L139"><span class="lineNum">     139</span>              : </span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC">           7 :     if (!(swType.array() != 0).any() || (swVec_in.array() == 0).all())</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           6 :         return;</span></span>
+<span id="L142"><span class="lineNum">     142</span>              : </span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           1 :     int ns = A0.rows();</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           1 :     int no = C0.rows();</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           1 :     int nsw = (swType.array() == 1).count();</span></span>
+<span id="L146"><span class="lineNum">     146</span>              : </span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaGNC">           1 :     VectorXcd ysw(nsw);</span></span>
+<span id="L148"><span class="lineNum">     148</span> <span class="tlaGNC">           4 :     for (int s = 0; s &lt; nsw; ++s)</span></span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">           6 :         ysw(s) = (swVec_in(s) == 1)</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaGNC">           3 :         ? std::complex&lt;double&gt;(1.0 / swOnRes(s), 0.0)</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaUNC">           0 :         : std::complex&lt;double&gt;(1.0 / swOffRes(s), 0.0);</span></span>
+<span id="L152"><span class="lineNum">     152</span>              : </span>
+<span id="L153"><span class="lineNum">     153</span> <span class="tlaGNC">           1 :     VectorXcd DxCol(no);</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">           1 :     VectorXcd BDcol(ns);</span></span>
+<span id="L155"><span class="lineNum">     155</span>              : </span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           4 :     for (int s = 0; s &lt; nsw; ++s)</span></span>
+<span id="L157"><span class="lineNum">     157</span>              :     {</span>
+<span id="L158"><span class="lineNum">     158</span> <span class="tlaGNC">           3 :         int kSw = swVec_in(s);</span></span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaGNC">           3 :         if (kSw == 0) continue;</span></span>
+<span id="L160"><span class="lineNum">     160</span>              : </span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">           3 :         std::complex&lt;double&gt; tmp = Do(s, s) * ysw(s);</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           3 :         std::complex&lt;double&gt; temp = 1.0 / (1.0 - tmp * static_cast&lt;double&gt;(kSw));</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           3 :         std::complex&lt;double&gt; t2 = ysw(s) * temp * static_cast&lt;double&gt;(kSw);</span></span>
+<span id="L164"><span class="lineNum">     164</span>              : </span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC">          30 :         for (int i = 0; i &lt; no; ++i) DxCol(i) = Do(i, s) * t2;</span></span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">           3 :         DxCol(s) = temp;</span></span>
+<span id="L167"><span class="lineNum">     167</span>              : </span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">          12 :         for (int i = 0; i &lt; ns; ++i)</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           9 :             BDcol(i) = Bo(i, s) * ysw(s) * static_cast&lt;double&gt;(kSw);</span></span>
+<span id="L170"><span class="lineNum">     170</span>              : </span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">           3 :         RowVectorXcd rowC = Co.row(s);</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">           3 :         RowVectorXcd rowD = Do.row(s);</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">           3 :         Co.row(s).setZero();</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC">           3 :         Do.row(s).setZero();</span></span>
+<span id="L175"><span class="lineNum">     175</span>              : </span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">          30 :         for (int i = 0; i &lt; no; ++i) {</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">          27 :             Co.row(i) += DxCol(i) * rowC;</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">          27 :             Do.row(i) += DxCol(i) * rowD;</span></span>
+<span id="L179"><span class="lineNum">     179</span> <span class="tlaGNC">          27 :         }</span></span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaGNC">          12 :         for (int i = 0; i &lt; ns; ++i) {</span></span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           9 :             Ao.row(i) += BDcol(i) * Co.row(s);</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">           9 :             Bo.row(i) += BDcol(i) * Do.row(s);</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           9 :         }</span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           3 :     }</span></span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaGNC">           7 : }</span></span>
+<span id="L186"><span class="lineNum">     186</span>              : </span>
+<span id="L187"><span class="lineNum">     187</span>              : </span>
+<span id="L188"><span class="lineNum">     188</span>              : // ===================================================================</span>
+<span id="L189"><span class="lineNum">     189</span>              : //  run — assembles global state-space, discretizes, DSSS loop</span>
+<span id="L190"><span class="lineNum">     190</span>              : // ===================================================================</span>
+<span id="L191"><span class="lineNum">     191</span>              : </span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           2 : DQsymResult DQsym::run(Config&amp; cfg)</span></span>
+<span id="L193"><span class="lineNum">     193</span>              : {</span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           2 :     if (!net_)</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaUNC">           0 :         throw std::runtime_error(&quot;DQsym::run(): call initialize(Network*) first.&quot;);</span></span>
+<span id="L196"><span class="lineNum">     196</span>              : </span>
+<span id="L197"><span class="lineNum">     197</span>              :     // ---- Step 0: state-space with DQsym mode (B columns in groups of 3) ----</span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">           2 :     StateSpaceModel ssm;</span></span>
+<span id="L199"><span class="lineNum">     199</span> <span class="tlaGNC">           2 :     ssm.formState(net_, cfg.outputBuses, SSMMode::DQsym);</span></span>
+<span id="L200"><span class="lineNum">     200</span>              : </span>
+<span id="L201"><span class="lineNum">     201</span> <span class="tlaGNC">           2 :         cout &lt;&lt; &quot;[DQsym] State-space model formed with DQsym mode.\n&quot;;</span></span>
+<span id="L202"><span class="lineNum">     202</span>              : </span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">           2 :     int nx = ssm.getA().rows();</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">           2 :     int nu = ssm.getB().cols();   // B_dqsym columns (all groups of 3)</span></span>
+<span id="L205"><span class="lineNum">     205</span>              : </span>
+<span id="L206"><span class="lineNum">     206</span>              :     //cout &lt;&lt; &quot;State-space model formed with Standard mode:\n&quot;</span>
+<span id="L207"><span class="lineNum">     207</span>              :     //    &lt;&lt; &quot;A: &quot; &lt;&lt; ssm.getA() &lt;&lt; &quot;\n&quot;</span>
+<span id="L208"><span class="lineNum">     208</span>              :     //    &lt;&lt; &quot;B: &quot; &lt;&lt; ssm.getB() &lt;&lt; &quot;\n&quot;</span>
+<span id="L209"><span class="lineNum">     209</span>              :     //    &lt;&lt; &quot;C: &quot; &lt;&lt; ssm.getC() &lt;&lt; &quot;\n&quot;</span>
+<span id="L210"><span class="lineNum">     210</span>              :     //    &lt;&lt; &quot;D: &quot; &lt;&lt; ssm.getD() &lt;&lt; &quot;\n&quot;;</span>
+<span id="L211"><span class="lineNum">     211</span>              : </span>
+<span id="L212"><span class="lineNum">     212</span>              :     // ---- Step 1: discretize ----</span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">           2 :     MatrixXd Cd_id = Eigen::MatrixXd::Identity(nx, nx);</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           2 :     MatrixXd Dd_z = Eigen::MatrixXd::Zero(nx, nu);</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">           2 :     MatrixXd Ad_r, Bd_r;</span></span>
+<span id="L216"><span class="lineNum">     216</span>              : </span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">           2 :     std::ofstream file(&quot;state_space_outputcont.txt&quot;);</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">           2 :     file &lt;&lt; &quot;State-space model formed:\n\n&quot;</span></span>
+<span id="L219"><span class="lineNum">     219</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Ad_r (&quot; &lt;&lt; ssm.getA().rows() &lt;&lt; &quot;x&quot; &lt;&lt; ssm.getA().cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">           2 :         &lt;&lt; ssm.getA() &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Bd_r (&quot; &lt;&lt; ssm.getB().rows() &lt;&lt; &quot;x&quot; &lt;&lt; ssm.getB().cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">           2 :         &lt;&lt; ssm.getB() &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Cd_id (&quot; &lt;&lt; Cd_id.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Cd_id.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">           2 :         &lt;&lt; Cd_id &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Dd_z (&quot; &lt;&lt; Dd_z.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Dd_z.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L226"><span class="lineNum">     226</span> <span class="tlaGNC">           2 :         &lt;&lt; Dd_z &lt;&lt; &quot;\n\n&quot;;</span></span>
+<span id="L227"><span class="lineNum">     227</span>              : </span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">           2 :     file.close();</span></span>
+<span id="L229"><span class="lineNum">     229</span>              : </span>
+<span id="L230"><span class="lineNum">     230</span> <span class="tlaGNC">           2 :     discretizeABCD(ssm.getA(), ssm.getB(), Cd_id, Dd_z,</span></span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">           2 :         cfg.dt, Ad_r, Bd_r, Cd_id, Dd_z);</span></span>
+<span id="L232"><span class="lineNum">     232</span>              : </span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">           2 :    std::ofstream file1(&quot;state_space_output1.txt&quot;);</span></span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">           2 :     file1 &lt;&lt; &quot;State-space model formed:\n\n&quot;</span></span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Ad_r (&quot; &lt;&lt; Ad_r.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Ad_r.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L236"><span class="lineNum">     236</span> <span class="tlaGNC">           2 :         &lt;&lt; Ad_r &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Bd_r (&quot; &lt;&lt; Bd_r.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Bd_r.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">           2 :         &lt;&lt; Bd_r &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Cd_id (&quot; &lt;&lt; Cd_id.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Cd_id.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaGNC">           2 :         &lt;&lt; Cd_id &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaGNC">           2 :         &lt;&lt; &quot;Dd_z (&quot; &lt;&lt; Dd_z.rows() &lt;&lt; &quot;x&quot; &lt;&lt; Dd_z.cols() &lt;&lt; &quot;):\n\n&quot;</span></span>
+<span id="L242"><span class="lineNum">     242</span> <span class="tlaGNC">           2 :         &lt;&lt; Dd_z &lt;&lt; &quot;\n\n&quot;;</span></span>
+<span id="L243"><span class="lineNum">     243</span>              : </span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           2 :     file1.close();</span></span>
+<span id="L245"><span class="lineNum">     245</span>              : </span>
+<span id="L246"><span class="lineNum">     246</span> <span class="tlaGNC">           2 :     MatrixXcd AdC = Ad_r.cast&lt;std::complex&lt;double&gt;&gt;();</span></span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaGNC">           2 :     MatrixXcd BdC = Bd_r.cast&lt;std::complex&lt;double&gt;&gt;();</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC">           2 :     MatrixXcd CdC = Cd_id.cast&lt;std::complex&lt;double&gt;&gt;();</span></span>
+<span id="L249"><span class="lineNum">     249</span> <span class="tlaGNC">           2 :     MatrixXcd DdC = Dd_z.cast&lt;std::complex&lt;double&gt;&gt;();</span></span>
+<span id="L250"><span class="lineNum">     250</span>              : </span>
+<span id="L251"><span class="lineNum">     251</span>              :     </span>
+<span id="L252"><span class="lineNum">     252</span>              : </span>
+<span id="L253"><span class="lineNum">     253</span>              : </span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC">           2 :     int ny = CdC.rows();</span></span>
+<span id="L255"><span class="lineNum">     255</span> <span class="tlaGNC">           2 :     const int nGroups = (ny + 2) / 3;   // ceil(ny/3); pad below if ny % 3 != 0</span></span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">           2 :     const int padRows = nGroups * 3 - ny;</span></span>
+<span id="L257"><span class="lineNum">     257</span> <span class="tlaGNC">           2 :     VectorXcd xo = VectorXcd::Zero(nx);</span></span>
+<span id="L258"><span class="lineNum">     258</span>              : </span>
+<span id="L259"><span class="lineNum">     259</span>              :     // ---- Step 2: allocate ----</span>
+<span id="L260"><span class="lineNum">     260</span> <span class="tlaGNC">           2 :     const int N = static_cast&lt;int&gt;((cfg.t_end - cfg.t_start) / cfg.dt) + 1;</span></span>
+<span id="L261"><span class="lineNum">     261</span>              : </span>
+<span id="L262"><span class="lineNum">     262</span> <span class="tlaGNC">           2 :     DQsymResult result;</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC">           2 :     result.time.resize(N);</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">           2 :     result.DSSabcHist.assign(nGroups, Eigen::MatrixXd::Zero(N, 3));</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">           2 :     result.brkHistory = Eigen::MatrixXi::Zero(N, cfg.swType.size());</span></span>
+<span id="L266"><span class="lineNum">     266</span>              : </span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaGNC">           2 :     dssState_ = DSSState{};</span></span>
+<span id="L268"><span class="lineNum">     268</span>              : </span>
+<span id="L269"><span class="lineNum">     269</span>              :     // Per-element states for feedback (initialized to zero)</span>
+<span id="L270"><span class="lineNum">     270</span> <span class="tlaGNC">           2 :     std::map&lt;std::string, std::vector&lt;MatrixXcd&gt;&gt; elementStates;</span></span>
+<span id="L271"><span class="lineNum">     271</span> <span class="tlaGNC">           4 :     for (const auto&amp; [name, elem] : converters) {</span></span>
+<span id="L272"><span class="lineNum">     272</span> <span class="tlaGNC">           2 :         int nStates = elem-&gt;getNumberOfPlantStates();</span></span>
+<span id="L273"><span class="lineNum">     273</span> <span class="tlaGNC">           2 :         if (nStates &lt;= 0) continue;</span></span>
+<span id="L274"><span class="lineNum">     274</span> <span class="tlaGNC">           2 :         int nStateGroups = nStates / 3;</span></span>
+<span id="L275"><span class="lineNum">     275</span> <span class="tlaGNC">           2 :         elementStates[name] = std::vector&lt;MatrixXcd&gt;(</span></span>
+<span id="L276"><span class="lineNum">     276</span> <span class="tlaGNC">           2 :             nStateGroups, MatrixXcd::Zero(3, cfg.nKeep));</span></span>
+<span id="L277"><span class="lineNum">     277</span>              :     }</span>
+<span id="L278"><span class="lineNum">     278</span>              : </span>
+<span id="L279"><span class="lineNum">     279</span>              :     // ---- Step 3: main loop ----</span>
+<span id="L280"><span class="lineNum">     280</span> <span class="tlaGNC">      201002 :     for (int k = 0; k &lt; N; ++k)</span></span>
+<span id="L281"><span class="lineNum">     281</span>              :     {</span>
+<span id="L282"><span class="lineNum">     282</span> <span class="tlaGNC">      201000 :         double t = cfg.t_start + k * cfg.dt;</span></span>
+<span id="L283"><span class="lineNum">     283</span> <span class="tlaGNC">      201000 :         double theta = 2.0 * M_PI * cfg.f * t;</span></span>
+<span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC">      201000 :         result.time[k] = t;</span></span>
+<span id="L285"><span class="lineNum">     285</span>              : </span>
+<span id="L286"><span class="lineNum">     286</span>              :         // 3a. Breaker</span>
+<span id="L287"><span class="lineNum">     287</span> <span class="tlaGNC">      402000 :         Eigen::VectorXi brkVec = cfg.breakerFunction</span></span>
+<span id="L288"><span class="lineNum">     288</span> <span class="tlaUNC">           0 :             ? cfg.breakerFunction(k, t)</span></span>
+<span id="L289"><span class="lineNum">     289</span> <span class="tlaGNC">      201000 :             : Eigen::VectorXi::Zero(cfg.swType.size());</span></span>
+<span id="L290"><span class="lineNum">     290</span> <span class="tlaGNC">      201000 :         result.brkHistory.row(k) = brkVec.transpose();</span></span>
+<span id="L291"><span class="lineNum">     291</span>              : </span>
+<span id="L292"><span class="lineNum">     292</span>              :         //add18/5[</span>
+<span id="L293"><span class="lineNum">     293</span>              : </span>
+<span id="L294"><span class="lineNum">     294</span>              :         </span>
+<span id="L295"><span class="lineNum">     295</span>              : </span>
+<span id="L296"><span class="lineNum">     296</span>              :         // 3b. Build u (nu × nKeep) — sources + MMC feedback from previous step</span>
+<span id="L297"><span class="lineNum">     297</span> <span class="tlaGNC">      201000 :         MatrixXcd u = ssm.buildInputVector(cfg.nKeep, elementStates);</span></span>
+<span id="L298"><span class="lineNum">     298</span>              :                 //cout &lt;&lt; &quot;Input vector u at step &quot; &lt;&lt; k &lt;&lt; &quot;:\n&quot; &lt;&lt; u &lt;&lt; &quot;\n&quot;;</span>
+<span id="L299"><span class="lineNum">     299</span>              : </span>
+<span id="L300"><span class="lineNum">     300</span>              : </span>
+<span id="L301"><span class="lineNum">     301</span> <span class="tlaGNC">      402000 :         for (const auto&amp; [name, elem] : converters) {</span></span>
+<span id="L302"><span class="lineNum">     302</span> <span class="tlaGNC">      201000 :             MMC* mmc = dynamic_cast&lt;MMC*&gt;(elem);</span></span>
+<span id="L303"><span class="lineNum">     303</span> <span class="tlaGNC">      201000 :             if (!mmc) continue;</span></span>
+<span id="L304"><span class="lineNum">     304</span>              : </span>
+<span id="L305"><span class="lineNum">     305</span>              :             // Find the AC bus this MMC connects to (terminal 1)</span>
+<span id="L306"><span class="lineNum">     306</span> <span class="tlaGNC">      201000 :             Bus* ac_bus = nullptr;</span></span>
+<span id="L307"><span class="lineNum">     307</span> <span class="tlaGNC">      402000 :             for (auto&amp; [bus, terminal] : mmc-&gt;getConnections()) {</span></span>
+<span id="L308"><span class="lineNum">     308</span> <span class="tlaGNC">      201000 :                 if (terminal == 1) { ac_bus = bus; break; }</span></span>
+<span id="L309"><span class="lineNum">     309</span>              :             }</span>
+<span id="L310"><span class="lineNum">     310</span>              : </span>
+<span id="L311"><span class="lineNum">     311</span>              :             // Find the AC source connected to the same AC bus and read its voltage from u</span>
+<span id="L312"><span class="lineNum">     312</span> <span class="tlaGNC">      201000 :             Eigen::Vector2d Vg_dq(0.0, 0.0);</span></span>
+<span id="L313"><span class="lineNum">     313</span> <span class="tlaGNC">      201000 :             if (ac_bus) {</span></span>
+<span id="L314"><span class="lineNum">     314</span> <span class="tlaGNC">      402000 :                 for (const auto&amp; g : ssm.getInputGroups()) {</span></span>
+<span id="L315"><span class="lineNum">     315</span> <span class="tlaGNC">      402000 :                     if (g.isVirtual) continue;</span></span>
+<span id="L316"><span class="lineNum">     316</span>              :                     // Check if this source connects to our AC bus</span>
+<span id="L317"><span class="lineNum">     317</span> <span class="tlaGNC">      402000 :                     bool found = false;</span></span>
+<span id="L318"><span class="lineNum">     318</span> <span class="tlaGNC">     1205000 :                     for (auto&amp; [bus, terminal] : g.element-&gt;getConnections()) {</span></span>
+<span id="L319"><span class="lineNum">     319</span> <span class="tlaGNC">      803000 :                         if (bus == ac_bus) { found = true; break; }</span></span>
+<span id="L320"><span class="lineNum">     320</span>              :                     }</span>
+<span id="L321"><span class="lineNum">     321</span> <span class="tlaGNC">      402000 :                     if (!found) continue;</span></span>
+<span id="L322"><span class="lineNum">     322</span>              : </span>
+<span id="L323"><span class="lineNum">     323</span>              :                     // Read positive-sequence fundamental: row dqsymStartCol+0, col 1</span>
+<span id="L324"><span class="lineNum">     324</span> <span class="tlaGNC">      201000 :                     if (g.dqsymStartCol &lt; u.rows() &amp;&amp; u.cols() &gt;= 2) {</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">      201000 :                         std::complex&lt;double&gt; v_fund = u(g.dqsymStartCol, 1);</span></span>
+<span id="L326"><span class="lineNum">     326</span> <span class="tlaGNC">      201000 :                         Vg_dq(0) = v_fund.real();</span></span>
+<span id="L327"><span class="lineNum">     327</span> <span class="tlaGNC">      201000 :                         Vg_dq(1) = v_fund.imag();</span></span>
+<span id="L328"><span class="lineNum">     328</span> <span class="tlaGNC">      201000 :                     }</span></span>
+<span id="L329"><span class="lineNum">     329</span> <span class="tlaGNC">      201000 :                     break;</span></span>
+<span id="L330"><span class="lineNum">     330</span>              :                 }</span>
+<span id="L331"><span class="lineNum">     331</span> <span class="tlaGNC">      201000 :             }</span></span>
+<span id="L332"><span class="lineNum">     332</span>              : </span>
+<span id="L333"><span class="lineNum">     333</span> <span class="tlaGNC">      201000 :             if (elementStates.count(name)) {</span></span>
+<span id="L334"><span class="lineNum">     334</span> <span class="tlaGNC">      201000 :                 mmc-&gt;stepControllers(cfg.dt, elementStates.at(name), Vg_dq);</span></span>
+<span id="L335"><span class="lineNum">     335</span> <span class="tlaGNC">      201000 :             }</span></span>
+<span id="L336"><span class="lineNum">     336</span>              :         }</span>
+<span id="L337"><span class="lineNum">     337</span>              :         // === END DQsym closed-loop control: step controllers ===</span>
+<span id="L338"><span class="lineNum">     338</span>              : </span>
+<span id="L339"><span class="lineNum">     339</span>              :         //add18/5]</span>
+<span id="L340"><span class="lineNum">     340</span>              :         </span>
+<span id="L341"><span class="lineNum">     341</span>              : </span>
+<span id="L342"><span class="lineNum">     342</span>              :         // 3c. DSSS</span>
+<span id="L343"><span class="lineNum">     343</span> <span class="tlaGNC">      402000 :         MatrixXcd y = DSSS(dssState_, AdC, BdC, CdC, DdC,</span></span>
+<span id="L344"><span class="lineNum">     344</span> <span class="tlaGNC">      201000 :             cfg.swOnRes, cfg.swOffRes, cfg.swType, brkVec,</span></span>
+<span id="L345"><span class="lineNum">     345</span> <span class="tlaGNC">      201000 :             u, xo, cfg.dt, cfg.f);</span></span>
+<span id="L346"><span class="lineNum">     346</span>              : </span>
+<span id="L347"><span class="lineNum">     347</span>              : </span>
+<span id="L348"><span class="lineNum">     348</span> <span class="tlaGNC">      201000 :         if (k == 6000) {</span></span>
+<span id="L349"><span class="lineNum">     349</span>              : </span>
+<span id="L350"><span class="lineNum">     350</span> <span class="tlaGNC">           1 :             std::ofstream file(&quot;state_space_output2.txt&quot;);</span></span>
+<span id="L351"><span class="lineNum">     351</span>              : </span>
+<span id="L352"><span class="lineNum">     352</span> <span class="tlaGNC">           1 :             file &lt;&lt; &quot;State-space model formed with Standard mode:\n\n&quot;</span></span>
+<span id="L353"><span class="lineNum">     353</span>              : </span>
+<span id="L354"><span class="lineNum">     354</span> <span class="tlaGNC">           1 :                 &lt;&lt; &quot;A (&quot; &lt;&lt; AdC.rows() &lt;&lt; &quot;x&quot; &lt;&lt; AdC.cols() &lt;&lt; &quot;):\n&quot;</span></span>
+<span id="L355"><span class="lineNum">     355</span> <span class="tlaGNC">           1 :                 &lt;&lt; AdC &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L356"><span class="lineNum">     356</span>              : </span>
+<span id="L357"><span class="lineNum">     357</span> <span class="tlaGNC">           1 :                 &lt;&lt; &quot;B (&quot; &lt;&lt; BdC.rows() &lt;&lt; &quot;x&quot; &lt;&lt; BdC.cols() &lt;&lt; &quot;):\n&quot;</span></span>
+<span id="L358"><span class="lineNum">     358</span> <span class="tlaGNC">           1 :                 &lt;&lt; BdC &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L359"><span class="lineNum">     359</span>              : </span>
+<span id="L360"><span class="lineNum">     360</span> <span class="tlaGNC">           1 :                 &lt;&lt; &quot;C (&quot; &lt;&lt; CdC.rows() &lt;&lt; &quot;x&quot; &lt;&lt; CdC.cols() &lt;&lt; &quot;):\n&quot;</span></span>
+<span id="L361"><span class="lineNum">     361</span> <span class="tlaGNC">           1 :                 &lt;&lt; CdC &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L362"><span class="lineNum">     362</span>              : </span>
+<span id="L363"><span class="lineNum">     363</span> <span class="tlaGNC">           1 :                 &lt;&lt; &quot;D (&quot; &lt;&lt; DdC.rows() &lt;&lt; &quot;x&quot; &lt;&lt; DdC.cols() &lt;&lt; &quot;):\n&quot;</span></span>
+<span id="L364"><span class="lineNum">     364</span> <span class="tlaGNC">           1 :                 &lt;&lt; DdC &lt;&lt; &quot;\n\n&quot;</span></span>
+<span id="L365"><span class="lineNum">     365</span>              : </span>
+<span id="L366"><span class="lineNum">     366</span> <span class="tlaGNC">           1 :                 &lt;&lt; &quot;u (&quot; &lt;&lt; u.rows() &lt;&lt; &quot;x&quot; &lt;&lt; u.cols() &lt;&lt; &quot;):\n&quot;</span></span>
+<span id="L367"><span class="lineNum">     367</span> <span class="tlaGNC">           1 :                 &lt;&lt; u &lt;&lt; &quot;\n&quot;;</span></span>
+<span id="L368"><span class="lineNum">     368</span>              : </span>
+<span id="L369"><span class="lineNum">     369</span> <span class="tlaGNC">           1 :             file.close();</span></span>
+<span id="L370"><span class="lineNum">     370</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L371"><span class="lineNum">     371</span>              :                 //cout &lt;&lt; y &lt;&lt; &quot;\n&quot;;</span>
+<span id="L372"><span class="lineNum">     372</span>              : </span>
+<span id="L373"><span class="lineNum">     373</span>              :         // 3d. Extract state groups, update elementStates for next step</span>
+<span id="L374"><span class="lineNum">     374</span> <span class="tlaGNC">      402000 :         for (const auto&amp; [name, elem] : converters) {</span></span>
+<span id="L375"><span class="lineNum">     375</span> <span class="tlaGNC">      201000 :             int nStates = elem-&gt;getNumberOfPlantStates();</span></span>
+<span id="L376"><span class="lineNum">     376</span> <span class="tlaGNC">      201000 :             if (nStates &lt;= 0) continue;</span></span>
+<span id="L377"><span class="lineNum">     377</span>              : </span>
+<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">      201000 :             int startRow = ssm.getStateIndex(name, 0);</span></span>
+<span id="L379"><span class="lineNum">     379</span> <span class="tlaGNC">      201000 :             if (startRow &lt; 0) continue;</span></span>
+<span id="L380"><span class="lineNum">     380</span>              : </span>
+<span id="L381"><span class="lineNum">     381</span> <span class="tlaGNC">      201000 :             int nStateGroups = nStates / 3;</span></span>
+<span id="L382"><span class="lineNum">     382</span> <span class="tlaGNC">      201000 :             std::vector&lt;MatrixXcd&gt; groups(nStateGroups);</span></span>
+<span id="L383"><span class="lineNum">     383</span> <span class="tlaGNC">     1005000 :             for (int g = 0; g &lt; nStateGroups; ++g)</span></span>
+<span id="L384"><span class="lineNum">     384</span> <span class="tlaGNC">      804000 :                 groups[g] = y.block(startRow + 3 * g, 0, 3, cfg.nKeep);</span></span>
+<span id="L385"><span class="lineNum">     385</span>              : </span>
+<span id="L386"><span class="lineNum">     386</span> <span class="tlaGNC">      201000 :             elementStates[name] = groups;</span></span>
+<span id="L387"><span class="lineNum">     387</span> <span class="tlaGNC">      201000 :         }</span></span>
+<span id="L388"><span class="lineNum">     388</span>              : </span>
+<span id="L389"><span class="lineNum">     389</span>              :         // 3e. ABC reconstruction (pad state rows to a multiple of 3 when needed)</span>
+<span id="L390"><span class="lineNum">     390</span> <span class="tlaGNC">      201000 :         MatrixXcd yPlot = y;</span></span>
+<span id="L391"><span class="lineNum">     391</span> <span class="tlaGNC">      201000 :         if (padRows &gt; 0) {</span></span>
+<span id="L392"><span class="lineNum">     392</span> <span class="tlaUNC">           0 :             MatrixXcd pad = MatrixXcd::Zero(padRows, y.cols());</span></span>
+<span id="L393"><span class="lineNum">     393</span> <span class="tlaUNC">           0 :             yPlot.resize(ny + padRows, y.cols());</span></span>
+<span id="L394"><span class="lineNum">     394</span> <span class="tlaUNC">           0 :             yPlot.topRows(ny) = y;</span></span>
+<span id="L395"><span class="lineNum">     395</span> <span class="tlaUNC">           0 :             yPlot.bottomRows(padRows).setZero();</span></span>
+<span id="L396"><span class="lineNum">     396</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L397"><span class="lineNum">     397</span> <span class="tlaGNC">      201000 :         auto abcGroups = dqn2abc_groups_at_time(yPlot, theta);</span></span>
+<span id="L398"><span class="lineNum">     398</span> <span class="tlaGNC">     1005000 :         for (int g = 0; g &lt; nGroups &amp;&amp; g &lt; (int)abcGroups.size(); ++g)</span></span>
+<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">      804000 :             result.DSSabcHist[g].row(k) = abcGroups[g].transpose();</span></span>
+<span id="L400"><span class="lineNum">     400</span> <span class="tlaGNC">      201000 :     }</span></span>
+<span id="L401"><span class="lineNum">     401</span>              : </span>
+<span id="L402"><span class="lineNum">     402</span> <span class="tlaGNC">           2 :     cout &lt;&lt; &quot;Simulation completed with &quot; &lt;&lt; N &lt;&lt; &quot; steps and &quot;</span></span>
+<span id="L403"><span class="lineNum">     403</span> <span class="tlaGNC">           2 :                 &lt;&lt; nGroups &lt;&lt; &quot; groups.\n&quot;;</span></span>
+<span id="L404"><span class="lineNum">     404</span>              : </span>
+<span id="L405"><span class="lineNum">     405</span> <span class="tlaGNC">           2 :     result_ = result;</span></span>
+<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">           2 :     hasRun_ = true;</span></span>
+<span id="L407"><span class="lineNum">     407</span> <span class="tlaGNC">           2 :     return result;</span></span>
+<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L409"><span class="lineNum">     409</span>              : </span>
+<span id="L410"><span class="lineNum">     410</span>              : </span>
+<span id="L411"><span class="lineNum">     411</span>              : </span>
+<span id="L412"><span class="lineNum">     412</span>              : // ===================================================================</span>
+<span id="L413"><span class="lineNum">     413</span>              : //  Results</span>
+<span id="L414"><span class="lineNum">     414</span>              : // ===================================================================</span>
+<span id="L415"><span class="lineNum">     415</span>              : </span>
+<span id="L416"><span class="lineNum">     416</span>              : //void DQsym::exportCSV(const std::string&amp; filename) const</span>
+<span id="L417"><span class="lineNum">     417</span>              : //{</span>
+<span id="L418"><span class="lineNum">     418</span>              : //    if (!hasRun_)</span>
+<span id="L419"><span class="lineNum">     419</span>              : //        throw std::runtime_error(&quot;exportCSV() before run().&quot;);</span>
+<span id="L420"><span class="lineNum">     420</span>              : //</span>
+<span id="L421"><span class="lineNum">     421</span>              : //    std::vector&lt;Eigen::MatrixXd&gt; values = {};</span>
+<span id="L422"><span class="lineNum">     422</span>              : //    values.push_back(result_.brkHistory.cast&lt;double&gt;());</span>
+<span id="L423"><span class="lineNum">     423</span>              : //    for (const auto&amp; m : result_.DSSabcHist) {</span>
+<span id="L424"><span class="lineNum">     424</span>              : //        values.push_back(m);</span>
+<span id="L425"><span class="lineNum">     425</span>              : //              cout &lt;&lt; &quot;DSSabcHist group with shape (&quot; &lt;&lt; m.rows() &lt;&lt; &quot;x&quot; &lt;&lt; m.cols() &lt;&lt; &quot;)\n&quot;;</span>
+<span id="L426"><span class="lineNum">     426</span>              : //    }</span>
+<span id="L427"><span class="lineNum">     427</span>              : //</span>
+<span id="L428"><span class="lineNum">     428</span>              : //    std::vector&lt;std::string&gt; headers;</span>
+<span id="L429"><span class="lineNum">     429</span>              : //    headers.push_back(&quot;brk&quot;);</span>
+<span id="L430"><span class="lineNum">     430</span>              : //    for (int g = 0; g &lt; static_cast&lt;int&gt;(result_.DSSabcHist.size()); ++g)</span>
+<span id="L431"><span class="lineNum">     431</span>              : //        headers.push_back(&quot;state_abc&quot; + std::to_string(g + 1));</span>
+<span id="L432"><span class="lineNum">     432</span>              : //</span>
+<span id="L433"><span class="lineNum">     433</span>              : //      cout &lt;&lt; &quot;Exporting CSV with &quot; &lt;&lt; values.size() &lt;&lt; &quot; matrices and headers: &quot;;</span>
+<span id="L434"><span class="lineNum">     434</span>              : //</span>
+<span id="L435"><span class="lineNum">     435</span>              : //    write_file(result_.time, values, headers, filename);</span>
+<span id="L436"><span class="lineNum">     436</span>              : //}</span>
+<span id="L437"><span class="lineNum">     437</span> <span class="tlaGNC">           1 : void DQsym::exportCSV(const std::string&amp; filename) const</span></span>
+<span id="L438"><span class="lineNum">     438</span>              : {</span>
+<span id="L439"><span class="lineNum">     439</span> <span class="tlaGNC">           1 :     if (!hasRun_)</span></span>
+<span id="L440"><span class="lineNum">     440</span> <span class="tlaUNC">           0 :         throw std::runtime_error(&quot;exportCSV() before run().&quot;);</span></span>
+<span id="L441"><span class="lineNum">     441</span>              : </span>
+<span id="L442"><span class="lineNum">     442</span> <span class="tlaGNC">           1 :     std::vector&lt;Eigen::MatrixXd&gt; values = {};</span></span>
+<span id="L443"><span class="lineNum">     443</span> <span class="tlaGNC">           5 :     for (const auto&amp; m : result_.DSSabcHist)</span></span>
+<span id="L444"><span class="lineNum">     444</span> <span class="tlaGNC">           4 :         values.push_back(m);</span></span>
+<span id="L445"><span class="lineNum">     445</span>              : </span>
+<span id="L446"><span class="lineNum">     446</span> <span class="tlaGNC">           1 :     std::vector&lt;std::string&gt; headers;</span></span>
+<span id="L447"><span class="lineNum">     447</span> <span class="tlaGNC">           5 :     for (int g = 0; g &lt; static_cast&lt;int&gt;(result_.DSSabcHist.size()); ++g)</span></span>
+<span id="L448"><span class="lineNum">     448</span> <span class="tlaGNC">           4 :         headers.push_back(&quot;state_abc&quot; + std::to_string(g + 1));</span></span>
+<span id="L449"><span class="lineNum">     449</span>              : </span>
+<span id="L450"><span class="lineNum">     450</span> <span class="tlaGNC">           1 :     write_file(result_.time, values, headers, filename);</span></span>
+<span id="L451"><span class="lineNum">     451</span> <span class="tlaGNC">           1 :     cout &lt;&lt; &quot;CSV file saved&quot; &lt;&lt; &quot;\n&quot;;</span></span>
+<span id="L452"><span class="lineNum">     452</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L453"><span class="lineNum">     453</span>              : </span>
+<span id="L454"><span class="lineNum">     454</span> <span class="tlaUNC">           0 : void DQsym::plot() const</span></span>
+<span id="L455"><span class="lineNum">     455</span>              : {</span>
+<span id="L456"><span class="lineNum">     456</span> <span class="tlaUNC">           0 :     if (!hasRun_)</span></span>
+<span id="L457"><span class="lineNum">     457</span> <span class="tlaUNC">           0 :         throw std::runtime_error(&quot;plot() before run().&quot;);</span></span>
+<span id="L458"><span class="lineNum">     458</span>              : </span>
+<span id="L459"><span class="lineNum">     459</span> <span class="tlaUNC">           0 :     plot_abc_groups_implot(result_.time, result_.DSSabcHist,</span></span>
+<span id="L460"><span class="lineNum">     460</span> <span class="tlaUNC">           0 :         &quot;State-space outputs (abc)&quot;);</span></span>
+<span id="L461"><span class="lineNum">     461</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L462"><span class="lineNum">     462</span>              : </span>
+<span id="L463"><span class="lineNum">     463</span> <span class="tlaUNC">           0 : void DQsym::setResult(DQsymResult result)</span></span>
+<span id="L464"><span class="lineNum">     464</span>              : {</span>
+<span id="L465"><span class="lineNum">     465</span> <span class="tlaUNC">           0 :     result_ = std::move(result);</span></span>
+<span id="L466"><span class="lineNum">     466</span> <span class="tlaUNC">           0 :     hasRun_ = true;</span></span>
+<span id="L467"><span class="lineNum">     467</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L468"><span class="lineNum">     468</span>              : </span>
+<span id="L469"><span class="lineNum">     469</span> <span class="tlaUNC">           0 : const DQsymResult&amp; DQsym::getResult() const</span></span>
+<span id="L470"><span class="lineNum">     470</span>              : {</span>
+<span id="L471"><span class="lineNum">     471</span> <span class="tlaUNC">           0 :     if (!hasRun_)</span></span>
+<span id="L472"><span class="lineNum">     472</span> <span class="tlaUNC">           0 :         throw std::runtime_error(&quot;getResult() before run().&quot;);</span></span>
+<span id="L473"><span class="lineNum">     473</span> <span class="tlaUNC">           0 :     return result_;</span></span>
+<span id="L474"><span class="lineNum">     474</span> <span class="tlaUNC">           0 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

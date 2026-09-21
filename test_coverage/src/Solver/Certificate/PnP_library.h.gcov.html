@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Solver/Certificate/PnP_library.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Solver/Certificate">src/Solver/Certificate</a> - PnP_library.h<span style="font-size: 80%;"> (source / <a href="PnP_library.h.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">8</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">92.3&nbsp;%</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">12</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : #ifndef PNP_LIBRARY_H</span>
+<span id="L2"><span class="lineNum">       2</span>              : #define PNP_LIBRARY_H</span>
+<span id="L3"><span class="lineNum">       3</span>              : </span>
+<span id="L4"><span class="lineNum">       4</span>              : /**</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * @file PnP_library.h</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * @brief Workflow 2 — catalog of device certificate results for plug-and-play.</span>
+<span id="L7"><span class="lineNum">       7</span>              :  */</span>
+<span id="L8"><span class="lineNum">       8</span>              : </span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;Device_gate.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : </span>
+<span id="L11"><span class="lineNum">      11</span>              : #include &lt;string&gt;</span>
+<span id="L12"><span class="lineNum">      12</span>              : #include &lt;vector&gt;</span>
+<span id="L13"><span class="lineNum">      13</span>              : </span>
+<span id="L14"><span class="lineNum">      14</span>              : /** @brief One catalog entry for a certified (or rejected) device. */</span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">           8 : struct PnPDeviceRecord {</span></span>
+<span id="L16"><span class="lineNum">      16</span>              :         std::string device_id;</span>
+<span id="L17"><span class="lineNum">      17</span>              :         std::string device_type; ///&lt; e.g. &quot;MMC_GFM&quot;, &quot;MMC_GFL&quot;</span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           4 :         bool allow = false;</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           4 :         double worst_passivity = 0.0;</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           4 :         double worst_phase_deg = 0.0;</span></span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           4 :         double worst_shifted = 0.0;</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           4 :         double phase_limit_deg = 90.0;</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           4 :         double f_min_Hz = 1.0;</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">           4 :         double f_max_Hz = 1000.0;</span></span>
+<span id="L25"><span class="lineNum">      25</span>              :         std::string notes;</span>
+<span id="L26"><span class="lineNum">      26</span>              : };</span>
+<span id="L27"><span class="lineNum">      27</span>              : </span>
+<span id="L28"><span class="lineNum">      28</span>              : /**</span>
+<span id="L29"><span class="lineNum">      29</span>              :  * @brief In-memory / JSON-backed library of device gate results.</span>
+<span id="L30"><span class="lineNum">      30</span>              :  *</span>
+<span id="L31"><span class="lineNum">      31</span>              :  * Use after running @ref evaluateDeviceGate on candidate converters; persist</span>
+<span id="L32"><span class="lineNum">      32</span>              :  * with @ref saveJson / reload with @ref loadJson for PnP screening.</span>
+<span id="L33"><span class="lineNum">      33</span>              :  */</span>
+<span id="L34"><span class="lineNum">      34</span>              : class PnPCertificateLibrary {</span>
+<span id="L35"><span class="lineNum">      35</span>              : public:</span>
+<span id="L36"><span class="lineNum">      36</span>              :         void clear();</span>
+<span id="L37"><span class="lineNum">      37</span>              :         void add(const PnPDeviceRecord&amp; rec);</span>
+<span id="L38"><span class="lineNum">      38</span>              :         void addFromGate(const DeviceGateResult&amp; gate, const std::string&amp; device_type = &quot;&quot;);</span>
+<span id="L39"><span class="lineNum">      39</span>              : </span>
+<span id="L40"><span class="lineNum">      40</span>              :         const std::vector&lt;PnPDeviceRecord&gt;&amp; records() const { return records_; }</span>
+<span id="L41"><span class="lineNum">      41</span>              :         std::size_t size() const { return records_.size(); }</span>
+<span id="L42"><span class="lineNum">      42</span>              : </span>
+<span id="L43"><span class="lineNum">      43</span>              :         /** @brief Lookup by id; returns nullptr if missing. */</span>
+<span id="L44"><span class="lineNum">      44</span>              :         const PnPDeviceRecord* find(const std::string&amp; device_id) const;</span>
+<span id="L45"><span class="lineNum">      45</span>              : </span>
+<span id="L46"><span class="lineNum">      46</span>              :         /** @brief True if id exists and allow==true. */</span>
+<span id="L47"><span class="lineNum">      47</span>              :         bool isAllowed(const std::string&amp; device_id) const;</span>
+<span id="L48"><span class="lineNum">      48</span>              : </span>
+<span id="L49"><span class="lineNum">      49</span>              :         void saveJson(const std::string&amp; path) const;</span>
+<span id="L50"><span class="lineNum">      50</span>              :         void loadJson(const std::string&amp; path);</span>
+<span id="L51"><span class="lineNum">      51</span>              :         void saveCsv(const std::string&amp; path) const;</span>
+<span id="L52"><span class="lineNum">      52</span>              : </span>
+<span id="L53"><span class="lineNum">      53</span>              :         /** @brief Count of allow / block entries. */</span>
+<span id="L54"><span class="lineNum">      54</span>              :         void printSummary() const;</span>
+<span id="L55"><span class="lineNum">      55</span>              : </span>
+<span id="L56"><span class="lineNum">      56</span>              : private:</span>
+<span id="L57"><span class="lineNum">      57</span>              :         std::vector&lt;PnPDeviceRecord&gt; records_;</span>
+<span id="L58"><span class="lineNum">      58</span>              : };</span>
+<span id="L59"><span class="lineNum">      59</span>              : </span>
+<span id="L60"><span class="lineNum">      60</span>              : #endif // PNP_LIBRARY_H</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

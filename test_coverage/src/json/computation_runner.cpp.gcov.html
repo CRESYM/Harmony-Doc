@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/json/computation_runner.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/json">src/json</a> - computation_runner.cpp<span style="font-size: 80%;"> (source / <a href="computation_runner.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryMed">81.6&nbsp;%</td>
+            <td class="headerCovTableEntry">217</td>
+            <td class="headerCovTableEntry">177</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">90.9&nbsp;%</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntry">20</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * @file computation_runner.cpp</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * @brief Extensible JSON computation dispatch (OPF, DQsym, …).</span>
+<span id="L4"><span class="lineNum">       4</span>              :  */</span>
+<span id="L5"><span class="lineNum">       5</span>              : #include &quot;computation_runner.h&quot;</span>
+<span id="L6"><span class="lineNum">       6</span>              : </span>
+<span id="L7"><span class="lineNum">       7</span>              : #include &quot;../Include_components.h&quot;</span>
+<span id="L8"><span class="lineNum">       8</span>              : #include &quot;../Solver/DQsym/DQsym.h&quot;</span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;../Solver/Stability_Estimate/Stability_estimate.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : #include &quot;../Solver/OPF/Powerflow.h&quot;</span>
+<span id="L11"><span class="lineNum">      11</span>              : </span>
+<span id="L12"><span class="lineNum">      12</span>              : #include &lt;cctype&gt;</span>
+<span id="L13"><span class="lineNum">      13</span>              : #include &lt;filesystem&gt;</span>
+<span id="L14"><span class="lineNum">      14</span>              : </span>
+<span id="L15"><span class="lineNum">      15</span>              : </span>
+<span id="L16"><span class="lineNum">      16</span>              : namespace {</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          20 : bool jsonPlotRequested(const JSON&amp; calc, const bool plottingEnabled) {</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">          20 :         return plottingEnabled &amp;&amp; calc.value(&quot;plot&quot;, false);</span></span>
+<span id="L20"><span class="lineNum">      20</span>              : }</span>
+<span id="L21"><span class="lineNum">      21</span>              : </span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           5 : bool jsonPlotResultRequested(const JSON&amp; calc, const bool plottingEnabled) {</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           5 :         return plottingEnabled &amp;&amp; calc.value(&quot;plot_result&quot;, false);</span></span>
+<span id="L24"><span class="lineNum">      24</span>              : }</span>
+<span id="L25"><span class="lineNum">      25</span>              : </span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaUNC">           0 : std::string lowerCopy(std::string value) {</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaUNC">           0 :         std::transform(value.begin(), value.end(), value.begin(),</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :                 [](unsigned char c) { return static_cast&lt;char&gt;(std::tolower(c)); });</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaUNC">           0 :         return value;</span></span>
+<span id="L30"><span class="lineNum">      30</span>              : }</span>
+<span id="L31"><span class="lineNum">      31</span>              : </span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">          19 : FrequencyRange parseFrequencyRangeLocal(const JSON&amp; rangeJson) {</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          19 :         FrequencyRange range;</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">          19 :         range.start = rangeJson.value(&quot;start&quot;, range.start);</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">          19 :         range.end = rangeJson.value(&quot;end&quot;, range.end);</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          19 :         if (rangeJson.contains(&quot;step&quot;) &amp;&amp; rangeJson.at(&quot;step&quot;).is_number()) {</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">           1 :                 const double step = rangeJson.at(&quot;step&quot;).get&lt;double&gt;();</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           1 :                 if (step &gt; 0.0 &amp;&amp; range.end &gt;= range.start) {</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           1 :                         range.points = static_cast&lt;int&gt;((range.end - range.start) / step) + 1;</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">           1 :                 }</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">          18 :         else if (rangeJson.contains(&quot;points&quot;) &amp;&amp; rangeJson.at(&quot;points&quot;).is_number_integer()) {</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">          18 :                 range.points = rangeJson.at(&quot;points&quot;).get&lt;int&gt;();</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">          18 :         }</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">          19 :         range.points = std::max(range.points, 2);</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">          19 :         return range;</span></span>
+<span id="L47"><span class="lineNum">      47</span>              : }</span>
+<span id="L48"><span class="lineNum">      48</span>              : </span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">          17 : void runYMatrix(const JSON&amp; calc, Network&amp; network, const JSON&amp; defaultRange, const bool plottingEnabled) {</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">          17 :         const JSON rangeJson = calc.value(&quot;frequency_range&quot;, defaultRange);</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaGNC">          17 :         const FrequencyRange range = parseFrequencyRangeLocal(rangeJson);</span></span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">          54 :         for (const auto&amp; [id, elem] : network.getElements()) {</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">          37 :                 if (calc.contains(&quot;component_id&quot;) &amp;&amp; calc.at(&quot;component_id&quot;) != id) {</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">          20 :                         continue;</span></span>
+<span id="L55"><span class="lineNum">      55</span>              :                 }</span>
+<span id="L56"><span class="lineNum">      56</span>              :                 // Converters need an equilibrium + ABCD before Y(s) = C(sI-A)^{-1}B+D</span>
+<span id="L57"><span class="lineNum">      57</span>              :                 // is meaningful; without this the JSON path wrote an all-zero matrix.</span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">          17 :                 if (auto* conv = dynamic_cast&lt;Converter*&gt;(elem)) {</span></span>
+<span id="L59"><span class="lineNum">      59</span>              :                         try {</span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">           3 :                                 conv-&gt;solveEquilibrium();</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">           3 :                                 conv-&gt;computeABCD();</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">           3 :                         }</span></span>
+<span id="L63"><span class="lineNum">      63</span>              :                         catch (const std::exception&amp; ex) {</span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC">           0 :                                 std::cerr &lt;&lt; &quot;[y_matrix] '&quot; &lt;&lt; id &lt;&lt; &quot;' linearisation failed: &quot;</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaUNC">           0 :                                         &lt;&lt; ex.what() &lt;&lt; &quot;\n&quot;;</span></span>
+<span id="L66"><span class="lineNum">      66</span>              :                                 continue;</span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaUNC">           0 :                         }</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">           3 :                 }</span></span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">          17 :                 std::cout &lt;&lt; &quot;Computing Y-matrix for '&quot; &lt;&lt; id &lt;&lt; &quot;' (&quot;</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">          17 :                         &lt;&lt; range.start &lt;&lt; &quot;-&quot; &lt;&lt; range.end &lt;&lt; &quot; Hz, &quot;</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">          17 :                         &lt;&lt; range.points &lt;&lt; &quot; points)\n&quot;;</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">          17 :                 elem-&gt;writeFile(range.start, range.end, range.points);</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">          17 :                 if (jsonPlotRequested(calc, plottingEnabled)) {</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaUNC">           0 :                         elem-&gt;plotYParameters(range.start, range.end, range.points);</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L76"><span class="lineNum">      76</span>              :         }</span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">          17 : }</span></span>
+<span id="L78"><span class="lineNum">      78</span>              : </span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">           2 : void runStabilityPlots(</span></span>
+<span id="L80"><span class="lineNum">      80</span>              :         StabilityEstimate&amp; stability,</span>
+<span id="L81"><span class="lineNum">      81</span>              :         const JSON&amp; calc,</span>
+<span id="L82"><span class="lineNum">      82</span>              :         const FrequencyRange&amp; range,</span>
+<span id="L83"><span class="lineNum">      83</span>              :         const bool plottingEnabled)</span>
+<span id="L84"><span class="lineNum">      84</span>              : {</span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">           2 :         if (!jsonPlotRequested(calc, plottingEnabled)) {</span></span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">           2 :                 return;</span></span>
+<span id="L87"><span class="lineNum">      87</span>              :         }</span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaUNC">           0 :         if (!calc.contains(&quot;converter_id&quot;) || !calc.contains(&quot;location&quot;)) {</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaUNC">           0 :                 throw std::invalid_argument(</span></span>
+<span id="L90"><span class="lineNum">      90</span>              :                         &quot;stability_assessment 'plot' requires 'converter_id' and 'location'.\n&quot;);</span>
+<span id="L91"><span class="lineNum">      91</span>              :         }</span>
+<span id="L92"><span class="lineNum">      92</span>              : </span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaUNC">           0 :         const std::string converterId = calc.at(&quot;converter_id&quot;).get&lt;std::string&gt;();</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaUNC">           0 :         const std::string location = calc.at(&quot;location&quot;).get&lt;std::string&gt;();</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaUNC">           0 :         const std::string plotType = lowerCopy(calc.value(&quot;plot_type&quot;, std::string(&quot;bode&quot;)));</span></span>
+<span id="L96"><span class="lineNum">      96</span>              : </span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaUNC">           0 :         if (plotType == &quot;bode&quot;) {</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaUNC">           0 :                 stability.bodeplotTF(converterId, location, range.start, range.end, range.points);</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaUNC">           0 :         else if (plotType == &quot;nyquist&quot;) {</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaUNC">           0 :                 stability.nyquistplotTF(converterId, location, range.start, range.end, range.points);</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L103"><span class="lineNum">     103</span>              :         else {</span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaUNC">           0 :                 throw std::invalid_argument(</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaUNC">           0 :                         &quot;stability_assessment 'plot_type' must be 'bode' or 'nyquist', got '&quot; + plotType + &quot;'.\n&quot;);</span></span>
+<span id="L106"><span class="lineNum">     106</span>              :         }</span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L108"><span class="lineNum">     108</span>              : </span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">           5 : void runOpf(const JSON&amp; calc, Network&amp; network, const JSON&amp; simulationConfig, const bool plottingEnabled) {</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">           5 :         PowerFlow pf;</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">           5 :         if (calc.contains(&quot;case_name&quot;)) {</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">           3 :                 const std::string acCase = calc.at(&quot;case_name&quot;).get&lt;std::string&gt;();</span></span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaGNC">           3 :                 const std::string dcCase = calc.value(&quot;dc_case_name&quot;, acCase);</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaGNC">           3 :                 pf.solve_opf(</span></span>
+<span id="L115"><span class="lineNum">     115</span>              :                         dcCase,</span>
+<span id="L116"><span class="lineNum">     116</span>              :                         acCase,</span>
+<span id="L117"><span class="lineNum">     117</span>              :                         nullptr,</span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaGNC">           3 :                         calc.value(&quot;vsc_control&quot;, true),</span></span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">           3 :                         calc.value(&quot;write_txt&quot;, false),</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">           3 :                         jsonPlotResultRequested(calc, plottingEnabled),</span></span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaGNC">           3 :                         calc.value(&quot;print_info&quot;, false));</span></span>
+<span id="L122"><span class="lineNum">     122</span>              :                 return;</span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaGNC">           3 :         }</span></span>
+<span id="L124"><span class="lineNum">     124</span>              : </span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">           2 :         std::map&lt;std::string, double&gt; globalParams;</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">           2 :         globalParams[&quot;baseMVA&quot;] = simulationConfig.value(&quot;nominal_power&quot;, 100.0);</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">           2 :         globalParams[&quot;ACbaseKV&quot;] = simulationConfig.value(&quot;nominal_voltage&quot;, 345.0);</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">           2 :         globalParams[&quot;DCbaseKV&quot;] = simulationConfig.value(&quot;dc_nominal_voltage&quot;, 400.0);</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">           2 :         globalParams[&quot;omega&quot;] = simulationConfig.value(&quot;omega&quot;, 2.0 * M_PI * 50.0);</span></span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">           2 :         globalParams[&quot;ACZbase&quot;] =</span></span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">           2 :                 globalParams[&quot;ACbaseKV&quot;] * globalParams[&quot;ACbaseKV&quot;] / globalParams[&quot;baseMVA&quot;];</span></span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">           2 :         globalParams[&quot;DCZbase&quot;] =</span></span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaGNC">           2 :                 globalParams[&quot;DCbaseKV&quot;] * globalParams[&quot;DCbaseKV&quot;] / globalParams[&quot;baseMVA&quot;];</span></span>
+<span id="L134"><span class="lineNum">     134</span>              : </span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">           4 :         pf.make_OPF(&amp;network, globalParams,</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">           2 :                 calc.value(&quot;vsc_control&quot;, true),</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaGNC">           2 :                 calc.value(&quot;write_txt&quot;, false),</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">           2 :                 jsonPlotResultRequested(calc, plottingEnabled),</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaGNC">           2 :                 calc.value(&quot;print_info&quot;, true));</span></span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC">           5 : }</span></span>
+<span id="L141"><span class="lineNum">     141</span>              : </span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           1 : void runDqsym(const JSON&amp; calc, Network&amp; network, const bool plottingEnabled) {</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           1 :         DQsym dq;</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           1 :         dq.initialize(&amp;network);</span></span>
+<span id="L145"><span class="lineNum">     145</span>              : </span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaGNC">           1 :         Config cfg;</span></span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaGNC">           1 :         cfg.dt = calc.value(&quot;dt&quot;, 2e-5);</span></span>
+<span id="L148"><span class="lineNum">     148</span> <span class="tlaGNC">           1 :         cfg.t_start = calc.value(&quot;t_start&quot;, 0.0);</span></span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">           1 :         cfg.t_end = calc.value(&quot;t_end&quot;, 0.1);</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaGNC">           1 :         cfg.f = calc.value(&quot;frequency&quot;, 50.0);</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">           1 :         cfg.omega = 2.0 * M_PI * cfg.f;</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaGNC">           1 :         cfg.nKeep = calc.value(&quot;n_keep&quot;, 5);</span></span>
+<span id="L153"><span class="lineNum">     153</span>              : </span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">           1 :         const int swCount = calc.value(&quot;switch_count&quot;, 1);</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">           1 :         cfg.swOnRes = Eigen::VectorXd::Constant(swCount, 0.01);</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           1 :         cfg.swOffRes = Eigen::VectorXd::Constant(swCount, 1e6);</span></span>
+<span id="L157"><span class="lineNum">     157</span> <span class="tlaGNC">           1 :         cfg.swType = Eigen::VectorXi::Zero(swCount);</span></span>
+<span id="L158"><span class="lineNum">     158</span>              : </span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaGNC">           1 :         if (calc.contains(&quot;switch_on_resistance&quot;) &amp;&amp; calc.at(&quot;switch_on_resistance&quot;).is_array()) {</span></span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">           1 :                 const auto&amp; arr = calc.at(&quot;switch_on_resistance&quot;);</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">           1 :                 cfg.swOnRes.resize(arr.size());</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           2 :                 for (size_t i = 0; i &lt; arr.size(); ++i) {</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           1 :                         cfg.swOnRes(static_cast&lt;Eigen::Index&gt;(i)) = arr.at(i).get&lt;double&gt;();</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">           1 :                 }</span></span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">           1 :         if (calc.contains(&quot;switch_off_resistance&quot;) &amp;&amp; calc.at(&quot;switch_off_resistance&quot;).is_array()) {</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC">           1 :                 const auto&amp; arr = calc.at(&quot;switch_off_resistance&quot;);</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           1 :                 cfg.swOffRes.resize(arr.size());</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           2 :                 for (size_t i = 0; i &lt; arr.size(); ++i) {</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">           1 :                         cfg.swOffRes(static_cast&lt;Eigen::Index&gt;(i)) = arr.at(i).get&lt;double&gt;();</span></span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">           1 :                 }</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">           1 :         if (calc.contains(&quot;switch_types&quot;) &amp;&amp; calc.at(&quot;switch_types&quot;).is_array()) {</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC">           1 :                 const auto&amp; arr = calc.at(&quot;switch_types&quot;);</span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">           1 :                 cfg.swType.resize(arr.size());</span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">           2 :                 for (size_t i = 0; i &lt; arr.size(); ++i) {</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">           1 :                         cfg.swType(static_cast&lt;Eigen::Index&gt;(i)) = arr.at(i).get&lt;int&gt;();</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">           1 :                 }</span></span>
+<span id="L179"><span class="lineNum">     179</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L180"><span class="lineNum">     180</span>              : </span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           1 :         cfg.breakerFunction = nullptr;</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">           1 :         cfg.outputBuses.clear();</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           1 :         if (calc.contains(&quot;output_bus_ids&quot;) &amp;&amp; calc.at(&quot;output_bus_ids&quot;).is_array()) {</span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           2 :                 for (const auto&amp; busId : calc.at(&quot;output_bus_ids&quot;)) {</span></span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaGNC">           1 :                         const std::string id = busId.get&lt;std::string&gt;();</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           1 :                         auto it = network.getBuses().find(id);</span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">           1 :                         if (it == network.getBuses().end()) {</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaUNC">           0 :                                 throw std::invalid_argument(&quot;DQsym output bus '&quot; + id + &quot;' not found.\n&quot;);</span></span>
+<span id="L189"><span class="lineNum">     189</span>              :                         }</span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           1 :                         cfg.outputBuses.push_back(it-&gt;second);</span></span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">           1 :                 }</span></span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L193"><span class="lineNum">     193</span>              :         else {</span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaUNC">           0 :                 for (const auto&amp; [id, bus] : network.getBuses()) {</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaUNC">           0 :                         if (id != &quot;gnd&quot;) {</span></span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaUNC">           0 :                                 cfg.outputBuses.push_back(bus);</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaUNC">           0 :                                 break;</span></span>
+<span id="L198"><span class="lineNum">     198</span>              :                         }</span>
+<span id="L199"><span class="lineNum">     199</span>              :                 }</span>
+<span id="L200"><span class="lineNum">     200</span>              :         }</span>
+<span id="L201"><span class="lineNum">     201</span>              : </span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">           1 :         dq.run(cfg);</span></span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">           1 :         if (jsonPlotRequested(calc, plottingEnabled)) {</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaUNC">           0 :                 dq.plot();</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L207"><span class="lineNum">     207</span>              : </span>
+<span id="L208"><span class="lineNum">     208</span>              : } // namespace</span>
+<span id="L209"><span class="lineNum">     209</span>              : </span>
+<span id="L210"><span class="lineNum">     210</span>              : </span>
+<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">          63 : ComputationRunner::ComputationRunner(const bool plottingEnabled)</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">          42 :         : plottingEnabled_(plottingEnabled) {</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">          21 :         registerBuiltins();</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">          42 : }</span></span>
+<span id="L215"><span class="lineNum">     215</span>              : </span>
+<span id="L216"><span class="lineNum">     216</span>              : </span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">          35 : std::string ComputationRunner::normalizeType(const JSON&amp; calc) {</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">          35 :         std::string type = calc.at(&quot;type&quot;).get&lt;std::string&gt;();</span></span>
+<span id="L219"><span class="lineNum">     219</span> <span class="tlaGNC">          35 :         std::transform(type.begin(), type.end(), type.begin(),</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">         362 :                 [](unsigned char c) { return static_cast&lt;char&gt;(std::tolower(c)); });</span></span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">          35 :         return type;</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">          35 : }</span></span>
+<span id="L223"><span class="lineNum">     223</span>              : </span>
+<span id="L224"><span class="lineNum">     224</span>              : </span>
+<span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">          21 : void ComputationRunner::registerBuiltins() {</span></span>
+<span id="L226"><span class="lineNum">     226</span> <span class="tlaGNC">          38 :         handlers_[&quot;y_matrix&quot;] = [this](const JSON&amp; calc, Network&amp; net, const JSON&amp; simCfg) {</span></span>
+<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">          17 :                 runYMatrix(calc, net, simCfg.value(&quot;frequency_range&quot;, JSON::object()), plottingEnabled_);</span></span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">          17 :         };</span></span>
+<span id="L229"><span class="lineNum">     229</span> <span class="tlaGNC">          21 :         handlers_[&quot;y_matrx&quot;] = handlers_[&quot;y_matrix&quot;];</span></span>
+<span id="L230"><span class="lineNum">     230</span>              : </span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">          23 :         handlers_[&quot;network_summary&quot;] = [](const JSON&amp;, Network&amp; net, const JSON&amp;) {</span></span>
+<span id="L232"><span class="lineNum">     232</span> <span class="tlaGNC">           2 :                 net.print_summary();</span></span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">           2 :         };</span></span>
+<span id="L234"><span class="lineNum">     234</span>              : </span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaGNC">          29 :         handlers_[&quot;print_connections&quot;] = [](const JSON&amp;, Network&amp; net, const JSON&amp;) {</span></span>
+<span id="L236"><span class="lineNum">     236</span> <span class="tlaGNC">           8 :                 net.printConnections();</span></span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaGNC">           8 :         };</span></span>
+<span id="L238"><span class="lineNum">     238</span>              : </span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">          23 :         handlers_[&quot;stability_assessment&quot;] = [this](const JSON&amp; calc, Network&amp; net, const JSON&amp; simCfg) {</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaGNC">           2 :                 net.add_areas();</span></span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaGNC">           2 :                 StabilityEstimate stability;</span></span>
+<span id="L242"><span class="lineNum">     242</span> <span class="tlaGNC">           2 :                 stability.add_areas(&amp;net);</span></span>
+<span id="L243"><span class="lineNum">     243</span> <span class="tlaGNC">           2 :                 stability.print_summary();</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           2 :                 if (calc.contains(&quot;converter_id&quot;) &amp;&amp; calc.contains(&quot;location&quot;)) {</span></span>
+<span id="L245"><span class="lineNum">     245</span> <span class="tlaGNC">           2 :                         const FrequencyRange range = parseFrequencyRangeLocal(</span></span>
+<span id="L246"><span class="lineNum">     246</span> <span class="tlaGNC">           2 :                                 calc.value(&quot;frequency_range&quot;, simCfg.value(&quot;frequency_range&quot;, JSON::object())));</span></span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaGNC">           2 :                         stability.writeFileTF(</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC">           2 :                                 calc.at(&quot;converter_id&quot;).get&lt;std::string&gt;(),</span></span>
+<span id="L249"><span class="lineNum">     249</span> <span class="tlaGNC">           2 :                                 calc.at(&quot;location&quot;).get&lt;std::string&gt;(),</span></span>
+<span id="L250"><span class="lineNum">     250</span> <span class="tlaGNC">           2 :                                 range.start, range.end, range.points);</span></span>
+<span id="L251"><span class="lineNum">     251</span> <span class="tlaGNC">           2 :                         runStabilityPlots(stability, calc, range, plottingEnabled_);</span></span>
+<span id="L252"><span class="lineNum">     252</span> <span class="tlaGNC">           2 :                 }</span></span>
+<span id="L253"><span class="lineNum">     253</span> <span class="tlaGNC">           2 :         };</span></span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC">          21 :         handlers_[&quot;stability_assesment&quot;] = handlers_[&quot;stability_assessment&quot;];</span></span>
+<span id="L255"><span class="lineNum">     255</span>              : </span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">          26 :         handlers_[&quot;power_flow&quot;] = [this](const JSON&amp; calc, Network&amp; net, const JSON&amp; simCfg) {</span></span>
+<span id="L257"><span class="lineNum">     257</span> <span class="tlaGNC">           5 :                 runOpf(calc, net, simCfg, plottingEnabled_);</span></span>
+<span id="L258"><span class="lineNum">     258</span> <span class="tlaGNC">           5 :         };</span></span>
+<span id="L259"><span class="lineNum">     259</span> <span class="tlaGNC">          21 :         handlers_[&quot;opf&quot;] = handlers_[&quot;power_flow&quot;];</span></span>
+<span id="L260"><span class="lineNum">     260</span>              : </span>
+<span id="L261"><span class="lineNum">     261</span> <span class="tlaGNC">          22 :         handlers_[&quot;dqsym&quot;] = [this](const JSON&amp; calc, Network&amp; net, const JSON&amp;) {</span></span>
+<span id="L262"><span class="lineNum">     262</span> <span class="tlaGNC">           1 :                 runDqsym(calc, net, plottingEnabled_);</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC">           1 :         };</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">          21 :         handlers_[&quot;time_domain&quot;] = handlers_[&quot;dqsym&quot;];</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">          21 : }</span></span>
+<span id="L266"><span class="lineNum">     266</span>              : </span>
+<span id="L267"><span class="lineNum">     267</span>              : </span>
+<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          21 : int ComputationRunner::runAll(</span></span>
+<span id="L269"><span class="lineNum">     269</span>              :         const JSON&amp; sim,</span>
+<span id="L270"><span class="lineNum">     270</span>              :         Network&amp; network,</span>
+<span id="L271"><span class="lineNum">     271</span>              :         const JSON&amp; simulationConfig) const</span>
+<span id="L272"><span class="lineNum">     272</span>              : {</span>
+<span id="L273"><span class="lineNum">     273</span> <span class="tlaGNC">          21 :         if (!sim.contains(&quot;computations&quot;) || !sim.at(&quot;computations&quot;).is_array()) {</span></span>
+<span id="L274"><span class="lineNum">     274</span> <span class="tlaUNC">           0 :                 return 0;</span></span>
+<span id="L275"><span class="lineNum">     275</span>              :         }</span>
+<span id="L276"><span class="lineNum">     276</span>              : </span>
+<span id="L277"><span class="lineNum">     277</span> <span class="tlaGNC">          21 :         const std::string outputDir = simulationConfig.value(&quot;output_directory&quot;, &quot;./files&quot;);</span></span>
+<span id="L278"><span class="lineNum">     278</span> <span class="tlaGNC">          21 :         if (!outputDir.empty()) {</span></span>
+<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">          21 :                 std::filesystem::create_directories(outputDir);</span></span>
+<span id="L280"><span class="lineNum">     280</span> <span class="tlaGNC">          21 :         }</span></span>
+<span id="L281"><span class="lineNum">     281</span>              : </span>
+<span id="L282"><span class="lineNum">     282</span> <span class="tlaGNC">          21 :         int failures = 0;</span></span>
+<span id="L283"><span class="lineNum">     283</span> <span class="tlaGNC">          56 :         for (const auto&amp; calc : sim.at(&quot;computations&quot;)) {</span></span>
+<span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC">          35 :                 if (!calc.contains(&quot;type&quot;)) {</span></span>
+<span id="L285"><span class="lineNum">     285</span> <span class="tlaUNC">           0 :                         std::cerr &lt;&lt; &quot;[WARN] Skipping computation without 'type'.\n&quot;;</span></span>
+<span id="L286"><span class="lineNum">     286</span> <span class="tlaUNC">           0 :                         ++failures;</span></span>
+<span id="L287"><span class="lineNum">     287</span> <span class="tlaUNC">           0 :                         continue;</span></span>
+<span id="L288"><span class="lineNum">     288</span>              :                 }</span>
+<span id="L289"><span class="lineNum">     289</span>              : </span>
+<span id="L290"><span class="lineNum">     290</span> <span class="tlaGNC">          35 :                 const std::string type = normalizeType(calc);</span></span>
+<span id="L291"><span class="lineNum">     291</span> <span class="tlaGNC">          35 :                 const auto it = handlers_.find(type);</span></span>
+<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">          35 :                 if (it == handlers_.end()) {</span></span>
+<span id="L293"><span class="lineNum">     293</span> <span class="tlaUNC">           0 :                         std::cerr &lt;&lt; &quot;[WARN] Unknown computation type '&quot; &lt;&lt; type</span></span>
+<span id="L294"><span class="lineNum">     294</span> <span class="tlaUNC">           0 :                                 &lt;&lt; &quot;'. Register handlers in ComputationRunner.\n&quot;;</span></span>
+<span id="L295"><span class="lineNum">     295</span> <span class="tlaUNC">           0 :                         ++failures;</span></span>
+<span id="L296"><span class="lineNum">     296</span> <span class="tlaUNC">           0 :                         continue;</span></span>
+<span id="L297"><span class="lineNum">     297</span>              :                 }</span>
+<span id="L298"><span class="lineNum">     298</span>              : </span>
+<span id="L299"><span class="lineNum">     299</span>              :                 try {</span>
+<span id="L300"><span class="lineNum">     300</span> <span class="tlaGNC">          35 :                         it-&gt;second(calc, network, simulationConfig);</span></span>
+<span id="L301"><span class="lineNum">     301</span> <span class="tlaGNC">          35 :                 }</span></span>
+<span id="L302"><span class="lineNum">     302</span>              :                 catch (const std::exception&amp; e) {</span>
+<span id="L303"><span class="lineNum">     303</span> <span class="tlaUNC">           0 :                         std::cerr &lt;&lt; &quot;[WARN] Computation '&quot; &lt;&lt; type &lt;&lt; &quot;' failed: &quot; &lt;&lt; e.what() &lt;&lt; '\n';</span></span>
+<span id="L304"><span class="lineNum">     304</span> <span class="tlaUNC">           0 :                         ++failures;</span></span>
+<span id="L305"><span class="lineNum">     305</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L306"><span class="lineNum">     306</span> <span class="tlaGNC">          35 :         }</span></span>
+<span id="L307"><span class="lineNum">     307</span> <span class="tlaGNC">          21 :         return failures;</span></span>
+<span id="L308"><span class="lineNum">     308</span> <span class="tlaGNC">          21 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>
