@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/json/simulation_builder.h</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/json">src/json</a> - simulation_builder.h<span style="font-size: 80%;"> (source / <a href="simulation_builder.h.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">6</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">6</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : #pragma once</span>
+<span id="L2"><span class="lineNum">       2</span>              : #include &quot;component_builder.h&quot;</span>
+<span id="L3"><span class="lineNum">       3</span>              : </span>
+<span id="L4"><span class="lineNum">       4</span>              : /**</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * @file simulation_builder.h</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * @brief Builds a @ref Network from a JSON simulation file and runs configured analyses.</span>
+<span id="L7"><span class="lineNum">       7</span>              :  * @ingroup input</span>
+<span id="L8"><span class="lineNum">       8</span>              :  */</span>
+<span id="L9"><span class="lineNum">       9</span>              : </span>
+<span id="L10"><span class="lineNum">      10</span>              : /** @brief Frequency sweep specification parsed from JSON. */</span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">          19 : struct FrequencyRange {</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">          19 :         double start = 1.0;  ///&lt; Start frequency (Hz).</span></span>
+<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">          19 :         double end = 1000.0; ///&lt; End frequency (Hz).</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">          19 :         int points = 100;    ///&lt; Number of logarithmic sweep points.</span></span>
+<span id="L15"><span class="lineNum">      15</span>              : };</span>
+<span id="L16"><span class="lineNum">      16</span>              : </span>
+<span id="L17"><span class="lineNum">      17</span>              : /**</span>
+<span id="L18"><span class="lineNum">      18</span>              :  * @brief Orchestrates JSON validation, network assembly, and post-build computations.</span>
+<span id="L19"><span class="lineNum">      19</span>              :  */</span>
+<span id="L20"><span class="lineNum">      20</span>              : class SimulationBuilder {</span>
+<span id="L21"><span class="lineNum">      21</span>              : </span>
+<span id="L22"><span class="lineNum">      22</span>              : public:</span>
+<span id="L23"><span class="lineNum">      23</span>              : </span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">         116 :         SimulationBuilder() = default;</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">         116 :         ~SimulationBuilder() = default;</span></span>
+<span id="L26"><span class="lineNum">      26</span>              : </span>
+<span id="L27"><span class="lineNum">      27</span>              :         /**</span>
+<span id="L28"><span class="lineNum">      28</span>              :          * @brief Populate @p network from a full simulation JSON document.</span>
+<span id="L29"><span class="lineNum">      29</span>              :          * @param simJSON Root JSON object (`simulation`, `buses`, `components`, …).</span>
+<span id="L30"><span class="lineNum">      30</span>              :          * @param network Target network to populate.</span>
+<span id="L31"><span class="lineNum">      31</span>              :          */</span>
+<span id="L32"><span class="lineNum">      32</span>              :         void buildFromJSON(const JSON&amp; simJSON, Network&amp; network);</span>
+<span id="L33"><span class="lineNum">      33</span>              : </span>
+<span id="L34"><span class="lineNum">      34</span>              :         /**</span>
+<span id="L35"><span class="lineNum">      35</span>              :          * @brief Run analyses selected in the simulation JSON (OPF, stability, etc.).</span>
+<span id="L36"><span class="lineNum">      36</span>              :          * @param simJSON Root JSON object (must contain a `simulation` section).</span>
+<span id="L37"><span class="lineNum">      37</span>              :          * @param network Assembled network to analyse.</span>
+<span id="L38"><span class="lineNum">      38</span>              :          * @param plottingEnabled When false, JSON `plot` / `plot_result` flags are ignored (CLI `--no-plot`).</span>
+<span id="L39"><span class="lineNum">      39</span>              :          */</span>
+<span id="L40"><span class="lineNum">      40</span>              :         void runComputations(const JSON&amp; simJSON, Network&amp; network, bool plottingEnabled = true) const;</span>
+<span id="L41"><span class="lineNum">      41</span>              : </span>
+<span id="L42"><span class="lineNum">      42</span>              :         /** @return Number of failed computation steps (0 if none or no computations section). */</span>
+<span id="L43"><span class="lineNum">      43</span>              :         int runComputationsWithStatus(const JSON&amp; simJSON, Network&amp; network, bool plottingEnabled = true) const;</span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              :         /** @brief Return the parsed `simulation` configuration object. */</span>
+<span id="L46"><span class="lineNum">      46</span>              :         const JSON&amp; getSimulationConfig() const { return simulationConfig_; }</span>
+<span id="L47"><span class="lineNum">      47</span>              : </span>
+<span id="L48"><span class="lineNum">      48</span>              :         /** @brief Validate required top-level JSON sections and unique IDs. @param simJSON Root JSON object. */</span>
+<span id="L49"><span class="lineNum">      49</span>              :         void validateJSON(const JSON&amp; simJSON) const;</span>
+<span id="L50"><span class="lineNum">      50</span>              : </span>
+<span id="L51"><span class="lineNum">      51</span>              : private:</span>
+<span id="L52"><span class="lineNum">      52</span>              : </span>
+<span id="L53"><span class="lineNum">      53</span>              :         /**</span>
+<span id="L54"><span class="lineNum">      54</span>              :          * @brief Create buses from the `buses` array and add them to @p network.</span>
+<span id="L55"><span class="lineNum">      55</span>              :          * @param simJSON Root JSON object.</span>
+<span id="L56"><span class="lineNum">      56</span>              :          * @param network Target network.</span>
+<span id="L57"><span class="lineNum">      57</span>              :          */</span>
+<span id="L58"><span class="lineNum">      58</span>              :         void buildBusesFromJSON(const JSON&amp; simJSON, Network&amp; network) const;</span>
+<span id="L59"><span class="lineNum">      59</span>              : </span>
+<span id="L60"><span class="lineNum">      60</span>              :         /**</span>
+<span id="L61"><span class="lineNum">      61</span>              :          * @brief Wire components to buses using connection metadata in JSON.</span>
+<span id="L62"><span class="lineNum">      62</span>              :          * @param simJSON Root JSON object.</span>
+<span id="L63"><span class="lineNum">      63</span>              :          * @param network Network with elements already registered.</span>
+<span id="L64"><span class="lineNum">      64</span>              :          */</span>
+<span id="L65"><span class="lineNum">      65</span>              :         void connectElementsToBuses(const JSON&amp; simJSON, Network&amp; network) const;</span>
+<span id="L66"><span class="lineNum">      66</span>              : </span>
+<span id="L67"><span class="lineNum">      67</span>              :         /** @brief Parse a frequency-range object from JSON. @param rangeJson JSON sub-object. */</span>
+<span id="L68"><span class="lineNum">      68</span>              :         static FrequencyRange parseFrequencyRange(const JSON&amp; rangeJson);</span>
+<span id="L69"><span class="lineNum">      69</span>              : </span>
+<span id="L70"><span class="lineNum">      70</span>              :         /**</span>
+<span id="L71"><span class="lineNum">      71</span>              :          * @brief Attach one element to the buses named in its JSON entry.</span>
+<span id="L72"><span class="lineNum">      72</span>              :          * @param comp Component JSON object.</span>
+<span id="L73"><span class="lineNum">      73</span>              :          * @param elem Built element pointer.</span>
+<span id="L74"><span class="lineNum">      74</span>              :          * @param network Target network.</span>
+<span id="L75"><span class="lineNum">      75</span>              :          */</span>
+<span id="L76"><span class="lineNum">      76</span>              :         static void connectComponent(const JSON&amp; comp, Element* elem, Network&amp; network);</span>
+<span id="L77"><span class="lineNum">      77</span>              : </span>
+<span id="L78"><span class="lineNum">      78</span>              :         JSON simulationConfig_;</span>
+<span id="L79"><span class="lineNum">      79</span>              : };</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

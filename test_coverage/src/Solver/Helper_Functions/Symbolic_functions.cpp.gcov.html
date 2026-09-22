@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Solver/Helper_Functions/Symbolic_functions.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Solver/Helper_Functions">src/Solver/Helper_Functions</a> - Symbolic_functions.cpp<span style="font-size: 80%;"> (source / <a href="Symbolic_functions.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">50.7&nbsp;%</td>
+            <td class="headerCovTableEntry">211</td>
+            <td class="headerCovTableEntry">107</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">57.7&nbsp;%</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntry">15</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * @file Symbolic_functions.cpp</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * @brief Implementation of SymEngine-based symbolic algebra utilities for network analysis.</span>
+<span id="L4"><span class="lineNum">       4</span>              :  */</span>
+<span id="L5"><span class="lineNum">       5</span>              : #include &quot;Symbolic_functions.h&quot;</span>
+<span id="L6"><span class="lineNum">       6</span>              : </span>
+<span id="L7"><span class="lineNum">       7</span>              : // Define the constants declared in the header</span>
+<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">         121 : const RCP&lt;const Basic&gt; PI = real_double(3.141592653589793); // SymEngine π</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">         121 : RCP&lt;const Basic&gt; j = I;  // Imaginary unit</span></span>
+<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">         121 : RCP&lt;const Basic&gt; omega = symbol(&quot;w&quot;);</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">         121 : RCP&lt;const Basic&gt; s = mul(j, omega);</span></span>
+<span id="L12"><span class="lineNum">      12</span>              : </span>
+<span id="L13"><span class="lineNum">      13</span>              : </span>
+<span id="L14"><span class="lineNum">      14</span>              : // Static helper function to create a zero matrix</span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">         416 : DenseMatrix createZeroMatrix(int size1, int size2) {</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">         416 :         DenseMatrix zeroMatrix(size1, size2);</span></span>
+<span id="L17"><span class="lineNum">      17</span>              :         //std::cout &lt;&lt; &quot;[Debug] check0\n&quot;;</span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">        1844 :         for (int i = 0; i &lt; size1; ++i) {</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">        9020 :                 for (int j = 0; j &lt; size2; ++j) {</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">        7592 :                         zeroMatrix.set(i, j, zero); // Use SymEngine's symbolic `zero`</span></span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">        7592 :                 }</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">        1428 :         }</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">         416 :         return zeroMatrix;</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">         416 : }</span></span>
+<span id="L25"><span class="lineNum">      25</span>              : // Fill a matrix with zeros</span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaUNC">           0 : void fillWithZero(DenseMatrix&amp; mat) {</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaUNC">           0 :         for (unsigned i = 0; i &lt; mat.nrows(); ++i)</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :                 for (unsigned j = 0; j &lt; mat.ncols(); ++j)</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaUNC">           0 :                         mat.set(i, j, zero);</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L31"><span class="lineNum">      31</span>              : </span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">          11 : Eigen::SparseMatrix&lt;double&gt; absoluteSparseMatrix(const Eigen::SparseMatrix&lt;std::complex&lt;double&gt;&gt;&amp; matrix) {</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          11 :         Eigen::SparseMatrix&lt;double&gt; absMatrix(matrix.rows(), matrix.cols());</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">          41 :         for (int k = 0; k &lt; matrix.outerSize(); ++k) {</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">         108 :                 for (Eigen::SparseMatrix&lt;std::complex&lt;double&gt;&gt;::InnerIterator it(matrix, k); it; ++it) {</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          78 :                         absMatrix.insert(it.row(), it.col()) = std::abs(it.value());</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">          78 :                 }</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">          30 :         }</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">          11 :         return absMatrix;</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">          11 : }</span></span>
+<span id="L41"><span class="lineNum">      41</span>              : </span>
+<span id="L42"><span class="lineNum">      42</span>              : // Convert Eigen MatrixXcd to SymEngine DenseMatrix</span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaUNC">           0 : DenseMatrix eigenToSymEngineDenseMatrix(const MatrixXcd&amp; eigenMat) {</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaUNC">           0 :         size_t rows = eigenMat.rows();</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaUNC">           0 :         size_t cols = eigenMat.cols();</span></span>
+<span id="L46"><span class="lineNum">      46</span>              : </span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaUNC">           0 :         DenseMatrix symMat(rows, cols); // SymEngine DenseMatrix</span></span>
+<span id="L48"><span class="lineNum">      48</span>              : </span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :         for (size_t i = 0; i &lt; rows; ++i) {</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaUNC">           0 :                 for (size_t j = 0; j &lt; cols; ++j) {</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaUNC">           0 :                         std::complex&lt;double&gt; c = eigenMat(i, j);</span></span>
+<span id="L52"><span class="lineNum">      52</span>              :                         // Convert to SymEngine ComplexDouble</span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaUNC">           0 :                         RCP&lt;const Basic&gt; elem = complex_double(c.real(), c.imag());</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaUNC">           0 :                         symMat.set(i, j, elem);</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L57"><span class="lineNum">      57</span>              : </span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaUNC">           0 :         return symMat;</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L60"><span class="lineNum">      60</span>              : </span>
+<span id="L61"><span class="lineNum">      61</span>              : // Functions for conversion between symbolic and complex or real double scalar/eigen matrix</span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaUNC">           0 : complex&lt;double&gt; substitute_symbol(const RCP&lt;const Basic&gt;&amp; expr, const std::string&amp; symbol_name, double value) {</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaUNC">           0 :         RCP&lt;const Symbol&gt; symbol = SymEngine::symbol(symbol_name);</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; value_expr = real_double(value);</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaUNC">           0 :         map_basic_basic subs_map;</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; r = expr-&gt;subs(subs_map);</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaUNC">           0 :         return eval_complex_double(*r);</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L69"><span class="lineNum">      69</span>              : </span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">          12 : complex&lt;double&gt; substitute_symbol(const RCP&lt;const Basic&gt;&amp; expr, RCP&lt;const Basic&gt; symbol, double value) {</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">          12 :         RCP&lt;const Basic&gt; value_expr = real_double(value);</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">          12 :         map_basic_basic subs_map;</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">          12 :         subs_map[symbol] = value_expr;</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">          12 :         RCP&lt;const Basic&gt; r = expr-&gt;subs(subs_map);</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">          12 :         return eval_complex_double(*r);</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">          12 : }</span></span>
+<span id="L77"><span class="lineNum">      77</span>              : </span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC">           0 : complex&lt;double&gt; substitute_symbol(const RCP&lt;const Basic&gt;&amp; expr, const std::string&amp; symbol_name, complex&lt;double&gt; value) {</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :         RCP&lt;const Symbol&gt; symbol = SymEngine::symbol(symbol_name);</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; value_expr = complex_double(value);</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaUNC">           0 :         map_basic_basic subs_map;</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; r = expr-&gt;subs(subs_map);</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaUNC">           0 :         return eval_complex_double(*r);</span></span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L85"><span class="lineNum">      85</span>              : </span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaUNC">           0 : complex&lt;double&gt; substitute_symbol(const RCP&lt;const Basic&gt;&amp; expr, RCP&lt;const Basic&gt; symbol, complex&lt;double&gt; value) {</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; value_expr = complex_double(value);</span></span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaUNC">           0 :         map_basic_basic subs_map;</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaUNC">           0 :         subs_map[symbol] = value_expr;</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaUNC">           0 :         RCP&lt;const Basic&gt; r = expr-&gt;subs(subs_map);</span></span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaUNC">           0 :         return eval_complex_double(*r);</span></span>
+<span id="L92"><span class="lineNum">      92</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L93"><span class="lineNum">      93</span>              : </span>
+<span id="L94"><span class="lineNum">      94</span>              : </span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaUNC">           0 : MatrixXcd substitute_symbol(DenseMatrix M, const string&amp; symbol_name, double value) {</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaUNC">           0 :         RCP&lt;const Symbol&gt; symbol = SymEngine::symbol(symbol_name);</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaUNC">           0 :         map_basic_basic m;</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaUNC">           0 :         m[symbol] = real_double(value);</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaUNC">           0 :         MatrixXcd N(M.nrows(), M.ncols());</span></span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt; M.nrows(); ++i) {</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaUNC">           0 :                 for (int j = 0; j &lt; M.ncols(); ++j) {</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaUNC">           0 :                         RCP&lt;const Basic&gt; r = subs(M.get(i, j), m);</span></span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaUNC">           0 :                         N(i, j) = eval_complex_double(*r);</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaUNC">           0 :         return N;</span></span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L108"><span class="lineNum">     108</span>              : </span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaUNC">           0 : MatrixXcd substitute_symbol(DenseMatrix M, const string&amp; symbol_name, complex&lt;double&gt; value) {</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaUNC">           0 :         RCP&lt;const Symbol&gt; symbol = SymEngine::symbol(symbol_name);</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaUNC">           0 :         map_basic_basic m;</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaUNC">           0 :         m[symbol] = complex_double(value);</span></span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaUNC">           0 :         MatrixXcd N(M.nrows(), M.ncols());</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt; M.nrows(); ++i) {</span></span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaUNC">           0 :                 for (int j = 0; j &lt; M.ncols(); ++j) {</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaUNC">           0 :                         RCP&lt;const Basic&gt; r = subs(M.get(i, j), m);</span></span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaUNC">           0 :                         N(i, j) = eval_complex_double(*r);</span></span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaUNC">           0 :         return N;</span></span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L122"><span class="lineNum">     122</span>              : </span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaGNC">       22060 : MatrixXcd substitute_symbol(DenseMatrix M, RCP&lt;const Basic&gt; symbol, double value) {</span></span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">       22060 :         map_basic_basic m;</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">       22060 :         m[symbol] = real_double(value);</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">       22060 :         MatrixXcd N(M.nrows(), M.ncols());</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">       46150 :         for (int i = 0; i &lt; M.nrows(); ++i) {</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">       52240 :                 for (int j = 0; j &lt; M.ncols(); ++j) {</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">       28150 :                         RCP&lt;const Basic&gt; r = subs(M.get(i, j), m);</span></span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">       28150 :                         N(i, j) = eval_complex_double(*r);</span></span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">       28150 :                 }</span></span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">       24090 :         }</span></span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaGNC">       22060 :         return N;</span></span>
+<span id="L134"><span class="lineNum">     134</span> <span class="tlaGNC">       22060 : }</span></span>
+<span id="L135"><span class="lineNum">     135</span>              : </span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaUNC">           0 : MatrixXcd substitute_symbol(DenseMatrix M, RCP&lt;const Basic&gt; symbol, complex&lt;double&gt; value) {</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaUNC">           0 :         map_basic_basic m;</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaUNC">           0 :         m[symbol] = complex_double(value);</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaUNC">           0 :         MatrixXcd N(M.nrows(), M.ncols());</span></span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt; M.nrows(); ++i) {</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaUNC">           0 :                 for (int j = 0; j &lt; M.ncols(); ++j) {</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaUNC">           0 :                         RCP&lt;const Basic&gt; r = subs(M.get(i, j), m);</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaUNC">           0 :                         N(i, j) = eval_complex_double(*r);</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaUNC">           0 :         return N;</span></span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L148"><span class="lineNum">     148</span>              : </span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaUNC">           0 : RCP&lt;const Basic&gt; substitute_symbols(const RCP&lt;const Basic&gt;&amp; expr, const std::vector&lt;RCP&lt;const Basic&gt;&gt;&amp; symbols, double value) {</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaUNC">           0 :         map_basic_basic subs_map;</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaUNC">           0 :         for (const auto&amp; symbol : symbols) {</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaUNC">           0 :                 RCP&lt;const Basic&gt; value_expr = real_double(value);</span></span>
+<span id="L153"><span class="lineNum">     153</span> <span class="tlaUNC">           0 :                 subs_map[symbol] = value_expr;</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaUNC">           0 :         return expr-&gt;subs(subs_map);</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L157"><span class="lineNum">     157</span>              : </span>
+<span id="L158"><span class="lineNum">     158</span> <span class="tlaGNC">        1072 : double eval_basic(const RCP&lt;const Basic&gt;&amp; expr) {</span></span>
+<span id="L159"><span class="lineNum">     159</span>              :         try {</span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">        1072 :                 return eval_double(*expr);</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L162"><span class="lineNum">     162</span>              :         catch (const SymEngineException&amp; e) {</span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaUNC">           0 :                 std::cerr &lt;&lt; &quot;SymEngineException: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaUNC">           0 :                 throw;</span></span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L166"><span class="lineNum">     166</span>              :         catch (const std::exception&amp; e) {</span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaUNC">           0 :                 std::cerr &lt;&lt; &quot;Standard exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaUNC">           0 :                 throw;</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L171"><span class="lineNum">     171</span>              : </span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">           6 : MatrixXd kron_reduction(MatrixXd matrix, vector&lt;int&gt; no_eliminate) {</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">           6 :         vector&lt;int&gt; eliminate; </span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC">          33 :         for (int i = 0; i &lt; matrix.rows(); i++) { </span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">          27 :                 if (std::find(no_eliminate.begin(), no_eliminate.end(), i) == no_eliminate.end()) eliminate.push_back(i); </span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">          27 :         } </span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">           6 :         MatrixXd M = matrix(no_eliminate, no_eliminate) - matrix(no_eliminate, eliminate) * matrix(eliminate, eliminate).inverse() * matrix(eliminate, no_eliminate); </span></span>
+<span id="L178"><span class="lineNum">     178</span>              :         </span>
+<span id="L179"><span class="lineNum">     179</span> <span class="tlaGNC">           6 :         return M;</span></span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaGNC">           6 : }</span></span>
+<span id="L181"><span class="lineNum">     181</span>              : </span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">           6 : DenseMatrix kron_reduction(DenseMatrix matrix, vector&lt;int&gt; no_eliminate) {</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           6 :         vector&lt;int&gt; eliminate;</span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">          33 :         for (int i = 0; i &lt; matrix.nrows(); i++) {</span></span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaGNC">          27 :                 if (std::find(no_eliminate.begin(), no_eliminate.end(), i) == no_eliminate.end())</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">          18 :                         eliminate.push_back(i);</span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">          27 :         }</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaGNC">           6 :         DenseMatrix M1 = createZeroMatrix(no_eliminate.size(), no_eliminate.size());</span></span>
+<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           6 :         DenseMatrix M2 = createZeroMatrix(no_eliminate.size(), eliminate.size());</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           6 :         DenseMatrix M3 = createZeroMatrix(eliminate.size(), eliminate.size());</span></span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">           6 :         DenseMatrix M4 = createZeroMatrix(eliminate.size(), no_eliminate.size());</span></span>
+<span id="L192"><span class="lineNum">     192</span>              : </span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">           6 :         int i_no_eliminate_curr = 0, i_eliminate_curr = 0;</span></span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           6 :         int j_no_eliminate_curr = 0, j_eliminate_curr = 0;</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">          33 :         for (int i = 0; i &lt; matrix.nrows(); i++) {</span></span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaGNC">          27 :                 if (std::find(no_eliminate.begin(), no_eliminate.end(), i) != no_eliminate.end()) { // if it is the row that should not be eliminated</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC">           9 :                         j_no_eliminate_curr = 0; j_eliminate_curr = 0;</span></span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">          54 :                         for (int j = 0; j &lt; matrix.nrows(); j++) {</span></span>
+<span id="L199"><span class="lineNum">     199</span> <span class="tlaGNC">          45 :                                 if (std::find(no_eliminate.begin(), no_eliminate.end(), j) != no_eliminate.end()) {  // if it is the column that should not be eliminated</span></span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">          15 :                                         M1.set(i_no_eliminate_curr, j_no_eliminate_curr, matrix.get(i, j));</span></span>
+<span id="L201"><span class="lineNum">     201</span> <span class="tlaGNC">          15 :                                         j_no_eliminate_curr++;</span></span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">          15 :                                 }</span></span>
+<span id="L203"><span class="lineNum">     203</span>              :                                 else { // this column should be eliminated</span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">          30 :                                         M2.set(i_no_eliminate_curr, j_eliminate_curr, matrix.get(i, j));</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">          30 :                                         j_eliminate_curr++;</span></span>
+<span id="L206"><span class="lineNum">     206</span>              :                                 }</span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">          45 :                         }</span></span>
+<span id="L208"><span class="lineNum">     208</span> <span class="tlaGNC">           9 :                         i_no_eliminate_curr += 1;</span></span>
+<span id="L209"><span class="lineNum">     209</span> <span class="tlaGNC">           9 :                 }</span></span>
+<span id="L210"><span class="lineNum">     210</span>              :                 else {</span>
+<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">          18 :                         j_no_eliminate_curr = 0; j_eliminate_curr = 0;</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">         108 :                         for (int j = 0; j &lt; matrix.nrows(); j++) {</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">          90 :                                 if (std::find(no_eliminate.begin(), no_eliminate.end(), j) != no_eliminate.end()) {  // if it is the column that should not be eliminated</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">          30 :                                         M4.set(i_eliminate_curr, j_no_eliminate_curr, matrix.get(i, j));</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">          30 :                                         j_no_eliminate_curr++;</span></span>
+<span id="L216"><span class="lineNum">     216</span> <span class="tlaGNC">          30 :                                 }</span></span>
+<span id="L217"><span class="lineNum">     217</span>              :                                 else { // this column should be eliminated</span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">          60 :                                         M3.set(i_eliminate_curr, j_eliminate_curr, matrix.get(i, j));</span></span>
+<span id="L219"><span class="lineNum">     219</span> <span class="tlaGNC">          60 :                                         j_eliminate_curr++;</span></span>
+<span id="L220"><span class="lineNum">     220</span>              :                                 }</span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">          90 :                         }</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">          18 :                         i_eliminate_curr++;</span></span>
+<span id="L223"><span class="lineNum">     223</span>              :                 }</span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">          27 :         }</span></span>
+<span id="L225"><span class="lineNum">     225</span>              : </span>
+<span id="L226"><span class="lineNum">     226</span> <span class="tlaGNC">           6 :         DenseMatrix C1 = createZeroMatrix(no_eliminate.size(), eliminate.size());</span></span>
+<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">           6 :         DenseMatrix C2 = createZeroMatrix(no_eliminate.size(), no_eliminate.size());</span></span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">           6 :         inverse_LU(M3, M3);</span></span>
+<span id="L229"><span class="lineNum">     229</span> <span class="tlaGNC">           6 :         mul_dense_dense(M2, M3, C1);</span></span>
+<span id="L230"><span class="lineNum">     230</span> <span class="tlaGNC">           6 :         mul_dense_dense(C1, M4, C2);</span></span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">           6 :         mul_dense_scalar(C2, minus_one, C2);</span></span>
+<span id="L232"><span class="lineNum">     232</span> <span class="tlaGNC">           6 :         add_dense_dense(M1, C2, C2);</span></span>
+<span id="L233"><span class="lineNum">     233</span>              : </span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">           6 :         return C2;</span></span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaGNC">           6 : }</span></span>
+<span id="L236"><span class="lineNum">     236</span>              : </span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaUNC">           0 : bool convertToBoolean(const std::string&amp; value) {</span></span>
+<span id="L238"><span class="lineNum">     238</span>              :         // Convert string to lowercase for case-insensitive comparison</span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaUNC">           0 :         std::string lowercaseValue = value;</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaUNC">           0 :         std::transform(lowercaseValue.begin(), lowercaseValue.end(), lowercaseValue.begin(),</span></span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaUNC">           0 :                 [](unsigned char c) { return std::tolower(c); });</span></span>
+<span id="L242"><span class="lineNum">     242</span>              : </span>
+<span id="L243"><span class="lineNum">     243</span>              :         // Check if the string represents true or false</span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaUNC">           0 :         if (lowercaseValue == &quot;true&quot; || lowercaseValue == &quot;1&quot;) {</span></span>
+<span id="L245"><span class="lineNum">     245</span> <span class="tlaUNC">           0 :                 return true;</span></span>
+<span id="L246"><span class="lineNum">     246</span>              :         }</span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaUNC">           0 :         else if (lowercaseValue == &quot;false&quot; || lowercaseValue == &quot;0&quot;) {</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L249"><span class="lineNum">     249</span>              :         }</span>
+<span id="L250"><span class="lineNum">     250</span>              :         else {</span>
+<span id="L251"><span class="lineNum">     251</span>              :                 // Handle invalid input</span>
+<span id="L252"><span class="lineNum">     252</span> <span class="tlaUNC">           0 :                 throw std::invalid_argument(&quot;Invalid boolean value: &quot; + value);</span></span>
+<span id="L253"><span class="lineNum">     253</span>              :         }</span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L255"><span class="lineNum">     255</span>              : </span>
+<span id="L256"><span class="lineNum">     256</span>              : // Helper symbolic operations</span>
+<span id="L257"><span class="lineNum">     257</span> <span class="tlaGNC">          68 : extern RCP&lt;const Basic&gt; inv(const RCP&lt;const Basic&gt;&amp; val) {</span></span>
+<span id="L258"><span class="lineNum">     258</span> <span class="tlaGNC">          68 :         return div(one, val);</span></span>
+<span id="L259"><span class="lineNum">     259</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L260"><span class="lineNum">     260</span>              : </span>
+<span id="L261"><span class="lineNum">     261</span> <span class="tlaGNC">         199 : extern RCP&lt;const Basic&gt; addSym(const RCP&lt;const Basic&gt;&amp; a, const RCP&lt;const Basic&gt;&amp; b) {</span></span>
+<span id="L262"><span class="lineNum">     262</span> <span class="tlaGNC">         199 :         if (a.is_null()) return b;</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC">         199 :         if (b.is_null()) return a;</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">         199 :         return add(a, b);</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">         199 : }</span></span>
+<span id="L266"><span class="lineNum">     266</span>              : </span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaGNC">          34 : extern RCP&lt;const Basic&gt; subSym(const RCP&lt;const Basic&gt;&amp; a, const RCP&lt;const Basic&gt;&amp; b) {</span></span>
+<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          34 :         if (a.is_null()) return mul(integer(-1), b);</span></span>
+<span id="L269"><span class="lineNum">     269</span> <span class="tlaGNC">          34 :         return sub(a, b);</span></span>
+<span id="L270"><span class="lineNum">     270</span> <span class="tlaGNC">          34 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

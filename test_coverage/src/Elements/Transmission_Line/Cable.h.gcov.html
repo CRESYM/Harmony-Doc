@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Elements/Transmission_Line/Cable.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Elements/Transmission_Line">src/Elements/Transmission_Line</a> - Cable.h<span style="font-size: 80%;"> (source / <a href="Cable.h.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">41.4&nbsp;%</td>
+            <td class="headerCovTableEntry">29</td>
+            <td class="headerCovTableEntry">12</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryMed">77.8&nbsp;%</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">7</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : #ifndef _CABLE_H_</span>
+<span id="L2"><span class="lineNum">       2</span>              : #define _CABLE_H_</span>
+<span id="L3"><span class="lineNum">       3</span>              : </span>
+<span id="L4"><span class="lineNum">       4</span>              : /**</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * @file Cable.h</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * @brief Underground or aerial multi-conductor cable with layered geometry.</span>
+<span id="L7"><span class="lineNum">       7</span>              :  */</span>
+<span id="L8"><span class="lineNum">       8</span>              : </span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;../Element.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : </span>
+<span id="L11"><span class="lineNum">      11</span>              : class Element; // Forward declaration of Element class</span>
+<span id="L12"><span class="lineNum">      12</span>              : </span>
+<span id="L13"><span class="lineNum">      13</span>              : /**</span>
+<span id="L14"><span class="lineNum">      14</span>              :  * @class Cable</span>
+<span id="L15"><span class="lineNum">      15</span>              :  * @brief Multi-layer cable model with conductor and insulator sections.</span>
+<span id="L16"><span class="lineNum">      16</span>              :  * @ingroup transmission</span>
+<span id="L17"><span class="lineNum">      17</span>              :  */</span>
+<span id="L18"><span class="lineNum">      18</span>              : class Cable : public Element {</span>
+<span id="L19"><span class="lineNum">      19</span>              : public:</span>
+<span id="L20"><span class="lineNum">      20</span>              : </span>
+<span id="L21"><span class="lineNum">      21</span>              :         /**</span>
+<span id="L22"><span class="lineNum">      22</span>              :          * @class Conductor</span>
+<span id="L23"><span class="lineNum">      23</span>              :          * @brief Conducting layer with inner/outer radius and material properties.</span>
+<span id="L24"><span class="lineNum">      24</span>              :          */</span>
+<span id="L25"><span class="lineNum">      25</span>              :         class Conductor {</span>
+<span id="L26"><span class="lineNum">      26</span>              :         public:</span>
+<span id="L27"><span class="lineNum">      27</span>              :                 /**</span>
+<span id="L28"><span class="lineNum">      28</span>              :                  * @brief Construct a cable conductor layer.</span>
+<span id="L29"><span class="lineNum">      29</span>              :                  * @param ri Inner radius (m).</span>
+<span id="L30"><span class="lineNum">      30</span>              :                  * @param ro Outer radius (m).</span>
+<span id="L31"><span class="lineNum">      31</span>              :                  * @param resistivity Resistivity rho (Ω·m).</span>
+<span id="L32"><span class="lineNum">      32</span>              :                  * @param permeability Relative permeability mu_r.</span>
+<span id="L33"><span class="lineNum">      33</span>              :                  * @param area Nominal cross-sectional area (m²).</span>
+<span id="L34"><span class="lineNum">      34</span>              :                  */</span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">          18 :                 Conductor(double ri = 0, double ro = 0, double resistivity = 0, double permeability = 1, double area = 0)</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          18 :                         : ri(ri), ro(ro), resistivity(resistivity), permeability(permeability), area(area) {}</span></span>
+<span id="L37"><span class="lineNum">      37</span>              : </span>
+<span id="L38"><span class="lineNum">      38</span>              :                 // Member variables</span>
+<span id="L39"><span class="lineNum">      39</span>              :                 double ri; //conductor inner radius</span>
+<span id="L40"><span class="lineNum">      40</span>              :                 double ro; //conductor outer radius</span>
+<span id="L41"><span class="lineNum">      41</span>              :                 double resistivity; //conductor resistivity ρ [Ωm]</span>
+<span id="L42"><span class="lineNum">      42</span>              :                 double permeability;  //relative permeability μᵣ</span>
+<span id="L43"><span class="lineNum">      43</span>              :                 double area; //nominal area</span>
+<span id="L44"><span class="lineNum">      44</span>              :         };</span>
+<span id="L45"><span class="lineNum">      45</span>              : </span>
+<span id="L46"><span class="lineNum">      46</span>              :         /**</span>
+<span id="L47"><span class="lineNum">      47</span>              :          * @class Insulator</span>
+<span id="L48"><span class="lineNum">      48</span>              :          * @brief Insulating layer with optional inner/outer semiconductor radii.</span>
+<span id="L49"><span class="lineNum">      49</span>              :          */</span>
+<span id="L50"><span class="lineNum">      50</span>              :         class Insulator {</span>
+<span id="L51"><span class="lineNum">      51</span>              :         public:</span>
+<span id="L52"><span class="lineNum">      52</span>              :                 /**</span>
+<span id="L53"><span class="lineNum">      53</span>              :                  * @brief Construct a cable insulator layer.</span>
+<span id="L54"><span class="lineNum">      54</span>              :                  * @param ri Inner radius (m).</span>
+<span id="L55"><span class="lineNum">      55</span>              :                  * @param ro Outer radius (m).</span>
+<span id="L56"><span class="lineNum">      56</span>              :                  * @param permittivity Relative permittivity epsilon_r.</span>
+<span id="L57"><span class="lineNum">      57</span>              :                  * @param permeability Relative permeability mu_r.</span>
+<span id="L58"><span class="lineNum">      58</span>              :                  * @param innerSemiConductorOuterRadius Inner semiconductor outer radius a (m).</span>
+<span id="L59"><span class="lineNum">      59</span>              :                  * @param outerSemiConductorInnerRadius Outer semiconductor inner radius b (m).</span>
+<span id="L60"><span class="lineNum">      60</span>              :                  */</span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">          18 :                 Insulator(double ri = 0, double ro = 0, double permittivity = 1, double permeability = 1, double innerSemiConductorOuterRadius = 0, double outerSemiConductorInnerRadius = 0)</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">          18 :                         : ri(ri), ro(ro), permittivity(permittivity), permeability(permeability), a(innerSemiConductorOuterRadius), b(outerSemiConductorInnerRadius) {}</span></span>
+<span id="L63"><span class="lineNum">      63</span>              : </span>
+<span id="L64"><span class="lineNum">      64</span>              :                 // Member variables</span>
+<span id="L65"><span class="lineNum">      65</span>              :                 double ri;  //insulator inner radius</span>
+<span id="L66"><span class="lineNum">      66</span>              :                 double ro;  //insulator outer radius</span>
+<span id="L67"><span class="lineNum">      67</span>              :                 double permittivity; //relative permittivity epsilon_r</span>
+<span id="L68"><span class="lineNum">      68</span>              :                 double permeability; //relative permeability mu_r</span>
+<span id="L69"><span class="lineNum">      69</span>              : </span>
+<span id="L70"><span class="lineNum">      70</span>              :                 //If a semiconductor is present in an insulator, we have: r_i &lt; semiconductor &lt; a + a &lt; insulator &lt; b + b &lt; semiconductor &lt; r_o</span>
+<span id="L71"><span class="lineNum">      71</span>              :                 double a; //inner semiconductor outer radius -&gt; Inner semiconductor r_i &lt; r &lt; a</span>
+<span id="L72"><span class="lineNum">      72</span>              :                 double b; //outer semiconductor inner radius -&gt; Outer semiconductor b &lt; r &lt; r_o</span>
+<span id="L73"><span class="lineNum">      73</span>              :         };</span>
+<span id="L74"><span class="lineNum">      74</span>              : </span>
+<span id="L75"><span class="lineNum">      75</span>              :         // Constructor simple</span>
+<span id="L76"><span class="lineNum">      76</span>              :         /**</span>
+<span id="L77"><span class="lineNum">      77</span>              :          * @brief Default cable with placeholder symbol, location, and pin counts.</span>
+<span id="L78"><span class="lineNum">      78</span>              :          */</span>
+<span id="L79"><span class="lineNum">      79</span>              :         Cable() : Element(&quot;cable&quot;, &quot;DC1&quot;, 1, 1), length(0), type(&quot;underground&quot;), eliminate(true) {};</span>
+<span id="L80"><span class="lineNum">      80</span>              :         </span>
+<span id="L81"><span class="lineNum">      81</span>              :         /**</span>
+<span id="L82"><span class="lineNum">      82</span>              :          * @brief Construct a cable from geometry, earth, conductor, and insulator maps.</span>
+<span id="L83"><span class="lineNum">      83</span>              :          * @param symbol Element identifier.</span>
+<span id="L84"><span class="lineNum">      84</span>              :          * @param location Network area or location string.</span>
+<span id="L85"><span class="lineNum">      85</span>              :          * @param pins Number of pins (phases).</span>
+<span id="L86"><span class="lineNum">      86</span>              :          * @param type_constructor Cable type (&quot;underground&quot; or &quot;aerial&quot;).</span>
+<span id="L87"><span class="lineNum">      87</span>              :          * @param length_constructor Line length (m).</span>
+<span id="L88"><span class="lineNum">      88</span>              :          * @param earth Earth parameters tuple (mu_r, epsilon_r, resistivity).</span>
+<span id="L89"><span class="lineNum">      89</span>              :          * @param conductors_constructor Map of conductor symbols to Conductor layers.</span>
+<span id="L90"><span class="lineNum">      90</span>              :          * @param insulators_constructor Map of insulator symbols to Insulator layers.</span>
+<span id="L91"><span class="lineNum">      91</span>              :          * @param positions_constructor (x, y) positions of each cable in the layout.</span>
+<span id="L92"><span class="lineNum">      92</span>              :          */</span>
+<span id="L93"><span class="lineNum">      93</span>              :         Cable(const string&amp; symbol, const std::string&amp; location, int pins, const string&amp; type_constructor,</span>
+<span id="L94"><span class="lineNum">      94</span>              :                 double length_constructor, std::tuple&lt;double, double, double&gt; earth,</span>
+<span id="L95"><span class="lineNum">      95</span>              :                 std::map&lt;string, Conductor*&gt; conductors_constructor, std::map&lt;string, Insulator*&gt; insulators_constructor,</span>
+<span id="L96"><span class="lineNum">      96</span>              :                 std::vector&lt;std::pair&lt;double, double&gt;&gt; positions_constructor);</span>
+<span id="L97"><span class="lineNum">      97</span>              : </span>
+<span id="L98"><span class="lineNum">      98</span>              :         void setLength(double newLength) { length = newLength; }</span>
+<span id="L99"><span class="lineNum">      99</span>              :         void addConductor(const std::string&amp; key, Conductor* conductor) { conductors[key] = conductor; }</span>
+<span id="L100"><span class="lineNum">     100</span>              :         void addInsulator(const std::string&amp; key, Insulator* insulator) { insulators[key] = insulator; }</span>
+<span id="L101"><span class="lineNum">     101</span>              :         void addPosition(double x, double y) { positions.emplace_back(x, y); }</span>
+<span id="L102"><span class="lineNum">     102</span>              :         void setEarthParameters(double mu, double epsilon, double rho) { earth_parameters = std::make_tuple(mu, epsilon, rho); }</span>
+<span id="L103"><span class="lineNum">     103</span>              :         void setConfiguration(const std::string&amp; newConfig) { configuration = newConfig; }</span>
+<span id="L104"><span class="lineNum">     104</span>              :         void setEliminate(bool value) { eliminate = value; } //to change the value of eliminate</span>
+<span id="L105"><span class="lineNum">     105</span>              : </span>
+<span id="L106"><span class="lineNum">     106</span>              : </span>
+<span id="L107"><span class="lineNum">     107</span>              :         // Getter methods</span>
+<span id="L108"><span class="lineNum">     108</span>              :         double getLength() const { return length; }</span>
+<span id="L109"><span class="lineNum">     109</span>              :         const std::tuple&lt;double, double, double&gt;&amp; getEarthParameters() const { return earth_parameters; }</span>
+<span id="L110"><span class="lineNum">     110</span>              :         const std::vector&lt;std::pair&lt;double, double&gt;&gt;&amp; getPositions() const { return positions; }</span>
+<span id="L111"><span class="lineNum">     111</span>              :         const std::string&amp; getConfiguration() const { return configuration; }</span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">           3 :         const std::string&amp; getType() const { return type; }</span></span>
+<span id="L113"><span class="lineNum">     113</span>              :         bool getEliminate() const { return eliminate; }</span>
+<span id="L114"><span class="lineNum">     114</span>              : </span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaUNC">           0 :         Conductor* getConductor(const std::string&amp; key) {</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaUNC">           0 :                 auto it = conductors.find(key);</span></span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaUNC">           0 :                 if (it != conductors.end()) {</span></span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaUNC">           0 :                         return (it-&gt;second); // Return a pointer to the conductor if found</span></span>
+<span id="L119"><span class="lineNum">     119</span>              :                 }</span>
+<span id="L120"><span class="lineNum">     120</span>              :                 else {</span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaUNC">           0 :                         return nullptr; // Return nullptr if conductor not found</span></span>
+<span id="L122"><span class="lineNum">     122</span>              :                 }</span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L124"><span class="lineNum">     124</span>              : </span>
+<span id="L125"><span class="lineNum">     125</span>              :         // Function to access an insulator from the insulators map</span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">          18 :         Insulator* getInsulator(const std::string&amp; key) {</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">          18 :                 auto it = insulators.find(key);</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">          18 :                 if (it != insulators.end()) {</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">          18 :                         return (it-&gt;second);</span></span>
+<span id="L130"><span class="lineNum">     130</span>              :                 }</span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaUNC">           0 :                 return nullptr; // Insulator not found</span></span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">          18 :         }</span></span>
+<span id="L133"><span class="lineNum">     133</span>              : </span>
+<span id="L134"><span class="lineNum">     134</span>              :         void updateInsulator(const std::string&amp; key, Insulator* insulator) {</span>
+<span id="L135"><span class="lineNum">     135</span>              :                 insulators[key] = insulator;</span>
+<span id="L136"><span class="lineNum">     136</span>              :         }</span>
+<span id="L137"><span class="lineNum">     137</span>              : </span>
+<span id="L138"><span class="lineNum">     138</span>              :         void updateLayers(); // Function to update layers</span>
+<span id="L139"><span class="lineNum">     139</span>              : </span>
+<span id="L140"><span class="lineNum">     140</span>              :         // Function to modify a conductor in the conductors map</span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaUNC">           0 :         void updateConductor(const std::string&amp; key, Conductor* conductor) {</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaUNC">           0 :                 conductors[key] = conductor;</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L144"><span class="lineNum">     144</span>              : </span>
+<span id="L145"><span class="lineNum">     145</span>              :         // Function to remove a conductor from the conductors map</span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaUNC">           0 :         void removeConductor(const std::string&amp; key) {</span></span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaUNC">           0 :                 auto it = conductors.find(key);</span></span>
+<span id="L148"><span class="lineNum">     148</span> <span class="tlaUNC">           0 :                 if (it != conductors.end()) {</span></span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaUNC">           0 :                         delete it-&gt;second;</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaUNC">           0 :                         conductors.erase(it);</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L153"><span class="lineNum">     153</span>              : </span>
+<span id="L154"><span class="lineNum">     154</span>              :         // Define a member function in the Cable class to access the conductors map</span>
+<span id="L155"><span class="lineNum">     155</span>              :         const std::map&lt;std::string, Conductor*&gt;&amp; getCableConductors() const {</span>
+<span id="L156"><span class="lineNum">     156</span>              :                 return conductors;</span>
+<span id="L157"><span class="lineNum">     157</span>              :         }</span>
+<span id="L158"><span class="lineNum">     158</span>              : </span>
+<span id="L159"><span class="lineNum">     159</span>              :         // Define a member function in the Cable class to access the insulators map</span>
+<span id="L160"><span class="lineNum">     160</span>              :         const std::map&lt;std::string, Insulator*&gt;&amp; getCableInsulators() const {</span>
+<span id="L161"><span class="lineNum">     161</span>              :                 return insulators;</span>
+<span id="L162"><span class="lineNum">     162</span>              :         }</span>
+<span id="L163"><span class="lineNum">     163</span>              : </span>
+<span id="L164"><span class="lineNum">     164</span>              :         // Functions for handling properties</span>
+<span id="L165"><span class="lineNum">     165</span>              :         bool hasProperty(const std::string&amp; key) { return (conductors.find(key) != conductors.end() || insulators.find(key) != insulators.end()); }</span>
+<span id="L166"><span class="lineNum">     166</span>              :         bool isConductor(const std::string&amp; key) { return (conductors.find(key) != conductors.end()); }</span>
+<span id="L167"><span class="lineNum">     167</span>              :         bool isInsulator(const std::string&amp; key) { return (insulators.find(key) != insulators.end()); }</span>
+<span id="L168"><span class="lineNum">     168</span>              : </span>
+<span id="L169"><span class="lineNum">     169</span>              : </span>
+<span id="L170"><span class="lineNum">     170</span>              :         // Function to compute Y parameters</span>
+<span id="L171"><span class="lineNum">     171</span>              :         virtual std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; compute_y_parameters(double frequency) override;</span>
+<span id="L172"><span class="lineNum">     172</span>              : </span>
+<span id="L173"><span class="lineNum">     173</span>              :         virtual void printElementValues() override;</span>
+<span id="L174"><span class="lineNum">     174</span>              : </span>
+<span id="L175"><span class="lineNum">     175</span>              :         // Destructor</span>
+<span id="L176"><span class="lineNum">     176</span>              :         ~Cable();</span>
+<span id="L177"><span class="lineNum">     177</span>              : </span>
+<span id="L178"><span class="lineNum">     178</span>              : private:</span>
+<span id="L179"><span class="lineNum">     179</span>              :         // Private member variables</span>
+<span id="L180"><span class="lineNum">     180</span>              :         double length;   //line length [m]</span>
+<span id="L181"><span class="lineNum">     181</span>              :         //dictionary with a particular order. Key: Symbol-&gt; C1, C2, C3 and C4. Value: Conductor-&gt; Mutable Struct Conductor, defined above</span>
+<span id="L182"><span class="lineNum">     182</span>              :         // entries are &quot;Symbol&quot; of the conductor and pointer to the conductor </span>
+<span id="L183"><span class="lineNum">     183</span>              :         std::map&lt;std::string, Conductor*&gt; conductors;</span>
+<span id="L184"><span class="lineNum">     184</span>              :         //dictionary with a particular order. Key: Symbol-&gt; I1, I2, I3 and I4. Value: Insulator-&gt; Mutable Struct Insulator, defined above</span>
+<span id="L185"><span class="lineNum">     185</span>              :         // entries are &quot;Symbol&quot; of the insulator and pointer to the insulator</span>
+<span id="L186"><span class="lineNum">     186</span>              :         std::map&lt;std::string, Insulator*&gt; insulators;</span>
+<span id="L187"><span class="lineNum">     187</span>              :         //indicates all variables are real number, vector composed by tuple of real numbers. e.g. positions=[(0,0),(1,1)]. Cables positions 1st:x=0, y=0. 2nd: x=1, y=1.</span>
+<span id="L188"><span class="lineNum">     188</span>              :         std::vector&lt;std::pair&lt;double, double&gt;&gt; positions;</span>
+<span id="L189"><span class="lineNum">     189</span>              :         //(μᵣ, ϵᵣ, ρ) in units ([], [], [Ωm]) compact way of representing the type for a tuple of length N where all elements are of type Int or Float64.</span>
+<span id="L190"><span class="lineNum">     190</span>              :         std::tuple&lt;double, double, double&gt; earth_parameters;</span>
+<span id="L191"><span class="lineNum">     191</span>              : </span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           3 :         std::string configuration = &quot;coaxial&quot;; // Configuration is a datatype symbol with value &quot;coaxial&quot;. </span></span>
+<span id="L193"><span class="lineNum">     193</span>              :         std::string type; // Type is a datatype symbol with value &quot;underground&quot; or &quot;aerial&quot;. </span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           3 :         bool eliminate = true;</span></span>
+<span id="L195"><span class="lineNum">     195</span>              : </span>
+<span id="L196"><span class="lineNum">     196</span>              :         DenseMatrix Z;</span>
+<span id="L197"><span class="lineNum">     197</span>              :         DenseMatrix Y;</span>
+<span id="L198"><span class="lineNum">     198</span>              :         MatrixXd P; //DenseMatrix P;</span>
+<span id="L199"><span class="lineNum">     199</span>              : };</span>
+<span id="L200"><span class="lineNum">     200</span>              : </span>
+<span id="L201"><span class="lineNum">     201</span>              : #endif</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>
