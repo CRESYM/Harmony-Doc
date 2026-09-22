@@ -56,7 +56,6 @@ jobs:
       - name: Download test coverage artifact from CRESYM/Harmony repo
         uses: dawidd6/action-download-artifact@v6
         with:
-          github_token: ${{ secrets.HARMONY_REPO_TOKEN }}
           repo: CRESYM/Harmony
           workflow: test_coverage.yml
           name: harmony-test-coverage
