@@ -7,10 +7,14 @@ var searchData=
   ['dd_5fmatrix_4',['Dd_matrix',['../classConverter.html#a58eb8318c740e26a98d4f39bb2b5a7c3',1,'Converter']]],
   ['ddelay_5',['Ddelay',['../classConverter.html#acf2224383aad95eb6ed6a5e9558b4429',1,'Converter']]],
   ['dds_6',['Dds',['../structDSSState.html#a27900cc8e5d5e80480cfec1d002434bc',1,'DSSState']]],
-  ['dqsym_5finitialized_5f_7',['dqsym_initialized_',['../classMMC.html#aee1be0cfa350201c35c413cd10a362c0',1,'MMC']]],
-  ['dqsymcols_8',['dqsymCols',['../structInputGroup.html#a9ca8ee5e88799c580a575373a0f368a1',1,'InputGroup']]],
-  ['dqsymstartcol_9',['dqsymStartCol',['../structInputGroup.html#aaec31c4ae00034ad2f92f75a49de9a74',1,'InputGroup']]],
-  ['dssabchist_10',['DSSabcHist',['../structDQsymResult.html#a7b4e3297e1d9459de88c36e541a3ea8f',1,'DQsymResult']]],
-  ['dt_11',['dt',['../structConfig.html#a4fbaef8bb7383d4c0a5e5ac61410fd40',1,'Config']]],
-  ['dt_5fmax_12',['dt_max',['../structCVODEConfig.html#ac15b91cc5dd44010d10a053d8d1d7dbc',1,'CVODEConfig']]]
+  ['device_5fid_7',['device_id',['../structDeviceGateResult.html#a06f13c2bad4114e702826fd6dc7588e0',1,'DeviceGateResult::device_id'],['../structPnPDeviceRecord.html#a7d976972f87b4ed821ed2cea577e04f7',1,'PnPDeviceRecord::device_id']]],
+  ['device_5ftype_8',['device_type',['../structPnPDeviceRecord.html#ac1015a1d3e32366dfffb7a05c51aaafc',1,'PnPDeviceRecord']]],
+  ['dqsym_5finitialized_5f_9',['dqsym_initialized_',['../classMMC.html#aee1be0cfa350201c35c413cd10a362c0',1,'MMC']]],
+  ['dqsymcols_10',['dqsymCols',['../structInputGroup.html#a9ca8ee5e88799c580a575373a0f368a1',1,'InputGroup']]],
+  ['dqsymstartcol_11',['dqsymStartCol',['../structInputGroup.html#aaec31c4ae00034ad2f92f75a49de9a74',1,'InputGroup']]],
+  ['dssabchist_12',['DSSabcHist',['../structDQsymResult.html#a7b4e3297e1d9459de88c36e541a3ea8f',1,'DQsymResult']]],
+  ['dt_13',['dt',['../structConfig.html#a4fbaef8bb7383d4c0a5e5ac61410fd40',1,'Config']]],
+  ['dt_5fmax_14',['dt_max',['../structCVODEConfig.html#ac15b91cc5dd44010d10a053d8d1d7dbc',1,'CVODEConfig']]],
+  ['dw_5fmargin_15',['dw_margin',['../structCertificateSweep.html#a795ac673de9796be995adb7b19062b3f',1,'CertificateSweep']]],
+  ['dw_5fsphere_16',['dw_sphere',['../structCertificateSpec.html#a5e5bce9440bcbe6c761ba6f94fe44760',1,'CertificateSpec']]]
 ];

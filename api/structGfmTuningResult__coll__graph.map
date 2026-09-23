@@ -1,0 +1,20 @@
+<map id="GfmTuningResult" name="GfmTuningResult">
+<area shape="rect" id="Node000001" title="Result of a GFM tuning search." alt="" coords="289,533,423,559"/>
+<area shape="rect" id="Node000002" href="$structCertificateSweep.html" title="Frequency&#45;domain certificate sweep for one device (or one H)." alt="" coords="290,431,422,456"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="359,470,359,533,353,533,353,470"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="273,189,439,214"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,228,359,431,353,431,353,228"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="231,93,361,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,128,329,141,353,187,349,190,324,144,315,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="9,189,249,214"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="219,122,193,132,170,145,149,167,136,190,132,187,145,164,166,141,191,127,217,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="277,5,315,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="299,45,299,93,293,93,293,45"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="135,227,144,273,159,333,184,396,200,426,219,454,244,480,273,501,329,531,326,536,270,506,241,484,215,458,196,429,179,398,154,334,138,274,130,228"/>
+<area shape="rect" id="Node000007" href="$structGfmTuningSample.html" title="One candidate in the GFM droop search." alt="" coords="5,93,147,119"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="75,132,80,156,93,173,109,186,106,190,89,177,75,158,70,133"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="467,431,554,456"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="483,466,375,536,372,531,480,461"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="463,181,601,221"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="532,235,514,431,509,430,526,235"/>
+</map>

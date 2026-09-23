@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Elements/Converter/MMC.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Elements/Converter">src/Elements/Converter</a> - MMC.h<span style="font-size: 80%;"> (source / <a href="MMC.h.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryMed">80.4&nbsp;%</td>
+            <td class="headerCovTableEntry">56</td>
+            <td class="headerCovTableEntry">45</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryMed">85.7&nbsp;%</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">6</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : #ifndef MMC_H</span>
+<span id="L2"><span class="lineNum">       2</span>              : #define MMC_H</span>
+<span id="L3"><span class="lineNum">       3</span>              : </span>
+<span id="L4"><span class="lineNum">       4</span>              : /**</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * @file MMC.h</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * @brief Modular Multilevel Converter (MMC) state-space and MNA model.</span>
+<span id="L7"><span class="lineNum">       7</span>              :  */</span>
+<span id="L8"><span class="lineNum">       8</span>              : </span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;Converter.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : #include &quot;../../Include_control_blocks.h&quot;</span>
+<span id="L11"><span class="lineNum">      11</span>              : </span>
+<span id="L12"><span class="lineNum">      12</span>              : // Forward declarations</span>
+<span id="L13"><span class="lineNum">      13</span>              : class Controller;</span>
+<span id="L14"><span class="lineNum">      14</span>              : class Filter;</span>
+<span id="L15"><span class="lineNum">      15</span>              : </span>
+<span id="L16"><span class="lineNum">      16</span>              : /**</span>
+<span id="L17"><span class="lineNum">      17</span>              :  * @class MMC</span>
+<span id="L18"><span class="lineNum">      18</span>              :  * @brief Modular Multilevel Converter with arm dynamics and control loops.</span>
+<span id="L19"><span class="lineNum">      19</span>              :  * @ingroup converter</span>
+<span id="L20"><span class="lineNum">      20</span>              :  */</span>
+<span id="L21"><span class="lineNum">      21</span>              : class MMC : public Converter {</span>
+<span id="L22"><span class="lineNum">      22</span>              : public:</span>
+<span id="L23"><span class="lineNum">      23</span>              :     /**</span>
+<span id="L24"><span class="lineNum">      24</span>              :      * @brief Construct an MMC from individual scalar parameters.</span>
+<span id="L25"><span class="lineNum">      25</span>              :      * @param symbol Element identifier.</span>
+<span id="L26"><span class="lineNum">      26</span>              :      * @param location Network area string encoding AC and DC areas.</span>
+<span id="L27"><span class="lineNum">      27</span>              :      * @param omega Nominal angular frequency (rad/s).</span>
+<span id="L28"><span class="lineNum">      28</span>              :      * @param activePower Active power setpoint (W).</span>
+<span id="L29"><span class="lineNum">      29</span>              :      * @param reactivePower Reactive power setpoint (VAR).</span>
+<span id="L30"><span class="lineNum">      30</span>              :      * @param angle AC voltage angle (rad).</span>
+<span id="L31"><span class="lineNum">      31</span>              :      * @param acVoltage AC voltage amplitude (V).</span>
+<span id="L32"><span class="lineNum">      32</span>              :      * @param Pdc DC power (W).</span>
+<span id="L33"><span class="lineNum">      33</span>              :      * @param dcVoltage DC bus voltage (V).</span>
+<span id="L34"><span class="lineNum">      34</span>              :      * @param armInductance Arm inductance (H).</span>
+<span id="L35"><span class="lineNum">      35</span>              :      * @param armResistance Arm resistance (Ω).</span>
+<span id="L36"><span class="lineNum">      36</span>              :      * @param armCapacitance Submodule capacitance (F).</span>
+<span id="L37"><span class="lineNum">      37</span>              :      * @param numSubmodules Number of submodules per arm.</span>
+<span id="L38"><span class="lineNum">      38</span>              :      * @param reactorInductance Phase reactor inductance (H).</span>
+<span id="L39"><span class="lineNum">      39</span>              :      * @param reactorResistance Phase reactor resistance (Ω).</span>
+<span id="L40"><span class="lineNum">      40</span>              :      * @param timeDelay Control time delay (s).</span>
+<span id="L41"><span class="lineNum">      41</span>              :      */</span>
+<span id="L42"><span class="lineNum">      42</span>              :     MMC(const std::string&amp; symbol, const std::string&amp; location,</span>
+<span id="L43"><span class="lineNum">      43</span>              :         double omega, double activePower, double reactivePower,</span>
+<span id="L44"><span class="lineNum">      44</span>              :         double angle, double acVoltage, double Pdc, double dcVoltage,</span>
+<span id="L45"><span class="lineNum">      45</span>              :         double armInductance, double armResistance, double armCapacitance,</span>
+<span id="L46"><span class="lineNum">      46</span>              :         int numSubmodules, double reactorInductance, double reactorResistance,</span>
+<span id="L47"><span class="lineNum">      47</span>              :         double timeDelay);</span>
+<span id="L48"><span class="lineNum">      48</span>              : </span>
+<span id="L49"><span class="lineNum">      49</span>              :     /**</span>
+<span id="L50"><span class="lineNum">      50</span>              :      * @brief Construct an MMC from a converter parameter vector.</span>
+<span id="L51"><span class="lineNum">      51</span>              :      * @param symbol Element identifier.</span>
+<span id="L52"><span class="lineNum">      52</span>              :      * @param location Network area string encoding AC and DC areas.</span>
+<span id="L53"><span class="lineNum">      53</span>              :      * @param converter_params Packed converter parameters from init_MMC.</span>
+<span id="L54"><span class="lineNum">      54</span>              :      */</span>
+<span id="L55"><span class="lineNum">      55</span>              :     MMC(const std::string&amp; symbol, const std::string&amp; location, const std::vector&lt;double&gt;&amp; converter_params);</span>
+<span id="L56"><span class="lineNum">      56</span>              : </span>
+<span id="L57"><span class="lineNum">      57</span>              :     /**</span>
+<span id="L58"><span class="lineNum">      58</span>              :      * @brief Construct an MMC with converter and controller parameters.</span>
+<span id="L59"><span class="lineNum">      59</span>              :      * @param symbol Element identifier.</span>
+<span id="L60"><span class="lineNum">      60</span>              :      * @param location Network area string encoding AC and DC areas.</span>
+<span id="L61"><span class="lineNum">      61</span>              :      * @param converter_params Packed converter parameters.</span>
+<span id="L62"><span class="lineNum">      62</span>              :      * @param controller_params Controller gain and setpoint parameters.</span>
+<span id="L63"><span class="lineNum">      63</span>              :      */</span>
+<span id="L64"><span class="lineNum">      64</span>              :     MMC(const std::string&amp; symbol, const std::string&amp; location, const std::vector&lt;double&gt;&amp; converter_params, const std::vector&lt;double&gt;&amp; controller_params);</span>
+<span id="L65"><span class="lineNum">      65</span>              : </span>
+<span id="L66"><span class="lineNum">      66</span>              :     /**</span>
+<span id="L67"><span class="lineNum">      67</span>              :      * @brief Construct an MMC with converter, controller, and filter parameters.</span>
+<span id="L68"><span class="lineNum">      68</span>              :      * @param symbol Element identifier.</span>
+<span id="L69"><span class="lineNum">      69</span>              :      * @param location Network area string encoding AC and DC areas.</span>
+<span id="L70"><span class="lineNum">      70</span>              :      * @param converter_params Packed converter parameters.</span>
+<span id="L71"><span class="lineNum">      71</span>              :      * @param controller_params Controller gain and setpoint parameters.</span>
+<span id="L72"><span class="lineNum">      72</span>              :      * @param filter_params Filter time-constant and gain parameters.</span>
+<span id="L73"><span class="lineNum">      73</span>              :      */</span>
+<span id="L74"><span class="lineNum">      74</span>              :     MMC(const std::string&amp; symbol, const std::string&amp; location, const std::vector&lt;double&gt;&amp; converter_params,</span>
+<span id="L75"><span class="lineNum">      75</span>              :         const std::vector&lt;double&gt;&amp; controller_params, const std::vector&lt;double&gt;&amp; filter_params);</span>
+<span id="L76"><span class="lineNum">      76</span>              : </span>
+<span id="L77"><span class="lineNum">      77</span>              :     // Initialization methods</span>
+<span id="L78"><span class="lineNum">      78</span>              :     void init_Controller(const std::vector&lt;double&gt;&amp; converter_params);// Method to initialize controllers and Filters in MMC</span>
+<span id="L79"><span class="lineNum">      79</span>              :     void init_Filter(const std::vector&lt;double&gt;&amp; converter_params);</span>
+<span id="L80"><span class="lineNum">      80</span>              :     /** @brief Set operating point. Pac/Pdc use MMC machine signs (see MMC.cpp). */</span>
+<span id="L81"><span class="lineNum">      81</span>              :     void update_MMC(double Vm, double theta, double Pac, double Qac, double Vdc, double Pdc);</span>
+<span id="L82"><span class="lineNum">      82</span>              : </span>
+<span id="L83"><span class="lineNum">      83</span>              :     /** @brief True when GFM outer-loop states are enabled. */</span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">          18 :     bool hasGfm() const { return gfm_index_ &gt;= 0 &amp;&amp; controls.count(&quot;gfm&quot;) &gt; 0; }</span></span>
+<span id="L85"><span class="lineNum">      85</span>              : </span>
+<span id="L86"><span class="lineNum">      86</span>              :     /** @brief Return current GFM droops (Kdroop_P, Kdroop_Q). */</span>
+<span id="L87"><span class="lineNum">      87</span>              :     std::pair&lt;double, double&gt; getGfmDroops() const;</span>
+<span id="L88"><span class="lineNum">      88</span>              : </span>
+<span id="L89"><span class="lineNum">      89</span>              :     /** @brief Set GFM droops (Kdroop_P, Kdroop_Q); no-op if GFM disabled. */</span>
+<span id="L90"><span class="lineNum">      90</span>              :     void setGfmDroops(double Kdroop_P, double Kdroop_Q);</span>
+<span id="L91"><span class="lineNum">      91</span>              : </span>
+<span id="L92"><span class="lineNum">      92</span>              :     // Destructor — control blocks are freed by Converter base class</span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">          60 :     ~MMC() override = default;</span></span>
+<span id="L94"><span class="lineNum">      94</span>              :        </span>
+<span id="L95"><span class="lineNum">      95</span>              :     </span>
+<span id="L96"><span class="lineNum">      96</span>              :     // Equilibrium point calculation</span>
+<span id="L97"><span class="lineNum">      97</span>              :     virtual void solveEquilibrium() override;</span>
+<span id="L98"><span class="lineNum">      98</span>              :     virtual Eigen::MatrixXd computeStateDerivatives(const Eigen::VectorXd&amp; x, const Eigen::VectorXd&amp; u) override;</span>
+<span id="L99"><span class="lineNum">      99</span>              :     virtual void computeABCD() override;</span>
+<span id="L100"><span class="lineNum">     100</span>              :     /// Exact 12×12 plant Jacobian (modulation treated as fixed parameters)</span>
+<span id="L101"><span class="lineNum">     101</span>              :     Eigen::MatrixXd computePlantJacobian(</span>
+<span id="L102"><span class="lineNum">     102</span>              :         double w,</span>
+<span id="L103"><span class="lineNum">     103</span>              :         double mDd, double mDq, double mDZd, double mDZq,</span>
+<span id="L104"><span class="lineNum">     104</span>              :         double mSd, double mSq, double mSz) const;</span>
+<span id="L105"><span class="lineNum">     105</span>              : </span>
+<span id="L106"><span class="lineNum">     106</span>              :     /// computeABCD variant: exact plant block + numerical controller block</span>
+<span id="L107"><span class="lineNum">     107</span>              :     void computeABCD_analytical();</span>
+<span id="L108"><span class="lineNum">     108</span>              : </span>
+<span id="L109"><span class="lineNum">     109</span>              :         // Y-parameter computation</span>
+<span id="L110"><span class="lineNum">     110</span>              :     std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; compute_y_parameters(double frequency) override;</span>
+<span id="L111"><span class="lineNum">     111</span>              :         </span>
+<span id="L112"><span class="lineNum">     112</span>              :     // Override to print MMC-specific parameters</span>
+<span id="L113"><span class="lineNum">     113</span>              :     virtual void printElementValues() override;</span>
+<span id="L114"><span class="lineNum">     114</span>              : </span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaGNC">           8 :     void computePowerFlow(std::map&lt;std::string, double&gt;&amp; data,</span></span>
+<span id="L116"><span class="lineNum">     116</span>              :         std::map&lt;std::string, double&gt;&amp; globalParams) const override</span>
+<span id="L117"><span class="lineNum">     117</span>              :     {</span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaGNC">           8 :         for (auto&amp; [key, value] : element_OPF_info)</span></span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaUNC">           0 :                         data[key] = value; // Copy OPF info to branch data</span></span>
+<span id="L120"><span class="lineNum">     120</span>              : </span>
+<span id="L121"><span class="lineNum">     121</span>              :                 //data[&quot;bf&quot;] = 0.0; // conductance of the filter</span>
+<span id="L122"><span class="lineNum">     122</span>              :                 //data[&quot;rf&quot;] = 0.0; // Resistance of the filter</span>
+<span id="L123"><span class="lineNum">     123</span>              :                 //data[&quot;xf&quot;] = 0.0; // Reactance of the filter</span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">           8 :         data[&quot;xc&quot;] = globalParams[&quot;omega&quot;] * L_reactor / globalParams[&quot;ACZbase&quot;]; // Base voltage for AC</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">           8 :                 data[&quot;rc&quot;] = R_reactor / globalParams[&quot;ACZbase&quot;]; // Resistance of the phase reactor</span></span>
+<span id="L126"><span class="lineNum">     126</span>              :         // MatACDC P_G/Q_G: OPF enforces pn = -P_G and qs = -Q_G, so pass MMC</span>
+<span id="L127"><span class="lineNum">     127</span>              :         // machine-convention Pac/Qac directly (inverter Pac&gt;0 → pn&lt;0).</span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">           8 :         data[&quot;P_g&quot;] = P / 1e6;</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">           8 :         data[&quot;Q_g&quot;] = Q / 1e6;</span></span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">           8 :         data[&quot;Vtar&quot;] = V_dc / 1e3 / globalParams[&quot;DCbaseKV&quot;]; // Seting of DC v-control value</span></span>
+<span id="L131"><span class="lineNum">     131</span>              : </span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">           8 :                 data[&quot;gridac&quot;] = (int)element_location[2] - '0'; // AC grid number</span></span>
+<span id="L133"><span class="lineNum">     133</span>              : </span>
+<span id="L134"><span class="lineNum">     134</span>              :         // DC side type_dc(1 = constant DC power control (i.e. active power), 2 = constant DC voltage control, 3 = DC droop control)</span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">           8 :         if (controls.count(&quot;active_power&quot;)) {</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">           5 :             if (!element_OPF_info.count(&quot;type_dc&quot;))</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaGNC">           5 :                 data[&quot;type_dc&quot;] = 1;</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">           5 :                 }</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaGNC">           3 :         else if (controls.count(&quot;dc_voltage&quot;)) {</span></span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC">           3 :             if (!element_OPF_info.count(&quot;type_dc&quot;))</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           3 :                         data[&quot;type_dc&quot;] = 2;</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           3 :                 }</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaUNC">           0 :         else if (controls.count(&quot;droop&quot;)) {</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaUNC">           0 :             if (!element_OPF_info.count(&quot;type_dc&quot;))</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaUNC">           0 :                         data[&quot;type_dc&quot;] = 3;</span></span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L147"><span class="lineNum">     147</span>              :         </span>
+<span id="L148"><span class="lineNum">     148</span>              :         // AC side control type_ac (1 = constant AC voltage control, 2 = constant reactive power control)</span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">           8 :         if (controls.count(&quot;ac_voltage&quot;)) {</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaUNC">           0 :             if (!element_OPF_info.count(&quot;type_ac&quot;))</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaUNC">           0 :                         data[&quot;type_ac&quot;] = 1;</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L153"><span class="lineNum">     153</span> <span class="tlaGNC">           8 :         else if (controls.count(&quot;reactive_power&quot;)) {</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">           6 :             if (!element_OPF_info.count(&quot;type_ac&quot;))</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">           6 :                 data[&quot;type_ac&quot;] = 2;</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           6 :         }</span></span>
+<span id="L157"><span class="lineNum">     157</span>              : </span>
+<span id="L158"><span class="lineNum">     158</span> <span class="tlaGNC">           8 :         if (element_OPF_info.count(&quot;type_dc&quot;))</span></span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaUNC">           0 :             data[&quot;type_dc&quot;] = element_OPF_info.at(&quot;type_dc&quot;);</span></span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">           8 :         if (element_OPF_info.count(&quot;type_ac&quot;))</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaUNC">           0 :             data[&quot;type_ac&quot;] = element_OPF_info.at(&quot;type_ac&quot;);</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           8 :     }</span></span>
+<span id="L163"><span class="lineNum">     163</span>              : </span>
+<span id="L164"><span class="lineNum">     164</span>              :     // One MMC arm-voltage time step</span>
+<span id="L165"><span class="lineNum">     165</span>              :     //vector&lt;MatrixXcd&gt; simulateTimeStep(const vector&lt;MatrixXcd&gt;&amp; input, double Ts, int nKeep1, int nKeep2) override;</span>
+<span id="L166"><span class="lineNum">     166</span>              : </span>
+<span id="L167"><span class="lineNum">     167</span>              :     // State-space model manipulation - generic MNA stamping </span>
+<span id="L168"><span class="lineNum">     168</span>              :     void writeMNAmatrix(SymEngine::DenseMatrix&amp;, std::unordered_map&lt;Bus*, int&gt;&amp;, int,</span>
+<span id="L169"><span class="lineNum">     169</span>              :         std::map&lt;Element*, std::vector&lt;RCP&lt;const Basic&gt;&gt;&gt;&amp;) override;</span>
+<span id="L170"><span class="lineNum">     170</span>              : </span>
+<span id="L171"><span class="lineNum">     171</span>              :     std::vector&lt;RCP&lt;const Basic&gt;&gt; getVirtualInputSymbols() const override;</span>
+<span id="L172"><span class="lineNum">     172</span>              : </span>
+<span id="L173"><span class="lineNum">     173</span>              :     std::vector&lt;MatrixXcd&gt; simulateInputStep(</span>
+<span id="L174"><span class="lineNum">     174</span>              :         const std::vector&lt;MatrixXcd&gt;&amp; states, int nKeep) const override;</span>
+<span id="L175"><span class="lineNum">     175</span>              : </span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaUNC">           0 :     int getNumberOfInternalStates() const override { return number_of_states; }</span></span>
+<span id="L177"><span class="lineNum">     177</span>              : </span>
+<span id="L178"><span class="lineNum">     178</span>              :     //add18/5</span>
+<span id="L179"><span class="lineNum">     179</span>              :     // </span>
+<span id="L180"><span class="lineNum">     180</span>              :     // // === BEGIN DQsym: expose plant-only state count ===</span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">      201016 :     int getNumberOfPlantStates() const override {</span></span>
+<span id="L182"><span class="lineNum">     182</span>              :         /*std::cout &lt;&lt; &quot;[MMC::getNumberOfPlantStates] returning &quot; &lt;&lt; n_plant_states_ &lt;&lt; &quot;\n&quot;; */</span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">      201016 :         return n_plant_states_; }</span></span>
+<span id="L184"><span class="lineNum">     184</span>              :     // === END DQsym: expose plant-only state count ===</span>
+<span id="L185"><span class="lineNum">     185</span>              : </span>
+<span id="L186"><span class="lineNum">     186</span>              :     //add18/5[</span>
+<span id="L187"><span class="lineNum">     187</span>              : </span>
+<span id="L188"><span class="lineNum">     188</span>              :     // added18/5=== BEGIN DQsym closed-loop control (public interface) ===</span>
+<span id="L189"><span class="lineNum">     189</span>              :     void stepControllers(double dt,</span>
+<span id="L190"><span class="lineNum">     190</span>              :         const std::vector&lt;Eigen::MatrixXcd&gt;&amp; states,</span>
+<span id="L191"><span class="lineNum">     191</span>              :         const Eigen::Vector2d&amp; Vg_dq);</span>
+<span id="L192"><span class="lineNum">     192</span>              :     // added18/5]=== END DQsym closed-loop control ===</span>
+<span id="L193"><span class="lineNum">     193</span>              : </span>
+<span id="L194"><span class="lineNum">     194</span>              :     // added18/5=== BEGIN DQsym closed-loop control (members) ===</span>
+<span id="L195"><span class="lineNum">     195</span>              :     Eigen::VectorXd x_ctrl_dqsym_;          // persistent controller integrator states</span>
+<span id="L196"><span class="lineNum">     196</span>              :     Eigen::MatrixXcd mD_dqsym_;             // current Δ-modulation (set by stepControllers)</span>
+<span id="L197"><span class="lineNum">     197</span>              :     Eigen::MatrixXcd mS_dqsym_;             // current Σ-modulation</span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">          25 :     bool dqsym_initialized_ = false;        // first-call init flag</span></span>
+<span id="L199"><span class="lineNum">     199</span>              : </span>
+<span id="L200"><span class="lineNum">     200</span>              :     // Modulation references exposed by computeStateDerivatives (side-channel output).</span>
+<span id="L201"><span class="lineNum">     201</span>              :     // Written every call; read only by stepControllers.</span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">          25 :     mutable double last_vMDelta_d_ref_ = 0.0;</span></span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">          25 :     mutable double last_vMDelta_q_ref_ = 0.0;</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">          25 :     mutable double last_vMSigma_d_ref_ = 0.0;</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">          25 :     mutable double last_vMSigma_q_ref_ = 0.0;</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">          25 :     mutable double last_vMSigma_z_ref_ = 0.0;</span></span>
+<span id="L207"><span class="lineNum">     207</span>              :     // added18/5=== END DQsym closed-loop control ===</span>
+<span id="L208"><span class="lineNum">     208</span>              : </span>
+<span id="L209"><span class="lineNum">     209</span>              : </span>
+<span id="L210"><span class="lineNum">     210</span>              : </span>
+<span id="L211"><span class="lineNum">     211</span>              :     map_basic_basic getParameterSubstitutions() const override;</span>
+<span id="L212"><span class="lineNum">     212</span>              : </span>
+<span id="L213"><span class="lineNum">     213</span>              : private:</span>
+<span id="L214"><span class="lineNum">     214</span>              :     double L_arm;    // Arm inductance [H]</span>
+<span id="L215"><span class="lineNum">     215</span>              :     double R_arm;    // Arm resistance</span>
+<span id="L216"><span class="lineNum">     216</span>              :     double C_arm;    // Capacitance per submodule [F]</span>
+<span id="L217"><span class="lineNum">     217</span>              :     int N;           // Number of submodules per arm</span>
+<span id="L218"><span class="lineNum">     218</span>              : </span>
+<span id="L219"><span class="lineNum">     219</span>              :     // Helper values</span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">          25 :     double L_eq = 0.0, R_eq = 0.0, m_1 = 1.0;    </span></span>
+<span id="L221"><span class="lineNum">     221</span>              :     </span>
+<span id="L222"><span class="lineNum">     222</span>              :         // State variables</span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">          25 :     int number_of_states = 12;</span></span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">          25 :         int vdc_index = 0; // Index for DC voltage in state vector</span></span>
+<span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">          25 :         int gfm_index_ = -1; // Start index of GFM states (theta, Pac_f, Qac_f); -1 if disabled</span></span>
+<span id="L226"><span class="lineNum">     226</span> <span class="tlaGNC">          25 :         double gfm_E_ref_ = 0.0; // GFM internal voltage magnitude reference</span></span>
+<span id="L227"><span class="lineNum">     227</span>              :         /// When true, GFM residuals use power-normalized form for KINSOL conditioning.</span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">          25 :         bool gfm_scale_eq_residual_ = false;</span></span>
+<span id="L229"><span class="lineNum">     229</span>              : </span>
+<span id="L230"><span class="lineNum">     230</span>              :     // add18/5=== BEGIN plant state count (captured at construction, before non-plant states added) ===</span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">          25 :     int n_plant_states_ = 12;   // will be overwritten in constructor with actual value</span></span>
+<span id="L232"><span class="lineNum">     232</span>              :     // add18/5=== END plant state count ===</span>
+<span id="L233"><span class="lineNum">     233</span>              : </span>
+<span id="L234"><span class="lineNum">     234</span>              :     // Open-loop feedforward used when outer controllers (occ/zcc) are absent.</span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaGNC">          25 :     bool open_loop_modulation_ = false;</span></span>
+<span id="L236"><span class="lineNum">     236</span> <span class="tlaGNC">          25 :     double ol_vMDelta_d_ref_ = 0.0;</span></span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaGNC">          25 :     double ol_vMDelta_q_ref_ = 0.0;</span></span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">          25 :     double ol_vMSigma_z_ref_ = 0.0;</span></span>
+<span id="L239"><span class="lineNum">     239</span>              :     Eigen::VectorXd equilibrium_guess_;</span>
+<span id="L240"><span class="lineNum">     240</span>              : </span>
+<span id="L241"><span class="lineNum">     241</span>              :     void computeOpenLoopArmRefs(</span>
+<span id="L242"><span class="lineNum">     242</span>              :         double Id, double Iq, double Vdc, double iSigma_z,</span>
+<span id="L243"><span class="lineNum">     243</span>              :         double&amp; vMDelta_d, double&amp; vMDelta_q, double&amp; vMSigma_z) const;</span>
+<span id="L244"><span class="lineNum">     244</span>              :     void initializeDelayStates(</span>
+<span id="L245"><span class="lineNum">     245</span>              :         Eigen::VectorXd&amp; x0, double Vdc,</span>
+<span id="L246"><span class="lineNum">     246</span>              :         double vMDelta_d, double vMDelta_q, double vMSigma_z) const;</span>
+<span id="L247"><span class="lineNum">     247</span>              :     void seedPlantStateGuess(</span>
+<span id="L248"><span class="lineNum">     248</span>              :         Eigen::VectorXd&amp; x0, double Id, double Iq, double iSigma_z) const;</span>
+<span id="L249"><span class="lineNum">     249</span>              :     </span>
+<span id="L250"><span class="lineNum">     250</span>              : };</span>
+<span id="L251"><span class="lineNum">     251</span>              : </span>
+<span id="L252"><span class="lineNum">     252</span>              : #endif // MMC_H</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<map id="harmony/src/Solver/Certificate/Device_gate.h" name="harmony/src/Solver/Certificate/Device_gate.h">
+<area shape="rect" id="Node000001" title="Workflow 1 — local device gate before interconnect / PnP." alt="" coords="193,5,341,60"/>
+<area shape="rect" id="Node000002" href="$Device__gate_8cpp.html" title=" " alt="" coords="5,108,153,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,69,130,110,127,105,205,64"/>
+<area shape="rect" id="Node000003" href="$PnP__library_8h.html" title="Workflow 2 — catalog of device certificate results for plug&#45;and&#45;play." alt="" coords="177,115,357,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="270,74,270,115,265,115,265,74"/>
+<area shape="rect" id="Node000005" href="$example__certificate__figures_8cpp.html" title="All five certificate workflows + paper&#45;style figures." alt="" coords="310,211,481,265"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="332,66,354,84,372,107,385,132,393,160,398,210,393,211,387,161,380,134,368,109,350,88,328,70"/>
+<area shape="rect" id="Node000004" href="$PnP__library_8cpp.html" title=" " alt="" coords="91,218,286,258"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="246,168,205,220,201,216,242,165"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="304,162,363,208,360,212,301,166"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="DeviceGateResult" name="DeviceGateResult">
+<area shape="rect" id="Node000001" title="Verdict of a device&#45;level certificate gate." alt="" coords="92,533,231,559"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="53,431,139,456"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,468,126,508,148,531,145,535,122,511,102,470"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,144,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="80,235,98,430,92,431,75,235"/>
+<area shape="rect" id="Node000004" href="$structCertificateSweep.html" title="Frequency&#45;domain certificate sweep for one device (or one H)." alt="" coords="174,431,306,456"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,469,193,511,173,535,169,531,189,508,221,465"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="168,189,333,214"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="252,228,243,431,238,430,247,228"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="186,93,315,119"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="253,132,253,189,248,189,248,132"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="231,5,270,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="253,45,253,93,248,93,248,45"/>
+</map>

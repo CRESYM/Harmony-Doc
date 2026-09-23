@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Elements/Element.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Elements">src/Elements</a> - Element.cpp<span style="font-size: 80%;"> (source / <a href="Element.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryMed">82.1&nbsp;%</td>
+            <td class="headerCovTableEntry">168</td>
+            <td class="headerCovTableEntry">138</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryMed">75.0&nbsp;%</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">9</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * @file Element.cpp</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * @brief Implementation of Abstract base class for all electrical network components.</span>
+<span id="L4"><span class="lineNum">       4</span>              :  */</span>
+<span id="L5"><span class="lineNum">       5</span>              : #include &quot;Element.h&quot;</span>
+<span id="L6"><span class="lineNum">       6</span>              : #include &quot;../Bus.h&quot;</span>
+<span id="L7"><span class="lineNum">       7</span>              : </span>
+<span id="L8"><span class="lineNum">       8</span>              : // Helper functions</span>
+<span id="L9"><span class="lineNum">       9</span>              : #include &quot;../Solver/Helper_Functions/Helper_Functions.h&quot;</span>
+<span id="L10"><span class="lineNum">      10</span>              : </span>
+<span id="L11"><span class="lineNum">      11</span>              : </span>
+<span id="L12"><span class="lineNum">      12</span>              : /**</span>
+<span id="L13"><span class="lineNum">      13</span>              :  * @brief Destructor for the Element class.</span>
+<span id="L14"><span class="lineNum">      14</span>              :  */</span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">         184 : Element::~Element() {}</span></span>
+<span id="L16"><span class="lineNum">      16</span>              : </span>
+<span id="L17"><span class="lineNum">      17</span>              : /**</span>
+<span id="L18"><span class="lineNum">      18</span>              :  * @brief Attaches a bus to a specific terminal of the element.</span>
+<span id="L19"><span class="lineNum">      19</span>              :  * @param bus Pointer to the Bus object to attach.</span>
+<span id="L20"><span class="lineNum">      20</span>              :  * @param terminal The terminal number to which the bus is connected.</span>
+<span id="L21"><span class="lineNum">      21</span>              :  */</span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">         263 : void Element::attachBus(Bus* bus, int terminal) {</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">         263 :     connections[bus] = terminal;</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">         263 : }</span></span>
+<span id="L25"><span class="lineNum">      25</span>              : </span>
+<span id="L26"><span class="lineNum">      26</span>              : /**</span>
+<span id="L27"><span class="lineNum">      27</span>              :  * @brief Retrieves all buses connected to this element.</span>
+<span id="L28"><span class="lineNum">      28</span>              :  * @return A vector of pointers to the connected Bus objects.</span>
+<span id="L29"><span class="lineNum">      29</span>              :  */</span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">          72 : std::vector&lt;Bus*&gt; Element::getBuses() {</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">          72 :     std::vector&lt;Bus*&gt; buses;</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">         210 :     for (std::map&lt;Bus*, int&gt;::iterator it = connections.begin(); it != connections.end(); ++it) {</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">         138 :         buses.push_back(it-&gt;first);</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">         138 :     }</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">          72 :     return buses;</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          72 : }</span></span>
+<span id="L37"><span class="lineNum">      37</span>              : </span>
+<span id="L38"><span class="lineNum">      38</span>              : /**</span>
+<span id="L39"><span class="lineNum">      39</span>              :  * @brief Gets the other bus connected to the element, assuming it's a two-terminal element.</span>
+<span id="L40"><span class="lineNum">      40</span>              :  * @param bus A pointer to one of the connected buses.</span>
+<span id="L41"><span class="lineNum">      41</span>              :  * @return A pointer to the other connected bus, or nullptr if no other bus is found.</span>
+<span id="L42"><span class="lineNum">      42</span>              :  */</span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">        1595 : Bus* Element::getOtherBus(Bus* bus) {</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">        2575 :     for (std::map&lt;Bus*, int&gt;::iterator it = connections.begin(); it != connections.end(); ++it) {</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">        1910 :         if (bus != it-&gt;first)</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">         930 :             return it-&gt;first;</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">         980 :     }</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">         665 :     return nullptr; // No other bus found</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">        1595 : }</span></span>
+<span id="L50"><span class="lineNum">      50</span>              : </span>
+<span id="L51"><span class="lineNum">      51</span>              : /**</span>
+<span id="L52"><span class="lineNum">      52</span>              :  * @brief Computes the numerical Y-parameter matrix at a given frequency.</span>
+<span id="L53"><span class="lineNum">      53</span>              :  * @param frequency The frequency in Hz for which to compute the Y-parameters.</span>
+<span id="L54"><span class="lineNum">      54</span>              :  * @return A 2D vector of complex numbers representing the Y-parameter matrix.</span>
+<span id="L55"><span class="lineNum">      55</span>              :  */</span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">        5944 : std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Element::compute_y_parameters(double frequency) {</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">        5944 :     double angular_frequency = 2 * frequency * M_PI;</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">        5944 :     map_basic_basic m;</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">        5944 :     m[omega] = real_double(angular_frequency);</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">        5944 :         double omega_0 = 100.0 * M_PI; // Default frequency 50 Hz</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">        5944 :         map_basic_basic m1, m2;</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">        5944 :         m1[omega] = real_double(angular_frequency - omega_0);</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">        5944 :         m2[omega] = real_double(angular_frequency + omega_0);</span></span>
+<span id="L64"><span class="lineNum">      64</span>              : </span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">       10586 :     bool is_ac = (element_location[0] == 'A' || element_location[0] == 'a') &amp;&amp; (element_location[1] == 'C' || element_location[1] == 'c');</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">        7246 :         bool is_dc = (element_location[0] == 'D' || element_location[0] == 'd') &amp;&amp; (element_location[1] == 'C' || element_location[1] == 'c');</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">        5944 :     bool is_mmc = (element_location.find('_') &lt; element_location.length());</span></span>
+<span id="L68"><span class="lineNum">      68</span>              : </span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">        5944 :     if (transformation &amp;&amp; is_ac &amp;&amp; !is_mmc) {</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">        1270 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y_val_exact1(Y_matrix.nrows());</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">        1270 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y_val_exact2(Y_matrix.nrows());</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">        8890 :         for (int i = 0; i &lt; Y_matrix.nrows(); i++) {</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">        7620 :             Y_val_exact1[i].resize(Y_matrix.ncols());</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">        7620 :             Y_val_exact2[i].resize(Y_matrix.ncols());</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">        7620 :         }</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">        8890 :         for (int i = 0; i &lt; Y_matrix.nrows(); ++i) {</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">       53340 :             for (int j = 0; j &lt; Y_matrix.ncols(); ++j) {</span></span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaGNC">       45720 :                 RCP&lt;const Basic&gt; r = subs(Y_matrix.get(i, j), m1);</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">       45720 :                 Y_val_exact1[i][j] = eval_complex_double(*r);</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">       45720 :                                 r = subs(Y_matrix.get(i, j), m2);</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">       45720 :                                 Y_val_exact2[i][j] = eval_complex_double(*r);</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">       45720 :             }</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">        7620 :         }</span></span>
+<span id="L84"><span class="lineNum">      84</span>              :                 //cout &lt;&lt; &quot;Applying transformation to element: &quot; &lt;&lt; element_symbol &lt;&lt; endl;</span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">        1270 :                 vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; Y = apply_transformation(Y_val_exact1, Y_val_exact2);</span></span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">        1270 :                 return Y;</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC">        1270 :     }</span></span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaGNC">        4674 :     else if (is_dc &amp;&amp; transformation) {</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">         302 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y_val_exact(2);</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaGNC">         906 :         for (int i = 0; i &lt; 2; i++)</span></span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaGNC">         604 :             Y_val_exact[i].resize(2);</span></span>
+<span id="L92"><span class="lineNum">      92</span>              : </span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">         906 :         for (int i = 0; i &lt; 2; ++i) {</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">        1812 :             for (int j = 0; j &lt; 2; ++j) {</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaGNC">        1208 :                 RCP&lt;const Basic&gt; r = subs(Y_matrix.get(2*i, 2*j), m);</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaGNC">        1208 :                 Y_val_exact[i][j] = eval_complex_double(*r);</span></span>
+<span id="L97"><span class="lineNum">      97</span>              :                 //cout &lt;&lt; &quot;Computing Y[&quot; &lt;&lt; i &lt;&lt; &quot;][&quot; &lt;&lt; j &lt;&lt; &quot;] for DC element with transformation: &quot; &lt;&lt; element_symbol &lt;&lt; &quot; equal to: &quot; &lt;&lt; Y_val_exact[i][j] &lt;&lt; endl;</span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">        1208 :             }</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">         604 :         }</span></span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaGNC">         302 :         return Y_val_exact;</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">         302 :     }</span></span>
+<span id="L102"><span class="lineNum">     102</span>              :     else {</span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaGNC">        4372 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y_val_exact(Y_matrix.nrows());</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">       17542 :         for (int i = 0; i &lt; Y_matrix.nrows(); i++)</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">       13170 :             Y_val_exact[i].resize(Y_matrix.ncols());</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">       17542 :         for (int i = 0; i &lt; Y_matrix.nrows(); ++i) {</span></span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">       66062 :             for (int j = 0; j &lt; Y_matrix.ncols(); ++j) {</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">       52892 :                 RCP&lt;const Basic&gt; r = subs(Y_matrix.get(i, j), m);</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">       52892 :                 Y_val_exact[i][j] = eval_complex_double(*r);</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">       52892 :             }</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">       13170 :         }</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">        4372 :         return Y_val_exact;</span></span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaGNC">        4372 :     }</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaGNC">        5944 : }</span></span>
+<span id="L115"><span class="lineNum">     115</span>              : </span>
+<span id="L116"><span class="lineNum">     116</span>              : /**</span>
+<span id="L117"><span class="lineNum">     117</span>              :  * @brief Applies a transformation (e.g., abc to dq) to the admittance matrices.</span>
+<span id="L118"><span class="lineNum">     118</span>              :  * @param Y1 The admittance matrix computed at angular frequency (omega - omega_0).</span>
+<span id="L119"><span class="lineNum">     119</span>              :  * @param Y2 The admittance matrix computed at angular frequency (omega + omega_0).</span>
+<span id="L120"><span class="lineNum">     120</span>              :  * @return The transformed 2D vector of complex numbers representing the Y-parameter matrix in the new frame.</span>
+<span id="L121"><span class="lineNum">     121</span>              :  */</span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">        1270 : std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Element::apply_transformation(std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt;&amp; Y1, std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt;&amp; Y2) {</span></span>
+<span id="L123"><span class="lineNum">     123</span>              :     </span>
+<span id="L124"><span class="lineNum">     124</span>              :     // The transformation is applied to a 6x6 matrix, so we expect Y1 and Y2 to be of that size.</span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">        1270 :     if (Y1.size() != 6 || Y1[0].size() != 6 || Y2.size() != 6 || Y2[0].size() != 6) {</span></span>
+<span id="L126"><span class="lineNum">     126</span>              :         // Return Y1 if dimensions are not as expected, or handle error appropriately</span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaUNC">           0 :         return Y1;</span></span>
+<span id="L128"><span class="lineNum">     128</span>              :     }</span>
+<span id="L129"><span class="lineNum">     129</span>              : </span>
+<span id="L130"><span class="lineNum">     130</span>              :     // Transformation matrix for abc to dq0 (Clarke-Park)</span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">        1270 :     complex&lt;double&gt; ang = std::exp(complex&lt;double&gt;(0, 2.0 * M_PI / 3.0));</span></span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">        1270 :     complex&lt;double&gt; imag_unit(0, 1);</span></span>
+<span id="L133"><span class="lineNum">     133</span>              : </span>
+<span id="L134"><span class="lineNum">     134</span>              :     // Using vector&lt;vector&gt; for transformation matrices</span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">        1270 :     vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; a(3, vector&lt;complex&lt;double&gt;&gt;(3));   </span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">        1270 :     a[0] = { 1.0, ang, ang * ang };</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaGNC">        1270 :     a[1] = { imag_unit, imag_unit*ang, imag_unit*ang * ang };</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">        1270 :     a[2] = { 0.0, 0.0, 0.0 };</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaGNC">        1270 :         vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; a_tran = mat_transpose(a);</span></span>
+<span id="L140"><span class="lineNum">     140</span>              : </span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">        1270 :     vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; a_conj(3, vector&lt;complex&lt;double&gt;&gt;(3));</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">        1270 :     a_conj[0] = { 1.0, conj(ang), conj(ang * ang) };</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">        1270 :     a_conj[1] = { -imag_unit, -imag_unit * conj(ang), -imag_unit * conj(ang * ang) };</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">        1270 :     a_conj[2] = { 0.0, 0.0, 0.0 };</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">        1270 :         vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; a_conj_tran = mat_transpose(a_conj);</span></span>
+<span id="L146"><span class="lineNum">     146</span>              :     </span>
+<span id="L147"><span class="lineNum">     147</span>              :         // Admittance at angular frequency omega - omega_0</span>
+<span id="L148"><span class="lineNum">     148</span> <span class="tlaGNC">        1270 :     auto Y11 = get_block(Y1, 0, 0, 3, 3);</span></span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">        1270 :     auto Y12 = get_block(Y1, 0, 3, 3, 3);</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaGNC">        1270 :     auto Y21 = get_block(Y1, 3, 0, 3, 3);</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">        1270 :     auto Y22 = get_block(Y1, 3, 3, 3, 3);</span></span>
+<span id="L152"><span class="lineNum">     152</span>              : </span>
+<span id="L153"><span class="lineNum">     153</span>              :         // Admittance at angular frequency omega + omega_0</span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">        1270 :     auto Y2_11 = get_block(Y2, 0, 0, 3, 3);</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">        1270 :     auto Y2_12 = get_block(Y2, 0, 3, 3, 3);</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">        1270 :     auto Y2_21 = get_block(Y2, 3, 0, 3, 3);</span></span>
+<span id="L157"><span class="lineNum">     157</span> <span class="tlaGNC">        1270 :     auto Y2_22 = get_block(Y2, 3, 3, 3, 3);</span></span>
+<span id="L158"><span class="lineNum">     158</span>              : </span>
+<span id="L159"><span class="lineNum">     159</span>              :     // Perform transformation: Y_dq = T_inv * Y_abc * T</span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">        1270 :     auto Y11_dq = mul_scalar(mat_add(mat_mul(mat_mul(a, Y11), a_conj_tran), mat_mul(mat_mul(a_conj, Y2_11), a_tran)), 1.0 / 6.0);</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">        1270 :         auto Y12_dq = mul_scalar(mat_add(mat_mul(mat_mul(a, Y12), a_conj_tran), mat_mul(mat_mul(a_conj, Y2_12), a_tran)), 1.0 / 6.0);</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">        1270 :         auto Y21_dq = mul_scalar(mat_add(mat_mul(mat_mul(a, Y21), a_conj_tran), mat_mul(mat_mul(a_conj, Y2_21), a_tran)), 1.0 / 6.0);</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">        1270 :         auto Y22_dq = mul_scalar(mat_add(mat_mul(mat_mul(a, Y22), a_conj_tran), mat_mul(mat_mul(a_conj, Y2_22), a_tran)), 1.0 / 6.0);</span></span>
+<span id="L164"><span class="lineNum">     164</span>              : </span>
+<span id="L165"><span class="lineNum">     165</span>              :     // Combine transformed blocks into a single matrix</span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">        1270 :     vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; Y_dq(4, vector&lt;complex&lt;double&gt;&gt;(4));</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC">        3810 :     for (int i = 0; i &lt; 2; ++i) {</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">        7620 :         for (int j = 0; j &lt; 2; ++j) {</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">        5080 :             Y_dq[i][j] = Y11_dq[i][j];</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">        5080 :             Y_dq[i][j + 2] = Y12_dq[i][j];</span></span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">        5080 :             Y_dq[i + 2][j] = Y21_dq[i][j];</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">        5080 :             Y_dq[i + 2][j + 2] = Y22_dq[i][j];</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">        5080 :         }</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC">        2540 :     }</span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">        1270 :     return Y_dq;</span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">        1270 : }</span></span>
+<span id="L177"><span class="lineNum">     177</span>              : </span>
+<span id="L178"><span class="lineNum">     178</span>              : /**</span>
+<span id="L179"><span class="lineNum">     179</span>              :  * @brief Prints the symbolic Y-parameter matrix of the element to the console.</span>
+<span id="L180"><span class="lineNum">     180</span>              :  */</span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           1 : void Element::printElementValues() {</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">           1 :     std::cout &lt;&lt; &quot;Element : &quot; &lt;&lt; getElementSymbol() &lt;&lt; std::endl;</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           1 :     std::cout &lt;&lt; &quot;Y matrix symbolic entries: &quot; &lt;&lt; endl; </span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           3 :     for (int i = 0; i &lt; Y_matrix.nrows(); i++) {</span></span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaGNC">           6 :         for (int j = 0; j &lt; Y_matrix.ncols(); j++) {</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           4 :             std::cout &lt;&lt; simplify(Y_matrix.get(i, j))-&gt;__str__() &lt;&lt; &quot; &quot;; </span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">           4 :         }</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaGNC">           2 :         std::cout &lt;&lt; std::endl;</span></span>
+<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           2 :     }</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L191"><span class="lineNum">     191</span>              : </span>
+<span id="L192"><span class="lineNum">     192</span>              : /**</span>
+<span id="L193"><span class="lineNum">     193</span>              :  * @brief Writes the Y-parameter matrix to a CSV file over a specified frequency range.</span>
+<span id="L194"><span class="lineNum">     194</span>              :  * @param start_frequency The starting frequency for the sweep.</span>
+<span id="L195"><span class="lineNum">     195</span>              :  * @param end_frequency The ending frequency for the sweep.</span>
+<span id="L196"><span class="lineNum">     196</span>              :  * @param number_of_points The number of frequency points to compute and write.</span>
+<span id="L197"><span class="lineNum">     197</span>              :  */</span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">          25 : void Element::writeFile(double start_frequency, double end_frequency, int number_of_points) {</span></span>
+<span id="L199"><span class="lineNum">     199</span> <span class="tlaGNC">          25 :     std::ofstream myfile;</span></span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">          25 :     myfile.open(&quot;./files/&quot; + element_symbol + &quot;.csv&quot;);</span></span>
+<span id="L201"><span class="lineNum">     201</span>              : </span>
+<span id="L202"><span class="lineNum">     202</span>              :     // Print the Y-parameters in file</span>
+<span id="L203"><span class="lineNum">     203</span>              :     // Use (N-1) so the last sample is exactly end_frequency (log-spaced).</span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">          25 :     const int n = std::max(number_of_points, 2);</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">          25 :     const double gap = std::pow(10.0,</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">          25 :         (std::log10(end_frequency) - std::log10(start_frequency)) / (n - 1));</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">          25 :     double frequency = start_frequency;</span></span>
+<span id="L208"><span class="lineNum">     208</span> <span class="tlaGNC">       16485 :     for (int p = 0; p &lt; n; p++) {</span></span>
+<span id="L209"><span class="lineNum">     209</span> <span class="tlaGNC">       16460 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y = compute_y_parameters(frequency);</span></span>
+<span id="L210"><span class="lineNum">     210</span>              :         </span>
+<span id="L211"><span class="lineNum">     211</span>              :         // write in file</span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">       16460 :         myfile &lt;&lt; frequency &lt;&lt; &quot;,&quot;;</span></span>
+<span id="L213"><span class="lineNum">     213</span>              :                 //cout &lt;&lt; &quot;Frequency: &quot; &lt;&lt; frequency &lt;&lt; &quot; Hz&quot; &lt;&lt; endl;</span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">       56700 :         for (int i = 0; i &lt; Y_matrix.nrows(); ++i) {</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">      157190 :             for (int j = 0; j &lt; Y_matrix.ncols(); ++j) {</span></span>
+<span id="L216"><span class="lineNum">     216</span> <span class="tlaGNC">      116950 :                 myfile &lt;&lt; Y[i][j].real() &lt;&lt; &quot;+1i*(&quot; &lt;&lt; Y[i][j].imag() &lt;&lt; &quot;),&quot;;</span></span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">      116950 :             }</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">       40240 :         }</span></span>
+<span id="L219"><span class="lineNum">     219</span> <span class="tlaGNC">       16460 :         myfile &lt;&lt; &quot;\n&quot;;</span></span>
+<span id="L220"><span class="lineNum">     220</span>              : </span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">       16460 :         frequency = frequency * gap; // increase frequency</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">       16460 :     }</span></span>
+<span id="L223"><span class="lineNum">     223</span>              :     </span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">          25 :     myfile.close();</span></span>
+<span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">          25 : }</span></span>
+<span id="L226"><span class="lineNum">     226</span>              : </span>
+<span id="L227"><span class="lineNum">     227</span>              : /**</span>
+<span id="L228"><span class="lineNum">     228</span>              :  * @brief Generates data and triggers a Bode plot for the Y-parameter matrix.</span>
+<span id="L229"><span class="lineNum">     229</span>              :  * @param start_frequency The starting frequency for the plot.</span>
+<span id="L230"><span class="lineNum">     230</span>              :  * @param end_frequency The ending frequency for the plot.</span>
+<span id="L231"><span class="lineNum">     231</span>              :  * @param number_of_points The number of points to plot across the frequency range.</span>
+<span id="L232"><span class="lineNum">     232</span>              :  */</span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaUNC">           0 : void Element::plotYParameters(double start_frequency, double end_frequency, int number_of_points) {</span></span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaUNC">           0 :     const int n = std::max(number_of_points, 2);</span></span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaUNC">           0 :     std::vector&lt;double&gt; frequencies;</span></span>
+<span id="L236"><span class="lineNum">     236</span> <span class="tlaUNC">           0 :     std::vector&lt;std::vector&lt;double&gt;&gt; magnitudes(n, std::vector&lt;double&gt;(pow(input_pins + output_pins, 2), 0.0));</span></span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaUNC">           0 :     std::vector&lt;std::vector&lt;double&gt;&gt; phases(n, std::vector&lt;double&gt;(pow(input_pins + output_pins, 2), 0.0));</span></span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaUNC">           0 :     std::vector&lt;std::string&gt; labels;</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaUNC">           0 :     const double gap = std::pow(10.0,</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaUNC">           0 :         (std::log10(end_frequency) - std::log10(start_frequency)) / (n - 1));</span></span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaUNC">           0 :     double frequency = start_frequency;</span></span>
+<span id="L242"><span class="lineNum">     242</span> <span class="tlaUNC">           0 :     for (int p = 0; p &lt; n; p++) {</span></span>
+<span id="L243"><span class="lineNum">     243</span> <span class="tlaUNC">           0 :         frequencies.push_back(frequency);</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaUNC">           0 :         std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; Y = compute_y_parameters(frequency);</span></span>
+<span id="L245"><span class="lineNum">     245</span>              : </span>
+<span id="L246"><span class="lineNum">     246</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt; Y_matrix.nrows(); ++i) {</span></span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaUNC">           0 :             for (int j = 0; j &lt; Y_matrix.ncols(); ++j) {</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaUNC">           0 :                 double magnitude = 20 * log10(std::abs(Y[i][j]));</span></span>
+<span id="L249"><span class="lineNum">     249</span> <span class="tlaUNC">           0 :                 double phase = std::arg(Y[i][j]) * 180.0 / M_PI; // Convert to degrees</span></span>
+<span id="L250"><span class="lineNum">     250</span>              : </span>
+<span id="L251"><span class="lineNum">     251</span> <span class="tlaUNC">           0 :                 magnitudes[p][Y_matrix.ncols() * i + j] = magnitude;</span></span>
+<span id="L252"><span class="lineNum">     252</span> <span class="tlaUNC">           0 :                 phases[p][Y_matrix.ncols() * i + j] = phase;</span></span>
+<span id="L253"><span class="lineNum">     253</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L255"><span class="lineNum">     255</span>              :         // cout &lt;&lt; &quot;Frequency: &quot; &lt;&lt; frequency &lt;&lt; &quot; Hz&quot; &lt;&lt; endl;</span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaUNC">           0 :         frequency *= gap; // increase frequency</span></span>
+<span id="L257"><span class="lineNum">     257</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L258"><span class="lineNum">     258</span>              : </span>
+<span id="L259"><span class="lineNum">     259</span>              :     // Making labels</span>
+<span id="L260"><span class="lineNum">     260</span> <span class="tlaUNC">           0 :     for (int i = 0; i &lt; Y_matrix.nrows(); ++i) {</span></span>
+<span id="L261"><span class="lineNum">     261</span> <span class="tlaUNC">           0 :         for (int j = 0; j &lt; Y_matrix.ncols(); ++j) {</span></span>
+<span id="L262"><span class="lineNum">     262</span> <span class="tlaUNC">           0 :             labels.push_back(&quot;Y_{&quot; + to_string(i+1) + to_string(j+1) + &quot;}&quot;);</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L265"><span class="lineNum">     265</span>              : </span>
+<span id="L266"><span class="lineNum">     266</span> <span class="tlaUNC">           0 :     bode_plot_implot(frequencies, magnitudes, phases, labels, &quot;Y-Parameters of &quot; + element_symbol);</span></span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaUNC">           0 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <map id="harmony/src/Solver/Stability_Estimate/Stability_estimate.cpp" name="harmony/src/Solver/Stability_Estimate/Stability_estimate.cpp">
-<area shape="rect" id="Node000001" title="Implementation of Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="4662,5,4834,60"/>
+<area shape="rect" id="Node000001" title="MIMO impedance&#45;based stability assessment via unified MNA." alt="" coords="4662,5,4834,60"/>
 <area shape="rect" id="Node000002" href="$Stability__estimate_8h.html" title="Small&#45;signal stability and impedance analysis for AC/DC areas." alt="" coords="4729,277,4882,302"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="4757,60,4802,262,4797,264,4751,61"/>
 <area shape="rect" id="Node000076" href="$network_8h.html" title="Top&#45;level electrical network container: buses, elements, connections, and hierarchical grids." alt="" coords="4863,453,4950,478"/>

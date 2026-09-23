@@ -1,23 +1,30 @@
 <map id="harmony/src/Solver" name="harmony/src/Solver">
-<area shape="rect" id="node1" href="dir_e6322d29fdce3339923233fc95291a19.html" title="ui" alt="" coords="219,209,258,235"/>
-<area shape="rect" id="node2" href="dir_f013b7650597d1fdc05390b139fd5391.html" title="Elements" alt="" coords="629,136,712,161"/>
-<area shape="rect" id="node4" href="dir_1f640a2f14d33cfe7225eae3f3814266.html" title="DQsym" alt="" coords="203,63,274,88"/>
-<area shape="rect" id="node5" href="dir_051521c04998b631f8fa96bdc58c8d1c.html" title="Helper_Functions" alt="" coords="171,136,306,161"/>
-<area shape="poly" id="edge1" href="dir_000005_000009.html" alt="" coords="241,88,241,122,236,122,236,88"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000005_000009.html" title="1" alt="" coords="242,110,252,125"/>
-<area shape="poly" id="edge2" href="dir_000009_000023.html" alt="" coords="241,162,241,196,236,196,236,162"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000009_000023.html" title="1" alt="" coords="242,184,252,198"/>
-<area shape="rect" id="node6" href="dir_7d54d28b3b654e94ea3f2cd256eca0aa.html" title="OPF" alt="" coords="299,63,347,88"/>
-<area shape="poly" id="edge4" href="dir_000013_000006.html" alt="" coords="348,82,359,85,431,101,488,110,616,132,615,137,487,116,430,106,358,91,346,87"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000013_000006.html" title="4" alt="" coords="608,118,618,132"/>
-<area shape="poly" id="edge3" href="dir_000013_000009.html" alt="" coords="311,90,265,129,261,125,307,86"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000013_000009.html" title="2" alt="" coords="267,123,276,138"/>
-<area shape="rect" id="node7" href="dir_7bee1752d2915e5b1d2db84cd4065bf9.html" title="Stability_Estimate" alt="" coords="37,63,179,88"/>
-<area shape="poly" id="edge5" href="dir_000018_000009.html" alt="" coords="130,86,207,127,204,132,128,90"/>
-<area shape="rect" id="edge5-headlabel" href="dir_000018_000009.html" title="1" alt="" coords="201,112,210,127"/>
-<area shape="rect" id="node8" href="dir_ee31bb32529e1c01bc483eb6299cd097.html" title="State_Space_Model" alt="" coords="371,63,520,88"/>
-<area shape="poly" id="edge6" href="dir_000019_000006.html" alt="" coords="482,85,622,129,620,134,481,91"/>
-<area shape="rect" id="edge6-headlabel" href="dir_000019_000006.html" title="1" alt="" coords="615,115,624,130"/>
-<area shape="rect" id="clust2" href="dir_58189f600f55febd68ed5c08326403f8.html" alt="" coords="27,52,619,172"/>
-<area shape="rect" id="clust1" href="dir_f30315082077030c938ccaf4bf200ed9.html" title="src" alt="" coords="16,16,723,245"/>
+<area shape="rect" id="node1" href="dir_e6322d29fdce3339923233fc95291a19.html" title="ui" alt="" coords="163,283,202,308"/>
+<area shape="rect" id="node2" href="dir_f013b7650597d1fdc05390b139fd5391.html" title="Elements" alt="" coords="411,209,493,235"/>
+<area shape="rect" id="node4" href="dir_5c88a4e932cd2937c2688a1134107019.html" title="Certificate" alt="" coords="38,63,127,88"/>
+<area shape="poly" id="edge3" href="dir_000000_000007.html" alt="" coords="128,83,140,85,214,93,273,94,301,96,330,103,361,114,395,134,424,163,444,195,439,198,420,166,392,138,358,119,328,108,300,102,273,99,213,99,140,91,127,88"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000000_000007.html" title="3" alt="" coords="443,182,452,197"/>
+<area shape="rect" id="node6" href="dir_051521c04998b631f8fa96bdc58c8d1c.html" title="Helper_Functions" alt="" coords="115,209,250,235"/>
+<area shape="poly" id="edge1" href="dir_000000_000010.html" alt="" coords="93,87,169,197,165,200,89,90"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000000_000010.html" title="1" alt="" coords="167,182,176,197"/>
+<area shape="rect" id="node8" href="dir_7bee1752d2915e5b1d2db84cd4065bf9.html" title="Stability_Estimate" alt="" coords="160,136,301,161"/>
+<area shape="poly" id="edge2" href="dir_000000_000019.html" alt="" coords="108,86,195,128,193,132,105,90"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000000_000019.html" title="1" alt="" coords="189,113,198,128"/>
+<area shape="rect" id="node5" href="dir_1f640a2f14d33cfe7225eae3f3814266.html" title="DQsym" alt="" coords="38,136,109,161"/>
+<area shape="poly" id="edge4" href="dir_000006_000010.html" alt="" coords="92,159,155,199,152,204,89,164"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000006_000010.html" title="1" alt="" coords="149,185,159,200"/>
+<area shape="poly" id="edge5" href="dir_000010_000024.html" alt="" coords="185,235,185,269,180,269,180,235"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000010_000024.html" title="1" alt="" coords="186,257,196,272"/>
+<area shape="rect" id="node7" href="dir_7d54d28b3b654e94ea3f2cd256eca0aa.html" title="OPF" alt="" coords="333,136,381,161"/>
+<area shape="poly" id="edge7" href="dir_000014_000007.html" alt="" coords="374,159,427,199,424,203,371,163"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000014_000007.html" title="4" alt="" coords="422,184,432,199"/>
+<area shape="poly" id="edge6" href="dir_000014_000010.html" alt="" coords="334,162,225,207,223,202,332,157"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000014_000010.html" title="2" alt="" coords="226,203,235,218"/>
+<area shape="poly" id="edge8" href="dir_000019_000010.html" alt="" coords="225,163,200,200,196,197,221,160"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000019_000010.html" title="1" alt="" coords="203,192,212,206"/>
+<area shape="rect" id="node9" href="dir_ee31bb32529e1c01bc483eb6299cd097.html" title="State_Space_Model" alt="" coords="152,63,301,88"/>
+<area shape="poly" id="edge9" href="dir_000020_000007.html" alt="" coords="285,85,366,106,401,120,425,134,443,164,452,195,447,196,439,166,421,138,399,124,364,112,284,91"/>
+<area shape="rect" id="edge9-headlabel" href="dir_000020_000007.html" title="1" alt="" coords="453,183,462,197"/>
+<area shape="rect" id="clust2" href="dir_58189f600f55febd68ed5c08326403f8.html" alt="" coords="27,52,400,245"/>
+<area shape="rect" id="clust1" href="dir_f30315082077030c938ccaf4bf200ed9.html" title="src" alt="" coords="16,16,504,319"/>
 </map>

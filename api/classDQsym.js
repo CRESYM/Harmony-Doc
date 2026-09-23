@@ -9,5 +9,6 @@ var classDQsym =
     [ "initialize", "classDQsym.html#a68f6bd14f1fc9201c12fb1cd13252ab0", null ],
     [ "plot", "classDQsym.html#abe957db3849736e7dc92a8d774d10f23", null ],
     [ "reset", "classDQsym.html#a1f7597de48095c21afcf7b08489cccdd", null ],
-    [ "run", "classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e", null ]
+    [ "run", "classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e", null ],
+    [ "setResult", "classDQsym.html#a7c805ffd3624e12817e5f4657f04127e", null ]
 ];

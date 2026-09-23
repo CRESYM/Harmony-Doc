@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/Elements/Source/DC_source.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/Elements/Source">src/Elements/Source</a> - DC_source.h<span style="font-size: 80%;"> (source / <a href="DC_source.h.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-09-21 16:15:28</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /**</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * @file DC_source.h</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * @brief Ideal DC voltage source with optional series impedance.</span>
+<span id="L4"><span class="lineNum">       4</span>              :  * @ingroup source</span>
+<span id="L5"><span class="lineNum">       5</span>              :  */</span>
+<span id="L6"><span class="lineNum">       6</span>              : </span>
+<span id="L7"><span class="lineNum">       7</span>              : #ifndef _DC_SOURCE_H_</span>
+<span id="L8"><span class="lineNum">       8</span>              : #define _DC_SOURCE_H_</span>
+<span id="L9"><span class="lineNum">       9</span>              : </span>
+<span id="L10"><span class="lineNum">      10</span>              : #include &quot;Source_base.h&quot;</span>
+<span id="L11"><span class="lineNum">      11</span>              : </span>
+<span id="L12"><span class="lineNum">      12</span>              : /**</span>
+<span id="L13"><span class="lineNum">      13</span>              :  * @class DC_source</span>
+<span id="L14"><span class="lineNum">      14</span>              :  * @brief DC-side voltage source for hybrid AC-DC networks.</span>
+<span id="L15"><span class="lineNum">      15</span>              :  *</span>
+<span id="L16"><span class="lineNum">      16</span>              :  * Supports scalar or per-phase voltage with scalar or vector series impedance,</span>
+<span id="L17"><span class="lineNum">      17</span>              :  * analogous to @ref AC_source on the AC side.</span>
+<span id="L18"><span class="lineNum">      18</span>              :  */</span>
+<span id="L19"><span class="lineNum">      19</span>              : class DC_source : public Source_base {</span>
+<span id="L20"><span class="lineNum">      20</span>              : public:</span>
+<span id="L21"><span class="lineNum">      21</span>              :     /** @brief Scalar voltage and series resistance. */</span>
+<span id="L22"><span class="lineNum">      22</span>              :     DC_source(const std::string&amp; symbol, const std::string&amp; location, int pins, double V, double R);</span>
+<span id="L23"><span class="lineNum">      23</span>              : </span>
+<span id="L24"><span class="lineNum">      24</span>              :     /** @brief Per-conductor voltages with common series resistance. */</span>
+<span id="L25"><span class="lineNum">      25</span>              :     DC_source(const std::string&amp; symbol, const std::string&amp; location, int pins, const vector&lt;double&gt;&amp; V, double R);</span>
+<span id="L26"><span class="lineNum">      26</span>              : </span>
+<span id="L27"><span class="lineNum">      27</span>              :     /** @brief Scalar voltage with per-conductor impedance vector. */</span>
+<span id="L28"><span class="lineNum">      28</span>              :     DC_source(const std::string&amp; symbol, const std::string&amp; location, int pins, double V, const vector&lt;double&gt;&amp; Z);</span>
+<span id="L29"><span class="lineNum">      29</span>              : </span>
+<span id="L30"><span class="lineNum">      30</span>              :     /** @brief Per-conductor voltage and impedance vectors. */</span>
+<span id="L31"><span class="lineNum">      31</span>              :     DC_source(const std::string&amp; symbol, const std::string&amp; location, int pins, const vector&lt;double&gt;&amp; V, const vector&lt;double&gt;&amp; Z);</span>
+<span id="L32"><span class="lineNum">      32</span>              : </span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          15 :     ~DC_source() {}</span></span>
+<span id="L34"><span class="lineNum">      34</span>              : </span>
+<span id="L35"><span class="lineNum">      35</span>              :     /** @brief Stamp the source into the symbolic MNA matrix. */</span>
+<span id="L36"><span class="lineNum">      36</span>              :     void writeMNAmatrix(SymEngine::DenseMatrix&amp;, std::unordered_map&lt;Bus*, int&gt;&amp;, int, std::map&lt;Element*, std::vector&lt;RCP&lt;const Basic&gt;&gt;&gt;&amp;) override;</span>
+<span id="L37"><span class="lineNum">      37</span>              : </span>
+<span id="L38"><span class="lineNum">      38</span>              :     std::vector&lt;MatrixXcd&gt; simulateInputStep(</span>
+<span id="L39"><span class="lineNum">      39</span>              :         const std::vector&lt;MatrixXcd&gt;&amp; states, int nKeep) const override;</span>
+<span id="L40"><span class="lineNum">      40</span>              : </span>
+<span id="L41"><span class="lineNum">      41</span>              : private:</span>
+<span id="L42"><span class="lineNum">      42</span>              : };</span>
+<span id="L43"><span class="lineNum">      43</span>              : </span>
+<span id="L44"><span class="lineNum">      44</span>              : #endif</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 2.5-0</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>
