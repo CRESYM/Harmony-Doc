@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>contributing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="contributing_files/libs/clipboard/clipboard.min.js"></script>
+<script src="contributing_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="contributing_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="contributing_files/libs/quarto-html/popper.min.js"></script>
+<script src="contributing_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="contributing_files/libs/quarto-html/anchor.min.js"></script>
+<link href="contributing_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="contributing_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="contributing_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="contributing_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="contributing_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="harmony-contributing-guidelines" class="level1">
+<h1>Harmony Contributing Guidelines</h1>
+<p>Thank you for considering making a contribution to Harmony! This document explains how to make changes to the project, whether you are adding a new feature, fixing a bug, improving the documentation or doing something else.</p>
+<p>This document contains the following sections: - <a href="#reporting-bugs-requesting-features-or-asking-for-help">Reporting bugs, requesting features or asking for help</a> - <a href="#internal-contributors">Internal Contributors</a> - procedure for contributors who have access to the Harmony repository. - <a href="#external-contributors">External Contributors</a> - procedure for contributing through a fork of the Harmony repository. - <a href="#git-flow">Git Flow Description</a> – overview of the branching workflow used by Harmony. - <a href="#frequently-asked-questions">Frequently Asked Questions</a> - solutions to common Git problems and links to further resources.</p>
+<section id="reporting-bugs-requesting-features-or-asking-for-help" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-bugs-requesting-features-or-asking-for-help">Reporting bugs, requesting features or asking for help</h2>
+<p>We use GitHub issues to report bugs, request new features and ask questions or get help with using Harmony.</p>
+<p>Before opening a new issue, check whether a similar issue already exists. If you find an existing issue that describes the same problem or request, add a comment to it rather than creating a duplicate issue.</p>
+<p>To open an issue, go to the <a href="https://github.com/CRESYM/Harmony/issues">Issues tab</a> and click the <em>New issue</em> button. Harmony provides different forms for reporting bugs, requesting features or asking for help. Select the option that best matches your situation. If none of the available forms is suitable, select <em>Blank issue</em>.</p>
+<p>When creating an issue, fill in the fields providing as much details as possible. Where relevant, attach screenshots, log files, example input files or other files that can help developers understand the problem. You can attach files and images by dragging and dropping them into the issue.</p>
+<p>Try to keep each issue focused on one problem or request. If you identify an unrelated problem while working on an issue, consider opening a separate issue for it.</p>
+<p>Please note that you need a GitHub account to be able to open new issues.</p>
+</section>
+<section id="internal-contributors" class="level2">
+<h2 class="anchored" data-anchor-id="internal-contributors">Internal Contributors</h2>
+<p>The following procedure is for contributors who are members of the Harmony team or a related project team.</p>
+<section id="request-access-to-the-repository" class="level3">
+<h3 class="anchored" data-anchor-id="request-access-to-the-repository">1. Request access to the repository</h3>
+<p>Ask a current Harmony team member to add you as a collaborator to the Harmony repository. You only need to do this once. If you already have access to the repository, continue to the next step.</p>
+</section>
+<section id="create-an-issue" class="level3">
+<h3 class="anchored" data-anchor-id="create-an-issue">2. Create an issue</h3>
+<p>Before starting to work, create an issue describing what you intend to change. You can create an issue using the <a href="https://github.com/CRESYM/Harmony/issues">Issues tab</a> at the top of the repository.</p>
+<p>Even if you have already discussed the proposed changes with the team, it is useful to document them in the repository. This gives other contributors and future maintainers a record of why the change was made and what it was intended to accomplish. If the change has already been discussed by the team, you can briefly mention that in the issue.</p>
+</section>
+<section id="set-up-hamony-locally" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-hamony-locally">3. Set up Hamony locally</h3>
+<p>Follow the instructions in the README to set up a local working version of Harmony. Once it is setup, compile the application, run the tests and the examples to make sure everything works before you start making changes. This gives you a known working starting point. If something does not work at this stage, it is much easier to identify the problem before making your own changes.</p>
+</section>
+<section id="create-a-branch" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-branch">4. Create a branch</h3>
+<p>Changes to Harmony should be made in a separate branch rather than directly in <code>develop</code>.</p>
+<p>First, make sure you are starting from the latest version of <code>develop</code>. See <a href="#git-flow">Git Flow</a> section below for instructions.</p>
+<p>Give your branch a name that includes the issue number and a short description of the change. For example, if issue <code>166</code> is about adding a new solver called <code>foo</code>, you could name the branch <code>feature/166-add-foo-solver</code>. If the issue is about fixing a problem with the solver, you can name the branch <code>bugfix/166-fix-foo-solver</code>. The exact wording is not important. The goal is to make it easy for other contributors to understand what the branch is for.</p>
+</section>
+<section id="make-your-changes" class="level3">
+<h3 class="anchored" data-anchor-id="make-your-changes">5. Make your changes</h3>
+<p>Make the required changes in your branch. Try to keep your changes focused on the issue you are working on. If you notice an unrelated problem while working, consider creating a separate issue for it rather than including it in the same change.</p>
+<p>Save your work regularly by making commits. A commit is simply a saved step in the history of your work. When creating a commit, write a short message describing the changes included in it.</p>
+<p>You may also want to consult the <a href="docs/developer-guide.md">developer guide</a> which explains how to carry out common development tasks.</p>
+</section>
+<section id="run-the-tests" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-tests">6. Run the tests</h3>
+<p>Before asking for your changes to be reviewed, compile Harmony and run the tests and examples again. If you have added or changed functionality, add or update tests where appropriate. Tests help make sure that the change works as intended and that existing functionality has not been accidentally broken.</p>
+<p>If a test fails, try to understand whether the failure is caused by your changes before opening the pull request. If you are unsure, mention the failure in the pull request so that another contributor can help.</p>
+</section>
+<section id="push-your-branch-to-github" class="level3">
+<h3 class="anchored" data-anchor-id="push-your-branch-to-github">7. Push your branch to GitHub</h3>
+<p>Push your branch to the Harmony GitHub repository.</p>
+<p>You can push your branch at any point while you are working. This is useful even before the work is complete because other team members can see your progress and help if you run into problems.</p>
+<p>If you continue working on the branch after pushing it, remember to push your new commits as well.</p>
+</section>
+<section id="open-a-pull-request" class="level3">
+<h3 class="anchored" data-anchor-id="open-a-pull-request">8. Open a pull request</h3>
+<p>When your changes are ready for review, open a pull request to merge your branch into <code>develop</code>.</p>
+<p>A pull request is a request for the team to review your changes before they become part of the shared development version of Harmony.</p>
+<p>When creating the pull request: - Give it a clear title describing the change. - Briefly explain what you changed and why. - Link the issue you created in Step 2. You can do this using the menu on the right-hand side of the pull request page. - Add at least one member of the Harmony team as a reviewer. - Mention anything that the reviewer should pay particular attention to. - If there are known limitations or tests that you could not run, mention them.</p>
+</section>
+<section id="address-review-comments" class="level3">
+<h3 class="anchored" data-anchor-id="address-review-comments">9. Address review comments</h3>
+<p>If the reviewer asks you to make changes, make those changes in your branch and push them to GitHub. The pull request will automatically be updated with your new changes. There is no need to create a new pull request.</p>
+<p>Once the reviewers are satisfied, the branch can be merged into <code>develop</code>. After the pull request has been merged, your feature/bugfix branch is no longer needed and can be deleted.</p>
+<p>If you linked the issue created in Step 2 to the Pull Request, the issue will be closed when the pull request is closed and your branch has been merged.</p>
+</section>
+</section>
+<section id="external-contributors" class="level2">
+<h2 class="anchored" data-anchor-id="external-contributors">External Contributors</h2>
+<p>The procedure for external contributors is very similar to the procedure for <a href="#internal-contributors">internal contributors</a>.</p>
+<p>The main difference is that external contributors do not have access to make changes directly to the Harmony repository. Instead, you will create your own copy of the Harmony repository, called a <strong>fork</strong>, and make your changes there. When your changes are ready, you can submit them to Harmony through a pull request.</p>
+<p>Follow the procedure for internal contributors, with the following differences:</p>
+<section id="fork-the-harmony-repository" class="level3">
+<h3 class="anchored" data-anchor-id="fork-the-harmony-repository">1. Fork the Harmony repository</h3>
+<p>Instead of requesting access to the Harmony repository, create a fork of it on GitHub. 1. Go to the Harmony repository. 2. Click the Fork button (top-right). 3. Select your GitHub account as the owner of the fork. 4. If GitHub shows the option <strong>Copy the DEFAULT branch only</strong>, make sure it is <strong>NOT selected</strong>. This ensures that the <code>develop</code> branch is also copied to your fork. 5. Click Create fork.</p>
+<p>You now have your own copy of Harmony. Clone this repository to your computer and follow the setup instructions in the README.</p>
+</section>
+<section id="create-your-branch-work-on-your-fork-and-submit-your-changes" class="level3">
+<h3 class="anchored" data-anchor-id="create-your-branch-work-on-your-fork-and-submit-your-changes">2. Create your branch, work on your fork and submit your changes</h3>
+<p>Follow Step 2 and Step 3 of the Internal Contributors procedure as usual. When you are ready to create your branch, first make sure that your local <code>develop</code> branch contains the latest changes from the Harmony repository. See next step for instructions on how to do this.</p>
+<p>Work on your branch following the remaining steps in the Internal Contributions procedure. When your changes are ready, open a pull request <strong>from your feature/bugfix branch in your fork to the <code>develop</code> branch in the Harmony repository</strong>.</p>
+</section>
+<section id="keep-your-branch-up-to-date" class="level3">
+<h3 class="anchored" data-anchor-id="keep-your-branch-up-to-date">3. Keep your branch up to date</h3>
+<p>If changes are made to Harmony’s <code>develop</code> branch while you are working, update your fork: 1. Open your fork repository on GitHub. 2. Select the develop branch. 3. Click Sync Fork and select Update Branch.</p>
+<p>This will add all of the new commits in Harmony’s <code>develop</code> branch to the <code>develop</code> branch in your fork. Follow the instructions in the <a href="#keeping-your-branch-up-to-date">Keeping your branch up to date</a> section below to learn how to add these commits to your feature or bugfix branch.</p>
+<p>Read more in <a href="https://docs.github.com/en/pull-requests/how-tos/work-with-forks/syncing-a-fork">GitHub’s guide for syncing a fork</a>.</p>
+</section>
+</section>
+<section id="git-flow" class="level2">
+<h2 class="anchored" data-anchor-id="git-flow">Git Flow</h2>
+<p>Changes to Harmony should follow the <strong>Git Flow</strong> workflow which keeps the stable version of Harmony separate from work that is still being developed. The workflow involves three types of branches: * <code>main</code> - contains stable versions of Harmony. This branch should only contain changes that are ready for a release. <strong>Do not make changes directly to main.</strong> * <code>develop</code> - contains changes that are being developed and will eventually become part of a stable release. * <code>feature/bugfix/change branches</code> - temporary branches used to work on a specific feature, bug fix, or other change. These branches are created from <code>develop</code> and are merged back into <code>develop</code> when the work is complete.</p>
+<section id="creating-a-new-branch" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-new-branch">Creating a new branch</h3>
+<p>When you start working on an issue, create a new branch from the latest commit in the <code>develop</code> branch. You can do so by running the following commands from the terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to the harmony repository</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="op">&lt;</span>path-to-harmony<span class="op">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch to the develop branch</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout develop</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the latest commits from GitHub</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new branch and switch to it.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace 'feature/166-add-foo-solver' with the name of your own branch</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/166-add-foo-solver</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can now make your changes without modifying the <code>develop</code> branch.</p>
+<blockquote class="blockquote">
+<p>[!TIP] You can check which branch is currently active with <code>git status</code>. You can switch between branches with <code>git checkout &lt;branch-name&gt;</code>.</p>
+</blockquote>
+</section>
+<section id="working-on-your-branch" class="level3">
+<h3 class="anchored" data-anchor-id="working-on-your-branch">Working on your branch</h3>
+<p>As you work, save your changes by creating commits:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add all the files you have modified and that you wish to include in the commit</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>file-1<span class="op">&gt;</span> <span class="op">&lt;</span>file-2<span class="op">&gt;</span> <span class="op">&lt;</span>file-n<span class="op">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a commit </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add foo solver"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Push your branch to GitHub</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin feature/166-add-foo-solver</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can continue to make commits and push them to the same branch while your work.</p>
+<blockquote class="blockquote">
+<p>[!TIP] Use <code>git status</code> to list all the files that have changed since the last commit. Use <code>git diff &lt;file-name&gt;</code> to display the changes in a specific file.</p>
+</blockquote>
+</section>
+<section id="keeping-your-branch-up-to-date" class="level3">
+<h3 class="anchored" data-anchor-id="keeping-your-branch-up-to-date">Keeping your branch up to date</h3>
+<p>Other contributors may make changes to <code>develop</code> while you are working. It is a good idea to occasionally update your branch with the latest changes from <code>develop</code>.</p>
+<p>First, make sure your own changes have been committed. Then, update your local copy of develop with the latest changes from GitHub and merge <code>develop</code> into your own branch:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch to the develop branch</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout develop</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull the latest changes from GitHub</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch back to your branch</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace '166-add-foo-solver' with the name of your own branch</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature/166-add-foo-solver</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the latest changes from develop into your branch</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge develop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the merge is successful, you can continue working on your branch. You may want to run the tests to make sure everything still works. If Git reports merge conflicts, see “How do I solve merge conflicts between branch A and B?” in the <a href="#frequently-asked-questions">FAQ section</a> below.</p>
+<p>Once you have resolved any conflicts and confirmed that everything works, push the updated branch to GitHub using <code>git push</code>.</p>
+</section>
+<section id="completing-your-work" class="level3">
+<h3 class="anchored" data-anchor-id="completing-your-work">Completing your work</h3>
+<p>When your changes are ready: 1. Make sure your changes are committed and pushed to GitHub. 2. Compile, run the tests and examples 3. Open a pull-request to merge your feature/bugfix branch into <code>develop</code> 4. Ask a Harmony team member to review the pull-request. 5. Address any review comments. 6. Once the pull request is approved, it can be merged into <code>develop</code>.</p>
+<p>The <code>main</code> branch is reserved for stable releases and should not be used for day-to-day development.</p>
+</section>
+</section>
+<section id="frequently-asked-questions" class="level2">
+<h2 class="anchored" data-anchor-id="frequently-asked-questions">Frequently Asked Questions</h2>
+<section id="i-cannot-create-a-new-branch-because-i-have-local-uncommitted-changes.-what-can-i-do" class="level3">
+<h3 class="anchored" data-anchor-id="i-cannot-create-a-new-branch-because-i-have-local-uncommitted-changes.-what-can-i-do">I cannot create a new branch because I have local uncommitted changes. What can I do?</h3>
+<p>Git may prevent you from switching branches or creating a new branch when you have changes that have not been saved in a commit.</p>
+<p>First, check what has changed:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List the names of files that have changes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the changes on a particular file</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="op">&lt;</span>file-name<span class="op">&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the chanegs on all files</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you want to keep the changes, the safest option is usually to commit them before switching branches:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>file-1<span class="op">&gt;</span> <span class="op">&lt;</span>file-2<span class="op">&gt;</span> <span class="op">&lt;</span>file-n<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Save my current work"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-do-i-solver-merge-conflicts-between-branch-a-and-b" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-i-solver-merge-conflicts-between-branch-a-and-b">How do I solver merge conflicts between branch A and B?</h3>
+<p>A merge conflict happens when Git cannot automatically decide which version of a change should be kept.</p>
+<p>This can happen when two branches have changed the same part of a file.</p>
+<p>If you encounter a merge conflict: 1. Do not panic. 2. Check which files Git reports as having conflicts. 3. Open those files and look for the sections marked by Git with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. 4. Decide which changes should be kept, or combine the changes if both are needed. 5. Remove the conflict markers added by Git. 6. Compile and run the tests after resolving the conflict. 7. Commit the resolved changes.</p>
+<p>For more information on how to solve git conflicts see * <a href="https://coderefinery.github.io/git-intro/conflicts/">Code Refinery - lesson on conflict resolution</a> * <a href="https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/resolving-a-merge-conflict-on-github">GitHub: resolving a merge conflict</a></p>
+</section>
+<section id="where-can-i-learn-more-about-git" class="level3">
+<h3 class="anchored" data-anchor-id="where-can-i-learn-more-about-git">Where can I learn more about git?</h3>
+<p>There are many free resources online to learn about Git. We find the following ones particularly useful: * <a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub - GitHub flow</a> * <a href="https://swcarpentry.github.io/git-novice/">The Carprenties - Version Control with Git</a> * <a href="https://coderefinery.github.io/git-intro/">CodeRefinery - Introduction to version control with Git</a></p>
+<p>Other resources: * <a href="https://www.tudelft.nl/en/library/data-management/training-and-events/training-for-researchers">TU Delft Library</a> offers a selection of courses aimed at TU Delft researchers. * <a href="https://community.data.4tu.nl/introduction-to-version-control-with-git/">4TU</a> offers various introductory-level courses including <em>Introduction to Version Control with Git</em>. * <a href="https://www.esciencecenter.nl/digital-skills/">NL eScience Centre</a> offers a selection of introductory and advanced level courses on different topics. * <a href="https://dcc.tudelft.nl">TU Delft Digital Competence Centre</a> offers a <em>Code &amp; Data Office Hours</em> service to get help on a specific topic; also hosts the <em>DCC Guides</em> which provide practical information on research software management.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
