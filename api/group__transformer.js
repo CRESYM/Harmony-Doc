@@ -3,11 +3,14 @@ var group__transformer =
     [ "Transformer_base", "classTransformer__base.html", [
       [ "Transformer_base", "classTransformer__base.html#a25fdd0ab84972c65cc4deb0e18a1f2d6", null ],
       [ "~Transformer_base", "classTransformer__base.html#a754387bd1c1199e6f518242473c0cf6e", null ],
+      [ "applyWindingConnection", "classTransformer__base.html#ad558001fdfc4e3340c457a7eac97fe6b", null ],
       [ "computePowerFlow", "classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826", null ],
       [ "getInductance", "classTransformer__base.html#ab39557950bb93811eddc8904b3f04361", null ],
+      [ "getPhaseShift", "classTransformer__base.html#a65a3fe28688cf2052e744ed760956b98", null ],
       [ "getResistance", "classTransformer__base.html#a8ea21f3cb19d3059cdfc908666413ef2", null ],
       [ "L", "classTransformer__base.html#a070e6707f3f30dfe646b5525728ec5de", null ],
       [ "m_pins", "classTransformer__base.html#afe8cf5b1829a8b35bd532df8460cd3aa", null ],
+      [ "phase_shift", "classTransformer__base.html#a19477df27acbbe2a7838130f41d0a978", null ],
       [ "R", "classTransformer__base.html#abd36323826e64cd204e3ce9aa8763286", null ]
     ] ],
     [ "Transformer_classic", "classTransformer__classic.html", [
@@ -19,6 +22,10 @@ var group__transformer =
     [ "TransformerDeltaDelta", "classTransformerDeltaDelta.html", [
       [ "TransformerDeltaDelta", "classTransformerDeltaDelta.html#ac1dfee64ca383da122796e1112ff15e6", null ],
       [ "~TransformerDeltaDelta", "classTransformerDeltaDelta.html#a263c90701d2a8c72b9113317d5d18574", null ]
+    ] ],
+    [ "TransformerDeltaDelta_real", "classTransformerDeltaDelta__real.html", [
+      [ "TransformerDeltaDelta_real", "classTransformerDeltaDelta__real.html#a884e613b0f46ae155280378ede416db1", null ],
+      [ "~TransformerDeltaDelta_real", "classTransformerDeltaDelta__real.html#a4ae8a592c6f6bf47450db496b81bce74", null ]
     ] ],
     [ "TransformerDeltaY", "classTransformerDeltaY.html", [
       [ "TransformerDeltaY", "classTransformerDeltaY.html#a86430f1cc87a128acf4bb581e8dfe8c9", null ],
@@ -37,6 +44,10 @@ var group__transformer =
     [ "TransformerYDelta", "classTransformerYDelta.html", [
       [ "TransformerYDelta", "classTransformerYDelta.html#aca9b9aaf81060ec19c5bbc9ca076f89e", null ],
       [ "~TransformerYDelta", "classTransformerYDelta.html#a5e01e2dbcb963b219c6f36223819ffad", null ]
+    ] ],
+    [ "TransformerYDelta_real", "classTransformerYDelta__real.html", [
+      [ "TransformerYDelta_real", "classTransformerYDelta__real.html#aed499cf4987aaa9f27c8689f98859038", null ],
+      [ "~TransformerYDelta_real", "classTransformerYDelta__real.html#a0abffa066de2489ad590cc7baa3d7cad", null ]
     ] ],
     [ "TransformerYY", "classTransformerYY.html", [
       [ "TransformerYY", "classTransformerYY.html#ad241c898a3d42a61741f1f5384aed8c2", null ],

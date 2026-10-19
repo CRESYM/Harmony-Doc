@@ -27,11 +27,13 @@ var searchData=
   ['example_5fpll_5ftest_2ecpp_24',['example_PLL_test.cpp',['../example__PLL__test_8cpp.html',1,'']]],
   ['example_5fpoint2point_5fcase_2ecpp_25',['example_point2point_case.cpp',['../example__point2point__case_8cpp.html',1,'']]],
   ['example_5fpv_5fplant_2ecpp_26',['example_PV_plant.cpp',['../example__PV__plant_8cpp.html',1,'']]],
-  ['example_5fstability_5fcheck_2ecpp_27',['example_stability_check.cpp',['../example__stability__check_8cpp.html',1,'']]],
-  ['example_5fstate_5fspace_2ecpp_28',['example_state_space.cpp',['../example__state__space_8cpp.html',1,'']]],
-  ['example_5ftransformer_2ecpp_29',['example_transformer.cpp',['../example__transformer_8cpp.html',1,'']]],
-  ['example_5fvisuals_2ecpp_30',['example_visuals.cpp',['../example__visuals_8cpp.html',1,'']]],
-  ['example_5fwt_5ftype_5f3_2ecpp_31',['example_WT_type_3.cpp',['../example__WT__type__3_8cpp.html',1,'']]],
-  ['example_5fwt_5ftype_5f4_2ecpp_32',['example_WT_type_4.cpp',['../example__WT__type__4_8cpp.html',1,'']]],
-  ['examples_2eh_33',['Examples.h',['../Examples_8h.html',1,'']]]
+  ['example_5fregistry_2ecpp_27',['example_registry.cpp',['../example__registry_8cpp.html',1,'']]],
+  ['example_5fregistry_2eh_28',['example_registry.h',['../example__registry_8h.html',1,'']]],
+  ['example_5fstability_5fcheck_2ecpp_29',['example_stability_check.cpp',['../example__stability__check_8cpp.html',1,'']]],
+  ['example_5fstate_5fspace_2ecpp_30',['example_state_space.cpp',['../example__state__space_8cpp.html',1,'']]],
+  ['example_5ftransformer_2ecpp_31',['example_transformer.cpp',['../example__transformer_8cpp.html',1,'']]],
+  ['example_5fvisuals_2ecpp_32',['example_visuals.cpp',['../example__visuals_8cpp.html',1,'']]],
+  ['example_5fwt_5ftype_5f3_2ecpp_33',['example_WT_type_3.cpp',['../example__WT__type__3_8cpp.html',1,'']]],
+  ['example_5fwt_5ftype_5f4_2ecpp_34',['example_WT_type_4.cpp',['../example__WT__type__4_8cpp.html',1,'']]],
+  ['examples_2eh_35',['Examples.h',['../Examples_8h.html',1,'']]]
 ];

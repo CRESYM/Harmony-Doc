@@ -1,5 +1,5 @@
-<map id="harmony/src/cli.h" name="harmony/src/cli.h">
-<area shape="rect" id="Node000001" title="Command&#45;line interface for the unified Harmony executable." alt="" coords="202,5,337,31"/>
+<map id="harmony/src/ui/cli.h" name="harmony/src/ui/cli.h">
+<area shape="rect" id="Node000001" title="Command&#45;line interface for the unified Harmony executable." alt="" coords="194,5,345,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,96,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,33,100,77,98,72,233,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="121,79,207,104"/>

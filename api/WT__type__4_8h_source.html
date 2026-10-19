@@ -103,52 +103,43 @@ $(document).ready(function(){initNavTree('WT__type__4_8h_source.html',''); initR
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="RES__base_8h.html">RES_base.h</a>&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classWTtype4.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classWTtype4.html">WTtype4</a> : <span class="keyword">public</span> <a class="code hl_class" href="classRES__base.html">RES_base</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classWTtype4.html#ab4cde74ac7f8d0fd05d80671ded4f433">   17</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classPowerFlow.html">PowerFlow</a>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classWTtype4.html">WTtype4</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; symbol, <span class="keyword">const</span> std::string&amp; location, <span class="keyword">const</span> vector&lt;double&gt;&amp; parameters);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">   27</a></span>    <a class="code hl_function" href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">~WTtype4</a>() {}</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// Grid parameters</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">double</span> Vm = 34.5e3;                 <span class="comment">// Grid voltage magnitude (V)</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">double</span> f1 = 50.0;                   <span class="comment">// Grid frequency (Hz)</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">double</span> Pwt = 3.2e6;                 <span class="comment">// Wind turbine power (W)</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">double</span> Vdc = 1000;                  <span class="comment">// DC link voltage (V)</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// PLL Parameters </span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">double</span> Kp_pll = 0.93;               <span class="comment">// PLL proportional gain</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">double</span> Ki_pll = 50;                 <span class="comment">// PLL integral gain</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// Current Controller </span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">double</span> Kpi = 0.053;                 <span class="comment">// Proportional gain</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">double</span> Kii = 30.59;                 <span class="comment">// Integral gain</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Delay</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">double</span> Tdelay = 0.001;              <span class="comment">// Delay in seconds</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classWTtype4.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classWTtype4.html">WTtype4</a> : <span class="keyword">public</span> <a class="code hl_class" href="classRES__base.html">RES_base</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classWTtype4.html#ab4cde74ac7f8d0fd05d80671ded4f433">   20</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classPowerFlow.html">PowerFlow</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classWTtype4.html">WTtype4</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; symbol, <span class="keyword">const</span> std::string&amp; location, <span class="keyword">const</span> vector&lt;double&gt;&amp; parameters);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">   30</a></span>    <a class="code hl_function" href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">~WTtype4</a>() {}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">double</span> Vm = 690.0;                  <span class="comment">// Grid voltage, line-to-line rms (V)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">double</span> f1 = 50.0;                   <span class="comment">// Grid frequency (Hz)</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">double</span> Pwt = 2.5e6;                 <span class="comment">// Wind turbine power (W)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">double</span> Qwt = 0.0;                   <span class="comment">// Reactive power (var)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">double</span> Vdc = 1200.0;                <span class="comment">// DC link voltage (V)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">double</span> Kp_pll = 0.05325027336821547;    <span class="comment">// PLL proportional gain (1/V)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">double</span> Ki_pll = 0.3550018224547698; <span class="comment">// PLL integral gain (1/(V s))</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">double</span> Kpi = 0.19044;               <span class="comment">// Current PI proportional gain (Ohm)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">double</span> Kii = 9.522;                 <span class="comment">// Current PI integral gain (Ohm/s)</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">double</span> Tdelay = 0.00075;            <span class="comment">// PWM Padé delay (s)</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Second-order filter parameters</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">double</span> wn = 1.23e6;                 <span class="comment">// Natural frequency (rad/s)</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">double</span> zeta = 0.707;                <span class="comment">// Damping ratio</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// Filter Parameters - 2 values</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">double</span> Rf = 0.095;                  <span class="comment">// Filter resistance (Ohms)</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">double</span> Lf = 0.0045;                 <span class="comment">// Filter inductance (H)</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// reference values</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">double</span> Id_ref = -75.73l;            <span class="comment">// Reference Id current (A)</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">double</span> Iq_ref = 0.0;                <span class="comment">// Reference Iq current (A)</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">double</span> wn = 1.23e6;                 <span class="comment">// Measurement-filter natural frequency (rad/s)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">double</span> zeta = 4.74e-13;             <span class="comment">// Measurement-filter damping ratio</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">double</span> Rf = 0.0;                    <span class="comment">// Filter resistance (Ohm)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">double</span> Lf = 0.00012;                <span class="comment">// Filter inductance (H)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aRES__base_8h_html"><div class="ttname"><a href="RES__base_8h.html">RES_base.h</a></div><div class="ttdoc">Base class for renewable energy source (RES) plant models.</div></div>
 <div class="ttc" id="aclassPowerFlow_html"><div class="ttname"><a href="classPowerFlow.html">PowerFlow</a></div><div class="ttdoc">Combined AC/DC optimal power flow solver.</div><div class="ttdef"><b>Definition</b> Powerflow.h:49</div></div>
 <div class="ttc" id="aclassRES__base_html"><div class="ttname"><a href="classRES__base.html">RES_base</a></div><div class="ttdoc">Common base for wind and PV plant elements.</div><div class="ttdef"><b>Definition</b> RES_base.h:16</div></div>
-<div class="ttc" id="aclassWTtype4_html"><div class="ttname"><a href="classWTtype4.html">WTtype4</a></div><div class="ttdoc">Type 4 wind turbine with full-scale back-to-back converter and filter.</div><div class="ttdef"><b>Definition</b> WT_type_4.h:16</div></div>
-<div class="ttc" id="aclassWTtype4_html_ac1d2210586fabb071d3e2f024f2ec9d2"><div class="ttname"><a href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">WTtype4::~WTtype4</a></div><div class="ttdeci">~WTtype4()</div><div class="ttdef"><b>Definition</b> WT_type_4.h:27</div></div>
+<div class="ttc" id="aclassWTtype4_html"><div class="ttname"><a href="classWTtype4.html">WTtype4</a></div><div class="ttdoc">Type 4 wind turbine with full-scale back-to-back converter and filter.</div><div class="ttdef"><b>Definition</b> WT_type_4.h:19</div></div>
+<div class="ttc" id="aclassWTtype4_html_ac1d2210586fabb071d3e2f024f2ec9d2"><div class="ttname"><a href="classWTtype4.html#ac1d2210586fabb071d3e2f024f2ec9d2">WTtype4::~WTtype4</a></div><div class="ttdeci">~WTtype4()</div><div class="ttdef"><b>Definition</b> WT_type_4.h:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

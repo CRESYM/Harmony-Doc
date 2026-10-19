@@ -3,6 +3,7 @@ var classStateSpaceModel =
     [ "Tree", "classStateSpaceModel_1_1Tree.html", "classStateSpaceModel_1_1Tree" ],
     [ "StateSpaceModel", "classStateSpaceModel.html#a610b17658142cde4490cb78c9ab62bd7", null ],
     [ "buildInputVector", "classStateSpaceModel.html#ab7b99ff129db00fbbc744035a0133fef", null ],
+    [ "buildInputVector", "classStateSpaceModel.html#a309f7a6e942a85d69e6969c113190bee", null ],
     [ "findLoops", "classStateSpaceModel.html#a95992da5976007b9d458c9e7b4ee7489", null ],
     [ "form_cutset_nodes", "classStateSpaceModel.html#a4480202ef83ee5393724d82502d072a1", null ],
     [ "form_cutsets", "classStateSpaceModel.html#a9c9416e6a9ccf8f5a34b398267553eb2", null ],

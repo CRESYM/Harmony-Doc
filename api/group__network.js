@@ -45,6 +45,7 @@ var group__network =
       [ "getElements", "classNetwork.html#a8d99305c676088be0fc41284a0d356d7", null ],
       [ "getElements", "classNetwork.html#a5fd054482f6f9e06353587d1c24a97c7", null ],
       [ "is_area_empty", "classNetwork.html#a229c363132c2dedc788f9b9551f557bd", null ],
+      [ "liveFlag", "classNetwork.html#a31caf1f33480d64be5b4ad8c19186997", null ],
       [ "print_summary", "classNetwork.html#a554be9af3567fda6c466f1d0c3895a98", null ],
       [ "printBuses", "classNetwork.html#a73d5492eedbe6897cd5345596f0ddb85", null ],
       [ "printConnections", "classNetwork.html#a30e8692e80602031ead9b8b8f3c795ea", null ],
@@ -57,6 +58,7 @@ var group__network =
       [ "dc_grid_names", "classNetwork.html#ab93c1d4447c795510f030fd0f4e97e83", null ],
       [ "dc_grids", "classNetwork.html#a55c84ca03fa1f36a643e1f0bd71d8fe7", null ],
       [ "elements", "classNetwork.html#aae7ffd7d9b601b1a5b215731a7df6f6c", null ],
+      [ "live_", "classNetwork.html#aee8e8c51f21d63143fb0124acfc3c05a", null ],
       [ "ownsResources_", "classNetwork.html#a316e042262fc9131767ba31716eac1d8", null ],
       [ "pins", "classNetwork.html#abc7ca9e67039dc3f0ec91950615e141c", null ]
     ] ],

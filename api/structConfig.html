@@ -142,6 +142,9 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a231a9f33b529bf25ee721e834c5011f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5e814996fce3243ae0e6b1d8db44ef5" id="r_af5e814996fce3243ae0e6b1d8db44ef5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classBus.html">Bus</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structConfig.html#af5e814996fce3243ae0e6b1d8db44ef5">outputBuses</a></td></tr>
 <tr class="separator:af5e814996fce3243ae0e6b1d8db44ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14b597c6969db0ce5aff262a86b473e9" id="r_a14b597c6969db0ce5aff262a86b473e9"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structConfig.html#a14b597c6969db0ce5aff262a86b473e9">resumeX</a></td></tr>
+<tr class="memdesc:a14b597c6969db0ce5aff262a86b473e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">When non-empty (nx × nKeep), resume DSSS from this phasor state instead of zeros.  <br /></td></tr>
+<tr class="separator:a14b597c6969db0ce5aff262a86b473e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simulation configuration for a <a class="el" href="classDQsym.html" title="Orchestrates phasor-domain dynamic simulation of an AC/DC network.">DQsym</a> run. </p>
@@ -174,7 +177,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, <a class="el" href="classDQsym.html#abe957db3849736e7dc92a8d774d10f23">DQsym::plot()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
 
 </div>
 </div>
@@ -242,6 +245,24 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a14b597c6969db0ce5aff262a86b473e9" name="a14b597c6969db0ce5aff262a86b473e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14b597c6969db0ce5aff262a86b473e9">&#9670;&#160;</a></span>resumeX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXcd Config::resumeX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When non-empty (nx × nKeep), resume DSSS from this phasor state instead of zeros. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDQsym.html#abe957db3849736e7dc92a8d774d10f23">DQsym::plot()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+
+</div>
+</div>
 <a id="abb55ed930334e304e2624b1d21a9be0f" name="abb55ed930334e304e2624b1d21a9be0f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb55ed930334e304e2624b1d21a9be0f">&#9670;&#160;</a></span>swOffRes</h2>
 
@@ -302,7 +323,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, <a class="el" href="classDQsym.html#abe957db3849736e7dc92a8d774d10f23">DQsym::plot()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
 
 </div>
 </div>
@@ -318,7 +339,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__examples.html#ga5af34b217964a007ed7614ce7d5f562c">example_DQsym_MMC_controlled()</a>, <a class="el" href="group__examples.html#gae83f15fdc1c89802a1fba30515397026">example_DQsym_Simple_MMC()</a>, <a class="el" href="classDQsym.html#abe957db3849736e7dc92a8d774d10f23">DQsym::plot()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
 
 </div>
 </div>

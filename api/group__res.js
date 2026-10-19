@@ -7,12 +7,12 @@ var group__res =
     ] ],
     [ "RES_base", "classRES__base.html", [
       [ "RES_base", "classRES__base.html#a700fc7ad07feb6ca3caa0848b384fd42", null ],
-      [ "~RES_base", "classRES__base.html#a325867096680c95121c1a90d034131b0", null ],
+      [ "~RES_base", "classRES__base.html#a115c8ccad976ec6aee8406386070552b", null ],
       [ "computePowerFlow", "classRES__base.html#a4d69d816c9cc9742bd54558a599e384e", null ]
     ] ],
     [ "WPplant", "classWPplant.html", [
       [ "WPplant", "classWPplant.html#a1827364c0462d109559871f50c933dbd", null ],
-      [ "~WPplant", "classWPplant.html#aaaef3e4338e8bf34a644c0686e0546fc", null ]
+      [ "~WPplant", "classWPplant.html#aa8c990b5f0973100c0dbbe0cd9cac939", null ]
     ] ],
     [ "WTtype3", "classWTtype3.html", [
       [ "WTtype3", "classWTtype3.html#aedefe0bfcd019414f80f13d12ac76b6e", null ],

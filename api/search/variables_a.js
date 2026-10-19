@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['l_0',['L',['../classTransformer__base.html#a070e6707f3f30dfe646b5525728ec5de',1,'Transformer_base']]],
-  ['l_5freactor_1',['L_reactor',['../classConverter.html#a79c69a5c5c89c0ac004d4c992575d66d',1,'Converter']]],
-  ['label_2',['label',['../structCertificateSpec.html#adce0cec4cd2d823417ad8921762edaf6',1,'CertificateSpec']]],
-  ['last_5fvmdelta_5fd_5fref_5f_3',['last_vMDelta_d_ref_',['../classMMC.html#a95f2fbd2dc214374fca7624e4eb03f64',1,'MMC']]],
-  ['last_5fvmdelta_5fq_5fref_5f_4',['last_vMDelta_q_ref_',['../classMMC.html#a4d4a1926afe29bd0a93da49daa9afc77',1,'MMC']]],
-  ['last_5fvmsigma_5fd_5fref_5f_5',['last_vMSigma_d_ref_',['../classMMC.html#abfaeb09a0061cd0a43d85275f67daaeb',1,'MMC']]],
-  ['last_5fvmsigma_5fq_5fref_5f_6',['last_vMSigma_q_ref_',['../classMMC.html#ab2d792901fcadd7870e3dc537974948c',1,'MMC']]],
-  ['last_5fvmsigma_5fz_5fref_5f_7',['last_vMSigma_z_ref_',['../classMMC.html#a077679f9f0f8a61bb423579f3c88530d',1,'MMC']]],
-  ['local_8',['local',['../structLocalVsSystemResult.html#a36b29fefa93bed676cb9810bd760cf2f',1,'LocalVsSystemResult']]],
-  ['local_5fpass_9',['local_pass',['../structLocalVsSystemResult.html#a8aa88b7c9bad4211f61154119ef90798',1,'LocalVsSystemResult']]]
+  ['kdroop_5fp_0',['Kdroop_P',['../structGfmTuningSample.html#a4f37595c31ecb4d51d78d25a43ee9a3d',1,'GfmTuningSample']]],
+  ['kdroop_5fp_5fbest_1',['Kdroop_P_best',['../structGfmTuningResult.html#a404557ec010b543a10bba2324df8637e',1,'GfmTuningResult']]],
+  ['kdroop_5fp_5fmax_2',['Kdroop_P_max',['../structGfmTuningBounds.html#aab87f32cb08c105d0f0d7505cacb2d82',1,'GfmTuningBounds']]],
+  ['kdroop_5fp_5fmin_3',['Kdroop_P_min',['../structGfmTuningBounds.html#a38e2f1d5fee7ad337f8959f1663fd815',1,'GfmTuningBounds']]],
+  ['kdroop_5fp_5fnominal_4',['Kdroop_P_nominal',['../structGfmTuningResult.html#a85b8fbc9441403060b3f5727cb0dc89f',1,'GfmTuningResult']]],
+  ['kdroop_5fq_5',['Kdroop_Q',['../structGfmTuningSample.html#aef2302fabbe2402b6bc1eabc4ae1819f',1,'GfmTuningSample']]],
+  ['kdroop_5fq_5fbest_6',['Kdroop_Q_best',['../structGfmTuningResult.html#aabe9fc249d91e62dfa1d1aed16349c64',1,'GfmTuningResult']]],
+  ['kdroop_5fq_5fmax_7',['Kdroop_Q_max',['../structGfmTuningBounds.html#a64ce91df6e813ffb8570548d9f78d49f',1,'GfmTuningBounds']]],
+  ['kdroop_5fq_5fmin_8',['Kdroop_Q_min',['../structGfmTuningBounds.html#a39d07cde54c170b9c6dbde8a81742c80',1,'GfmTuningBounds']]],
+  ['kdroop_5fq_5fnominal_9',['Kdroop_Q_nominal',['../structGfmTuningResult.html#af3502a26e3273a697db6a42f7f407825',1,'GfmTuningResult']]],
+  ['kharmonylauncherbannerfontsizepx_10',['kHarmonyLauncherBannerFontSizePx',['../harmony__banner__gui_8h.html#af647e08336e86dd042e3658fdbf2f993',1,'harmony_banner_gui.h']]],
+  ['kharmonyploteigenheightpx_11',['kHarmonyPlotEigenHeightPx',['../harmony__banner__gui_8h.html#a5d46b0b92b08ba5cfb2e32e93e3191d6',1,'harmony_banner_gui.h']]],
+  ['kharmonyplotpanelheightpx_12',['kHarmonyPlotPanelHeightPx',['../harmony__banner__gui_8h.html#a3878691dc2f42b81246a0117125da294',1,'harmony_banner_gui.h']]],
+  ['kharmonyplotuifontsizepx_13',['kHarmonyPlotUiFontSizePx',['../harmony__banner__gui_8h.html#ad30b79ade1c2352dee45c97d61104678',1,'harmony_banner_gui.h']]],
+  ['kharmonyplotuistylescale_14',['kHarmonyPlotUiStyleScale',['../harmony__banner__gui_8h.html#af2e3e613aeccc573c443bc7f7597d5fe',1,'harmony_banner_gui.h']]],
+  ['kharmonyplotwaveformheightpx_15',['kHarmonyPlotWaveformHeightPx',['../harmony__banner__gui_8h.html#ad31ba7a6bad0cce745a138dc994494f1',1,'harmony_banner_gui.h']]],
+  ['kparkf0hz_16',['kParkF0Hz',['../Stability__estimate_8cpp.html#a9b838492403794ab6d24381bfc7f645a',1,'Stability_estimate.cpp']]]
 ];

@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('overhead__line_8h_source.html',''); in
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define OVERHEAD_LINE_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Transmissionline_8h.html">Transmissionline.h</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;../Element.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Elements/Element.h</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="classElement.html">Element</a>; <span class="comment">// Forward declaration of Element class</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('overhead__line_8h_source.html',''); in
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordtype">double</span> dsag = 0; <span class="comment">//sag offset    [m] </span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">double</span> dsb = 0; <span class="comment">// subconductor spacing (symmetric)  [m] </span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">double</span> rc = 0; <span class="comment">//conductor radius  [m] </span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">double</span> Rdc = 0; <span class="comment">//DC resistance for the entire conductor [Ω/m] </span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">double</span> Rdc = 0; <span class="comment">// DC resistance of the entire conductor [Ω/km] </span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">double</span> gc = 1e-11; <span class="comment">// shunt conductance  </span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">double</span> mu_rc = 1; <span class="comment">// relative conductor permeability μᵣᶜ</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        std::tuple&lt;std::vector&lt;double&gt;, std::vector&lt;double&gt;&gt; positions = { {},{} }; <span class="comment">//add absolute positions manually, </span></div>
@@ -149,16 +149,16 @@ $(document).ready(function(){initNavTree('overhead__line_8h_source.html',''); in
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">double</span> deltaYg = 0; <span class="comment">// vertical offset between the lowest conductor and groundwires  [m] Δyg</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordtype">double</span> rg = 0; <span class="comment">// ground wire radius  [m] rg</span></div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordtype">double</span> dgsag = 0; <span class="comment">// sag offset [m] dgsag</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">double</span> Rgdc = 0; <span class="comment">// groundwire DC resistance [Ω/m] Rgdc</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">double</span> Rgdc = 0; <span class="comment">// groundwire DC resistance [Ω/km]</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">double</span> mu_g = 1; <span class="comment">// relative groundwire permeability μᵣ</span></div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        std::tuple&lt;std::vector&lt;double&gt;, std::vector&lt;double&gt;&gt; positions; <span class="comment">// add absolute positions manually</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        Groundwires(<span class="keywordtype">int</span>, std::vector&lt;double&gt;&amp;, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, std::tuple&lt;std::vector&lt;double&gt;, std::vector&lt;double&gt;&gt;);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">double</span> length = 0;  <span class="comment">// line length [km]</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    Conductors* conductors = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    Groundwires* groundwires = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">double</span> length = 0;  <span class="comment">// line length [m]</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    std::unique_ptr&lt;Conductors&gt; conductors;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    std::unique_ptr&lt;Groundwires&gt; groundwires;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// Earth parameters are defined as (mu_r, epsilon_r, resistivity)</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    std::tuple&lt;double, double, double&gt; earthParameters = std::make_tuple(1, 1, 1); <span class="comment">// (μᵣ_earth, ϵᵣ_earth, ρ_earth) in units ([], [], [Ωm])</span></div>
@@ -176,20 +176,27 @@ $(document).ready(function(){initNavTree('overhead__line_8h_source.html',''); in
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        std::tuple&lt;std::string, std::vector&lt;int&gt;, std::vector&lt;double&gt;, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>&gt; conductor,</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        std::tuple&lt;<span class="keywordtype">int</span>, std::vector&lt;double&gt;, <span class="keywordtype">double</span>&gt; groundwire);</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_function" href="classOverhead__Line.html#a17000b850e3f629c175677494a3c11c0">~Overhead_Line</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classOverhead__Line.html#aa573c44800db40acef82b1e514d3fdcc">  124</a></span>    <a class="code hl_function" href="classOverhead__Line.html#aa573c44800db40acef82b1e514d3fdcc">~Overhead_Line</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// Function to compute Y parameters</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">virtual</span> vector&lt;vector&lt;complex&lt;double&gt;&gt;&gt; <a class="code hl_function" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">compute_y_parameters</a>(<span class="keywordtype">double</span> omega_num) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>};</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">computePowerFlow</a>(std::map&lt;std::string, double&gt;&amp; branchData,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        std::map&lt;std::string, double&gt;&amp; globalParams) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    std::vector&lt;std::vector&lt;complex&lt;double&gt;&gt;&gt; compute_y_at_omega(<span class="keywordtype">double</span> omega_rad);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
 </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#endif </span><span class="comment">// OVERHEAD_LINE_H</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif </span><span class="comment">// OVERHEAD_LINE_H</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="ttc" id="aElement_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div><div class="ttdoc">Abstract base class for all electrical network components.</div></div>
 <div class="ttc" id="aTransmissionline_8h_html"><div class="ttname"><a href="Transmissionline_8h.html">Transmissionline.h</a></div><div class="ttdoc">Lumped-parameter transmission line model with distributed R, L, G, C.</div></div>
 <div class="ttc" id="aclassElement_html"><div class="ttname"><a href="classElement.html">Element</a></div><div class="ttdoc">Base class for multi-phase network elements with Y-parameters and MNA stamping hooks.</div><div class="ttdef"><b>Definition</b> Element.h:29</div></div>
 <div class="ttc" id="aclassOverhead__Line_html"><div class="ttname"><a href="classOverhead__Line.html">Overhead_Line</a></div><div class="ttdoc">Overhead line model with bundle geometry and frequency-dependent Y parameters.</div><div class="ttdef"><b>Definition</b> overhead_line.h:19</div></div>
-<div class="ttc" id="aclassOverhead__Line_html_a17000b850e3f629c175677494a3c11c0"><div class="ttname"><a href="classOverhead__Line.html#a17000b850e3f629c175677494a3c11c0">Overhead_Line::~Overhead_Line</a></div><div class="ttdeci">~Overhead_Line() override</div><div class="ttdef"><b>Definition</b> overhead_line.cpp:230</div></div>
-<div class="ttc" id="aclassOverhead__Line_html_aae41cb33b706008dddac3d3776e53531"><div class="ttname"><a href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters</a></div><div class="ttdeci">virtual vector&lt; vector&lt; complex&lt; double &gt; &gt; &gt; compute_y_parameters(double omega_num) override</div><div class="ttdoc">Compute complex Y-parameters at a single frequency.</div><div class="ttdef"><b>Definition</b> overhead_line.cpp:372</div></div>
+<div class="ttc" id="aclassOverhead__Line_html_a9fb0f0eb28458b05df6311f3bab8a738"><div class="ttname"><a href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line::computePowerFlow</a></div><div class="ttdeci">void computePowerFlow(std::map&lt; std::string, double &gt; &amp;branchData, std::map&lt; std::string, double &gt; &amp;globalParams) const override</div><div class="ttdoc">Compute branch power-flow quantities (override in derived classes).</div><div class="ttdef"><b>Definition</b> overhead_line.cpp:452</div></div>
+<div class="ttc" id="aclassOverhead__Line_html_aa573c44800db40acef82b1e514d3fdcc"><div class="ttname"><a href="classOverhead__Line.html#aa573c44800db40acef82b1e514d3fdcc">Overhead_Line::~Overhead_Line</a></div><div class="ttdeci">~Overhead_Line() override=default</div></div>
+<div class="ttc" id="aclassOverhead__Line_html_aae41cb33b706008dddac3d3776e53531"><div class="ttname"><a href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters</a></div><div class="ttdeci">virtual vector&lt; vector&lt; complex&lt; double &gt; &gt; &gt; compute_y_parameters(double omega_num) override</div><div class="ttdoc">Compute complex Y-parameters at a single frequency.</div><div class="ttdef"><b>Definition</b> overhead_line.cpp:437</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

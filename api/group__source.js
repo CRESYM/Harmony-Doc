@@ -24,8 +24,9 @@ var group__source =
       [ "AC_source", "classAC__source.html#ad4604833cc33473c45df91a7cedbd1a5", null ],
       [ "AC_source", "classAC__source.html#a8503607cb70992375ab1519dc63736ad", null ],
       [ "~AC_source", "classAC__source.html#a0db1438a2019b7259d7f2ab17a845e75", null ],
+      [ "compute_y_parameters", "classAC__source.html#ace219aeb681f3145e6f686692d5e15d8", null ],
       [ "printElementValues", "classAC__source.html#af8da201b3bb1cfa2436720f7b5adf800", null ],
-      [ "simulateInputStep", "classAC__source.html#a8066c086266fbc895680f551e5e3f0ef", null ],
+      [ "simulateInputStep", "classAC__source.html#affded8fabf57f3aec2a1492b702aa2d6", null ],
       [ "writeMNAmatrix", "classAC__source.html#af2f5d2b4c1626f4b3e87333c9bc9f7cf", null ]
     ] ],
     [ "Generator", "classGenerator.html", [
@@ -38,6 +39,7 @@ var group__source =
       [ "computePowerFlow", "classSource__base.html#ac30747633039ebec411647f387317649", null ],
       [ "getVg", "classSource__base.html#a1230ab5a6f189924b932e9e1ddaa19d9", null ],
       [ "getZsrc", "classSource__base.html#a87e5af7248cab2bc93d3d6fe11464609", null ],
+      [ "yFromSeriesResistance", "classSource__base.html#ad9901894b9ffd2b496f3d76cb25f6652", null ],
       [ "P", "classSource__base.html#a6a2f554c747794501d650ad6361818d0", null ],
       [ "P_max", "classSource__base.html#ade273dac2061efc50123dc4ba300e090", null ],
       [ "P_min", "classSource__base.html#a5e0aae507d9445601e6e641988865803", null ],

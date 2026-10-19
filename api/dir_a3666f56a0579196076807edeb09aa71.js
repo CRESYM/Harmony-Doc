@@ -25,6 +25,8 @@ var dir_a3666f56a0579196076807edeb09aa71 =
     [ "example_PLL_test.cpp", "example__PLL__test_8cpp.html", "example__PLL__test_8cpp" ],
     [ "example_point2point_case.cpp", "example__point2point__case_8cpp.html", "example__point2point__case_8cpp" ],
     [ "example_PV_plant.cpp", "example__PV__plant_8cpp.html", "example__PV__plant_8cpp" ],
+    [ "example_registry.cpp", "example__registry_8cpp.html", "example__registry_8cpp" ],
+    [ "example_registry.h", "example__registry_8h.html", "example__registry_8h" ],
     [ "example_stability_check.cpp", "example__stability__check_8cpp.html", "example__stability__check_8cpp" ],
     [ "example_state_space.cpp", "example__state__space_8cpp.html", "example__state__space_8cpp" ],
     [ "example_transformer.cpp", "example__transformer_8cpp.html", "example__transformer_8cpp" ],

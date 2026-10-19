@@ -92,6 +92,8 @@ $(document).ready(function(){initNavTree('classElement.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classElement-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Element Class Reference<div class="ingroups"><a class="el" href="group__elements.html">Network elements</a></div></div></div>
@@ -160,20 +162,24 @@ Inheritance diagram for Element:</div>
 <area shape="poly" title=" " alt="" coords="259,527,270,533,285,546,294,558,303,571,317,582,349,597,347,602,315,587,299,574,290,562,281,550,266,538,256,532"/>
 <area shape="rect" href="classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="316,647,467,672"/>
 <area shape="poly" title=" " alt="" coords="282,642,316,647,316,652,281,647"/>
-<area shape="rect" href="classTransformer__real.html" title="Real transformer with turns ratio and phase lag." alt="" coords="325,745,457,771"/>
-<area shape="poly" title=" " alt="" coords="257,650,269,656,302,677,333,701,379,743,376,747,330,705,299,681,267,660,255,654"/>
-<area shape="rect" href="classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="517,548,687,573"/>
-<area shape="poly" title=" " alt="" coords="452,639,465,632,479,620,488,607,498,595,513,582,538,571,540,576,516,587,502,599,493,611,483,623,468,636,455,644"/>
-<area shape="rect" href="classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="531,597,673,623"/>
-<area shape="poly" title=" " alt="" coords="459,641,546,620,548,625,460,646"/>
-<area shape="rect" href="classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="531,647,673,672"/>
-<area shape="poly" title=" " alt="" coords="481,657,531,657,531,662,481,662"/>
-<area shape="rect" href="classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="544,696,660,721"/>
-<area shape="poly" title=" " alt="" coords="460,673,548,693,546,699,459,678"/>
-<area shape="rect" href="classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="515,745,689,771"/>
-<area shape="poly" title=" " alt="" coords="471,755,515,755,515,761,471,761"/>
-<area shape="rect" href="classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="528,795,676,820"/>
-<area shape="poly" title=" " alt="" coords="460,771,548,792,546,797,459,776"/>
+<area shape="rect" href="classTransformer__real.html" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="325,795,457,820"/>
+<area shape="poly" title=" " alt="" coords="261,650,270,656,309,690,342,728,385,793,381,796,338,732,305,693,266,660,258,655"/>
+<area shape="rect" href="classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="531,548,701,573"/>
+<area shape="poly" title=" " alt="" coords="452,639,465,632,479,620,488,607,498,595,513,582,540,571,542,576,516,587,501,598,493,610,483,623,468,636,455,644"/>
+<area shape="rect" href="classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="545,597,687,623"/>
+<area shape="poly" title=" " alt="" coords="462,641,557,620,558,625,464,646"/>
+<area shape="rect" href="classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="545,647,687,672"/>
+<area shape="poly" title=" " alt="" coords="481,657,544,657,544,662,481,662"/>
+<area shape="rect" href="classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="558,696,674,721"/>
+<area shape="poly" title=" " alt="" coords="464,672,558,693,557,699,462,678"/>
+<area shape="rect" href="classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="515,745,717,771"/>
+<area shape="poly" title=" " alt="" coords="462,789,557,768,558,773,464,794"/>
+<area shape="rect" href="classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="529,795,703,820"/>
+<area shape="poly" title=" " alt="" coords="471,805,528,805,528,810,471,810"/>
+<area shape="rect" href="classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="529,844,703,869"/>
+<area shape="poly" title=" " alt="" coords="464,820,558,841,557,847,462,826"/>
+<area shape="rect" href="classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="542,893,690,919"/>
+<area shape="poly" title=" " alt="" coords="423,826,466,853,516,878,553,891,552,896,514,883,463,858,420,830"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -219,15 +225,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a40150cc94a6c8b31fbf8a07d5d274efd" id="r_a40150cc94a6c8b31fbf8a07d5d274efd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a40150cc94a6c8b31fbf8a07d5d274efd">getOutputPins</a> () const</td></tr>
 <tr class="memdesc:a40150cc94a6c8b31fbf8a07d5d274efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of output pins/phases.  <br /></td></tr>
 <tr class="separator:a40150cc94a6c8b31fbf8a07d5d274efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d793e9ef5ffba7c614111223565afc2" id="r_a0d793e9ef5ffba7c614111223565afc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a0d793e9ef5ffba7c614111223565afc2">setInputPins</a> (int pins)</td></tr>
-<tr class="memdesc:a0d793e9ef5ffba7c614111223565afc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of input pins/phases.  <br /></td></tr>
-<tr class="separator:a0d793e9ef5ffba7c614111223565afc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af110667e24d0458c1dcda3abe2961825" id="r_af110667e24d0458c1dcda3abe2961825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#af110667e24d0458c1dcda3abe2961825">setOutputPins</a> (int pins)</td></tr>
-<tr class="memdesc:af110667e24d0458c1dcda3abe2961825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of output pins/phases.  <br /></td></tr>
-<tr class="separator:af110667e24d0458c1dcda3abe2961825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ecdd82f27f90271eab71d0a4fce33c" id="r_ab1ecdd82f27f90271eab71d0a4fce33c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ab1ecdd82f27f90271eab71d0a4fce33c">setTransformation</a> (bool flag)</td></tr>
 <tr class="memdesc:ab1ecdd82f27f90271eab71d0a4fce33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable coordinate transformation for this element.  <br /></td></tr>
 <tr class="separator:ab1ecdd82f27f90271eab71d0a4fce33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c9ecc396bf5c603c12d1e2c9410f44" id="r_ab8c9ecc396bf5c603c12d1e2c9410f44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ab8c9ecc396bf5c603c12d1e2c9410f44">getTransformation</a> () const</td></tr>
+<tr class="memdesc:ab8c9ecc396bf5c603c12d1e2c9410f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query whether coordinate transformation is enabled for this element.  <br /></td></tr>
+<tr class="separator:ab8c9ecc396bf5c603c12d1e2c9410f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0a9bebdd53518923a5f3a29b64f3db0" id="r_ae0a9bebdd53518923a5f3a29b64f3db0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ae0a9bebdd53518923a5f3a29b64f3db0">getElementSymbol</a> () const</td></tr>
 <tr class="memdesc:ae0a9bebdd53518923a5f3a29b64f3db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the element type symbol.  <br /></td></tr>
 <tr class="separator:ae0a9bebdd53518923a5f3a29b64f3db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,6 +276,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ce55eeeb46b8a43046e0cf028a257a9" id="r_a5ce55eeeb46b8a43046e0cf028a257a9"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters</a> (double frequency)</td></tr>
 <tr class="memdesc:a5ce55eeeb46b8a43046e0cf028a257a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute complex Y-parameters at a single frequency.  <br /></td></tr>
 <tr class="separator:a5ce55eeeb46b8a43046e0cf028a257a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8632fc54c6def5a29db3d713d05137c4" id="r_a8632fc54c6def5a29db3d713d05137c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a8632fc54c6def5a29db3d713d05137c4">compute_y_parameters_abc</a> (double frequency)</td></tr>
+<tr class="memdesc:a8632fc54c6def5a29db3d713d05137c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abc-frame Y-parameters at <code>frequency</code>, even if transformation is enabled.  <br /></td></tr>
+<tr class="separator:a8632fc54c6def5a29db3d713d05137c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f769c05a28dbb30c7c93c844a31b409" id="r_a8f769c05a28dbb30c7c93c844a31b409"><td class="memItemLeft" align="right" valign="top">virtual DenseMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a8f769c05a28dbb30c7c93c844a31b409">get_y_parameters</a> ()</td></tr>
 <tr class="memdesc:a8f769c05a28dbb30c7c93c844a31b409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the symbolic or stored Y-parameter matrix.  <br /></td></tr>
 <tr class="separator:a8f769c05a28dbb30c7c93c844a31b409"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,9 +294,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a886ebc92c00a3965b6860cfc4fa1a112" id="r_a886ebc92c00a3965b6860cfc4fa1a112"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a886ebc92c00a3965b6860cfc4fa1a112">getNumberOfPlantStates</a> () const</td></tr>
 <tr class="memdesc:a886ebc92c00a3965b6860cfc4fa1a112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of plant states exposed for simulation (may differ from internal states).  <br /></td></tr>
 <tr class="separator:a886ebc92c00a3965b6860cfc4fa1a112"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4cc7f4dedf3807aecb7230b2e82ddf" id="r_aeb4cc7f4dedf3807aecb7230b2e82ddf"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; MatrixXcd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aeb4cc7f4dedf3807aecb7230b2e82ddf">simulateInputStep</a> (const std::vector&lt; MatrixXcd &gt; &amp;states, int nKeep) const</td></tr>
-<tr class="memdesc:aeb4cc7f4dedf3807aecb7230b2e82ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate a step response given input states (override in dynamic elements).  <br /></td></tr>
-<tr class="separator:aeb4cc7f4dedf3807aecb7230b2e82ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab0eaa0dc157903535f5b01d0d2bfa2" id="r_aaab0eaa0dc157903535f5b01d0d2bfa2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aaab0eaa0dc157903535f5b01d0d2bfa2">simulateInputStep</a> (const std::vector&lt; MatrixXcd &gt; &amp;states, int nKeep, std::vector&lt; MatrixXcd &gt; &amp;out) const</td></tr>
+<tr class="memdesc:aaab0eaa0dc157903535f5b01d0d2bfa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate a step response given input states (override in dynamic elements).  <br /></td></tr>
+<tr class="separator:aaab0eaa0dc157903535f5b01d0d2bfa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeac39ba42af0f9599ceffc9bdc33f4df" id="r_aeac39ba42af0f9599ceffc9bdc33f4df"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; RCP&lt; const Basic &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aeac39ba42af0f9599ceffc9bdc33f4df">getVirtualInputSymbols</a> () const</td></tr>
 <tr class="memdesc:aeac39ba42af0f9599ceffc9bdc33f4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return symbolic names for virtual inputs used in stamping.  <br /></td></tr>
 <tr class="separator:aeac39ba42af0f9599ceffc9bdc33f4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -306,6 +312,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acececeffb6914fc01f110dff98fcc7e3" id="r_acececeffb6914fc01f110dff98fcc7e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#acececeffb6914fc01f110dff98fcc7e3">setOPFInfo</a> (std::map&lt; std::string, double &gt; &amp;info)</td></tr>
 <tr class="memdesc:acececeffb6914fc01f110dff98fcc7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store OPF-related metadata for this element.  <br /></td></tr>
 <tr class="separator:acececeffb6914fc01f110dff98fcc7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae290b6ca5c70e5f3d9d79d0fd8340d2e" id="r_ae290b6ca5c70e5f3d9d79d0fd8340d2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY</a> (std::map&lt; std::string, double &gt; &amp;branchData, std::map&lt; std::string, double &gt; &amp;globalParams, const std::vector&lt; std::vector&lt; std::complex&lt; double &gt; &gt; &gt; &amp;Y) const</td></tr>
+<tr class="memdesc:ae290b6ca5c70e5f3d9d79d0fd8340d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill Matpower-style r, x, b from a numeric two-port Y at the OPF frequency.  <br /></td></tr>
+<tr class="separator:ae290b6ca5c70e5f3d9d79d0fd8340d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c7e54a78548224c500a6948d3e3893" id="r_a27c7e54a78548224c500a6948d3e3893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a27c7e54a78548224c500a6948d3e3893">isAcLocation</a> () const</td></tr>
+<tr class="separator:a27c7e54a78548224c500a6948d3e3893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fdc342f8e263e82d3f084f5aee7af2d" id="r_a7fdc342f8e263e82d3f084f5aee7af2d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a7fdc342f8e263e82d3f084f5aee7af2d">isDcLocation</a> () const</td></tr>
+<tr class="separator:a7fdc342f8e263e82d3f084f5aee7af2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6470d3238a5c9ca467dca12caf13f4" id="r_a6d6470d3238a5c9ca467dca12caf13f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a6d6470d3238a5c9ca467dca12caf13f4">isMmcLocation</a> () const</td></tr>
+<tr class="separator:a6d6470d3238a5c9ca467dca12caf13f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc02590375a0eacd1fecc2478b3a3cf7" id="r_abc02590375a0eacd1fecc2478b3a3cf7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#abc02590375a0eacd1fecc2478b3a3cf7">reduceDcY</a> (const std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt; &amp;Y) const</td></tr>
+<tr class="memdesc:abc02590375a0eacd1fecc2478b3a3cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bipolar loop 2x2: Y_eq = T^T Y T with T = [1/2, -1/2]^T at each end.  <br /></td></tr>
+<tr class="separator:abc02590375a0eacd1fecc2478b3a3cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a13facc2e3cec8b296ce87913ab51aafb" id="r_a13facc2e3cec8b296ce87913ab51aafb"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a13facc2e3cec8b296ce87913ab51aafb">finiteOmega</a> (double <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>)</td></tr>
+<tr class="separator:a13facc2e3cec8b296ce87913ab51aafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -474,9 +500,9 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The transformed 2D vector of complex numbers representing the Y-parameter matrix in the new frame. </dd></dl>
 
-<p class="reference">References <a class="el" href="Standard__functions_8cpp.html#aa9a72cac30b56e30d07ac777d0012948">get_block()</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="Standard__functions_8cpp.html#a2ad012570e3e556dbefe5f5ce8c27902">mat_add()</a>, <a class="el" href="Standard__functions_8cpp.html#a489b7760961ad08bfb9f5a43a03d4d7f">mat_mul()</a>, <a class="el" href="Standard__functions_8cpp.html#a996825da6743b0ad47561d023b8f700b">mat_transpose()</a>, and <a class="el" href="Standard__functions_8cpp.html#a41a5e09efadff4d1909c2286935486f8">mul_scalar()</a>.</p>
+<p class="reference">References <a class="el" href="Standard__functions_8cpp.html#a4659a1ef7f5231b3e916b886272c3a4a">apply_park_A0()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classAC__source.html#ace219aeb681f3145e6f686692d5e15d8">AC_source::compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, and <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>.</p>
 
 </div>
 </div>
@@ -566,11 +592,34 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A 2D vector of complex numbers representing the Y-parameter matrix. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable</a>, and <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line</a>.</p>
+<p>Reimplemented in <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC</a>, <a class="el" href="classAC__source.html#ace219aeb681f3145e6f686692d5e15d8">AC_source</a>, <a class="el" href="classDC__source.html#a790a1783f2b01a5964d6494a53975c59">DC_source</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable</a>, and <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line</a>.</p>
 
-<p class="reference">References <a class="el" href="classElement.html#a662f7ac8042158b278cf276e76cc7415">apply_transformation()</a>, <a class="el" href="classElement.html#a53ba3de700b256d50eab8302fdc11976">element_location</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classElement.html#a16d010d448d450fa37f1f5f66afee0a6">transformation</a>, and <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Y_matrix</a>.</p>
+<p class="reference">References <a class="el" href="classElement.html#a662f7ac8042158b278cf276e76cc7415">apply_transformation()</a>, <a class="el" href="classElement.html#a27c7e54a78548224c500a6948d3e3893">isAcLocation()</a>, <a class="el" href="classElement.html#a7fdc342f8e263e82d3f084f5aee7af2d">isDcLocation()</a>, <a class="el" href="classElement.html#a6d6470d3238a5c9ca467dca12caf13f4">isMmcLocation()</a>, <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classElement.html#abc02590375a0eacd1fecc2478b3a3cf7">reduceDcY()</a>, <a class="el" href="classElement.html#a16d010d448d450fa37f1f5f66afee0a6">transformation</a>, and <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Y_matrix</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">StabilityEstimate::compute_transfer_function()</a>, <a class="el" href="Stability__certificate_8cpp.html#ae4a54aa2c6cf8af997fa70c43888f42c">elementAdmittance()</a>, <a class="el" href="group__examples.html#ga13afe0711b69bb55608d22662fd4c128">example_admittance_parameters()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classElement.html#a8632fc54c6def5a29db3d713d05137c4">compute_y_parameters_abc()</a>, <a class="el" href="Stability__certificate_8cpp.html#ae4a54aa2c6cf8af997fa70c43888f42c">elementAdmittance()</a>, <a class="el" href="group__examples.html#ga13afe0711b69bb55608d22662fd4c128">example_admittance_parameters()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>.</p>
+
+</div>
+</div>
+<a id="a8632fc54c6def5a29db3d713d05137c4" name="a8632fc54c6def5a29db3d713d05137c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8632fc54c6def5a29db3d713d05137c4">&#9670;&#160;</a></span>compute_y_parameters_abc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt; Element::compute_y_parameters_abc </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>frequency</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abc-frame Y-parameters at <code>frequency</code>, even if transformation is enabled. </p>
+<p>Used when Park A0 is applied to an assembled AC-block equivalent rather than per component. Restores the element's transformation flag before returning. </p>
+
+<p class="reference">References <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, and <a class="el" href="classElement.html#a16d010d448d450fa37f1f5f66afee0a6">transformation</a>.</p>
 
 </div>
 </div>
@@ -617,9 +666,85 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base</a>, <a class="el" href="classRES__base.html#a4d69d816c9cc9742bd54558a599e384e">RES_base</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base</a>, <a class="el" href="classLoadPQ.html#a56d6d97e6be88ef608b7e57bb791f6ff">LoadPQ</a>, <a class="el" href="classLoad.html#a7edbeb2bd866d1a55baa479014c2c335">Load</a>, and <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC</a>.</p>
+<p>Reimplemented in <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base</a>, <a class="el" href="classRES__base.html#a4d69d816c9cc9742bd54558a599e384e">RES_base</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base</a>, <a class="el" href="classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e">Cable</a>, <a class="el" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line</a>, <a class="el" href="classTransmissionLine.html#ac47f8c1aa548dcaf9afc10b9ca04d958">TransmissionLine</a>, <a class="el" href="classLoadPQ.html#a56d6d97e6be88ef608b7e57bb791f6ff">LoadPQ</a>, <a class="el" href="classLoad.html#a7edbeb2bd866d1a55baa479014c2c335">Load</a>, and <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classPowerFlow.html#a25c910a5abd9d4f15746a975a35984d0">PowerFlow::make_BranchAC()</a>, <a class="el" href="classPowerFlow.html#a3a17f6fc14d5db5ef945a81e06a60803">PowerFlow::make_BranchDC()</a>, <a class="el" href="classPowerFlow.html#a50ffdd2a1e4094659f6b6d3a9b052287">PowerFlow::make_Converter()</a>, <a class="el" href="classPowerFlow.html#a4c4ed48fba22845e5c30b802e4abc771">PowerFlow::make_Generator()</a>, and <a class="el" href="classPowerFlow.html#a65917c3b700322cfee7141d55de131de">PowerFlow::make_Load()</a>.</p>
+
+</div>
+</div>
+<a id="ae290b6ca5c70e5f3d9d79d0fd8340d2e" name="ae290b6ca5c70e5f3d9d79d0fd8340d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae290b6ca5c70e5f3d9d79d0fd8340d2e">&#9670;&#160;</a></span>fillOpfBranchFromY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Element::fillOpfBranchFromY </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; std::string, double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>branchData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>globalParams</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; std::complex&lt; double &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fill Matpower-style r, x, b from a numeric two-port Y at the OPF frequency. </p>
+
+<p class="reference">References <a class="el" href="classElement.html#a53ba3de700b256d50eab8302fdc11976">element_location</a>, <a class="el" href="classElement.html#aac74cffc3f20ab7a331b5bf917d2a185">element_OPF_info</a>, <a class="el" href="classElement.html#a419cbefc59249fad45c337bd229248c9">element_symbol</a>, and <a class="el" href="classElement.html#a7fdc342f8e263e82d3f084f5aee7af2d">isDcLocation()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e">Cable::computePowerFlow()</a>, and <a class="el" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line::computePowerFlow()</a>.</p>
+
+</div>
+</div>
+<a id="a13facc2e3cec8b296ce87913ab51aafb" name="a13facc2e3cec8b296ce87913ab51aafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13facc2e3cec8b296ce87913ab51aafb">&#9670;&#160;</a></span>finiteOmega()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Element::finiteOmega </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>omega</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>.</p>
 
 </div>
 </div>
@@ -650,8 +775,6 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>SymEngine dense matrix representing Y-parameters. </dd></dl>
 
 <p class="reference">References <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Y_matrix</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classWPplant.html#a1827364c0462d109559871f50c933dbd">WPplant::WPplant()</a>.</p>
 
 </div>
 </div>
@@ -777,7 +900,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 <p class="reference">References <a class="el" href="classElement.html#a57c1573a5b11304eec99c8c51b6a7698">connections</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classNetwork.html#af46205edf9f5392423a2657eff27b807">Network::add_areas()</a>, <a class="el" href="classStabilityEstimate.html#a5686b77c81757b0ea385c552ab14fd46">StabilityEstimate::compute_transfer_function()</a>, <a class="el" href="Powerflow__network__params_8cpp.html#aa11fc4683f416f2abe3b6286ff3bbc35">extendBusAC()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classNetwork.html#af46205edf9f5392423a2657eff27b807">Network::add_areas()</a>, and <a class="el" href="Powerflow__network__params_8cpp.html#aa11fc4683f416f2abe3b6286ff3bbc35">extendBusAC()</a>.</p>
 
 </div>
 </div>
@@ -873,7 +996,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 <p class="reference">References <a class="el" href="classElement.html#a315a98a6fff86a9e074a6a72fea3a80f">input_pins</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classNetwork.html#abdabffdb66f3c32a367a24ae7d1a102a">Network::connectElementToBus()</a>, and <a class="el" href="State__Space__Model_8cpp.html#abda37956eee38929537b9a52ed818934">getStateCount()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classNetwork.html#abdabffdb66f3c32a367a24ae7d1a102a">Network::connectElementToBus()</a>, <a class="el" href="State__Space__Model_8cpp.html#abda37956eee38929537b9a52ed818934">getStateCount()</a>, and <a class="el" href="classPowerFlow.html#a2ef9bd2ebb3e0715264b0270feba7968">PowerFlow::make_OPF()</a>.</p>
 
 </div>
 </div>
@@ -1074,6 +1197,36 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 </div>
 </div>
+<a id="ab8c9ecc396bf5c603c12d1e2c9410f44" name="ab8c9ecc396bf5c603c12d1e2c9410f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c9ecc396bf5c603c12d1e2c9410f44">&#9670;&#160;</a></span>getTransformation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Element::getTransformation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Query whether coordinate transformation is enabled for this element. </p>
+<dl class="section return"><dt>Returns</dt><dd>Current transformation flag. </dd></dl>
+
+<p class="reference">References <a class="el" href="classElement.html#a16d010d448d450fa37f1f5f66afee0a6">transformation</a>.</p>
+
+</div>
+</div>
 <a id="aeac39ba42af0f9599ceffc9bdc33f4df" name="aeac39ba42af0f9599ceffc9bdc33f4df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeac39ba42af0f9599ceffc9bdc33f4df">&#9670;&#160;</a></span>getVirtualInputSymbols()</h2>
 
@@ -1101,6 +1254,93 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 <dl class="section return"><dt>Returns</dt><dd>List of SymEngine symbol RCPs; empty if none. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classMMC.html#abc5e20206d53ecf76683eb418537bc08">MMC</a>.</p>
+
+</div>
+</div>
+<a id="a27c7e54a78548224c500a6948d3e3893" name="a27c7e54a78548224c500a6948d3e3893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c7e54a78548224c500a6948d3e3893">&#9670;&#160;</a></span>isAcLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Element::isAcLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="classElement.html#a53ba3de700b256d50eab8302fdc11976">element_location</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, and <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>.</p>
+
+</div>
+</div>
+<a id="a7fdc342f8e263e82d3f084f5aee7af2d" name="a7fdc342f8e263e82d3f084f5aee7af2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fdc342f8e263e82d3f084f5aee7af2d">&#9670;&#160;</a></span>isDcLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Element::isDcLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="classElement.html#a53ba3de700b256d50eab8302fdc11976">element_location</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classDC__source.html#a790a1783f2b01a5964d6494a53975c59">DC_source::compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>, <a class="el" href="classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e">Cable::computePowerFlow()</a>, <a class="el" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line::computePowerFlow()</a>, and <a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY()</a>.</p>
+
+</div>
+</div>
+<a id="a6d6470d3238a5c9ca467dca12caf13f4" name="a6d6470d3238a5c9ca467dca12caf13f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6470d3238a5c9ca467dca12caf13f4">&#9670;&#160;</a></span>isMmcLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Element::isMmcLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="classElement.html#a53ba3de700b256d50eab8302fdc11976">element_location</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, and <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>.</p>
 
 </div>
 </div>
@@ -1277,8 +1517,8 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 </div>
 </div>
-<a id="a0d793e9ef5ffba7c614111223565afc2" name="a0d793e9ef5ffba7c614111223565afc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d793e9ef5ffba7c614111223565afc2">&#9670;&#160;</a></span>setInputPins()</h2>
+<a id="abc02590375a0eacd1fecc2478b3a3cf7" name="abc02590375a0eacd1fecc2478b3a3cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc02590375a0eacd1fecc2478b3a3cf7">&#9670;&#160;</a></span>reduceDcY()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1287,29 +1527,23 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Element::setInputPins </td>
+          <td class="memname">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt; Element::reduceDcY </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pins</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Y</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set the number of input pins/phases. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pins</td><td>New input pin count. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Bipolar loop 2x2: Y_eq = T^T Y T with T = [1/2, -1/2]^T at each end. </p>
 
-<p class="reference">References <a class="el" href="classElement.html#a315a98a6fff86a9e074a6a72fea3a80f">input_pins</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classDC__source.html#a790a1783f2b01a5964d6494a53975c59">DC_source::compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>, <a class="el" href="classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e">Cable::computePowerFlow()</a>, and <a class="el" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line::computePowerFlow()</a>.</p>
 
 </div>
 </div>
@@ -1351,42 +1585,6 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 </div>
 </div>
-<a id="af110667e24d0458c1dcda3abe2961825" name="af110667e24d0458c1dcda3abe2961825"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af110667e24d0458c1dcda3abe2961825">&#9670;&#160;</a></span>setOutputPins()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Element::setOutputPins </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pins</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the number of output pins/phases. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pins</td><td>New output pin count. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="reference">References <a class="el" href="classElement.html#ab848ca292a35b2ddb3938a59329381b3">output_pins</a>.</p>
-
-</div>
-</div>
 <a id="ab1ecdd82f27f90271eab71d0a4fce33c" name="ab1ecdd82f27f90271eab71d0a4fce33c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1ecdd82f27f90271eab71d0a4fce33c">&#9670;&#160;</a></span>setTransformation()</h2>
 
@@ -1425,8 +1623,8 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 
 </div>
 </div>
-<a id="aeb4cc7f4dedf3807aecb7230b2e82ddf" name="aeb4cc7f4dedf3807aecb7230b2e82ddf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb4cc7f4dedf3807aecb7230b2e82ddf">&#9670;&#160;</a></span>simulateInputStep()</h2>
+<a id="aaab0eaa0dc157903535f5b01d0d2bfa2" name="aaab0eaa0dc157903535f5b01d0d2bfa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab0eaa0dc157903535f5b01d0d2bfa2">&#9670;&#160;</a></span>simulateInputStep()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1435,7 +1633,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt; MatrixXcd &gt; Element::simulateInputStep </td>
+          <td class="memname">virtual void Element::simulateInputStep </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; MatrixXcd &gt; &amp;&#160;</td>
           <td class="paramname"><em>states</em>, </td>
@@ -1444,7 +1642,13 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nKeep</em>&#160;</td>
+          <td class="paramname"><em>nKeep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; MatrixXcd &gt; &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1463,13 +1667,13 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">states</td><td>Input state trajectories per channel. </td></tr>
-    <tr><td class="paramname">nKeep</td><td>Number of states to retain in the output. </td></tr>
+    <tr><td class="paramname">nKeep</td><td>Number of harmonic columns to retain in the output. </td></tr>
+    <tr><td class="paramname">out</td><td>Filled with this step's input matrices. Callers may reuse <code>out</code> across steps to avoid reallocating. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Simulated state matrices; empty for static elements. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMMC.html#ac4c41b6d66dd68525e2970b11bfe4cb5">MMC</a>, <a class="el" href="classAC__source.html#a8066c086266fbc895680f551e5e3f0ef">AC_source</a>, and <a class="el" href="classDC__source.html#a1c7af046be38f81491076996b1ca6e27">DC_source</a>.</p>
+<p>Reimplemented in <a class="el" href="classMMC.html#a871ca02dda7141c4fbcff64914533c17">MMC</a>, <a class="el" href="classAC__source.html#affded8fabf57f3aec2a1492b702aa2d6">AC_source</a>, and <a class="el" href="classDC__source.html#a4d1d7fc47118e34eb440ae1ca87e89de">DC_source</a>.</p>
 
 </div>
 </div>
@@ -1631,7 +1835,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classTransmissionLine.html#a3ef7c3d0554ba6b163e37bf2ee3ef324">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base::computePowerFlow()</a>, <a class="el" href="classRES__base.html#a4d69d816c9cc9742bd54558a599e384e">RES_base::computePowerFlow()</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base::computePowerFlow()</a>, <a class="el" href="classLoadPQ.html#a56d6d97e6be88ef608b7e57bb791f6ff">LoadPQ::computePowerFlow()</a>, <a class="el" href="classLoad.html#a7edbeb2bd866d1a55baa479014c2c335">Load::computePowerFlow()</a>, <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC::computePowerFlow()</a>, <a class="el" href="classConverter.html#a976f7811fcf907b1a6b6bde92bd5b271">Converter::getACarea()</a>, <a class="el" href="classConverter.html#a764c398a7e3dcec46e0625104e1e7584">Converter::getDCarea()</a>, and <a class="el" href="classElement.html#ae4d9e20efbbdd738bd8d1617ed9d2a68">getElementLocation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base::computePowerFlow()</a>, <a class="el" href="classRES__base.html#a4d69d816c9cc9742bd54558a599e384e">RES_base::computePowerFlow()</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base::computePowerFlow()</a>, <a class="el" href="classTransmissionLine.html#ac47f8c1aa548dcaf9afc10b9ca04d958">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classLoadPQ.html#a56d6d97e6be88ef608b7e57bb791f6ff">LoadPQ::computePowerFlow()</a>, <a class="el" href="classLoad.html#a7edbeb2bd866d1a55baa479014c2c335">Load::computePowerFlow()</a>, <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC::computePowerFlow()</a>, <a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY()</a>, <a class="el" href="classConverter.html#a976f7811fcf907b1a6b6bde92bd5b271">Converter::getACarea()</a>, <a class="el" href="classConverter.html#a764c398a7e3dcec46e0625104e1e7584">Converter::getDCarea()</a>, <a class="el" href="classElement.html#ae4d9e20efbbdd738bd8d1617ed9d2a68">getElementLocation()</a>, <a class="el" href="classElement.html#a27c7e54a78548224c500a6948d3e3893">isAcLocation()</a>, <a class="el" href="classElement.html#a7fdc342f8e263e82d3f084f5aee7af2d">isDcLocation()</a>, and <a class="el" href="classElement.html#a6d6470d3238a5c9ca467dca12caf13f4">isMmcLocation()</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1859,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classTransmissionLine.html#a3ef7c3d0554ba6b163e37bf2ee3ef324">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base::computePowerFlow()</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base::computePowerFlow()</a>, <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC::computePowerFlow()</a>, <a class="el" href="classElement.html#ade5a20d142e0dcb5b4ac61faa3b5f43f">getOPFInfo()</a>, and <a class="el" href="classElement.html#acececeffb6914fc01f110dff98fcc7e3">setOPFInfo()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classLoad__base.html#ac6f97d992f28e8051758c121a67fd4c1">Load_base::computePowerFlow()</a>, <a class="el" href="classSource__base.html#ac30747633039ebec411647f387317649">Source_base::computePowerFlow()</a>, <a class="el" href="classTransmissionLine.html#ac47f8c1aa548dcaf9afc10b9ca04d958">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classMMC.html#aca00349ff2701d423a878dffe8f31aff">MMC::computePowerFlow()</a>, <a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY()</a>, <a class="el" href="classElement.html#ade5a20d142e0dcb5b4ac61faa3b5f43f">getOPFInfo()</a>, and <a class="el" href="classElement.html#acececeffb6914fc01f110dff98fcc7e3">setOPFInfo()</a>.</p>
 
 </div>
 </div>
@@ -1679,7 +1883,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classElement.html#ae0a9bebdd53518923a5f3a29b64f3db0">getElementSymbol()</a>, <a class="el" href="classMMC.html#affaadfddea5e42a6c42f213fa9eb0e40">MMC::getParameterSubstitutions()</a>, <a class="el" href="classMMC.html#abc5e20206d53ecf76683eb418537bc08">MMC::getVirtualInputSymbols()</a>, <a class="el" href="classConverter.html#aade753232880aa032829949174c9e6ac">Converter::plotEigenvalues()</a>, <a class="el" href="classConverter.html#aa5d6b796944f25b836691e4326831408">Converter::plotParticipationFactors()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, <a class="el" href="classSwitch.html#aa00f03d64eedd64e74f12a4f1b0663fe">Switch::printElementValues()</a>, <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>, and <a class="el" href="classMMC.html#ac199ba95f5b3b2e23592b4e4092a8b3f">MMC::writeMNAmatrix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY()</a>, <a class="el" href="classElement.html#ae0a9bebdd53518923a5f3a29b64f3db0">getElementSymbol()</a>, <a class="el" href="classMMC.html#affaadfddea5e42a6c42f213fa9eb0e40">MMC::getParameterSubstitutions()</a>, <a class="el" href="classMMC.html#abc5e20206d53ecf76683eb418537bc08">MMC::getVirtualInputSymbols()</a>, <a class="el" href="classConverter.html#aade753232880aa032829949174c9e6ac">Converter::plotEigenvalues()</a>, <a class="el" href="classConverter.html#aa5d6b796944f25b836691e4326831408">Converter::plotParticipationFactors()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, <a class="el" href="classSwitch.html#aa00f03d64eedd64e74f12a4f1b0663fe">Switch::printElementValues()</a>, <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>, and <a class="el" href="classMMC.html#ac199ba95f5b3b2e23592b4e4092a8b3f">MMC::writeMNAmatrix()</a>.</p>
 
 </div>
 </div>
@@ -1703,7 +1907,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classLoad.html#a27cca84247b8fdc96561ec7aa11c7d77">Load::Load()</a>, <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classElement.html#a2edb4c7ab098c3c305b0f0549573866f">getInputPins()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, <a class="el" href="classElement.html#a0d793e9ef5ffba7c614111223565afc2">setInputPins()</a>, <a class="el" href="classDC__source.html#a1c7af046be38f81491076996b1ca6e27">DC_source::simulateInputStep()</a>, <a class="el" href="classCapacitor.html#a022d95bedd5b3ba134c7c29899a018e8">Capacitor::writeMNAmatrix()</a>, <a class="el" href="classResistor.html#a9ef266c13eac8a50a006f63fb4a4d7a0">Resistor::writeMNAmatrix()</a>, <a class="el" href="classAC__source.html#af2f5d2b4c1626f4b3e87333c9bc9f7cf">AC_source::writeMNAmatrix()</a>, <a class="el" href="classDC__source.html#a9d71be79e09ebb1cb358aeeb4ae1ce91">DC_source::writeMNAmatrix()</a>, <a class="el" href="classSwitch.html#a704ec39929de8c0effd86ea2a98110c3">Switch::writeMNAmatrix()</a>, and <a class="el" href="classInductor.html#ad4fd091d1cbac0b4a7dfd4922f1232b5">Inductor::writeMNAmatrix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classCable.html#aeab53cc45bc16d69b9fc0a2aaa44ee27">Cable::Cable()</a>, <a class="el" href="classLoad.html#a27cca84247b8fdc96561ec7aa11c7d77">Load::Load()</a>, <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classAC__source.html#ace219aeb681f3145e6f686692d5e15d8">AC_source::compute_y_parameters()</a>, <a class="el" href="classElement.html#a2edb4c7ab098c3c305b0f0549573866f">getInputPins()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, <a class="el" href="classDC__source.html#a4d1d7fc47118e34eb440ae1ca87e89de">DC_source::simulateInputStep()</a>, <a class="el" href="classCapacitor.html#a022d95bedd5b3ba134c7c29899a018e8">Capacitor::writeMNAmatrix()</a>, <a class="el" href="classResistor.html#a9ef266c13eac8a50a006f63fb4a4d7a0">Resistor::writeMNAmatrix()</a>, <a class="el" href="classAC__source.html#af2f5d2b4c1626f4b3e87333c9bc9f7cf">AC_source::writeMNAmatrix()</a>, <a class="el" href="classDC__source.html#a9d71be79e09ebb1cb358aeeb4ae1ce91">DC_source::writeMNAmatrix()</a>, <a class="el" href="classSwitch.html#a704ec39929de8c0effd86ea2a98110c3">Switch::writeMNAmatrix()</a>, <a class="el" href="classInductor.html#ad4fd091d1cbac0b4a7dfd4922f1232b5">Inductor::writeMNAmatrix()</a>, and <a class="el" href="classSource__base.html#ad9901894b9ffd2b496f3d76cb25f6652">Source_base::yFromSeriesResistance()</a>.</p>
 
 </div>
 </div>
@@ -1727,7 +1931,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classElement.html#a40150cc94a6c8b31fbf8a07d5d274efd">getOutputPins()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, <a class="el" href="classElement.html#af110667e24d0458c1dcda3abe2961825">setOutputPins()</a>, and <a class="el" href="classResistor.html#a9ef266c13eac8a50a006f63fb4a4d7a0">Resistor::writeMNAmatrix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classCable.html#aeab53cc45bc16d69b9fc0a2aaa44ee27">Cable::Cable()</a>, <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classElement.html#a40150cc94a6c8b31fbf8a07d5d274efd">getOutputPins()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#a841f67d8d857aded114f76bd71048459">printElementInfo()</a>, and <a class="el" href="classResistor.html#a9ef266c13eac8a50a006f63fb4a4d7a0">Resistor::writeMNAmatrix()</a>.</p>
 
 </div>
 </div>
@@ -1751,7 +1955,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, and <a class="el" href="classElement.html#ab1ecdd82f27f90271eab71d0a4fce33c">setTransformation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classAC__source.html#ace219aeb681f3145e6f686692d5e15d8">AC_source::compute_y_parameters()</a>, <a class="el" href="classDC__source.html#a790a1783f2b01a5964d6494a53975c59">DC_source::compute_y_parameters()</a>, <a class="el" href="classCable.html#a7edd04b09a4506427b5f3c364676c76d">Cable::compute_y_parameters()</a>, <a class="el" href="classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531">Overhead_Line::compute_y_parameters()</a>, <a class="el" href="classElement.html#a8632fc54c6def5a29db3d713d05137c4">compute_y_parameters_abc()</a>, <a class="el" href="classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e">Cable::computePowerFlow()</a>, <a class="el" href="classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738">Overhead_Line::computePowerFlow()</a>, <a class="el" href="classElement.html#ab8c9ecc396bf5c603c12d1e2c9410f44">getTransformation()</a>, and <a class="el" href="classElement.html#ab1ecdd82f27f90271eab71d0a4fce33c">setTransformation()</a>.</p>
 
 </div>
 </div>
@@ -1775,7 +1979,7 @@ A vector of pointers to the connected <a class="el" href="classBus.html" title="
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classAC__source.html#a8503607cb70992375ab1519dc63736ad">AC_source::AC_source()</a>, <a class="el" href="classAC__source.html#ad4604833cc33473c45df91a7cedbd1a5">AC_source::AC_source()</a>, <a class="el" href="classAC__source.html#adfdef761c1483dd37d6ef6b6632506c1">AC_source::AC_source()</a>, <a class="el" href="classAdmittance.html#a138e830b9e3766db879767ebbe07c5b1">Admittance::Admittance()</a>, <a class="el" href="classCable.html#a46d8ceafb4b003d9a6da6d81b26313d7">Cable::Cable()</a>, <a class="el" href="classCapacitor.html#a8c5017aa22ef28d2c37fac967554e1ad">Capacitor::Capacitor()</a>, <a class="el" href="classDC__source.html#ab26cf9334b6c9de87feb3c9bfaa05f30">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#a57c53a0a3724c55fdd61d5bb83023655">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#aeb482eee76923a6cccf3923cdce10d29">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#add659588264918eea24d01b29dc1d357">DC_source::DC_source()</a>, <a class="el" href="classElement.html#abc052cbe7b508b154453ada2585b6010">Element()</a>, <a class="el" href="classGenerator.html#a68afb6ebd1324a77e4d95200007992a7">Generator::Generator()</a>, <a class="el" href="classImpedance.html#a940c2ac04d3eed3d91ec8e60ad3acd1f">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a9b78c3bc05dbc5a45e7992138c560d74">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a92cec35a38249652e8d10e47caa8a00b">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#aee96491984776cdbd46a96f9e58eb096">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a99c7991ff7539f1d8863e6e8c9e57da0">Impedance::Impedance()</a>, <a class="el" href="classInductor.html#a5dbe2af6aaca27bc46189ace1448f2b9">Inductor::Inductor()</a>, <a class="el" href="classLoad.html#a27cca84247b8fdc96561ec7aa11c7d77">Load::Load()</a>, <a class="el" href="classMMC.html#a4ede46139a81203b6ede2adef443f777">MMC::MMC()</a>, <a class="el" href="classMMC.html#a75c50a437e6d92a9db1e92125d767439">MMC::MMC()</a>, <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classPVplant.html#ad429995fa9285c4f7b3b7f214bdaaffd">PVplant::PVplant()</a>, <a class="el" href="classResistor.html#a56f097724cb2c0db8ce27fceb477f673">Resistor::Resistor()</a>, <a class="el" href="classTransformer__classic.html#aa3471702d5087a80492fbe3956299726">Transformer_classic::Transformer_classic()</a>, <a class="el" href="classTransformer__real.html#aaf50e68e824ae7afab7aa233b51901c0">Transformer_real::Transformer_real()</a>, <a class="el" href="classTransformerDeltaDelta.html#ac1dfee64ca383da122796e1112ff15e6">TransformerDeltaDelta::TransformerDeltaDelta()</a>, <a class="el" href="classTransformerDeltaY.html#a86430f1cc87a128acf4bb581e8dfe8c9">TransformerDeltaY::TransformerDeltaY()</a>, <a class="el" href="classTransformerDeltaY__real.html#aced0dd2873327733c018aaf439e5f59a">TransformerDeltaY_real::TransformerDeltaY_real()</a>, <a class="el" href="classTransformerYDelta.html#aca9b9aaf81060ec19c5bbc9ca076f89e">TransformerYDelta::TransformerYDelta()</a>, <a class="el" href="classTransmissionLine.html#a2d98433585c8cf363500991e2f45e829">TransmissionLine::TransmissionLine()</a>, <a class="el" href="classWPplant.html#a1827364c0462d109559871f50c933dbd">WPplant::WPplant()</a>, <a class="el" href="classWTtype3.html#aedefe0bfcd019414f80f13d12ac76b6e">WTtype3::WTtype3()</a>, <a class="el" href="classWTtype4.html#af4fcc2db14b8886647a99917d2202ac2">WTtype4::WTtype4()</a>, <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC::compute_y_parameters()</a>, <a class="el" href="classTransmissionLine.html#a3ef7c3d0554ba6b163e37bf2ee3ef324">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classElement.html#a8f769c05a28dbb30c7c93c844a31b409">get_y_parameters()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#ad9953283bb88823d2a5d35e288b3cedd">printElementValues()</a>, <a class="el" href="classCapacitor.html#a82d984327ce8f196ba23e37b0e7342b1">Capacitor::printElementValues()</a>, <a class="el" href="classInductor.html#a0dd9112f89ad754e9ba4e85d8cc47e34">Inductor::printElementValues()</a>, <a class="el" href="classResistor.html#a991a9020a66ddfc90f4dd8daa1ab9bb9">Resistor::printElementValues()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classAC__source.html#a8503607cb70992375ab1519dc63736ad">AC_source::AC_source()</a>, <a class="el" href="classAC__source.html#ad4604833cc33473c45df91a7cedbd1a5">AC_source::AC_source()</a>, <a class="el" href="classAC__source.html#adfdef761c1483dd37d6ef6b6632506c1">AC_source::AC_source()</a>, <a class="el" href="classAdmittance.html#a138e830b9e3766db879767ebbe07c5b1">Admittance::Admittance()</a>, <a class="el" href="classCable.html#aeab53cc45bc16d69b9fc0a2aaa44ee27">Cable::Cable()</a>, <a class="el" href="classCapacitor.html#a8c5017aa22ef28d2c37fac967554e1ad">Capacitor::Capacitor()</a>, <a class="el" href="classDC__source.html#ab26cf9334b6c9de87feb3c9bfaa05f30">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#a57c53a0a3724c55fdd61d5bb83023655">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#aeb482eee76923a6cccf3923cdce10d29">DC_source::DC_source()</a>, <a class="el" href="classDC__source.html#add659588264918eea24d01b29dc1d357">DC_source::DC_source()</a>, <a class="el" href="classElement.html#abc052cbe7b508b154453ada2585b6010">Element()</a>, <a class="el" href="classGenerator.html#a68afb6ebd1324a77e4d95200007992a7">Generator::Generator()</a>, <a class="el" href="classImpedance.html#a940c2ac04d3eed3d91ec8e60ad3acd1f">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a9b78c3bc05dbc5a45e7992138c560d74">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a92cec35a38249652e8d10e47caa8a00b">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#aee96491984776cdbd46a96f9e58eb096">Impedance::Impedance()</a>, <a class="el" href="classImpedance.html#a99c7991ff7539f1d8863e6e8c9e57da0">Impedance::Impedance()</a>, <a class="el" href="classInductor.html#a5dbe2af6aaca27bc46189ace1448f2b9">Inductor::Inductor()</a>, <a class="el" href="classLoad.html#a27cca84247b8fdc96561ec7aa11c7d77">Load::Load()</a>, <a class="el" href="classMMC.html#a4ede46139a81203b6ede2adef443f777">MMC::MMC()</a>, <a class="el" href="classMMC.html#a75c50a437e6d92a9db1e92125d767439">MMC::MMC()</a>, <a class="el" href="classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551">Overhead_Line::Overhead_Line()</a>, <a class="el" href="classPVplant.html#ad429995fa9285c4f7b3b7f214bdaaffd">PVplant::PVplant()</a>, <a class="el" href="classResistor.html#a56f097724cb2c0db8ce27fceb477f673">Resistor::Resistor()</a>, <a class="el" href="classTransformer__classic.html#aa3471702d5087a80492fbe3956299726">Transformer_classic::Transformer_classic()</a>, <a class="el" href="classTransformer__real.html#aaf50e68e824ae7afab7aa233b51901c0">Transformer_real::Transformer_real()</a>, <a class="el" href="classTransmissionLine.html#a2d98433585c8cf363500991e2f45e829">TransmissionLine::TransmissionLine()</a>, <a class="el" href="classWPplant.html#a1827364c0462d109559871f50c933dbd">WPplant::WPplant()</a>, <a class="el" href="classWTtype3.html#aedefe0bfcd019414f80f13d12ac76b6e">WTtype3::WTtype3()</a>, <a class="el" href="classWTtype4.html#af4fcc2db14b8886647a99917d2202ac2">WTtype4::WTtype4()</a>, <a class="el" href="classTransformer__base.html#ad558001fdfc4e3340c457a7eac97fe6b">Transformer_base::applyWindingConnection()</a>, <a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters()</a>, <a class="el" href="classMMC.html#ac457add4d0f920034ee431bc839b9bbb">MMC::compute_y_parameters()</a>, <a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">Transformer_base::computePowerFlow()</a>, <a class="el" href="classImpedance__base.html#ab0d223b32ceda1c5039d8c048a058af2">Impedance_base::computePowerFlow()</a>, <a class="el" href="classTransmissionLine.html#ac47f8c1aa548dcaf9afc10b9ca04d958">TransmissionLine::computePowerFlow()</a>, <a class="el" href="classElement.html#a8f769c05a28dbb30c7c93c844a31b409">get_y_parameters()</a>, <a class="el" href="classElement.html#aaf6c7fa81aa57de1b1d0f8e17c9a1625">plotYParameters()</a>, <a class="el" href="classElement.html#ad9953283bb88823d2a5d35e288b3cedd">printElementValues()</a>, <a class="el" href="classCapacitor.html#a82d984327ce8f196ba23e37b0e7342b1">Capacitor::printElementValues()</a>, <a class="el" href="classInductor.html#a0dd9112f89ad754e9ba4e85d8cc47e34">Inductor::printElementValues()</a>, <a class="el" href="classResistor.html#a991a9020a66ddfc90f4dd8daa1ab9bb9">Resistor::printElementValues()</a>, and <a class="el" href="classElement.html#a98a5b9b7396b7176e4aa2ac27c8b2d36">writeFile()</a>.</p>
 
 </div>
 </div>

@@ -17,11 +17,9 @@ var hierarchy =
       [ "Filter", "classFilter.html", null ],
       [ "Integrator", "classIntegrator.html", null ]
     ] ],
-    [ "CVODEConfig", "structCVODEConfig.html", null ],
-    [ "CVODEResult", "structCVODEResult.html", null ],
-    [ "CVODEUserData", "structCVODEUserData.html", null ],
     [ "DCBusResult", "structDCBusResult.html", null ],
     [ "DeviceGateResult", "structDeviceGateResult.html", null ],
+    [ "DqMulWork", "structDqMulWork.html", null ],
     [ "DQsym", "classDQsym.html", null ],
     [ "DQsymResult", "structDQsymResult.html", null ],
     [ "DSSState", "structDSSState.html", null ],
@@ -64,7 +62,9 @@ var hierarchy =
           [ "TransformerYY", "classTransformerYY.html", null ]
         ] ],
         [ "Transformer_real", "classTransformer__real.html", [
+          [ "TransformerDeltaDelta_real", "classTransformerDeltaDelta__real.html", null ],
           [ "TransformerDeltaY_real", "classTransformerDeltaY__real.html", null ],
+          [ "TransformerYDelta_real", "classTransformerYDelta__real.html", null ],
           [ "TransformerYY_real", "classTransformerYY__real.html", null ]
         ] ]
       ] ],

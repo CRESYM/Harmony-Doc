@@ -5,8 +5,8 @@ var searchData=
   ['q_5fmin_2',['q_min',['../classConverter.html#ad81d7bbc4fe557b6b6e0a4b15d4655cf',1,'Converter::Q_min'],['../classSource__base.html#a58b22955a697e86a2908b6f4247092f1',1,'Source_base::Q_min'],['../structOperatingRegionGrid.html#a40c96f98b9faaf4f55fb3eb246a3272a',1,'OperatingRegionGrid::Q_min']]],
   ['q_5fopf_3',['Q_opf',['../structOperatingRegionResult.html#a792da27637d092603f7fe6f48a062065',1,'OperatingRegionResult']]],
   ['qc_4',['qc',['../structDCBusResult.html#ae816e4807a4233f7bde4b44f91a3c80c',1,'DCBusResult']]],
-  ['qgen_5fac_5fk_5',['qgen_ac_k',['../structOPFVisualData.html#af807dddeb2883d79809fec0606886a70',1,'OPFVisualData']]],
-  ['qij_5fac_5fk_6',['qij_ac_k',['../structOPFVisualData.html#aa58f1f67a4cdacff998e48dc6273cbe2',1,'OPFVisualData']]],
+  ['qgen_5fac_5fk_5',['qgen_ac_k',['../structOPFVisualData.html#a7655f9c4565765658416bd95983f2322',1,'OPFVisualData']]],
+  ['qij_5fac_5fk_6',['qij_ac_k',['../structOPFVisualData.html#a0da2b07ef9241195156bcda04ec0435a',1,'OPFVisualData']]],
   ['qs_7',['qs',['../structDCBusResult.html#a74e9b7e356ca4a97b31c4746b2345e05',1,'DCBusResult']]],
   ['qs_5fdc_5fk_8',['qs_dc_k',['../structOPFVisualData.html#a1a3f8d69a2b72f85aeb46706a96bfb2a',1,'OPFVisualData']]]
 ];

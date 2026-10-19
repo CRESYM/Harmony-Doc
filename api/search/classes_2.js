@@ -11,8 +11,5 @@ var searchData=
   ['config_8',['Config',['../structConfig.html',1,'']]],
   ['controlblock_9',['ControlBlock',['../classControlBlock.html',1,'']]],
   ['controller_10',['Controller',['../classController.html',1,'']]],
-  ['converter_11',['Converter',['../classConverter.html',1,'']]],
-  ['cvodeconfig_12',['CVODEConfig',['../structCVODEConfig.html',1,'']]],
-  ['cvoderesult_13',['CVODEResult',['../structCVODEResult.html',1,'']]],
-  ['cvodeuserdata_14',['CVODEUserData',['../structCVODEUserData.html',1,'']]]
+  ['converter_11',['Converter',['../classConverter.html',1,'']]]
 ];

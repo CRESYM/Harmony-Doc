@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['n_0',['n',['../structCVODEUserData.html#ae23a9ed31ea76a9307f940b3dae15fba',1,'CVODEUserData::n'],['../structKINSOLUserData.html#a2ea93edc03ab7af6e1b94d16189c12d5',1,'KINSOLUserData::n']]],
+  ['n_0',['n',['../structKINSOLUserData.html#a2ea93edc03ab7af6e1b94d16189c12d5',1,'KINSOLUserData']]],
   ['n_5fcertified_1',['n_certified',['../structOperatingRegionResult.html#a98e8f3eab19d0369020084b34ce219db',1,'OperatingRegionResult']]],
   ['n_5fp_2',['n_p',['../structOperatingRegionGrid.html#ada9accc9bb041bee9b5c31fa6de63a03',1,'OperatingRegionGrid::n_P'],['../structGfmTuningBounds.html#aeecbe2a814bb5e757b5e726f75ef8e87',1,'GfmTuningBounds::n_P']]],
   ['n_5fpoints_3',['n_points',['../structCertificateSpec.html#a98796be1df907684dd0270e891062978',1,'CertificateSpec']]],
   ['n_5fq_4',['n_q',['../structOperatingRegionGrid.html#a70d2960d252e528e20c33e2b25effea7',1,'OperatingRegionGrid::n_Q'],['../structGfmTuningBounds.html#aeebde92e75de041fdbad0830877a3411',1,'GfmTuningBounds::n_Q']]],
   ['names_5',['names',['../classJsonParameterTable.html#af8a03048df7e27e152c59ea1a9cdc78d',1,'JsonParameterTable']]],
-  ['nbuses_5fac_6',['nbuses_ac',['../structOPFVisualData.html#a50a300659a360879740e0d6a07278818',1,'OPFVisualData']]],
+  ['nbuses_5fac_6',['nbuses_ac',['../structOPFVisualData.html#a13fe9baeabd19c365edfc628a603ba3a',1,'OPFVisualData']]],
   ['nbuses_5fdc_7',['nbuses_dc',['../structOPFVisualData.html#a54b0ca147a5a3ba25905f851b2679251',1,'OPFVisualData']]],
   ['nconvs_5fdc_8',['nconvs_dc',['../structOPFVisualData.html#a0dab5117b304f8aed8b68cb0b85b7a01',1,'OPFVisualData']]],
   ['net_9',['Net',['../network_8h.html#ae825fdae7a4dbdb8bf3eb61dcf30abf9',1,'network.h']]],
@@ -16,7 +16,7 @@ var searchData=
   ['network_2ecpp_13',['network.cpp',['../network_8cpp.html',1,'']]],
   ['network_2eh_14',['network.h',['../network_8h.html',1,'']]],
   ['newton_15',['Newton',['../Differential__equations_8h.html#acfe44c04a6df4ea00b10689f146660aba1c8b97c83b0726216cd5dbc88a64b0ed',1,'Differential_equations.h']]],
-  ['ngens_5fac_16',['ngens_ac',['../structOPFVisualData.html#a877326239e4219c6ddac1f72a8368686',1,'OPFVisualData']]],
+  ['ngens_5fac_16',['ngens_ac',['../structOPFVisualData.html#ade4fe449b8ec1e0f2c815e8dfb9297e8',1,'OPFVisualData']]],
   ['ngrids_17',['ngrids',['../structOPFVisualData.html#a24e083de6d293249240d90a1ce488a16',1,'OPFVisualData']]],
   ['ninputs_18',['nInputs',['../structDSSState.html#a9d0da9ceb57bd89ac8844aac376322a8',1,'DSSState']]],
   ['nkeep_19',['nKeep',['../structConfig.html#afba288490f97ae769fa71c267ce53771',1,'Config']]],

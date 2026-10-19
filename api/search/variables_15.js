@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['worst_5fdw_0',['worst_dw',['../structCertificateSweep.html#ac4f4af4b78280cf40bc42451c2135f29',1,'CertificateSweep']]],
-  ['worst_5fnr_5fphase_5fdeg_1',['worst_nr_phase_deg',['../structCertificateSweep.html#a144c1fd28f5345a8c6388f08ff6a20fd',1,'CertificateSweep']]],
-  ['worst_5fnr_5fzero_5fmargin_2',['worst_nr_zero_margin',['../structCertificateSweep.html#ac33ee4ded4f941e8d94d90a6feff7d83',1,'CertificateSweep']]],
-  ['worst_5fpassivity_3',['worst_passivity',['../structPnPDeviceRecord.html#a56575fda091cd35278367b6fa620727d',1,'PnPDeviceRecord::worst_passivity'],['../structCertificateSweep.html#ab9d1f8b2b6a2b0e148d3c05802c0c1c3',1,'CertificateSweep::worst_passivity'],['../structGfmTuningSample.html#aa06c91f2df0d6f86912b8da88a8df79c',1,'GfmTuningSample::worst_passivity']]],
-  ['worst_5fphase_5fdeg_4',['worst_phase_deg',['../structPnPDeviceRecord.html#a9d24026a6f4dcdf5808b15fb45e71011',1,'PnPDeviceRecord::worst_phase_deg'],['../structCertificateSweep.html#a4560f3241b8db22db54280f6beac508e',1,'CertificateSweep::worst_phase_deg'],['../structGfmTuningSample.html#acd07de65200891827ba158ba9105f4db',1,'GfmTuningSample::worst_phase_deg']]],
-  ['worst_5fshifted_5',['worst_shifted',['../structPnPDeviceRecord.html#a9ffe6542ef46afa7aee9c5678f830c94',1,'PnPDeviceRecord::worst_shifted'],['../structCertificateSweep.html#aebc5681e7dbcd27d88d355e055b1a212',1,'CertificateSweep::worst_shifted']]],
-  ['worst_5fshortage_6',['worst_shortage',['../structCertificateSweep.html#ae44f96741b10f433b30f35d72e9a37be',1,'CertificateSweep']]],
-  ['worst_5fsmall_5fgain_7',['worst_small_gain',['../structCertificateSweep.html#a6f1ad2e3dfb47758588227a91eea926a',1,'CertificateSweep']]]
+  ['v_0',['V',['../classSource__base.html#aff512117e732354fed221eed21a2890c',1,'Source_base']]],
+  ['v_5fdc_1',['V_dc',['../classConverter.html#ac3fc4e9fc5d5173ee67925b4f9595679',1,'Converter']]],
+  ['v_5fm_2',['V_m',['../classConverter.html#a9c2d7c8f01ee32d094da1e24e4ae5439',1,'Converter']]],
+  ['vc_3',['vc',['../structDCBusResult.html#a92005e86ee7d6bc837ad87c6e171e1ea',1,'DCBusResult']]],
+  ['vdc_4',['Vdc',['../structOperatingRegionGrid.html#a89bea8991e9a9540094166a016f53eb8',1,'OperatingRegionGrid']]],
+  ['verbose_5',['verbose',['../structCliOptions.html#a6e1a73bd28679f73cacf36961c57c7d7',1,'CliOptions']]],
+  ['vm_6',['Vm',['../structOperatingRegionGrid.html#a98d6a80083b73653a81261745c1a9d1b',1,'OperatingRegionGrid']]],
+  ['vn_7',['vn',['../structDCBusResult.html#aad81d499718201d19335f6a1ff5b5a59',1,'DCBusResult']]],
+  ['vn2_5fac_5fk_8',['vn2_ac_k',['../structOPFVisualData.html#a2b21ae020b1e536f1ed17542f14024f7',1,'OPFVisualData']]],
+  ['vn2_5fdc_5fk_9',['vn2_dc_k',['../structOPFVisualData.html#aaee86327bb5ebc8d49de21b311ece1c6',1,'OPFVisualData']]],
+  ['vs_10',['vs',['../structDCBusResult.html#af1e79322a3d26dcaf355e6142e165652',1,'DCBusResult']]]
 ];

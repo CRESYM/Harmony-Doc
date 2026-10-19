@@ -6,6 +6,7 @@ var structConfig =
     [ "nKeep", "structConfig.html#afba288490f97ae769fa71c267ce53771", null ],
     [ "omega", "structConfig.html#a2d2dbf7a79c91a06454d66231a0c3aed", null ],
     [ "outputBuses", "structConfig.html#af5e814996fce3243ae0e6b1d8db44ef5", null ],
+    [ "resumeX", "structConfig.html#a14b597c6969db0ce5aff262a86b473e9", null ],
     [ "swOffRes", "structConfig.html#abb55ed930334e304e2624b1d21a9be0f", null ],
     [ "swOnRes", "structConfig.html#ad20b216a7849d6c0039bc2930b1f2e29", null ],
     [ "swType", "structConfig.html#ac47cf64d3fd697745ac29a52902f3f7a", null ],
