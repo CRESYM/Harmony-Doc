@@ -147,6 +147,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab7b99ff129db00fbbc744035a0133fef" id="r_ab7b99ff129db00fbbc744035a0133fef"><td class="memItemLeft" align="right" valign="top">MatrixXcd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStateSpaceModel.html#ab7b99ff129db00fbbc744035a0133fef">buildInputVector</a> (int nKeep, const std::map&lt; std::string, std::vector&lt; MatrixXcd &gt; &gt; &amp;elementStates) const</td></tr>
 <tr class="memdesc:ab7b99ff129db00fbbc744035a0133fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the input vector u from per-element state contributions.  <br /></td></tr>
 <tr class="separator:ab7b99ff129db00fbbc744035a0133fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a309f7a6e942a85d69e6969c113190bee" id="r_a309f7a6e942a85d69e6969c113190bee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStateSpaceModel.html#a309f7a6e942a85d69e6969c113190bee">buildInputVector</a> (int nKeep, const std::map&lt; std::string, std::vector&lt; MatrixXcd &gt; &gt; &amp;elementStates, MatrixXcd &amp;u) const</td></tr>
+<tr class="memdesc:a309f7a6e942a85d69e6969c113190bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a caller-owned input matrix (reuses <code>u</code> when the shape matches).  <br /></td></tr>
+<tr class="separator:a309f7a6e942a85d69e6969c113190bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af48a33902826b5c08054be4a564555fa" id="r_af48a33902826b5c08054be4a564555fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStateSpaceModel.html#af48a33902826b5c08054be4a564555fa">printMapping</a> () const</td></tr>
 <tr class="memdesc:af48a33902826b5c08054be4a564555fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints input, state, and output index mappings to stdout.  <br /></td></tr>
 <tr class="separator:af48a33902826b5c08054be4a564555fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,7 +202,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab7b99ff129db00fbbc744035a0133fef" name="ab7b99ff129db00fbbc744035a0133fef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7b99ff129db00fbbc744035a0133fef">&#9670;&#160;</a></span>buildInputVector()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7b99ff129db00fbbc744035a0133fef">&#9670;&#160;</a></span>buildInputVector() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,9 +238,47 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Complex input matrix (nu × nKeep). </dd></dl>
 
-<p class="reference">References <a class="el" href="State__Space__Model_8h.html#a39b7fec9d7949e67942d7639c4da1cc1aaab143dd1268b5edc51c351a2534aff0">DQsym</a>.</p>
+<p class="reference">References <a class="el" href="classStateSpaceModel.html#ab7b99ff129db00fbbc744035a0133fef">buildInputVector()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classStateSpaceModel.html#ab7b99ff129db00fbbc744035a0133fef">buildInputVector()</a>, and <a class="el" href="classDQsym.html#aa85a3782e9dcda6a6b25b0fc4c502a8e">DQsym::run()</a>.</p>
+
+</div>
+</div>
+<a id="a309f7a6e942a85d69e6969c113190bee" name="a309f7a6e942a85d69e6969c113190bee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a309f7a6e942a85d69e6969c113190bee">&#9670;&#160;</a></span>buildInputVector() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StateSpaceModel::buildInputVector </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nKeep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, std::vector&lt; MatrixXcd &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>elementStates</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MatrixXcd &amp;&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fills a caller-owned input matrix (reuses <code>u</code> when the shape matches). </p>
+
+<p class="reference">References <a class="el" href="State__Space__Model_8h.html#a39b7fec9d7949e67942d7639c4da1cc1aaab143dd1268b5edc51c351a2534aff0">DQsym</a>.</p>
 
 </div>
 </div>

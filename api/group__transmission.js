@@ -19,14 +19,15 @@ var group__transmission =
         [ "ro", "classCable_1_1Insulator.html#a04c92aee73faa41d8dac216568df7fc8", null ]
       ] ],
       [ "Cable", "classCable.html#aff4a020b8835de1baefe722ece7bd45b", null ],
-      [ "Cable", "classCable.html#a46d8ceafb4b003d9a6da6d81b26313d7", null ],
-      [ "~Cable", "classCable.html#a53606d4fe8b59af3ec0c5897180f7de1", null ],
+      [ "Cable", "classCable.html#aeab53cc45bc16d69b9fc0a2aaa44ee27", null ],
+      [ "~Cable", "classCable.html#adbe9aa1012dd7e8bf15011d585502eb1", null ],
       [ "addConductor", "classCable.html#a05c2faac11149671671ea896dcb27d3e", null ],
       [ "addInsulator", "classCable.html#a3c9fbc18bbdf06190ffab83af6d0609a", null ],
       [ "addPosition", "classCable.html#a7801d2f6578b373225015c3bf23317ca", null ],
       [ "compute_y_parameters", "classCable.html#a7edd04b09a4506427b5f3c364676c76d", null ],
-      [ "getCableConductors", "classCable.html#a19b2b53730e958cb49547ef92f0f9a30", null ],
-      [ "getCableInsulators", "classCable.html#a4253bd91c5f75f59c5007adc06d16b28", null ],
+      [ "computePowerFlow", "classCable.html#a9d6d01b566a477a1d7e3eddd5dae2b8e", null ],
+      [ "getCableConductors", "classCable.html#a5687ddb3644b4f4fec44da1e4dd4f887", null ],
+      [ "getCableInsulators", "classCable.html#a0d126e7dc6a149974c79de5cd26f25e8", null ],
       [ "getConductor", "classCable.html#a5aae40132fa0f3b806ac5f715c3362d9", null ],
       [ "getConfiguration", "classCable.html#aadd1591f5397644684048eb81118f80a", null ],
       [ "getEarthParameters", "classCable.html#a18d7b0568f271f2a817ae2901defca08", null ],
@@ -50,13 +51,14 @@ var group__transmission =
     ] ],
     [ "Overhead_Line", "classOverhead__Line.html", [
       [ "Overhead_Line", "classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551", null ],
-      [ "~Overhead_Line", "classOverhead__Line.html#a17000b850e3f629c175677494a3c11c0", null ],
-      [ "compute_y_parameters", "classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531", null ]
+      [ "~Overhead_Line", "classOverhead__Line.html#aa573c44800db40acef82b1e514d3fdcc", null ],
+      [ "compute_y_parameters", "classOverhead__Line.html#aae41cb33b706008dddac3d3776e53531", null ],
+      [ "computePowerFlow", "classOverhead__Line.html#a9fb0f0eb28458b05df6311f3bab8a738", null ]
     ] ],
     [ "TransmissionLine", "classTransmissionLine.html", [
       [ "TransmissionLine", "classTransmissionLine.html#a2d98433585c8cf363500991e2f45e829", null ],
       [ "~TransmissionLine", "classTransmissionLine.html#a1aab5a57c012db984f57f4c09b7816c1", null ],
-      [ "computePowerFlow", "classTransmissionLine.html#a3ef7c3d0554ba6b163e37bf2ee3ef324", null ],
+      [ "computePowerFlow", "classTransmissionLine.html#ac47f8c1aa548dcaf9afc10b9ca04d958", null ],
       [ "m_pins", "classTransmissionLine.html#a6ef41c8ff620b99cd12763a7cf12bb3e", null ]
     ] ]
 ];

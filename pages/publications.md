@@ -1,5 +1,5 @@
 
-#### <i class="bi bi-calendar3"></i> 2026 year
+## <i class="bi bi-calendar3"></i> 2026
 
 - H. Du, **A. Lekić**, “SOPF-Based Adaptive Droop Control for Hybrid AC–HVDC Grids Under Offshore Wind Uncertainty,” *arXiv preprint arXiv:2605.05992*, 2026.  
 **Links:** [PDF](https://arxiv.org/pdf/2605.05992)
@@ -32,7 +32,7 @@ space Solver,” *PSCC 2026*, 2026.
 **Links:** [PDF](https://www.sciencedirect.com/science/article/pii/S2352711026002116) [Repository](https://github.com/control-protection-grids-tudelft/DP) 
 ---
 
-#### <i class="bi bi-calendar3"></i> 2025 year 
+## <i class="bi bi-calendar3"></i> 2025
 
 - R. Rane, **A. Kermansaravi**, P. Vergara, **A. Lekić**, “Transfer Learning Framework for Impedance Characterization of Modular Multilevel Converters,” *IEEE Transactions on Industry Applications*, 2025.  
   **Links:** [PDF](https://ieeexplore.ieee.org/document/10840271) 
@@ -45,7 +45,7 @@ space Solver,” *PSCC 2026*, 2026.
 
 ---
 
-#### <i class="bi bi-calendar3"></i> 2024 year
+## <i class="bi bi-calendar3"></i> 2024
 
 - A. Shetgaonkar, T. Karmonka, M. Popov, **A. Lekić**, “Enhanced Real-Time Multi-Terminal HVDC Power System Benchmark Models with Performance Evaluation Strategies,” *CIGRE Science & Engineering*, 2024.  
   **Links:** [PDF](https://www.researchgate.net/profile/Ajay-Shetgaonkar/publication/379181541_Enhanced_Real-Time_Multi-Terminal_HVDC_Power_System_Benchmark_Models_with_Performance_Evaluation_Strategies/links/65fdd335d3a085514241992b/Enhanced-Real-Time-Multi-Terminal-HVDC-Power-System-Benchmark-Models-with-Performance-Evaluation-Strategies.pdf) 

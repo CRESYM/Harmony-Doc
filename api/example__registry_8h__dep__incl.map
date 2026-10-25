@@ -1,0 +1,7 @@
+<map id="harmony/src/examples/example_registry.h" name="harmony/src/examples/example_registry.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,272,45"/>
+<area shape="rect" id="Node000002" href="$example__registry_8cpp.html" title="Maps Harmony –cpp names to example entry points." alt="" coords="5,93,176,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,57,114,95,110,91,153,53"/>
+<area shape="rect" id="Node000003" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="200,101,365,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,53,271,98,268,102,216,57"/>
+</map>

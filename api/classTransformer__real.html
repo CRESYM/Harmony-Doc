@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('classTransformer__real.html',''); init
 </div><!--header-->
 <div class="contents">
 
-<p>Real transformer with turns ratio and phase lag.  
+<p>Real transformer with turns ratio and phase shift (paper eq.  
  <a href="classTransformer__real.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Transformer__real_8h_source.html">Transformer_real.h</a>&gt;</code></p>
@@ -106,15 +106,19 @@ Inheritance diagram for Transformer_real:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTransformer__real__inherit__graph.png" border="0" usemap="#aTransformer__real_inherit__map" alt="Inheritance graph"/></div>
 <map name="aTransformer__real_inherit__map" id="aTransformer__real_inherit__map">
-<area shape="rect" title="Real transformer with turns ratio and phase lag." alt="" coords="119,152,251,177"/>
-<area shape="rect" href="classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="5,225,180,251"/>
-<area shape="poly" title=" " alt="" coords="161,188,109,227,106,223,158,183"/>
-<area shape="rect" href="classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="204,225,352,251"/>
-<area shape="poly" title=" " alt="" coords="212,183,264,223,261,227,209,188"/>
-<area shape="rect" href="classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="115,79,254,104"/>
-<area shape="poly" title=" " alt="" coords="187,118,187,152,182,152,182,118"/>
-<area shape="rect" href="classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="147,5,223,31"/>
-<area shape="poly" title=" " alt="" coords="187,44,187,79,182,79,182,44"/>
+<area shape="rect" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="316,80,448,105"/>
+<area shape="rect" href="classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="496,5,699,31"/>
+<area shape="poly" title=" " alt="" coords="420,71,495,39,534,28,536,33,497,45,422,76"/>
+<area shape="rect" href="classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="510,55,685,80"/>
+<area shape="poly" title=" " alt="" coords="461,81,510,75,510,80,462,86"/>
+<area shape="rect" href="classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="510,104,685,129"/>
+<area shape="poly" title=" " alt="" coords="462,99,510,104,510,110,461,104"/>
+<area shape="rect" href="classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="523,153,671,179"/>
+<area shape="poly" title=" " alt="" coords="422,109,497,139,536,151,534,156,495,145,420,114"/>
+<area shape="rect" href="classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="129,80,268,105"/>
+<area shape="poly" title=" " alt="" coords="282,90,316,90,316,95,282,95"/>
+<area shape="rect" href="classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="5,80,81,105"/>
+<area shape="poly" title=" " alt="" coords="95,90,129,90,129,95,95,95"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -122,7 +126,7 @@ Collaboration diagram for Transformer_real:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTransformer__real__coll__graph.png" border="0" usemap="#aTransformer__real_coll__map" alt="Collaboration graph"/></div>
 <map name="aTransformer__real_coll__map" id="aTransformer__real_coll__map">
-<area shape="rect" title="Real transformer with turns ratio and phase lag." alt="" coords="1288,59,1420,84"/>
+<area shape="rect" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="1288,59,1420,84"/>
 <area shape="rect" href="classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="1100,59,1239,84"/>
 <area shape="poly" title=" " alt="" coords="1253,69,1288,69,1288,74,1253,74"/>
 <area shape="rect" href="classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="975,104,1051,129"/>
@@ -165,6 +169,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a57a387a04f439afe4a9829daafb9a19c" id="r_a57a387a04f439afe4a9829daafb9a19c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__real.html#a57a387a04f439afe4a9829daafb9a19c">getTurnsRatio</a> () const</td></tr>
 <tr class="separator:a57a387a04f439afe4a9829daafb9a19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6531a6a41c59444eb1cc87d2fa2e283" id="r_ac6531a6a41c59444eb1cc87d2fa2e283"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__real.html#ac6531a6a41c59444eb1cc87d2fa2e283">getPhaseLag</a> () const</td></tr>
+<tr class="memdesc:ac6531a6a41c59444eb1cc87d2fa2e283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paper eq.  <br /></td></tr>
 <tr class="separator:ac6531a6a41c59444eb1cc87d2fa2e283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classTransformer__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classTransformer__base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classTransformer__base.html">Transformer_base</a></td></tr>
 <tr class="memitem:a25fdd0ab84972c65cc4deb0e18a1f2d6 inherit pub_methods_classTransformer__base" id="r_a25fdd0ab84972c65cc4deb0e18a1f2d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#a25fdd0ab84972c65cc4deb0e18a1f2d6">Transformer_base</a> (const std::string &amp;symbol, const std::string &amp;location, int pins, const std::vector&lt; double &gt; &amp;values)</td></tr>
@@ -179,6 +184,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afc8729c9616c8b790896f4cfdeb4d826 inherit pub_methods_classTransformer__base" id="r_afc8729c9616c8b790896f4cfdeb4d826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#afc8729c9616c8b790896f4cfdeb4d826">computePowerFlow</a> (std::map&lt; std::string, double &gt; &amp;branchData, std::map&lt; std::string, double &gt; &amp;global) const override</td></tr>
 <tr class="memdesc:afc8729c9616c8b790896f4cfdeb4d826 inherit pub_methods_classTransformer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute branch power-flow quantities (override in derived classes).  <br /></td></tr>
 <tr class="separator:afc8729c9616c8b790896f4cfdeb4d826 inherit pub_methods_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a3fe28688cf2052e744ed760956b98 inherit pub_methods_classTransformer__base" id="r_a65a3fe28688cf2052e744ed760956b98"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#a65a3fe28688cf2052e744ed760956b98">getPhaseShift</a> () const</td></tr>
+<tr class="separator:a65a3fe28688cf2052e744ed760956b98 inherit pub_methods_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classElement.html">Element</a></td></tr>
 <tr class="memitem:abc052cbe7b508b154453ada2585b6010 inherit pub_methods_classElement" id="r_abc052cbe7b508b154453ada2585b6010"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#abc052cbe7b508b154453ada2585b6010">Element</a> (const std::string &amp;symbol, const std::string &amp;location, int inputPins, int outputPins)</td></tr>
 <tr class="memdesc:abc052cbe7b508b154453ada2585b6010 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an element with symbol, location, and pin counts.  <br /></td></tr>
@@ -192,15 +199,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a40150cc94a6c8b31fbf8a07d5d274efd inherit pub_methods_classElement" id="r_a40150cc94a6c8b31fbf8a07d5d274efd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a40150cc94a6c8b31fbf8a07d5d274efd">getOutputPins</a> () const</td></tr>
 <tr class="memdesc:a40150cc94a6c8b31fbf8a07d5d274efd inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of output pins/phases.  <br /></td></tr>
 <tr class="separator:a40150cc94a6c8b31fbf8a07d5d274efd inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d793e9ef5ffba7c614111223565afc2 inherit pub_methods_classElement" id="r_a0d793e9ef5ffba7c614111223565afc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a0d793e9ef5ffba7c614111223565afc2">setInputPins</a> (int pins)</td></tr>
-<tr class="memdesc:a0d793e9ef5ffba7c614111223565afc2 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of input pins/phases.  <br /></td></tr>
-<tr class="separator:a0d793e9ef5ffba7c614111223565afc2 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af110667e24d0458c1dcda3abe2961825 inherit pub_methods_classElement" id="r_af110667e24d0458c1dcda3abe2961825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#af110667e24d0458c1dcda3abe2961825">setOutputPins</a> (int pins)</td></tr>
-<tr class="memdesc:af110667e24d0458c1dcda3abe2961825 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of output pins/phases.  <br /></td></tr>
-<tr class="separator:af110667e24d0458c1dcda3abe2961825 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ecdd82f27f90271eab71d0a4fce33c inherit pub_methods_classElement" id="r_ab1ecdd82f27f90271eab71d0a4fce33c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ab1ecdd82f27f90271eab71d0a4fce33c">setTransformation</a> (bool flag)</td></tr>
 <tr class="memdesc:ab1ecdd82f27f90271eab71d0a4fce33c inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable coordinate transformation for this element.  <br /></td></tr>
 <tr class="separator:ab1ecdd82f27f90271eab71d0a4fce33c inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c9ecc396bf5c603c12d1e2c9410f44 inherit pub_methods_classElement" id="r_ab8c9ecc396bf5c603c12d1e2c9410f44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ab8c9ecc396bf5c603c12d1e2c9410f44">getTransformation</a> () const</td></tr>
+<tr class="memdesc:ab8c9ecc396bf5c603c12d1e2c9410f44 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query whether coordinate transformation is enabled for this element.  <br /></td></tr>
+<tr class="separator:ab8c9ecc396bf5c603c12d1e2c9410f44 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0a9bebdd53518923a5f3a29b64f3db0 inherit pub_methods_classElement" id="r_ae0a9bebdd53518923a5f3a29b64f3db0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ae0a9bebdd53518923a5f3a29b64f3db0">getElementSymbol</a> () const</td></tr>
 <tr class="memdesc:ae0a9bebdd53518923a5f3a29b64f3db0 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the element type symbol.  <br /></td></tr>
 <tr class="separator:ae0a9bebdd53518923a5f3a29b64f3db0 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,6 +250,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ce55eeeb46b8a43046e0cf028a257a9 inherit pub_methods_classElement" id="r_a5ce55eeeb46b8a43046e0cf028a257a9"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a5ce55eeeb46b8a43046e0cf028a257a9">compute_y_parameters</a> (double frequency)</td></tr>
 <tr class="memdesc:a5ce55eeeb46b8a43046e0cf028a257a9 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute complex Y-parameters at a single frequency.  <br /></td></tr>
 <tr class="separator:a5ce55eeeb46b8a43046e0cf028a257a9 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8632fc54c6def5a29db3d713d05137c4 inherit pub_methods_classElement" id="r_a8632fc54c6def5a29db3d713d05137c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a8632fc54c6def5a29db3d713d05137c4">compute_y_parameters_abc</a> (double frequency)</td></tr>
+<tr class="memdesc:a8632fc54c6def5a29db3d713d05137c4 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abc-frame Y-parameters at <code>frequency</code>, even if transformation is enabled.  <br /></td></tr>
+<tr class="separator:a8632fc54c6def5a29db3d713d05137c4 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f769c05a28dbb30c7c93c844a31b409 inherit pub_methods_classElement" id="r_a8f769c05a28dbb30c7c93c844a31b409"><td class="memItemLeft" align="right" valign="top">virtual DenseMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a8f769c05a28dbb30c7c93c844a31b409">get_y_parameters</a> ()</td></tr>
 <tr class="memdesc:a8f769c05a28dbb30c7c93c844a31b409 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the symbolic or stored Y-parameter matrix.  <br /></td></tr>
 <tr class="separator:a8f769c05a28dbb30c7c93c844a31b409 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,9 +268,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a886ebc92c00a3965b6860cfc4fa1a112 inherit pub_methods_classElement" id="r_a886ebc92c00a3965b6860cfc4fa1a112"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a886ebc92c00a3965b6860cfc4fa1a112">getNumberOfPlantStates</a> () const</td></tr>
 <tr class="memdesc:a886ebc92c00a3965b6860cfc4fa1a112 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of plant states exposed for simulation (may differ from internal states).  <br /></td></tr>
 <tr class="separator:a886ebc92c00a3965b6860cfc4fa1a112 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4cc7f4dedf3807aecb7230b2e82ddf inherit pub_methods_classElement" id="r_aeb4cc7f4dedf3807aecb7230b2e82ddf"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; MatrixXcd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aeb4cc7f4dedf3807aecb7230b2e82ddf">simulateInputStep</a> (const std::vector&lt; MatrixXcd &gt; &amp;states, int nKeep) const</td></tr>
-<tr class="memdesc:aeb4cc7f4dedf3807aecb7230b2e82ddf inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate a step response given input states (override in dynamic elements).  <br /></td></tr>
-<tr class="separator:aeb4cc7f4dedf3807aecb7230b2e82ddf inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab0eaa0dc157903535f5b01d0d2bfa2 inherit pub_methods_classElement" id="r_aaab0eaa0dc157903535f5b01d0d2bfa2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aaab0eaa0dc157903535f5b01d0d2bfa2">simulateInputStep</a> (const std::vector&lt; MatrixXcd &gt; &amp;states, int nKeep, std::vector&lt; MatrixXcd &gt; &amp;out) const</td></tr>
+<tr class="memdesc:aaab0eaa0dc157903535f5b01d0d2bfa2 inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate a step response given input states (override in dynamic elements).  <br /></td></tr>
+<tr class="separator:aaab0eaa0dc157903535f5b01d0d2bfa2 inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeac39ba42af0f9599ceffc9bdc33f4df inherit pub_methods_classElement" id="r_aeac39ba42af0f9599ceffc9bdc33f4df"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; RCP&lt; const Basic &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#aeac39ba42af0f9599ceffc9bdc33f4df">getVirtualInputSymbols</a> () const</td></tr>
 <tr class="memdesc:aeac39ba42af0f9599ceffc9bdc33f4df inherit pub_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return symbolic names for virtual inputs used in stamping.  <br /></td></tr>
 <tr class="separator:aeac39ba42af0f9599ceffc9bdc33f4df inherit pub_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,6 +286,26 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classTransformer__base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classTransformer__base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classTransformer__base.html">Transformer_base</a></td></tr>
+<tr class="memitem:ad558001fdfc4e3340c457a7eac97fe6b inherit pro_methods_classTransformer__base" id="r_ad558001fdfc4e3340c457a7eac97fe6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#ad558001fdfc4e3340c457a7eac97fe6b">applyWindingConnection</a> (bool deltaPrimary, bool deltaSecondary)</td></tr>
+<tr class="memdesc:ad558001fdfc4e3340c457a7eac97fe6b inherit pro_methods_classTransformer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply paper eqs.  <br /></td></tr>
+<tr class="separator:ad558001fdfc4e3340c457a7eac97fe6b inherit pro_methods_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classElement"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classElement')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classElement.html">Element</a></td></tr>
+<tr class="memitem:ae290b6ca5c70e5f3d9d79d0fd8340d2e inherit pro_methods_classElement" id="r_ae290b6ca5c70e5f3d9d79d0fd8340d2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#ae290b6ca5c70e5f3d9d79d0fd8340d2e">fillOpfBranchFromY</a> (std::map&lt; std::string, double &gt; &amp;branchData, std::map&lt; std::string, double &gt; &amp;globalParams, const std::vector&lt; std::vector&lt; std::complex&lt; double &gt; &gt; &gt; &amp;Y) const</td></tr>
+<tr class="memdesc:ae290b6ca5c70e5f3d9d79d0fd8340d2e inherit pro_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill Matpower-style r, x, b from a numeric two-port Y at the OPF frequency.  <br /></td></tr>
+<tr class="separator:ae290b6ca5c70e5f3d9d79d0fd8340d2e inherit pro_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c7e54a78548224c500a6948d3e3893 inherit pro_methods_classElement" id="r_a27c7e54a78548224c500a6948d3e3893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a27c7e54a78548224c500a6948d3e3893">isAcLocation</a> () const</td></tr>
+<tr class="separator:a27c7e54a78548224c500a6948d3e3893 inherit pro_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fdc342f8e263e82d3f084f5aee7af2d inherit pro_methods_classElement" id="r_a7fdc342f8e263e82d3f084f5aee7af2d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a7fdc342f8e263e82d3f084f5aee7af2d">isDcLocation</a> () const</td></tr>
+<tr class="separator:a7fdc342f8e263e82d3f084f5aee7af2d inherit pro_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6470d3238a5c9ca467dca12caf13f4 inherit pro_methods_classElement" id="r_a6d6470d3238a5c9ca467dca12caf13f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a6d6470d3238a5c9ca467dca12caf13f4">isMmcLocation</a> () const</td></tr>
+<tr class="separator:a6d6470d3238a5c9ca467dca12caf13f4 inherit pro_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc02590375a0eacd1fecc2478b3a3cf7 inherit pro_methods_classElement" id="r_abc02590375a0eacd1fecc2478b3a3cf7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#abc02590375a0eacd1fecc2478b3a3cf7">reduceDcY</a> (const std::vector&lt; std::vector&lt; complex&lt; double &gt; &gt; &gt; &amp;Y) const</td></tr>
+<tr class="memdesc:abc02590375a0eacd1fecc2478b3a3cf7 inherit pro_methods_classElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bipolar loop 2x2: Y_eq = T^T Y T with T = [1/2, -1/2]^T at each end.  <br /></td></tr>
+<tr class="separator:abc02590375a0eacd1fecc2478b3a3cf7 inherit pro_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_methods_classElement"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classElement')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="classElement.html">Element</a></td></tr>
+<tr class="memitem:a13facc2e3cec8b296ce87913ab51aafb inherit pro_static_methods_classElement" id="r_a13facc2e3cec8b296ce87913ab51aafb"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a13facc2e3cec8b296ce87913ab51aafb">finiteOmega</a> (double <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>)</td></tr>
+<tr class="separator:a13facc2e3cec8b296ce87913ab51aafb inherit pro_static_methods_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classTransformer__base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classTransformer__base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classTransformer__base.html">Transformer_base</a></td></tr>
 <tr class="memitem:abd36323826e64cd204e3ce9aa8763286 inherit pro_attribs_classTransformer__base" id="r_abd36323826e64cd204e3ce9aa8763286"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#abd36323826e64cd204e3ce9aa8763286">R</a></td></tr>
 <tr class="separator:abd36323826e64cd204e3ce9aa8763286 inherit pro_attribs_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,6 +313,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a070e6707f3f30dfe646b5525728ec5de inherit pro_attribs_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe8cf5b1829a8b35bd532df8460cd3aa inherit pro_attribs_classTransformer__base" id="r_afe8cf5b1829a8b35bd532df8460cd3aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#afe8cf5b1829a8b35bd532df8460cd3aa">m_pins</a> = 0</td></tr>
 <tr class="separator:afe8cf5b1829a8b35bd532df8460cd3aa inherit pro_attribs_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19477df27acbbe2a7838130f41d0a978 inherit pro_attribs_classTransformer__base" id="r_a19477df27acbbe2a7838130f41d0a978"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformer__base.html#a19477df27acbbe2a7838130f41d0a978">phase_shift</a> = 0.0</td></tr>
+<tr class="separator:a19477df27acbbe2a7838130f41d0a978 inherit pro_attribs_classTransformer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classElement"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classElement')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classElement.html">Element</a></td></tr>
 <tr class="memitem:a16d010d448d450fa37f1f5f66afee0a6 inherit pro_attribs_classElement" id="r_a16d010d448d450fa37f1f5f66afee0a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElement.html#a16d010d448d450fa37f1f5f66afee0a6">transformation</a> = false</td></tr>
 <tr class="separator:a16d010d448d450fa37f1f5f66afee0a6 inherit pro_attribs_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -305,7 +334,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ab6d75e52c1a0e045e35f09e9a64b4ee3 inherit pro_attribs_classElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Real transformer with turns ratio and phase lag. </p>
+<div class="textblock"><p>Real transformer with turns ratio and phase shift (paper eq. </p>
+<p>(2)). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaf50e68e824ae7afab7aa233b51901c0" name="aaf50e68e824ae7afab7aa233b51901c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf50e68e824ae7afab7aa233b51901c0">&#9670;&#160;</a></span>Transformer_real()</h2>
@@ -351,12 +381,12 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">symbol</td><td><a class="el" href="classElement.html" title="Base class for multi-phase network elements with Y-parameters and MNA stamping hooks.">Element</a> identifier. </td></tr>
     <tr><td class="paramname">location</td><td><a class="el" href="classNetwork.html" title="Root network model holding buses, elements, and AC/DC grid hierarchy.">Network</a> area or location string. </td></tr>
     <tr><td class="paramname">pins</td><td>Number of pins (phases) per winding. </td></tr>
-    <tr><td class="paramname">values</td><td>Turns ratio, phase shift, and winding parameter vector. </td></tr>
+    <tr><td class="paramname">values</td><td>Six values <code>{R_p, L_p, R_s, L_s, a, φ}</code> or eight <code>{R_p, L_p, R_s, L_s, R_m, L_m, a, φ}</code>. φ is the paper eq. (1) phase shift in radians: Vp/Vs = a exp(jφ). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="classTransformer__base.html#a070e6707f3f30dfe646b5525728ec5de">Transformer_base::L</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classTransformer__base.html#abd36323826e64cd204e3ce9aa8763286">Transformer_base::R</a>, and <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Element::Y_matrix</a>.</p>
+<p class="reference">References <a class="el" href="Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68">j</a>, <a class="el" href="classTransformer__base.html#a070e6707f3f30dfe646b5525728ec5de">Transformer_base::L</a>, <a class="el" href="Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323">omega</a>, <a class="el" href="classTransformer__base.html#a19477df27acbbe2a7838130f41d0a978">Transformer_base::phase_shift</a>, <a class="el" href="classTransformer__base.html#abd36323826e64cd204e3ce9aa8763286">Transformer_base::R</a>, and <a class="el" href="classElement.html#ab6d75e52c1a0e045e35f09e9a64b4ee3">Element::Y_matrix</a>.</p>
 
 </div>
 </div>
@@ -408,6 +438,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Paper eq. </p>
+<p>(1) phase shift φ [rad]. Alias of <a class="el" href="classTransformer__base.html#a65a3fe28688cf2052e744ed760956b98">getPhaseShift()</a>. </p>
+
+<p class="reference">References <a class="el" href="classTransformer__base.html#a65a3fe28688cf2052e744ed760956b98">Transformer_base::getPhaseShift()</a>.</p>
 
 </div>
 </div>

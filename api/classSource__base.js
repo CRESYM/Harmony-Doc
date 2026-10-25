@@ -5,6 +5,7 @@ var classSource__base =
     [ "computePowerFlow", "classSource__base.html#ac30747633039ebec411647f387317649", null ],
     [ "getVg", "classSource__base.html#a1230ab5a6f189924b932e9e1ddaa19d9", null ],
     [ "getZsrc", "classSource__base.html#a87e5af7248cab2bc93d3d6fe11464609", null ],
+    [ "yFromSeriesResistance", "classSource__base.html#ad9901894b9ffd2b496f3d76cb25f6652", null ],
     [ "P", "classSource__base.html#a6a2f554c747794501d650ad6361818d0", null ],
     [ "P_max", "classSource__base.html#ade273dac2061efc50123dc4ba300e090", null ],
     [ "P_min", "classSource__base.html#a5e0aae507d9445601e6e641988865803", null ],

@@ -24,8 +24,8 @@
 <area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="50,340,58,382,73,434,97,487,112,512,131,533,148,545,167,552,165,557,145,550,128,537,108,515,92,490,68,436,53,383,45,341"/>
 <area shape="rect" id="Node000025" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="129,621,268,647"/>
 <area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="50,340,58,389,72,452,96,520,112,553,131,583,151,603,174,619,171,623,148,607,127,586,108,555,91,522,67,453,52,390,45,341"/>
-<area shape="rect" id="Node000034" href="$classTransmissionLine.html" title="Lumped transmission line with per&#45;unit&#45;length R, L, G, C parameters." alt="" coords="131,671,266,696"/>
-<area shape="poly" id="edge33_Node000001_Node000034" title=" " alt="" coords="51,340,61,413,79,507,102,597,116,632,131,656,148,668,144,673,127,660,112,635,97,599,74,509,56,414,45,340"/>
+<area shape="rect" id="Node000036" href="$classTransmissionLine.html" title="Lumped transmission line with per&#45;unit&#45;length R, L, G, C parameters." alt="" coords="131,671,266,696"/>
+<area shape="poly" id="edge35_Node000001_Node000036" title=" " alt="" coords="51,340,61,413,79,507,102,597,116,632,131,656,148,668,144,673,127,660,112,635,97,599,74,509,56,414,45,340"/>
 <area shape="rect" id="Node000005" href="$classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops." alt="" coords="364,55,419,80"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,100,363,72,364,77,256,105"/>
 <area shape="rect" id="Node000007" href="$classAdmittance.html" title="Generic admittance matrix element for single&#45; or multi&#45;phase networks." alt="" coords="343,104,440,129"/>
@@ -52,18 +52,22 @@
 <area shape="poly" id="edge22_Node000020_Node000023" title=" " alt="" coords="259,527,270,533,285,546,294,558,303,571,317,582,349,597,347,602,315,587,299,574,290,562,281,550,266,538,256,532"/>
 <area shape="rect" id="Node000026" href="$classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="316,647,467,672"/>
 <area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="282,642,316,647,316,652,281,647"/>
-<area shape="rect" id="Node000031" href="$classTransformer__real.html" title="Real transformer with turns ratio and phase lag." alt="" coords="325,745,457,771"/>
-<area shape="poly" id="edge30_Node000025_Node000031" title=" " alt="" coords="257,650,269,656,302,677,333,701,379,743,376,747,330,705,299,681,267,660,255,654"/>
-<area shape="rect" id="Node000027" href="$classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="517,548,687,573"/>
-<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="452,639,465,632,479,620,488,607,498,595,513,582,538,571,540,576,516,587,502,599,493,611,483,623,468,636,455,644"/>
-<area shape="rect" id="Node000028" href="$classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="531,597,673,623"/>
-<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="459,641,546,620,548,625,460,646"/>
-<area shape="rect" id="Node000029" href="$classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="531,647,673,672"/>
-<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="481,657,531,657,531,662,481,662"/>
-<area shape="rect" id="Node000030" href="$classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="544,696,660,721"/>
-<area shape="poly" id="edge29_Node000026_Node000030" title=" " alt="" coords="460,673,548,693,546,699,459,678"/>
-<area shape="rect" id="Node000032" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="515,745,689,771"/>
-<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="471,755,515,755,515,761,471,761"/>
-<area shape="rect" id="Node000033" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="528,795,676,820"/>
-<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="460,771,548,792,546,797,459,776"/>
+<area shape="rect" id="Node000031" href="$classTransformer__real.html" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="325,795,457,820"/>
+<area shape="poly" id="edge30_Node000025_Node000031" title=" " alt="" coords="261,650,270,656,309,690,342,728,385,793,381,796,338,732,305,693,266,660,258,655"/>
+<area shape="rect" id="Node000027" href="$classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="531,548,701,573"/>
+<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="452,639,465,632,479,620,488,607,498,595,513,582,540,571,542,576,516,587,501,598,493,610,483,623,468,636,455,644"/>
+<area shape="rect" id="Node000028" href="$classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="545,597,687,623"/>
+<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="462,641,557,620,558,625,464,646"/>
+<area shape="rect" id="Node000029" href="$classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="545,647,687,672"/>
+<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="481,657,544,657,544,662,481,662"/>
+<area shape="rect" id="Node000030" href="$classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="558,696,674,721"/>
+<area shape="poly" id="edge29_Node000026_Node000030" title=" " alt="" coords="464,672,558,693,557,699,462,678"/>
+<area shape="rect" id="Node000032" href="$classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="515,745,717,771"/>
+<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="462,789,557,768,558,773,464,794"/>
+<area shape="rect" id="Node000033" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="529,795,703,820"/>
+<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="471,805,528,805,528,810,471,810"/>
+<area shape="rect" id="Node000034" href="$classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="529,844,703,869"/>
+<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="464,820,558,841,557,847,462,826"/>
+<area shape="rect" id="Node000035" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="542,893,690,919"/>
+<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="423,826,466,853,516,878,553,891,552,896,514,883,463,858,420,830"/>
 </map>

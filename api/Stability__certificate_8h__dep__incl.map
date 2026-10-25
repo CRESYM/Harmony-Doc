@@ -1,0 +1,32 @@
+<map id="harmony/src/Solver/Certificate/Stability_certificate.h" name="harmony/src/Solver/Certificate/Stability_certificate.h">
+<area shape="rect" id="Node000001" title="Device&#45;level passivity / phase / geometric metrics and plots." alt="" coords="576,5,727,60"/>
+<area shape="rect" id="Node000002" href="$Device__gate_8h.html" title="Workflow 1 — local device gate before interconnect / PnP." alt="" coords="227,108,375,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="564,62,376,115,374,110,562,57"/>
+<area shape="rect" id="Node000006" href="$example__certificate__figures_8cpp.html" title="All five certificate workflows + paper&#45;style figures." alt="" coords="399,313,570,368"/>
+<area shape="poly" id="edge17_Node000001_Node000006" title=" " alt="" coords="564,51,513,73,491,89,474,109,461,134,454,161,452,189,453,217,463,270,476,312,471,314,458,271,448,217,446,188,449,160,456,132,469,107,488,85,510,68,562,46"/>
+<area shape="rect" id="Node000007" href="$Local__vs__system_8h.html" title="Workflow 5 — local device certificate vs system H = Y Z_eq benchmark." alt="" coords="484,108,637,163"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="620,72,586,110,582,106,616,69"/>
+<area shape="rect" id="Node000009" href="$Operating__region_8h.html" title="Workflow 3 — certified (P,Q) region / post&#45;OPF screening." alt="" coords="661,108,823,163"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="686,69,720,106,716,110,682,72"/>
+<area shape="rect" id="Node000011" href="$Stability__certificate_8cpp.html" title="Device certificate metrics and paper&#45;style ImPlot figures." alt="" coords="847,108,997,163"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="736,62,852,105,851,110,734,67"/>
+<area shape="rect" id="Node000012" href="$Tuning__assistant_8h.html" title="Workflow 4 — GFM droop tuning to restore device certificates." alt="" coords="1021,108,1169,163"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="740,47,868,73,1009,105,1022,109,1021,114,1008,111,867,78,739,53"/>
+<area shape="rect" id="Node000003" href="$Device__gate_8cpp.html" title=" " alt="" coords="5,211,153,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,171,138,213,136,208,230,166"/>
+<area shape="rect" id="Node000004" href="$PnP__library_8h.html" title="Workflow 2 — catalog of device certificate results for plug&#45;and&#45;play." alt="" coords="177,218,357,258"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,176,276,218,271,217,285,175"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="336,171,371,209,463,311,459,315,367,212,332,175"/>
+<area shape="rect" id="Node000005" href="$PnP__library_8cpp.html" title=" " alt="" coords="170,321,365,361"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="270,272,270,321,265,321,265,272"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="322,261,429,311,427,316,320,266"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="541,176,524,212,506,266,493,314,488,313,501,264,520,210,537,173"/>
+<area shape="rect" id="Node000008" href="$Local__vs__system_8cpp.html" title=" " alt="" coords="535,211,688,265"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="582,174,600,209,596,212,578,176"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="741,177,728,223,717,247,701,267,672,291,639,309,605,322,571,331,569,326,603,317,637,304,669,286,697,263,712,244,723,222,736,176"/>
+<area shape="rect" id="Node000010" href="$Operating__region_8cpp.html" title=" " alt="" coords="764,211,925,265"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="780,170,820,209,816,212,777,174"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="1056,174,986,232,938,268,891,286,843,301,744,323,650,335,570,341,570,336,650,330,743,318,841,296,890,281,935,263,983,228,1053,170"/>
+<area shape="rect" id="Node000013" href="$Tuning__assistant_8cpp.html" title=" " alt="" coords="1021,211,1169,265"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="1098,176,1098,211,1093,211,1093,176"/>
+</map>

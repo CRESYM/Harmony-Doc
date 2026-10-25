@@ -1,11 +1,15 @@
 <map id="Transformer_real" name="Transformer_real">
-<area shape="rect" id="Node000001" title="Real transformer with turns ratio and phase lag." alt="" coords="119,152,251,177"/>
-<area shape="rect" id="Node000004" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="5,225,180,251"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,188,109,227,106,223,158,183"/>
-<area shape="rect" id="Node000005" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="204,225,352,251"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="212,183,264,223,261,227,209,188"/>
-<area shape="rect" id="Node000002" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="115,79,254,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,118,187,152,182,152,182,118"/>
-<area shape="rect" id="Node000003" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="147,5,223,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,44,187,79,182,79,182,44"/>
+<area shape="rect" id="Node000001" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="316,80,448,105"/>
+<area shape="rect" id="Node000004" href="$classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="496,5,699,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="420,71,495,39,534,28,536,33,497,45,422,76"/>
+<area shape="rect" id="Node000005" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="510,55,685,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="461,81,510,75,510,80,462,86"/>
+<area shape="rect" id="Node000006" href="$classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="510,104,685,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="462,99,510,104,510,110,461,104"/>
+<area shape="rect" id="Node000007" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="523,153,671,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="422,109,497,139,536,151,534,156,495,145,420,114"/>
+<area shape="rect" id="Node000002" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="129,80,268,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,90,316,90,316,95,282,95"/>
+<area shape="rect" id="Node000003" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="5,80,81,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,90,129,90,129,95,95,95"/>
 </map>

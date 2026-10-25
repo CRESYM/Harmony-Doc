@@ -1,7 +1,5 @@
 var Differential__equations_8h =
 [
-    [ "CVODEConfig", "structCVODEConfig.html", "structCVODEConfig" ],
-    [ "CVODEResult", "structCVODEResult.html", "structCVODEResult" ],
     [ "KINSOLConfig", "structKINSOLConfig.html", "structKINSOLConfig" ],
     [ "JacFunc", "Differential__equations_8h.html#a3ad2f63249b56dfa1bc2196efafb0f07", null ],
     [ "RHSFunc", "Differential__equations_8h.html#a03ae2f0a8b1e1b841d842f3930a227fe", null ],
@@ -13,11 +11,7 @@ var Differential__equations_8h =
     ] ],
     [ "computeJacobians", "Differential__equations_8h.html#ac82462ac5a0d2d0dfffb4ecffc615d0c", null ],
     [ "discretizeABCD", "Differential__equations_8h.html#a265b748155b39ebe0c0f56e0a0f97491", null ],
-    [ "findEquilibrium", "Differential__equations_8h.html#ac989e74d897c01760f0b9b1306b8d703", null ],
     [ "findEquilibriumRobust", "Differential__equations_8h.html#a497480f65777c828f447be0cfcfdb05c", null ],
-    [ "integrate", "Differential__equations_8h.html#a125a0de0f060872e30f37dc30cb8c1b4", null ],
-    [ "padeDelaySystem2", "Differential__equations_8h.html#a34470d0058ac96f18ba1bfeb08eb665f", null ],
-    [ "padeDelaySystem3", "Differential__equations_8h.html#ad555d8a67141a45d16a8818fde770772", null ],
     [ "padeDelaySystemMulti2", "Differential__equations_8h.html#a2277f0faf31f0a5934ac52917f78ced3", null ],
     [ "padeDelaySystemMulti3", "Differential__equations_8h.html#a2e10907f7cb659c6acc5dc63b79e0490", null ]
 ];

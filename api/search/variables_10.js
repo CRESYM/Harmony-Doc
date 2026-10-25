@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['r_0',['R',['../classTransformer__base.html#abd36323826e64cd204e3ce9aa8763286',1,'Transformer_base']]],
-  ['r_5freactor_1',['R_reactor',['../classConverter.html#a4cccae136c484f588d2cb05d2f33409f',1,'Converter']]],
-  ['rawcols_2',['rawCols',['../structInputGroup.html#ad72d01ac0d1c4f6cff40cd6f23436231',1,'InputGroup']]],
-  ['rawstartcol_3',['rawStartCol',['../structInputGroup.html#adf4d4758ddc6fc1517409c0da5d48906',1,'InputGroup']]],
-  ['reference_4',['reference',['../classController.html#a5e896755453c04a41c95673cfe9b1bb0',1,'Controller']]],
-  ['resistivity_5',['resistivity',['../classCable_1_1Conductor.html#a979cffc846171c378f838c76aef36499',1,'Cable::Conductor']]],
-  ['rhs_6',['rhs',['../structCVODEUserData.html#a0f337c21b2a6f1f3dde61ea4717fb534',1,'CVODEUserData::rhs'],['../structKINSOLUserData.html#a2265870bda825abdb7d7cc2f6c75b863',1,'KINSOLUserData::rhs']]],
-  ['ri_7',['ri',['../classCable_1_1Conductor.html#a476992c7a4b2d76b3c855638f13f58fd',1,'Cable::Conductor::ri'],['../classCable_1_1Insulator.html#a5596a9fd314b6cde3af9810123efdb0d',1,'Cable::Insulator::ri']]],
-  ['ro_8',['ro',['../classCable_1_1Conductor.html#a9b34fbd7ec8e88f1d6bd2f3f9a3c5a73',1,'Cable::Conductor::ro'],['../classCable_1_1Insulator.html#a04c92aee73faa41d8dac216568df7fc8',1,'Cable::Insulator::ro']]],
-  ['rtol_9',['rtol',['../structCVODEConfig.html#aa2fe2c83eab317d9b24b11085b2a5d26',1,'CVODEConfig']]]
+  ['q_0',['q',['../classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1',1,'Converter::Q'],['../classSource__base.html#a08222682748c61b7f0cbdd8b7c0b583c',1,'Source_base::Q'],['../structOperatingRegionSample.html#aa7a019002028d44d5888358dcf338241',1,'OperatingRegionSample::Q']]],
+  ['q_5fmax_1',['q_max',['../classConverter.html#a594746375988ef59dd5f7b9bd35ebfc2',1,'Converter::Q_max'],['../classSource__base.html#ab8d362e2a29e69c4812d3ab81c1d2c2b',1,'Source_base::Q_max'],['../structOperatingRegionGrid.html#a1470c843a17ecbe6cda421f3a94a223f',1,'OperatingRegionGrid::Q_max']]],
+  ['q_5fmin_2',['q_min',['../classConverter.html#ad81d7bbc4fe557b6b6e0a4b15d4655cf',1,'Converter::Q_min'],['../classSource__base.html#a58b22955a697e86a2908b6f4247092f1',1,'Source_base::Q_min'],['../structOperatingRegionGrid.html#a40c96f98b9faaf4f55fb3eb246a3272a',1,'OperatingRegionGrid::Q_min']]],
+  ['q_5fopf_3',['Q_opf',['../structOperatingRegionResult.html#a792da27637d092603f7fe6f48a062065',1,'OperatingRegionResult']]],
+  ['qc_4',['qc',['../structDCBusResult.html#ae816e4807a4233f7bde4b44f91a3c80c',1,'DCBusResult']]],
+  ['qgen_5fac_5fk_5',['qgen_ac_k',['../structOPFVisualData.html#a7655f9c4565765658416bd95983f2322',1,'OPFVisualData']]],
+  ['qij_5fac_5fk_6',['qij_ac_k',['../structOPFVisualData.html#a0da2b07ef9241195156bcda04ec0435a',1,'OPFVisualData']]],
+  ['qs_7',['qs',['../structDCBusResult.html#a74e9b7e356ca4a97b31c4746b2345e05',1,'DCBusResult']]],
+  ['qs_5fdc_5fk_8',['qs_dc_k',['../structOPFVisualData.html#a1a3f8d69a2b72f85aeb46706a96bfb2a',1,'OPFVisualData']]]
 ];

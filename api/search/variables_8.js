@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['j_0',['j',['../Symbolic__functions_8cpp.html#a36afe7fb1ed2f891e33001ea37f06a68',1,'j:&#160;Symbolic_functions.cpp'],['../Symbolic__functions_8h.html#a36afe7fb1ed2f891e33001ea37f06a68',1,'j:&#160;Symbolic_functions.cpp']]],
-  ['jac_1',['jac',['../structCVODEUserData.html#a2dcc756717f68c53aab107634576443d',1,'CVODEUserData::jac'],['../structKINSOLUserData.html#aa460b6ec540fc0cf72c69da6d65aed1c',1,'KINSOLUserData::jac']]],
-  ['jsonpathoverrides_2',['jsonPathOverrides',['../structCliOptions.html#a66d06f615dea35dd4467b842a3e31279',1,'CliOptions']]]
+  ['im_0',['im',['../structDwShellPoint.html#a037e07b96e8715297d46af014768735c',1,'DwShellPoint']]],
+  ['initial_5fstate_1',['initial_state',['../classConverter.html#a86ef927ac1d1ffa438ee75c4fa6d9669',1,'Converter']]],
+  ['initialized_2',['initialized',['../structDSSState.html#afdeb27e20a06585a9189fdc4f1ca18f4',1,'DSSState']]],
+  ['input_5fpins_3',['input_pins',['../classElement.html#a315a98a6fff86a9e074a6a72fea3a80f',1,'Element']]],
+  ['inputhist_4',['inputHist',['../structDQsymResult.html#a0fb2bac666064baa55adbcbe3b9c1c28',1,'DQsymResult']]],
+  ['isvirtual_5',['isVirtual',['../structInputGroup.html#ae9c14938ef10706c525e2c4c110175dc',1,'InputGroup']]],
+  ['isvirtualinput_6',['isVirtualInput',['../structInputMapping.html#aece051fe5f9248ab7efe8eb16da79e26',1,'InputMapping']]]
 ];
