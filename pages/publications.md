@@ -1,9 +1,18 @@
 
 #### <i class="bi bi-calendar3"></i> 2026 year
 
-- **R. Dimitrovski**, **S. Alsarayreh**, **A. Lekić**, “A Novel Dynamic Phasor-based Mathematical Framework for
-Hybrid AC/DC Power System Simulation,” *IEEE Transactions on Power Delivery*, 2026 (under review).  
-**Links:** [PDF]() 
+- H. Du, **A. Lekić**, “SOPF-Based Adaptive Droop Control for Hybrid AC–HVDC Grids Under Offshore Wind Uncertainty,” *arXiv preprint arXiv:2605.05992*, 2026.  
+**Links:** [PDF](https://arxiv.org/pdf/2605.05992)
+
+- **H. Li**, J. Lokar, L. Herman, **A. Lekić**, “Seeking Cost–Effective Incentive for Merchant MTDC Investment in an AC Grid: A Parametric MISOCP Model to VSC Siting and Sizing,” *arXiv preprint arXiv:2610.30011*, 2026.  
+**Links:** [PDF](https://arxiv.org/pdf/2610.30011)
+
+- **H. Li**, **A. Lekić**, “DCCB-Capability-Aware Optimal Info-Power Flow for Transmission Switching in AC/MTDC Grids,” *arXiv preprint arXiv:2610.16777*, 2026.  
+**Links:** [PDF](https://arxiv.org/pdf/2610.16777)
+
+- **S. Alsarayreh**, **R. Dimitrovski**, **A. Lekić**, “A Novel Dynamic Phasor-based Mathematical Framework for Hybrid AC/DC Power System Simulation,” *IEEE Open Access Journal of Power and Energy*, 2026.
+
+- H. Du, R. Rane, W. Xia, P. P. Vergara, **A. Lekić**, “An OPF–based Control Framework for Hybrid AC–MTDC Power Systems under Uncertainty,” *IEEE Access*, 2026.
 
 - **A. Lekić**, **A. Kermansaravi**, **H. Li**, **Y. Quintero Lares**, **S. Alsarayreh**, **R. Dimitrovski**, “Advanced
 Simulation Framework for AC/MTDC Power Systems,” *CIGRE 2026*, 2026.  
