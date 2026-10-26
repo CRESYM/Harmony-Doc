@@ -1,18 +1,18 @@
 <map id="harmony/src/examples/example_registry.h" name="harmony/src/examples/example_registry.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="332,5,503,45"/>
-<area shape="rect" id="Node000002" href="$cli_8h.html" title="Command&#45;line interface for the unified Harmony executable." alt="" coords="283,93,349,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="394,48,344,87,341,82,391,43"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="419,167,477,192"/>
-<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="424,45,446,152,440,154,419,46"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="455,93,505,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="435,44,464,81,460,84,430,47"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,96,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,119,107,166,106,161,282,114"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="121,167,207,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="293,121,202,163,200,158,290,116"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="232,167,307,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="311,120,287,157,282,154,306,118"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="338,116,416,158,413,162,336,121"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="331,167,394,192"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="326,118,350,154,345,157,321,120"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="326,5,496,50"/>
+<area shape="rect" id="Node000002" href="$cli_8h.html" title="Command&#45;line interface for the unified Harmony executable." alt="" coords="279,98,344,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="387,49,341,90,338,86,383,52"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="413,174,471,201"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="417,48,439,159,434,157,414,52"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="449,98,499,126"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="429,48,457,86,452,85,427,53"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,174,95,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,125,111,172,109,167,278,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="119,174,205,201"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="287,126,203,169,201,164,282,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="229,174,303,201"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="306,125,284,162,280,158,301,128"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="335,124,408,166,403,166,334,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="327,174,389,201"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="321,124,344,162,339,160,318,129"/>
 </map>

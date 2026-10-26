@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['g_5fdqmulwork_0',['g_dqMulWork',['../DQsym__Conversion__Functions_8cpp.html#abe592fcd9c2c14fc8ac40c88145d73f8',1,'DQsym_Conversion_Functions.cpp']]],
+  ['g_5fdqmulwork_0',['g_dqMulWork',['../DQsym__Conversion__Functions_8cpp.html#a92c21d23171430d0f4682dbe82721e21',1,'DQsym_Conversion_Functions.cpp']]],
   ['gain2_1',['gain2',['../structDwShellPoint.html#aeba2318ca494edce6026bad583e55193',1,'DwShellPoint']]],
   ['gain_5flimit_2',['gain_limit',['../structCertificateSpec.html#a44e58cc349706fe0ef9897cf52cf0f3d',1,'CertificateSpec::gain_limit'],['../structCertificateSweep.html#a71df46fe7f0706b58558d73fc42d31cb',1,'CertificateSweep::gain_limit']]],
   ['gamma_5fnum_3',['gamma_num',['../Standard__functions_8cpp.html#af62b63cc44beb9277f06dc2b2f90dc26',1,'gamma_num:&#160;Standard_functions.cpp'],['../Standard__functions_8h.html#af62b63cc44beb9277f06dc2b2f90dc26',1,'gamma_num:&#160;Standard_functions.cpp']]],

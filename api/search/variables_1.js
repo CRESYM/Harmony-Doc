@@ -19,5 +19,5 @@ var searchData=
   ['bus_5fentire_5fac_16',['bus_entire_ac',['../structOPFVisualData.html#aefb8ea01885ca1f18839dbd60fcd4026',1,'OPFVisualData']]],
   ['buses_17',['buses',['../classNetwork.html#a2f555badb8364e4e4d05152294544781',1,'Network']]],
   ['busindex_18',['busIndex',['../structDCBusResult.html#a4a6a6778faa5c5adb6f1c47bc87afc8a',1,'DCBusResult']]],
-  ['busname_19',['busname',['../structDCBusResult.html#a8197974d63c49a78ffd04f8daeb93dd0',1,'DCBusResult::busName'],['../structOutputMapping.html#a30080f946e288e27a1c59f4afd62b89e',1,'OutputMapping::busName']]]
+  ['busname_19',['busName',['../structDCBusResult.html#a8197974d63c49a78ffd04f8daeb93dd0',1,'DCBusResult::busName'],['../structOutputMapping.html#a30080f946e288e27a1c59f4afd62b89e',1,'OutputMapping::busName']]]
 ];

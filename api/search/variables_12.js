@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['s_0',['s',['../Symbolic__functions_8h.html#aa3c62ad43e416269d6291c060e37cc23',1,'s:&#160;Symbolic_functions.cpp'],['../Symbolic__functions_8cpp.html#aa3c62ad43e416269d6291c060e37cc23',1,'s:&#160;Symbolic_functions.cpp']]],
-  ['samples_1',['samples',['../structOperatingRegionResult.html#a61c0908695d5a8b9c08ca78a898443e8',1,'OperatingRegionResult::samples'],['../structDwShellCertificate.html#a01167eea233cc67fe60a2c31f064699b',1,'DwShellCertificate::samples'],['../structGfmTuningResult.html#a2793770778af5a47d7a52212f2f67420',1,'GfmTuningResult::samples']]],
+  ['s_0',['s',['../Symbolic__functions_8cpp.html#aa3c62ad43e416269d6291c060e37cc23',1,'s:&#160;Symbolic_functions.cpp'],['../Symbolic__functions_8h.html#aa3c62ad43e416269d6291c060e37cc23',1,'s:&#160;Symbolic_functions.cpp']]],
+  ['samples_1',['samples',['../structDwShellCertificate.html#a01167eea233cc67fe60a2c31f064699b',1,'DwShellCertificate::samples'],['../structOperatingRegionResult.html#a61c0908695d5a8b9c08ca78a898443e8',1,'OperatingRegionResult::samples'],['../structGfmTuningResult.html#a2793770778af5a47d7a52212f2f67420',1,'GfmTuningResult::samples']]],
   ['scale_5fp_5fhi_2',['scale_P_hi',['../structGfmTuningBounds.html#a8c926fbbf5b14c6d63bbfef616964e9c',1,'GfmTuningBounds']]],
   ['scale_5fp_5flo_3',['scale_P_lo',['../structGfmTuningBounds.html#aefff0544d9374dfcf3f649a24f244c81',1,'GfmTuningBounds']]],
   ['scale_5fq_5fhi_4',['scale_Q_hi',['../structGfmTuningBounds.html#a7fc91a10f72b08d959d910f16ea3d885',1,'GfmTuningBounds']]],
@@ -9,9 +9,9 @@ var searchData=
   ['searchpaths_6',['searchPaths',['../structCliOptions.html#a68fac1fc80842e7904d6128db6c980bb',1,'CliOptions']]],
   ['sector_5falpha_7',['sector_alpha',['../structCertificateSpec.html#a3e78432bbe15e644e7e91b800237f6e4',1,'CertificateSpec']]],
   ['sector_5fbeta_8',['sector_beta',['../structCertificateSpec.html#a2ca344fd17f638074b915e36fca29e30',1,'CertificateSpec']]],
-  ['shift_5fdelta_9',['shift_delta',['../structCertificateSweep.html#a76851fb6c4bac9616132b41c2f3fa63e',1,'CertificateSweep::shift_delta'],['../structCertificateSpec.html#ac500228afbfabf7c9d09466e965a1766',1,'CertificateSpec::shift_delta']]],
+  ['shift_5fdelta_9',['shift_delta',['../structCertificateSpec.html#ac500228afbfabf7c9d09466e965a1766',1,'CertificateSpec::shift_delta'],['../structCertificateSweep.html#a76851fb6c4bac9616132b41c2f3fa63e',1,'CertificateSweep::shift_delta']]],
   ['shifted_5fpassivity_10',['shifted_passivity',['../structCertificateSweep.html#a67d5532b83035915d56193d37255a9eb',1,'CertificateSweep']]],
-  ['shortage_5fpassivity_11',['shortage_passivity',['../structCertificateSweep.html#a28c09e37a2a2403a9c2fff0c2ed3c682',1,'CertificateSweep::shortage_passivity'],['../structDwShellCertificate.html#a1aaef973450039fcfb707c47f7afda7b',1,'DwShellCertificate::shortage_passivity']]],
+  ['shortage_5fpassivity_11',['shortage_passivity',['../structDwShellCertificate.html#a1aaef973450039fcfb707c47f7afda7b',1,'DwShellCertificate::shortage_passivity'],['../structCertificateSweep.html#a28c09e37a2a2403a9c2fff0c2ed3c682',1,'CertificateSweep::shortage_passivity']]],
   ['small_5fgain_12',['small_gain',['../structCertificateSweep.html#a7f242f2feeb65282aaccaead10c8d3df',1,'CertificateSweep']]],
   ['start_13',['start',['../structFrequencyRange.html#a26d698daf5a8446b0dd58951729a518c',1,'FrequencyRange']]],
   ['statehist_14',['stateHist',['../structDQsymResult.html#a2b7d1de97677849402c2d0814c599eb3',1,'DQsymResult']]],

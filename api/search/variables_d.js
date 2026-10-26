@@ -2,9 +2,9 @@ var searchData=
 [
   ['n_0',['n',['../structKINSOLUserData.html#a2ea93edc03ab7af6e1b94d16189c12d5',1,'KINSOLUserData']]],
   ['n_5fcertified_1',['n_certified',['../structOperatingRegionResult.html#a98e8f3eab19d0369020084b34ce219db',1,'OperatingRegionResult']]],
-  ['n_5fp_2',['n_p',['../structOperatingRegionGrid.html#ada9accc9bb041bee9b5c31fa6de63a03',1,'OperatingRegionGrid::n_P'],['../structGfmTuningBounds.html#aeecbe2a814bb5e757b5e726f75ef8e87',1,'GfmTuningBounds::n_P']]],
+  ['n_5fp_2',['n_P',['../structOperatingRegionGrid.html#ada9accc9bb041bee9b5c31fa6de63a03',1,'OperatingRegionGrid::n_P'],['../structGfmTuningBounds.html#aeecbe2a814bb5e757b5e726f75ef8e87',1,'GfmTuningBounds::n_P']]],
   ['n_5fpoints_3',['n_points',['../structCertificateSpec.html#a98796be1df907684dd0270e891062978',1,'CertificateSpec']]],
-  ['n_5fq_4',['n_q',['../structOperatingRegionGrid.html#a70d2960d252e528e20c33e2b25effea7',1,'OperatingRegionGrid::n_Q'],['../structGfmTuningBounds.html#aeebde92e75de041fdbad0830877a3411',1,'GfmTuningBounds::n_Q']]],
+  ['n_5fq_4',['n_Q',['../structOperatingRegionGrid.html#a70d2960d252e528e20c33e2b25effea7',1,'OperatingRegionGrid::n_Q'],['../structGfmTuningBounds.html#aeebde92e75de041fdbad0830877a3411',1,'GfmTuningBounds::n_Q']]],
   ['nbuses_5fac_5',['nbuses_ac',['../structOPFVisualData.html#a13fe9baeabd19c365edfc628a603ba3a',1,'OPFVisualData']]],
   ['nbuses_5fdc_6',['nbuses_dc',['../structOPFVisualData.html#a54b0ca147a5a3ba25905f851b2679251',1,'OPFVisualData']]],
   ['nconvs_5fdc_7',['nconvs_dc',['../structOPFVisualData.html#a0dab5117b304f8aed8b68cb0b85b7a01',1,'OPFVisualData']]],

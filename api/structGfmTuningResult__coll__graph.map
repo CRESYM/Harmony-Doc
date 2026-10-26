@@ -1,20 +1,20 @@
 <map id="GfmTuningResult" name="GfmTuningResult">
-<area shape="rect" id="Node000001" title="Result of a GFM tuning search." alt="" coords="289,533,423,559"/>
-<area shape="rect" id="Node000002" href="$structCertificateSweep.html" title="Frequency&#45;domain certificate sweep for one device (or one H)." alt="" coords="290,431,422,456"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="359,470,359,533,353,533,353,470"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="273,189,439,214"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,228,359,431,353,431,353,228"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="231,93,361,119"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,128,329,141,353,187,349,190,324,144,315,131"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="9,189,249,214"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="219,122,193,132,170,145,149,167,136,190,132,187,145,164,166,141,191,127,217,117"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="277,5,315,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="299,45,299,93,293,93,293,45"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="135,227,144,273,159,333,184,396,200,426,219,454,244,480,273,501,329,531,326,536,270,506,241,484,215,458,196,429,179,398,154,334,138,274,130,228"/>
-<area shape="rect" id="Node000007" href="$structGfmTuningSample.html" title="One candidate in the GFM droop search." alt="" coords="5,93,147,119"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="75,132,80,156,93,173,109,186,106,190,89,177,75,158,70,133"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="467,431,554,456"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="483,466,375,536,372,531,480,461"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="463,181,601,221"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="532,235,514,431,509,430,526,235"/>
+<area shape="rect" id="Node000001" title="Result of a GFM tuning search." alt="" coords="297,671,430,698"/>
+<area shape="rect" id="Node000002" href="$structCertificateSweep.html" title="Frequency&#45;domain certificate sweep for one device (or one H)." alt="" coords="298,548,429,575"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="366,589,366,671,361,669,361,593"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="281,215,446,243"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="366,257,366,548,361,547,361,260"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="234,106,362,134"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="324,143,336,156,352,186,362,215,357,214,347,189,332,159,324,148"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="18,215,258,243"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="217,135,195,146,174,160,162,172,154,187,143,216,138,214,149,185,158,169,170,156,193,141,220,131"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="279,5,317,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="299,46,301,106,296,105,298,51"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="139,256,147,319,160,401,185,490,203,534,225,574,251,605,281,631,340,670,335,670,278,635,247,608,221,577,198,536,180,492,154,402,141,320,138,261"/>
+<area shape="rect" id="Node000007" href="$structGfmTuningSample.html" title="One candidate in the GFM droop search." alt="" coords="5,106,146,134"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="71,147,75,166,80,181,94,199,113,213,108,216,90,203,75,184,69,167,71,152"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="475,548,561,575"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="495,585,421,649,386,673,384,668,418,645,490,587"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="470,207,609,251"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="539,265,521,548,517,546,535,269"/>
 </map>

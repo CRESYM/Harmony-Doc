@@ -1,12 +1,12 @@
 <map id="harmony/src/json/simulation_builder.h" name="harmony/src/json/simulation_builder.h">
-<area shape="rect" id="Node000001" title="Builds a Network from a JSON simulation file and runs configured analyses." alt="" coords="249,5,456,45"/>
-<area shape="rect" id="Node000002" href="$computation__runner_8h.html" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="95,93,315,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="309,55,238,96,236,91,307,50"/>
-<area shape="rect" id="Node000004" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="249,181,456,221"/>
-<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="355,59,355,181,350,181,350,59"/>
-<area shape="rect" id="Node000005" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="390,101,555,126"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="392,51,458,98,455,103,389,56"/>
-<area shape="rect" id="Node000003" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="5,181,225,221"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,145,137,183,133,179,173,141"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,138,322,179,319,184,248,143"/>
+<area shape="rect" id="Node000001" title="Builds a Network from a JSON simulation file and runs configured analyses." alt="" coords="249,5,456,50"/>
+<area shape="rect" id="Node000002" href="$computation__runner_8h.html" title="Extensible registry for post&#45;build JSON computations (OPF, DQsym, …)." alt="" coords="96,98,315,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,57,242,100,239,95,302,60"/>
+<area shape="rect" id="Node000004" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="249,191,456,235"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="354,64,355,192,350,189,350,67"/>
+<area shape="rect" id="Node000005" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="390,106,554,134"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="393,57,458,106,452,106,392,62"/>
+<area shape="rect" id="Node000003" href="$computation__runner_8cpp.html" title="Extensible JSON computation dispatch (OPF, DQsym, …)." alt="" coords="5,191,225,235"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,153,138,193,135,188,171,155"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="254,148,320,190,315,190,253,153"/>
 </map>

@@ -1,73 +1,73 @@
 <map id="Element" name="Element">
-<area shape="rect" id="Node000001" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="5,301,81,327"/>
-<area shape="rect" id="Node000002" href="$classCable.html" title="Multi&#45;layer cable model with conductor and insulator sections." alt="" coords="169,5,228,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="43,288,48,236,61,170,86,101,104,69,128,40,147,27,168,19,170,24,149,31,131,44,109,72,91,103,66,172,53,237,48,288"/>
-<area shape="rect" id="Node000003" href="$classCapacitor.html" title="Models a single&#45; or multi&#45;phase capacitive branch." alt="" coords="157,55,241,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="45,287,53,244,67,191,92,137,108,112,128,89,155,73,158,78,131,93,112,115,96,140,72,193,58,245,50,288"/>
-<area shape="rect" id="Node000004" href="$classConverter.html" title="Abstract power converter with ABCD matrices, controllers, and filters." alt="" coords="155,104,242,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="48,287,58,254,74,214,97,174,128,139,154,124,156,128,131,143,102,177,79,216,63,256,53,289"/>
-<area shape="rect" id="Node000006" href="$classImpedance__base.html" title="Common base for resistive, reactive, and generic admittance elements." alt="" coords="133,153,265,179"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="53,288,83,237,103,211,128,188,148,176,150,181,131,192,107,215,87,240,58,290"/>
-<area shape="rect" id="Node000009" href="$classInductor.html" title="Represents an inductor element for circuit/network equations." alt="" coords="161,203,236,228"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="64,289,93,262,128,237,160,223,162,228,131,242,96,267,67,293"/>
-<area shape="rect" id="Node000010" href="$classLoad__base.html" title="Common base for load models with power&#45;flow support." alt="" coords="153,252,244,277"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="94,295,157,275,159,280,95,300"/>
-<area shape="rect" id="Node000013" href="$classOverhead__Line.html" title="Overhead line model with bundle geometry and frequency&#45;dependent Y parameters." alt="" coords="139,301,258,327"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="95,311,139,311,139,317,95,317"/>
-<area shape="rect" id="Node000014" href="$classRES__base.html" title="Common base for wind and PV plant elements." alt="" coords="156,351,241,376"/>
-<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="95,328,159,348,157,353,94,333"/>
-<area shape="rect" id="Node000019" href="$classResistor.html" title="Models a single&#45; or multi&#45;phase resistive branch." alt="" coords="161,400,236,425"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="68,335,97,361,131,385,162,400,160,404,128,390,93,365,64,339"/>
-<area shape="rect" id="Node000020" href="$classSource__base.html" title="Common properties and power&#45;flow methods for source elements." alt="" coords="147,499,251,524"/>
-<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="62,337,131,435,187,497,183,500,127,438,58,340"/>
-<area shape="rect" id="Node000024" href="$classSwitch.html" title="Single&#45; or multi&#45;phase switch with per&#45;phase open/closed state." alt="" coords="166,548,231,573"/>
-<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="50,340,58,382,73,434,97,487,112,512,131,533,148,545,167,552,165,557,145,550,128,537,108,515,92,490,68,436,53,383,45,341"/>
-<area shape="rect" id="Node000025" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="129,621,268,647"/>
-<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="50,340,58,389,72,452,96,520,112,553,131,583,151,603,174,619,171,623,148,607,127,586,108,555,91,522,67,453,52,390,45,341"/>
-<area shape="rect" id="Node000036" href="$classTransmissionLine.html" title="Lumped transmission line with per&#45;unit&#45;length R, L, G, C parameters." alt="" coords="131,671,266,696"/>
-<area shape="poly" id="edge35_Node000001_Node000036" title=" " alt="" coords="51,340,61,413,79,507,102,597,116,632,131,656,148,668,144,673,127,660,112,635,97,599,74,509,56,414,45,340"/>
-<area shape="rect" id="Node000005" href="$classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops." alt="" coords="364,55,419,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,100,363,72,364,77,256,105"/>
-<area shape="rect" id="Node000007" href="$classAdmittance.html" title="Generic admittance matrix element for single&#45; or multi&#45;phase networks." alt="" coords="343,104,440,129"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="261,147,342,126,343,132,263,153"/>
-<area shape="rect" id="Node000008" href="$classImpedance.html" title="Series impedance for each phase with diagonal (or matrix) Z entries." alt="" coords="344,153,439,179"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="278,163,343,163,343,169,278,169"/>
-<area shape="rect" id="Node000011" href="$classLoad.html" title="Load with resistive, inductive, and capacitive components in series." alt="" coords="365,203,418,228"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="257,247,364,219,365,225,258,252"/>
-<area shape="rect" id="Node000012" href="$classLoadPQ.html" title="Constant P&#45;Q load for AC power&#45;flow studies." alt="" coords="356,252,427,277"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="258,262,356,262,356,267,258,267"/>
-<area shape="rect" id="Node000015" href="$classPVplant.html" title="Two&#45;stage PV inverter plant with boost DC&#45;DC stage and LCL&#45;filtered VSC." alt="" coords="355,301,427,327"/>
-<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="254,346,354,321,355,326,256,352"/>
-<area shape="rect" id="Node000016" href="$classWPplant.html" title="Wind power plant composed of multiple wind turbine instances." alt="" coords="353,351,429,376"/>
-<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="255,361,353,361,353,366,255,366"/>
-<area shape="rect" id="Node000017" href="$classWTtype3.html" title="Type 3 wind turbine with DFIG, RSC/GSC converters, and filter." alt="" coords="351,400,431,425"/>
-<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="256,375,352,400,350,405,254,380"/>
-<area shape="rect" id="Node000018" href="$classWTtype4.html" title="Type 4 wind turbine with full&#45;scale back&#45;to&#45;back converter and filter." alt="" coords="351,449,431,475"/>
-<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="255,377,269,385,285,398,294,410,303,423,317,434,352,450,350,455,315,439,299,426,290,414,281,402,267,390,253,382"/>
-<area shape="rect" id="Node000021" href="$classAC__source.html" title="Ideal AC voltage source with added series impedance." alt="" coords="346,499,437,524"/>
-<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="264,509,345,509,345,514,264,514"/>
-<area shape="rect" id="Node000022" href="$classDC__source.html" title="DC&#45;side voltage source for hybrid AC&#45;DC networks." alt="" coords="346,548,437,573"/>
-<area shape="poly" id="edge21_Node000020_Node000022" title=" " alt="" coords="263,525,346,547,345,552,261,530"/>
-<area shape="rect" id="Node000023" href="$classGenerator.html" title="Synchronous machine generator with default electrical parameters." alt="" coords="348,597,435,623"/>
-<area shape="poly" id="edge22_Node000020_Node000023" title=" " alt="" coords="259,527,270,533,285,546,294,558,303,571,317,582,349,597,347,602,315,587,299,574,290,562,281,550,266,538,256,532"/>
-<area shape="rect" id="Node000026" href="$classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="316,647,467,672"/>
-<area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="282,642,316,647,316,652,281,647"/>
-<area shape="rect" id="Node000031" href="$classTransformer__real.html" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="325,795,457,820"/>
-<area shape="poly" id="edge30_Node000025_Node000031" title=" " alt="" coords="261,650,270,656,309,690,342,728,385,793,381,796,338,732,305,693,266,660,258,655"/>
-<area shape="rect" id="Node000027" href="$classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="531,548,701,573"/>
-<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="452,639,465,632,479,620,488,607,498,595,513,582,540,571,542,576,516,587,501,598,493,610,483,623,468,636,455,644"/>
-<area shape="rect" id="Node000028" href="$classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="545,597,687,623"/>
-<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="462,641,557,620,558,625,464,646"/>
-<area shape="rect" id="Node000029" href="$classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="545,647,687,672"/>
-<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="481,657,544,657,544,662,481,662"/>
-<area shape="rect" id="Node000030" href="$classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="558,696,674,721"/>
-<area shape="poly" id="edge29_Node000026_Node000030" title=" " alt="" coords="464,672,558,693,557,699,462,678"/>
-<area shape="rect" id="Node000032" href="$classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="515,745,717,771"/>
-<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="462,789,557,768,558,773,464,794"/>
-<area shape="rect" id="Node000033" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="529,795,703,820"/>
-<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="471,805,528,805,528,810,471,810"/>
-<area shape="rect" id="Node000034" href="$classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="529,844,703,869"/>
-<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="464,820,558,841,557,847,462,826"/>
-<area shape="rect" id="Node000035" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="542,893,690,919"/>
-<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="423,826,466,853,516,878,553,891,552,896,514,883,463,858,420,830"/>
+<area shape="rect" id="Node000001" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="5,317,81,345"/>
+<area shape="rect" id="Node000002" href="$classCable.html" title="Multi&#45;layer cable model with conductor and insulator sections." alt="" coords="168,5,226,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="42,302,47,248,60,180,85,108,104,74,127,44,146,30,169,22,166,26,148,35,131,48,108,77,90,110,65,181,52,249,48,302"/>
+<area shape="rect" id="Node000003" href="$classCapacitor.html" title="Models a single&#45; or multi&#45;phase capacitive branch." alt="" coords="156,57,239,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="45,302,52,257,67,203,91,146,107,120,127,96,157,79,154,83,130,100,111,123,96,149,72,204,57,258,50,302"/>
+<area shape="rect" id="Node000004" href="$classConverter.html" title="Abstract power converter with ABCD matrices, controllers, and filters." alt="" coords="155,109,240,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="48,301,58,267,74,226,97,184,127,148,156,132,153,136,130,152,101,187,79,228,63,268,53,302"/>
+<area shape="rect" id="Node000006" href="$classImpedance__base.html" title="Common base for resistive, reactive, and generic admittance elements." alt="" coords="132,161,263,189"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="54,302,83,251,103,223,127,200,150,187,147,192,130,204,107,227,87,253,59,304"/>
+<area shape="rect" id="Node000009" href="$classInductor.html" title="Represents an inductor element for circuit/network equations." alt="" coords="160,213,234,241"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="65,305,94,277,127,252,161,237,158,241,130,256,97,281,70,307"/>
+<area shape="rect" id="Node000010" href="$classLoad__base.html" title="Common base for load models with power&#45;flow support." alt="" coords="152,265,242,293"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="93,312,155,292,152,296,97,316"/>
+<area shape="rect" id="Node000013" href="$classOverhead__Line.html" title="Overhead line model with bundle geometry and frequency&#45;dependent Y parameters." alt="" coords="138,317,256,345"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="95,329,140,329,136,333,98,333"/>
+<area shape="rect" id="Node000014" href="$classRES__base.html" title="Common base for wind and PV plant elements." alt="" coords="155,369,240,397"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="94,346,157,368,153,371,96,351"/>
+<area shape="rect" id="Node000019" href="$classResistor.html" title="Models a single&#45; or multi&#45;phase resistive branch." alt="" coords="160,421,234,449"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="66,354,97,381,130,406,162,422,157,425,127,411,94,385,68,359"/>
+<area shape="rect" id="Node000020" href="$classSource__base.html" title="Common properties and power&#45;flow methods for source elements." alt="" coords="146,525,249,553"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="60,356,131,459,186,524,180,526,127,462,61,361"/>
+<area shape="rect" id="Node000024" href="$classSwitch.html" title="Single&#45; or multi&#45;phase switch with per&#45;phase open/closed state." alt="" coords="165,577,230,605"/>
+<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="47,358,57,404,72,458,96,514,111,540,130,563,147,575,167,584,162,586,144,579,127,566,107,543,91,516,67,460,52,405,47,363"/>
+<area shape="rect" id="Node000025" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="129,656,266,684"/>
+<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="47,358,57,412,72,478,96,549,112,583,131,615,150,637,174,655,168,656,147,640,127,618,107,585,91,551,67,479,52,413,47,363"/>
+<area shape="rect" id="Node000036" href="$classTransmissionLine.html" title="Lumped transmission line with per&#45;unit&#45;length R, L, G, C parameters." alt="" coords="131,708,264,736"/>
+<area shape="poly" id="edge35_Node000001_Node000036" title=" " alt="" coords="48,358,61,438,78,537,101,632,115,668,131,693,147,707,141,708,127,697,111,671,96,633,73,538,55,439,48,363"/>
+<area shape="rect" id="Node000005" href="$classMMC.html" title="Modular Multilevel Converter with arm dynamics and control loops." alt="" coords="362,57,416,85"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="254,106,363,76,360,80,257,110"/>
+<area shape="rect" id="Node000007" href="$classAdmittance.html" title="Generic admittance matrix element for single&#45; or multi&#45;phase networks." alt="" coords="341,109,437,137"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="264,155,342,134,339,138,268,159"/>
+<area shape="rect" id="Node000008" href="$classImpedance.html" title="Series impedance for each phase with diagonal (or matrix) Z entries." alt="" coords="342,161,436,189"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="277,173,344,174,340,177,279,177"/>
+<area shape="rect" id="Node000011" href="$classLoad.html" title="Load with resistive, inductive, and capacitive components in series." alt="" coords="363,213,415,241"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="256,261,364,232,361,236,259,265"/>
+<area shape="rect" id="Node000012" href="$classLoadPQ.html" title="Constant P&#45;Q load for AC power&#45;flow studies." alt="" coords="354,265,424,293"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="257,277,356,278,352,281,259,282"/>
+<area shape="rect" id="Node000015" href="$classPVplant.html" title="Two&#45;stage PV inverter plant with boost DC&#45;DC stage and LCL&#45;filtered VSC." alt="" coords="354,317,425,345"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="253,366,355,339,351,343,256,370"/>
+<area shape="rect" id="Node000016" href="$classWPplant.html" title="Wind power plant composed of multiple wind turbine instances." alt="" coords="352,369,427,397"/>
+<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="254,381,353,382,349,385,256,386"/>
+<area shape="rect" id="Node000017" href="$classWTtype3.html" title="Type 3 wind turbine with DFIG, RSC/GSC converters, and filter." alt="" coords="350,421,429,449"/>
+<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="253,396,352,423,347,426,255,401"/>
+<area shape="rect" id="Node000018" href="$classWTtype4.html" title="Type 4 wind turbine with full&#45;scale back&#45;to&#45;back converter and filter." alt="" coords="350,473,429,501"/>
+<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="253,400,268,408,283,421,292,434,301,446,315,458,352,476,347,478,313,463,297,450,288,437,279,424,264,412,255,405"/>
+<area shape="rect" id="Node000021" href="$classAC__source.html" title="Ideal AC voltage source with added series impedance." alt="" coords="344,525,434,553"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="263,537,346,538,342,541,265,542"/>
+<area shape="rect" id="Node000022" href="$classDC__source.html" title="DC&#45;side voltage source for hybrid AC&#45;DC networks." alt="" coords="344,577,434,605"/>
+<area shape="poly" id="edge21_Node000020_Node000022" title=" " alt="" coords="263,555,346,578,341,580,265,560"/>
+<area shape="rect" id="Node000023" href="$classGenerator.html" title="Synchronous machine generator with default electrical parameters." alt="" coords="346,629,432,657"/>
+<area shape="poly" id="edge22_Node000020_Node000023" title=" " alt="" coords="256,558,268,564,283,577,292,590,301,602,315,614,348,631,343,632,313,619,297,606,288,593,279,580,264,568,257,563"/>
+<area shape="rect" id="Node000026" href="$classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="314,681,464,709"/>
+<area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="281,678,316,684,311,686,282,683"/>
+<area shape="rect" id="Node000031" href="$classTransformer__real.html" title="Real transformer with turns ratio and phase shift (paper eq." alt="" coords="324,837,455,865"/>
+<area shape="poly" id="edge30_Node000025_Node000031" title=" " alt="" coords="258,689,268,694,306,729,339,769,383,837,377,836,335,772,302,733,264,699,258,694"/>
+<area shape="rect" id="Node000027" href="$classTransformerDeltaDelta.html" title="Delta&#45;delta connected classic transformer." alt="" coords="528,577,698,605"/>
+<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="453,672,463,666,477,654,486,641,495,628,511,616,542,604,537,607,514,620,499,632,490,644,481,657,466,671,456,677"/>
+<area shape="rect" id="Node000028" href="$classTransformerDeltaY.html" title="Delta&#45;wye connected classic transformer." alt="" coords="542,629,684,657"/>
+<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="466,675,552,657,548,659,468,680"/>
+<area shape="rect" id="Node000029" href="$classTransformerYDelta.html" title="Wye&#45;delta connected classic transformer." alt="" coords="542,681,684,709"/>
+<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="479,693,544,694,539,696,480,698"/>
+<area shape="rect" id="Node000030" href="$classTransformerYY.html" title="Wye&#45;wye connected classic transformer." alt="" coords="555,733,671,761"/>
+<area shape="poly" id="edge29_Node000026_Node000030" title=" " alt="" coords="467,710,558,733,552,734,467,716"/>
+<area shape="rect" id="Node000032" href="$classTransformerDeltaDelta__real.html" title="Delta&#45;delta connected real transformer (paper eq." alt="" coords="512,785,714,813"/>
+<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="466,831,553,813,547,814,467,836"/>
+<area shape="rect" id="Node000033" href="$classTransformerDeltaY__real.html" title="Delta&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="526,837,700,865"/>
+<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="470,849,528,851,523,852,471,854"/>
+<area shape="rect" id="Node000034" href="$classTransformerYDelta__real.html" title="Wye&#45;delta connected real transformer (paper eq." alt="" coords="526,889,700,917"/>
+<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="467,866,553,889,547,889,467,872"/>
+<area shape="rect" id="Node000035" href="$classTransformerYY__real.html" title="Wye&#45;wye connected real transformer with turns ratio and phase shift." alt="" coords="539,941,687,969"/>
+<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="422,872,465,900,513,926,549,941,544,940,511,931,462,905,421,877"/>
 </map>

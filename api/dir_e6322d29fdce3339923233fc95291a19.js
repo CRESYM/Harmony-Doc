@@ -2,7 +2,7 @@ var dir_e6322d29fdce3339923233fc95291a19 =
 [
     [ "cli.cpp", "cli_8cpp.html", "cli_8cpp" ],
     [ "cli.h", "cli_8h.html", "cli_8h" ],
-    [ "harmony_banner.cpp", "harmony__banner_8cpp.html", null ],
+    [ "harmony_banner.cpp", "harmony__banner_8cpp.html", "harmony__banner_8cpp" ],
     [ "harmony_banner.h", "harmony__banner_8h.html", "harmony__banner_8h" ],
     [ "harmony_banner_gui.cpp", "harmony__banner__gui_8cpp.html", "harmony__banner__gui_8cpp" ],
     [ "harmony_banner_gui.h", "harmony__banner__gui_8h.html", "harmony__banner__gui_8h" ],

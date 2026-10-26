@@ -1,7 +1,7 @@
 <map id="Load" name="Load">
-<area shape="rect" id="Node000001" title="Load with resistive, inductive, and capacitive components in series." alt="" coords="24,152,77,177"/>
-<area shape="rect" id="Node000002" href="$classLoad__base.html" title="Common base for load models with power&#45;flow support." alt="" coords="5,79,96,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,118,53,152,48,152,48,118"/>
-<area shape="rect" id="Node000003" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="13,5,89,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="53,44,53,79,48,79,48,44"/>
+<area shape="rect" id="Node000001" title="Load with resistive, inductive, and capacitive components in series." alt="" coords="24,157,77,184"/>
+<area shape="rect" id="Node000002" href="$classLoad__base.html" title="Common base for load models with power&#45;flow support." alt="" coords="5,81,96,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,123,53,157,48,156,49,126"/>
+<area shape="rect" id="Node000003" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="13,5,88,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="51,46,53,81,48,80,50,51"/>
 </map>

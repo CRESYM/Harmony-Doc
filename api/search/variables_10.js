@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['q_0',['q',['../classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1',1,'Converter::Q'],['../classSource__base.html#a08222682748c61b7f0cbdd8b7c0b583c',1,'Source_base::Q'],['../structOperatingRegionSample.html#aa7a019002028d44d5888358dcf338241',1,'OperatingRegionSample::Q']]],
-  ['q_5fmax_1',['q_max',['../classConverter.html#a594746375988ef59dd5f7b9bd35ebfc2',1,'Converter::Q_max'],['../classSource__base.html#ab8d362e2a29e69c4812d3ab81c1d2c2b',1,'Source_base::Q_max'],['../structOperatingRegionGrid.html#a1470c843a17ecbe6cda421f3a94a223f',1,'OperatingRegionGrid::Q_max']]],
-  ['q_5fmin_2',['q_min',['../classConverter.html#ad81d7bbc4fe557b6b6e0a4b15d4655cf',1,'Converter::Q_min'],['../classSource__base.html#a58b22955a697e86a2908b6f4247092f1',1,'Source_base::Q_min'],['../structOperatingRegionGrid.html#a40c96f98b9faaf4f55fb3eb246a3272a',1,'OperatingRegionGrid::Q_min']]],
+  ['q_0',['Q',['../classConverter.html#a715d7f4352cbb9f4747f1ecd48f922e1',1,'Converter::Q'],['../classSource__base.html#a08222682748c61b7f0cbdd8b7c0b583c',1,'Source_base::Q'],['../structOperatingRegionSample.html#aa7a019002028d44d5888358dcf338241',1,'OperatingRegionSample::Q']]],
+  ['q_5fmax_1',['Q_max',['../classConverter.html#a594746375988ef59dd5f7b9bd35ebfc2',1,'Converter::Q_max'],['../classSource__base.html#ab8d362e2a29e69c4812d3ab81c1d2c2b',1,'Source_base::Q_max'],['../structOperatingRegionGrid.html#a1470c843a17ecbe6cda421f3a94a223f',1,'OperatingRegionGrid::Q_max']]],
+  ['q_5fmin_2',['Q_min',['../classConverter.html#ad81d7bbc4fe557b6b6e0a4b15d4655cf',1,'Converter::Q_min'],['../classSource__base.html#a58b22955a697e86a2908b6f4247092f1',1,'Source_base::Q_min'],['../structOperatingRegionGrid.html#a40c96f98b9faaf4f55fb3eb246a3272a',1,'OperatingRegionGrid::Q_min']]],
   ['q_5fopf_3',['Q_opf',['../structOperatingRegionResult.html#a792da27637d092603f7fe6f48a062065',1,'OperatingRegionResult']]],
   ['qc_4',['qc',['../structDCBusResult.html#ae816e4807a4233f7bde4b44f91a3c80c',1,'DCBusResult']]],
   ['qgen_5fac_5fk_5',['qgen_ac_k',['../structOPFVisualData.html#a7655f9c4565765658416bd95983f2322',1,'OPFVisualData']]],

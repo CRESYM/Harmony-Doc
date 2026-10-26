@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['omega_0',['omega',['../Symbolic__functions_8h.html#afc2c6a0d7c1ce49c0ce9811334f74323',1,'omega:&#160;Symbolic_functions.cpp'],['../Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323',1,'omega:&#160;Symbolic_functions.cpp'],['../structConfig.html#a2d2dbf7a79c91a06454d66231a0c3aed',1,'Config::omega']]],
+  ['omega_0',['omega',['../structConfig.html#a2d2dbf7a79c91a06454d66231a0c3aed',1,'Config::omega'],['../Symbolic__functions_8cpp.html#afc2c6a0d7c1ce49c0ce9811334f74323',1,'omega:&#160;Symbolic_functions.cpp'],['../Symbolic__functions_8h.html#afc2c6a0d7c1ce49c0ce9811334f74323',1,'omega:&#160;Symbolic_functions.cpp']]],
   ['omega_5f0_1',['omega_0',['../classConverter.html#a60b1f0fbb0553c1d91db7fa978425cdd',1,'Converter']]],
   ['operating_5finput_5f_2',['operating_input_',['../classConverter.html#a2b391bacec3ec537f6a0ab3dea1ee193',1,'Converter']]],
   ['operating_5fregion_2ecpp_3',['Operating_region.cpp',['../Operating__region_8cpp.html',1,'']]],
@@ -17,7 +17,7 @@ var searchData=
   ['output_5fpins_14',['output_pins',['../classElement.html#ab848ca292a35b2ddb3938a59329381b3',1,'Element']]],
   ['outputbuses_15',['outputBuses',['../structConfig.html#af5e814996fce3243ae0e6b1d8db44ef5',1,'Config']]],
   ['outputmapping_16',['OutputMapping',['../structOutputMapping.html',1,'']]],
-  ['overhead_5fline_17',['overhead_line',['../classOverhead__Line.html',1,'Overhead_Line'],['../classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551',1,'Overhead_Line::Overhead_Line()']]],
+  ['overhead_5fline_17',['Overhead_Line',['../classOverhead__Line.html',1,'Overhead_Line'],['../classOverhead__Line.html#aca08e91e7b16e4863d6b730849857551',1,'Overhead_Line::Overhead_Line()']]],
   ['overhead_5fline_2ecpp_18',['overhead_line.cpp',['../overhead__line_8cpp.html',1,'']]],
   ['overhead_5fline_2eh_19',['overhead_line.h',['../overhead__line_8h.html',1,'']]],
   ['ownsresources_5f_20',['ownsResources_',['../classNetwork.html#a316e042262fc9131767ba31716eac1d8',1,'Network']]]

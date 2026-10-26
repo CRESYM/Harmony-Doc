@@ -26,15 +26,6 @@ var NAVTREE =
 [
   [ "Harmony", "index.html", [
     [ "Harmony API Reference", "index.html", "index" ],
-    [ "Building API Documentation (Doxygen)", "md_harmony_2docs_2doxygen_2README.html", [
-      [ "Prerequisites", "md_harmony_2docs_2doxygen_2README.html#autotoc_md4", null ],
-      [ "Generate HTML docs locally", "md_harmony_2docs_2doxygen_2README.html#autotoc_md5", null ],
-      [ "CI build (this repository)", "md_harmony_2docs_2doxygen_2README.html#autotoc_md6", null ],
-      [ "Publishing to your GitHub Pages project", "md_harmony_2docs_2doxygen_2README.html#autotoc_md7", null ],
-      [ "What is documented", "md_harmony_2docs_2doxygen_2README.html#autotoc_md8", null ],
-      [ "Module groups", "md_harmony_2docs_2doxygen_2README.html#autotoc_md9", null ],
-      [ "Related docs", "md_harmony_2docs_2doxygen_2README.html#autotoc_md10", null ]
-    ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -66,14 +57,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AC__source_8cpp.html",
-"Stability__certificate_8h.html#af3a74dd34cb0480af187776166c93c9e",
-"classCable.html#a53120966e3be5924b4ee959ebccc6f87",
-"classJsonValidator.html#a97c73528b35c1ca7ab1eb3951c259c53",
-"classStreamCapture.html#a526cd344c4af7bbc47257f83711af56b",
-"functions_vars_g.html",
-"structCertificateSweep.html#aee3fbea5fe07da6cbf822d67cd865b0e",
-"structPnPDeviceRecord.html#aabf7c4bc6c073a21d22e53d8f495e1da"
+"Stability__certificate_8h_source.html",
+"classCable.html#a54a1b74b7f72b612e3b7594cf4611b44",
+"classJsonValidator.html#ac53d9361b2f1febac1631482203e6902",
+"classStreamCapture.html#a631e63f8ba48f8d691e2eeba5f16fbfe",
+"functions_vars_h.html",
+"structCliOptions.html#aaa0a4fbef8bcbf14766325348f28b793adb4a39bf594c9fbcf318dd39ea19fed3"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

@@ -1,13 +1,13 @@
 <map id="NumericalRangeCertificate" name="NumericalRangeCertificate">
-<area shape="rect" id="Node000001" title="Numerical&#45;range / small&#45;phase summary for one matrix." alt="" coords="86,284,283,309"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="89,181,280,221"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,235,187,284,182,284,182,235"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,93,185,119"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="118,127,168,179,165,183,114,130"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="42,5,149,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="98,45,98,93,93,93,93,45"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="209,93,339,119"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="255,130,205,183,201,179,252,127"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="255,5,293,31"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="277,45,277,93,271,93,271,45"/>
+<area shape="rect" id="Node000001" title="Numerical&#45;range / small&#45;phase summary for one matrix." alt="" coords="85,324,281,352"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="88,207,278,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,265,185,325,181,323,181,269"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,106,185,134"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,143,168,205,163,207,115,148"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="42,5,148,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,46,98,106,92,105,94,51"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="208,106,336,134"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="254,144,203,208,199,204,250,147"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="253,5,292,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="274,46,275,106,270,105,271,51"/>
 </map>

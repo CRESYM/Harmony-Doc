@@ -1,30 +1,28 @@
 <map id="Source_base" name="Source_base">
-<area shape="rect" id="Node000001" title="Common properties and power&#45;flow methods for source elements." alt="" coords="1100,65,1204,90"/>
-<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="975,110,1051,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1063,104,1111,88,1113,93,1065,109"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="281,218,368,243"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="382,236,458,244,553,250,657,249,761,239,817,229,859,217,900,201,949,174,976,154,998,134,1001,138,980,158,952,178,902,205,861,222,818,234,762,244,657,255,552,255,457,249,382,241"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="595,160,758,200"/>
-<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="382,225,470,218,568,205,605,197,606,203,568,211,470,224,382,231"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,211,144,251"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="158,228,281,228,281,233,158,233"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="592,61,761,86"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="775,78,861,88,951,103,975,108,974,114,950,108,860,93,775,84"/>
-<area shape="rect" id="Node000006" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="301,61,348,86"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="362,71,592,71,592,76,362,76"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="257,110,392,135"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="406,112,568,91,610,83,611,89,568,96,406,117"/>
-<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="406,133,595,164,594,169,405,138"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="55,110,94,135"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="108,120,257,120,257,125,108,125"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="55,41,94,66"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="108,60,279,107,277,112,107,65"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="260,11,389,37"/>
-<area shape="poly" id="edge15_Node000013_Node000009" title=" " alt="" coords="108,47,259,29,260,34,108,52"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="771,169,858,157,950,140,976,133,977,138,951,145,859,163,772,174"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="624,110,729,135"/>
-<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="743,120,974,120,974,125,743,125"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="785,19,951,45"/>
-<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="962,44,1100,67,1099,72,961,49"/>
-<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="403,22,785,28,785,33,403,28"/>
+<area shape="rect" id="Node000001" title="Common properties and power&#45;flow methods for source elements." alt="" coords="284,466,388,493"/>
+<area shape="rect" id="Node000002" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="200,368,275,395"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="263,404,325,466,320,465,260,409"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="109,123,195,151"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,162,174,174,214,284,237,368,231,367,209,286,169,176,167,167"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="5,225,168,270"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="135,166,102,226,97,223,137,161"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="83,5,221,50"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="152,63,154,123,149,122,151,68"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="361,234,529,261"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="414,269,259,369,256,365,409,271"/>
+<area shape="rect" id="Node000006" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="544,123,589,151"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="564,164,558,185,547,201,522,222,494,235,491,231,519,217,543,198,553,182,560,168"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="378,123,512,151"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="447,164,448,234,443,232,444,168"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="362,156,286,177,142,227,140,222,284,172,367,153"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="426,14,464,42"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="446,55,448,123,443,121,444,60"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="575,14,614,42"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="562,52,465,124,462,120,566,49"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="613,123,741,151"/>
+<area shape="poly" id="edge14_Node000012_Node000009" title=" " alt="" coords="615,52,670,123,664,122,613,57"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="68,282,67,304,72,321,99,346,132,362,167,372,201,378,196,380,166,377,130,367,95,350,68,324,62,304,67,287"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="515,295,679,323"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="567,331,357,468,355,463,562,331"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="667,163,605,296,601,293,663,166"/>
 </map>

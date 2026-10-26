@@ -1,34 +1,32 @@
 <map id="TransformerYY" name="TransformerYY">
-<area shape="rect" id="Node000001" title="Wye&#45;wye connected classic transformer." alt="" coords="1488,59,1604,84"/>
-<area shape="rect" id="Node000002" href="$classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="1288,59,1439,84"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1452,69,1488,69,1488,74,1452,74"/>
-<area shape="rect" id="Node000003" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="1100,59,1239,84"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1253,69,1287,69,1287,74,1253,74"/>
-<area shape="rect" id="Node000004" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="975,104,1051,129"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1063,99,1124,81,1126,87,1065,105"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="281,212,368,237"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="382,230,458,238,553,244,657,243,761,233,817,223,859,211,900,195,949,168,976,148,998,128,1001,132,980,152,952,172,902,199,861,216,818,228,762,238,657,249,552,249,457,243,382,235"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="595,154,758,194"/>
-<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="382,219,470,212,568,199,605,191,606,197,568,205,470,218,382,225"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,205,144,245"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="158,222,281,222,281,227,158,227"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="592,55,761,80"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="775,72,861,82,951,97,975,102,974,108,950,102,860,87,775,78"/>
-<area shape="rect" id="Node000008" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="301,55,348,80"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="362,65,592,65,592,70,362,70"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="257,104,392,129"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="406,106,568,85,610,77,611,83,568,90,406,111"/>
-<area shape="poly" id="edge13_Node000012_Node000009" title=" " alt="" coords="406,127,595,158,594,163,405,132"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="55,104,94,129"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="108,114,257,114,257,119,108,119"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="55,35,94,60"/>
-<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="108,54,279,101,277,106,107,59"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="260,5,389,31"/>
-<area shape="poly" id="edge17_Node000015_Node000011" title=" " alt="" coords="108,41,259,23,260,28,108,46"/>
-<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="771,163,858,151,950,134,976,127,977,132,951,139,859,157,772,168"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="624,104,729,129"/>
-<area shape="poly" id="edge14_Node000004_Node000013" title=" " alt="" coords="743,114,974,114,974,119,743,119"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="785,13,951,39"/>
-<area shape="poly" id="edge15_Node000003_Node000014" title=" " alt="" coords="965,38,1100,58,1099,64,964,43"/>
-<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="403,16,785,22,785,27,403,22"/>
+<area shape="rect" id="Node000001" title="Wye&#45;wye connected classic transformer." alt="" coords="278,597,394,625"/>
+<area shape="rect" id="Node000002" href="$classTransformer__classic.html" title="Classic transformer with primary, secondary, and mutual inductance." alt="" coords="261,520,411,548"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,562,338,599,334,595,334,565"/>
+<area shape="rect" id="Node000003" href="$classTransformer__base.html" title="Base transformer with primary/secondary winding R and L values." alt="" coords="267,443,404,471"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,484,338,521,334,519,334,488"/>
+<area shape="rect" id="Node000004" href="$classElement.html" title="Base class for multi&#45;phase network elements with Y&#45;parameters and MNA stamping hooks." alt="" coords="200,356,275,384"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="265,392,323,443,318,443,264,397"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="109,123,195,151"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="167,162,174,174,213,277,236,356,231,356,208,279,169,176,167,167"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="5,225,168,270"/>
+<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="135,166,102,226,97,224,137,161"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="83,5,221,50"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="152,63,154,123,149,122,151,68"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="361,234,529,261"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="408,271,261,358,258,354,412,267"/>
+<area shape="rect" id="Node000008" href="$classBus.html" title="A network node connecting one or more element terminals." alt="" coords="544,123,589,151"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="563,164,558,185,547,201,522,222,494,235,491,231,519,217,543,198,553,182,560,168"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="378,123,512,151"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="446,163,448,234,443,232,444,168"/>
+<area shape="poly" id="edge13_Node000012_Node000009" title=" " alt="" coords="362,156,286,177,143,227,140,222,284,172,366,153"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="426,14,464,42"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="446,55,448,123,443,122,444,60"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="575,14,614,42"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="562,53,465,124,462,120,566,49"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="613,123,741,151"/>
+<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="614,51,670,122,664,122,613,57"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="68,282,67,304,72,321,92,334,124,346,201,362,197,365,123,351,89,339,68,324,61,304,67,287"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="515,295,679,323"/>
+<area shape="poly" id="edge14_Node000003_Node000013" title=" " alt="" coords="563,329,361,445,358,440,559,332"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="667,162,605,296,601,293,663,166"/>
 </map>

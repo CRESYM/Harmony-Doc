@@ -1,8 +1,8 @@
 var Differential__equations_8h =
 [
     [ "KINSOLConfig", "structKINSOLConfig.html", "structKINSOLConfig" ],
-    [ "JacFunc", "Differential__equations_8h.html#a3ad2f63249b56dfa1bc2196efafb0f07", null ],
-    [ "RHSFunc", "Differential__equations_8h.html#a03ae2f0a8b1e1b841d842f3930a227fe", null ],
+    [ "JacFunc", "Differential__equations_8h.html#a16d08b2d4241c96df2554a8a98500b2c", null ],
+    [ "RHSFunc", "Differential__equations_8h.html#a6a01d9886e57fd08ec4b6a60b76c5d99", null ],
     [ "KINSOLStrategy", "Differential__equations_8h.html#acfe44c04a6df4ea00b10689f146660ab", [
       [ "Newton", "Differential__equations_8h.html#acfe44c04a6df4ea00b10689f146660aba1c8b97c83b0726216cd5dbc88a64b0ed", null ],
       [ "LineSearch", "Differential__equations_8h.html#acfe44c04a6df4ea00b10689f146660aba09333e446623bc86e17b67366b79b03b", null ],

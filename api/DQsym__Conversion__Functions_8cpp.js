@@ -15,5 +15,5 @@ var DQsym__Conversion__Functions_8cpp =
     [ "dqSequenceTransforms", "DQsym__Conversion__Functions_8cpp.html#a501b19bf51bcfcb30c954e0e1bc97755", null ],
     [ "simulate_dqn2abc", "DQsym__Conversion__Functions_8cpp.html#a203de0cb398d13e07ceb1ad3beb2097b", null ],
     [ "truncateHarmonics", "DQsym__Conversion__Functions_8cpp.html#a9e82412d529320088f457f12e087e86d", null ],
-    [ "g_dqMulWork", "DQsym__Conversion__Functions_8cpp.html#abe592fcd9c2c14fc8ac40c88145d73f8", null ]
+    [ "g_dqMulWork", "DQsym__Conversion__Functions_8cpp.html#a92c21d23171430d0f4682dbe82721e21", null ]
 ];

@@ -1,9 +1,9 @@
 <map id="harmony/src/json/json_validator.h" name="harmony/src/json/json_validator.h">
-<area shape="rect" id="Node000001" title="Strict per&#45;component JSON schema validation at load time." alt="" coords="216,5,381,45"/>
-<area shape="rect" id="Node000002" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="5,93,171,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,53,135,96,133,91,239,48"/>
-<area shape="rect" id="Node000003" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="195,93,402,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,59,301,93,296,93,296,59"/>
-<area shape="rect" id="Node000004" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="427,101,592,126"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="359,48,482,98,480,103,357,53"/>
+<area shape="rect" id="Node000001" title="Strict per&#45;component JSON schema validation at load time." alt="" coords="215,5,379,50"/>
+<area shape="rect" id="Node000002" href="$json__validator_8cpp.html" title="Strict per&#45;component JSON schema validation." alt="" coords="5,98,170,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,56,139,100,137,95,230,57"/>
+<area shape="rect" id="Node000003" href="$simulation__builder_8cpp.html" title="Implementation of JSON simulation orchestration (SimulationBuilder)." alt="" coords="194,98,400,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="299,64,299,99,295,96,295,68"/>
+<area shape="rect" id="Node000004" href="$cli_8cpp.html" title="Implementation of the unified Harmony command&#45;line interface." alt="" coords="424,106,588,134"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="361,54,479,106,473,106,360,59"/>
 </map>
